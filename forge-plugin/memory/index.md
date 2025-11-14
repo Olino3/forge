@@ -31,12 +31,18 @@ Memory files enable:
 memory/
 ├── index.md (this file)
 └── skills/                          # Organized by skill
+    ├── angular-code-review/        # Angular code review memory
+    │   └── {project-name}/         # Per-project directory (auto-created)
+    │       ├── project_overview.md # Angular version, architecture, stack
+    │       ├── common_patterns.md  # Project-specific patterns
+    │       ├── known_issues.md     # Acknowledged tech debt
+    │       └── review_history.md   # Past review summaries
     ├── get-git-diff/               # Git diff analysis memory
     │   └── {project-name}/         # Per-project directory (auto-created)
     │       ├── common_patterns.md  # Frequently changed files/patterns
     │       ├── commit_conventions.md # Project's commit message style
     │       └── merge_patterns.md   # Common merge/branch strategies
-    └── python-code-review/         # Code review memory
+    └── python-code-review/         # Python code review memory
         └── {project-name}/         # Per-project directory (auto-created)
             ├── project_overview.md # Architecture, stack, conventions
             ├── common_patterns.md  # Project-specific code patterns
@@ -106,6 +112,210 @@ Each invocation makes the skill smarter about the project:
 
 ## Memory Files by Skill
 
+### dotnet-code-review Memory
+
+Located in: `memory/skills/dotnet-code-review/{project-name}/`
+
+**Purpose**: Remember .NET project architecture, patterns, conventions, and known issues across reviews.
+
+#### Required Memory Files:
+
+**`project_overview.md`** (ALWAYS CREATE FIRST):
+- .NET version (.NET Framework 4.8, .NET Core 3.1, .NET 6/7/8)
+- C# language version and enabled features (nullable reference types, file-scoped namespaces, etc.)
+- Project type (ASP.NET Core Web API, Blazor Server/WASM, MVC, Razor Pages, Console, Class Library)
+- Framework components in use (MVC, Minimal APIs, gRPC)
+- ORM (Entity Framework Core, EF6, Dapper, NHibernate)
+- State management approach (if Blazor: component state, services, Fluxor)
+- Authentication/Authorization (ASP.NET Core Identity, JWT, Azure AD, IdentityServer, Duende)
+- UI library (if applicable: MudBlazor, Radzen, Blazorise, Syncfusion)
+- Testing framework (xUnit, NUnit, MSTest) and approaches
+- Architecture pattern (Clean Architecture, N-tier, CQRS + MediatR, Vertical Slice)
+- Dependency injection patterns and service registration approach
+- Performance requirements and optimization strategies
+- Security requirements and compliance needs
+
+**Example snippet**:
+```markdown
+# Project Overview - EcommerceAPI
+
+## Basic Information
+- **Project Type**: ASP.NET Core 8 Web API
+- **.NET Version**: .NET 8.0
+- **C# Version**: C# 12 (primary constructors, collection expressions enabled)
+
+## Architecture
+- **Pattern**: Clean Architecture with CQRS (MediatR)
+- **Layers**: API → Application (Commands/Queries) → Domain → Infrastructure
+
+## Technology Stack
+- **ORM**: Entity Framework Core 8.0
+- **Auth**: ASP.NET Core Identity + JWT (15min expiration)
+- **Validation**: FluentValidation
+- **Mapping**: AutoMapper
+- **Caching**: IMemoryCache + Redis (distributed)
+```
+
+**`common_patterns.md`** (UPDATE REGULARLY):
+- Base controller/service classes used across project
+- Result/Option pattern implementation (if used instead of exceptions)
+- CQRS command/query structure (if applicable)
+- Repository pattern implementation
+- Validation approach (FluentValidation, DataAnnotations, custom validators)
+- Error handling patterns (global exception handler, Result<T>, ProblemDetails)
+- Async patterns (ConfigureAwait usage, CancellationToken propagation standards)
+- Dependency injection registration patterns
+- Naming conventions for controllers, services, DTOs
+- File organization and folder structure conventions
+- Database access patterns (repositories, direct DbContext, query objects)
+- Domain event handling (if applicable)
+
+**Example snippet**:
+```markdown
+# Common Patterns - EcommerceAPI
+
+## Base Classes
+
+### ApiControllerBase
+All controllers inherit from `ApiControllerBase`:
+- Injects `IMediator` and `ILogger<T>`
+- Returns `Result<T>` wrapped in `IActionResult`
+- DO NOT inject `IMediator` directly in controllers
+
+## CQRS Pattern
+
+### Command Structure
+```csharp
+// Primary constructors preferred (C# 12)
+public record CreateProductCommand(string Name, decimal Price) : IRequest<Result<Guid>>;
+
+public class CreateProductValidator : AbstractValidator<CreateProductCommand> { }
+
+public class CreateProductHandler(ApplicationDbContext context) 
+    : IRequestHandler<CreateProductCommand, Result<Guid>>
+{
+    public async Task<Result<Guid>> Handle(CreateProductCommand request, 
+        CancellationToken cancellationToken)
+    {
+        // CancellationToken ALWAYS required
+    }
+}
+```
+```
+
+**`known_issues.md`** (CRITICAL FOR ACCURACY):
+- Acknowledged technical debt with context
+- Documented N+1 queries with fix timeline
+- Acceptable deviations (e.g., "Singleton DbContext for read-only cache - documented limitation")
+- Pending .NET version upgrade issues
+- Third-party library limitations (e.g., EF Core query translation issues)
+- Performance bottlenecks under investigation
+- **Purpose**: Prevent false positives on known issues
+
+**Example snippet**:
+```markdown
+# Known Issues - EcommerceAPI
+
+## 🟠 High Severity
+
+### Missing CancellationToken (Persistent)
+**Frequency**: Found in 8 of last 10 reviews (80%)
+**Severity**: High
+**Affected Areas**:
+- `Application/Products/Queries/` - 5 query handlers
+- `Application/Orders/Commands/` - 3 command handlers
+
+**Status**: ⚠️ Ongoing - pattern being gradually addressed
+**Root Cause**: Team learned CancellationToken pattern mid-project
+**Action Items**:
+1. Add to code review checklist
+2. Update all new handlers (in progress)
+3. Backfill existing handlers (scheduled Q2 2025)
+
+### N+1 Query in Order History
+**Frequency**: Reoccurred 3 times after fixes
+**Severity**: High
+**Location**: `Controllers/OrdersController.cs:GetOrderHistory()`
+**Status**: 🔄 In Progress - optimization planned Q2 2025
+**Impact**: <1% of users (those with 100+ orders)
+**Workaround**: Pagination limits to 20 orders per page
+**Review Guidance**: Can suggest `.Include()`, but note it's known low-priority issue
+
+## 🟡 Medium Severity
+
+### Direct DbContext Usage (Migration In Progress)
+**Frequency**: Found in 6 of last 10 reviews
+**Status**: 🔄 Migrating to repository pattern (40% complete)
+**Review Guidance**: Flag NEW direct usage; existing usage being refactored
+```
+
+**`review_history.md`** (APPEND AFTER EACH REVIEW):
+- Date and scope of each review
+- Key findings summary
+- Trends over time (async patterns improving, N+1 queries recurring)
+- Improvements made (migration to .NET 8, adoption of primary constructors)
+- Recurring issues with frequency tracking
+- Metrics: issues by severity, test coverage changes, code quality trends
+
+**Example snippet**:
+```markdown
+# Review History - EcommerceAPI
+
+## Review #10 - 2025-01-14
+**PR**: #289 - Add product recommendation feature
+**Reviewer**: dotnet-code-review v1.0.0
+**Files Changed**: 12 (+487 lines, -12 lines)
+**Issues Found**: 8 total (0 🔴 Critical, 2 🟠 High, 4 🟡 Medium, 2 🟢 Low)
+
+### Detailed Findings
+1. 🟠 **Missing CancellationToken** - `GetRecommendationsHandler.cs:23`
+2. 🟠 **N+1 Query** - Loading product reviews in loop
+3. 🟡 **Missing null check** - `request.UserId` not validated
+
+### Trends vs Previous Review
+| Metric | Previous | Current | Change |
+|--------|----------|---------|--------|
+| Total Issues | 12 | 8 | ✅ -33% |
+| High Severity | 3 | 2 | ✅ -33% |
+| CancellationToken Issues | 4 | 1 | ✅ -75% |
+
+---
+
+## Summary Statistics (Last 10 Reviews)
+- **Total Issues Found**: 105 issues across 10 reviews (10.5 avg per review)
+- **Recurring Patterns**:
+  - Missing CancellationToken: 80% of reviews
+  - N+1 Queries: 30% of reviews (3 recurrences)
+  - Null checks: 50% of reviews
+
+### Code Quality Trend
+**Improvement**: 60% reduction in issues from Review #1 to Review #10
+- Review #1: 20 issues
+- Review #10: 8 issues
+
+### Test Coverage Trend
+- Review #1: 65%
+- Review #10: 85%
+```
+
+#### .NET-Specific Memory Guidance
+
+**Why .NET projects need memory**:
+- **Captive dependency detection**: Some Singleton→Scoped patterns are intentional (e.g., cache)
+- **N+1 query tracking**: EF Core makes these easy to introduce and hard to spot
+- **Async pattern evolution**: Teams often learn `CancellationToken`/`ConfigureAwait` mid-project
+- **Framework migration**: .NET Framework → .NET Core migrations have documented limitations
+- **Third-party quirks**: EF Core, Blazor libraries have known translation/rendering issues
+
+**What to track in .NET memory**:
+- Which service lifetimes are intentional vs accidental
+- Known EF Core query limitations (e.g., "GroupBy doesn't translate in this scenario")
+- Documented sync-over-async code (e.g., "Migration code uses `.Result` - runs once on startup")
+- Blazor component lifecycle patterns specific to this project
+- Security exceptions (e.g., "Admin endpoints skip CSRF - documented in security review")
+
+---
+
 ### get-git-diff Memory
 
 Located in: `memory/skills/get-git-diff/{project-name}/`
@@ -150,6 +360,73 @@ Backend changes usually include:
 - Small: 1-3 files, <100 lines (80% of commits)
 - Medium: 4-10 files, 100-500 lines (15%)
 - Large: 10+ files, 500+ lines (5%, usually refactoring)
+```
+
+---
+
+### angular-code-review Memory
+
+Located in: `memory/skills/angular-code-review/{project-name}/`
+
+**Purpose**: Remember Angular project architecture, patterns, conventions, and known issues
+
+#### Required Memory Files:
+
+**`project_overview.md`** (ALWAYS CREATE FIRST):
+- Angular version (e.g., Angular 17)
+- Module system (standalone components vs NgModules)
+- State management (NgRx, Akita, service-based)
+- UI library (PrimeNG, Angular Material, etc.)
+- CSS framework (TailwindCSS, Bootstrap, SCSS)
+- TypeScript configuration (strict mode, target)
+- RxJS version and patterns
+- Testing framework (Jasmine/Karma, Jest)
+- Build system (Angular CLI, Nx)
+- Forms approach (reactive, template-driven)
+- Routing strategy (lazy loading, preloading)
+
+**`common_patterns.md`** (UPDATE REGULARLY):
+- Component patterns (smart vs presentational)
+- Service organization
+- State management patterns
+- Subscription management approach
+- Change detection strategies used
+- Error handling patterns
+- Form validation patterns
+- Naming conventions
+- File organization
+
+**`known_issues.md`** (CRITICAL FOR ACCURACY):
+- Acknowledged technical debt
+- Documented limitations
+- Pending Angular/RxJS issues
+- Acceptable deviations from best practices
+- Third-party library issues (PrimeNG, etc.)
+- **Purpose**: Prevent false positives on known issues
+
+**`review_history.md`** (APPEND AFTER EACH REVIEW):
+- Date and scope of review
+- Key findings summary
+- Trends over time (subscription leaks, OnPush adoption, etc.)
+- Improvements made
+- Recurring issues
+
+**Example `known_issues.md`**:
+```markdown
+# Known Issues - MyAngularApp
+
+## Manual Change Detection in Dashboard (Documented)
+**Location**: `src/app/dashboard/dashboard.component.ts:89`
+**Status**: Intentional - required for PrimeNG Chart with dynamic data
+**Behavior**: Uses `ChangeDetectorRef.detectChanges()` in ngAfterViewInit
+**Reason**: PrimeNG Chart doesn't trigger change detection with OnPush
+**Review Guidance**: DO NOT flag as issue - this is correct pattern for this library
+
+## Subscription in ngAfterViewInit (Intentional)
+**Location**: `src/app/features/products/product-detail.component.ts:55`
+**Status**: Correct lifecycle for this use case
+**Reason**: Requires @ViewChild(ImageGallery) to be initialized first
+**Review Guidance**: This is intentional and proper - do not suggest moving to ngOnInit
 ```
 
 ---

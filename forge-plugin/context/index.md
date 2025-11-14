@@ -15,6 +15,32 @@ Context files provide:
 ```
 context/
 ├── index.md (this file)
+├── angular/
+│   ├── index.md
+│   ├── common_issues.md
+│   ├── component_patterns.md
+│   ├── context_detection.md
+│   ├── ngrx_patterns.md
+│   ├── performance_patterns.md
+│   ├── primeng_patterns.md
+│   ├── rxjs_patterns.md
+│   ├── security_patterns.md
+│   ├── service_patterns.md
+│   ├── tailwind_patterns.md
+│   └── typescript_patterns.md
+├── dotnet/
+│   ├── index.md
+│   ├── aspnet_patterns.md
+│   ├── async_patterns.md
+│   ├── blazor_patterns.md
+│   ├── common_issues.md
+│   ├── context_detection.md
+│   ├── csharp_patterns.md
+│   ├── di_patterns.md
+│   ├── ef_patterns.md
+│   ├── linq_patterns.md
+│   ├── performance_patterns.md
+│   └── security_patterns.md
 ├── git/
 │   ├── diff_patterns.md
 │   └── git_diff_reference.md
@@ -22,10 +48,12 @@ context/
 │   ├── common_issues.md
 │   ├── context_detection.md
 │   ├── datascience_patterns.md
+│   ├── dependency_management.md
 │   ├── django_patterns.md
 │   ├── fastapi_patterns.md
 │   ├── flask_patterns.md
-│   └── ml_patterns.md
+│   ├── ml_patterns.md
+│   └── virtual_environments.md
 └── security/
     ├── owasp_python.md
     └── security_guidelines.md
@@ -46,6 +74,73 @@ context/
 
 ---
 
+### Angular Context (`angular/`)
+
+**When to use**: Reviewing Angular/TypeScript code, understanding Angular patterns
+
+| File | Use For | Key Topics |
+|------|---------|------------|
+| `index.md` | Navigation and context loading guide | Quick reference, loading decision matrix |
+| `common_issues.md` | Universal Angular problems (ALWAYS LOAD) | Memory leaks, change detection, lifecycle hooks, observables |
+| `component_patterns.md` | Component best practices | Smart vs presentational, Input/Output, lifecycle, ViewChild |
+| `context_detection.md` | Framework detection | Angular version, NgRx/Akita, PrimeNG, TailwindCSS detection |
+| `ngrx_patterns.md` | State management | Actions, reducers, effects, selectors, facades, entity adapters |
+| `performance_patterns.md` | Performance optimization | OnPush, trackBy, lazy loading, virtual scrolling, memory |
+| `primeng_patterns.md` | PrimeNG components | Table, forms, dialogs, accessibility |
+| `rxjs_patterns.md` | RxJS observables | Subscription management, operators, subjects, error handling |
+| `security_patterns.md` | Angular security | XSS, auth/authz, route guards, HTTP interceptors, CSRF |
+| `service_patterns.md` | Service design | Dependency injection, HTTP, state management, interceptors |
+| `tailwind_patterns.md` | TailwindCSS integration | Configuration, dynamic classes, responsive design |
+| `typescript_patterns.md` | TypeScript best practices | Type safety, generics, utility types, strict mode |
+
+**Load when**: Using `skill:angular-code-review` or analyzing Angular projects
+
+**Context detection workflow**:
+1. Start with `angular/index.md` for navigation guide
+2. Use `context_detection.md` to identify framework version and libraries
+3. Always load `common_issues.md` (universal Angular problems)
+4. Load specific files based on detected patterns (components, services, state management)
+5. Load `security_patterns.md` for auth/API/input handling code
+
+---
+
+### .NET/C# Context (`dotnet/`)
+
+**When to use**: Reviewing .NET, C#, ASP.NET Core, Entity Framework code
+
+| File | Use For | Key Topics |
+|------|---------|------------|
+| `index.md` | Navigation and decision matrix | Quick reference, context loading patterns, file selection guide |
+| `common_issues.md` | Universal .NET problems (ALWAYS LOAD) | Async/await, IDisposable leaks, LINQ pitfalls, exception handling, nullable types |
+| `context_detection.md` | .NET version and framework detection | Detecting .NET Framework vs Core/.NET 5-8+, C# version, ASP.NET/Blazor, EF Core/EF6 |
+| `aspnet_patterns.md` | ASP.NET Core web applications | Controllers, middleware, DI, configuration, authentication, validation, Web API |
+| `ef_patterns.md` | Entity Framework patterns | DbContext lifetime, N+1 queries, eager loading, raw SQL, migrations, relationships |
+| `di_patterns.md` | Dependency injection | Service lifetimes, captive dependencies, IHttpClientFactory, factory patterns, options pattern |
+| `blazor_patterns.md` | Blazor components | Component lifecycle, state management, JSInterop, rendering optimization, forms |
+| `async_patterns.md` | Comprehensive async/await | Sync-over-async, ConfigureAwait, CancellationToken, ValueTask, IAsyncEnumerable, deadlocks |
+| `csharp_patterns.md` | Modern C# language features | Nullable reference types, pattern matching, records, init-only, top-level statements, C# 8-12 |
+| `linq_patterns.md` | LINQ optimization | Deferred execution, IEnumerable vs IQueryable, multiple enumeration, query optimization |
+| `performance_patterns.md` | .NET performance optimization | String performance, collections, Span<T>, ArrayPool, boxing, LOH, caching, HttpClient |
+| `security_patterns.md` | .NET security patterns | SQL injection, XSS, CSRF, authentication, authorization, secrets management, input validation |
+
+**Load when**: Using `skill:dotnet-code-review` or analyzing .NET projects
+
+**Context detection workflow**:
+1. Start with `dotnet/index.md` for navigation and decision matrix
+2. Use `context_detection.md` to identify .NET version, framework type, and ORM
+3. Always load `common_issues.md` (universal .NET problems)
+4. Load specific files based on detected patterns:
+   - ASP.NET controllers/APIs → `aspnet_patterns.md`
+   - DbContext/queries → `ef_patterns.md` + `linq_patterns.md`
+   - DI configuration → `di_patterns.md`
+   - Blazor components → `blazor_patterns.md`
+   - Async methods → `async_patterns.md`
+   - Modern C# features → `csharp_patterns.md`
+   - Performance-critical code → `performance_patterns.md`
+   - Auth/input handling → `security_patterns.md`
+
+---
+
 ### Python Context (`python/`)
 
 **When to use**: Reviewing Python code, understanding frameworks
@@ -55,17 +150,24 @@ context/
 | `common_issues.md` | Identifying typical problems | Mutable defaults, exception handling, import issues, performance |
 | `context_detection.md` | Identifying project type | Detecting Django/Flask/FastAPI/ML frameworks from code patterns |
 | `datascience_patterns.md` | Data science code review | Pandas, NumPy, data validation, memory management |
+| `dependency_management.md` | Package management operations | uv, poetry, conda, pip commands, version constraints, config files |
 | `django_patterns.md` | Django best practices | Models, views, querysets, middleware, signals |
 | `fastapi_patterns.md` | FastAPI best practices | Pydantic models, dependency injection, async patterns, routing |
 | `flask_patterns.md` | Flask best practices | Blueprints, application factory, extensions, context |
 | `ml_patterns.md` | Machine learning code | Model training, data pipelines, evaluation, deployment |
+| `virtual_environments.md` | Virtual environment management | venv, virtualenv, poetry, conda creation, activation, best practices |
 
-**Load when**: Using `skill:python-code-review` or analyzing Python projects
+**Load when**: Using `skill:python-code-review`, `skill:python-dependency-management`, or analyzing Python projects
 
-**Context detection workflow**:
+**Context detection workflow (code review)**:
 1. Start with `context_detection.md` to identify framework
 2. Load framework-specific patterns file
 3. Load `common_issues.md` for universal Python problems
+
+**Dependency management workflow**:
+1. Load `dependency_management.md` for package manager commands and reference
+2. Load `virtual_environments.md` for venv creation and activation
+3. Use for all package installation, removal, and update operations
 
 ---
 
@@ -98,6 +200,18 @@ Skills should load context files in this order:
 ### Loading Context Efficiently
 
 **Instead of reading all files**, use this index to target specific files:
+
+```markdown
+# Example: Angular code review for NgRx project with PrimeNG
+
+1. Load angular/index.md (navigation guide)
+2. Load angular/context_detection.md (detect Angular 17, NgRx, PrimeNG)
+3. Load angular/common_issues.md (always load - universal issues)
+4. Load angular/component_patterns.md (reviewing components)
+5. Load angular/ngrx_patterns.md (state management detected)
+6. Load angular/primeng_patterns.md (PrimeNG components detected)
+7. Load angular/security_patterns.md (if auth/input handling present)
+```
 
 ```markdown
 # Example: Python code review for FastAPI project

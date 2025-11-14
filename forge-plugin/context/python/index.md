@@ -46,6 +46,52 @@ Context files for Python code review, framework-specific patterns, and common is
 
 ---
 
+### `dependency_management.md`
+
+**Purpose**: Package manager command reference and best practices
+
+**Use when**:
+- Installing, removing, or updating Python packages
+- Managing project dependencies
+- Working with different package managers (uv, poetry, conda, pip)
+- Setting up dependency configuration files
+
+**Covers**:
+- Command reference for all major package managers
+- Version constraint syntax (PEP 440)
+- Configuration file formats (pyproject.toml, requirements.txt, environment.yml)
+- Lock file management
+- Best practices for version pinning
+- Dependency conflict resolution
+- CI/CD integration patterns
+
+**Load for**: `skill:python-dependency-management` (always), dependency-related operations
+
+---
+
+### `virtual_environments.md`
+
+**Purpose**: Virtual environment creation, activation, and management
+
+**Use when**:
+- Creating or detecting virtual environments
+- Setting up project environments
+- Troubleshooting environment issues
+- Configuring IDE integration
+
+**Covers**:
+- venv, virtualenv, poetry, conda environment types
+- Creation commands for all environment types
+- Activation/deactivation procedures (cross-platform)
+- Best practices for venv location and naming
+- Environment configuration and variables
+- Common troubleshooting scenarios
+- IDE integration (VS Code, PyCharm, Jupyter)
+
+**Load for**: `skill:python-dependency-management` (always), environment setup tasks
+
+---
+
 ### `datascience_patterns.md`
 
 **Purpose**: Data science and analytics code patterns
@@ -167,20 +213,34 @@ Context files for Python code review, framework-specific patterns, and common is
 ```markdown
 1. Load context_detection.md
    → Identify framework/project type
-   
+
 2. Load common_issues.md
    → Always check universal Python problems
-   
+
 3. Load framework-specific file(s)
    → Django: django_patterns.md
    → Flask: flask_patterns.md
    → FastAPI: fastapi_patterns.md
    → Data Science: datascience_patterns.md
    → ML: ml_patterns.md
-   
+
 4. Load security context
    → ../security/security_guidelines.md
    → ../security/owasp_python.md (if applicable)
+```
+
+### Dependency Management Process
+
+```markdown
+1. Load dependency_management.md
+   → Package manager commands and reference
+
+2. Load virtual_environments.md
+   → Venv creation and activation
+
+3. Execute dependency operation
+   → Use commands from dependency_management.md
+   → Apply venv best practices from virtual_environments.md
 ```
 
 ### Multi-Framework Projects
@@ -206,6 +266,7 @@ Some projects use multiple frameworks. Load all relevant files:
 | **Data Science** | `context_detection.md`, `common_issues.md`, `datascience_patterns.md` | 1, 2, 3 |
 | **Machine Learning** | `context_detection.md`, `common_issues.md`, `ml_patterns.md`, `datascience_patterns.md` | 1, 2, 3, 4 |
 | **Generic Python** | `common_issues.md`, `security_guidelines.md` | 1, 2 |
+| **Dependency Management** | `dependency_management.md`, `virtual_environments.md` | 1, 2 |
 
 ## Pattern Detection Hints
 
@@ -223,10 +284,14 @@ Use these indicators from code to determine which files to load:
 | `@router.get`, `BaseModel` | `fastapi_patterns.md` |
 | `.groupby(`, `.merge(`, `.pivot_table(` | `datascience_patterns.md` |
 | `.fit(`, `.predict(`, `.score(` | `ml_patterns.md` |
+| User mentions "install", "add package", "remove package" | `dependency_management.md`, `virtual_environments.md` |
+| `pyproject.toml`, `requirements.txt`, `poetry.lock` | `dependency_management.md` |
+| `.venv/`, `venv/`, virtual environment | `virtual_environments.md` |
 
 ## Related Skills
 
-- **python-code-review**: Primary consumer of these context files
+- **python-code-review**: Primary consumer of code review context files
+- **python-dependency-management**: Uses dependency_management.md and virtual_environments.md
 - **get-git-diff**: May use for commit message classification
 
 ## Maintenance Notes
