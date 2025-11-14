@@ -13,10 +13,11 @@ description: Examines git diffs between commits or branches with intelligent ana
 
 - **SKILL.md** (this file): Main instructions and MANDATORY workflow
 - **examples.md**: Usage scenarios with different diff types
-- **context/**:
+- **../../context/git/**: Shared git context files
   - `git_diff_reference.md`: Unified diff format reference and best practices
-- **memory/**:
   - `diff_patterns.md`: Common patterns to identify in code changes
+- **../../memory/skills/get-git-diff/**: Project-specific diff analysis memory
+  - `{project-name}/`: Per-project diff patterns and insights
 - **scripts/**:
   - `README.md`: Complete documentation for all helper scripts
   - `validate.sh`: Git repository and commit validation functions
@@ -109,7 +110,7 @@ Git diff analysis evaluates 7 critical dimensions:
 
 **DO NOT SKIP ANALYSIS**
 
-### � STEP 4: Generate Output to /claudedocs (REQUIRED)
+### � STEP 4: Generate Output & Update Project Memory (REQUIRED)
 
 **YOU MUST:**
 1. Use the template from `templates/output_template.md`
@@ -129,6 +130,13 @@ Git diff analysis evaluates 7 critical dimensions:
 - All sections must be clearly labeled
 
 **DO NOT OMIT ANY REQUIRED SECTIONS**
+
+**OPTIONAL: Update Project Memory**
+
+If patterns emerge during analysis, consider storing insights in `../../memory/skills/get-git-diff/{project-name}/`:
+- Common file change patterns
+- Frequently modified areas
+- Notable commit patterns or conventions
 
 ---
 
@@ -228,6 +236,10 @@ Refer to official documentation:
 
 ## Version History
 
+- v1.1.0 (2025-01-XX): Centralized context and project memory
+  - Context files moved to ../../context/git/
+  - Project-specific memory system in ../../memory/skills/get-git-diff/
+  - Optional memory updates for common patterns
 - v1.0.0 (2025-11-13): Initial release
   - Mandatory 4-step workflow
   - Summary-level analysis with statistics

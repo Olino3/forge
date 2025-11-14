@@ -13,8 +13,12 @@ description: Deep Python code review of changed files using git diff analysis. F
 
 - **SKILL.md** (this file): Main instructions and MANDATORY workflow
 - **examples.md**: Review scenarios with before/after examples
-- **context/**: `security_guidelines.md`, `owasp_python.md`
-- **memory/**: `context_detection.md`, `common_issues.md`, `{framework}_patterns.md`
+- **../../context/python/**: Framework patterns and detection logic
+  - `context_detection.md`, `common_issues.md`, `{framework}_patterns.md`
+- **../../context/security/**: Security guidelines and OWASP references
+  - `security_guidelines.md`, `owasp_python.md`
+- **../../memory/skills/python-code-review/**: Project-specific memory storage
+  - `{project-name}/`: Per-project learned patterns and context
 - **templates/**: `report_template.md`, `inline_comment_template.md`
 
 ## Review Focus Areas
@@ -49,16 +53,22 @@ Deep reviews evaluate 8 critical dimensions **in the changed code**:
 
 **DO NOT PROCEED WITHOUT GIT DIFF ANALYSIS**
 
-### ⚠️ STEP 2: Context Detection (REQUIRED)
+### ⚠️ STEP 2: Load Project Memory & Context Detection (REQUIRED)
 
 **YOU MUST:**
-1. Analyze changed files' structure and imports
-2. **READ** `memory/context_detection.md` to identify framework
-3. Determine which framework-specific patterns file(s) to load
-4. Ask clarifying questions in Socratic format:
+1. **CHECK PROJECT MEMORY FIRST**: 
+   - Identify the project name from the repository root or ask the user
+   - Check `../../memory/skills/python-code-review/{project-name}/` for existing project memory
+   - If memory exists, read all files to understand previously learned patterns, frameworks, and project-specific context
+   - If no memory exists, you will create it later in this process
+2. Analyze changed files' structure and imports
+3. **READ** `../../context/python/context_detection.md` to identify framework
+4. Determine which framework-specific patterns file(s) to load
+5. Ask clarifying questions in Socratic format:
    - What is the purpose of these changes?
    - Specific concerns to focus on?
    - Deployment environment?
+   - Any project-specific conventions or patterns to be aware of?
 
 **DO NOT PROCEED WITHOUT COMPLETING THIS STEP**
 
@@ -66,13 +76,13 @@ Deep reviews evaluate 8 critical dimensions **in the changed code**:
 
 **YOU MUST read these files based on context**:
 
-1. **ALWAYS**: `memory/common_issues.md` (universal anti-patterns and deep bugs)
-2. **If Django detected**: `memory/django_patterns.md`
-3. **If Flask detected**: `memory/flask_patterns.md`
-4. **If FastAPI detected**: `memory/fastapi_patterns.md`
-5. **If data science detected**: `memory/datascience_patterns.md`
-6. **If ML detected**: `memory/ml_patterns.md`
-7. **For security reviews**: `context/security_guidelines.md` AND `context/owasp_python.md`
+1. **ALWAYS**: `../../context/python/common_issues.md` (universal anti-patterns and deep bugs)
+2. **If Django detected**: `../../context/python/django_patterns.md`
+3. **If Flask detected**: `../../context/python/flask_patterns.md`
+4. **If FastAPI detected**: `../../context/python/fastapi_patterns.md`
+5. **If data science detected**: `../../context/python/datascience_patterns.md`
+6. **If ML detected**: `../../context/python/ml_patterns.md`
+7. **For security reviews**: `../../context/security/security_guidelines.md` AND `../../context/security/owasp_python.md`
 
 **Progressive loading**: Only read framework files when detected. Don't load all upfront.
 
@@ -100,7 +110,7 @@ Deep reviews evaluate 8 critical dimensions **in the changed code**:
 
 **DO NOT SKIP ANY CATEGORY**
 
-### ⚠️ STEP 5: Generate Output (REQUIRED)
+### ⚠️ STEP 5: Generate Output & Update Project Memory (REQUIRED)
 
 **YOU MUST ask user for preferred output format**:
 
@@ -127,16 +137,27 @@ Deep reviews evaluate 8 critical dimensions **in the changed code**:
 
 **DO NOT PROVIDE INCOMPLETE RECOMMENDATIONS**
 
+**After completing the review, UPDATE PROJECT MEMORY**:
+
+Create or update files in `../../memory/skills/python-code-review/{project-name}/`:
+
+1. **project_overview.md**: Framework, architecture patterns, deployment info
+2. **common_patterns.md**: Project-specific coding patterns and conventions discovered
+3. **known_issues.md**: Recurring issues or anti-patterns found in this project
+4. **review_history.md**: Summary of reviews performed with dates and key findings
+
+This memory will be consulted in future reviews to provide context-aware analysis.
+
 ---
 
 ## Compliance Checklist
 
 Before completing ANY review, verify:
 - [ ] Step 1: Git diff analyzed using `get-git-diff` skill and changed Python files identified
-- [ ] Step 2: Context detected and pattern files identified for changed files
-- [ ] Step 3: All relevant pattern files read
+- [ ] Step 2: Project memory checked in `../../memory/skills/python-code-review/{project-name}/` and context detected
+- [ ] Step 3: All relevant pattern files read from `../../context/python/` and `../../context/security/`
 - [ ] Step 4: Manual review completed for ALL categories on changed code only
-- [ ] Step 5: User preference obtained for output format and all recommendations include severity, category, description, fix, and reference
+- [ ] Step 5: Output generated with all required fields AND project memory updated
 
 **FAILURE TO COMPLETE ALL STEPS INVALIDATES THE REVIEW**
 
@@ -153,6 +174,10 @@ Refer to the official documentation:
 
 ## Version History
 
+- v2.1.0 (2025-11-14): Refactored to use centralized context and project-specific memory system
+  - Context files moved to `forge-plugin/context/python/` and `forge-plugin/context/security/`
+  - Project memory stored in `forge-plugin/memory/skills/python-code-review/{project-name}/`
+  - Added project memory loading and persistence in workflow
 - v2.0.0 (2025-11-13): Changed to diff-based review using `get-git-diff` skill - reviews only changed code
 - v1.1.0 (2025-11-13): Removed automated analysis and linting/formatting tools
 - v1.0.0 (2025-11-13): Initial release
