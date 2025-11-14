@@ -14,9 +14,11 @@ description: Examines git diffs between commits or branches with intelligent ana
 - **SKILL.md** (this file): Main instructions and MANDATORY workflow
 - **examples.md**: Usage scenarios with different diff types
 - **../../context/git/**: Shared git context files
+  - `index.md`: Quick reference guide - READ THIS FIRST to understand available context files
   - `git_diff_reference.md`: Unified diff format reference and best practices
   - `diff_patterns.md`: Common patterns to identify in code changes
 - **../../memory/skills/get-git-diff/**: Project-specific diff analysis memory
+  - `index.md`: Memory system guide - READ THIS to understand memory structure
   - `{project-name}/`: Per-project diff patterns and insights
 - **scripts/**:
   - `README.md`: Complete documentation for all helper scripts
@@ -61,9 +63,16 @@ Git diff analysis evaluates 7 critical dimensions:
 
 **DO NOT PROCEED WITHOUT VALID COMMITS**
 
-### � STEP 2: Execute Git Diff with Special Handling (REQUIRED)
+### ⚠️ STEP 2: Load Context & Memory, Then Execute Git Diff (REQUIRED)
 
-**YOU MUST:**
+**FIRST: Load indexes to understand available resources**
+1. **READ** `../../context/git/index.md` to understand available git context files
+2. **READ** `../../memory/skills/get-git-diff/index.md` to understand memory system
+3. Check for project-specific memory in `../../memory/skills/get-git-diff/{project-name}/`
+   - If exists: Load memory files to understand project patterns
+   - If not: Note this is first analysis of this project
+
+**THEN: Execute git diff with special handling**
 1. Execute `git diff [commit1]...[commit2]` to get the unified diff
 2. Check for and handle special cases:
    - **Large diffs** (>1000 lines): Warn user, offer to summarize only or proceed
@@ -75,9 +84,13 @@ Git diff analysis evaluates 7 critical dimensions:
 
 **DO NOT SKIP SPECIAL CASE DETECTION**
 
-### � STEP 3: Analyze and Summarize (REQUIRED)
+### � STEP 3: Analyze and Summarize (REQUIRED)
 
-**YOU MUST analyze and document**:
+**FIRST: Load relevant context files (use indexes from Step 2 for guidance)**
+1. **READ** `../../context/git/git_diff_reference.md` for diff format understanding
+2. **READ** `../../context/git/diff_patterns.md` for change pattern classification
+
+**THEN: Analyze and document**:
 1. **Commit Metadata**:
    - Commit hashes (full and short)
    - Author and date for both commits
