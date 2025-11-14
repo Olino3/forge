@@ -1,6 +1,6 @@
 {
-    "name": "my-first-plugin",
-    "description": "A simple greeting plugin to learn the basics",
+    "name": "forge-plugin",
+    "description": "Forge is plugin that brings the inventive spirit of Hephaestus and the wisdom of Athene to life, empowering users to craft innovative solutions and live peacefully with advanced technology.",
     "version": "1.0.0",
     "author": {
         "name": "Olin Osborne III"
