@@ -482,6 +482,3 @@ Always → Read memory/common_issues.md
 For security-focused reviews, additionally read:
 - `context/security_guidelines.md`
 - `context/owasp_python.md`
-
-For style reviews, additionally read:
-- `context/pep8_standards.md`

@@ -581,15 +581,11 @@ def login():
 
 ## Security Testing Tools
 
-Run these tools regularly:
-- **bandit**: Security linter for Python
-- **safety**: Check dependencies for known vulnerabilities
+Consider using security analysis tools:
 - **pip-audit**: Audit Python packages for security issues
 - **semgrep**: Static analysis for security patterns
 
 ```bash
-bandit -r .
-safety check
 pip-audit
 semgrep --config=auto .
 ```

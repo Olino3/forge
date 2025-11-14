@@ -355,7 +355,6 @@ Using components with known vulnerabilities.
 **Dependency Scanning**:
 ```bash
 # Check for vulnerable dependencies
-safety check
 pip-audit
 
 # Keep dependencies updated
@@ -388,7 +387,7 @@ updates:
 
 ### Prevention
 - Inventory all components and versions
-- Regularly scan for vulnerabilities (safety, pip-audit)
+- Regularly scan for vulnerabilities (pip-audit)
 - Remove unused dependencies
 - Only obtain components from official sources
 - Monitor for security advisories
