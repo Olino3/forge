@@ -184,7 +184,7 @@ Behold the sacred structure where divine tools are born:
 │           └─ SKILL.md           # Skill documentation
 ├─ 📜 CLAUDE.md                   # Divine instructions for Claude
 ├─ 🛡️ .gitignore                  # Protected artifacts
-└─ � README.md                   # This divine manuscript
+└─ README.md                   # This divine manuscript
 ```
 
 > 🔍 **Explore**: Each skill in the forge contains specialized knowledge and tools for specific tasks. The `.claude-plugin` directories define the marketplace and plugin structures for Claude Code.

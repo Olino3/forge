@@ -58,13 +58,18 @@ Deep reviews evaluate 8 critical dimensions **in the changed code**:
 **YOU MUST:**
 1. **CHECK PROJECT MEMORY FIRST**: 
    - Identify the project name from the repository root or ask the user
+   - **READ** `../../memory/skills/python-code-review/index.md` to understand the memory system
    - Check `../../memory/skills/python-code-review/{project-name}/` for existing project memory
-   - If memory exists, read all files to understand previously learned patterns, frameworks, and project-specific context
+   - If memory exists, read the memory files to understand previously learned patterns, frameworks, and project-specific context
    - If no memory exists, you will create it later in this process
-2. Analyze changed files' structure and imports
-3. **READ** `../../context/python/context_detection.md` to identify framework
-4. Determine which framework-specific patterns file(s) to load
-5. Ask clarifying questions in Socratic format:
+2. **USE CONTEXT INDEXES FOR EFFICIENT LOADING**:
+   - **READ** `../../context/index.md` for overview of available context files
+   - **READ** `../../context/python/index.md` to understand Python context files and when to use each
+   - **READ** `../../context/security/index.md` to understand security context files
+3. Analyze changed files' structure and imports
+4. Use `context_detection.md` to identify framework (as guided by the python index)
+5. Determine which specific context files to load based on the indexes (don't load all files)
+6. Ask clarifying questions in Socratic format:
    - What is the purpose of these changes?
    - Specific concerns to focus on?
    - Deployment environment?
@@ -72,21 +77,29 @@ Deep reviews evaluate 8 critical dimensions **in the changed code**:
 
 **DO NOT PROCEED WITHOUT COMPLETING THIS STEP**
 
-### ⚠️ STEP 3: Read Pattern Files (REQUIRED)
+### ⚠️ STEP 3: Read Relevant Context Files (REQUIRED)
 
-**YOU MUST read these files based on context**:
+**YOU MUST use the indexes to load only relevant files**:
+
+**Use the index files from Step 2 to determine which context files to load:**
 
 1. **ALWAYS**: `../../context/python/common_issues.md` (universal anti-patterns and deep bugs)
-2. **If Django detected**: `../../context/python/django_patterns.md`
-3. **If Flask detected**: `../../context/python/flask_patterns.md`
-4. **If FastAPI detected**: `../../context/python/fastapi_patterns.md`
-5. **If data science detected**: `../../context/python/datascience_patterns.md`
-6. **If ML detected**: `../../context/python/ml_patterns.md`
-7. **For security reviews**: `../../context/security/security_guidelines.md` AND `../../context/security/owasp_python.md`
+2. **Based on framework detected** (refer to `../../context/python/index.md` for guidance):
+   - **If Django detected**: Load `django_patterns.md`
+   - **If Flask detected**: Load `flask_patterns.md`
+   - **If FastAPI detected**: Load `fastapi_patterns.md`
+   - **If data science detected**: Load `datascience_patterns.md`
+   - **If ML detected**: Load `ml_patterns.md`
+3. **For security-sensitive code** (refer to `../../context/security/index.md` for when to load):
+   - Auth/authorization code: Load both security files
+   - User input handling: Load `security_guidelines.md`
+   - Database queries: Load `security_guidelines.md`
+   - File operations: Load `security_guidelines.md`
+   - Comprehensive audit: Load both `security_guidelines.md` AND `owasp_python.md`
 
-**Progressive loading**: Only read framework files when detected. Don't load all upfront.
+**Progressive loading**: Only read files relevant to the detected framework and code type. The index files provide guidance on when each file is needed.
 
-**DO NOT SKIP PATTERN FILE READING**
+**DO NOT SKIP LOADING RELEVANT CONTEXT FILES**
 
 ### ⚠️ STEP 4: Deep Manual Review of Changed Code (REQUIRED)
 
