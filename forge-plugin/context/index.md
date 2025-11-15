@@ -240,6 +240,40 @@ Add new context files when:
 - ❌ Content is **dynamic** (changes with each analysis)
 - ❌ Knowledge is **temporary** (belongs in skill output)
 
+### How to Write Context Files (Compact Approach)
+
+**Use links over duplication** to reduce maintenance burden:
+
+✅ **DO**:
+- Keep quick reference tables (command equivalents, comparisons)
+- Keep detection patterns and decision matrices (unique to our use case)
+- Provide brief summaries with links to official docs
+- Link to PEPs, RFCs, official documentation
+- Include "what to look for" and "when to use" guidance
+
+❌ **DON'T**:
+- Duplicate content from official documentation
+- Write long explanations that will become outdated
+- Copy-paste API references or full command syntax
+- Include extensive examples (link to official docs instead)
+
+**Example structure**:
+```markdown
+## Quick Reference Table
+[Keep: Command comparisons, syntax table]
+
+## Official Documentation
+[Link: Official docs for details]
+
+## Detection Patterns
+[Keep: How to identify this pattern in code]
+
+## Common Issues
+[Brief: Issue + link to solution]
+```
+
+See `python/dependency_management.md` and `python/virtual_environments.md` for examples of the compact approach.
+
 ---
 
 ## Context vs Memory
@@ -260,9 +294,12 @@ Add new context files when:
 ### For Developers
 
 - **Update context** when standards or best practices evolve
+- **Use compact approach** - link to official docs instead of duplicating content
+- **Keep quick references** - tables, patterns, detection logic (unique to our use case)
 - **Version context files** if major changes occur
 - **Keep context focused** - one domain per directory
 - **Document changes** in version history
+- **Review links periodically** - ensure official documentation links are still valid
 
 ### For Skills
 
@@ -270,6 +307,7 @@ Add new context files when:
 - **Don't modify context** - it's read-only reference
 - **Combine with memory** - context + project memory = complete understanding
 - **Cache if needed** - context rarely changes within a session
+- **Expect links** - context may link to official docs for detailed information
 
 ---
 

@@ -1,561 +1,183 @@
-# Angular Common Issues
+# Angular Common Issues - Quick Reference
 
-This file catalogs the most frequently encountered issues in Angular applications. These are universal problems that occur across projects regardless of architecture or tech stack.
+Detection patterns and solution references for frequently encountered Angular problems.
 
 **Load this file**: ALWAYS (for every Angular code review)
 
 ---
 
-## Table of Contents
+## 1. Memory Leaks {#memory-leaks}
 
-1. [Memory Leaks](#memory-leaks)
-2. [Change Detection Errors](#change-detection-errors)
-3. [Lifecycle Hook Misuse](#lifecycle-hook-misuse)
-4. [Observable Subscription Problems](#observable-subscription-problems)
-5. [Template Syntax Mistakes](#template-syntax-mistakes)
-6. [Zone.js Issues](#zonejs-issues)
-7. [Dependency Injection Problems](#dependency-injection-problems)
-8. [Router Navigation Issues](#router-navigation-issues)
+| Issue | Detection Pattern | Solution Reference |
+|-------|------------------|-------------------|
+| **Unmanaged Subscriptions** | `.subscribe()` without cleanup | [Async Pipe](https://angular.io/api/common/AsyncPipe), [takeUntil Pattern](https://angular.io/guide/rx-library#unsubscribing-to-observables), [DestroyRef](https://angular.io/api/core/DestroyRef) |
+| **Event Listeners** | `addEventListener()` without `removeEventListener()` | [Lifecycle Hooks Guide](https://angular.io/guide/lifecycle-hooks), [@HostListener](https://angular.io/api/core/HostListener) |
+| **Intervals/Timeouts** | `setInterval()`/`setTimeout()` without `clear*()` | Store IDs, clear in `ngOnDestroy()` |
+| **Component References** | `ViewChild`/`ContentChild` accessed after destroy | Check `ngOnDestroy()` implementation |
 
----
-
-## Memory Leaks {#memory-leaks}
-
-### 1. Unmanaged Observable Subscriptions
-
-**Problem**: Most common Angular memory leak - subscriptions not cleaned up.
-
-**Bad**:
-```typescript
-ngOnInit() {
-  this.userService.getUsers().subscribe(users => {
-    this.users = users;
-  });
-  // Subscription never cleaned up!
-}
-```
-
-**Good - Option 1 (takeUntil pattern)**:
-```typescript
-private destroy$ = new Subject<void>();
-
-ngOnInit() {
-  this.userService.getUsers()
-    .pipe(takeUntil(this.destroy$))
-    .subscribe(users => this.users = users);
-}
-
-ngOnDestroy() {
-  this.destroy$.next();
-  this.destroy$.complete();
-}
-```
-
-**Good - Option 2 (async pipe - preferred)**:
-```typescript
-// Component
-users$ = this.userService.getUsers();
-
-// Template
-<div *ngFor="let user of users$ | async">
-  {{ user.name }}
-</div>
-```
-
-**Detection**: Look for `.subscribe()` calls without corresponding cleanup.
-
-### 2. Event Listener Leaks
-
-**Bad**:
-```typescript
-ngOnInit() {
-  window.addEventListener('resize', this.onResize);
-}
-// Listener never removed!
-```
-
-**Good**:
-```typescript
-ngOnInit() {
-  window.addEventListener('resize', this.onResize);
-}
-
-ngOnDestroy() {
-  window.removeEventListener('resize', this.onResize);
-}
-```
-
-### 3. Interval/Timeout Leaks
-
-**Bad**:
-```typescript
-ngOnInit() {
-  setInterval(() => {
-    this.updateData();
-  }, 5000);
-  // Interval continues after component destroyed!
-}
-```
-
-**Good**:
-```typescript
-private intervalId: any;
-
-ngOnInit() {
-  this.intervalId = setInterval(() => {
-    this.updateData();
-  }, 5000);
-}
-
-ngOnDestroy() {
-  if (this.intervalId) {
-    clearInterval(this.intervalId);
-  }
-}
-```
+**Key Pattern**: Always implement `ngOnDestroy()` for cleanup
 
 ---
 
-## Change Detection Errors {#change-detection-errors}
+## 2. Change Detection Errors {#change-detection-errors}
 
-### 1. ExpressionChangedAfterItHasBeenCheckedError
+| Issue | Detection Pattern | Solution Reference |
+|-------|------------------|-------------------|
+| **ExpressionChangedAfterItHasBeenCheckedError** | State change after view checked (in `ngAfterViewInit`, etc.) | [Change Detection Guide](https://angular.io/guide/change-detection), use `setTimeout()` or `ChangeDetectorRef.detectChanges()` |
+| **OnPush Not Triggering** | `@Input()` object mutated instead of replaced | [OnPush Strategy](https://angular.io/api/core/ChangeDetectionStrategy#onpush), use immutable updates |
+| **Infinite Change Detection** | Impure pipes, getters in templates | [Pure Pipes](https://angular.io/guide/pipes-overview#pure-and-impure-pipes) |
 
-**Problem**: Most confusing Angular error - expression changes during change detection.
-
-**Common Cause - Modifying State in Lifecycle Hooks**:
-```typescript
-// Bad
-ngAfterViewInit() {
-  this.isLoading = false; // Changes state after view checked
-}
-```
-
-**Fix - Use setTimeout or ChangeDetectorRef**:
-```typescript
-// Option 1: setTimeout (pushes to next event loop)
-ngAfterViewInit() {
-  setTimeout(() => {
-    this.isLoading = false;
-  });
-}
-
-// Option 2: Manual change detection
-constructor(private cdr: ChangeDetectorRef) {}
-
-ngAfterViewInit() {
-  this.isLoading = false;
-  this.cdr.detectChanges();
-}
-```
-
-**Common Cause - Child Component Modifying Parent State**:
-```typescript
-// Bad - Child modifying parent in ngOnInit
-@Output() loaded = new EventEmitter();
-
-ngOnInit() {
-  this.loaded.emit(true); // Parent state changes during CD
-}
-```
-
-**Fix - Emit in next cycle**:
-```typescript
-ngOnInit() {
-  setTimeout(() => {
-    this.loaded.emit(true);
-  });
-}
-```
-
-### 2. OnPush Not Triggering
-
-**Problem**: OnPush components don't update when expected.
-
-**Cause - Mutating Objects**:
-```typescript
-@Component({
-  changeDetection: ChangeDetectionStrategy.OnPush
-})
-export class MyComponent {
-  @Input() data: any[];
-
-  // Bad - parent does: this.data.push(item)
-  // OnPush won't detect because reference didn't change
-}
-```
-
-**Fix - Immutable Updates**:
-```typescript
-// Parent should do:
-this.data = [...this.data, newItem];
-```
+**References**:
+- [Change Detection in Depth](https://angular.io/guide/change-detection)
+- [ChangeDetectorRef API](https://angular.io/api/core/ChangeDetectorRef)
 
 ---
 
-## Lifecycle Hook Misuse {#lifecycle-hook-misuse}
+## 3. Lifecycle Hook Misuse {#lifecycle-hook-misuse}
 
-### 1. Using ngAfterViewInit for Data Loading
+| Anti-Pattern | Correct Approach | Reference |
+|-------------|------------------|-----------|
+| Data loading in constructor | Use `ngOnInit()` | [Lifecycle Hooks Guide](https://angular.io/guide/lifecycle-hooks) |
+| Data loading in `ngAfterViewInit()` | Use `ngOnInit()` (unless view-dependent) | [View Lifecycle](https://angular.io/guide/lifecycle-hooks#responding-to-view-changes) |
+| Missing `ngOnDestroy()` | Always implement for cleanup | [OnDestroy Interface](https://angular.io/api/core/OnDestroy) |
+| Modifying state in `ngAfterViewChecked()` | Use `ngAfterContentChecked()` or defer with `setTimeout()` | [Lifecycle Sequence](https://angular.io/guide/lifecycle-hooks#lifecycle-event-sequence) |
 
-**Bad**:
-```typescript
-ngAfterViewInit() {
-  this.loadData(); // Too late - causes flickering
-}
-```
-
-**Good**:
-```typescript
-ngOnInit() {
-  this.loadData(); // Correct - before view renders
-}
-```
-
-### 2. Not Implementing ngOnDestroy
-
-**Problem**: Missing cleanup logic.
-
-**Always Implement When**:
-- Manual subscriptions exist
-- Event listeners registered
-- Intervals/timeouts created
-- Third-party library instances created
-
-```typescript
-ngOnDestroy() {
-  // Clean up ALL resources
-  this.destroy$.next();
-  this.destroy$.complete();
-  this.removeEventListeners();
-  this.clearIntervals();
-}
-```
-
-### 3. Using Constructor for Initialization
-
-**Bad**:
-```typescript
-constructor(private userService: UserService) {
-  // Bad - component not fully initialized
-  this.loadUsers();
-}
-```
-
-**Good**:
-```typescript
-constructor(private userService: UserService) {
-  // Constructor only for DI
-}
-
-ngOnInit() {
-  // Good - component fully initialized
-  this.loadUsers();
-}
-```
+**Quick Reference**: [Lifecycle Hooks Sequence Diagram](https://angular.io/guide/lifecycle-hooks#lifecycle-event-sequence)
 
 ---
 
-## Observable Subscription Problems {#observable-subscription-problems}
+## 4. Observable Subscription Problems {#observable-subscription-problems}
 
-### 1. Nested Subscriptions (Callback Hell)
+| Anti-Pattern | Detection | Solution |
+|-------------|-----------|----------|
+| **Nested Subscriptions** | Multiple nested `.subscribe()` calls | Use RxJS operators: `switchMap`, `mergeMap`, `concatMap` - [RxJS Operators](https://rxjs.dev/guide/operators) |
+| **No Error Handling** | `.subscribe()` without error callback | Add `catchError` operator - [Error Handling](https://angular.io/guide/observables#error-handling) |
+| **Manual Subscription** | Assignment in `.subscribe()` callback | Use `async` pipe in template - [Async Pipe](https://angular.io/api/common/AsyncPipe) |
+| **Subject Memory Leaks** | Subject not completed | Call `.complete()` in `ngOnDestroy()` |
 
-**Bad**:
-```typescript
-this.userService.getUser(id).subscribe(user => {
-  this.postService.getPosts(user.id).subscribe(posts => {
-    this.commentService.getComments(posts[0].id).subscribe(comments => {
-      this.comments = comments; // Callback hell!
-    });
-  });
-});
-```
-
-**Good - Use RxJS Operators**:
-```typescript
-this.userService.getUser(id).pipe(
-  switchMap(user => this.postService.getPosts(user.id)),
-  switchMap(posts => this.commentService.getComments(posts[0].id))
-).subscribe(comments => {
-  this.comments = comments;
-});
-```
-
-### 2. No Error Handling
-
-**Bad**:
-```typescript
-this.http.get('/api/users').subscribe(users => {
-  this.users = users;
-  // If API fails, no error handling!
-});
-```
-
-**Good**:
-```typescript
-this.http.get('/api/users').pipe(
-  catchError(error => {
-    console.error('Failed to load users:', error);
-    this.errorMessage = 'Failed to load users';
-    return of([]); // Return empty array
-  })
-).subscribe(users => {
-  this.users = users;
-});
-```
-
-### 3. Manual Subscription Instead of Async Pipe
-
-**Bad**:
-```typescript
-ngOnInit() {
-  this.userService.getUsers().subscribe(users => {
-    this.users = users;
-  });
-}
-```
-
-**Good**:
-```typescript
-// Component
-users$ = this.userService.getUsers();
-
-// Template
-<div *ngFor="let user of users$ | async">{{ user.name }}</div>
-```
-
-**Benefits of async pipe**:
-- Automatic subscription management
-- Automatic change detection
-- No memory leaks
+**References**:
+- [RxJS in Angular](https://angular.io/guide/rx-library)
+- [Operator Decision Tree](https://rxjs.dev/operator-decision-tree)
 
 ---
 
-## Template Syntax Mistakes {#template-syntax-mistakes}
+## 5. Template Syntax Mistakes {#template-syntax-mistakes}
 
-### 1. Missing trackBy in *ngFor
+| Issue | Detection | Solution Reference |
+|-------|-----------|-------------------|
+| **Two-way Binding Misuse** | `[(ngModel)]` without FormsModule | [Forms Guide](https://angular.io/guide/forms-overview) |
+| **Unsafe Property Access** | `user.address.city` when address might be null | Use optional chaining `user.address?.city` or `*ngIf` |
+| **Function Calls in Templates** | `{{ calculateTotal() }}` | Use pipes or computed properties - [Performance Guide](https://angular.io/guide/change-detection-best-practices) |
+| **Missing TrackBy** | `*ngFor` without `trackBy` on large lists | [TrackBy Function](https://angular.io/api/common/NgForOf#change-propagation) |
+| **Incorrect Event Syntax** | `(click)="method"` (missing parentheses) | Should be `(click)="method()"` |
 
-**Bad**:
-```html
-<div *ngFor="let item of items">
-  {{ item.name }}
-</div>
-```
-
-**Good**:
-```html
-<div *ngFor="let item of items; trackBy: trackById">
-  {{ item.name }}
-</div>
-```
-
-```typescript
-trackById(index: number, item: any): number {
-  return item.id;
-}
-```
-
-### 2. Using Function Calls in Templates
-
-**Bad**:
-```html
-<!-- Function called on every change detection! -->
-<div>{{ getFormattedDate(user.createdAt) }}</div>
-```
-
-**Good - Use Pipe**:
-```html
-<div>{{ user.createdAt | date:'short' }}</div>
-```
-
-**Good - Use Property**:
-```typescript
-get formattedDate(): string {
-  return this.formatDate(this.user.createdAt);
-}
-```
-
-```html
-<div>{{ formattedDate }}</div>
-```
-
-### 3. Unsafe Property Access
-
-**Bad**:
-```html
-<!-- Will error if user is null/undefined -->
-<div>{{ user.profile.name }}</div>
-```
-
-**Good - Use Optional Chaining**:
-```html
-<div>{{ user?.profile?.name }}</div>
-```
-
-**Good - Use *ngIf**:
-```html
-<div *ngIf="user && user.profile">
-  {{ user.profile.name }}
-</div>
-```
+**References**:
+- [Template Syntax](https://angular.io/guide/template-syntax)
+- [Built-in Directives](https://angular.io/guide/built-in-directives)
 
 ---
 
-## Zone.js Issues {#zonejs-issues}
+## 6. Zone.js Issues {#zonejs-issues}
 
-### 1. Running Outside Angular Zone
+| Issue | Detection | Solution Reference |
+|-------|-----------|-------------------|
+| **External Libraries Not Triggering CD** | Third-party callbacks don't update view | Use `NgZone.run()` - [NgZone API](https://angular.io/api/core/NgZone) |
+| **Performance with High-Frequency Events** | Events like `mousemove`, `scroll` | Use `NgZone.runOutsideAngular()` - [Zone Optimization](https://angular.io/guide/zone) |
+| **Testing Zone Issues** | `fakeAsync` errors | [Testing with Zones](https://angular.io/guide/testing-components-scenarios#waiting-for-asynchronous-data) |
 
-**Problem**: Updates don't trigger change detection.
-
-**Symptom**: View doesn't update even though data changes.
-
-**Cause - Third-Party Libraries**:
-```typescript
-// Third-party library callback runs outside Zone
-thirdPartyLib.on('data', (data) => {
-  this.data = data; // View won't update!
-});
-```
-
-**Fix - Run Inside Zone**:
-```typescript
-constructor(private zone: NgZone) {}
-
-thirdPartyLib.on('data', (data) => {
-  this.zone.run(() => {
-    this.data = data; // Now triggers change detection
-  });
-});
-```
-
-### 2. Performance Issues from Too Much Change Detection
-
-**Problem**: Running expensive operations inside Zone.
-
-**Fix - Run Outside Zone for Performance**:
-```typescript
-ngOnInit() {
-  this.zone.runOutsideAngular(() => {
-    // Expensive operation that doesn't need CD
-    setInterval(() => {
-      this.updateChartData(); // Doesn't trigger CD
-    }, 100);
-  });
-}
-```
+**References**:
+- [Zone.js Documentation](https://angular.io/guide/zone)
+- [NgZone API](https://angular.io/api/core/NgZone)
 
 ---
 
-## Dependency Injection Problems {#dependency-injection-problems}
+## 7. Dependency Injection Problems {#dependency-injection-problems}
 
-### 1. Multiple Service Instances
+| Issue | Detection | Solution Reference |
+|-------|-----------|-------------------|
+| **Missing providedIn** | Service not registered anywhere | Add `providedIn: 'root'` - [Injectable Decorator](https://angular.io/api/core/Injectable) |
+| **Wrong Injection Scope** | Service should be singleton but provided in component | Use `providedIn: 'root'` for singletons - [Hierarchical DI](https://angular.io/guide/hierarchical-dependency-injection) |
+| **Circular Dependencies** | Services depend on each other | Use `forwardRef()` or refactor - [Forward Reference](https://angular.io/api/core/forwardRef) |
+| **Optional Dependencies Not Handled** | `@Optional()` injection without null checks | Always check for null - [Optional Decorator](https://angular.io/api/core/Optional) |
 
-**Problem**: Service not singleton when expected.
-
-**Bad - Service Not Root**:
-```typescript
-@Injectable() // No providedIn!
-export class DataService {}
-
-// Each module creates new instance
-```
-
-**Good - Tree-Shakable Provider**:
-```typescript
-@Injectable({
-  providedIn: 'root' // Single instance app-wide
-})
-export class DataService {}
-```
-
-### 2. Circular Dependencies
-
-**Problem**: Services depend on each other.
-
-**Bad**:
-```typescript
-// user.service.ts
-constructor(private authService: AuthService) {}
-
-// auth.service.ts
-constructor(private userService: UserService) {}
-// Circular dependency!
-```
-
-**Fix - Use Forwarder Ref or Restructure**:
-```typescript
-// Better - create shared service or use events
-```
+**References**:
+- [Dependency Injection Guide](https://angular.io/guide/dependency-injection)
+- [Dependency Providers](https://angular.io/guide/dependency-injection-providers)
 
 ---
 
-## Router Navigation Issues {#router-navigation-issues}
+## 8. Router Navigation Issues {#router-navigation-issues}
 
-### 1. Programmatic Navigation Without Error Handling
+| Issue | Detection | Solution Reference |
+|-------|-----------|-------------------|
+| **Memory Leaks from Route Subscriptions** | `this.route.params.subscribe()` without cleanup | Use `async` pipe or snapshot - [Router Guide](https://angular.io/guide/router) |
+| **Incorrect Route Guards** | Guard doesn't return boolean/Observable/Promise | [Route Guards](https://angular.io/guide/router-tutorial-toh#canactivate-requiring-authentication) |
+| **NavigationEnd Not Filtered** | Listening to all router events | Filter with `filter(event => event instanceof NavigationEnd)` - [Router Events](https://angular.io/guide/router-reference#router-events) |
+| **Fragment/QueryParams Lost** | Navigation without preserving params | Use `queryParamsHandling: 'merge'` - [Navigation Extras](https://angular.io/api/router/NavigationExtras) |
 
-**Bad**:
-```typescript
-this.router.navigate(['/users', userId]);
-// No error handling if navigation fails
-```
-
-**Good**:
-```typescript
-this.router.navigate(['/users', userId]).then(
-  success => console.log('Navigation success'),
-  error => console.error('Navigation failed:', error)
-);
-```
-
-### 2. Route Guards Not Handling Errors
-
-**Bad**:
-```typescript
-canActivate(): Observable<boolean> {
-  return this.authService.isAuthenticated$;
-  // If auth check fails, no fallback
-}
-```
-
-**Good**:
-```typescript
-canActivate(): Observable<boolean> {
-  return this.authService.isAuthenticated$.pipe(
-    catchError(() => {
-      this.router.navigate(['/login']);
-      return of(false);
-    })
-  );
-}
-```
+**References**:
+- [Router Tutorial](https://angular.io/guide/router-tutorial)
+- [Router API](https://angular.io/api/router/Router)
 
 ---
 
-## Quick Checklist
+## Quick Checklist for Reviews
 
-When reviewing Angular code, always check for:
+Use this checklist when reviewing Angular code:
 
-- [ ] All subscriptions cleaned up in ngOnDestroy
-- [ ] Event listeners removed in ngOnDestroy
-- [ ] Intervals/timeouts cleared in ngOnDestroy
-- [ ] trackBy functions used in *ngFor
-- [ ] No function calls in templates
-- [ ] Error handling in HTTP requests
-- [ ] Proper lifecycle hook usage
-- [ ] Optional chaining for nullable properties
-- [ ] Immutable updates with OnPush
-- [ ] Avoid nested subscriptions (use operators)
-- [ ] No ExpressionChangedAfterItHasBeenCheckedError
-- [ ] Services using providedIn: 'root'
+### Memory Management
+- [ ] All `.subscribe()` calls have cleanup (async pipe, takeUntil, or manual)
+- [ ] Event listeners removed in `ngOnDestroy()`
+- [ ] Intervals/timeouts cleared
+- [ ] Subjects completed in `ngOnDestroy()`
+
+### Change Detection
+- [ ] No state changes after view checked
+- [ ] OnPush components use immutable updates
+- [ ] No function calls in templates (use pipes or properties)
+- [ ] TrackBy functions used with large `*ngFor` lists
+
+### Lifecycle
+- [ ] Data loading in `ngOnInit()`, not constructor
+- [ ] `ngOnDestroy()` implemented when needed
+- [ ] Correct lifecycle hook for the operation
+
+### Observables
+- [ ] No nested subscriptions (use operators)
+- [ ] Error handling with `catchError`
+- [ ] Prefer `async` pipe over manual subscription
+
+### Templates
+- [ ] Safe navigation (`?.`) or `*ngIf` for nullable properties
+- [ ] Correct event binding syntax with `()`
+- [ ] Two-way binding with proper imports
+
+### DI & Routing
+- [ ] Services use `providedIn: 'root'` when appropriate
+- [ ] Route param subscriptions cleaned up or use snapshot
+- [ ] Guards return correct types
 
 ---
 
-## Related Context
+## External Resources
 
-- `rxjs_patterns.md` - Detailed RxJS patterns
-- `component_patterns.md` - Component best practices
-- `service_patterns.md` - Service design patterns
-- `performance_patterns.md` - Performance optimization
+### Official Documentation
+- [Angular.io Documentation](https://angular.io/docs)
+- [Angular Style Guide](https://angular.io/guide/styleguide)
+- [Angular API Reference](https://angular.io/api)
+
+### Best Practices
+- [Angular Performance Guide](https://angular.io/guide/change-detection-best-practices)
+- [Security Guide](https://angular.io/guide/security)
+- [Testing Guide](https://angular.io/guide/testing)
+
+### Community Resources
+- [Angular Blog](https://blog.angular.io/)
+- [RxJS Documentation](https://rxjs.dev/)
+- [Angular ESLint](https://github.com/angular-eslint/angular-eslint)
 
 ---
 
-**Version**: 1.0.0
-**Last Updated**: 2025-01-14
+**Version**: 2.0.0 (Compact Reference Format)
+**Last Updated**: 2025-11-14
+**Angular Versions**: 2-18+

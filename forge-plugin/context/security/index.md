@@ -14,64 +14,53 @@ Context files for security-focused code review, vulnerability detection, and sec
 - Analyzing database queries
 - Reviewing file operations
 - Checking cryptographic operations
-- Analyzing API endpoints
+# Security Context Files (Compact)
 
-**Key sections**:
-- **Input Validation**: Path traversal, type validation, length limits
-- **SQL Injection Prevention**: Parameterized queries, ORM usage, dynamic SQL
-- **Cross-Site Scripting (XSS)**: Template escaping, safe HTML, content types
-- **Authentication & Authorization**: Password handling, session management, RBAC
-- **Cryptography**: Hashing, encryption, key management, secure random
-- **File Operations**: Path validation, secure uploads, temporary files
-- **API Security**: Rate limiting, CORS, API keys, token validation
-- **Environment & Secrets**: Configuration, secret management, logging
-- **Dependency Security**: Version pinning, vulnerability scanning
-- **Error Handling**: Information disclosure, safe errors, logging
+Compact Python security references that point to OWASP and other authoritative guides.
 
-**Load for**: Every security-sensitive code review
-
-**Priority areas** (always check):
-- Authentication/authorization code
-- User input handling
-- Database queries (raw SQL especially)
-- File system operations
-- Cryptographic operations
-- Session management
-- API endpoints
-- Configuration/secrets handling
+Use them together with framework-specific context files (Django, Flask, FastAPI) for best results.
 
 ---
+
+## Files in this Folder
+
+### `security_guidelines.md`
+
+Python security guidelines quick reference.
+
+- Links to OWASP Cheat Sheet Series, OWASP Python Security, OWASP Top 10, CWE Top 25
+- Table of review areas (validation, SQL/NoSQL, XSS, auth, crypto, file upload, command injection, deserialization, SSRF, logging)
+- Short checklist for Python security code review
+
+**Use when** you want a **checklist + links** for secure Python coding practices without in-file tutorials.
 
 ### `owasp_python.md`
 
-**Purpose**: OWASP Top 10 vulnerabilities specific to Python applications
+OWASP Top 10 for Python quick reference.
 
-**Use when**:
-- Comprehensive security audit requested
-- High-security requirements
-- Compliance review (SOC2, ISO27001, etc.)
-- Pre-production security check
-- Reviewing security-critical features
+- Links to OWASP Top 10, OWASP Python Security, OWASP Cheat Sheet Series
+- Table mapping OWASP categories (A01–A10) to typical Python signals and where to look in the code
+- Compact OWASP-aligned checklist for findings coverage
 
-**OWASP Top 10 Coverage**:
-1. **Broken Access Control**: Authorization checks, path traversal, IDOR
-2. **Cryptographic Failures**: Weak crypto, plaintext secrets, insecure protocols
-3. **Injection**: SQL, command, LDAP, template injection
-4. **Insecure Design**: Missing security controls, business logic flaws
-5. **Security Misconfiguration**: Debug mode, default credentials, exposed endpoints
-6. **Vulnerable Components**: Outdated dependencies, known CVEs
-7. **Authentication Failures**: Weak passwords, session issues, credential stuffing
-8. **Data Integrity Failures**: Unsigned data, insecure deserialization, untrusted sources
-9. **Logging & Monitoring Failures**: Missing logs, insufficient monitoring
-10. **Server-Side Request Forgery (SSRF)**: Unvalidated URLs, internal network access
-
-**Load for**: Comprehensive security reviews or when specific OWASP categories apply
+**Use when** you need to **map findings to OWASP categories** or ensure coverage of common risk classes.
 
 ---
 
-## Usage Workflow
+## Typical Usage Pattern
 
-### Standard Security Review
+1. Start with language/framework context (Django/Flask/FastAPI pattern files).
+2. Load `security_guidelines.md` for a **what-to-check** view and deep-dive links.
+3. Load `owasp_python.md` to **tag findings with OWASP categories** and confirm coverage.
+
+This keeps framework-specific details in their own files while aligning all findings with standard security guidance.
+
+---
+
+## Maintenance Notes
+
+- Keep OWASP and CWE links current; avoid duplicating content from those sites.
+- When OWASP versions change, update category names/descriptions, not detailed examples.
+- Prefer adding or updating links/checklist items over embedding long code samples.
 
 ```markdown
 1. Always load security_guidelines.md first
