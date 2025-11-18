@@ -711,6 +711,64 @@ Located in: `memory/skills/generate-jest-unit-tests/{project-name}/`
 
 ---
 
+### test-cli-tools Memory
+
+Located in: `memory/skills/test-cli-tools/{project-name}/`
+
+**Purpose**: Remember project-specific CLI testing history, known issues, and command references.
+
+#### Required Memory Files:
+
+**`tested_commands.md`** (ALWAYS UPDATE):
+- List of successfully tested commands
+- Command syntax and expected behavior
+- Test dates and results
+- Example usage
+
+**`known_issues.md`** (CRITICAL FOR TRACKING):
+- Failing commands with error details
+- Root cause analysis
+- Suggested fixes and status
+- Links to failure reports in /claudedocs
+
+**`command_reference.md`** (COMPREHENSIVE DOCUMENTATION):
+- Complete CLI command reference
+- All commands, options, flags
+- Argument descriptions
+- Usage examples
+
+**`test_results_history.md`** (HISTORICAL TRACKING):
+- Test session summaries
+- Pass/fail statistics over time
+- Trends and progress
+- Links to detailed reports
+
+#### Why CLI Testing Needs Memory
+
+- **Avoid Retesting**: Know which commands already tested successfully
+- **Track Issues**: Remember known failures and fix status
+- **Historical Context**: See testing progress over time
+- **Command Documentation**: Build comprehensive reference through testing
+- **Regression Detection**: Quickly identify if previously passing commands now fail
+
+#### Memory Growth Pattern
+
+**First testing session**:
+- Establish baseline of working commands
+- Document initial issues found
+- Create command reference skeleton
+- First test history entry
+
+**Subsequent sessions**:
+- Update issue status (pending → applied → verified)
+- Add newly tested commands
+- Refine command documentation
+- Track trends in test results
+
+**Result**: Complete CLI testing history with known issues tracked, enabling efficient regression testing and documentation.
+
+---
+
 ## Working with Memory
 
 ### For Skills (Conceptual Workflow)
