@@ -1,0 +1,343 @@
+# Test Case Template
+# Template for individual test cases following AAA pattern
+
+// ============================================================================
+// BASIC TEST CASE (AAA Pattern)
+// ============================================================================
+
+it('should_{expected_behavior}_when_{condition}', () => {
+  // Arrange - Set up test data and conditions
+  {arrange_code}
+
+  // Act - Execute the function/method under test
+  {act_code}
+
+  // Assert - Verify the expected outcome
+  {assert_code}
+});
+
+// ============================================================================
+// ASYNC TEST (Observable)
+// ============================================================================
+
+it('should_{expected_behavior}_when_{condition}', (done) => {
+  // Arrange
+  {arrange_code}
+
+  // Act
+  {service_method_call}.subscribe({
+    next: (result) => {
+      // Assert
+      expect(result).{assertion};
+      done();
+    },
+    error: done.fail
+  });
+});
+
+// ============================================================================
+// ASYNC TEST (fakeAsync/tick)
+// ============================================================================
+
+import { fakeAsync, tick } from '@angular/core/testing';
+
+it('should_{expected_behavior}_after_delay', fakeAsync(() => {
+  // Arrange
+  {arrange_code}
+
+  // Act
+  {method_call};
+  tick({delay_ms});
+
+  // Assert
+  expect({result}).{assertion};
+}));
+
+// ============================================================================
+// ERROR HANDLING TEST
+// ============================================================================
+
+it('should_throw_error_when_{condition}', () => {
+  // Arrange
+  {arrange_code}
+
+  // Act & Assert
+  expect(() => {method_call}).toThrow({error_message});
+});
+
+// Observable error
+it('should_handle_error_when_{condition}', (done) => {
+  // Arrange
+  {arrange_code}
+
+  // Act
+  {service_method}.subscribe({
+    error: (err) => {
+      // Assert
+      expect(err.status).toBe({status_code});
+      done();
+    }
+  });
+});
+
+// ============================================================================
+// COMPONENT INPUT TEST
+// ============================================================================
+
+it('should_update_display_when_input_changes', () => {
+  // Arrange
+  const {input_value} = {test_data};
+
+  // Act
+  component.{input_property} = {input_value};
+  fixture.detectChanges();
+
+  // Assert
+  const element = fixture.debugElement.query(By.css('{selector}'));
+  expect(element.nativeElement.textContent).toContain({expected_text});
+});
+
+// ============================================================================
+// COMPONENT OUTPUT TEST
+// ============================================================================
+
+it('should_emit_event_when_{action}', () => {
+  // Arrange
+  let emittedValue: {type};
+  component.{output_event}.subscribe((value: {type}) => {
+    emittedValue = value;
+  });
+
+  // Act
+  component.{trigger_method}({parameter});
+
+  // Assert
+  expect(emittedValue).toEqual({expected_value});
+});
+
+// ============================================================================
+// USER INTERACTION TEST
+// ============================================================================
+
+it('should_{behavior}_when_user_{interaction}', () => {
+  // Arrange
+  fixture.detectChanges();
+  const button = fixture.debugElement.query(By.css('{button_selector}'));
+
+  // Act
+  button.nativeElement.click();
+  fixture.detectChanges();
+
+  // Assert
+  expect(component.{property}).toBe({expected_value});
+});
+
+// ============================================================================
+// MOCK SERVICE CALL TEST
+// ============================================================================
+
+it('should_call_service_with_correct_parameters', () => {
+  // Arrange
+  const mockService = TestBed.inject({ServiceName}) as jest.Mocked<{ServiceName}>;
+  mockService.{method}.mockReturnValue(of({mock_data}));
+
+  // Act
+  component.{method_call}({parameters});
+
+  // Assert
+  expect(mockService.{method}).toHaveBeenCalledWith({expected_parameters});
+});
+
+// ============================================================================
+// CHANGE DETECTION TEST (OnPush)
+// ============================================================================
+
+it('should_update_view_with_onpush_strategy', () => {
+  // Arrange
+  component.{property} = {initial_value};
+  fixture.detectChanges();
+
+  // Act - Trigger change detection
+  component.{property} = {new_value};
+  component.changeDetectorRef.markForCheck();
+  fixture.detectChanges();
+
+  // Assert
+  const element = fixture.debugElement.query(By.css('{selector}'));
+  expect(element.nativeElement.textContent).toContain({expected_text});
+});
+
+// ============================================================================
+// ROUTER NAVIGATION TEST
+// ============================================================================
+
+it('should_navigate_when_{condition}', () => {
+  // Arrange
+  const router = TestBed.inject(Router);
+  const navigateSpy = jest.spyOn(router, 'navigate');
+
+  // Act
+  component.{navigate_method}({parameter});
+
+  // Assert
+  expect(navigateSpy).toHaveBeenCalledWith(['{route}', {route_params}]);
+});
+
+// ============================================================================
+// NGRX STORE TEST
+// ============================================================================
+
+it('should_dispatch_action_when_{condition}', () => {
+  // Arrange
+  const store = TestBed.inject(MockStore);
+  const dispatchSpy = jest.spyOn(store, 'dispatch');
+
+  // Act
+  component.{method}({parameter});
+
+  // Assert
+  expect(dispatchSpy).toHaveBeenCalledWith({action_creator}({action_payload}));
+});
+
+// ============================================================================
+// FORM VALIDATION TEST
+// ============================================================================
+
+it('should_show_error_when_field_invalid', () => {
+  // Arrange
+  const control = component.form.get('{field_name}');
+
+  // Act
+  control?.setValue({invalid_value});
+  control?.markAsTouched();
+  fixture.detectChanges();
+
+  // Assert
+  expect(control?.hasError('{error_type}')).toBe(true);
+  const errorElement = fixture.debugElement.query(By.css('.{error_class}'));
+  expect(errorElement).toBeTruthy();
+});
+
+// ============================================================================
+// ASYNC VALIDATOR TEST
+// ============================================================================
+
+it('should_validate_async_when_{condition}', fakeAsync(() => {
+  // Arrange
+  const control = component.form.get('{field_name}');
+  mockService.{validation_method}.mockReturnValue(of({validation_result}));
+
+  // Act
+  control?.setValue({value});
+  tick({debounce_time});
+
+  // Assert
+  expect(control?.hasError('{error_type}')).toBe({expected_error_state});
+}));
+
+// ============================================================================
+// LIFECYCLE HOOK TEST
+// ============================================================================
+
+it('should_{behavior}_on_init', () => {
+  // Arrange
+  const mockService = TestBed.inject({ServiceName}) as jest.Mocked<{ServiceName}>;
+  mockService.{method}.mockReturnValue(of({mock_data}));
+
+  // Act
+  fixture.detectChanges(); // Triggers ngOnInit
+
+  // Assert
+  expect(mockService.{method}).toHaveBeenCalled();
+  expect(component.{property}).toEqual({expected_value});
+});
+
+it('should_cleanup_on_destroy', () => {
+  // Arrange
+  const subscription = component.{subscription_property};
+  const unsubscribeSpy = jest.spyOn(subscription, 'unsubscribe');
+
+  // Act
+  component.ngOnDestroy();
+
+  // Assert
+  expect(unsubscribeSpy).toHaveBeenCalled();
+});
+
+// ============================================================================
+// VIEWCHILD / CONTENTCHILD TEST
+// ============================================================================
+
+it('should_access_viewchild_after_view_init', () => {
+  // Act
+  fixture.detectChanges();
+  component.ngAfterViewInit();
+
+  // Assert
+  expect(component.{viewchild_property}).toBeDefined();
+  expect(component.{viewchild_property}.nativeElement).toBeTruthy();
+});
+
+// ============================================================================
+// PIPE TEST
+// ============================================================================
+
+it('should_transform_value_correctly', () => {
+  // Arrange
+  const pipe = new {PipeName}();
+  const {input_value} = {test_data};
+
+  // Act
+  const result = pipe.transform({input_value}, {pipe_parameters});
+
+  // Assert
+  expect(result).toBe({expected_output});
+});
+
+// ============================================================================
+// DIRECTIVE TEST
+// ============================================================================
+
+@Component({
+  template: `<div {directive_selector}="{directive_value}">Test</div>`
+})
+class TestComponent {}
+
+it('should_{behavior}_when_directive_applied', () => {
+  // Arrange
+  TestBed.configureTestingModule({
+    declarations: [TestComponent, {DirectiveName}]
+  });
+  const fixture = TestBed.createComponent(TestComponent);
+
+  // Act
+  fixture.detectChanges();
+
+  // Assert
+  const element = fixture.debugElement.query(By.css('div'));
+  expect(element.nativeElement.{attribute}).toBe({expected_value});
+});
+
+// ============================================================================
+// PARAMETERIZED TESTS (Jest)
+// ============================================================================
+
+describe.each([
+  [input1, expected1],
+  [input2, expected2],
+  [input3, expected3]
+])('with input %s', (input, expected) => {
+  it(`should_return_${expected}`, () => {
+    const result = {function_call}(input);
+    expect(result).toBe(expected);
+  });
+});
+
+// ============================================================================
+// SNAPSHOT TEST (Jest)
+// ============================================================================
+
+it('should_match_snapshot', () => {
+  fixture.detectChanges();
+  expect(fixture.nativeElement).toMatchSnapshot();
+});

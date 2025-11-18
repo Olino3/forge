@@ -645,6 +645,72 @@ addopts = -ra -q --strict-markers --cov=app
 
 ---
 
+### generate-jest-unit-tests Memory
+
+Located in: `memory/skills/generate-jest-unit-tests/{project-name}/`
+
+**Purpose**: Remember project-specific Angular/Jest testing patterns, expected behaviors, and conventions learned during unit test generation.
+
+#### Required Memory Files:
+
+**`testing_patterns.md`** (ALWAYS CREATE FIRST):
+- Test file location pattern (co-located, separate test directory)
+- Test file naming convention (*.spec.ts vs *.test.ts)
+- Testing framework (Jest vs Jasmine/Karma, versions)
+- TestBed configuration patterns
+- Mock creation patterns (jest.fn vs jasmine.createSpyObj)
+- Change detection strategy
+- Common test structure
+
+**`expected_behaviors.md`** (CRITICAL FOR TEST QUALITY):
+- User-clarified expected behaviors from Socratic planning
+- Component interaction patterns
+- Service response formats
+- Error scenarios and expected exceptions
+- Input validation rules
+- Output emission triggers
+- Domain-specific Angular behaviors
+
+**`common_mocks.md`** (UPDATE REGULARLY):
+- Reusable mock components
+- Mock services and spy objects
+- Test data factories
+- Common fixture configurations
+- Shared TestBed setups
+
+**`framework_config.md`** (DOCUMENT SETUP):
+- jest.config.js / jasmine configuration
+- Test setup files (setupJest.ts)
+- Global mocks and polyfills
+- Custom matchers or utilities
+- Coverage settings
+
+#### Why Angular/Jest Testing Needs Memory
+
+- **Expected behaviors are framework-specific**: Component interactions, change detection, observables
+- **Testing patterns vary**: Jest vs Jasmine, TestBed setups, mock strategies
+- **Mocks are reusable**: Mock components, services, and data should be remembered
+- **Socratic learning accumulates**: Each planning session teaches about the application's behavior
+- **Angular-specific patterns**: OnPush change detection, NgRx store mocking, router navigation
+
+#### Memory Growth Pattern
+
+**First invocation**:
+- Establish test file location and testing framework
+- Document first set of expected behaviors from Socratic planning
+- Create initial mock components and services
+
+**Subsequent invocations**:
+- Reuse existing mocks and TestBed configurations
+- Apply remembered expected behaviors
+- Add new behaviors learned through Socratic planning
+- Expand mock library
+- Refine testing patterns
+
+**Result**: Each test generation becomes faster, more consistent, and more accurate as the skill learns the Angular application's structure and behavior.
+
+---
+
 ## Working with Memory
 
 ### For Skills (Conceptual Workflow)
