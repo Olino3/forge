@@ -261,7 +261,12 @@ def main():
             print("Error: No command specified")
             sys.exit(1)
 
-        command = sys.argv[2]
+        # Extract command (everything before --expected-exit-code if present)
+        if "--expected-exit-code" in sys.argv:
+            idx = sys.argv.index("--expected-exit-code")
+            command = " ".join(sys.argv[2:idx])
+        else:
+            command = " ".join(sys.argv[2:])
         expected_code = 0
 
         if "--expected-exit-code" in sys.argv:
