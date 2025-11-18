@@ -19,18 +19,23 @@ This directory contains shared contextual knowledge for Angular code review and 
 
 ```
 angular/
-├── index.md (this file)           - Navigation and usage guide
-├── context_detection.md            - Framework and library detection patterns
-├── common_issues.md                - Universal Angular problems
-├── component_patterns.md           - Component best practices
-├── service_patterns.md             - Services and dependency injection
-├── rxjs_patterns.md                - Observable patterns and operators
-├── ngrx_patterns.md                - State management (NgRx, Akita)
-├── performance_patterns.md         - Performance optimization
-├── typescript_patterns.md          - TypeScript best practices
-├── tailwind_patterns.md            - TailwindCSS with Angular
-├── primeng_patterns.md             - PrimeNG component usage
-└── security_patterns.md            - Angular-specific security
+├── index.md (this file)              - Navigation and usage guide
+├── context_detection.md              - Framework and library detection patterns
+├── common_issues.md                  - Universal Angular problems
+├── component_patterns.md             - Component best practices
+├── component_testing_patterns.md     - Component testing strategies
+├── jest_testing_standards.md         - Jest/Jasmine testing principles
+├── ngrx_patterns.md                  - State management (NgRx, Akita)
+├── performance_patterns.md           - Performance optimization
+├── primeng_patterns.md               - PrimeNG component usage
+├── rxjs_patterns.md                  - Observable patterns and operators
+├── security_patterns.md              - Angular-specific security
+├── service_patterns.md               - Services and dependency injection
+├── service_testing_patterns.md       - Service testing strategies
+├── tailwind_patterns.md              - TailwindCSS with Angular
+├── test_antipatterns.md              - Testing mistakes to avoid
+├── testing_utilities.md              - TestBed, mocks, spies, async utilities
+└── typescript_patterns.md            - TypeScript best practices
 ```
 
 ---
@@ -69,6 +74,7 @@ Use this matrix to determine which context files to load based on the code being
 | **Styles (.scss/.css)** | `tailwind_patterns.md` (if Tailwind used) | `primeng_patterns.md` (if PrimeNG used) | - |
 | **Performance-Critical** | `performance_patterns.md` | `component_patterns.md`, `rxjs_patterns.md` | - |
 | **Security-Sensitive** | `security_patterns.md` | `../../security/security_guidelines.md` | - |
+| **Unit Tests (.spec.ts)** | `jest_testing_standards.md`, `testing_utilities.md`, `test_antipatterns.md` | `component_testing_patterns.md`, `service_testing_patterns.md` | - |
 
 ### File Descriptions and When to Load
 

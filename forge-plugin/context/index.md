@@ -19,14 +19,19 @@ context/
 │   ├── index.md
 │   ├── common_issues.md
 │   ├── component_patterns.md
+│   ├── component_testing_patterns.md
 │   ├── context_detection.md
+│   ├── jest_testing_standards.md
 │   ├── ngrx_patterns.md
 │   ├── performance_patterns.md
 │   ├── primeng_patterns.md
 │   ├── rxjs_patterns.md
 │   ├── security_patterns.md
 │   ├── service_patterns.md
+│   ├── service_testing_patterns.md
 │   ├── tailwind_patterns.md
+│   ├── test_antipatterns.md
+│   ├── testing_utilities.md
 │   └── typescript_patterns.md
 ├── dotnet/
 │   ├── index.md
@@ -97,14 +102,23 @@ context/
 | `tailwind_patterns.md` | TailwindCSS integration | Configuration, dynamic classes, responsive design |
 | `typescript_patterns.md` | TypeScript best practices | Type safety, generics, utility types, strict mode |
 
-**Load when**: Using `skill:angular-code-review` or analyzing Angular projects
+**Load when**: Using `skill:angular-code-review`, `skill:generate-jest-unit-tests`, or analyzing Angular projects
 
-**Context detection workflow**:
+**Context detection workflow (code review)**:
 1. Start with `angular/index.md` for navigation guide
 2. Use `context_detection.md` to identify framework version and libraries
 3. Always load `common_issues.md` (universal Angular problems)
 4. Load specific files based on detected patterns (components, services, state management)
 5. Load `security_patterns.md` for auth/API/input handling code
+
+**Unit test generation workflow**:
+1. Load `jest_testing_standards.md` for core testing principles (always)
+2. Load `testing_utilities.md` for TestBed, mocks, spies (always)
+3. Load `test_antipatterns.md` for what to avoid (always)
+4. Load `component_testing_patterns.md` if testing components
+5. Load `service_testing_patterns.md` if testing services
+6. Load `ngrx_patterns.md` if testing NgRx state management
+7. Load `rxjs_patterns.md` if testing observables heavily
 
 ---
 
