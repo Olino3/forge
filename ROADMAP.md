@@ -12,12 +12,10 @@
 - **python-code-review** (v2.1.0) - Temper Python steel with expert critique
 - **angular-code-review** - Shape TypeScript frameworks with precision
 - **python-dependency-management** - Forge unbreakable dependency chains
-- **generating-python-unit-tests** - Craft shields of test coverage
-- **generating-jest-unit-tests** - Weave JavaScript testing armor
+- **generate-python-unit-tests** - Craft shields of test coverage
+- **generate-jest-unit-tests** - Weave JavaScript testing armor
 - **test-cli-tools** - Hammer command-line tools into reliability
-
-### 🔥 In the Furnace (Next)
-- **generate-azure-functions** - Summon serverless constructs
+- **generate-azure-functions** (v1.0.0) - Summon serverless constructs with Tilt & Azurite
 
 ### 📋 Blueprints Awaiting (Planned)
 
@@ -116,13 +114,22 @@
 
 *Hephaestus's forge never cools. Each skill sharpened, each agent awakened, each command invoked brings us closer to the perfect workshop—where mortal developers wield divine tools.*
 
-**Current Focus**: Completing Angular and .NET code reviewers
-**Next Milestone**: Python dependency management and test generation
+**Current Focus**: Azure development tooling and infrastructure generation
+**Next Milestone**: Azure Pipelines and Bicep generation, file/database schema analysis
 **Long-term Vision**: A fully autonomous forge where agents self-organize to solve complex engineering challenges
 
 ---
 
 **Recent Forge Activity:**
+- ✅ **November 18, 2025**: generate-azure-functions v1.0.0 completed
+  - Complete Azure Functions project generation with v1/v2 model support
+  - Tilt + Azurite local development environment with live reload
+  - 6 comprehensive Azure context files (overview, Tilt, Docker, Azurite setup)
+  - Support for Python, Node.js, and .NET runtimes
+  - Poetry/pip/npm dependency management
+  - Local package integration for shared libraries
+  - Memory system for configuration tracking
+
 - ✅ **November 14, 2025**: dotnet-code-review v1.0.0 completed
   - Full .NET Framework 4.8 and modern .NET (Core/.NET 5-8+) support
   - 12 comprehensive context files (async, EF, DI, Blazor, security, performance, LINQ, etc.)
@@ -131,5 +138,5 @@
 
 ---
 
-*Last Updated: November 14, 2025*
+*Last Updated: November 18, 2025*
 *Maintained by: The Forge Keepers*

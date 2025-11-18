@@ -168,21 +168,31 @@ Behold the sacred structure where divine tools are born:
 ├─ ⚒️ forge-plugin/               # The main forge workshop
 │   ├─ .claude-plugin/            # Plugin manifest
 │   │   └─ plugin.json            # Plugin definition
+│   ├─ context/                   # Centralized knowledge base
+│   │   ├─ azure/                 # Azure Functions patterns
+│   │   ├─ dotnet/                # .NET/C# standards
+│   │   ├─ python/                # Python best practices
+│   │   ├─ git/                   # Git diff references
+│   │   └─ security/              # Security guidelines
+│   ├─ memory/                    # Project-specific learning
+│   │   └─ skills/                # Per-skill, per-project memory
 │   └─ skills/                    # Arsenal of divine skills
 │       ├─ get-git-diff/          # Git diff analysis tool
-│       │   ├─ context/           # Knowledge scrolls
-│       │   ├─ memory/            # Pattern libraries
 │       │   ├─ scripts/           # Shell utilities
 │       │   ├─ templates/         # Output templates
 │       │   ├─ examples.md        # Usage examples
 │       │   └─ SKILL.md           # Skill documentation
-│       └─ python-code-review/    # Python review expert
-│           ├─ context/           # Security & standards
-│           ├─ memory/            # Framework patterns
-│           ├─ templates/         # Review templates
-│           ├─ examples.md        # Review scenarios
+│       ├─ python-code-review/    # Python review expert
+│       │   ├─ templates/         # Review templates
+│       │   ├─ examples.md        # Review scenarios
+│       │   └─ SKILL.md           # Skill documentation
+│       └─ generate-azure-functions/  # Azure Functions generator
+│           ├─ scripts/           # Project generation utilities
+│           ├─ templates/         # Tilt, Docker, Azurite templates
+│           ├─ examples.md        # Generation scenarios
 │           └─ SKILL.md           # Skill documentation
 ├─ 📜 CLAUDE.md                   # Divine instructions for Claude
+├─ 🗺️ ROADMAP.md                  # Future artifacts to forge
 ├─ 🛡️ .gitignore                  # Protected artifacts
 └─ README.md                   # This divine manuscript
 ```
