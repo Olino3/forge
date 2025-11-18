@@ -14,7 +14,7 @@
 - **python-dependency-management** - Forge unbreakable dependency chains
 - **generating-python-unit-tests** - Craft shields of test coverage
 - **generating-jest-unit-tests** - Weave JavaScript testing armor
-- **cli-tools-tester** - Hammer command-line tools into reliability
+- **test-cli-tools** - Hammer command-line tools into reliability
 
 ### 🔥 In the Furnace (Next)
 - **generate-azure-functions** - Summon serverless constructs
