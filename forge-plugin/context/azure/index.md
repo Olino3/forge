@@ -2,18 +2,18 @@
 
 ## Purpose
 
-This directory contains **shared, static** knowledge about Azure development, including Azure Functions, Azure Pipelines, Bicep infrastructure as code, and deployment patterns. These files provide consistent guidance for generating and working with Azure projects.
+This directory contains **shared, static** knowledge about Azure development, including Azure Functions, Azure Pipelines, Bicep infrastructure as code, and Azure Verified Modules. These files provide consistent guidance for Azure-related project generation.
 
 ## Conceptual Overview
 
 ### Context vs Memory
 
-- **Context** (this directory): **Shared, static** Azure Functions standards, templates, and best practices
-- **Memory** (`../../memory/skills/generate-azure-functions/`): **Project-specific, dynamic** generated project configurations and customizations
+- **Context** (this directory): **Shared, static** Azure standards, AVM modules, templates, and best practices
+- **Memory** (`../../memory/skills/`): **Project-specific, dynamic** generated configurations and customizations
 
 **Example**:
-- Context says: "Here's a template Tiltfile for Azure Functions with Azurite"
-- Memory records: "In this project, we use 3 function apps with custom ports 7071, 7072, 7073"
+- Context says: "Use AVM module avm/res/storage/storage-account for Storage Accounts"
+- Memory records: "This project uses Storage Account with GRS and private endpoints"
 
 ## Directory Structure
 
@@ -23,7 +23,7 @@ azure/
 # Azure Functions Context
 ├── azure_functions_overview.md      # Azure Functions v1 vs v2 comparison
 ├── local_development_setup.md       # Tilt + Azurite setup guide
-├── tiltfile_reference.md            # Tiltfile patterns for Azure Functions
+├── tiltfile_reference.md            # Tiltfile patterns
 ├── docker_compose_reference.md      # Docker Compose patterns
 ├── dockerfile_reference.md          # Dockerfile patterns for function apps
 ├── azurite_setup.md                 # Azurite storage emulator setup
@@ -31,6 +31,11 @@ azure/
 ├── azure_pipelines_overview.md      # Azure Pipelines YAML syntax and structure
 ├── azure_pipelines_cicd_patterns.md # CI/CD pipeline patterns and best practices
 └── azure_bicep_overview.md          # Bicep infrastructure as code
+├── dockerfile_reference.md          # Dockerfile patterns
+├── azurite_setup.md                 # Azurite storage emulator
+# Azure Bicep Context
+├── azure_bicep_overview.md          # Bicep syntax and structure
+└── azure_verified_modules.md        # Azure Verified Modules (AVM)
 ```
 
 ## Context Files
@@ -266,7 +271,6 @@ All context files follow the compact approach:
 
 ### Azure Functions
 - [Azure Functions Overview](https://learn.microsoft.com/azure/azure-functions/functions-overview)
-- [Azure Functions Python Developer Guide](https://learn.microsoft.com/azure/azure-functions/functions-reference-python)
 - [Azurite Emulator](https://learn.microsoft.com/azure/storage/common/storage-use-azurite)
 - [Tilt Documentation](https://docs.tilt.dev/)
 
