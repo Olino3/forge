@@ -769,6 +769,101 @@ Located in: `memory/skills/test-cli-tools/{project-name}/`
 
 ---
 
+### generate-azure-functions Memory
+
+Located in: `memory/skills/generate-azure-functions/{project-name}/`
+
+**Purpose**: Remember project-specific Azure Functions configurations, generated files, and customizations for future reference and updates.
+
+#### Required Memory Files:
+
+**`project_config.md`** (ALWAYS CREATE):
+- Programming model (v1, v2, v4)
+- Runtime and version (Python 3.11, Node.js 18, etc.)
+- Function app names and ports
+- Storage resources (containers, queues, tables)
+- Dependency management (pip, Poetry, npm)
+- Local package dependencies
+- Custom environment variables
+- Generation timestamp and skill version
+
+**`generated_files.md`** (COMPREHENSIVE LIST):
+- Complete list of all generated files
+- File purposes and descriptions
+- Templates used for generation
+- Which files are user-editable
+- File locations and structure
+
+**`customizations.md`** (USER-SPECIFIC):
+- User requirements not in standard templates
+- Deviations from default patterns
+- Special configurations
+- Reasons for non-standard choices
+- Custom system packages
+- Additional Docker services
+
+**`setup_notes.md`** (OPERATIONAL KNOWLEDGE):
+- Important setup information
+- Known issues or quirks
+- Testing recommendations
+- Deployment considerations
+- Troubleshooting tips
+- Performance optimizations
+
+**Example `project_config.md`**:
+```markdown
+# Project Configuration for data-pipeline
+
+**Generated**: 2025-11-18 15:30:00
+**Skill Version**: generate-azure-functions v1.0.0
+
+## Programming Model
+- Model: v2 (Python decorator-based)
+- Runtime: Python 3.11
+- Dependency Management: Poetry
+
+## Function Apps
+1. orchestrator (Port: 7071) - Split and route files
+2. processor (Port: 7072) - Transform data
+3. loader (Port: 7073) - Load to external systems
+
+## Storage Resources
+- Containers: raw, queued, processed, loaded
+- Queues: processing-queue
+- Tables: AuditLog, ProcessingStatus
+
+## Local Package Dependencies
+- Package: data-utils
+- Path: ./data-utils
+- Built with Poetry, installed in all function apps
+```
+
+#### Why Azure Functions Generation Needs Memory
+
+- **Configuration Reuse**: Remember user's choices for future updates
+- **Avoid Regeneration**: Know what was already generated
+- **Track Customizations**: Document deviations from standard templates
+- **Deployment Reference**: Store setup notes for production deployment
+- **Troubleshooting**: Remember issues encountered and solutions
+
+#### Memory Growth Pattern
+
+**First generation**:
+- Establish baseline configuration
+- Document all generated files
+- Capture user requirements and customizations
+- Record setup process and any issues
+
+**Subsequent operations**:
+- Reference configuration when adding new function apps
+- Know which files to update vs regenerate
+- Apply same customizations to new components
+- Track evolution of project structure
+
+**Result**: Complete generation history enabling efficient updates and maintenance of Azure Functions projects.
+
+---
+
 ## Working with Memory
 
 ### For Skills (Conceptual Workflow)

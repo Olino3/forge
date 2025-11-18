@@ -33,6 +33,14 @@ context/
 │   ├── test_antipatterns.md
 │   ├── testing_utilities.md
 │   └── typescript_patterns.md
+├── azure/
+│   ├── index.md
+│   ├── azure_functions_overview.md
+│   ├── azurite_setup.md
+│   ├── docker_compose_reference.md
+│   ├── dockerfile_reference.md
+│   ├── local_development_setup.md
+│   └── tiltfile_reference.md
 ├── dotnet/
 │   ├── index.md
 │   ├── aspnet_patterns.md
@@ -213,6 +221,33 @@ context/
 **Load when**: Security review requested or high-risk code detected (auth, data handling, user input)
 
 **Always load for**: Authentication code, database queries, user input handling, file operations
+
+---
+
+### Azure Functions Context (`azure/`)
+
+**When to use**: Generating or working with Azure Functions projects, local development setup with Tilt and Azurite
+
+| File | Use For | Key Topics |
+|------|---------|------------|
+| `index.md` | Navigation and context loading guide | Quick reference, decision matrix for which files to load |
+| `azure_functions_overview.md` | Understanding programming models | v1 vs v2, triggers, bindings, host.json, structure differences |
+| `local_development_setup.md` | Setting up local development | Tilt + Azurite architecture, ports, environment variables, workflow |
+| `tiltfile_reference.md` | Creating Tiltfiles | docker_build, live_update, resource dependencies, service selection |
+| `docker_compose_reference.md` | Creating docker-compose files | Service definitions, environment variables, networking, volumes |
+| `dockerfile_reference.md` | Creating Dockerfiles | Base images, dependency management (pip/Poetry/npm), multi-stage builds |
+| `azurite_setup.md` | Setting up Azurite emulator | Dockerfile, initialization scripts, connection strings, storage resources |
+
+**Load when**: Using `skill:generate-azure-functions` or setting up Azure Functions local development
+
+**Project generation workflow**:
+1. Load `azure/index.md` for navigation guide
+2. Load `azure_functions_overview.md` to understand programming models (always)
+3. Load `local_development_setup.md` for environment setup (always)
+4. Load `tiltfile_reference.md` when generating Tiltfile
+5. Load `docker_compose_reference.md` when generating docker-compose.yml
+6. Load `dockerfile_reference.md` when generating Dockerfiles
+7. Load `azurite_setup.md` when setting up Azurite storage emulator
 
 ---
 
