@@ -10,20 +10,18 @@
 - **get-git-diff** (v1.1.0) - Analyze the flames of change
 - **dotnet-code-review** (v1.0.0) - Cast .NET artifacts of quality
 - **python-code-review** (v2.1.0) - Temper Python steel with expert critique
-
-### 🔥 In the Furnace (Next)
 - **angular-code-review** - Shape TypeScript frameworks with precision
-
-### 📋 Blueprints Awaiting (Planned)
-
-#### Dependency & Testing Smithy
 - **python-dependency-management** - Forge unbreakable dependency chains
 - **generating-python-unit-tests** - Craft shields of test coverage
 - **generating-jest-unit-tests** - Weave JavaScript testing armor
 - **cli-tools-tester** - Hammer command-line tools into reliability
 
-#### Azure Crafting Tools
+### 🔥 In the Furnace (Next)
 - **generate-azure-functions** - Summon serverless constructs
+
+### 📋 Blueprints Awaiting (Planned)
+
+#### Azure Crafting Tools
 - **generate-azure-pipelines** - Build automated deployment forges
 - **generate-azure-bicep** - Shape infrastructure as code
 
