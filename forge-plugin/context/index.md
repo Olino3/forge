@@ -53,6 +53,10 @@ context/
 │   ├── fastapi_patterns.md
 │   ├── flask_patterns.md
 │   ├── ml_patterns.md
+│   ├── mocking_patterns.md
+│   ├── test_antipatterns.md
+│   ├── testing_frameworks.md
+│   ├── unit_testing_standards.md
 │   └── virtual_environments.md
 └── security/
     ├── owasp_python.md
@@ -155,9 +159,13 @@ context/
 | `fastapi_patterns.md` | FastAPI best practices | Pydantic models, dependency injection, async patterns, routing |
 | `flask_patterns.md` | Flask best practices | Blueprints, application factory, extensions, context |
 | `ml_patterns.md` | Machine learning code | Model training, data pipelines, evaluation, deployment |
+| `mocking_patterns.md` | Mocking and patching in tests | When to mock, unittest.mock, pytest-mock, common patterns, anti-patterns |
+| `test_antipatterns.md` | Common testing mistakes | What to avoid, brittle tests, bad patterns, quality issues |
+| `testing_frameworks.md` | pytest and unittest patterns | Framework detection, features, comparison, migration |
+| `unit_testing_standards.md` | Core testing principles | AAA pattern, naming, test independence, coverage strategy |
 | `virtual_environments.md` | Virtual environment management | venv, virtualenv, poetry, conda creation, activation, best practices |
 
-**Load when**: Using `skill:python-code-review`, `skill:python-dependency-management`, or analyzing Python projects
+**Load when**: Using `skill:python-code-review`, `skill:python-dependency-management`, `skill:generate-python-unit-tests`, or analyzing Python projects
 
 **Context detection workflow (code review)**:
 1. Start with `context_detection.md` to identify framework
@@ -168,6 +176,14 @@ context/
 1. Load `dependency_management.md` for package manager commands and reference
 2. Load `virtual_environments.md` for venv creation and activation
 3. Use for all package installation, removal, and update operations
+
+**Unit test generation workflow**:
+1. Load `unit_testing_standards.md` for core testing principles (always)
+2. Load `testing_frameworks.md` for framework-specific patterns (always)
+3. Load `mocking_patterns.md` for mocking strategies (always)
+4. Load `test_antipatterns.md` for what to avoid (always)
+5. Load framework-specific files if testing framework code (django_patterns.md for Django tests, etc.)
+6. Use for all unit test generation tasks
 
 ---
 
@@ -228,6 +244,18 @@ Skills should load context files in this order:
 2. Load diff_patterns.md (classify changes)
 ```
 
+**For Python unit test generation**:
+```markdown
+1. Load python/unit_testing_standards.md (core principles)
+2. Load python/testing_frameworks.md (pytest vs unittest)
+3. Load python/mocking_patterns.md (mocking strategies)
+4. Load python/test_antipatterns.md (what to avoid)
+5. If testing framework-specific code, also load:
+   - python/django_patterns.md (for Django code)
+   - python/fastapi_patterns.md (for FastAPI code)
+   - python/datascience_patterns.md (for pandas/numpy code)
+```
+
 ### When to Add New Context
 
 Add new context files when:
@@ -239,6 +267,40 @@ Add new context files when:
 - ❌ Information is **project-specific** (belongs in memory/)
 - ❌ Content is **dynamic** (changes with each analysis)
 - ❌ Knowledge is **temporary** (belongs in skill output)
+
+### How to Write Context Files (Compact Approach)
+
+**Use links over duplication** to reduce maintenance burden:
+
+✅ **DO**:
+- Keep quick reference tables (command equivalents, comparisons)
+- Keep detection patterns and decision matrices (unique to our use case)
+- Provide brief summaries with links to official docs
+- Link to PEPs, RFCs, official documentation
+- Include "what to look for" and "when to use" guidance
+
+❌ **DON'T**:
+- Duplicate content from official documentation
+- Write long explanations that will become outdated
+- Copy-paste API references or full command syntax
+- Include extensive examples (link to official docs instead)
+
+**Example structure**:
+```markdown
+## Quick Reference Table
+[Keep: Command comparisons, syntax table]
+
+## Official Documentation
+[Link: Official docs for details]
+
+## Detection Patterns
+[Keep: How to identify this pattern in code]
+
+## Common Issues
+[Brief: Issue + link to solution]
+```
+
+See `python/dependency_management.md` and `python/virtual_environments.md` for examples of the compact approach.
 
 ---
 
@@ -260,9 +322,12 @@ Add new context files when:
 ### For Developers
 
 - **Update context** when standards or best practices evolve
+- **Use compact approach** - link to official docs instead of duplicating content
+- **Keep quick references** - tables, patterns, detection logic (unique to our use case)
 - **Version context files** if major changes occur
 - **Keep context focused** - one domain per directory
 - **Document changes** in version history
+- **Review links periodically** - ensure official documentation links are still valid
 
 ### For Skills
 
@@ -270,6 +335,7 @@ Add new context files when:
 - **Don't modify context** - it's read-only reference
 - **Combine with memory** - context + project memory = complete understanding
 - **Cache if needed** - context rarely changes within a session
+- **Expect links** - context may link to official docs for detailed information
 
 ---
 

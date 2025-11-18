@@ -1,170 +1,67 @@
-# Angular Performance Patterns
+# Angular Performance Patterns - Quick Reference
 
-Optimization techniques for Angular applications.
+High-impact performance checks for Angular apps with minimal examples and links.
 
----
-
-## Change Detection Optimization {#change-detection}
-
-### OnPush Strategy
-
-```typescript
-@Component({
-  selector: 'app-user-list',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    <div *ngFor="let user of users; trackBy: trackById">
-      {{ user.name }}
-    </div>
-  `
-})
-export class UserListComponent {
-  @Input() users: User[] = [];
-
-  trackById(index: number, user: User): number {
-    return user.id;
-  }
-}
-```
-
-**Use OnPush When**:
-- Component receives data via @Input()
-- Component is presentational
-- No internal state mutations
-
-### Detach Change Detection
-
-```typescript
-constructor(private cdr: ChangeDetectorRef) {
-  this.cdr.detach(); // Stop automatic CD
-}
-
-updateData() {
-  this.data = newData;
-  this.cdr.detectChanges(); // Manual CD
-}
-```
+**Load this file**: When reviewing performance‑sensitive components, large lists, or app startup.
 
 ---
 
-## TrackBy Functions {#trackby}
+## 1. Change Detection {#change-detection}
 
-**Always use trackBy in *ngFor**:
-
-```typescript
-@Component({
-  template: `
-    <div *ngFor="let item of items; trackBy: trackById">
-      {{ item.name }}
-    </div>
-  `
-})
-export class ListComponent {
-  trackById(index: number, item: any): number {
-    return item.id; // Use unique identifier
-  }
-}
-```
+| Area | Good Practice | Smell to Flag | References |
+|------|--------------|---------------|------------|
+| Strategy choice | Use `OnPush` for presentational/perf‑critical components | Many complex components using Default CD | [Change Detection](https://angular.io/guide/change-detection) |
+| Immutable inputs | Replace arrays/objects instead of mutating | `this.list.push(...)` in OnPush components | [Best Practices](https://angular.io/guide/change-detection-best-practices) |
+| Manual CD | Use `ChangeDetectorRef` only when needed | Frequent `detectChanges()` in normal code paths | [ChangeDetectorRef](https://angular.io/api/core/ChangeDetectorRef) |
 
 ---
 
-## Lazy Loading {#lazy-loading}
+## 2. Lists & `*ngFor` {#trackby}
 
-### Route-Based Lazy Loading
-
-```typescript
-const routes: Routes = [
-  {
-    path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
-  }
-];
-```
-
-### Component Lazy Loading (Angular 17+)
-
-```typescript
-import { Component } from '@angular/core';
-
-@Component({
-  template: `
-    @defer (on viewport) {
-      <heavy-component />
-    } @placeholder {
-      <div>Loading...</div>
-    }
-  `
-})
-```
+| Pattern | Good Practice | Smell to Flag | References |
+|---------|--------------|---------------|------------|
+| `trackBy` | Always use for large or identity‑based lists | `*ngFor` over big collections without `trackBy` | [NgForOf#change-propagation](https://angular.io/api/common/NgForOf#change-propagation) |
+| Virtual scrolling | Use CDK Virtual Scroll for very large lists | Rendering thousands of items directly in DOM | [Virtual Scrolling](https://material.angular.io/cdk/scrolling/overview) |
 
 ---
 
-## Virtual Scrolling {#virtual-scrolling}
+## 3. Lazy Loading & Defer {#lazy-loading}
 
-```typescript
-import { ScrollingModule } from '@angular/cdk/scrolling';
-
-@Component({
-  imports: [ScrollingModule],
-  template: `
-    <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
-      <div *cdkVirtualFor="let item of items">{{ item }}</div>
-    </cdk-virtual-scroll-viewport>
-  `
-})
-```
+| Technique | What to Check | References |
+|-----------|---------------|------------|
+| Route‑based lazy loading | Feature modules loaded via `loadChildren` | [Lazy Loading](https://angular.io/guide/lazy-loading-ngmodules) |
+| Deferred views (v17+) | Heavy components wrapped in `@defer` syntax | [Defer Loading](https://angular.dev/guide/defer) |
 
 ---
 
-## Bundle Size Optimization {#bundle}
+## 4. Bundle Size {#bundle}
 
-### Tree Shaking
-
-```typescript
-// Good - imports only what's needed
-import { map } from 'rxjs/operators';
-
-// Bad - imports everything
-import * as operators from 'rxjs/operators';
-```
-
-### Analyze Bundle
-
-```bash
-ng build --stats-json
-npx webpack-bundle-analyzer dist/stats.json
-```
+| Area | Good Practice | Smell to Flag | References |
+|------|--------------|---------------|------------|
+| Imports | Import from feature modules (e.g. `import { map } from 'rxjs/operators'`) | Wildcard imports (`import * as operators`) | [Optimizing Builds](https://angular.io/guide/optimizing-performance) |
+| Analysis | Use stats and bundle analyzers for large apps | No awareness of bundle size / vendor chunk growth | [CLI Build Options](https://angular.io/cli/build) |
 
 ---
 
-## Memory Leak Prevention {#memory}
+## 5. Memory & Leaks {#memory}
 
-### Unsubscribe Patterns
-
-```typescript
-private destroy$ = new Subject<void>();
-
-ngOnInit() {
-  this.observable$
-    .pipe(takeUntil(this.destroy$))
-    .subscribe();
-}
-
-ngOnDestroy() {
-  this.destroy$.next();
-  this.destroy$.complete();
-}
-```
-
-### Remove Event Listeners
-
-```typescript
-ngOnDestroy() {
-  window.removeEventListener('resize', this.onResize);
-  document.removeEventListener('click', this.onClick);
-}
-```
+| Pattern | Good Practice | Smell to Flag | References |
+|---------|--------------|---------------|------------|
+| Subscriptions | Use `async` pipe or `takeUntil`/`DestroyRef` | Components with many `.subscribe()` and no `ngOnDestroy` | [RxJS in Angular](https://angular.io/guide/rx-library) |
+| DOM listeners | Remove listeners in `ngOnDestroy` | `addEventListener` with no corresponding removal | [Lifecycle Hooks](https://angular.io/guide/lifecycle-hooks) |
 
 ---
 
-**Version**: 1.0.0
+## 6. Quick Checklist
+
+- [ ] OnPush or signals are used where appropriate.
+- [ ] Large lists use `trackBy` and virtual scroll when needed.
+- [ ] Feature modules/routes are lazy‑loaded when appropriate.
+- [ ] No unnecessary wildcard imports that bloat bundles.
+- [ ] Subscriptions and event listeners have clear cleanup.
+
+---
+
+**Version**: 2.0.0 (Compact Reference Format)
+**Last Updated**: 2025-11-14
+**Angular Versions**: 2-18+
