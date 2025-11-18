@@ -206,6 +206,105 @@ Context files for Python code review, framework-specific patterns, and common is
 
 ---
 
+### `unit_testing_standards.md`
+
+**Purpose**: Core unit testing principles and best practices
+
+**Use when**:
+- Generating Python unit tests
+- Reviewing test code quality
+- Establishing testing standards
+- Understanding testing fundamentals
+
+**Covers**:
+- AAA pattern (Arrange-Act-Assert)
+- Test behavior vs implementation
+- Test independence and isolation
+- Naming conventions (test_should_X_when_Y)
+- Test coverage strategy (happy path, edge cases, errors)
+- Good vs bad test characteristics (FIRST principles)
+- Single vs multiple assertions
+- Fixtures for reusable setup
+
+**Load for**: `skill:generate-python-unit-tests` (always), test reviews
+
+---
+
+### `testing_frameworks.md`
+
+**Purpose**: pytest and unittest framework-specific patterns
+
+**Use when**:
+- Choosing testing framework
+- Writing framework-specific tests
+- Understanding framework features
+- Migrating between frameworks
+
+**Covers**:
+- Framework detection (pytest.ini, imports, test structure)
+- pytest features (fixtures, parametrization, markers, async)
+- unittest features (setUp/tearDown, assertions, TestCase)
+- Framework comparison and selection criteria
+- Migration path from unittest to pytest
+- Plugin ecosystem (pytest-cov, pytest-mock, pytest-asyncio)
+
+**Load for**: `skill:generate-python-unit-tests` (always), framework-specific guidance
+
+---
+
+### `mocking_patterns.md`
+
+**Purpose**: Mocking and patching strategies for tests
+
+**Use when**:
+- Mocking external dependencies
+- Patching functions/methods
+- Testing code with side effects
+- Isolating units under test
+
+**Covers**:
+- When to mock (external APIs, databases, file system, time)
+- When NOT to mock (code under test, simple data structures)
+- unittest.mock (Mock, patch, MagicMock, AsyncMock)
+- pytest-mock (mocker fixture, spy, stub)
+- Common patterns (database, datetime, file ops, HTTP, env vars)
+- Mock assertions and verification
+- Anti-patterns (over-mocking, mocking what you're testing)
+
+**Load for**: `skill:generate-python-unit-tests` (always), test code with mocking
+
+---
+
+### `test_antipatterns.md`
+
+**Purpose**: Common testing mistakes and how to avoid them
+
+**Use when**:
+- Reviewing test code quality
+- Avoiding brittle tests
+- Improving test maintainability
+- Learning what NOT to do
+
+**Covers**:
+- Testing implementation instead of behavior
+- Brittle tests with hard-coded values
+- Test interdependence
+- Over-mocking
+- Testing private methods
+- Generic test names
+- Multiple unrelated assertions
+- Ignoring test failures
+- No assertions in tests
+- Overly complex setup
+- Testing frameworks instead of code
+- Sleep/wait in tests
+- Swallowing exceptions
+- Not testing edge cases
+
+**Load for**: `skill:generate-python-unit-tests` (always), test reviews
+
+---
+
 ## Usage Workflow
 
 ### Standard Python Review Process
@@ -243,6 +342,26 @@ Context files for Python code review, framework-specific patterns, and common is
    → Apply venv best practices from virtual_environments.md
 ```
 
+### Unit Test Generation Process
+
+```markdown
+1. Load unit_testing_standards.md
+   → Core testing principles and best practices
+
+2. Load testing_frameworks.md
+   → Framework-specific patterns (pytest vs unittest)
+
+3. Load mocking_patterns.md
+   → Mocking strategies for dependencies
+
+4. Load test_antipatterns.md
+   → What to avoid when generating tests
+
+5. Generate tests with Socratic planning
+   → Ask user about expected behavior
+   → Apply standards and patterns
+```
+
 ### Multi-Framework Projects
 
 Some projects use multiple frameworks. Load all relevant files:
@@ -267,6 +386,7 @@ Some projects use multiple frameworks. Load all relevant files:
 | **Machine Learning** | `context_detection.md`, `common_issues.md`, `ml_patterns.md`, `datascience_patterns.md` | 1, 2, 3, 4 |
 | **Generic Python** | `common_issues.md`, `security_guidelines.md` | 1, 2 |
 | **Dependency Management** | `dependency_management.md`, `virtual_environments.md` | 1, 2 |
+| **Unit Testing** | `unit_testing_standards.md`, `testing_frameworks.md`, `mocking_patterns.md`, `test_antipatterns.md` | 1, 2, 3, 4 |
 
 ## Pattern Detection Hints
 
@@ -287,11 +407,17 @@ Use these indicators from code to determine which files to load:
 | User mentions "install", "add package", "remove package" | `dependency_management.md`, `virtual_environments.md` |
 | `pyproject.toml`, `requirements.txt`, `poetry.lock` | `dependency_management.md` |
 | `.venv/`, `venv/`, virtual environment | `virtual_environments.md` |
+| `import pytest`, `@pytest.fixture`, `@pytest.mark` | `testing_frameworks.md`, `unit_testing_standards.md` |
+| `import unittest`, `unittest.TestCase` | `testing_frameworks.md`, `unit_testing_standards.md` |
+| `from unittest.mock import`, `@patch` | `mocking_patterns.md` |
+| `test_*.py`, `*_test.py`, `def test_` | `unit_testing_standards.md`, `testing_frameworks.md` |
+| User mentions "generate tests", "unit tests", "test coverage" | All testing context files |
 
 ## Related Skills
 
 - **python-code-review**: Primary consumer of code review context files
 - **python-dependency-management**: Uses dependency_management.md and virtual_environments.md
+- **generate-python-unit-tests**: Uses all testing context files (unit_testing_standards.md, testing_frameworks.md, mocking_patterns.md, test_antipatterns.md)
 - **get-git-diff**: May use for commit message classification
 
 ## Maintenance Notes

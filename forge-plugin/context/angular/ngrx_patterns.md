@@ -1,183 +1,69 @@
-# NgRx State Management Patterns
+# NgRx State Management Patterns – Quick Reference
 
-Best practices for NgRx (and Akita) state management in Angular applications.
+Best‑practice checklist for NgRx (and similar store libraries) in Angular.
 
----
-
-## NgRx Core Concepts {#core}
-
-### Actions
-
-**Action Best Practices**:
-```typescript
-import { createAction, props } from '@ngrx/store';
-
-// Good naming: [Source] Event
-export const loadUsers = createAction('[User List] Load Users');
-export const loadUsersSuccess = createAction(
-  '[User API] Load Users Success',
-  props<{ users: User[] }>()
-);
-export const loadUsersFailure = createAction(
-  '[User API] Load Users Failure',
-  props<{ error: string }>()
-);
-```
-
-### Reducers (MUST BE PURE)
-
-**Bad - Mutation**:
-```typescript
-case loadUsersSuccess:
-  state.users.push(...action.users); // WRONG - mutates state!
-  return state;
-```
-
-**Good - Immutable**:
-```typescript
-import { createReducer, on } from '@ngrx/store';
-
-export const userReducer = createReducer(
-  initialState,
-  on(loadUsersSuccess, (state, { users }) => ({
-    ...state,
-    users: [...users],
-    loading: false
-  })),
-  on(loadUsersFailure, (state, { error }) => ({
-    ...state,
-    error,
-    loading: false
-  }))
-);
-```
-
-### Effects
-
-```typescript
-import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
-
-@Injectable()
-export class UserEffects {
-  loadUsers$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(loadUsers),
-      switchMap(() =>
-        this.userService.getUsers().pipe(
-          map(users => loadUsersSuccess({ users })),
-          catchError(error => of(loadUsersFailure({ error: error.message })))
-        )
-      )
-    )
-  );
-
-  constructor(
-    private actions$: Actions,
-    private userService: UserService
-  ) {}
-}
-```
-
-### Selectors
-
-```typescript
-import { createSelector, createFeatureSelector } from '@ngrx/store';
-
-export const selectUserState = createFeatureSelector<UserState>('users');
-
-export const selectAllUsers = createSelector(
-  selectUserState,
-  state => state.users
-);
-
-export const selectUserById = (id: number) => createSelector(
-  selectAllUsers,
-  users => users.find(user => user.id === id)
-);
-
-export const selectLoadingState = createSelector(
-  selectUserState,
-  state => ({ loading: state.loading, error: state.error })
-);
-```
+**Load this file** when you see NgRx imports (`@ngrx/store`, `@ngrx/effects`, `@ngrx/entity`) or a custom store/facade layer.
 
 ---
 
-## Facade Pattern {#facade}
+## 1. Actions, Reducers, Selectors {#core}
 
-```typescript
-@Injectable({ providedIn: 'root' })
-export class UserFacade {
-  users$ = this.store.select(selectAllUsers);
-  loading$ = this.store.select(selectLoadingState);
-
-  constructor(private store: Store) {}
-
-  loadUsers() {
-    this.store.dispatch(loadUsers());
-  }
-
-  selectUser(id: number) {
-    return this.store.select(selectUserById(id));
-  }
-}
-
-// Component uses facade instead of store directly
-export class UserListComponent {
-  users$ = this.userFacade.users$;
-
-  constructor(private userFacade: UserFacade) {}
-
-  ngOnInit() {
-    this.userFacade.loadUsers();
-  }
-}
-```
+| Area | Good Practice | Smell to Flag | References |
+|------|--------------|---------------|------------|
+| Action naming | `[Source] Event` format, use `createAction` with `props` | Vague action names like `LOAD`/`SUCCESS`, string literals all over | [Actions](https://ngrx.io/guide/store/actions) |
+| Reducer purity | Use `createReducer`/`on`, always return new state, no side‑effects | `state.something.push(...)`, `new Date()`, service calls in reducer | [Reducers](https://ngrx.io/guide/store/reducers) |
+| Selectors | Use `createSelector`/`createFeatureSelector`, memoize projections | Components calling `.pipe(map(...))` on `store.select` everywhere | [Selectors](https://ngrx.io/guide/store/selectors) |
 
 ---
 
-## Entity Adapter {#entity}
+## 2. Effects {#effects}
 
-```typescript
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-
-export interface UserState extends EntityState<User> {
-  loading: boolean;
-  error: string | null;
-}
-
-export const userAdapter: EntityAdapter<User> = createEntityAdapter<User>();
-
-export const initialState: UserState = userAdapter.getInitialState({
-  loading: false,
-  error: null
-});
-
-export const userReducer = createReducer(
-  initialState,
-  on(loadUsersSuccess, (state, { users }) =>
-    userAdapter.setAll(users, { ...state, loading: false })
-  ),
-  on(addUserSuccess, (state, { user }) =>
-    userAdapter.addOne(user, state)
-  ),
-  on(updateUserSuccess, (state, { user }) =>
-    userAdapter.updateOne({ id: user.id, changes: user }, state)
-  ),
-  on(deleteUserSuccess, (state, { id }) =>
-    userAdapter.removeOne(id, state)
-  )
-);
-
-// Selectors
-const { selectAll, selectEntities, selectIds } = userAdapter.getSelectors();
-export const selectAllUsers = selectAll;
-export const selectUserEntities = selectEntities;
-```
+| Pattern | Good Practice | Smell to Flag | References |
+|---------|--------------|---------------|------------|
+| Side‑effects | Use `createEffect`, inject `Actions`, call services in effects only | HTTP calls directly in components or reducers | [Effects](https://ngrx.io/guide/effects) |
+| Flattening | Use `switchMap` for request/cancel, `concatMap` for ordered, `mergeMap` for parallel | Nested subscriptions or wrong operator leading to duplicate calls | [Choosing an operator](https://ngrx.io/guide/effects#flattening-operators) |
+| Error handling | Map errors to failure actions, keep effects small | Effects that `catchError` but only `console.log` or swallow errors | [Error handling](https://ngrx.io/guide/effects#handling-errors) |
 
 ---
 
-**Version**: 1.0.0
+## 3. Entity + Normalization {#entity}
+
+| Area | Good Practice | Smell to Flag | References |
+|------|--------------|---------------|------------|
+| Collections | Use `@ngrx/entity` for large collections (add/update/remove helpers) | Big arrays with manual `map/filter/find` in reducers | [Entity](https://ngrx.io/guide/entity) |
+| IDs and selectors | Use adapter selectors (`selectAll`, `selectEntities`, etc.) | Duplicated logic to pick items by id in many places | [Entity selectors](https://ngrx.io/guide/entity/adapter#selectors) |
+
+---
+
+## 4. Facade Pattern {#facade}
+
+| Purpose | Good Practice | Smell to Flag | References |
+|---------|--------------|---------------|------------|
+| Component API | Expose `vm$`/observables and commands from a facade or feature store | Components directly dispatching many actions and doing `store.select` everywhere | [Facade discussions](https://ngrx.io/guide/store#component-store-and-facades) |
+| Testability | Components stay mostly dumb; business logic lives in facade/effects | Hard‑to‑test components with complex store wiring | |
+
+---
+
+## 5. General State Management Smells
+
+| Smell | What to Look For | Why It’s a Problem |
+|-------|------------------|---------------------|
+| Over‑using global store | Everything is in a single root store; no local/component state | Increases coupling, noisy action logs, performance impact |
+| Async logic in components | HTTP calls and branching logic in components rather than effects/services | Harder to reuse/test and to reason about flows |
+| Massive state shape | Huge state objects with many unrelated concerns | Refactoring becomes hard; performance/debugging issues |
+
+---
+
+## 6. Quick Checklist
+
+- [ ] Actions have meaningful `[Source] Event` names.
+- [ ] Reducers are pure, immutable, and side‑effect free.
+- [ ] Selectors are centralized and memoized.
+- [ ] Effects own async work and handle errors via actions.
+- [ ] Collections use `@ngrx/entity` where appropriate.
+- [ ] Components use facades or a thin store API, not store spaghetti.
+
+---
+
+**Version**: 2.0.0 (Compact Reference Format)
+**Last Updated**: 2025-11-14
