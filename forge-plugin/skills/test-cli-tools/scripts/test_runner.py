@@ -266,6 +266,9 @@ def main():
 
         if "--expected-exit-code" in sys.argv:
             idx = sys.argv.index("--expected-exit-code")
+            if idx + 1 >= len(sys.argv):
+                print("Error: --expected-exit-code requires a value")
+                sys.exit(1)
             expected_code = int(sys.argv[idx + 1])
 
         passed, message = validate_command(command, expected_exit_code=expected_code)
