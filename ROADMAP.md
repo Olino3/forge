@@ -7,12 +7,12 @@
 ## 🔨 Skills
 
 ### ✅ Forged & Battle-Tested
-- **git-diff-reviewer** - Analyze the flames of change
-- **python-code-reviewer** - Temper Python steel with expert critique
+- **get-git-diff** (v1.1.0) - Analyze the flames of change
+- **dotnet-code-review** (v1.0.0) - Cast .NET artifacts of quality
+- **python-code-review** (v2.1.0) - Temper Python steel with expert critique
 
 ### 🔥 In the Furnace (Next)
-- **angular-code-reviewer** - Shape TypeScript frameworks with precision
-- **dotnet-code-reviewer** - Cast .NET artifacts of quality
+- **angular-code-review** - Shape TypeScript frameworks with precision
 
 ### 📋 Blueprints Awaiting (Planned)
 
@@ -121,6 +121,15 @@
 **Current Focus**: Completing Angular and .NET code reviewers
 **Next Milestone**: Python dependency management and test generation
 **Long-term Vision**: A fully autonomous forge where agents self-organize to solve complex engineering challenges
+
+---
+
+**Recent Forge Activity:**
+- ✅ **November 14, 2025**: dotnet-code-review v1.0.0 completed
+  - Full .NET Framework 4.8 and modern .NET (Core/.NET 5-8+) support
+  - 12 comprehensive context files (async, EF, DI, Blazor, security, performance, LINQ, etc.)
+  - Complete memory system with project-specific learning
+  - Integrated with get-git-diff for changed-file analysis
 
 ---
 
