@@ -490,6 +490,161 @@ Located in: `memory/skills/python-code-review/{project-name}/`
 
 ---
 
+### generate-python-unit-tests Memory
+
+Located in: `memory/skills/generate-python-unit-tests/{project-name}/`
+
+**Purpose**: Remember project-specific testing patterns, expected behaviors, and conventions learned during unit test generation.
+
+#### Required Memory Files:
+
+**`testing_patterns.md`** (ALWAYS CREATE FIRST):
+- Test file location pattern (tests/unit/, tests/, co-located)
+- Test file naming convention (test_*.py vs *_test.py)
+- Testing framework (pytest, unittest, version)
+- Project conventions (class-based vs function-based tests)
+- Common patterns (parametrization, fixture usage)
+- Test organization structure (by feature, by layer, etc.)
+
+**Example snippet**:
+```markdown
+# Testing Patterns - MyApp
+
+## Test File Structure
+- Location: `tests/unit/{module_path}/test_{module_name}.py`
+- Mirrors source: `app/services/user.py` → `tests/unit/services/test_user.py`
+
+## Framework
+- pytest 7.4.0
+- Plugins: pytest-asyncio, pytest-cov, pytest-mock
+
+## Conventions
+- Function-based tests (not class-based)
+- Heavy use of parametrization for edge cases
+- Fixtures in `conftest.py` at each level
+- Markers: @pytest.mark.slow, @pytest.mark.integration
+```
+
+**`expected_behaviors.md`** (CRITICAL FOR TEST QUALITY):
+- User-clarified expected behaviors from Socratic planning
+- Business logic rules and constraints
+- Edge case handling decisions
+- Error scenarios and expected exceptions
+- Input validation rules
+- Output format specifications
+- Domain-specific behaviors
+
+**Example snippet**:
+```markdown
+# Expected Behaviors - MyApp
+
+## User Service
+
+### create_user
+- **Valid email**: Must match `^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`
+- **Password**: Min 8 chars, at least 1 uppercase, 1 number
+- **Duplicate**: Raise `UserExistsError("Username already taken")`
+- **Side effects**: Send welcome email via EmailService (mock in tests)
+
+### update_user
+- **Allowed fields**: email, profile (name, bio, avatar_url)
+- **Cannot change**: username, created_at
+- **Not found**: Raise `NotFoundError` if user doesn't exist
+- **Cache**: Should call `cache.invalidate(f"user:{user_id}")`
+```
+
+**`common_fixtures.md`** (UPDATE REGULARLY):
+- Reusable test fixtures created for project
+- Test data factories and builders
+- Mock object configurations
+- Shared setup/teardown patterns
+- Common test scenarios
+- Database/API mocking patterns
+
+**Example snippet**:
+```markdown
+# Common Fixtures - MyApp
+
+## User Fixtures
+
+### sample_user
+```python
+@pytest.fixture
+def sample_user():
+    return User(
+        id=1,
+        username="testuser",
+        email="test@example.com",
+        created_at=datetime(2025, 1, 1)
+    )
+```
+
+## Mock Services
+
+### mock_database
+```python
+@pytest.fixture
+def mock_database():
+    db = Mock(spec=Database)
+    db.query.return_value = []
+    return db
+```
+```
+
+**`framework_config.md`** (DOCUMENT SETUP):
+- pytest.ini / pyproject.toml test configuration
+- conftest.py patterns and structure
+- Plugin usage and settings
+- Coverage configuration
+- Test markers and meanings
+- Custom pytest hooks
+- Test discovery patterns
+
+**Example snippet**:
+```markdown
+# Framework Configuration - MyApp
+
+## pytest.ini
+```ini
+[pytest]
+testpaths = tests
+python_files = test_*.py
+markers =
+    slow: marks tests as slow
+    integration: marks tests as integration tests
+addopts = -ra -q --strict-markers --cov=app
+```
+
+## conftest.py Structure
+- Root: Database session, app instance, mock external services
+- Module-level: Service-specific fixtures
+```
+
+#### Why Unit Testing Needs Memory
+
+- **Expected behaviors are project-specific**: Validation rules, business logic, error handling vary by project
+- **Testing patterns vary**: Some projects use pytest, others unittest; some prefer parametrization, others don't
+- **Fixtures are reusable**: Once created, fixtures should be remembered and reused across test generations
+- **Socratic learning accumulates**: Each Socratic planning session teaches the skill about the project's domain
+
+#### Memory Growth Pattern
+
+**First invocation**:
+- Establish test file location and framework
+- Document first set of expected behaviors from Socratic planning
+- Create initial fixtures
+
+**Subsequent invocations**:
+- Reuse existing fixtures
+- Apply remembered expected behaviors
+- Add new behaviors learned through Socratic planning
+- Expand fixture library
+- Refine testing patterns
+
+**Result**: Each test generation becomes faster and more accurate as the skill learns the project's domain and conventions.
+
+---
+
 ## Working with Memory
 
 ### For Skills (Conceptual Workflow)

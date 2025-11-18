@@ -1,98 +1,54 @@
-# Git Context Files
+# Git Context Files (Compact)
 
-Context files for git diff analysis, version control patterns, and commit analysis.
+Compact, link‑heavy context for git diff analysis, version control patterns, and commit analysis.
 
 ## Files in this Directory
 
 ### `git_diff_reference.md`
 
-**Purpose**: Complete reference for unified diff format and git diff behavior
-
-**Use when**: 
-- Parsing diff output
-- Understanding diff syntax
-- Explaining diff metadata
-- Handling special cases (binary files, permission changes, renames)
-
-**Key sections**:
-- Unified diff format specification
-- Hunk headers and line markers
-- File mode changes
-- Rename and copy detection
-- Binary file handling
-- Git-specific extensions
-
-**Load for**: Every `skill:get-git-diff` invocation to ensure proper parsing
+- **Purpose**: Minimal reminders + links for unified diff format and `git diff` usage.
+- **Use when**:
+  - Parsing diff output.
+  - Explaining diff syntax or status codes.
+  - Handling renames, binary files, or large diffs.
+- **Contents**: Pointers to official Git docs and Pro Git sections; no command cheatsheet.
+- **Load for**: Every `skill:get-git-diff` invocation that needs to interpret raw diff text.
 
 ---
 
 ### `diff_patterns.md`
 
-**Purpose**: Common patterns and categories of code changes
-
-**Use when**:
-- Classifying types of changes
-- Identifying change intent
-- Summarizing modifications
-- Detecting risky changes
-
-**Key sections**:
-- Feature additions (new functions, classes, endpoints)
-- Bug fixes (error handling, validation, logic fixes)
-- Refactoring (code restructuring, naming, organization)
-- Dependency updates (version bumps, new libraries)
-- Security fixes (injection, auth, XSS)
-- Database migrations (schema changes, data migrations)
-- Configuration changes (environment, settings, infrastructure)
-- Performance optimizations (algorithms, caching, queries)
-- Breaking changes (API modifications, signature changes)
-
-**Load for**: Analyzing change intent and summarizing modifications
+- **Purpose**: Compact patterns to classify change types and spot risk in diffs.
+- **Use when**:
+  - Inferring change intent (feature, bugfix, refactor, etc.).
+  - Highlighting risky areas (security, DB, breaking changes).
+  - Providing a short checklist for diff review.
+- **Contents**: Small tables of patterns/red flags and links to code review, SemVer, OWASP, etc.
+- **Load for**: Summarizing modifications and reasoning about risk level.
 
 ---
 
 ## Typical Usage Pattern
 
-```markdown
-# Standard git diff analysis workflow
-
-1. Load git_diff_reference.md
-   - Understand diff format
-   - Reference special cases
-   
-2. Parse diff using format knowledge
-   - Extract hunks
-   - Identify file operations
-   - Calculate statistics
-   
-3. Load diff_patterns.md
-   - Classify change types
-   - Match patterns
-   - Identify risks
-   
-4. Generate analysis
-   - Summarize by pattern
-   - Highlight important changes
-   - Flag potential issues
-```
+1. Load `git_diff_reference.md` for structure and links if you need to interpret diff syntax.
+2. Parse and summarize the diff in code.
+3. Load `diff_patterns.md` to classify the changes and spot red flags.
+4. Generate the final summary and risk notes.
 
 ## Quick Reference
 
-| Task | File to Load | Section |
-|------|--------------|---------|
-| Parse diff syntax | `git_diff_reference.md` | "Unified Diff Format" |
-| Handle renames | `git_diff_reference.md` | "Rename Detection" |
-| Identify feature | `diff_patterns.md` | "Feature Addition" |
-| Spot security fix | `diff_patterns.md` | "Security Fix" |
-| Detect refactoring | `diff_patterns.md` | "Refactoring" |
-| Find breaking change | `diff_patterns.md` | "Breaking Change" |
+| Task | File to Load |
+|------|--------------|
+| Understand diff syntax/headers | `git_diff_reference.md` |
+| Classify change type | `diff_patterns.md` |
+| Spot security / breaking change risk | `diff_patterns.md` |
 
 ## Related Skills
 
-- **get-git-diff**: Primary consumer of these context files
-- **python-code-review**: Uses git diff output for targeted review
+- **get-git-diff**: Primary consumer of these context files.
+- **python-code-review**: Uses git diff output for targeted review.
 
 ## Maintenance Notes
 
-- `git_diff_reference.md`: Update when git diff format changes (rare)
-- `diff_patterns.md`: Add new patterns as common change types emerge
+- `git_diff_reference.md`: Only update links or high‑level notes when Git docs move or change.
+- `diff_patterns.md`: Extend pattern tables if new common change types emerge.
