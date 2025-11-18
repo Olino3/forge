@@ -36,6 +36,9 @@ context/
 ├── azure/
 │   ├── index.md
 │   ├── azure_functions_overview.md
+│   ├── azure_pipelines_cicd_patterns.md
+│   ├── azure_pipelines_overview.md
+│   ├── azure_bicep_overview.md
 │   ├── azurite_setup.md
 │   ├── docker_compose_reference.md
 │   ├── dockerfile_reference.md
@@ -237,10 +240,15 @@ context/
 | `docker_compose_reference.md` | Creating docker-compose files | Service definitions, environment variables, networking, volumes |
 | `dockerfile_reference.md` | Creating Dockerfiles | Base images, dependency management (pip/Poetry/npm), multi-stage builds |
 | `azurite_setup.md` | Setting up Azurite emulator | Dockerfile, initialization scripts, connection strings, storage resources |
+| `azure_pipelines_overview.md` | Azure Pipelines basics | YAML syntax, stages, jobs, steps, triggers, variables, environments |
+| `azure_pipelines_cicd_patterns.md` | CI/CD patterns | Separate vs combined pipelines, IAC patterns, multi-environment strategies |
+| `azure_bicep_overview.md` | Bicep IaC | Bicep syntax, modules, parameters, resource declarations, deployment commands |
 
-**Load when**: Using `skill:generate-azure-functions` or setting up Azure Functions local development
+**Load when**:
+- Azure Functions: `skill:generate-azure-functions` or setting up Azure Functions local development
+- Azure Pipelines: `skill:generate-azure-pipelines` or creating CI/CD workflows and infrastructure
 
-**Project generation workflow**:
+**Azure Functions generation workflow**:
 1. Load `azure/index.md` for navigation guide
 2. Load `azure_functions_overview.md` to understand programming models (always)
 3. Load `local_development_setup.md` for environment setup (always)
@@ -248,6 +256,12 @@ context/
 5. Load `docker_compose_reference.md` when generating docker-compose.yml
 6. Load `dockerfile_reference.md` when generating Dockerfiles
 7. Load `azurite_setup.md` when setting up Azurite storage emulator
+
+**Azure Pipelines generation workflow**:
+1. Load `azure/index.md` for navigation guide
+2. Load `azure_pipelines_cicd_patterns.md` to decide architecture (always)
+3. Load `azure_pipelines_overview.md` for pipeline syntax (always)
+4. Load `azure_bicep_overview.md` when generating infrastructure (if needed)
 
 ---
 
@@ -291,6 +305,15 @@ Skills should load context files in this order:
 ```markdown
 1. Load git_diff_reference.md (understand format)
 2. Load diff_patterns.md (classify changes)
+```
+
+**For Azure Pipelines generation**:
+```markdown
+1. Load azure/index.md (navigation guide)
+2. Load azure_pipelines_cicd_patterns.md (decide separate vs combined)
+3. Load azure_pipelines_overview.md (pipeline YAML syntax)
+4. If generating infrastructure:
+   - Load azure_bicep_overview.md (Bicep templates)
 ```
 
 **For Python unit test generation**:
