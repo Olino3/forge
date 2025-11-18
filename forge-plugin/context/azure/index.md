@@ -25,11 +25,14 @@ azure/
 ├── local_development_setup.md       # Tilt + Azurite setup guide
 ├── tiltfile_reference.md            # Tiltfile patterns
 ├── docker_compose_reference.md      # Docker Compose patterns
+├── dockerfile_reference.md          # Dockerfile patterns for function apps
+├── azurite_setup.md                 # Azurite storage emulator setup
+# Azure Pipelines Context
+├── azure_pipelines_overview.md      # Azure Pipelines YAML syntax and structure
+├── azure_pipelines_cicd_patterns.md # CI/CD pipeline patterns and best practices
+└── azure_bicep_overview.md          # Bicep infrastructure as code
 ├── dockerfile_reference.md          # Dockerfile patterns
 ├── azurite_setup.md                 # Azurite storage emulator
-# Azure Pipelines Context
-├── azure_pipelines_overview.md      # Pipelines YAML syntax
-├── azure_pipelines_cicd_patterns.md # CI/CD patterns
 # Azure Bicep Context
 ├── azure_bicep_overview.md          # Bicep syntax and structure
 └── azure_verified_modules.md        # Azure Verified Modules (AVM)
@@ -146,41 +149,62 @@ azure/
 
 ### 7. `azure_pipelines_overview.md`
 
-**When to load**: When generating Azure Pipelines
+**When to load**: Always load when generating Azure Pipelines
 
-**Contains**: Pipelines YAML syntax, stages, jobs, steps, triggers, variables, templates
+**Contains**:
+- Azure Pipelines YAML syntax and structure
+- Stages, jobs, steps, and tasks
+- Triggers (branch, PR, scheduled)
+- Variables and conditions
+- Templates and reusability
+- Environments and approvals
 
-**Quick Reference**: Pipeline flow: Trigger → Pool → Stages → Jobs → Steps
+**Quick Reference**:
+- Pipeline structure: Trigger → Pool → Stages → Jobs → Steps
+- Use stages for major phases (Build, Test, Deploy)
+- Use deployment jobs for environments with approval gates
+- Links to official Azure Pipelines docs
 
 ---
 
 ### 8. `azure_pipelines_cicd_patterns.md`
 
-**When to load**: When deciding pipeline architecture
+**When to load**: When deciding on pipeline architecture
 
-**Contains**: Separate vs combined CI/CD, IAC patterns, multi-environment strategies
+**Contains**:
+- Separate CI/CD vs combined pipeline patterns
+- Infrastructure as Code (IAC) pipeline patterns
+- Multi-environment deployment strategies
+- Pipeline organization for monorepos
+- Common pipeline structures (Python, Node.js, .NET, Docker)
+- Best practices and anti-patterns
 
-**Quick Reference**: Separate CI/CD = build once, deploy many; Combined = simpler for small projects
+**Quick Reference**:
+- Separate CI/CD: Build once, deploy many times
+- Combined CI/CD: Simpler for small projects
+- IAC pipeline: Separate infrastructure from application deployments
+- Decision matrix for choosing pipeline architecture
 
 ---
 
 ### 9. `azure_bicep_overview.md`
 
-**When to load**: When generating Bicep infrastructure
+**When to load**: When generating infrastructure as code
 
-**Contains**: Bicep syntax, resource declarations, modules, parameters, bicepparams files
+**Contains**:
+- Bicep syntax and structure
+- Resource declarations and modules
+- Parameters and parameter files (.bicepparams)
+- Bicep CLI commands
+- Common resource types
+- Best practices for Bicep templates
 
-**Quick Reference**: Bicep compiles to ARM; use modules for reusability; targetScope sets deployment level
-
----
-
-### 10. `azure_verified_modules.md`
-
-**When to load**: Always load when generating Bicep infrastructure
-
-**Contains**: Azure Verified Modules (AVM) usage, module registry paths, standard parameters, best practices
-
-**Quick Reference**: AVM modules: `br/public:avm/res/{provider}/{type}:{version}`; always pin versions; use for production-ready infrastructure
+**Quick Reference**:
+- Bicep compiles to ARM templates
+- Use modules for reusable components
+- targetScope: subscription, resourceGroup, managementGroup, tenant
+- Use parameters files for environment-specific configuration
+- Links to official Bicep docs and resource references
 
 ---
 
@@ -189,13 +213,17 @@ azure/
 | Task | Load These Files |
 |------|------------------|
 | **Azure Functions** |
-| Generate Azure Functions project | `azure_functions_overview.md`, `local_development_setup.md` |
+| Generate new Azure Functions project | `azure_functions_overview.md`, `local_development_setup.md` |
 | Generate Tiltfile | `tiltfile_reference.md`, `local_development_setup.md` |
 | Generate docker-compose.yml | `docker_compose_reference.md`, `local_development_setup.md` |
+| Generate Dockerfile | `dockerfile_reference.md` |
+| Setup Azurite | `azurite_setup.md`, `local_development_setup.md` |
+| Full Functions project setup | All Azure Functions files |
 | **Azure Pipelines** |
 | Generate Azure Pipelines | `azure_pipelines_overview.md`, `azure_pipelines_cicd_patterns.md` |
-| **Azure Bicep** |
-| Generate Bicep infrastructure | `azure_bicep_overview.md`, `azure_verified_modules.md` |
+| Generate Bicep infrastructure | `azure_bicep_overview.md` |
+| Generate CI/CD with infrastructure | `azure_pipelines_overview.md`, `azure_pipelines_cicd_patterns.md`, `azure_bicep_overview.md` |
+| Decide pipeline architecture | `azure_pipelines_cicd_patterns.md` |
 
 ## Workflow: Generate Azure Functions Project
 
@@ -210,22 +238,15 @@ azure/
 
 ## Workflow: Generate Azure Pipelines
 
-1. Read this index
-2. Load `azure_pipelines_cicd_patterns.md` for architecture decisions
-3. Load `azure_pipelines_overview.md` for YAML syntax
-4. Load `azure_bicep_overview.md` if generating infrastructure pipelines
-5. Generate pipeline YAML files and Bicep templates
-6. Store configuration in memory
-
-## Workflow: Generate Bicep Infrastructure
-
-1. Read this index
-2. Load `azure_verified_modules.md` for AVM module patterns (always)
-3. Load `azure_bicep_overview.md` for Bicep syntax
-4. Map requirements to AVM modules
-5. Generate main.bicep with AVM module references
-6. Generate bicepparams files for environments
-7. Store configuration in memory
+1. **Read this index** to understand available context
+2. **Load `azure_pipelines_cicd_patterns.md`** to understand architecture options
+3. **Ask user** about pipeline structure (separate vs combined)
+4. **Load `azure_pipelines_overview.md`** for pipeline syntax and patterns
+5. **Load `azure_bicep_overview.md`** if infrastructure is needed
+6. **Generate pipeline YAML files** (CI, CD, IAC or combined)
+7. **Generate Bicep templates** with environment parameters
+8. **Create pipeline templates** for reusability
+9. **Store pipeline configuration** in memory
 
 ## Compact Approach
 
@@ -239,14 +260,12 @@ All context files follow the compact approach:
 ## Related Files
 
 ### Skills
-- `../../skills/generate-azure-functions/SKILL.md` - Azure Functions skill
-- `../../skills/generate-azure-pipelines/SKILL.md` - Azure Pipelines skill
-- `../../skills/generate-azure-bicep/SKILL.md` - Azure Bicep skill
+- `../../skills/generate-azure-functions/SKILL.md` - Azure Functions generation workflow
+- `../../skills/generate-azure-pipelines/SKILL.md` - Azure Pipelines generation workflow
 
 ### Memory
-- `../../memory/skills/generate-azure-functions/index.md` - Functions memory
-- `../../memory/skills/generate-azure-pipelines/index.md` - Pipelines memory
-- `../../memory/skills/generate-azure-bicep/index.md` - Bicep memory
+- `../../memory/skills/generate-azure-functions/index.md` - Azure Functions memory structure
+- `../../memory/skills/generate-azure-pipelines/index.md` - Azure Pipelines memory structure
 
 ## Official Documentation
 
@@ -256,10 +275,11 @@ All context files follow the compact approach:
 - [Tilt Documentation](https://docs.tilt.dev/)
 
 ### Azure Pipelines
-- [Azure Pipelines](https://learn.microsoft.com/azure/devops/pipelines/)
-- [YAML Schema](https://learn.microsoft.com/azure/devops/pipelines/yaml-schema/)
+- [Azure Pipelines Documentation](https://learn.microsoft.com/azure/devops/pipelines/)
+- [Azure Pipelines YAML Schema](https://learn.microsoft.com/azure/devops/pipelines/yaml-schema/)
+- [Pipeline Tasks Reference](https://learn.microsoft.com/azure/devops/pipelines/tasks/)
 
 ### Azure Bicep
 - [Bicep Documentation](https://learn.microsoft.com/azure/azure-resource-manager/bicep/)
-- [Azure Verified Modules](https://azure.github.io/Azure-Verified-Modules/)
-- [AVM Registry](https://aka.ms/avm)
+- [Bicep GitHub Repository](https://github.com/Azure/bicep)
+- [Azure Resource Reference](https://learn.microsoft.com/azure/templates/)

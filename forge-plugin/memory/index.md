@@ -864,6 +864,143 @@ Located in: `memory/skills/generate-azure-functions/{project-name}/`
 
 ---
 
+### generate-azure-pipelines Memory
+
+Located in: `memory/skills/generate-azure-pipelines/{project-name}/`
+
+**Purpose**: Remember project-specific Azure Pipelines configurations, Bicep resources, and customizations for future pipeline updates and infrastructure changes.
+
+#### Required Memory Files:
+
+**`pipeline_config.md`** (ALWAYS CREATE):
+- Pipeline architecture (separate CI/CD or combined)
+- Runtime and version (Python, Node.js, .NET)
+- Build tool (pip, Poetry, npm, yarn, dotnet)
+- Deployment target (Function App, App Service, AKS, etc.)
+- Environments (development, staging, production)
+- Service connections required
+- Variable groups configuration
+- Trigger configuration (branches, paths, schedules)
+- Generation timestamp and skill version
+
+**`generated_files.md`** (COMPREHENSIVE LIST):
+- Complete list of all generated files
+- File purposes (CI, CD, IAC, templates, variables)
+- Templates used for generation
+- Bicep modules created
+- Pipeline templates (build-job, deploy-job)
+- Variable files per environment
+- Documentation generated
+
+**`bicep_resources.md`** (INFRASTRUCTURE):
+- List of Azure resources defined in Bicep
+- Resource naming conventions
+- Environment-specific SKUs
+- Resource dependencies
+- Parameter configurations per environment
+- Custom modules created
+
+**`customizations.md`** (USER-SPECIFIC):
+- Custom pipeline steps added
+- Modified deployment strategies
+- Custom Bicep resources not in standard templates
+- Specific variable configurations
+- Special approval requirements
+- Deviations from standard patterns
+
+**Example `pipeline_config.md`**:
+```markdown
+# Pipeline Configuration for my-app
+
+**Generated**: 2025-11-18 16:00:00
+**Skill Version**: generate-azure-pipelines v1.0.0
+
+## Pipeline Architecture
+- Type: Separate CI and CD
+- CI Pipeline: ci-pipeline.yml
+- CD Pipeline: cd-pipeline.yml
+- IAC Pipeline: iac-pipeline.yml
+
+## Project Details
+- Runtime: Python 3.11
+- Build Tool: Poetry
+- Deployment Target: Azure Functions
+- Environments: Development, Staging, Production
+
+## Triggers
+- CI: All branches (main, develop, feature/*)
+- CD: Triggered by CI completion on main/develop
+- IAC: Changes to .azure/bicep/**
+
+## Service Connections
+- my-app-development-connection (Development subscription)
+- my-app-staging-connection (Staging subscription)
+- my-app-production-connection (Production subscription)
+
+## Variable Groups
+- my-app-development-variables
+- my-app-staging-variables
+- my-app-production-variables
+```
+
+**Example `bicep_resources.md`**:
+```markdown
+# Bicep Resources for my-app
+
+## Resource Naming Convention
+- Prefix: myapp
+- Pattern: {prefix}-{environment}-{resource-type}
+- Unique suffix: Uses uniqueString(resourceGroup().id) where needed
+
+## Resources Defined
+
+### Storage Account
+- Name Pattern: st{uniqueString(rg.id)}
+- SKU: Standard_LRS (dev), Standard_GRS (prod)
+- Access Tier: Hot
+
+### Function App
+- Name Pattern: myapp-{environment}-func
+- Runtime: Python 3.11
+- App Service Plan SKU: B1 (dev), P1v2 (prod)
+
+### Application Insights
+- Name Pattern: myapp-{environment}-appi
+- Linked to Function App
+
+## Environment-Specific Parameters
+- Development: location=eastus, resourcePrefix=myapp
+- Staging: location=eastus, resourcePrefix=myapp
+- Production: location=eastus2, resourcePrefix=myapp
+```
+
+#### Why Azure Pipelines Generation Needs Memory
+
+- **Configuration Reuse**: Remember pipeline architecture for future updates
+- **Avoid Regeneration**: Know what pipelines and infrastructure exist
+- **Track Infrastructure**: Document Azure resources and their configurations
+- **Customization Tracking**: Remember user-specific pipeline steps and requirements
+- **Environment Management**: Track multiple environments and their configurations
+- **Service Connection Reference**: Remember which Azure subscriptions are connected
+
+#### Memory Growth Pattern
+
+**First generation**:
+- Establish pipeline architecture
+- Document all generated files and infrastructure
+- Capture user requirements and customizations
+- Record environment configurations
+
+**Subsequent operations**:
+- Reference configuration when adding new environments
+- Know which pipelines to update vs regenerate
+- Apply same customizations to new pipeline stages
+- Track evolution of infrastructure resources
+
+**Result**: Complete pipeline and infrastructure history enabling efficient updates and maintenance of Azure DevOps pipelines and Bicep infrastructure.
+
+---
+
 ## Working with Memory
 
 ### For Skills (Conceptual Workflow)
