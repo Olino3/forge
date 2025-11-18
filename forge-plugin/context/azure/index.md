@@ -1,8 +1,8 @@
-# Azure Functions Context Index
+# Azure Context Index
 
 ## Purpose
 
-This directory contains **shared, static** knowledge about Azure Functions development, local development environments, and deployment patterns. These files provide consistent guidance for generating and working with Azure Functions projects.
+This directory contains **shared, static** knowledge about Azure development, including Azure Functions, Azure Pipelines, Bicep infrastructure as code, and deployment patterns. These files provide consistent guidance for generating and working with Azure projects.
 
 ## Conceptual Overview
 
@@ -20,12 +20,17 @@ This directory contains **shared, static** knowledge about Azure Functions devel
 ```
 azure/
 ├── index.md                          # This file - navigation guide
+# Azure Functions Context
 ├── azure_functions_overview.md      # Azure Functions v1 vs v2 comparison
 ├── local_development_setup.md       # Tilt + Azurite setup guide
 ├── tiltfile_reference.md            # Tiltfile patterns for Azure Functions
 ├── docker_compose_reference.md      # Docker Compose patterns
 ├── dockerfile_reference.md          # Dockerfile patterns for function apps
-└── azurite_setup.md                 # Azurite storage emulator setup
+├── azurite_setup.md                 # Azurite storage emulator setup
+# Azure Pipelines Context
+├── azure_pipelines_overview.md      # Azure Pipelines YAML syntax and structure
+├── azure_pipelines_cicd_patterns.md # CI/CD pipeline patterns and best practices
+└── azure_bicep_overview.md          # Bicep infrastructure as code
 ```
 
 ## Context Files
@@ -137,16 +142,83 @@ azure/
 
 ---
 
+### 7. `azure_pipelines_overview.md`
+
+**When to load**: Always load when generating Azure Pipelines
+
+**Contains**:
+- Azure Pipelines YAML syntax and structure
+- Stages, jobs, steps, and tasks
+- Triggers (branch, PR, scheduled)
+- Variables and conditions
+- Templates and reusability
+- Environments and approvals
+
+**Quick Reference**:
+- Pipeline structure: Trigger → Pool → Stages → Jobs → Steps
+- Use stages for major phases (Build, Test, Deploy)
+- Use deployment jobs for environments with approval gates
+- Links to official Azure Pipelines docs
+
+---
+
+### 8. `azure_pipelines_cicd_patterns.md`
+
+**When to load**: When deciding on pipeline architecture
+
+**Contains**:
+- Separate CI/CD vs combined pipeline patterns
+- Infrastructure as Code (IAC) pipeline patterns
+- Multi-environment deployment strategies
+- Pipeline organization for monorepos
+- Common pipeline structures (Python, Node.js, .NET, Docker)
+- Best practices and anti-patterns
+
+**Quick Reference**:
+- Separate CI/CD: Build once, deploy many times
+- Combined CI/CD: Simpler for small projects
+- IAC pipeline: Separate infrastructure from application deployments
+- Decision matrix for choosing pipeline architecture
+
+---
+
+### 9. `azure_bicep_overview.md`
+
+**When to load**: When generating infrastructure as code
+
+**Contains**:
+- Bicep syntax and structure
+- Resource declarations and modules
+- Parameters and parameter files (.bicepparams)
+- Bicep CLI commands
+- Common resource types
+- Best practices for Bicep templates
+
+**Quick Reference**:
+- Bicep compiles to ARM templates
+- Use modules for reusable components
+- targetScope: subscription, resourceGroup, managementGroup, tenant
+- Use parameters files for environment-specific configuration
+- Links to official Bicep docs and resource references
+
+---
+
 ## Decision Matrix
 
 | Task | Load These Files |
 |------|------------------|
+| **Azure Functions** |
 | Generate new Azure Functions project | `azure_functions_overview.md`, `local_development_setup.md` |
 | Generate Tiltfile | `tiltfile_reference.md`, `local_development_setup.md` |
 | Generate docker-compose.yml | `docker_compose_reference.md`, `local_development_setup.md` |
 | Generate Dockerfile | `dockerfile_reference.md` |
 | Setup Azurite | `azurite_setup.md`, `local_development_setup.md` |
-| Full project setup | All files |
+| Full Functions project setup | All Azure Functions files |
+| **Azure Pipelines** |
+| Generate Azure Pipelines | `azure_pipelines_overview.md`, `azure_pipelines_cicd_patterns.md` |
+| Generate Bicep infrastructure | `azure_bicep_overview.md` |
+| Generate CI/CD with infrastructure | `azure_pipelines_overview.md`, `azure_pipelines_cicd_patterns.md`, `azure_bicep_overview.md` |
+| Decide pipeline architecture | `azure_pipelines_cicd_patterns.md` |
 
 ## Workflow: Generate Azure Functions Project
 
@@ -159,6 +231,18 @@ azure/
 7. **Create development environment** (Tilt + Azurite)
 8. **Store project-specific config** in memory
 
+## Workflow: Generate Azure Pipelines
+
+1. **Read this index** to understand available context
+2. **Load `azure_pipelines_cicd_patterns.md`** to understand architecture options
+3. **Ask user** about pipeline structure (separate vs combined)
+4. **Load `azure_pipelines_overview.md`** for pipeline syntax and patterns
+5. **Load `azure_bicep_overview.md`** if infrastructure is needed
+6. **Generate pipeline YAML files** (CI, CD, IAC or combined)
+7. **Generate Bicep templates** with environment parameters
+8. **Create pipeline templates** for reusability
+9. **Store pipeline configuration** in memory
+
 ## Compact Approach
 
 All context files follow the compact approach:
@@ -170,13 +254,28 @@ All context files follow the compact approach:
 
 ## Related Files
 
-- `../../memory/skills/generate-azure-functions/index.md` - Memory structure
-- `../../skills/generate-azure-functions/SKILL.md` - Skill workflow
-- Official Azure Functions docs: https://learn.microsoft.com/azure/azure-functions/
+### Skills
+- `../../skills/generate-azure-functions/SKILL.md` - Azure Functions generation workflow
+- `../../skills/generate-azure-pipelines/SKILL.md` - Azure Pipelines generation workflow
+
+### Memory
+- `../../memory/skills/generate-azure-functions/index.md` - Azure Functions memory structure
+- `../../memory/skills/generate-azure-pipelines/index.md` - Azure Pipelines memory structure
 
 ## Official Documentation
 
+### Azure Functions
 - [Azure Functions Overview](https://learn.microsoft.com/azure/azure-functions/functions-overview)
 - [Azure Functions Python Developer Guide](https://learn.microsoft.com/azure/azure-functions/functions-reference-python)
 - [Azurite Emulator](https://learn.microsoft.com/azure/storage/common/storage-use-azurite)
 - [Tilt Documentation](https://docs.tilt.dev/)
+
+### Azure Pipelines
+- [Azure Pipelines Documentation](https://learn.microsoft.com/azure/devops/pipelines/)
+- [Azure Pipelines YAML Schema](https://learn.microsoft.com/azure/devops/pipelines/yaml-schema/)
+- [Pipeline Tasks Reference](https://learn.microsoft.com/azure/devops/pipelines/tasks/)
+
+### Azure Bicep
+- [Bicep Documentation](https://learn.microsoft.com/azure/azure-resource-manager/bicep/)
+- [Bicep GitHub Repository](https://github.com/Azure/bicep)
+- [Azure Resource Reference](https://learn.microsoft.com/azure/templates/)
