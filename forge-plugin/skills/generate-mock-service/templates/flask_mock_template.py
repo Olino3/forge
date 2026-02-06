@@ -166,4 +166,7 @@ if __name__ == '__main__':
     print(f"  DELETE http://localhost:{PORT}/{{ENDPOINT_PATH}}/<id>")
     print(f"\nMock delay: {MOCK_DELAY_MS}ms")
     
-    app.run(host='0.0.0.0', port=PORT, debug=True)
+    # NOTE: debug=True is suitable for local development/testing only
+    # For production mock services, set debug=False
+    debug_mode = os.getenv('FLASK_DEBUG', 'true').lower() == 'true'
+    app.run(host='0.0.0.0', port=PORT, debug=debug_mode)
