@@ -16,6 +16,8 @@
 - **generate-jest-unit-tests** - Weave JavaScript testing armor
 - **test-cli-tools** - Hammer command-line tools into reliability
 - **generate-azure-functions** (v1.0.0) - Summon serverless constructs with Tilt & Azurite
+- **generate-tilt-dev-environment** (v1.0.0) - Construct local development realms
+- **generate-mock-service** (v1.0.0) - Forge simulated service doppelgangers
 
 ### 📋 Blueprints Awaiting (Planned)
 
@@ -26,10 +28,6 @@
 #### Analysis & Schema Tools
 - **file-schema-analysis** - Decode the structure of artifacts
 - **database-schema-analysis** - Map the foundations of data temples
-
-#### Environment & Mocking
-- **generate-tilt-dev-environment** - Construct local development realms
-- **generate-mock-service** - Forge simulated service doppelgangers
 
 #### Documentation & Communication
 - **commit-helper** - Craft meaningful change chronicles
@@ -121,6 +119,22 @@
 ---
 
 **Recent Forge Activity:**
+- ✅ **February 6, 2026**: generate-tilt-dev-environment v1.0.0 and generate-mock-service v1.0.0 completed
+  - **generate-tilt-dev-environment**: Complete local development environment generation
+    - Tiltfile generation with live reload and service orchestration
+    - Docker Compose configuration for all services and dependencies
+    - Multi-language support (Python, Node.js, .NET, Go, Java)
+    - Makefile with common development commands
+    - Environment variable management with templates
+    - Memory system for environment configuration tracking
+  - **generate-mock-service**: Simulated service generation for testing
+    - Multiple mock server types (Express, Flask, FastAPI, WireMock, Prism)
+    - Realistic response data generation with Faker
+    - Multiple scenario support (success, error, edge cases)
+    - Request validation and authentication middleware
+    - Docker containerization for easy integration
+    - Memory system for mock configuration tracking
+
 - ✅ **November 18, 2025**: generate-azure-functions v1.0.0 completed
   - Complete Azure Functions project generation with v1/v2 model support
   - Tilt + Azurite local development environment with live reload
@@ -138,5 +152,5 @@
 
 ---
 
-*Last Updated: November 18, 2025*
+*Last Updated: February 6, 2026*
 *Maintained by: The Forge Keepers*

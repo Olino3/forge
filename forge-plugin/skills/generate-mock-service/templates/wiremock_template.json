@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "{{METHOD}}",
+    "urlPathPattern": "/{{ENDPOINT_PATH}}.*"
+  },
+  "response": {
+    "status": {{STATUS_CODE}},
+    "body": "{{RESPONSE_BODY}}",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "fixedDelayMilliseconds": {{DELAY_MS}}
+  }
+}
