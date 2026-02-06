@@ -16,18 +16,14 @@
 - **generate-jest-unit-tests** - Weave JavaScript testing armor
 - **test-cli-tools** - Hammer command-line tools into reliability
 - **generate-azure-functions** (v1.0.0) - Summon serverless constructs with Tilt & Azurite
+- **generate-azure-pipelines** (v1.0.0)- Build automated deployment forges
+- **generate-azure-bicep** (v1.0.0) - Shape infrastructure as code
 - **generate-tilt-dev-environment** (v1.0.0) - Construct local development realms
 - **generate-mock-service** (v1.0.0) - Forge simulated service doppelgangers
+- **file-schema-analysis** (v1.0.0) - Decode the structure of artifacts
+- **database-schema-analysis** (v1.0.0) - Map the foundations of data temples
 
 ### 📋 Blueprints Awaiting (Planned)
-
-#### Azure Crafting Tools
-- **generate-azure-pipelines** - Build automated deployment forges
-- **generate-azure-bicep** - Shape infrastructure as code
-
-#### Analysis & Schema Tools
-- **file-schema-analysis** - Decode the structure of artifacts
-- **database-schema-analysis** - Map the foundations of data temples
 
 #### Documentation & Communication
 - **commit-helper** - Craft meaningful change chronicles
@@ -112,8 +108,8 @@
 
 *Hephaestus's forge never cools. Each skill sharpened, each agent awakened, each command invoked brings us closer to the perfect workshop—where mortal developers wield divine tools.*
 
-**Current Focus**: Azure development tooling and infrastructure generation
-**Next Milestone**: Azure Pipelines and Bicep generation, file/database schema analysis
+**Current Focus**: Schema analysis and documentation generation
+**Next Milestone**: Azure Pipelines and Bicep generation, additional documentation tools
 **Long-term Vision**: A fully autonomous forge where agents self-organize to solve complex engineering challenges
 
 ---
@@ -134,6 +130,13 @@
     - Request validation and authentication middleware
     - Docker containerization for easy integration
     - Memory system for mock configuration tracking
+- ✅ **February 6, 2025**: Schema Analysis Tools v1.0.0 completed
+  - file-schema-analysis skill for analyzing file-based schemas (JSON, Protobuf, GraphQL, OpenAPI, Avro, etc.)
+  - database-schema-analysis skill for analyzing database schemas (SQL and NoSQL)
+  - Comprehensive context files for schema patterns, file formats, and database patterns
+  - Template-based reporting with ERD generation and index analysis
+  - Memory system for tracking project-specific schema conventions
+  - Helper scripts for schema extraction and database introspection
 
 - ✅ **November 18, 2025**: generate-azure-functions v1.0.0 completed
   - Complete Azure Functions project generation with v1/v2 model support
