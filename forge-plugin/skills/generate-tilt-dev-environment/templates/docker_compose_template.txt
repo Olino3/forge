@@ -1,0 +1,152 @@
+# Docker Compose Template
+# This template provides a base docker-compose.yml configuration
+
+version: '3.8'
+
+services:
+  # {{SERVICE_NAME}} Service
+  {{SERVICE_NAME}}:
+    build:
+      context: ./{{SERVICE_PATH}}
+      dockerfile: ../.docker/{{SERVICE_NAME}}/Dockerfile
+      args:
+        - BUILD_ENV=${BUILD_ENV:-development}
+    container_name: {{PROJECT_NAME}}_{{SERVICE_NAME}}
+    environment:
+      # Common environment variables
+      - NODE_ENV=${NODE_ENV:-development}
+      - PYTHONUNBUFFERED=1
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      # Service-specific environment variables
+      # {{ENV_VARS}}
+    ports:
+      - "{{PORT}}:{{INTERNAL_PORT}}"
+    volumes:
+      # Mount source code for live reload
+      - ./{{SERVICE_PATH}}:/app
+      # Prevent node_modules from being overwritten (Node.js specific)
+      # - /app/node_modules
+    depends_on:
+      # {{DEPENDENCIES}}
+    networks:
+      - {{PROJECT_NAME}}_network
+    restart: unless-stopped
+    # Optional: Health check
+    # healthcheck:
+    #   test: ["CMD", "curl", "-f", "http://localhost:{{INTERNAL_PORT}}/health"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 3
+    #   start_period: 40s
+
+  # Example: PostgreSQL Database
+  # postgres:
+  #   image: postgres:15-alpine
+  #   container_name: {{PROJECT_NAME}}_postgres
+  #   environment:
+  #     - POSTGRES_DB=${DB_NAME:-myapp}
+  #     - POSTGRES_USER=${DB_USER:-postgres}
+  #     - POSTGRES_PASSWORD=${DB_PASSWORD:-postgres}
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #     - ./scripts/init_db.sql:/docker-entrypoint-initdb.d/init.sql
+  #   networks:
+  #     - {{PROJECT_NAME}}_network
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U postgres"]
+  #     interval: 5s
+  #     timeout: 5s
+  #     retries: 5
+
+  # Example: MySQL Database
+  # mysql:
+  #   image: mysql:8
+  #   container_name: {{PROJECT_NAME}}_mysql
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD:-root}
+  #     - MYSQL_DATABASE=${DB_NAME:-myapp}
+  #     - MYSQL_USER=${DB_USER:-user}
+  #     - MYSQL_PASSWORD=${DB_PASSWORD:-password}
+  #   ports:
+  #     - "3306:3306"
+  #   volumes:
+  #     - mysql_data:/var/lib/mysql
+  #   networks:
+  #     - {{PROJECT_NAME}}_network
+  #   healthcheck:
+  #     test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+
+  # Example: MongoDB
+  # mongodb:
+  #   image: mongo:6
+  #   container_name: {{PROJECT_NAME}}_mongodb
+  #   environment:
+  #     - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER:-admin}
+  #     - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD:-password}
+  #   ports:
+  #     - "27017:27017"
+  #   volumes:
+  #     - mongodb_data:/data/db
+  #   networks:
+  #     - {{PROJECT_NAME}}_network
+
+  # Example: Redis Cache
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: {{PROJECT_NAME}}_redis
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - redis_data:/data
+  #   networks:
+  #     - {{PROJECT_NAME}}_network
+  #   healthcheck:
+  #     test: ["CMD", "redis-cli", "ping"]
+  #     interval: 5s
+  #     timeout: 3s
+  #     retries: 5
+
+  # Example: RabbitMQ Message Queue
+  # rabbitmq:
+  #   image: rabbitmq:3-management-alpine
+  #   container_name: {{PROJECT_NAME}}_rabbitmq
+  #   environment:
+  #     - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER:-admin}
+  #     - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASS:-password}
+  #   ports:
+  #     - "5672:5672"   # AMQP port
+  #     - "15672:15672" # Management UI
+  #   networks:
+  #     - {{PROJECT_NAME}}_network
+
+  # Example: Elasticsearch
+  # elasticsearch:
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+  #   container_name: {{PROJECT_NAME}}_elasticsearch
+  #   environment:
+  #     - discovery.type=single-node
+  #     - xpack.security.enabled=false
+  #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+  #   ports:
+  #     - "9200:9200"
+  #   volumes:
+  #     - elasticsearch_data:/usr/share/elasticsearch/data
+  #   networks:
+  #     - {{PROJECT_NAME}}_network
+
+networks:
+  {{PROJECT_NAME}}_network:
+    driver: bridge
+
+volumes:
+  # {{VOLUME_DEFINITIONS}}
+  # postgres_data:
+  # mysql_data:
+  # mongodb_data:
+  # redis_data:
+  # elasticsearch_data:

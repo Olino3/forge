@@ -1,0 +1,128 @@
+# Tiltfile Template
+# This template provides a base Tiltfile configuration for local development
+
+# Load extensions
+load('ext://restart_process', 'docker_build_with_restart')
+
+# Load environment variables from .env file
+def load_env_file(path='.env'):
+    """Load environment variables from file"""
+    if os.path.exists(path):
+        for line in read_file(path).splitlines():
+            line = line.strip()
+            if line and not line.startswith('#'):
+                parts = line.split('=', 1)
+                if len(parts) == 2:
+                    os.putenv(parts[0].strip(), parts[1].strip())
+
+load_env_file('.env')
+
+# Configuration
+config.define_string('env', args=False, usage='Environment to run (dev, test, staging)')
+cfg = config.parse()
+env = cfg.get('env', 'dev')
+
+# Docker Compose configuration
+docker_compose('./docker-compose.yml')
+
+# {{SERVICE_NAME}} Service
+docker_build(
+    '{{SERVICE_IMAGE_NAME}}',
+    context='./{{SERVICE_PATH}}',
+    dockerfile='.docker/{{SERVICE_NAME}}/Dockerfile',
+    live_update=[
+        sync('./{{SERVICE_PATH}}/{{SOURCE_DIR}}', '/app/{{SOURCE_DIR}}'),
+        # Add language-specific installation commands:
+        # Python: run('pip install -r requirements.txt', trigger='requirements.txt'),
+        # Node.js: run('npm install', trigger='package.json'),
+        # Go: run('go build -o /app/server .', trigger='*.go'),
+        run('{{INSTALL_COMMAND}}', trigger='{{DEPENDENCY_FILE}}'),
+        restart_container()
+    ],
+    # Optional: only rebuild on specific file changes
+    only=[
+        './{{SERVICE_PATH}}/{{SOURCE_DIR}}',
+        './{{SERVICE_PATH}}/{{DEPENDENCY_FILE}}'
+    ]
+)
+
+# Resource definitions
+k8s_resource(
+    '{{SERVICE_NAME}}',
+    labels=['{{LABEL}}'],
+    port_forwards='{{PORT}}',
+    resource_deps=['{{DEPENDENCIES}}'],
+    # Optional: Add custom buttons
+    trigger_mode=TRIGGER_MODE_AUTO
+)
+
+# Example: Database resource
+# k8s_resource(
+#     'postgres',
+#     labels=['database'],
+#     port_forwards=5432,
+#     trigger_mode=TRIGGER_MODE_AUTO
+# )
+
+# Example: Cache resource
+# k8s_resource(
+#     'redis',
+#     labels=['cache'],
+#     port_forwards=6379,
+#     resource_deps=['postgres']
+# )
+
+# Local resources for custom commands
+local_resource(
+    'health-check',
+    cmd='curl http://localhost:{{PORT}}/health || echo "Service not ready"',
+    labels=['tools'],
+    trigger_mode=TRIGGER_MODE_MANUAL,
+    resource_deps=['{{SERVICE_NAME}}']
+)
+
+# Example: Database migrations
+# local_resource(
+#     'run-migrations',
+#     cmd='docker-compose exec -T {{SERVICE_NAME}} {{MIGRATION_COMMAND}}',
+#     labels=['database'],
+#     trigger_mode=TRIGGER_MODE_MANUAL,
+#     resource_deps=['{{SERVICE_NAME}}', 'postgres']
+# )
+
+# Example: Database seeding
+# local_resource(
+#     'seed-database',
+#     cmd='docker-compose exec -T postgres psql -U {{DB_USER}} -d {{DB_NAME}} < scripts/seed.sql',
+#     labels=['database'],
+#     trigger_mode=TRIGGER_MODE_MANUAL,
+#     resource_deps=['postgres']
+# )
+
+# Custom buttons (Tilt v0.23.0+)
+# local_resource(
+#     'test-api',
+#     cmd='python scripts/test_api.py',
+#     labels=['testing'],
+#     trigger_mode=TRIGGER_MODE_MANUAL,
+#     auto_init=False
+# )
+
+# Print helpful information
+print("""
+╔══════════════════════════════════════════════════════════╗
+║  Development Environment Started                        ║
+╚══════════════════════════════════════════════════════════╝
+
+🚀 Services:
+   {{SERVICE_NAME}}: http://localhost:{{PORT}}
+
+📊 Tilt UI: http://localhost:10350
+
+🛠️  Common Commands:
+   make logs    - View all service logs
+   make down    - Stop all services
+   make clean   - Clean up containers and volumes
+
+📝 Environment: {env}
+""".format(env=env))
