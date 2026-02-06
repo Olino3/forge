@@ -173,6 +173,7 @@ Behold the sacred structure where divine tools are born:
 │   │   ├─ dotnet/                # .NET/C# standards
 │   │   ├─ python/                # Python best practices
 │   │   ├─ git/                   # Git diff references
+│   │   ├─ schema/                # Schema analysis patterns (file & database)
 │   │   └─ security/              # Security guidelines
 │   ├─ memory/                    # Project-specific learning
 │   │   └─ skills/                # Per-skill, per-project memory
@@ -186,10 +187,20 @@ Behold the sacred structure where divine tools are born:
 │       │   ├─ templates/         # Review templates
 │       │   ├─ examples.md        # Review scenarios
 │       │   └─ SKILL.md           # Skill documentation
-│       └─ generate-azure-functions/  # Azure Functions generator
-│           ├─ scripts/           # Project generation utilities
-│           ├─ templates/         # Tilt, Docker, Azurite templates
-│           ├─ examples.md        # Generation scenarios
+│       ├─ generate-azure-functions/  # Azure Functions generator
+│       │   ├─ scripts/           # Project generation utilities
+│       │   ├─ templates/         # Tilt, Docker, Azurite templates
+│       │   ├─ examples.md        # Generation scenarios
+│       │   └─ SKILL.md           # Skill documentation
+│       ├─ file-schema-analysis/  # File schema analyzer
+│       │   ├─ scripts/           # Schema extraction utilities
+│       │   ├─ templates/         # Analysis report templates
+│       │   ├─ examples.md        # Analysis scenarios
+│       │   └─ SKILL.md           # Skill documentation
+│       └─ database-schema-analysis/  # Database schema analyzer
+│           ├─ scripts/           # Database introspection utilities
+│           ├─ templates/         # ERD and report templates
+│           ├─ examples.md        # Analysis scenarios
 │           └─ SKILL.md           # Skill documentation
 ├─ 📜 CLAUDE.md                   # Divine instructions for Claude
 ├─ 🗺️ ROADMAP.md                  # Future artifacts to forge
