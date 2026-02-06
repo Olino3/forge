@@ -1,0 +1,114 @@
+# Environment Variables Template
+# Copy this file to .env and customize for your local development
+
+# ============================================
+# Application Configuration
+# ============================================
+NODE_ENV=development
+FLASK_ENV=development
+DJANGO_DEBUG=true
+LOG_LEVEL=debug
+
+# ============================================
+# Database Configuration
+# ============================================
+# PostgreSQL
+DB_HOST=postgres
+DB_PORT=5432
+DB_NAME=myapp_dev
+DB_USER=postgres
+DB_PASSWORD=postgres_dev_password
+DATABASE_URL=postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}
+
+# MySQL
+# MYSQL_HOST=mysql
+# MYSQL_PORT=3306
+# MYSQL_DATABASE=myapp_dev
+# MYSQL_USER=myapp
+# MYSQL_PASSWORD=mysql_dev_password
+# MYSQL_ROOT_PASSWORD=root_password
+
+# MongoDB
+# MONGO_HOST=mongodb
+# MONGO_PORT=27017
+# MONGO_DATABASE=myapp_dev
+# MONGO_USER=admin
+# MONGO_PASSWORD=mongo_dev_password
+# MONGODB_URI=mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DATABASE}
+
+# ============================================
+# Cache Configuration
+# ============================================
+# Redis
+REDIS_HOST=redis
+REDIS_PORT=6379
+REDIS_DB=0
+REDIS_URL=redis://${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB}
+
+# ============================================
+# Message Queue Configuration
+# ============================================
+# RabbitMQ
+# RABBITMQ_HOST=rabbitmq
+# RABBITMQ_PORT=5672
+# RABBITMQ_USER=admin
+# RABBITMQ_PASS=rabbitmq_dev_password
+# RABBITMQ_URL=amqp://${RABBITMQ_USER}:${RABBITMQ_PASS}@${RABBITMQ_HOST}:${RABBITMQ_PORT}
+
+# Kafka
+# KAFKA_BROKER=kafka:9092
+# KAFKA_GROUP_ID=myapp-consumer-group
+
+# ============================================
+# Service Ports
+# ============================================
+API_PORT=8000
+FRONTEND_PORT=3000
+
+# ============================================
+# API Keys & Secrets (Development Only!)
+# ============================================
+# WARNING: Never commit real secrets to version control
+SECRET_KEY=dev-secret-key-change-in-production
+JWT_SECRET=dev-jwt-secret-change-in-production
+API_KEY=dev-api-key
+
+# ============================================
+# External Services (Development/Mock)
+# ============================================
+# PAYMENT_API_URL=http://payment-mock:8001
+# EMAIL_SERVICE_URL=http://email-mock:8002
+
+# ============================================
+# Feature Flags
+# ============================================
+ENABLE_DEBUG_TOOLBAR=true
+ENABLE_PROFILING=false
+ENABLE_FEATURE_X=true
+
+# ============================================
+# Storage Configuration
+# ============================================
+# AWS S3 (or MinIO for local development)
+# S3_BUCKET=myapp-dev-bucket
+# S3_REGION=us-east-1
+# S3_ACCESS_KEY=minioadmin
+# S3_SECRET_KEY=minioadmin
+# S3_ENDPOINT=http://minio:9000
+
+# ============================================
+# Search Configuration
+# ============================================
+# Elasticsearch
+# ELASTICSEARCH_HOST=elasticsearch
+# ELASTICSEARCH_PORT=9200
+# ELASTICSEARCH_URL=http://${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}
+
+# ============================================
+# Other Configuration
+# ============================================
+# Timezone
+TZ=UTC
+
+# Build environment
+BUILD_ENV=development

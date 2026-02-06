@@ -1,0 +1,89 @@
+# Dockerfile for Mock Service
+# Choose the appropriate base image based on your mock server type
+
+# ============================================
+# Node.js (Express) Mock Service
+# ============================================
+# FROM node:18-alpine
+# 
+# WORKDIR /app
+# 
+# # Copy package files
+# COPY package*.json ./
+# 
+# # Install dependencies
+# RUN npm ci --only=production
+# 
+# # Copy application files
+# COPY . .
+# 
+# # Expose port
+# EXPOSE {{PORT}}
+# 
+# # Start the server
+# CMD ["node", "server.js"]
+
+# ============================================
+# Python (Flask/FastAPI) Mock Service
+# ============================================
+# FROM python:3.11-slim
+# 
+# WORKDIR /app
+# 
+# # Install dependencies
+# COPY requirements.txt .
+# RUN pip install --no-cache-dir -r requirements.txt
+# 
+# # Copy application files
+# COPY . .
+# 
+# # Expose port
+# EXPOSE {{PORT}}
+# 
+# # For Flask:
+# # CMD ["python", "server.py"]
+# 
+# # For FastAPI:
+# # CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "{{PORT}}"]
+
+# ============================================
+# WireMock Mock Service
+# ============================================
+# FROM wiremock/wiremock:latest
+# 
+# # Copy WireMock configuration
+# COPY wiremock/mappings /home/wiremock/mappings
+# COPY wiremock/__files /home/wiremock/__files
+# 
+# # Expose port
+# EXPOSE {{PORT}}
+# 
+# # Start WireMock
+# CMD ["--port", "{{PORT}}", "--verbose"]
+
+# ============================================
+# Generic Template
+# ============================================
+FROM {{BASE_IMAGE}}
+
+WORKDIR /app
+
+# Copy files
+COPY . .
+
+# Install dependencies
+# {{INSTALL_COMMAND}}
+
+# Expose port
+EXPOSE {{PORT}}
+
+# Environment variables
+ENV PORT={{PORT}}
+ENV MOCK_DELAY_MS=100
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:{{PORT}}/health || exit 1
+
+# Start command
+CMD {{START_COMMAND}}
