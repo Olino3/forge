@@ -16,18 +16,14 @@
 - **generate-jest-unit-tests** - Weave JavaScript testing armor
 - **test-cli-tools** - Hammer command-line tools into reliability
 - **generate-azure-functions** (v1.0.0) - Summon serverless constructs with Tilt & Azurite
+- **generate-azure-pipelines** (v1.0.0)- Build automated deployment forges
+- **generate-azure-bicep** (v1.0.0) - Shape infrastructure as code
+- **generate-tilt-dev-environment** (v1.0.0) - Construct local development realms
+- **generate-mock-service** (v1.0.0) - Forge simulated service doppelgangers
 - **file-schema-analysis** (v1.0.0) - Decode the structure of artifacts
 - **database-schema-analysis** (v1.0.0) - Map the foundations of data temples
 
 ### 📋 Blueprints Awaiting (Planned)
-
-#### Azure Crafting Tools
-- **generate-azure-pipelines** - Build automated deployment forges
-- **generate-azure-bicep** - Shape infrastructure as code
-
-#### Environment & Mocking
-- **generate-tilt-dev-environment** - Construct local development realms
-- **generate-mock-service** - Forge simulated service doppelgangers
 
 #### Documentation & Communication
 - **commit-helper** - Craft meaningful change chronicles
@@ -119,6 +115,21 @@
 ---
 
 **Recent Forge Activity:**
+- ✅ **February 6, 2026**: generate-tilt-dev-environment v1.0.0 and generate-mock-service v1.0.0 completed
+  - **generate-tilt-dev-environment**: Complete local development environment generation
+    - Tiltfile generation with live reload and service orchestration
+    - Docker Compose configuration for all services and dependencies
+    - Multi-language support (Python, Node.js, .NET, Go, Java)
+    - Makefile with common development commands
+    - Environment variable management with templates
+    - Memory system for environment configuration tracking
+  - **generate-mock-service**: Simulated service generation for testing
+    - Multiple mock server types (Express, Flask, FastAPI, WireMock, Prism)
+    - Realistic response data generation with Faker
+    - Multiple scenario support (success, error, edge cases)
+    - Request validation and authentication middleware
+    - Docker containerization for easy integration
+    - Memory system for mock configuration tracking
 - ✅ **February 6, 2025**: Schema Analysis Tools v1.0.0 completed
   - file-schema-analysis skill for analyzing file-based schemas (JSON, Protobuf, GraphQL, OpenAPI, Avro, etc.)
   - database-schema-analysis skill for analyzing database schemas (SQL and NoSQL)
@@ -144,5 +155,5 @@
 
 ---
 
-*Last Updated: February 6, 2025*
+*Last Updated: February 6, 2026*
 *Maintained by: The Forge Keepers*

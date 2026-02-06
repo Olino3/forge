@@ -1,0 +1,41 @@
+# Prism Configuration Template
+# This configuration is used with Stoplight Prism to create a mock server from an OpenAPI specification
+
+# Basic usage:
+# prism mock -h 0.0.0.0 -p {{PORT}} openapi.yaml
+
+# Configuration options (when using docker-compose or CLI)
+mock:
+  # Port to run the mock server on
+  port: {{PORT}}
+  
+  # Host to bind to
+  host: 0.0.0.0
+  
+  # Enable dynamic response generation
+  dynamic: true
+  
+  # Validate requests against the OpenAPI spec
+  validateRequest: true
+  
+  # Validate responses against the OpenAPI spec
+  validateResponse: true
+  
+  # Errors configuration
+  errors: true
+  
+  # CORS configuration
+  cors: true
+
+# Example docker-compose.yml for Prism:
+# version: '3.8'
+# services:
+#   prism:
+#     image: stoplight/prism:latest
+#     command: mock -h 0.0.0.0 -p {{PORT}} /openapi.yaml
+#     ports:
+#       - "{{PORT}}:{{PORT}}"
+#     volumes:
+#       - ./openapi.yaml:/openapi.yaml:ro
+#     environment:
+#       - PRISM_LOG_LEVEL=info
