@@ -197,10 +197,34 @@ Behold the sacred structure where divine tools are born:
 │       │   ├─ templates/         # Analysis report templates
 │       │   ├─ examples.md        # Analysis scenarios
 │       │   └─ SKILL.md           # Skill documentation
-│       └─ database-schema-analysis/  # Database schema analyzer
-│           ├─ scripts/           # Database introspection utilities
-│           ├─ templates/         # ERD and report templates
-│           ├─ examples.md        # Analysis scenarios
+│       ├─ database-schema-analysis/  # Database schema analyzer
+│       │   ├─ scripts/           # Database introspection utilities
+│       │   ├─ templates/         # ERD and report templates
+│       │   ├─ examples.md        # Analysis scenarios
+│       │   └─ SKILL.md           # Skill documentation
+│       ├─ commit-helper/         # Git commit message crafter
+│       │   ├─ templates/         # Commit message templates
+│       │   ├─ examples.md        # Commit examples
+│       │   └─ SKILL.md           # Skill documentation
+│       ├─ email-writer/          # Professional email composer
+│       │   ├─ templates/         # Email templates
+│       │   ├─ examples.md        # Email examples
+│       │   └─ SKILL.md           # Skill documentation
+│       ├─ slack-message-composer/  # Team communication shaper
+│       │   ├─ templates/         # Message templates
+│       │   ├─ examples.md        # Message examples
+│       │   └─ SKILL.md           # Skill documentation
+│       ├─ documentation-generator/  # Technical documentation writer
+│       │   ├─ templates/         # Documentation templates
+│       │   ├─ examples.md        # Documentation examples
+│       │   └─ SKILL.md           # Skill documentation
+│       ├─ excel-skills/          # Spreadsheet manipulation master
+│       │   ├─ templates/         # Formula and macro templates
+│       │   ├─ examples.md        # Spreadsheet task examples
+│       │   └─ SKILL.md           # Skill documentation
+│       └─ jupyter-notebook-skills/  # Interactive data exploration
+│           ├─ templates/         # Notebook templates (EDA, ML, viz)
+│           ├─ examples.md        # Data science examples
 │           └─ SKILL.md           # Skill documentation
 ├─ 📜 CLAUDE.md                   # Divine instructions for Claude
 ├─ 🗺️ ROADMAP.md                  # Future artifacts to forge
