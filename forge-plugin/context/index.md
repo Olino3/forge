@@ -61,6 +61,7 @@ context/
 │   ├── diff_patterns.md
 │   └── git_diff_reference.md
 ├── python/
+│   ├── index.md
 │   ├── common_issues.md
 │   ├── context_detection.md
 │   ├── datascience_patterns.md
@@ -74,7 +75,13 @@ context/
 │   ├── testing_frameworks.md
 │   ├── unit_testing_standards.md
 │   └── virtual_environments.md
+├── schema/
+│   ├── index.md
+│   ├── common_patterns.md
+│   ├── database_patterns.md
+│   └── file_formats.md
 └── security/
+    ├── index.md
     ├── owasp_python.md
     └── security_guidelines.md
 ```
@@ -262,6 +269,64 @@ context/
 2. Load `azure_pipelines_cicd_patterns.md` to decide architecture (always)
 3. Load `azure_pipelines_overview.md` for pipeline syntax (always)
 4. Load `azure_bicep_overview.md` when generating infrastructure (if needed)
+
+---
+
+### Schema Analysis Context (`schema/`)
+
+**When to use**: Analyzing file schemas (JSON Schema, Protobuf, GraphQL, OpenAPI, Avro, XML/XSD) or database schemas (SQL, NoSQL)
+
+| File | Use For | Key Topics |
+|------|---------|------------|
+| `index.md` | Navigation and context loading guide | Quick reference, loading decision matrix, when to use each file |
+| `common_patterns.md` | Universal schema concepts | Entities, relationships, constraints, normalization, documentation, evolution |
+| `file_formats.md` | File-based schema patterns | JSON Schema, Protobuf, GraphQL, OpenAPI, Avro, XML/XSD, CSV inference |
+| `database_patterns.md` | Database schema patterns | SQL (PostgreSQL, MySQL), NoSQL (MongoDB, Cassandra, Neo4j, Redis), indexes, normalization |
+
+**Load when**:
+- File schemas: `skill:file-schema-analysis` or analyzing API schemas, data formats, configuration files
+- Database schemas: `skill:database-schema-analysis` or analyzing database structure, migrations, optimization
+
+**File schema analysis workflow**:
+1. Load `schema/index.md` for navigation guide
+2. Load `common_patterns.md` for foundational concepts (always)
+3. Load `file_formats.md` for format-specific patterns (always)
+4. Load `security/security_guidelines.md` if analyzing sensitive data schemas
+
+**Database schema analysis workflow**:
+1. Load `schema/index.md` for navigation guide
+2. Load `common_patterns.md` for foundational concepts (always)
+3. Load `database_patterns.md` for database-specific patterns (always)
+4. Load `security/security_guidelines.md` if analyzing PII or sensitive data
+
+---
+
+### Schema Analysis Context (`schema/`)
+
+**When to use**: Analyzing file schemas (JSON Schema, Protobuf, GraphQL, OpenAPI, Avro, XML/XSD) or database schemas (SQL, NoSQL)
+
+| File | Use For | Key Topics |
+|------|---------|------------|
+| `index.md` | Navigation and context loading guide | Quick reference, loading decision matrix, when to use each file |
+| `common_patterns.md` | Universal schema concepts | Entities, relationships, constraints, normalization, documentation, evolution |
+| `file_formats.md` | File-based schema patterns | JSON Schema, Protobuf, GraphQL, OpenAPI, Avro, XML/XSD, CSV inference |
+| `database_patterns.md` | Database schema patterns | SQL (PostgreSQL, MySQL), NoSQL (MongoDB, Cassandra, Neo4j, Redis), indexes, normalization |
+
+**Load when**:
+- File schemas: `skill:file-schema-analysis` or analyzing API schemas, data formats, configuration files
+- Database schemas: `skill:database-schema-analysis` or analyzing database structure, migrations, optimization
+
+**File schema analysis workflow**:
+1. Load `schema/index.md` for navigation guide
+2. Load `common_patterns.md` for foundational concepts (always)
+3. Load `file_formats.md` for format-specific patterns (always)
+4. Load `security/security_guidelines.md` if analyzing sensitive data schemas
+
+**Database schema analysis workflow**:
+1. Load `schema/index.md` for navigation guide
+2. Load `common_patterns.md` for foundational concepts (always)
+3. Load `database_patterns.md` for database-specific patterns (always)
+4. Load `security/security_guidelines.md` if analyzing PII or sensitive data
 
 ---
 
