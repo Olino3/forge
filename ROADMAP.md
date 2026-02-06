@@ -22,18 +22,14 @@
 - **generate-mock-service** (v1.0.0) - Forge simulated service doppelgangers
 - **file-schema-analysis** (v1.0.0) - Decode the structure of artifacts
 - **database-schema-analysis** (v1.0.0) - Map the foundations of data temples
+- **commit-helper** (v1.0.0) - Craft meaningful change chronicles
+- **email-writer** (v1.0.0) - Compose professional correspondence
+- **slack-message-composer** (v1.0.0) - Shape team communications
+- **documentation-generator** (v1.0.0) - Inscribe knowledge into permanence
+- **excel-skills** (v1.0.0) - Master spreadsheet manipulation
+- **jupyter-notebook-skills** (v1.0.0) - Command interactive data exploration
 
 ### 📋 Blueprints Awaiting (Planned)
-
-#### Documentation & Communication
-- **commit-helper** - Craft meaningful change chronicles
-- **email-writer** - Compose professional correspondence
-- **slack-message-composer** - Shape team communications
-- **documentation-generator** - Inscribe knowledge into permanence
-
-#### Data Science Arsenal
-- **excel-skills** - Master spreadsheet manipulation
-- **jupyter-notebook-skills** - Command interactive data exploration
 
 #### Meta-Skill
 - **generate-more-skills-with-claude** - Let the AI forge new tools
@@ -115,6 +111,36 @@
 ---
 
 **Recent Forge Activity:**
+- ✅ **February 6, 2026**: Data Science Arsenal and Documentation & Communication skills completed
+  - **excel-skills**: Master spreadsheet manipulation across Excel, Google Sheets, and LibreOffice
+    - Formula engineering (VLOOKUP, INDEX-MATCH, SUMIFS, array formulas)
+    - VBA/Apps Script/Python automation for batch operations
+    - Data transformation and cleaning workflows
+    - Cross-platform compatibility support
+    - Template-based output formatting
+  - **jupyter-notebook-skills**: Command interactive data exploration in Jupyter notebooks
+    - Exploratory Data Analysis (EDA) workflows
+    - Machine learning model training and evaluation
+    - Statistical analysis and hypothesis testing
+    - Data visualization with matplotlib, seaborn, plotly
+    - Reproducible notebook generation with best practices
+  - **commit-helper v1.0.0**: Craft meaningful change chronicles
+    - Conventional Commits compliance
+    - Breaking change detection
+    - Git diff analysis integration
+  - **email-writer v1.0.0**: Compose professional correspondence
+    - Audience analysis and tone calibration
+    - Support for status updates, requests, announcements, escalations
+    - Action item tracking
+  - **slack-message-composer v1.0.0**: Shape team communications
+    - Channel-appropriate formatting
+    - Thread management
+    - Emoji and mention integration
+  - **documentation-generator v1.0.0**: Inscribe knowledge into permanence
+    - API documentation generation
+    - README and guide creation
+    - Technical specification writing
+
 - ✅ **February 6, 2026**: generate-tilt-dev-environment v1.0.0 and generate-mock-service v1.0.0 completed
   - **generate-tilt-dev-environment**: Complete local development environment generation
     - Tiltfile generation with live reload and service orchestration
