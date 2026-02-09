@@ -216,17 +216,17 @@ Behold the sacred structure where divine tools are born:
 │   └─ settings.local.json        # Local settings for the forge
 ├─ 📦 .claude-plugin/             # Marketplace registry
 │   └─ marketplace.json           # Sacred catalog of available plugins
-├─ 🤖 .github/agents/             # Custom Claude Code agents
-│   ├─ technical-writer.md        # @technical-writer - Documentation artisan
-│   ├─ full-stack-engineer.md     # @full-stack-engineer - End-to-end architect
-│   ├─ data-scientist.md          # @data-scientist - Analytics and ML specialist
-│   └─ memory/                    # Agent-specific memory storage
-│       ├─ technical-writer/      # Documentation patterns and preferences
-│       ├─ full-stack-engineer/   # Architecture and code patterns
-│       └─ data-scientist/        # Data insights and ML patterns
 ├─ ⚒️ forge-plugin/               # The main forge workshop
 │   ├─ .claude-plugin/            # Plugin manifest
 │   │   └─ plugin.json            # Plugin definition
+│   ├─ 🤖 agents/                 # Custom Claude Code agents
+│   │   ├─ technical-writer.md        # @technical-writer - Documentation artisan
+│   │   ├─ full-stack-engineer.md     # @full-stack-engineer - End-to-end architect
+│   │   ├─ data-scientist.md          # @data-scientist - Analytics and ML specialist
+│   │   └─ memory/                    # Agent-specific memory storage
+│   │       ├─ technical-writer/      # Documentation patterns and preferences
+│   │       ├─ full-stack-engineer/   # Architecture and code patterns
+│   │       └─ data-scientist/        # Data insights and ML patterns
 │   └─ skills/                    # Arsenal of divine skills
 │       ├─ get-git-diff/          # Git diff analysis tool
 │       │   ├─ context/           # Knowledge scrolls

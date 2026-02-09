@@ -8,7 +8,7 @@ tools:
   - grep
   - glob
   - bash
-memory: .github/agents/memory/technical-writer
+memory: forge-plugin/agents/memory/technical-writer
 skills:
   - documentation-generator
   - commit-helper
@@ -74,7 +74,7 @@ You maintain project-specific documentation patterns in your memory:
 - Common code patterns and examples
 - Frequently referenced resources
 
-Access your memory at: `.github/agents/memory/technical-writer/`
+Access your memory at: `forge-plugin/agents/memory/technical-writer/`
 
 ## Skills Integration
 

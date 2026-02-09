@@ -9,7 +9,7 @@ tools:
   - glob
   - bash
   - task
-memory: .github/agents/memory/data-scientist
+memory: forge-plugin/agents/memory/data-scientist
 skills:
   - python-code-review
   - commit-helper
@@ -143,7 +143,7 @@ You maintain project-specific insights in your memory:
 - Domain-specific patterns and insights
 - Reusable data processing pipelines
 
-Access your memory at: `.github/agents/memory/data-scientist/`
+Access your memory at: `forge-plugin/agents/memory/data-scientist/`
 
 ## Skills Integration
 

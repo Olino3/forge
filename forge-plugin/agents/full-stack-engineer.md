@@ -9,7 +9,7 @@ tools:
   - glob
   - bash
   - task
-memory: .github/agents/memory/full-stack-engineer
+memory: forge-plugin/agents/memory/full-stack-engineer
 skills:
   - python-code-review
   - commit-helper
@@ -110,7 +110,7 @@ You maintain project-specific patterns in your memory:
 - Performance optimization techniques
 - Security configurations and patterns
 
-Access your memory at: `.github/agents/memory/full-stack-engineer/`
+Access your memory at: `forge-plugin/agents/memory/full-stack-engineer/`
 
 ## Skills Integration
 
