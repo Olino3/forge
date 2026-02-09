@@ -220,30 +220,73 @@ Behold the sacred structure where divine tools are born:
 │   ├─ .claude-plugin/            # Plugin manifest
 │   │   └─ plugin.json            # Plugin definition
 │   ├─ 🤖 agents/                 # Custom Claude Code agents
+│   │   └─ devops-engineer.md     # DevOps automation expert
 │   │   ├─ technical-writer.md        # @technical-writer - Documentation artisan
 │   │   ├─ full-stack-engineer.md     # @full-stack-engineer - End-to-end architect
 │   │   ├─ data-scientist.md          # @data-scientist - Analytics and ML specialist
-│   │   └─ memory/                    # Agent-specific memory storage
-│   │       ├─ technical-writer/      # Documentation patterns and preferences
-│   │       ├─ full-stack-engineer/   # Architecture and code patterns
-│   │       └─ data-scientist/        # Data insights and ML patterns
+│   ├─ context/                   # Centralized knowledge base
+│   │   ├─ azure/                 # Azure Functions patterns
+│   │   ├─ dotnet/                # .NET/C# standards
+│   │   ├─ python/                # Python best practices
+│   │   ├─ git/                   # Git diff references
+│   │   ├─ schema/                # Schema analysis patterns (file & database)
+│   │   └─ security/              # Security guidelines
+│   ├─ memory/                    # Project-specific learning
+│   │   ├─ agents/                # Per-agent memory
+│   │   └─ skills/                # Per-skill, per-project memory
 │   └─ skills/                    # Arsenal of divine skills
 │       ├─ get-git-diff/          # Git diff analysis tool
-│       │   ├─ context/           # Knowledge scrolls
-│       │   ├─ memory/            # Pattern libraries
 │       │   ├─ scripts/           # Shell utilities
 │       │   ├─ templates/         # Output templates
 │       │   ├─ examples.md        # Usage examples
 │       │   └─ SKILL.md           # Skill documentation
-│       └─ python-code-review/    # Python review expert
-│           ├─ context/           # Security & standards
-│           ├─ memory/            # Framework patterns
-│           ├─ templates/         # Review templates
-│           ├─ examples.md        # Review scenarios
+│       ├─ python-code-review/    # Python review expert
+│       │   ├─ templates/         # Review templates
+│       │   ├─ examples.md        # Review scenarios
+│       │   └─ SKILL.md           # Skill documentation
+│       ├─ generate-azure-functions/  # Azure Functions generator
+│       │   ├─ scripts/           # Project generation utilities
+│       │   ├─ templates/         # Tilt, Docker, Azurite templates
+│       │   ├─ examples.md        # Generation scenarios
+│       │   └─ SKILL.md           # Skill documentation
+│       ├─ file-schema-analysis/  # File schema analyzer
+│       │   ├─ scripts/           # Schema extraction utilities
+│       │   ├─ templates/         # Analysis report templates
+│       │   ├─ examples.md        # Analysis scenarios
+│       │   └─ SKILL.md           # Skill documentation
+│       ├─ database-schema-analysis/  # Database schema analyzer
+│       │   ├─ scripts/           # Database introspection utilities
+│       │   ├─ templates/         # ERD and report templates
+│       │   ├─ examples.md        # Analysis scenarios
+│       │   └─ SKILL.md           # Skill documentation
+│       ├─ commit-helper/         # Git commit message crafter
+│       │   ├─ templates/         # Commit message templates
+│       │   ├─ examples.md        # Commit examples
+│       │   └─ SKILL.md           # Skill documentation
+│       ├─ email-writer/          # Professional email composer
+│       │   ├─ templates/         # Email templates
+│       │   ├─ examples.md        # Email examples
+│       │   └─ SKILL.md           # Skill documentation
+│       ├─ slack-message-composer/  # Team communication shaper
+│       │   ├─ templates/         # Message templates
+│       │   ├─ examples.md        # Message examples
+│       │   └─ SKILL.md           # Skill documentation
+│       ├─ documentation-generator/  # Technical documentation writer
+│       │   ├─ templates/         # Documentation templates
+│       │   ├─ examples.md        # Documentation examples
+│       │   └─ SKILL.md           # Skill documentation
+│       ├─ excel-skills/          # Spreadsheet manipulation master
+│       │   ├─ templates/         # Formula and macro templates
+│       │   ├─ examples.md        # Spreadsheet task examples
+│       │   └─ SKILL.md           # Skill documentation
+│       └─ jupyter-notebook-skills/  # Interactive data exploration
+│           ├─ templates/         # Notebook templates (EDA, ML, viz)
+│           ├─ examples.md        # Data science examples
 │           └─ SKILL.md           # Skill documentation
 ├─ 📜 CLAUDE.md                   # Divine instructions for Claude
+├─ 🗺️ ROADMAP.md                  # Future artifacts to forge
 ├─ 🛡️ .gitignore                  # Protected artifacts
-└─ � README.md                   # This divine manuscript
+└─ README.md                   # This divine manuscript
 ```
 
 > 🔍 **Explore**: Each skill in the forge contains specialized knowledge and tools for specific tasks. The `.claude-plugin` directories define the marketplace and plugin structures for Claude Code.

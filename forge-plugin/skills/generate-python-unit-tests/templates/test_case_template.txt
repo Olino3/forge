@@ -1,0 +1,271 @@
+# Test Case Template
+# Template for individual test cases following AAA pattern
+
+# ============================================================================
+# PYTEST STYLE
+# ============================================================================
+
+def test_should_{expected_behavior}_when_{condition}({fixtures}):
+    """
+    Test that {function_name} {expected_behavior} when {condition}.
+
+    Args:
+        {fixture_descriptions}
+
+    Test scenario:
+        {scenario_description}
+
+    Expected behavior:
+        {expected_outcome}
+    """
+    # Arrange - Set up test data and mock behaviors
+    {arrange_section}
+
+    # Act - Execute the function/method under test
+    {act_section}
+
+    # Assert - Verify the expected outcome
+    {assert_section}
+
+
+# ============================================================================
+# PYTEST PARAMETRIZED STYLE
+# ============================================================================
+
+@pytest.mark.parametrize("{param_names}", [
+    ({test_case_1_values}),  # {test_case_1_description}
+    ({test_case_2_values}),  # {test_case_2_description}
+    ({test_case_3_values}),  # {test_case_3_description}
+])
+def test_should_{expected_behavior}_with_various_inputs({param_names}):
+    """
+    Test that {function_name} {expected_behavior} with various inputs.
+
+    Parameterized test cases:
+    {parameterized_descriptions}
+    """
+    # Arrange
+    {arrange_section}
+
+    # Act
+    result = {function_call}
+
+    # Assert
+    assert result == expected
+
+
+# ============================================================================
+# PYTEST WITH MOCKING
+# ============================================================================
+
+@patch('{module_path}.{dependency_name}')
+def test_should_{expected_behavior}_when_{condition}(mock_{dependency}, {other_fixtures}):
+    """
+    Test that {function_name} {expected_behavior} when {condition}.
+
+    Mocks:
+        {dependency_name}: {mock_description}
+    """
+    # Arrange
+    mock_{dependency}.{method}.return_value = {mock_return_value}
+    {additional_arrange}
+
+    # Act
+    result = {function_call}
+
+    # Assert
+    assert {assertion}
+    mock_{dependency}.{method}.assert_called_once_with({expected_args})
+
+
+# ============================================================================
+# PYTEST ASYNC STYLE
+# ============================================================================
+
+@pytest.mark.asyncio
+async def test_should_{expected_behavior}_when_{condition}({fixtures}):
+    """
+    Test that async {function_name} {expected_behavior} when {condition}.
+
+    Async test for coroutine functions.
+    """
+    # Arrange
+    {arrange_section}
+
+    # Act
+    result = await {async_function_call}
+
+    # Assert
+    assert {assertion}
+
+
+# ============================================================================
+# PYTEST ERROR HANDLING
+# ============================================================================
+
+def test_should_raise_{exception_name}_when_{condition}({fixtures}):
+    """
+    Test that {function_name} raises {exception_name} when {condition}.
+
+    Error scenario:
+        {error_scenario_description}
+    """
+    # Arrange
+    {arrange_section}
+
+    # Act & Assert
+    with pytest.raises({exception_name}, match=r"{error_message_pattern}"):
+        {function_call}
+
+
+# ============================================================================
+# UNITTEST STYLE
+# ============================================================================
+
+def test_{function_name}_{scenario}(self):
+    """
+    Test that {function_name} {expected_behavior} when {condition}.
+
+    Test scenario:
+        {scenario_description}
+    """
+    # Arrange
+    {arrange_section}
+
+    # Act
+    result = {function_call}
+
+    # Assert
+    self.assertEqual(result, {expected_value})
+    # Alternative assertions:
+    # self.assertTrue(condition)
+    # self.assertFalse(condition)
+    # self.assertIsNone(value)
+    # self.assertIsNotNone(value)
+    # self.assertIn(item, container)
+    # self.assertRaises(ExceptionType, callable, *args)
+
+
+# ============================================================================
+# UNITTEST WITH MOCKING
+# ============================================================================
+
+@patch('{module_path}.{dependency_name}')
+def test_{function_name}_{scenario}(self, mock_{dependency}):
+    """
+    Test that {function_name} {expected_behavior} when {condition}.
+
+    Mocks:
+        {dependency_name}: {mock_description}
+    """
+    # Arrange
+    mock_{dependency}.{method}.return_value = {mock_return_value}
+    {additional_arrange}
+
+    # Act
+    result = self.{object_under_test}.{method_call}
+
+    # Assert
+    self.assertEqual(result, {expected_value})
+    mock_{dependency}.{method}.assert_called_once_with({expected_args})
+
+
+# ============================================================================
+# UNITTEST ERROR HANDLING
+# ============================================================================
+
+def test_{function_name}_raises_{exception_name}_when_{condition}(self):
+    """
+    Test that {function_name} raises {exception_name} when {condition}.
+
+    Error scenario:
+        {error_scenario_description}
+    """
+    # Arrange
+    {arrange_section}
+
+    # Act & Assert
+    with self.assertRaises({exception_name}) as context:
+        {function_call}
+
+    self.assertIn("{expected_error_message}", str(context.exception))
+
+
+# ============================================================================
+# COMMON PATTERNS
+# ============================================================================
+
+# Testing collections
+def test_should_return_list_of_items_when_query_successful():
+    # Arrange
+    expected_items = [item1, item2, item3]
+
+    # Act
+    result = get_items()
+
+    # Assert
+    assert len(result) == 3
+    assert all(isinstance(item, Item) for item in result)
+    assert result == expected_items
+
+
+# Testing with fixtures
+@pytest.fixture
+def sample_data():
+    return {"key": "value", "count": 42}
+
+
+def test_with_fixture(sample_data):
+    # Arrange (using fixture)
+
+    # Act
+    result = process(sample_data)
+
+    # Assert
+    assert result["processed"] is True
+
+
+# Testing side effects
+def test_should_save_to_database(mock_db):
+    # Arrange
+    data = {"name": "test"}
+
+    # Act
+    save_data(data)
+
+    # Assert
+    mock_db.save.assert_called_once_with(data)
+
+
+# Testing state changes
+def test_should_update_status():
+    # Arrange
+    obj = MyObject(status="pending")
+
+    # Act
+    obj.complete()
+
+    # Assert
+    assert obj.status == "completed"
+    assert obj.completed_at is not None
+
+
+# Testing multiple assertions (grouped logically)
+def test_should_transform_data_correctly():
+    # Arrange
+    input_data = {"raw": "value"}
+
+    # Act
+    result = transform(input_data)
+
+    # Assert - Structure
+    assert isinstance(result, dict)
+    assert "transformed" in result
+
+    # Assert - Values
+    assert result["transformed"] == "VALUE"
+    assert result["processed"] is True
+
+    # Assert - Metadata
+    assert "timestamp" in result
+    assert result["timestamp"] is not None

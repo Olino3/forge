@@ -1,0 +1,207 @@
+# Makefile for Development Environment
+# Common commands for managing the Tilt development environment
+
+.PHONY: help up down restart logs clean rebuild shell test lint format health
+
+# Default target
+.DEFAULT_GOAL := help
+
+# Colors for output
+BLUE := \033[0;34m
+GREEN := \033[0;32m
+YELLOW := \033[0;33m
+RED := \033[0;31m
+NC := \033[0m # No Color
+
+help: ## Show this help message
+	@echo "$(BLUE)Available commands:$(NC)"
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  $(GREEN)%-15s$(NC) %s\n", $$1, $$2}'
+
+up: ## Start the development environment with Tilt
+	@echo "$(GREEN)Starting development environment...$(NC)"
+	tilt up
+
+down: ## Stop all services
+	@echo "$(YELLOW)Stopping development environment...$(NC)"
+	tilt down
+
+restart: down up ## Restart the development environment
+
+logs: ## View logs from all services
+	@echo "$(BLUE)Viewing logs...$(NC)"
+	tilt logs
+
+clean: ## Clean up containers, volumes, and build cache
+	@echo "$(RED)Cleaning up...$(NC)"
+	docker-compose down -v
+	docker system prune -f
+	@echo "$(GREEN)Cleanup complete!$(NC)"
+
+rebuild: ## Rebuild all services from scratch
+	@echo "$(YELLOW)Rebuilding services...$(NC)"
+	tilt down
+	docker-compose build --no-cache
+	tilt up
+
+# ============================================
+# Service-specific shell access
+# ============================================
+
+shell-api: ## Open shell in API service
+	docker-compose exec {{API_SERVICE}} /bin/bash
+
+shell-frontend: ## Open shell in frontend service
+	docker-compose exec {{FRONTEND_SERVICE}} /bin/sh
+
+shell-db: ## Open database shell
+	docker-compose exec {{DB_SERVICE}} psql -U {{DB_USER}} -d {{DB_NAME}}
+
+# ============================================
+# Database commands
+# ============================================
+
+db-migrate: ## Run database migrations
+	docker-compose exec {{API_SERVICE}} {{MIGRATION_COMMAND}}
+
+db-seed: ## Seed database with test data
+	docker-compose exec {{DB_SERVICE}} psql -U {{DB_USER}} -d {{DB_NAME}} < scripts/seed.sql
+
+db-reset: ## Reset database (WARNING: destroys all data)
+	@echo "$(RED)WARNING: This will destroy all database data!$(NC)"
+	@read -p "Are you sure? (yes/no): " confirm; \
+	if [ "$$confirm" = "yes" ]; then \
+		docker-compose down -v; \
+		docker-compose up -d {{DB_SERVICE}}; \
+		sleep 5; \
+		$(MAKE) db-migrate; \
+		$(MAKE) db-seed; \
+		echo "$(GREEN)Database reset complete!$(NC)"; \
+	else \
+		echo "$(YELLOW)Cancelled.$(NC)"; \
+	fi
+
+# ============================================
+# Testing commands
+# ============================================
+
+test: ## Run all tests
+	docker-compose exec {{API_SERVICE}} {{TEST_COMMAND}}
+
+test-unit: ## Run unit tests
+	docker-compose exec {{API_SERVICE}} {{UNIT_TEST_COMMAND}}
+
+test-integration: ## Run integration tests
+	docker-compose exec {{API_SERVICE}} {{INTEGRATION_TEST_COMMAND}}
+
+test-watch: ## Run tests in watch mode
+	docker-compose exec {{API_SERVICE}} {{TEST_WATCH_COMMAND}}
+
+# ============================================
+# Code quality commands
+# ============================================
+
+lint: ## Run linters
+	docker-compose exec {{API_SERVICE}} {{LINT_COMMAND}}
+
+format: ## Format code
+	docker-compose exec {{API_SERVICE}} {{FORMAT_COMMAND}}
+
+type-check: ## Run type checker
+	docker-compose exec {{API_SERVICE}} {{TYPE_CHECK_COMMAND}}
+
+# ============================================
+# Health and status commands
+# ============================================
+
+health: ## Check health of all services
+	@echo "$(BLUE)Checking service health...$(NC)"
+	@curl -f http://localhost:{{API_PORT}}/health || echo "$(RED)API service unhealthy$(NC)"
+	@curl -f http://localhost:{{FRONTEND_PORT}} || echo "$(RED)Frontend service unhealthy$(NC)"
+	@echo "$(GREEN)Health check complete!$(NC)"
+
+status: ## Show status of all services
+	@echo "$(BLUE)Service status:$(NC)"
+	docker-compose ps
+
+ps: status ## Alias for status
+
+# ============================================
+# Development utilities
+# ============================================
+
+install: ## Install/update dependencies
+	docker-compose exec {{API_SERVICE}} {{INSTALL_COMMAND}}
+
+build-assets: ## Build frontend assets
+	docker-compose exec {{FRONTEND_SERVICE}} {{BUILD_COMMAND}}
+
+watch-assets: ## Watch and rebuild frontend assets
+	docker-compose exec {{FRONTEND_SERVICE}} {{WATCH_COMMAND}}
+
+# ============================================
+# Environment management
+# ============================================
+
+env-check: ## Check if environment variables are set correctly
+	@echo "$(BLUE)Checking environment configuration...$(NC)"
+	@if [ ! -f .env ]; then \
+		echo "$(RED)Error: .env file not found$(NC)"; \
+		echo "$(YELLOW)Run: cp .env.example .env$(NC)"; \
+		exit 1; \
+	fi
+	@echo "$(GREEN)Environment configured correctly!$(NC)"
+
+env-copy: ## Copy .env.example to .env
+	@if [ -f .env ]; then \
+		echo "$(RED)Error: .env already exists$(NC)"; \
+		exit 1; \
+	fi
+	cp .env.example .env
+	@echo "$(GREEN).env created! Edit it to customize your environment.$(NC)"
+
+# ============================================
+# Debugging commands
+# ============================================
+
+debug-api: ## Run API in debug mode
+	docker-compose exec {{API_SERVICE}} {{DEBUG_COMMAND}}
+
+tail-logs: ## Tail logs from all services
+	docker-compose logs -f
+
+tail-api: ## Tail logs from API service
+	docker-compose logs -f {{API_SERVICE}}
+
+tail-frontend: ## Tail logs from frontend service
+	docker-compose logs -f {{FRONTEND_SERVICE}}
+
+# ============================================
+# Backup and restore
+# ============================================
+
+backup-db: ## Backup database
+	@mkdir -p backups
+	docker-compose exec -T {{DB_SERVICE}} pg_dump -U {{DB_USER}} {{DB_NAME}} > backups/db_$(shell date +%Y%m%d_%H%M%S).sql
+	@echo "$(GREEN)Database backup created in backups/$(NC)"
+
+restore-db: ## Restore database from latest backup
+	@if [ -z "$(FILE)" ]; then \
+		echo "$(RED)Error: Please specify backup file with FILE=backups/db_xxx.sql$(NC)"; \
+		exit 1; \
+	fi
+	docker-compose exec -T {{DB_SERVICE}} psql -U {{DB_USER}} {{DB_NAME}} < $(FILE)
+	@echo "$(GREEN)Database restored from $(FILE)$(NC)"
+
+# ============================================
+# Information
+# ============================================
+
+info: ## Show environment information
+	@echo "$(BLUE)Development Environment Information:$(NC)"
+	@echo "  Tilt UI:        http://localhost:10350"
+	@echo "  API:            http://localhost:{{API_PORT}}"
+	@echo "  Frontend:       http://localhost:{{FRONTEND_PORT}}"
+	@echo "  Database:       localhost:{{DB_PORT}}"
+	@echo ""
+	@echo "$(BLUE)Service Status:$(NC)"
+	@docker-compose ps
