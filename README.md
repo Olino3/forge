@@ -168,6 +168,8 @@ Behold the sacred structure where divine tools are born:
 ├─ ⚒️ forge-plugin/               # The main forge workshop
 │   ├─ .claude-plugin/            # Plugin manifest
 │   │   └─ plugin.json            # Plugin definition
+│   ├─ agents/                    # Specialized sub-agents
+│   │   └─ devops-engineer.md     # DevOps automation expert
 │   ├─ context/                   # Centralized knowledge base
 │   │   ├─ azure/                 # Azure Functions patterns
 │   │   ├─ dotnet/                # .NET/C# standards
@@ -176,6 +178,7 @@ Behold the sacred structure where divine tools are born:
 │   │   ├─ schema/                # Schema analysis patterns (file & database)
 │   │   └─ security/              # Security guidelines
 │   ├─ memory/                    # Project-specific learning
+│   │   ├─ agents/                # Per-agent memory
 │   │   └─ skills/                # Per-skill, per-project memory
 │   └─ skills/                    # Arsenal of divine skills
 │       ├─ get-git-diff/          # Git diff analysis tool
