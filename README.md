@@ -155,6 +155,57 @@ Select **"Manage Plugins"** to witness:
 
 ---
 
+## 🤖 Summoning Custom Agents
+
+The Forge includes specialized Claude Code agents that can be invoked for specific tasks.
+
+### Available Agents
+
+Call upon these expert agents using the `@` prefix:
+
+#### 📝 @technical-writer
+Invoke the Documentation Artisan for creating clear, comprehensive documentation.
+
+**Example Usage:**
+```
+@technical-writer Please create a comprehensive README for the API module
+@technical-writer Review this documentation for clarity and technical accuracy
+@technical-writer Generate API documentation from the codebase
+```
+
+#### 🏗️ @full-stack-engineer
+Summon the End-to-End Architect for building complete full-stack applications.
+
+**Example Usage:**
+```
+@full-stack-engineer Design and implement a REST API with authentication
+@full-stack-engineer Review the frontend React components for best practices
+@full-stack-engineer Set up CI/CD pipeline with Docker and GitHub Actions
+```
+
+#### 📊 @data-scientist
+Call upon the Analytics and ML Specialist for data analysis and machine learning tasks.
+
+**Example Usage:**
+```
+@data-scientist Perform exploratory data analysis on the dataset
+@data-scientist Build a classification model to predict customer churn
+@data-scientist Optimize the hyperparameters of the current ML model
+```
+
+### Agent Features
+
+Each agent comes equipped with:
+- ✨ **Specialized Knowledge**: Deep expertise in their domain
+- 🛠️ **Tool Access**: Curated set of tools for their tasks
+- 🧠 **Memory**: Project-specific learning and pattern recognition
+- 🔌 **Skills**: Integration with forge skills and utilities
+- 📚 **Context**: Domain-specific best practices and guidelines
+
+> 💡 **Pro Tip**: Agents maintain memory of project patterns, so they become more effective over time!
+
+---
+
 ## 🏗️ The Forge's Architecture
 
 Behold the sacred structure where divine tools are born:
@@ -168,8 +219,11 @@ Behold the sacred structure where divine tools are born:
 ├─ ⚒️ forge-plugin/               # The main forge workshop
 │   ├─ .claude-plugin/            # Plugin manifest
 │   │   └─ plugin.json            # Plugin definition
-│   ├─ agents/                    # Specialized sub-agents
+│   ├─ 🤖 agents/                 # Custom Claude Code agents
 │   │   └─ devops-engineer.md     # DevOps automation expert
+│   │   ├─ technical-writer.md        # @technical-writer - Documentation artisan
+│   │   ├─ full-stack-engineer.md     # @full-stack-engineer - End-to-end architect
+│   │   ├─ data-scientist.md          # @data-scientist - Analytics and ML specialist
 │   ├─ context/                   # Centralized knowledge base
 │   │   ├─ azure/                 # Azure Functions patterns
 │   │   ├─ dotnet/                # .NET/C# standards
@@ -236,6 +290,40 @@ Behold the sacred structure where divine tools are born:
 ```
 
 > 🔍 **Explore**: Each skill in the forge contains specialized knowledge and tools for specific tasks. The `.claude-plugin` directories define the marketplace and plugin structures for Claude Code.
+
+### 🤖 Custom Agents
+
+The Forge includes three specialized Claude Code agents (subagents) that can be invoked with the `@` prefix:
+
+#### @technical-writer
+**Documentation Artisan** - Expert in creating clear, comprehensive technical documentation.
+- Creates READMEs, API docs, user guides, and tutorials
+- Ensures consistent style, proper grammar, and technical accuracy
+- Leverages `documentation-generator` and `commit-helper` skills
+- Maintains project-specific documentation patterns in memory
+
+#### @full-stack-engineer
+**End-to-End Architect** - Builds complete full-stack applications with best practices.
+- Frontend (React, Vue, Angular) and Backend (Node.js, Python, Java, Go)
+- Database design, DevOps, CI/CD, and cloud infrastructure
+- Security-first approach following OWASP guidelines
+- Leverages `python-code-review`, `get-git-diff`, and other skills
+- Tracks architecture decisions and patterns in memory
+
+#### @data-scientist
+**Analytics and ML Specialist** - Expert in data analysis and machine learning.
+- Exploratory data analysis, statistical modeling, and visualization
+- Machine learning: supervised/unsupervised learning, deep learning
+- Python stack: NumPy, Pandas, Scikit-learn, TensorFlow, PyTorch
+- MLOps: model deployment, monitoring, and CI/CD for ML
+- Leverages `python-code-review` for code quality
+- Maintains dataset insights and ML patterns in memory
+
+Each agent follows Claude Code best practices with:
+- **Defined Tools**: Specific tools each agent can access
+- **Skills Integration**: Leverage existing forge skills
+- **Memory**: Project-specific learning and pattern storage
+- **MCP Servers**: Extensible via Model Context Protocol servers
 
 ---
 
