@@ -60,8 +60,10 @@
 
 > *Specialized artificers, each a master of their domain*
 
+### ✅ Legion Summoned & Ready
+- **@devops-engineer** (v1.0.0) - Master of deployment and infrastructure
+
 ### 📋 Legion Awaiting Summons (Planned)
-- **@devops-engineer** - Master of deployment and infrastructure
 - **@python-engineer** - Python language specialist
 - **@frontend-engineer** - UI/UX craftsperson
 - **@developer-environment-engineer** - Local tooling expert
