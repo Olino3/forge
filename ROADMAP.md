@@ -28,11 +28,12 @@
 - **documentation-generator** (v1.0.0) - Inscribe knowledge into permanence
 - **excel-skills** (v1.0.0) - Master spreadsheet manipulation
 - **jupyter-notebook-skills** (v1.0.0) - Command interactive data exploration
+- **generate-more-skills-with-claude** (v1.0.0) - Let the AI forge new tools
 
 ### 📋 Blueprints Awaiting (Planned)
 
 #### Meta-Skill
-- **generate-more-skills-with-claude** - Let the AI forge new tools
+(None currently planned)
 
 ---
 
@@ -111,6 +112,15 @@
 ---
 
 **Recent Forge Activity:**
+- ✅ **February 9, 2026**: Meta-Skill for autonomous skill creation completed
+  - **generate-more-skills-with-claude v1.0.0**: Let the AI forge new tools
+    - 6-step mandatory workflow for skill generation
+    - Template-based SKILL.md and examples.md generation
+    - Support for scripts and output templates
+    - Memory integration for pattern learning
+    - Context file awareness and integration
+    - 6 comprehensive examples covering skill complexity spectrum
+
 - ✅ **February 6, 2026**: Data Science Arsenal and Documentation & Communication skills completed
   - **excel-skills**: Master spreadsheet manipulation across Excel, Google Sheets, and LibreOffice
     - Formula engineering (VLOOKUP, INDEX-MATCH, SUMIFS, array formulas)
@@ -181,5 +191,5 @@
 
 ---
 
-*Last Updated: February 6, 2026*
+*Last Updated: February 9, 2026*
 *Maintained by: The Forge Keepers*
