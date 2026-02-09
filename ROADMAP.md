@@ -63,6 +63,9 @@
 
 ### ✅ Legion Summoned & Ready
 - **@devops-engineer** (v1.0.0) - Master of deployment and infrastructure
+- **@python-engineer** (v1.0.0) - Python language specialist
+- **@frontend-engineer** (v1.0.0) - UI/UX craftsperson
+- **@developer-environment-engineer** (v1.0.0) - Local tooling expert
 
 #### Divine Council (Olympian Tier)
 - **@hephaestus** (v1.0.0) - Chief artificer and tool creator
@@ -71,9 +74,6 @@
 - **@poseidon** (v1.0.0) - Data flow and stream orchestrator
 
 ### 📋 Legion Awaiting Summons (Planned)
-- **@python-engineer** - Python language specialist
-- **@frontend-engineer** - UI/UX craftsperson
-- **@developer-environment-engineer** - Local tooling expert
 - **@technical-writer** - Documentation artisan
 - **@full-stack-engineer** - End-to-end architect
 - **@data-scientist** - Analytics and ML specialist
@@ -131,6 +131,26 @@
     - ETL pipelines and stream processing
     - Event-driven architecture and data integration
     - Data transformation and quality assurance
+- ✅ **February 9, 2026**: Three new specialized agents summoned to the legion
+  - **@python-engineer v1.0.0**: Python language specialist
+    - Deep expertise in Python development, testing, and frameworks (Django, Flask, FastAPI)
+    - Integration with python-code-review, generate-python-unit-tests, python-dependency-management skills
+    - Comprehensive Python context file navigation (testing, frameworks, ML, data science)
+    - Memory system for project-specific patterns and conventions
+    - Validation hooks for Python files and dependency manifests
+  - **@frontend-engineer v1.0.0**: UI/UX craftsperson
+    - Modern frontend development with Angular, TypeScript, RxJS, NgRx
+    - Component architecture, responsive design, accessibility (WCAG)
+    - Integration with angular-code-review and generate-jest-unit-tests skills
+    - Comprehensive Angular context file navigation (components, services, state management)
+    - Memory system for UI patterns and design decisions
+    - Validation hooks for TypeScript, templates, and configuration files
+  - **@developer-environment-engineer v1.0.0**: Local tooling expert
+    - Developer experience with Tilt, Docker, Docker Compose, mock services
+    - Integration with generate-tilt-dev-environment, generate-mock-service, test-cli-tools skills
+    - Context navigation for local development setup and containerization
+    - Memory system for environment configurations and workflows
+    - Validation hooks for development environment files
 
 - ✅ **February 9, 2026**: Meta-Skill for autonomous skill creation completed
   - **generate-more-skills-with-claude v1.0.0**: Let the AI forge new tools
