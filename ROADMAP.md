@@ -41,16 +41,18 @@
 
 > *Divine words that invoke the power of the forge*
 
+### ✅ Forged & Battle-Tested
+- `/analyze` (v1.0.0) - Deep dive into codebase mysteries
+- `/implement` (v1.0.0) - Bring features into existence
+- `/improve` (v1.0.0) - Refine existing creations
+- `/document` (v1.0.0) - Chronicle knowledge and patterns
+- `/test` (v1.0.0) - Validate with trial by fire
+- `/build` (v1.0.0) - Construct and compile artifacts
+- `/brainstorm` (v1.0.0) - Spark creative solutions
+
 ### 📋 Awaiting Implementation (Planned)
-- `/analyze` - Deep dive into codebase mysteries
-- `/implement` - Bring features into existence
 - `/remember` - Store wisdom in project memory
-- `/brainstorm` - Spark creative solutions
-- `/test` - Validate with trial by fire
 - `/mock` - Summon test doubles and simulacra
-- `/build` - Construct and compile artifacts
-- `/document` - Chronicle knowledge and patterns
-- `/improve` - Refine existing creations
 - `/azure-pipeline` - Orchestrate Azure CI/CD
 - `/etl-pipeline` - Engineer data transformations
 - `/azure-function` - Deploy serverless logic
@@ -107,13 +109,24 @@
 
 *Hephaestus's forge never cools. Each skill sharpened, each agent awakened, each command invoked brings us closer to the perfect workshop—where mortal developers wield divine tools.*
 
-**Current Focus**: Schema analysis and documentation generation
-**Next Milestone**: Azure Pipelines and Bicep generation, additional documentation tools
+**Current Focus**: Commands system and workflow orchestration
+**Next Milestone**: Custom commands (remember, mock, azure-pipeline), agent implementations
 **Long-term Vision**: A fully autonomous forge where agents self-organize to solve complex engineering challenges
 
 ---
 
 **Recent Forge Activity:**
+- ✅ **February 9, 2026**: Commands v1.0.0 - Phase 1 complete (7 commands)
+  - `/analyze` - Code analysis with skill delegation (python/dotnet/angular code review)
+  - `/implement` - Feature implementation with test generation integration
+  - `/improve` - Code improvement with analysis-first approach
+  - `/document` - Documentation generation with language-specific conventions
+  - `/test` - Test execution with coverage and skill delegation
+  - `/build` - Project building with intelligent error handling
+  - `/brainstorm` - Requirements discovery through Socratic dialogue
+  - Command-specific context files (7 files in `context/commands/`)
+  - Command memory system with execution tracking
+  - Plugin version bumped to 1.1.0
 - ✅ **February 9, 2026**: Divine Council (Olympian Tier) agents summoned
   - **@hephaestus v1.0.0**: Chief artificer and tool creator
     - Master of skill creation using meta-skill framework
