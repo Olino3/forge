@@ -22,21 +22,18 @@
 - **generate-mock-service** (v1.0.0) - Forge simulated service doppelgangers
 - **file-schema-analysis** (v1.0.0) - Decode the structure of artifacts
 - **database-schema-analysis** (v1.0.0) - Map the foundations of data temples
+- **commit-helper** (v1.0.0) - Craft meaningful change chronicles
+- **email-writer** (v1.0.0) - Compose professional correspondence
+- **slack-message-composer** (v1.0.0) - Shape team communications
+- **documentation-generator** (v1.0.0) - Inscribe knowledge into permanence
+- **excel-skills** (v1.0.0) - Master spreadsheet manipulation
+- **jupyter-notebook-skills** (v1.0.0) - Command interactive data exploration
+- **generate-more-skills-with-claude** (v1.0.0) - Let the AI forge new tools
 
 ### 📋 Blueprints Awaiting (Planned)
 
-#### Documentation & Communication
-- **commit-helper** - Craft meaningful change chronicles
-- **email-writer** - Compose professional correspondence
-- **slack-message-composer** - Shape team communications
-- **documentation-generator** - Inscribe knowledge into permanence
-
-#### Data Science Arsenal
-- **excel-skills** - Master spreadsheet manipulation
-- **jupyter-notebook-skills** - Command interactive data exploration
-
 #### Meta-Skill
-- **generate-more-skills-with-claude** - Let the AI forge new tools
+(None currently planned)
 
 ---
 
@@ -66,20 +63,22 @@
 
 > *Specialized artificers, each a master of their domain*
 
+### ✅ Legion Summoned & Ready
+- **@devops-engineer** (v1.0.0) - Master of deployment and infrastructure
+- **@python-engineer** (v1.0.0) - Python language specialist
+- **@frontend-engineer** (v1.0.0) - UI/UX craftsperson
+- **@developer-environment-engineer** (v1.0.0) - Local tooling expert
+
+#### Divine Council (Olympian Tier)
+- **@hephaestus** (v1.0.0) - Chief artificer and tool creator
+- **@prometheus** (v1.0.0) - Foresight and strategic planning
+- **@ares** (v1.0.0) - Battle-tested deployment warrior
+- **@poseidon** (v1.0.0) - Data flow and stream orchestrator
+
 ### 📋 Legion Awaiting Summons (Planned)
-- **@devops-engineer** - Master of deployment and infrastructure
-- **@python-engineer** - Python language specialist
-- **@frontend-engineer** - UI/UX craftsperson
-- **@developer-environment-engineer** - Local tooling expert
 - **@technical-writer** - Documentation artisan
 - **@full-stack-engineer** - End-to-end architect
 - **@data-scientist** - Analytics and ML specialist
-
-#### Divine Council (Olympian Tier)
-- **@hephaestus** - Chief artificer and tool creator
-- **@prometheus** - Foresight and strategic planning
-- **@ares** - Battle-tested deployment warrior
-- **@poseidon** - Data flow and stream orchestrator
 
 ---
 
@@ -128,6 +127,82 @@
   - Command-specific context files (7 files in `context/commands/`)
   - Command memory system with execution tracking
   - Plugin version bumped to 1.1.0
+- ✅ **February 9, 2026**: Divine Council (Olympian Tier) agents summoned
+  - **@hephaestus v1.0.0**: Chief artificer and tool creator
+    - Master of skill creation using meta-skill framework
+    - Template engineering and code generation expertise
+    - Memory tracking for skill patterns and innovations
+  - **@prometheus v1.0.0**: Master of foresight and strategic planning
+    - Architecture design and technical roadmaps
+    - Refactoring strategies and decision records (ADRs)
+    - Technology evaluation and risk assessment
+  - **@ares v1.0.0**: Battle-tested deployment warrior
+    - Production deployment and incident response
+    - System monitoring and disaster recovery
+    - Performance optimization and operational excellence
+  - **@poseidon v1.0.0**: Master of data flow and stream orchestration
+    - ETL pipelines and stream processing
+    - Event-driven architecture and data integration
+    - Data transformation and quality assurance
+- ✅ **February 9, 2026**: Three new specialized agents summoned to the legion
+  - **@python-engineer v1.0.0**: Python language specialist
+    - Deep expertise in Python development, testing, and frameworks (Django, Flask, FastAPI)
+    - Integration with python-code-review, generate-python-unit-tests, python-dependency-management skills
+    - Comprehensive Python context file navigation (testing, frameworks, ML, data science)
+    - Memory system for project-specific patterns and conventions
+    - Validation hooks for Python files and dependency manifests
+  - **@frontend-engineer v1.0.0**: UI/UX craftsperson
+    - Modern frontend development with Angular, TypeScript, RxJS, NgRx
+    - Component architecture, responsive design, accessibility (WCAG)
+    - Integration with angular-code-review and generate-jest-unit-tests skills
+    - Comprehensive Angular context file navigation (components, services, state management)
+    - Memory system for UI patterns and design decisions
+    - Validation hooks for TypeScript, templates, and configuration files
+  - **@developer-environment-engineer v1.0.0**: Local tooling expert
+    - Developer experience with Tilt, Docker, Docker Compose, mock services
+    - Integration with generate-tilt-dev-environment, generate-mock-service, test-cli-tools skills
+    - Context navigation for local development setup and containerization
+    - Memory system for environment configurations and workflows
+    - Validation hooks for development environment files
+
+- ✅ **February 9, 2026**: Meta-Skill for autonomous skill creation completed
+  - **generate-more-skills-with-claude v1.0.0**: Let the AI forge new tools
+    - 6-step mandatory workflow for skill generation
+    - Template-based SKILL.md and examples.md generation
+    - Support for scripts and output templates
+    - Memory integration for pattern learning
+    - Context file awareness and integration
+    - 6 comprehensive examples covering skill complexity spectrum
+
+- ✅ **February 6, 2026**: Data Science Arsenal and Documentation & Communication skills completed
+  - **excel-skills**: Master spreadsheet manipulation across Excel, Google Sheets, and LibreOffice
+    - Formula engineering (VLOOKUP, INDEX-MATCH, SUMIFS, array formulas)
+    - VBA/Apps Script/Python automation for batch operations
+    - Data transformation and cleaning workflows
+    - Cross-platform compatibility support
+    - Template-based output formatting
+  - **jupyter-notebook-skills**: Command interactive data exploration in Jupyter notebooks
+    - Exploratory Data Analysis (EDA) workflows
+    - Machine learning model training and evaluation
+    - Statistical analysis and hypothesis testing
+    - Data visualization with matplotlib, seaborn, plotly
+    - Reproducible notebook generation with best practices
+  - **commit-helper v1.0.0**: Craft meaningful change chronicles
+    - Conventional Commits compliance
+    - Breaking change detection
+    - Git diff analysis integration
+  - **email-writer v1.0.0**: Compose professional correspondence
+    - Audience analysis and tone calibration
+    - Support for status updates, requests, announcements, escalations
+    - Action item tracking
+  - **slack-message-composer v1.0.0**: Shape team communications
+    - Channel-appropriate formatting
+    - Thread management
+    - Emoji and mention integration
+  - **documentation-generator v1.0.0**: Inscribe knowledge into permanence
+    - API documentation generation
+    - README and guide creation
+    - Technical specification writing
 
 - ✅ **February 6, 2026**: generate-tilt-dev-environment v1.0.0 and generate-mock-service v1.0.0 completed
   - **generate-tilt-dev-environment**: Complete local development environment generation
@@ -169,5 +244,5 @@
 
 ---
 
-*Last Updated: February 6, 2026*
+*Last Updated: February 9, 2026*
 *Maintained by: The Forge Keepers*

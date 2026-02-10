@@ -14,6 +14,8 @@ forge/
 │   └── copilot-instructions.md
 ├── forge-plugin/            # Main plugin package
 │   ├── .claude-plugin/      # Plugin manifest (plugin.json)
+│   ├── agents/              # Specialized sub-agents
+│   │   └── devops-engineer.md  # DevOps automation expert
 │   ├── context/             # Shared contextual knowledge (read-only reference)
 │   │   ├── angular/         # Angular/TypeScript patterns
 │   │   ├── azure/           # Azure Functions, Pipelines, Bicep patterns
@@ -23,6 +25,7 @@ forge/
 │   │   ├── schema/          # Schema analysis patterns
 │   │   └── security/        # Security guidelines
 │   ├── memory/              # Project-specific learning (dynamic)
+│   │   ├── agents/          # Per-agent memory
 │   │   └── skills/          # Per-skill, per-project memory
 │   └── skills/              # Plugin skills (tools)
 ├── README.md
@@ -33,9 +36,10 @@ forge/
 
 - **Marketplace**: Defined by `.claude-plugin/marketplace.json` at the repo root. Lists all available plugins.
 - **Plugin**: Defined by `forge-plugin/.claude-plugin/plugin.json`. Contains metadata (name, version, author).
+- **Agents**: Located in `forge-plugin/agents/`. Specialized sub-agents with YAML frontmatter configuration for focused tasks. Each agent has access to specific skills, context, memory, hooks, and MCP servers.
 - **Skills**: Located in `forge-plugin/skills/`. Each skill has its own directory with `SKILL.md`, `examples.md`, optional `scripts/` and `templates/` subdirectories.
 - **Context files**: Located in `forge-plugin/context/`. Shared, read-only reference material organized by domain (angular, azure, dotnet, git, python, schema, security). Each domain has an `index.md` for navigation.
-- **Memory files**: Located in `forge-plugin/memory/skills/`. Dynamic, project-specific learning stored per skill and per project.
+- **Memory files**: Located in `forge-plugin/memory/`. Dynamic, project-specific learning stored per skill and per agent in separate subdirectories.
 
 ## Coding Conventions
 
@@ -53,6 +57,23 @@ When adding a new skill:
 3. Include `examples.md` with usage examples
 4. Add optional `scripts/` for shell utilities and `templates/` for output templates
 5. Update `ROADMAP.md` to reflect the new skill's status
+
+## Adding New Agents
+
+When adding a new agent:
+1. Create a markdown file under `forge-plugin/agents/<agent-name>.md`
+2. Include YAML frontmatter with:
+   - `name`: Agent identifier
+   - `description`: What the agent does (used by Claude router)
+   - `tools`: Array of allowed tools (Read, Write, Bash, Grep, Glob, etc.)
+   - `model`: Model to use (haiku, sonnet, opus)
+   - `permissionMode`: Permission handling (auto, restricted, etc.)
+   - `hooks`: Array of lifecycle hooks
+   - `mcpServers`: Array of MCP server integrations
+   - `memory`: Memory configuration with storage path and structure
+3. Include clear mission, workflow, and task patterns in the markdown body
+4. Create memory directory structure at `forge-plugin/memory/agents/<agent-name>/`
+5. Update `ROADMAP.md` to reflect the new agent's status
 
 ## Adding New Context Files
 
