@@ -15,6 +15,15 @@ Context files provide:
 ```
 context/
 ├── index.md (this file)
+├── loading_protocol.md          # Universal context loading protocol
+├── cross_domain.md              # Cross-domain context trigger matrix
+├── engineering/                  # General software engineering context
+│   ├── index.md
+│   ├── code_review_principles.md
+│   ├── api_design_patterns.md
+│   ├── testing_principles.md
+│   ├── architecture_patterns.md
+│   └── error_recovery.md
 ├── angular/
 │   ├── index.md
 │   ├── common_issues.md
@@ -94,6 +103,8 @@ context/
     ├── build_patterns.md
     └── brainstorming_patterns.md
 ```
+
+**Note**: MCP server documentation lives in `forge-plugin/mcps/` (separate from context). See [MCP Index](../mcps/index.md) for the server catalog, activation protocol, and per-server docs.
 
 ## Quick Reference Guide
 
@@ -335,18 +346,40 @@ context/
 
 ---
 
+### Engineering Context (`engineering/`)
+
+**When to use**: Universal software engineering guidance applicable across all languages
+
+| File | Use For | Key Topics |
+|------|---------|------------|
+| `index.md` | Navigation and loading guide | When to load which engineering files |
+| `code_review_principles.md` | Universal code review | DRY, SOLID, KISS, severity classification, PR sizing |
+| `api_design_patterns.md` | REST API design | Conventions, error formats, pagination, versioning |
+| `testing_principles.md` | Testing strategy | Test pyramid, coverage, mock vs integrate, TDD/BDD |
+| `architecture_patterns.md` | Architecture selection | Clean, Hexagonal, CQRS, Event-driven, Microservices |
+| `error_recovery.md` | Skill failure handling | Git failures, memory errors, large diffs, permissions |
+
+**Load when**: Code reviews (any language), API design, test strategy decisions, architecture planning, or when a skill encounters errors
+
+**Note**: These files supplement domain-specific context. Load after domain context, not instead of it.
+
+---
+
 ## Usage Patterns
 
 ### For Skills
 
-Skills should load context files in this order:
+Skills should follow the [Context Loading Protocol](loading_protocol.md):
 
 1. **Check memory first** - Load project-specific knowledge from `../../memory/skills/{skill-name}/{project-name}/`
-2. **Load relevant context** - Use this index to identify which context files are needed
-3. **Perform analysis** - Apply context knowledge to the specific task
-4. **Update memory** - Store project-specific insights learned during analysis
+2. **Follow loading protocol** - See `loading_protocol.md` for the standardized 5-step process
+3. **Check cross-domain needs** - See `cross_domain.md` for when to load from multiple domains
+4. **Perform analysis** - Apply context knowledge to the specific task
+5. **Update memory** - Store project-specific insights learned during analysis
 
 ### Loading Context Efficiently
+
+For a standardized approach, follow the [Context Loading Protocol](loading_protocol.md). For cross-domain needs, consult [Cross-Domain References](cross_domain.md).
 
 **Instead of reading all files**, use this index to target specific files:
 
@@ -487,3 +520,7 @@ See `python/dependency_management.md` and `python/virtual_environments.md` for e
 - **Memory**: See `forge-plugin/memory/` for project-specific learning
 - **Plugin**: See `forge-plugin/.claude-plugin/plugin.json` for plugin metadata
 - **Architecture**: See `/home/olino3/git/forge/CLAUDE.md` for system overview
+
+---
+
+*Last Updated: 2026-02-10*
