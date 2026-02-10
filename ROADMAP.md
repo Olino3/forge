@@ -49,13 +49,14 @@
 - `/test` (v1.0.0) - Validate with trial by fire
 - `/build` (v1.0.0) - Construct and compile artifacts
 - `/brainstorm` (v1.0.0) - Spark creative solutions
+- `/remember` (v1.0.0) - Store wisdom in project memory
+- `/mock` (v1.0.0) - Summon test doubles and simulacra
+- `/azure-pipeline` (v1.0.0) - Orchestrate Azure CI/CD
+- `/etl-pipeline` (v1.0.0) - Engineer data transformations
+- `/azure-function` (v1.0.0) - Deploy serverless logic
 
 ### 📋 Awaiting Implementation (Planned)
-- `/remember` - Store wisdom in project memory
-- `/mock` - Summon test doubles and simulacra
-- `/azure-pipeline` - Orchestrate Azure CI/CD
-- `/etl-pipeline` - Engineer data transformations
-- `/azure-function` - Deploy serverless logic
+(None currently planned)
 
 ---
 
@@ -116,6 +117,14 @@
 ---
 
 **Recent Forge Activity:**
+- ✅ **February 10, 2026**: Commands v1.0.0 - Phase 2 complete (5 new commands)
+  - `/remember` - Project memory management for decisions, patterns, conventions, and lessons
+  - `/mock` - Mock service generation with multiple frameworks (Express, Flask, FastAPI, WireMock, Prism)
+  - `/azure-pipeline` - Azure DevOps CI/CD orchestration with multi-stage pipelines
+  - `/etl-pipeline` - Data transformation pipelines with Airflow, Azure Data Factory, Databricks support
+  - `/azure-function` - Serverless Azure Functions with Tilt + Azurite local development
+  - Plugin now has 12 total commands for comprehensive development workflow
+  - Delegates to existing skills: generate-mock-service, generate-azure-pipelines, generate-azure-functions, generate-azure-bicep
 - ✅ **February 9, 2026**: Commands v1.0.0 - Phase 1 complete (7 commands)
   - `/analyze` - Code analysis with skill delegation (python/dotnet/angular code review)
   - `/implement` - Feature implementation with test generation integration
