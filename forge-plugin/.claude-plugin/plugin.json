@@ -12,6 +12,11 @@
         "document": "commands/document/COMMAND.md",
         "test": "commands/test/COMMAND.md",
         "build": "commands/build/COMMAND.md",
-        "brainstorm": "commands/brainstorm/COMMAND.md"
+        "brainstorm": "commands/brainstorm/COMMAND.md",
+        "remember": "commands/remember/COMMAND.md",
+        "mock": "commands/mock/COMMAND.md",
+        "azure-pipeline": "commands/azure-pipeline/COMMAND.md",
+        "etl-pipeline": "commands/etl-pipeline/COMMAND.md",
+        "azure-function": "commands/azure-function/COMMAND.md"
     }
 }
