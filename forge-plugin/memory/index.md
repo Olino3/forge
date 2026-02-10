@@ -25,32 +25,113 @@ Memory files enable:
 - **Context** says: "FastAPI best practice: use dependency injection for auth"
 - **Memory** says: "This project uses custom JWT middleware in `app/auth/middleware.py`, expires tokens after 15min, and stores user roles in Redis"
 
+## Key Documents
+
+| Document | Purpose |
+|----------|---------|
+| `index.md` (this file) | Main navigation and skill memory documentation |
+| `projects/index.md` | Shared project memory layer (cross-skill knowledge) |
+| `lifecycle.md` | Memory freshness, pruning, and archival rules |
+| `quality_guidance.md` | Practical quality checks for memory files |
+
 ## Directory Structure
 
 ```
 memory/
 ├── index.md (this file)
-└── skills/                          # Organized by skill
+├── lifecycle.md                    # Memory lifecycle management rules
+├── quality_guidance.md             # Memory quality guidance
+├── projects/                       # Shared project memory (cross-skill)
+│   ├── index.md                   # Shared memory documentation
+│   └── {project-name}/           # Per-project shared knowledge
+│       ├── project_profile.md    # Core identity (language, framework, arch)
+│       ├── technology_stack.md   # Dependencies and tools
+│       └── cross_skill_insights.md  # Patterns that benefit other skills
+├── commands/                       # Command execution tracking
+│   ├── index.md                   # Command memory documentation
+│   └── {project-name}/           # Per-project command memory
+├── agents/                         # Agent memory
+│   └── {agent-name}/             # Per-agent memory
+└── skills/                         # Organized by skill
     ├── angular-code-review/        # Angular code review memory
-    │   └── {project-name}/         # Per-project directory (auto-created)
-    │       ├── project_overview.md # Angular version, architecture, stack
-    │       ├── common_patterns.md  # Project-specific patterns
-    │       ├── known_issues.md     # Acknowledged tech debt
-    │       └── review_history.md   # Past review summaries
+    │   └── {project-name}/
+    ├── commit-helper/              # Commit helper memory
+    │   └── {project-name}/
+    ├── database-schema-analysis/   # Database schema analysis memory
+    │   ├── index.md
+    │   └── {project-name}/
+    ├── documentation-generator/    # Documentation generator memory
+    │   └── {project-name}/
+    ├── dotnet-code-review/         # .NET code review memory
+    │   └── {project-name}/
+    ├── email-writer/               # Email writer memory
+    │   └── {project-name}/
+    ├── file-schema-analysis/       # File schema analysis memory
+    │   ├── index.md
+    │   └── {project-name}/
+    ├── generate-azure-bicep/       # Azure Bicep generation memory
+    │   ├── index.md
+    │   └── {project-name}/
+    ├── generate-azure-functions/   # Azure Functions generation memory
+    │   └── {project-name}/
+    ├── generate-azure-pipelines/   # Azure Pipelines generation memory
+    │   ├── index.md
+    │   └── {project-name}/
+    ├── generate-jest-unit-tests/   # Angular/Jest test generation memory
+    │   └── {project-name}/
+    ├── generate-mock-service/      # Mock service generation memory
+    │   ├── index.md
+    │   └── {project-name}/
+    ├── generate-python-unit-tests/ # Python test generation memory
+    │   └── {project-name}/
+    ├── generate-tilt-dev-environment/ # Tilt environment memory
+    │   ├── index.md
+    │   └── {project-name}/
     ├── get-git-diff/               # Git diff analysis memory
-    │   └── {project-name}/         # Per-project directory (auto-created)
-    │       ├── common_patterns.md  # Frequently changed files/patterns
-    │       ├── commit_conventions.md # Project's commit message style
-    │       └── merge_patterns.md   # Common merge/branch strategies
-    └── python-code-review/         # Python code review memory
-        └── {project-name}/         # Per-project directory (auto-created)
-            ├── project_overview.md # Architecture, stack, conventions
-            ├── common_patterns.md  # Project-specific code patterns
-            ├── known_issues.md     # Acknowledged tech debt
-            └── review_history.md   # Past review summaries
+    │   └── {project-name}/
+    ├── python-code-review/         # Python code review memory
+    │   └── {project-name}/
+    ├── python-dependency-management/ # Python dependency management
+    │   ├── index.md
+    │   └── {project-name}/
+    ├── slack-message-composer/     # Slack message memory
+    │   └── {project-name}/
+    └── test-cli-tools/             # CLI testing memory
+        └── {project-name}/
 ```
 
-## Memory Lifecycle
+## Shared Project Memory
+
+The `projects/` directory provides a shared memory layer across all skills. See `projects/index.md` for full documentation.
+
+**Key concept**: When one skill learns "this is a FastAPI project with PostgreSQL", that knowledge is stored in `projects/{project}/project_profile.md` and becomes available to all other skills without re-discovery.
+
+**Workflow change for all skills**:
+1. **On start**: Read `memory/projects/{project}/project_profile.md` first (if exists)
+2. Then read skill-specific memory as before
+3. **On end**: Create or update shared project memory with new project-level info
+4. Add freshness timestamp to modified files
+
+## Memory Lifecycle Management
+
+See `lifecycle.md` for detailed rules on freshness, pruning, and archival. Key points:
+
+- Every memory file must have `<!-- Last Updated: YYYY-MM-DD -->` as first line
+- Memory older than 90 days gets `[POTENTIALLY STALE]` note
+- `review_history.md`: Keep last 10 entries, archive older
+- `known_issues.md`: Remove "Resolved" issues after 30 days
+- Individual files should not exceed 500 lines
+
+## Memory Quality
+
+See `quality_guidance.md` for practical quality checks. Key points:
+
+- **Completeness**: Does project_overview.md cover language, framework, architecture?
+- **Accuracy**: Every 5th invocation, spot-check 2-3 claims against actual code
+- **Specificity**: Reference specific files/paths, not vague descriptions
+- **Growth**: If common_patterns.md hasn't grown in 5+ invocations, investigate
+
+## Memory Lifecycle (Detailed)
 
 ### 1. First Invocation (New Project)
 
@@ -1224,6 +1305,20 @@ Memory and context work together to provide complete understanding:
 - **Context System**: See `../context/index.md` for shared knowledge
 - **Skills**: See `../skills/` for skill implementations
 - **Architecture**: See `/home/olino3/git/forge/CLAUDE.md` for full system overview
+- **Lifecycle Management**: See `lifecycle.md` for freshness and pruning rules
+- **Quality Guidance**: See `quality_guidance.md` for memory quality checks
+- **Shared Project Memory**: See `projects/index.md` for cross-skill knowledge sharing
+
+---
+
+## Command Memory
+
+Located in `memory/commands/{project}/`, tracks command execution history and accumulated insights. See `commands/index.md` for documentation.
+
+Commands store:
+- Execution history (which commands ran, when, with what arguments)
+- Accumulated insights from command results
+- Follow-up recommendations from previous runs
 
 ---
 

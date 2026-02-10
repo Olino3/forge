@@ -87,8 +87,15 @@
 
 > *Automated rituals that trigger at key moments*
 
+### ✅ Forged & Battle-Tested
+- **memory_sync** (PostToolUse) - Validate and timestamp memory files after writes
+- **pre_commit_quality** (PreToolUse) - Block commits with secrets or /claudedocs files
+- **context_freshness** (Manual) - Audit context file health and broken links
+- **output_archival** (PostToolUse) - Archive skill output with manifest
+- **session_context** (Manual) - Summarize project state at session start
+
 ### 📋 Planned Enchantments
-- **memory-hook** - Automatic project context preservation
+- Additional hooks based on usage patterns
 
 ---
 
@@ -96,12 +103,18 @@
 
 > *Model Context Protocol servers - external knowledge conduits*
 
-### 📋 Planned Connections
-- **serena** - [Description needed]
-- **sequential-thinking** - Step-by-step reasoning enhancement
-- **playwright** - Browser automation and testing
-- **aider** - AI pair programming assistant
+### ✅ Forged & Connected
+- **sequential-thinking** - Step-by-step reasoning for complex problems
 - **context7** - Library documentation access
+- **magic** - UI component generation (requires `TWENTYFIRST_API_KEY`)
+- **playwright** - Browser automation and E2E testing
+- **serena** - Code intelligence and navigation (requires Python + uv)
+- **morphllm-fast-apply** - Fast code application/editing (requires `MORPH_API_KEY`)
+- **tavily** - Web search and research (requires `TAVILY_API_KEY`, free tier available)
+- **chrome-devtools** - Chrome DevTools Protocol for performance/debugging
+
+### 📋 Planned Connections
+- **aider** - AI pair programming assistant
 - **youtube** - Video content integration
 
 ---
@@ -110,13 +123,25 @@
 
 *Hephaestus's forge never cools. Each skill sharpened, each agent awakened, each command invoked brings us closer to the perfect workshop—where mortal developers wield divine tools.*
 
-**Current Focus**: Commands system and workflow orchestration
-**Next Milestone**: Custom commands (remember, mock, azure-pipeline), agent implementations
+**Current Focus**: MCP integration and extending server capabilities
+**Next Milestone**: Additional hooks based on usage patterns, more MCP servers
 **Long-term Vision**: A fully autonomous forge where agents self-organize to solve complex engineering challenges
 
 ---
 
 **Recent Forge Activity:**
+- ✅ **February 10, 2026**: MCP Server Integration - 8 external knowledge conduits connected
+  - **Configuration**: `.mcp.json` at repo root with all 8 server definitions
+  - **Free servers**: sequential-thinking, context7, playwright, serena, chrome-devtools
+  - **API key servers**: magic (`TWENTYFIRST_API_KEY`), morphllm-fast-apply (`MORPH_API_KEY`), tavily (`TAVILY_API_KEY`)
+  - **Documentation**: `forge-plugin/mcps/` with index, activation protocol, installation guide, and 8 per-server docs
+  - **Forge integration**: Skill/command-to-server mapping, fallback strategies, anti-patterns
+- ✅ **February 10, 2026**: Infrastructure Improvements - Comprehensive quality upgrade
+  - **Context Management**: Standardized loading protocol (`loading_protocol.md`), cross-domain references (`cross_domain.md`), engineering best practices context (6 files covering code review, API design, testing, architecture, error recovery)
+  - **Memory Management**: Shared project memory layer (`memory/projects/`), lifecycle management with freshness/pruning rules (`lifecycle.md`), quality guidance (`quality_guidance.md`), completed memory index files for generate-tilt-dev-environment and generate-mock-service
+  - **Hooks System**: 5 lifecycle hooks (memory_sync, pre_commit_quality, context_freshness, output_archival, session_context) with architecture docs and usage guide
+  - **Standards**: Skill workflow template (`SKILL_TEMPLATE.md`), output naming conventions (`OUTPUT_CONVENTIONS.md`)
+  - **CLAUDE.md**: Fully reconciled with actual repo state (22 skills, 12 commands, 11 agents, 9 context domains, hooks system)
 - ✅ **February 10, 2026**: Commands v1.0.0 - Phase 2 complete (5 new commands)
   - `/remember` - Project memory management for decisions, patterns, conventions, and lessons
   - `/mock` - Mock service generation with multiple frameworks (Express, Flask, FastAPI, WireMock, Prism)
@@ -253,5 +278,5 @@
 
 ---
 
-*Last Updated: February 9, 2026*
+*Last Updated: February 10, 2026*
 *Maintained by: The Forge Keepers*
