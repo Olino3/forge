@@ -1,8 +1,17 @@
 {
     "name": "forge-plugin",
-    "description": "Forge is plugin that brings the inventive spirit of Hephaestus and the wisdom of Athene to life, empowering users to craft innovative solutions and live peacefully with advanced technology.",
-    "version": "1.0.0",
+    "description": "Forge brings the inventive spirit of Hephaestus and the wisdom of Athene to life, empowering users to craft innovative solutions with intelligent skills, powerful commands, and centralized context.",
+    "version": "1.1.0",
     "author": {
         "name": "Olin Osborne III"
+    },
+    "commands": {
+        "analyze": "commands/analyze/COMMAND.md",
+        "implement": "commands/implement/COMMAND.md",
+        "improve": "commands/improve/COMMAND.md",
+        "document": "commands/document/COMMAND.md",
+        "test": "commands/test/COMMAND.md",
+        "build": "commands/build/COMMAND.md",
+        "brainstorm": "commands/brainstorm/COMMAND.md"
     }
 }

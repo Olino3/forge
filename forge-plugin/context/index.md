@@ -80,10 +80,19 @@ context/
 │   ├── common_patterns.md
 │   ├── database_patterns.md
 │   └── file_formats.md
-└── security/
+├── security/
+│   ├── index.md
+│   ├── owasp_python.md
+│   └── security_guidelines.md
+└── commands/
     ├── index.md
-    ├── owasp_python.md
-    └── security_guidelines.md
+    ├── analysis_patterns.md
+    ├── implementation_strategies.md
+    ├── refactoring_patterns.md
+    ├── documentation_standards.md
+    ├── testing_strategies.md
+    ├── build_patterns.md
+    └── brainstorming_patterns.md
 ```
 
 ## Quick Reference Guide
@@ -298,6 +307,31 @@ context/
 2. Load `common_patterns.md` for foundational concepts (always)
 3. Load `database_patterns.md` for database-specific patterns (always)
 4. Load `security/security_guidelines.md` if analyzing PII or sensitive data
+
+---
+
+### Commands Context (`commands/`)
+
+**When to use**: Executing commands (`/analyze`, `/implement`, `/improve`, `/document`, `/test`, `/build`, `/brainstorm`)
+
+| File | Use For | Key Topics |
+|------|---------|------------|
+| `index.md` | Navigation and loading patterns | Context files per command, loading decision matrix |
+| `analysis_patterns.md` | `/analyze` command | Static analysis, severity classification, multi-language strategies |
+| `implementation_strategies.md` | `/implement` command | TDD/BDD, incremental development, testing integration |
+| `refactoring_patterns.md` | `/improve` command | Safe refactoring, code smells, technical debt tracking |
+| `documentation_standards.md` | `/document` command | API docs, docstrings, JSDoc, XML docs, ADRs, README standards |
+| `testing_strategies.md` | `/test` command | Test pyramid, framework detection, coverage targets, failure debugging |
+| `build_patterns.md` | `/build` command | Build system detection, Docker builds, caching, artifact optimization |
+| `brainstorming_patterns.md` | `/brainstorm` command | Socratic questioning, requirements elicitation, MoSCoW, RICE |
+
+**Load when**: Executing any `/command`. Each command loads its own context file plus relevant domain context.
+
+**Command context loading workflow**:
+1. Load `commands/index.md` for navigation
+2. Load command-specific file (e.g., `analysis_patterns.md` for `/analyze`)
+3. Load domain-specific context based on detected language/framework
+4. Load `security/security_guidelines.md` for security-focused operations
 
 ---
 
