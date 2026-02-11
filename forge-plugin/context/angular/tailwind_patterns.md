@@ -10,13 +10,13 @@ lastUpdated: "2026-02-10"
 sections:
   - name: "Configuration"
     estimatedTokens: 30
-    keywords: [configuration, configuration]
+    keywords: [configuration]
   - name: "Dynamic Classes"
     estimatedTokens: 43
     keywords: [dynamic, classes, dynamic-classes]
   - name: "Responsive Design"
     estimatedTokens: 11
-    keywords: [responsive, design, responsive]
+    keywords: [responsive, design]
   - name: "Component Integration"
     estimatedTokens: 18
     keywords: [component, integration, components]
