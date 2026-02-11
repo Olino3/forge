@@ -14,9 +14,13 @@
 #
 # Input:  JSON on stdin (Claude Code PreToolUse format)
 # Output: JSON with hookSpecificOutput.permissionDecision (deny if secrets found)
-#         Exit code 2 = blocking error (per Claude Code convention)
 
 set -euo pipefail
+
+# --- Source shared library -----------------------------------------------
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=lib/health_buffer.sh
+source "${SCRIPT_DIR}/lib/health_buffer.sh"
 
 # --- Parse stdin ---------------------------------------------------------
 INPUT=$(cat)
@@ -33,6 +37,9 @@ ISSUES=""
 WARNINGS=""
 
 # Check 1: No secret files staged
+# Note: SECRET_PATTERNS uses grep -E regex matching. Patterns like "*.pem" are
+# matched as regex suffix patterns (e.g., cert.pem, server.key) via the regex
+# "(^|/)${pattern}$". The * is not a literal glob in this grep context.
 SECRET_PATTERNS=(".env" "credentials.json" "secrets.json" ".env.local" "*.pem" "*.key" "id_rsa")
 STAGED_FILES=$(git diff --cached --name-only 2>/dev/null || echo "")
 
@@ -40,6 +47,7 @@ for pattern in "${SECRET_PATTERNS[@]}"; do
     MATCHES=$(echo "$STAGED_FILES" | grep -E "(^|/)${pattern}$" 2>/dev/null || true)
     if [[ -n "$MATCHES" ]]; then
         ISSUES="${ISSUES}\n  BLOCKED: Secret file staged: $MATCHES"
+        health_buffer_append "🛡️ Pre-commit quality: secret file staged: ${MATCHES}"
     fi
 done
 
