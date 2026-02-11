@@ -83,4 +83,4 @@ Minimal cues to detect an Angular project's stack so you know which other contex
 
 | Setting / Tool | Detection Clue | Review Focus | References |
 |----------------|----------------|-------------|------------|
-| `
+| `tsconfig.json` (`strict`) | `"strict": true` in `tsconfig.json` | Expect stricter typing, null checks, and more explicit types | [TypeScript Config](https://www.typescriptlang.org/tsconfig) |
