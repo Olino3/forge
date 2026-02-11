@@ -28,7 +28,7 @@ from conftest import FORGE_DIR, load_json
 
 PLUGIN_DIR = FORGE_DIR / ".claude-plugin"
 PLUGIN_JSON = PLUGIN_DIR / "plugin.json"
-SEMVER_PATTERN = re.compile(r"^\d+\.\d+\.\d+$")
+SEMVER_PATTERN = re.compile(r"^\d+\.\d+\.\d+(-[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*)?$")
 
 EXPECTED_COMMANDS = {
     "analyze", "implement", "improve", "document", "test", "build",
