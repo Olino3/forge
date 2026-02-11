@@ -10,31 +10,31 @@ lastUpdated: "2026-02-10"
 indexedFiles:
   - id: "commands/analysis_patterns"
     path: "analysis_patterns.md"
-    type: reference
+    type: pattern
     loadingStrategy: onDemand
   - id: "commands/implementation_strategies"
     path: "implementation_strategies.md"
-    type: reference
+    type: pattern
     loadingStrategy: onDemand
   - id: "commands/refactoring_patterns"
     path: "refactoring_patterns.md"
-    type: reference
+    type: pattern
     loadingStrategy: onDemand
   - id: "commands/documentation_standards"
     path: "documentation_standards.md"
-    type: reference
+    type: pattern
     loadingStrategy: onDemand
   - id: "commands/testing_strategies"
     path: "testing_strategies.md"
-    type: reference
+    type: pattern
     loadingStrategy: onDemand
   - id: "commands/build_patterns"
     path: "build_patterns.md"
-    type: reference
+    type: pattern
     loadingStrategy: onDemand
   - id: "commands/brainstorming_patterns"
     path: "brainstorming_patterns.md"
-    type: reference
+    type: pattern
     loadingStrategy: onDemand
 sections:
   - name: "Purpose"
