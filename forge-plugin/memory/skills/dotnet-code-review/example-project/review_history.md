@@ -194,87 +194,32 @@ This file tracks code review metrics and trends over time. Entries are in revers
 ## Review #8 - 2024-12-20
 
 **PR**: [#256](https://github.com/example/my-ecommerce-app/pull/256) - Add customer loyalty points
-
-**Changed Files**: 6 (.cs files)
-
-**Lines Changed**: +312, -45
-
-### Issues Found: 10 Total
-- 🔴 Critical: 0
-- 🟠 High: 2
-- 🟡 Medium: 5
-- 🟢 Low: 3
-
-### Key Findings
-- Missing CancellationToken in 2 methods (recurring issue)
-- Proper async/await usage overall
-- Good test coverage (85%)
-
-### Trends
-✅ Improving overall code quality
-✅ No critical issues found
+**Changed Files**: 6 | **Lines Changed**: +312, -45 | **Issues**: 10 (0 critical, 2 high, 5 medium, 3 low)
+- Missing CancellationToken in 2 methods (recurring). Good async/await usage, 85% coverage.
 
 ---
 
 ## Review #7 - 2024-12-13
 
-**PR**: [#245](https://github.com/example/my-ecommerce-app/pull/245) - Update product search functionality
-
-**Changed Files**: 9 (.cs files)
-
-**Lines Changed**: +445, -123
-
-### Issues Found: 15 Total
-- 🔴 Critical: 0
-- 🟠 High: 4
-- 🟡 Medium: 7
-- 🟢 Low: 4
-
-### Key Findings
-- **N+1 query reoccurred** (same issue as Review #4, different developer)
-- Multiple missing CancellationToken parameters
-- Good: Elasticsearch integration done well
+**PR**: [#245](https://github.com/example/my-ecommerce-app/pull/245) - Update product search
+**Changed Files**: 9 | **Lines Changed**: +445, -123 | **Issues**: 15 (0 critical, 4 high, 7 medium, 4 low)
+- N+1 query reoccurred (different developer). Multiple missing CancellationToken. Elasticsearch integration done well.
 
 ---
 
 ## Review #6 - 2024-12-01
 
-**PR**: [#230](https://github.com/example/my-ecommerce-app/pull/230) - Implement shopping cart persistence
-
-**Changed Files**: 11 (.cs files)
-
-**Lines Changed**: +523, -67
-
-### Issues Found: 11 Total
-- 🔴 Critical: 0
-- 🟠 High: 2
-- 🟡 Medium: 6
-- 🟢 Low: 3
-
-### Key Findings
-- Good use of Redis for cart storage
-- Some async void event handlers found (fixed)
+**PR**: [#230](https://github.com/example/my-ecommerce-app/pull/230) - Shopping cart persistence
+**Changed Files**: 11 | **Lines Changed**: +523, -67 | **Issues**: 11 (0 critical, 2 high, 6 medium, 3 low)
+- Good Redis usage for cart storage. Async void event handlers found and fixed.
 
 ---
 
 ## Review #5 - 2024-11-22
 
-**PR**: [#214](https://github.com/example/my-ecommerce-app/pull/214) - Add payment processing with Stripe
-
-**Changed Files**: 14 (.cs files)
-
-**Lines Changed**: +678, -89
-
-### Issues Found: 18 Total
-- 🔴 Critical: 2 (API key hardcoded - fixed immediately)
-- 🟠 High: 5
-- 🟡 Medium: 7
-- 🟢 Low: 4
-
-### Key Findings
-- **Security issue**: Stripe API key hardcoded in source (fixed within 1 hour)
-- Missing error handling for payment failures
-- Good: Proper use of HttpClient via IHttpClientFactory
+**PR**: [#214](https://github.com/example/my-ecommerce-app/pull/214) - Stripe payment processing
+**Changed Files**: 14 | **Lines Changed**: +678, -89 | **Issues**: 18 (2 critical, 5 high, 7 medium, 4 low)
+- **Security**: Stripe API key hardcoded (fixed within 1 hour). Good IHttpClientFactory usage.
 
 ---
 

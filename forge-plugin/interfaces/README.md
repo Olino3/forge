@@ -1,6 +1,8 @@
 # Forge Interfaces
 
-This directory contains the **interface contracts** that decouple consumers (skills, commands, agents) from direct filesystem paths. By introducing a formal interface layer, the Forge gains consistent access patterns, validated metadata, and a path toward future enhancements -- all without changing any existing consumer code.
+This directory contains the **interface contracts** that decouple all Forge consumers (skills, commands, agents) from direct filesystem paths. The interface layer provides consistent access patterns, validated metadata, and extensibility through swappable adapters.
+
+All 22 skills, 12 commands, and 11 agents use these interfaces. The 3 JSON schemas are validated automatically by the [test suite](../tests/README.md).
 
 ## Architecture
 
@@ -25,7 +27,7 @@ This directory contains the **interface contracts** that decouple consumers (ski
 |             |                 |                          |
 |             v                 v                          |
 |  +--------------------------------------------------+  |
-|  |              Adapters (Current)                   |  |
+|  |              Adapters (Active)                    |  |
 |  |  +------------------------+                       |  |
 |  |  |MarkdownFileContext     |                       |  |
 |  |  |    Provider            |                       |  |
@@ -59,7 +61,7 @@ This directory contains the **interface contracts** that decouple consumers (ski
 +---------------------------------------------------------+
 ```
 
-**Consumers** call **Interfaces** using documented method contracts. **Adapters** translate those method contracts into concrete filesystem operations against the existing `context/`, `memory/`, and `skills/` directories.
+**Consumers** call **Interfaces** using documented method contracts. **Adapters** translate those contracts into concrete filesystem operations against `context/`, `memory/`, and `skills/`.
 
 ## How Convention-Based Interfaces Work
 
@@ -67,60 +69,39 @@ This is not a runtime system. There is no code, no compiler, no package manager.
 
 The "methods" described in each interface spec (e.g., `ContextProvider.getCatalog()`) are conceptual operations. When Claude Code encounters a skill or command that needs context, it performs the equivalent file reads and writes according to the documented contract. The interface specs standardize *what* information is available and *how* to access it, while the adapter docs map those operations to specific file paths and formats.
 
-This approach works because Claude Code is an instruction-following system. The interface specs are instructions that formalize patterns already present in `loading_protocol.md`, `lifecycle.md`, and `SKILL_TEMPLATE.md`.
+This approach works because Claude Code is an instruction-following system. The interface specs formalize patterns defined in `loading_protocol.md`, `lifecycle.md`, and `SKILL_TEMPLATE.md`.
 
-## Relationship to Existing Documentation
+## Interface–Documentation Mapping
 
-Each interface wraps and extends existing Forge documentation:
+Each interface formalizes and extends existing Forge documentation:
 
-| Interface | Wraps | Extends With |
-|-----------|-------|-------------|
+| Interface | Formalizes | Adds |
+|-----------|------------|------|
 | **ContextProvider** | `context/loading_protocol.md` (5-step protocol) | Zero-token metadata via `getReference()`, partial loading via `materializeSections()`, keyword search via `search()` |
 | **MemoryStore** | `memory/lifecycle.md` + `memory/quality_guidance.md` | Structured CRUD operations, automatic timestamp management, staleness queries |
 | **SkillInvoker** | `skills/SKILL_TEMPLATE.md` (delegation patterns) | Structured `SkillResult` return type, skill discovery via `getAvailableSkills()`, domain-based filtering |
 | **Schemas** | YAML frontmatter in context/agent files | Formal JSON Schema validation for `context_metadata`, `memory_entry`, `agent_config` |
 
-## Backward Compatibility
-
-Phase 1 uses a **dual-path approach** that guarantees zero breakage:
-
-1. **Old paths continue to work.** Skills that reference `../../context/python/common_issues.md` or `../../memory/projects/` will find those files unchanged (body content is preserved; only YAML frontmatter is added to 5 pilot files).
-
-2. **New interface calls are semantically equivalent.** A call to `ContextProvider.materialize("python/common_issues")` performs the same file read as the old relative path. The interface adds structure but not behavior changes.
-
-3. **Phase 2+ will migrate consumers.** Future phases will update skills, commands, and agents to reference interface terminology. This migration will be incremental -- one consumer at a time.
-
-4. **Zero consumer changes in Phase 1.** No SKILL.md, COMMAND.md, agent .md, plugin.json, or settings.local.json files are modified.
-
 ## Directory Structure
 
 ```
 interfaces/
-├── README.md                              This file - architecture overview
+├── README.md                              This file — architecture overview
 ├── context_provider.md                    ContextProvider interface spec
 ├── memory_store.md                        MemoryStore interface spec
 ├── skill_invoker.md                       SkillInvoker interface spec
-├── execution_context.md                   ExecutionContext interface spec (Phase 4)
-├── shared_loading_patterns.md             Reusable loading patterns for skills (Phase 5)
-├── performance_benchmarks.md              Token usage and boilerplate metrics (Phase 5)
-├── deprecation_rules.md                   Deprecated pattern detection + linting (Phase 5)
-├── migration_guide.md                     Consumer migration guide (Phase 2)
-├── verification.md                        Phase 1 verification checklist
-├── phase2_verification.md                 Phase 2 verification checklist
-├── phase3_verification.md                 Phase 3 verification checklist
-├── phase4_verification.md                 Phase 4 verification checklist
-├── phase5_verification.md                 Phase 5 verification checklist
+├── execution_context.md                   ExecutionContext interface spec
 ├── schemas/
 │   ├── context_metadata.schema.json       Context file frontmatter schema
 │   ├── memory_entry.schema.json           Memory entry metadata schema
 │   └── agent_config.schema.json           Agent configuration schema
 └── adapters/
-    ├── markdown_file_context_provider.md   ContextProvider -> filesystem mapping (current)
-    ├── markdown_file_memory_adapter.md     MemoryStore -> filesystem mapping (current)
-    ├── cached_context_provider.md          Caching decorator for ContextProvider (Phase 5)
-    ├── sqlite_memory_adapter.md            SQLite-backed MemoryStore adapter spec (Phase 5, design only)
-    ├── context7_mcp_context_provider.md    Context7 MCP hybrid adapter spec (Phase 5, design only)
-    └── vector_store_adapter.md             Vector embedding search adapter spec (Phase 5, design only)
+    ├── markdown_file_context_provider.md   ContextProvider → filesystem mapping
+    ├── markdown_file_memory_adapter.md     MemoryStore → filesystem mapping
+    ├── cached_context_provider.md          Caching decorator for ContextProvider
+    ├── sqlite_memory_adapter.md            SQLite-backed MemoryStore (design only)
+    ├── context7_mcp_context_provider.md    Context7 MCP hybrid adapter (design only)
+    └── vector_store_adapter.md             Vector embedding search (design only)
 ```
 
 ## Specs Reference
@@ -129,10 +110,10 @@ interfaces/
 
 | File | Description |
 |------|-------------|
-| [context_provider.md](./context_provider.md) | Defines the ContextProvider interface: catalog browsing, domain indexes, project type detection, cross-domain loading, reference-based lazy loading, and keyword search |
-| [memory_store.md](./memory_store.md) | Defines the MemoryStore interface: CRUD operations across 4 memory layers, staleness management, pruning rules, quality checks, and timestamp automation |
-| [skill_invoker.md](./skill_invoker.md) | Defines the SkillInvoker interface: skill invocation with structured results, delegation patterns for code review and test generation, and skill discovery |
-| [execution_context.md](./execution_context.md) | Defines the ExecutionContext interface: command chaining with shared state, context caching across commands, and shared data passing |
+| [context_provider.md](./context_provider.md) | ContextProvider interface: catalog browsing, domain indexes, project type detection, cross-domain loading, reference-based lazy loading, and keyword search |
+| [memory_store.md](./memory_store.md) | MemoryStore interface: CRUD operations across 4 memory layers, staleness management, pruning rules, quality checks, and timestamp automation |
+| [skill_invoker.md](./skill_invoker.md) | SkillInvoker interface: skill invocation with structured results, delegation patterns for code review and test generation, and skill discovery |
+| [execution_context.md](./execution_context.md) | ExecutionContext interface: command chaining with shared state, context caching across commands, and shared data passing |
 
 ### Schemas
 
@@ -142,49 +123,40 @@ interfaces/
 | [schemas/memory_entry.schema.json](./schemas/memory_entry.schema.json) | JSON Schema (draft-07) validating memory entry metadata: project, skill, timestamps, staleness thresholds |
 | [schemas/agent_config.schema.json](./schemas/agent_config.schema.json) | JSON Schema (draft-07) validating agent configuration: name, version, context domains, memory categories, skill bindings |
 
-### Adapters — Current
+### Adapters — Active
 
 | File | Description |
 |------|-------------|
 | [adapters/markdown_file_context_provider.md](./adapters/markdown_file_context_provider.md) | Maps ContextProvider methods to filesystem operations against `forge-plugin/context/` |
 | [adapters/markdown_file_memory_adapter.md](./adapters/markdown_file_memory_adapter.md) | Maps MemoryStore methods to filesystem operations against `forge-plugin/memory/` |
-
-### Adapters — Phase 5 (Optimization & Future)
-
-| File | Description |
-|------|-------------|
 | [adapters/cached_context_provider.md](./adapters/cached_context_provider.md) | Caching decorator wrapping any ContextProvider with three-tier cache (catalog, reference, content). Session-scoped invalidation. Integrates with ExecutionContext for command chain optimization. |
-| [adapters/sqlite_memory_adapter.md](./adapters/sqlite_memory_adapter.md) | *Design only.* SQLite-backed MemoryStore with FTS5 full-text search, SQL-based staleness computation, indexed cross-project queries, and automated pruning via triggers. |
-| [adapters/context7_mcp_context_provider.md](./adapters/context7_mcp_context_provider.md) | *Design only.* Hybrid adapter routing framework-specific queries to Context7 MCP server for live docs, with fallback to local files. Identifies ~12 replaceable, ~6 supplementable, ~63 Forge-curated files. |
-| [adapters/vector_store_adapter.md](./adapters/vector_store_adapter.md) | *Design only.* Semantic search augmentation using vector embeddings. Adds `searchSemantic()` as fallback for ContextProvider.search() and MemoryStore.search(). |
 
-### Optimization & Migration
+### Adapters — Future (Design Only)
 
 | File | Description |
 |------|-------------|
-| [shared_loading_patterns.md](./shared_loading_patterns.md) | Three reusable patterns (Standard Memory Loading, Standard Context Loading, Standard Memory Update) that replace 15-35 lines of boilerplate per skill with ~5-line references |
-| [performance_benchmarks.md](./performance_benchmarks.md) | Token usage baselines across 81 context files, boilerplate metrics for 22 skills, context loading cost analysis, and success metrics tracking |
-| [deprecation_rules.md](./deprecation_rules.md) | 12 deprecated patterns with detection regex, severity levels, replacements, bash linting commands, and full lint script design |
-| [migration_guide.md](./migration_guide.md) | Step-by-step migration guide for converting skills, commands, and agents to interface-based patterns |
+| [adapters/sqlite_memory_adapter.md](./adapters/sqlite_memory_adapter.md) | SQLite-backed MemoryStore with FTS5 full-text search, SQL-based staleness computation, indexed cross-project queries, and automated pruning via triggers. |
+| [adapters/context7_mcp_context_provider.md](./adapters/context7_mcp_context_provider.md) | Hybrid adapter routing framework-specific queries to Context7 MCP server for live docs, with fallback to local files. |
+| [adapters/vector_store_adapter.md](./adapters/vector_store_adapter.md) | Semantic search augmentation using vector embeddings. Adds `searchSemantic()` as fallback for ContextProvider.search() and MemoryStore.search(). |
 
-### Verification
+## Testing & Validation
 
-| File | Description |
-|------|-------------|
-| [verification.md](./verification.md) | Phase 1 verification checklist |
-| [phase2_verification.md](./phase2_verification.md) | Phase 2 verification checklist |
-| [phase3_verification.md](./phase3_verification.md) | Phase 3 verification checklist |
-| [phase4_verification.md](./phase4_verification.md) | Phase 4 verification checklist |
-| [phase5_verification.md](./phase5_verification.md) | Phase 5 verification checklist |
+The interface layer is validated by the Forge's [test suite](../tests/README.md) (~1,993 total checks across 2 layers + E2E):
 
-## Current State (Phases 1-5 Complete)
+| What's Validated | Test Layer | Test Files |
+|------------------|------------|------------|
+| All 3 JSON schemas against agent configs, context frontmatter, memory entries | Layer 1 (Static) | `test_json_schemas.py`, `test_yaml_frontmatter.py` |
+| Cross-references: skills in agent configs exist, domains exist, memory paths exist | Layer 1 (Static) | `test_cross_references.py` |
+| Context loading protocol: domain indexes, `loadingStrategy`, `estimatedTokens` | Layer 2 (Integration) | `test_loading_protocol.py` |
+| Cross-domain triggers: format, target resolution, circular reference detection | Layer 2 (Integration) | `test_cross_domain_triggers.py` |
+| Memory lifecycle: freshness (0-90+ days), pruning limits, timestamp injection | Layer 2 (Integration) | `test_freshness_lifecycle.py`, `test_pruning_behavior.py`, `test_line_limits.py` |
+| Hook enforcement of interface contracts (frontmatter, agent config, memory quality) | Layer 2 (Integration) | 20 hook test modules in `layer2/hooks/` |
 
-| Phase | Deliverables | Status |
-|-------|-------------|--------|
-| **Phase 1**: Foundation | 4 interfaces, 2 adapters, 3 schemas | ✅ Complete |
-| **Phase 2**: Pilot Migration | 3 skills + 1 command + 1 agent migrated, migration guide | ✅ Complete |
-| **Phase 3**: Core Migration | 6 components migrated, 81 context files with full frontmatter | ✅ Complete |
-| **Phase 4**: Complete Migration | All 22 skills, 12 commands, 11 agents migrated; ExecutionContext | ✅ Complete |
-| **Phase 5**: Optimization | Performance baselines, shared loading patterns, 4 adapter specs, deprecation rules | ✅ Complete |
-| **Phase 6**: Hooks | 20 hooks across 9 events, 4 layers (Shield, Chronicle, Foreman, Town Crier) | ✅ Complete |
-| **Phase 7**: Documentation | Grand Reforging of all public-facing docs | ✅ Complete |
+Run the full validation:
+
+```bash
+# From forge-plugin/
+bash tests/run_all.sh --layer2
+```
+
+See [TESTING_ROADMAP.md](../../TESTING_ROADMAP.md) for the complete testing architecture and [tests/README.md](../tests/README.md) for how to run tests.

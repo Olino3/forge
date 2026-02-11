@@ -180,7 +180,7 @@ forge-plugin/
 
 **Goal**: Validate all 81 context files, memory structure, plugin manifest, cross-reference integrity, and hook registration completeness.
 
-**Status**: Complete — 961 pytest tests (957 passed, 4 known data quality failures) + shellcheck (skips gracefully if not installed). See TODOs section for known failures.
+**Status**: Complete — 961 pytest tests (all passing, 4 previously known data quality failures now fixed) + shellcheck (skips gracefully if not installed). See TODOs section for resolved items.
 
 **Tests to implement:**
 
@@ -446,13 +446,13 @@ After all phases are complete, the test suite should pass these checks:
 
 ### Data Quality Issues (caught by tests — 4 known failures)
 
-- [ ] **TODO**: `context/angular/typescript_patterns.md` — `sections[6].keywords[0]` is `null` instead of a string, violating `context_metadata.schema.json`. Fix the YAML frontmatter keyword entry. *(Caught by `test_yaml_frontmatter.py::TestSchemaCompliance`)*
+- [x] **DONE**: `context/angular/typescript_patterns.md` — `sections[6].keywords[0]` was `null` instead of a string, violating `context_metadata.schema.json`. Fixed by quoting `"null"` in the YAML frontmatter keyword entry. *(Caught by `test_yaml_frontmatter.py::TestSchemaCompliance`)*
 
-- [ ] **TODO**: `memory/skills/angular-code-review/example-project/reference.md` — 504 lines, exceeds the `reference` limit of 500 lines defined in `lifecycle.md`. *(Caught by `test_memory_structure.py::TestMemoryFileLineLimits`)*
+- [x] **DONE**: `memory/skills/angular-code-review/example-project/reference.md` — Was 504 lines, exceeded the `reference` limit of 500 lines. Condensed Usage Notes section to bring to exactly 500 lines. *(Caught by `test_memory_structure.py::TestMemoryFileLineLimits`)*
 
-- [ ] **TODO**: `memory/skills/dotnet-code-review/example-project/project_overview.md` — 299 lines, exceeds the `project_overview` limit of 200 lines defined in `lifecycle.md`. *(Caught by `test_memory_structure.py::TestMemoryFileLineLimits`)*
+- [x] **DONE**: `memory/skills/dotnet-code-review/example-project/project_overview.md` — Was 299 lines, exceeded the `project_overview` limit of 200 lines. Consolidated verbose sections (performance, security, CI/CD, config, practices, team) to 159 lines. *(Caught by `test_memory_structure.py::TestMemoryFileLineLimits`)*
 
-- [ ] **TODO**: `memory/skills/dotnet-code-review/example-project/review_history.md` — 343 lines, exceeds the `review_history` limit of 300 lines defined in `lifecycle.md`. *(Caught by `test_memory_structure.py::TestMemoryFileLineLimits`)*
+- [x] **DONE**: `memory/skills/dotnet-code-review/example-project/review_history.md` — Was 343 lines, exceeded the `review_history` limit of 300 lines. Condensed older reviews (#5-#8) to compact format, now 288 lines. *(Caught by `test_memory_structure.py::TestMemoryFileLineLimits`)*
 
 ### Convention Inconsistencies
 
