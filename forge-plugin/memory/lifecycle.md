@@ -6,13 +6,21 @@ Rules for memory freshness, pruning, and archival to keep memory accurate and ef
 
 ## Freshness Indicators
 
-Every memory file must include a timestamp comment as its first line:
+Every memory file must include a timestamp. Two formats are supported:
 
+**Format 1 — HTML comment (preferred for new files):**
 ```markdown
 <!-- Last Updated: 2026-02-10 -->
 ```
 
-**Automation**: `memoryStore.create()` and `memoryStore.update()` inject/refresh this timestamp automatically. Skills no longer need to manage timestamps manually.
+**Format 2 — Bold markdown (legacy, still valid):**
+```markdown
+**Last Updated**: 2026-02-10
+```
+
+The timestamp should appear near the top of the file (within the first 10 lines).
+
+**Automation**: `memoryStore.create()` and `memoryStore.update()` inject/refresh the HTML comment format automatically. Skills no longer need to manage timestamps manually.
 
 ## Staleness Thresholds
 

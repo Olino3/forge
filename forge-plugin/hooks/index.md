@@ -117,20 +117,15 @@ Hooks are organized into four thematic layers from the Architectural Roadmap §6
 | `context_usage_tracker` | PreCompact | — | Identify unused context files for token optimization |
 | `output_quality_scorer` | PostToolUse | `Write\|Edit` | Score `/claudedocs` output quality (completeness, actionability, formatting) |
 
-## Manual Hooks (Not Registered)
+## Utility Scripts (Not Registered)
 
-These hooks are run manually and are **not** in `hooks.json`:
+These are utility scripts located in `hooks/lib/` and are **not** registered in `hooks.json`:
 
-| Hook | Purpose | Usage |
-|------|---------|-------|
-| `context_freshness` | Audit context file health and broken links | `bash forge-plugin/hooks/context_freshness.sh` |
-| `session_context` | Display project context summary | `bash forge-plugin/hooks/session_context.sh [project]` |
-
-## Deprecated Hooks
-
-| Hook | Status | Replacement |
-|------|--------|-------------|
-| `memory_sync` | Absorbed | `memory_quality_gate` — provides all of memory_sync's functionality plus additional quality checks |
+| Script | Purpose | Usage |
+|--------|---------|-------|
+| `context_freshness.sh` | Audit context file health and broken links | `bash forge-plugin/hooks/lib/context_freshness.sh` |
+| `session_context.sh` | Display project context summary | `bash forge-plugin/hooks/lib/session_context.sh [project]` |
+| `memory_sync.sh` | Legacy memory sync (superseded by `memory_quality_gate`) | Not recommended for use |
 
 ## Shared Infrastructure
 
@@ -190,9 +185,9 @@ Default structural manifest validated by `root_agent_validator` at session start
 | `agent_config_validator.sh` | SubagentStart | Agent configuration validation against schema |
 | `memory_pruning_daemon.sh` | SessionEnd | Post-session memory file line-count pruning |
 | `security/deny_list.txt` | Data | Package deny list for dependency_sentinel |
-| `context_freshness.sh` | Manual | Context health audit |
-| `session_context.sh` | Manual | Session context summary |
-| `memory_sync.sh` | Deprecated | Superseded by memory_quality_gate |
+| `lib/context_freshness.sh` | Utility | Context health audit (run on-demand) |
+| `lib/session_context.sh` | Utility | Session context summary (run on-demand) |
+| `lib/memory_sync.sh` | Legacy | Superseded by memory_quality_gate |
 
 ---
 

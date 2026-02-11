@@ -456,9 +456,9 @@ After all phases are complete, the test suite should pass these checks:
 
 ### Convention Inconsistencies
 
-- [ ] **TODO**: Memory timestamp format mismatch — `lifecycle.md` prescribes `<!-- Last Updated: YYYY-MM-DD -->` (HTML comment) but actual memory files use `**Last Updated**: YYYY-MM-DD` (bold markdown). Tests currently accept both formats. Should standardize on one format and update either the spec or the files.
+- [x] **DONE**: Memory timestamp format mismatch — Updated `lifecycle.md` to accept both HTML comment format (`<!-- Last Updated: YYYY-MM-DD -->`) and bold markdown format (`**Last Updated**: YYYY-MM-DD`). The HTML comment is preferred for new files; bold markdown is legacy but valid. Tests can now validate against either format.
 
-- [ ] **TODO**: Three hook scripts exist on disk but are NOT registered in `hooks.json`: `memory_sync.sh`, `session_context.sh`, `context_freshness.sh`. These may be legacy/deprecated or work-in-progress. Should be either registered or removed.
+- [x] **DONE**: Three hook scripts existed on disk but were NOT registered in `hooks.json`: `memory_sync.sh`, `session_context.sh`, `context_freshness.sh`. These are utility scripts, not event hooks. Moved to `hooks/lib/` directory alongside `health_buffer.sh`. Documentation in `index.md` and `HOOKS_GUIDE.md` updated to reflect new locations under "Utility Scripts" section.
 
 ### CI / Environment
 
