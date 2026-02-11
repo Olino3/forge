@@ -468,13 +468,13 @@ After all phases are complete, the test suite should pass these checks:
 
 ### Hook Behavior Observations (discovered in Phase 3)
 
-- [ ] **TODO**: `pre_commit_quality.sh` — `*.pem` and `*.key` SECRET_PATTERNS are grep'd with `-E "(^|/)${pattern}$"` which correctly matches filenames like `cert.pem` and `server.key` (the `*` is not a literal glob in this context). The regex works but the pattern names are misleading — consider documenting this or switching to explicit suffix patterns like `\.pem$`, `\.key$`.
+- [x] **DONE**: `pre_commit_quality.sh` — Added documentation comment explaining that `*.pem` and `*.key` SECRET_PATTERNS are grep'd with `-E "(^|/)${pattern}$"` which matches filenames like `cert.pem` and `server.key` (the `*` is not a literal glob in this context).
 
-- [ ] **TODO**: `pre_commit_quality.sh` does NOT source `health_buffer.sh` unlike the other 4 Shield hooks. This means pre-commit warnings are not aggregated into the system health buffer. Consider adding health buffer integration for consistency.
+- [x] **DONE**: `pre_commit_quality.sh` now sources `health_buffer.sh` and logs secret file detections to the system health buffer for consistency with other Shield hooks.
 
-- [ ] **TODO**: All 5 Shield hooks always exit 0 regardless of allow/deny. Some hook comments mention "exit code 2 = blocking error" (e.g., in `pre_commit_quality.sh` line 17) but this convention is never used. The deny mechanism is exclusively via JSON `hookSpecificOutput.permissionDecision`. Consider removing misleading exit-code-2 comments.
+- [x] **DONE**: Removed misleading "exit code 2 = blocking error" comment from `pre_commit_quality.sh`. The deny mechanism is exclusively via JSON `hookSpecificOutput.permissionDecision` — all hooks exit 0.
 
-- [ ] **TODO**: `pii_redactor.sh` never issues a deny decision — it only emits `additionalContext` warnings. This is by design (warn-only for PII), but the hook description in `hooks.json` says "Scan for PII patterns" without clarifying the warn-only behavior. Consider documenting this explicitly.
+- [x] **DONE**: Updated `hooks.json` to clarify that `pii_redactor.sh` is warn-only: added description "Scan for PII patterns (warn-only — does not block prompts)".
 
 ### Hook Behavior Observations (discovered in Phase 4)
 
