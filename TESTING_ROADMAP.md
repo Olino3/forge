@@ -478,19 +478,26 @@ After all phases are complete, the test suite should pass these checks:
 
 ### Hook Behavior Observations (discovered in Phase 4)
 
-- [ ] **TODO**: `skill_compliance_checker.sh` — `SKILLS_USED=$(grep -oE ... | sort -u)` crashes with `set -euo pipefail` when `grep` finds no matches (exit 1 propagated by `pipefail`). This causes the hook to exit 1 when no skills are present in the transcript. Harmless (session is ending) but incorrect. Fix: add `|| true` after the grep pipeline.
+- [x] **DONE**: `skill_compliance_checker.sh` — `SKILLS_USED=$(grep -oE ... | sort -u)` crashes with `set -euo pipefail` when `grep` finds no matches (exit 1 propagated by `pipefail`). This causes the hook to exit 1 when no skills are present in the transcript. Harmless (session is ending) but incorrect. Fix: add `|| true` after the grep pipeline.
+  - **Fixed**: Added `|| true` to the grep pipeline on line 48.
 
-- [ ] **TODO**: `skill_compliance_checker.sh` uses `decision: "block"` JSON format for non-compliance instead of the standard `hookSpecificOutput.permissionDecision: "deny"` used by Shield hooks. This inconsistency makes it harder to programmatically detect denials. Consider standardizing the JSON output format.
+- [x] **DONE**: `skill_compliance_checker.sh` uses `decision: "block"` JSON format for non-compliance instead of the standard `hookSpecificOutput.permissionDecision: "deny"` used by Shield hooks. This inconsistency makes it harder to programmatically detect denials. Consider standardizing the JSON output format.
+  - **Fixed**: Changed output to use `hookSpecificOutput.permissionDecision: "deny"` format with `additionalContext`.
 
-- [ ] **TODO**: `framework_conflicts.json` referenced by `context_drift_detector.sh` at `SCRIPT_DIR/lib/framework_conflicts.json` does not exist in the repository. The hook exits cleanly when the file is missing, but conflict detection is effectively disabled. Create the conflicts definition file or document its absence.
+- [x] **DONE**: `framework_conflicts.json` referenced by `context_drift_detector.sh` at `SCRIPT_DIR/lib/framework_conflicts.json` does not exist in the repository. The hook exits cleanly when the file is missing, but conflict detection is effectively disabled. Create the conflicts definition file or document its absence.
+  - **Resolved**: File exists at `forge-plugin/hooks/lib/framework_conflicts.json` with conflict groups for python_web, python_ml, js_frontend, js_state, js_testing, dotnet_ui, python_testing, and css_framework.
 
-- [ ] **TODO**: `output_quality_scorer.sh` is listed under Foreman (§6.3) in the TESTING_ROADMAP but self-identifies as Town Crier (§6.4) in its script header. Clarify the correct layer assignment.
+- [x] **DONE**: `output_quality_scorer.sh` is listed under Foreman (§6.3) in the TESTING_ROADMAP but self-identifies as Town Crier (§6.4) in its script header. Clarify the correct layer assignment.
+  - **Resolved**: The script correctly self-identifies as Town Crier (§6.4), and HOOKS_GUIDE.md documents it under Town Crier (line 495). The TESTING_ROADMAP reference was incorrect; the hook is correctly assigned.
 
-- [ ] **TODO**: `root_agent_validator.sh` — `find` commands at the bottom (counting agents, skills, commands, hooks) crash with `set -euo pipefail` when the target directories don't exist. The `2>/dev/null` only suppresses stderr, but `pipefail` still propagates the non-zero exit code from `find`. Fix: add `|| true` after each `find | wc -l` pipeline.
+- [x] **DONE**: `root_agent_validator.sh` — `find` commands at the bottom (counting agents, skills, commands, hooks) crash with `set -euo pipefail` when the target directories don't exist. The `2>/dev/null` only suppresses stderr, but `pipefail` still propagates the non-zero exit code from `find`. Fix: add `|| true` after each `find | wc -l` pipeline.
+  - **Fixed**: Added `|| true` to all four find pipelines and added default values `${VAR:-0}` in the echo statement.
 
-- [ ] **TODO**: `health_buffer.sh` path resolution — `CLAUDE_PLUGIN_ROOT/../../.forge` goes TWO levels up from the plugin root, which assumes `CLAUDE_PLUGIN_ROOT` is set to a path nested two levels below the repo root. This is fragile and sensitive to directory layout changes. Consider using `git rev-parse --show-toplevel` instead, or document the expected CLAUDE_PLUGIN_ROOT path convention.
+- [x] **DONE**: `health_buffer.sh` path resolution — `CLAUDE_PLUGIN_ROOT/../../.forge` goes TWO levels up from the plugin root, which assumes `CLAUDE_PLUGIN_ROOT` is set to a path nested two levels below the repo root. This is fragile and sensitive to directory layout changes. Consider using `git rev-parse --show-toplevel` instead, or document the expected CLAUDE_PLUGIN_ROOT path convention.
+  - **Fixed**: Added robust path resolution priority: 1) `FORGE_RUNTIME_DIR` env var, 2) `git rev-parse --show-toplevel`, 3) `CLAUDE_PLUGIN_ROOT` derivation, 4) script location fallback.
 
-- [ ] **TODO**: Hooks that derive file paths from `SCRIPT_DIR` → `FORGE_DIR` (memory_pruning_daemon, memory_cross_pollinator, root_agent_validator, output_archival) cannot be fully integration-tested against temporary directories without copying the hook script into the temp env. Tests use `_run_*_in_env()` helpers to work around this, but a more robust approach would be to make these hooks accept a configurable `FORGE_DIR` via environment variable override.
+- [x] **DONE**: Hooks that derive file paths from `SCRIPT_DIR` → `FORGE_DIR` (memory_pruning_daemon, memory_cross_pollinator, root_agent_validator, output_archival) cannot be fully integration-tested against temporary directories without copying the hook script into the temp env. Tests use `_run_*_in_env()` helpers to work around this, but a more robust approach would be to make these hooks accept a configurable `FORGE_DIR` via environment variable override.
+  - **Fixed**: Added `FORGE_DIR="${FORGE_DIR:-$(dirname "$SCRIPT_DIR")}"` pattern to: `root_agent_validator.sh`, `memory_pruning_daemon.sh`, `memory_cross_pollinator.sh`, `output_archival.sh`, and `context_drift_detector.sh`.
 
 ### E2E / CI Observations (discovered in Phase 6)
 

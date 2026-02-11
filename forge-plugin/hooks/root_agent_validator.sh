@@ -19,8 +19,9 @@ set -euo pipefail
 
 # --- Resolve paths -------------------------------------------------------
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-FORGE_DIR="$(dirname "$SCRIPT_DIR")"
-REPO_ROOT=$(cd "$FORGE_DIR/.." && pwd)
+# Allow FORGE_DIR override for testing in temporary directories
+FORGE_DIR="${FORGE_DIR:-$(dirname "$SCRIPT_DIR")}"
+REPO_ROOT="${REPO_ROOT:-$(cd "$FORGE_DIR/.." && pwd)}"
 
 # --- Load safety profile -------------------------------------------------
 CUSTOM_PROFILE="${REPO_ROOT}/.forge/safety_profile.json"
@@ -123,11 +124,12 @@ if [[ "$HAS_ISSUES" == "false" ]]; then
 fi
 
 # Count components for context
-AGENT_COUNT=$(find "${FORGE_DIR}/agents" -name "*.md" -type f 2>/dev/null | wc -l)
-SKILL_COUNT=$(find "${FORGE_DIR}/skills" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | wc -l)
-COMMAND_COUNT=$(find "${FORGE_DIR}/commands" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | wc -l)
-HOOK_COUNT=$(find "${FORGE_DIR}/hooks" -name "*.sh" -type f 2>/dev/null | wc -l)
+# Note: Add || true to prevent pipefail crash when target directories don't exist
+AGENT_COUNT=$(find "${FORGE_DIR}/agents" -name "*.md" -type f 2>/dev/null | wc -l || true)
+SKILL_COUNT=$(find "${FORGE_DIR}/skills" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | wc -l || true)
+COMMAND_COUNT=$(find "${FORGE_DIR}/commands" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | wc -l || true)
+HOOK_COUNT=$(find "${FORGE_DIR}/hooks" -name "*.sh" -type f 2>/dev/null | wc -l || true)
 
-echo "Components: ${AGENT_COUNT} agents, ${SKILL_COUNT} skills, ${COMMAND_COUNT} commands, ${HOOK_COUNT} hooks"
+echo "Components: ${AGENT_COUNT:-0} agents, ${SKILL_COUNT:-0} skills, ${COMMAND_COUNT:-0} commands, ${HOOK_COUNT:-0} hooks"
 
 exit 0
