@@ -138,6 +138,26 @@ Layered testing architecture validating the entire plugin — from static file s
 
 **Summary**: ~1,508 total tests (1,131 Layer 1 pytest + 96 bash + shellcheck + 208 Layer 2 hook integration)
 
+**Phase 4 — Chronicle, Foreman & Town Crier Hook Tests ✅**
+- [x] `test_health_buffer_lib.py` — health_buffer.sh shared library: append, flush, max-line cap, init (10 tests)
+- [x] `test_memory_freshness_enforcer.py` — Memory age classification: fresh/aging/stale/missing timestamp, operational skip (17 tests)
+- [x] `test_memory_quality_gate.py` — Timestamp injection, line limits, vague entry & absolute path detection (15 tests)
+- [x] `test_memory_cross_pollinator.py` — Critical/Security/Breaking/Performance section propagation (10 tests)
+- [x] `test_memory_pruning_daemon.py` — Line-limit pruning (200/300/500), header preservation, operational skip (9 tests)
+- [x] `test_frontmatter_validator.py` — Domain/type/strategy enum validation, missing fields, special file skip (18 tests)
+- [x] `test_agent_config_validator.py` — Real agent configs, built-in agent skip, informational-only (11 tests)
+- [x] `test_skill_compliance_checker.py` — 6-step workflow compliance, compliant/non-compliant sessions (9 tests)
+- [x] `test_output_quality_scorer.py` — Claudedocs scoring (Completeness/Actionability/Formatting/Naming), metadata append (9 tests)
+- [x] `test_context_drift_detector.py` — Dependency file recognition, missing conflicts file handling (11 tests)
+- [x] `test_command_chain_context.py` — chain_state.json creation, command chaining, session reset (11 tests)
+- [x] `test_output_archival.py` — Archive creation, manifest tracking, standalone script execution (6 tests)
+- [x] `test_root_agent_validator.py` — Real structure validation, component counts, .forge creation (7 tests)
+- [x] `test_system_health_emitter.py` — Buffer seeding, flush+emit cycle, empty buffer handling (7 tests)
+- [x] `test_forge_telemetry.py` — Metrics extraction (tool calls, skills, memory, context, commands), telemetry logging (13 tests)
+- [x] `test_context_usage_tracker.py` — Context usage analysis, waste estimation, telemetry logging (12 tests)
+
+**Summary**: ~1,683 total tests (1,131 Layer 1 pytest + 96 bash + shellcheck + 208 Phase 3 + 175 Phase 4 hook integration)
+
 ---
 
 ## Planned Agents

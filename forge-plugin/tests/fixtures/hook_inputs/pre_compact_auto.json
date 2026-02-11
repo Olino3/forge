@@ -1,0 +1,5 @@
+{
+  "transcript_path": "/tmp/forge_test/transcript.txt",
+  "trigger": "auto",
+  "cwd": "/tmp/forge_test"
+}

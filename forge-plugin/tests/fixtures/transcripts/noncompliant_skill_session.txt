@@ -1,0 +1,4 @@
+User: /analyze my-project
+
+Tool: Read skills/analyze/SKILL.md
+Tool: Write claudedocs/analysis-my-project.md
