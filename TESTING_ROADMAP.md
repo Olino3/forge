@@ -261,71 +261,85 @@ Environment variables set by HookRunner:
 
 ---
 
-### Phase 4: Chronicle and Foreman Hook Tests
+### Phase 4: Chronicle, Foreman & Town Crier Hook Tests ✅
 
-**Goal**: Test the 12 remaining hooks — memory lifecycle (Chronicle layer) and workflow quality (Foreman layer).
+**Goal**: Test all remaining 15 hooks plus the shared health_buffer library — memory lifecycle (Chronicle layer), workflow quality (Foreman layer), and telemetry/reporting (Town Crier layer).
 
-**Tests to implement (Chronicle layer — 4 hooks):**
+**Status**: Complete — 175 new pytest integration tests (all passing). Total Layer 2 hook suite: 383 tests (208 Phase 3 + 175 Phase 4).
 
-| Test File | Hook | Key Test Cases |
-|-----------|------|----------------|
-| `test_memory_freshness_enforcer.py` | `memory_freshness_enforcer.sh` | Fresh memory (< 30d) allowed; aging memory (31-90d) allowed with warning; stale memory (> 90d) denied; non-memory reads ignored; handles missing timestamp |
-| `test_memory_quality_gate.py` | `memory_quality_gate.sh` | Validates freshness timestamp present; warns on oversized files; checks specificity (no absolute paths outside project); checks completeness for `project_overview` |
-| `test_memory_cross_pollinator.py` | `memory_cross_pollinator.sh` | Critical skill findings propagated to shared `cross_skill_insights.md`; non-critical findings not propagated; creates file if absent |
-| `test_memory_pruning_daemon.py` | `memory_pruning_daemon.sh` | Prunes files > line limit; preserves header (first 5 lines); respects per-type limits (200/300/500); inserts pruning marker; skips operational files (`index.md`, `lifecycle.md`); handles `review_history` 300-line limit |
+**Infrastructure additions:**
+- `_run_pruning_in_env()` / `_run_validator_in_env()` helpers — copy hooks into TempForgeEnvironment so `SCRIPT_DIR`-derived `FORGE_DIR` resolves to temp files (required for hooks that derive file paths from `FORGE_DIR` rather than stdin JSON)
+- `_make_plugin_root()` helper — creates 2-level deep subdirectory for `CLAUDE_PLUGIN_ROOT` so `../../.forge` resolves correctly in health_buffer.sh
+- `env_overrides` parameter used extensively for `CLAUDE_PLUGIN_ROOT` in health buffer tests
 
-**Tests to implement (Foreman layer — 8 hooks):**
+**Tests implemented (Chronicle layer — 4 hooks):**
 
 | Test File | Hook | Key Test Cases |
 |-----------|------|----------------|
-| `test_frontmatter_validator.py` | `frontmatter_validator.sh` | Blocks context writes without frontmatter; blocks invalid domain enum; allows valid frontmatter; skips non-context files (skills, memory) |
-| `test_agent_config_validator.py` | `agent_config_validator.sh` | Validates agent config on SubagentStart; blocks agents with missing config; validates schema compliance |
-| `test_skill_compliance_checker.py` | `skill_compliance_checker.sh` | Detects compliant 6-step workflow in transcript; detects skipped steps; reports specific missing steps; handles multi-skill sessions |
-| `test_output_quality_scorer.py` | `output_quality_scorer.sh` | Scores `/claudedocs/` output completeness; handles missing outputs; validates naming convention |
-| `test_context_drift_detector.py` | `context_drift_detector.sh` | Detects dependency changes conflicting with loaded context; uses `framework_conflicts.json`; allows non-conflicting changes |
-| `test_command_chain_context.py` | `command_chain_context.sh` | Persists ExecutionContext to `.forge/chain_state.json`; handles first command in chain; handles chained commands |
-| `test_output_archival.py` | `output_archival.sh` | Archives `/claudedocs/` output with manifest tracking |
-| `test_root_agent_validator.py` | `root_agent_validator.sh` | Validates required directories exist; validates required files exist; creates `.forge/` runtime dir; outputs session context with component counts |
+| `test_memory_freshness_enforcer.py` | `memory_freshness_enforcer.sh` | Fresh memory (< 30d) allowed; aging memory (31-90d) allowed with warning; stale memory (> 90d) denied; non-memory reads ignored; handles missing timestamp | 17 tests ✅ |
+| `test_memory_quality_gate.py` | `memory_quality_gate.sh` | Validates freshness timestamp present; warns on oversized files; checks specificity (no absolute paths outside project); checks completeness for `project_overview` | 15 tests ✅ |
+| `test_memory_cross_pollinator.py` | `memory_cross_pollinator.sh` | Critical skill findings propagated to shared `cross_skill_insights.md`; non-critical findings not propagated; creates file if absent | 10 tests ✅ |
+| `test_memory_pruning_daemon.py` | `memory_pruning_daemon.sh` | Prunes files > line limit; preserves header (first 5 lines); respects per-type limits (200/300/500); inserts pruning marker; skips operational files (`index.md`, `lifecycle.md`); handles `review_history` 300-line limit | 9 tests ✅ |
 
-**Tests to implement (Town Crier layer — 3 hooks):**
+**Tests implemented (Foreman layer — 8 hooks):**
 
 | Test File | Hook | Key Test Cases |
 |-----------|------|----------------|
-| `test_system_health_emitter.py` | `system_health_emitter.sh` | Aggregates health buffer warnings; outputs combined report; handles empty buffer |
-| `test_forge_telemetry.py` | `forge_telemetry.sh` | Collects session statistics from transcript; logs to `.forge/telemetry.log` |
-| `test_context_usage_tracker.py` | `context_usage_tracker.sh` | Identifies unreferenced context files; identifies over-used files; writes to `.forge/context_usage.json` |
+| `test_frontmatter_validator.py` | `frontmatter_validator.sh` | Blocks context writes without frontmatter; blocks invalid domain enum; allows valid frontmatter; skips non-context files (skills, memory) | 18 tests ✅ |
+| `test_agent_config_validator.py` | `agent_config_validator.sh` | Validates agent config on SubagentStart; blocks agents with missing config; validates schema compliance | 11 tests ✅ |
+| `test_skill_compliance_checker.py` | `skill_compliance_checker.sh` | Detects compliant 6-step workflow in transcript; detects skipped steps; reports specific missing steps; handles multi-skill sessions | 9 tests ✅ |
+| `test_output_quality_scorer.py` | `output_quality_scorer.sh` | Scores `/claudedocs/` output completeness; handles missing outputs; validates naming convention | 9 tests ✅ |
+| `test_context_drift_detector.py` | `context_drift_detector.sh` | Detects dependency changes conflicting with loaded context; uses `framework_conflicts.json`; allows non-conflicting changes | 11 tests ✅ |
+| `test_command_chain_context.py` | `command_chain_context.sh` | Persists ExecutionContext to `.forge/chain_state.json`; handles first command in chain; handles chained commands | 11 tests ✅ |
+| `test_output_archival.py` | `output_archival.sh` | Archives `/claudedocs/` output with manifest tracking | 6 tests ✅ |
+| `test_root_agent_validator.py` | `root_agent_validator.sh` | Validates required directories exist; validates required files exist; creates `.forge/` runtime dir; outputs session context with component counts | 7 tests ✅ |
 
-**Shared library test:**
+**Tests implemented (Town Crier layer — 3 hooks):**
+
+| Test File | Hook | Key Test Cases |
+|-----------|------|----------------|
+| `test_system_health_emitter.py` | `system_health_emitter.sh` | Aggregates health buffer warnings; outputs combined report; handles empty buffer | 7 tests ✅ |
+| `test_forge_telemetry.py` | `forge_telemetry.sh` | Collects session statistics from transcript; logs to `.forge/telemetry.log` | 13 tests ✅ |
+| `test_context_usage_tracker.py` | `context_usage_tracker.sh` | Identifies unreferenced context files; identifies over-used files; writes to `.forge/context_usage.json` | 12 tests ✅ |
+
+**Shared library test (implemented):**
 
 | Test File | Library | Key Test Cases |
 |-----------|---------|----------------|
-| `test_health_buffer_lib.py` | `lib/health_buffer.sh` | Append + flush cycle works; concurrent-safe with flock; max 200 lines enforced; graceful failure on lock timeout |
+| `test_health_buffer_lib.py` | `lib/health_buffer.sh` | Append + flush cycle works; concurrent-safe with flock; max 200 lines enforced; graceful failure on lock timeout | 10 tests ✅ |
 
-**Fixture files needed for Phase 4:**
-- `fixtures/memory_files/` — Fresh, aging, stale, oversized, no-timestamp memory files
-- `fixtures/transcripts/` — Compliant and non-compliant skill session transcripts
-- `fixtures/hook_inputs/` — SessionEnd, Stop, SubagentStart, TaskCompleted, PreCompact event inputs
+**Fixture files (created for Phase 4):**
+- `fixtures/memory_files/` — fresh_memory.md, stale_memory.md, no_timestamp_memory.md, oversized_memory.md, vague_memory.md, absolute_paths_memory.md
+- `fixtures/transcripts/` — compliant_skill_session.txt, noncompliant_skill_session.txt, multi_skill_session.txt, telemetry_session.txt
+- `fixtures/hook_inputs/` — session_end_basic.json, stop_basic.json, stop_hook_active.json, subagent_start_valid.json, subagent_start_builtin.json, task_completed_analyze.json, pre_compact_auto.json
 
 ---
 
-### Phase 5: Memory and Context Lifecycle Tests
+### Phase 5: Memory and Context Lifecycle Tests ✅
 
 **Goal**: Test the memory lifecycle simulation and context loading protocol independently of hooks.
 
-**Tests to implement (Memory lifecycle):**
+**Status**: Complete — 121 new pytest tests (57 memory + 64 context), all passing (11 context skips for absent cross-domain triggers). Total Layer 2 suite: 504 tests (383 Phase 3-4 + 121 Phase 5).
 
-| Test File | What It Tests |
-|-----------|---------------|
-| `test_freshness_lifecycle.py` | Create memory files with various timestamps; verify classification (fresh/aging/stale); verify the 30d/90d boundaries are exact |
-| `test_pruning_behavior.py` | Create oversized files in temp dirs; run `memory_pruning_daemon.sh`; verify correct truncation; verify header preservation; verify pruning markers |
-| `test_line_limits.py` | Create files at exact boundaries (200, 300, 500 lines); verify `memory_quality_gate.sh` warns at limit+1 but not at limit; verify per-type limits (`project_overview`=200, `review_history`=300, general=500) |
+**Infrastructure additions:**
+- `layer2/memory/` directory with conftest.py providing `temp_forge_env` fixture
+- `layer2/context/` directory for static context validation tests
+- `__init__.py` files for both new test packages
 
-**Tests to implement (Context loading):**
+**Tests implemented (Memory lifecycle — 3 files, 57 tests):**
 
-| Test File | What It Tests |
-|-----------|---------------|
-| `test_loading_protocol.py` | Every domain has `index.md`; index files with `indexedFiles` reference existing files; `loadingStrategy: always` files have appropriate type; `estimatedTokens` values are reasonable (> 0, < 10000); domain consistency (file's `domain` field matches parent dir name) |
-| `test_cross_domain_triggers.py` | All `crossDomainTriggers` target existing files; no self-referential triggers; trigger format matches `domain/filename` pattern; no circular trigger chains |
+| Test File | Hook Under Test | Key Test Cases |
+|-----------|-----------------|----------------|
+| `test_freshness_lifecycle.py` | `memory_freshness_enforcer.sh` | Day 0-30 fresh (allow, no warning); day 31-89 aging (allow); day 90+ stale (deny); exact boundaries (30→fresh, 31→aging, 89→aging, 90→stale); missing/wrong-format/empty timestamps denied; different memory paths (projects, skills, agents, commands) | 24 tests ✅ |
+| `test_pruning_behavior.py` | `memory_pruning_daemon.sh` | General 500-line limit (600→500, 700→500); project_overview 200-line limit (300→200, 201→200); review_history 300-line limit (450→300); at-limit files not pruned (500, 200, 300); below-limit files not pruned (499); header preservation (first 5 lines); pruning marker present with line count; operational files skipped (index, lifecycle, quality_guidance); recent-file detection without transcript | 17 tests ✅ |
+| `test_line_limits.py` | `memory_quality_gate.sh` | General 500-line limit (500 no warn, 501 warns, 499 no warn); project_overview 200-line limit (200 no warn, 201 warns); review_history 300-line limit (300 no warn, 301 warns); never denies (oversized files allowed with warning); operational files skipped; timestamp injection (missing → injected); timestamp refresh (old → today) | 16 tests ✅ |
+
+**Tests implemented (Context loading — 2 files, 64 tests, 11 skips):**
+
+| Test File | What It Tests | Key Test Cases |
+|-----------|---------------|----------------|
+| `test_loading_protocol.py` | Context loading protocol from loading_protocol.md | Every domain (9) has index.md with frontmatter and type='index'; all indexedFiles entries reference existing files and have IDs; loadingStrategy='always' files have valid types; estimatedTokens positive and < 10000 (file + section level); domain consistency (field matches parent dir); loadingStrategy enum validation; required frontmatter fields present; top-level files (cross_domain.md, loading_protocol.md, index.md) exist with frontmatter | 48 tests ✅ |
+| `test_cross_domain_triggers.py` | Cross-domain trigger validation from cross_domain.md | Trigger format matches `domain/filename` pattern; trigger targets resolve to existing files; no self-referential triggers; no circular 2-step trigger chains; cross_domain.md file exists with frontmatter and matrix content; referenced security_guidelines.md and common_patterns.md exist; per-domain index cross-domain references validated | 16 tests ✅ (11 skips for absent triggers) |
 
 ---
 
@@ -372,14 +386,14 @@ Trigger paths: Only runs when forge-plugin/** or workflow file changes.
 | Component | Layer 1 (Static) | Layer 2 (Integration) | Total Tests |
 |-----------|------------------|----------------------|-------------|
 | Agent configs (11) | Schema validation, file pairs, cross-refs | Config validator hook | ~25 |
-| Context files (81) | Frontmatter validation, cross-domain refs | Loading protocol, frontmatter hook | ~90 |
-| Hook scripts (20) | Registration, syntax, shellcheck | Full I/O contract testing | ~100+ |
-| Memory system | Directory structure, timestamp format | Freshness, pruning, line limits | ~30 |
+| Context files (81) | Frontmatter validation, cross-domain refs | Loading protocol (48 tests), frontmatter hook, drift detector, cross-domain triggers (16 tests) | ~174 |
+| Hook scripts (24) | Registration, syntax, shellcheck | Full I/O contract testing (all 24 hooks + shared lib) | ~480 |
+| Memory system | Directory structure, timestamp format | Freshness lifecycle (24 tests), pruning behaviour (17 tests), line limits (16 tests), quality gate, cross-pollinator | ~137 |
 | Skills (22) | File structure (`SKILL.md`, `examples.md`) | Compliance checker hook | ~25 |
 | Commands (12) | `COMMAND.md` exists, manifest refs | Command chain hook, E2E | ~15 |
 | Plugin manifest | JSON validity, field completeness | E2E loading | ~8 |
-| Shared libraries | — | `health_buffer.sh` unit tests | ~5 |
-| **Total** | **~100** | **~200** | **~300** |
+| Shared libraries | — | `health_buffer.sh` unit tests | 10 |
+| **Total** | **~1,131** | **~504** | **~1,731** |
 
 ---
 
@@ -448,3 +462,19 @@ After all phases are complete, the test suite should pass these checks:
 - [ ] **TODO**: All 5 Shield hooks always exit 0 regardless of allow/deny. Some hook comments mention "exit code 2 = blocking error" (e.g., in `pre_commit_quality.sh` line 17) but this convention is never used. The deny mechanism is exclusively via JSON `hookSpecificOutput.permissionDecision`. Consider removing misleading exit-code-2 comments.
 
 - [ ] **TODO**: `pii_redactor.sh` never issues a deny decision — it only emits `additionalContext` warnings. This is by design (warn-only for PII), but the hook description in `hooks.json` says "Scan for PII patterns" without clarifying the warn-only behavior. Consider documenting this explicitly.
+
+### Hook Behavior Observations (discovered in Phase 4)
+
+- [ ] **TODO**: `skill_compliance_checker.sh` — `SKILLS_USED=$(grep -oE ... | sort -u)` crashes with `set -euo pipefail` when `grep` finds no matches (exit 1 propagated by `pipefail`). This causes the hook to exit 1 when no skills are present in the transcript. Harmless (session is ending) but incorrect. Fix: add `|| true` after the grep pipeline.
+
+- [ ] **TODO**: `skill_compliance_checker.sh` uses `decision: "block"` JSON format for non-compliance instead of the standard `hookSpecificOutput.permissionDecision: "deny"` used by Shield hooks. This inconsistency makes it harder to programmatically detect denials. Consider standardizing the JSON output format.
+
+- [ ] **TODO**: `framework_conflicts.json` referenced by `context_drift_detector.sh` at `SCRIPT_DIR/lib/framework_conflicts.json` does not exist in the repository. The hook exits cleanly when the file is missing, but conflict detection is effectively disabled. Create the conflicts definition file or document its absence.
+
+- [ ] **TODO**: `output_quality_scorer.sh` is listed under Foreman (§6.3) in the TESTING_ROADMAP but self-identifies as Town Crier (§6.4) in its script header. Clarify the correct layer assignment.
+
+- [ ] **TODO**: `root_agent_validator.sh` — `find` commands at the bottom (counting agents, skills, commands, hooks) crash with `set -euo pipefail` when the target directories don't exist. The `2>/dev/null` only suppresses stderr, but `pipefail` still propagates the non-zero exit code from `find`. Fix: add `|| true` after each `find | wc -l` pipeline.
+
+- [ ] **TODO**: `health_buffer.sh` path resolution — `CLAUDE_PLUGIN_ROOT/../../.forge` goes TWO levels up from the plugin root, which assumes `CLAUDE_PLUGIN_ROOT` is set to a path nested two levels below the repo root. This is fragile and sensitive to directory layout changes. Consider using `git rev-parse --show-toplevel` instead, or document the expected CLAUDE_PLUGIN_ROOT path convention.
+
+- [ ] **TODO**: Hooks that derive file paths from `SCRIPT_DIR` → `FORGE_DIR` (memory_pruning_daemon, memory_cross_pollinator, root_agent_validator, output_archival) cannot be fully integration-tested against temporary directories without copying the hook script into the temp env. Tests use `_run_*_in_env()` helpers to work around this, but a more robust approach would be to make these hooks accept a configurable `FORGE_DIR` via environment variable override.

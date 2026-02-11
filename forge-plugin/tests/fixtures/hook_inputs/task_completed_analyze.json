@@ -1,0 +1,7 @@
+{
+  "task_id": "task-001",
+  "task_subject": "/analyze my-project",
+  "session_id": "test-session-001",
+  "cwd": "/tmp/forge_test",
+  "transcript_path": "/tmp/forge_test/transcript.txt"
+}

@@ -1,0 +1,6 @@
+{
+  "transcript_path": "/tmp/forge_test/transcript.txt",
+  "stop_hook_active": false,
+  "session_id": "test-session-001",
+  "cwd": "/tmp/forge_test"
+}

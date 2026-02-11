@@ -1,0 +1,15 @@
+User: /analyze my-project
+
+Tool: Read skills/analyze/SKILL.md
+Tool: Read memory/skills/analyze/my-project/analysis.md
+Tool: Read context/python/frameworks.md
+Tool: Write memory/skills/analyze/my-project/analysis.md
+Tool: Write claudedocs/analysis-my-project.md
+
+User: /implement feature-x
+
+Tool: Read skills/implement/SKILL.md
+Tool: Read memory/skills/implement/my-project/decisions.md
+Tool: Read context/engineering/patterns.md
+Tool: Write memory/skills/implement/my-project/decisions.md
+Tool: Write claudedocs/implement-feature-x.md
