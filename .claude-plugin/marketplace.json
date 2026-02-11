@@ -9,9 +9,6 @@
       "source": "./forge-plugin",
       "description": "Sing, clear-voiced Muses, of Hephaestus famed for inventions.  With bright-eyed Athene he taught men glorious gifts throughout the world, -- men who before used to dwell in caves in the mountains like wild beasts.  But now that they have learned craft through Hephaestus the famed worker, easily they live a peaceful life in their own houses the whole year round.",
       "features": {
-        "skills": 21,
-        "commands": 7,
-        "context_domains": 8,
         "memory_system": true
       },
       "version": "0.1.0-alpha"
