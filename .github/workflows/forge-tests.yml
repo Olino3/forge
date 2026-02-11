@@ -1,0 +1,114 @@
+# ⚒️ The Forge — CI Test Pipeline
+#
+# Runs the Forge test suite across two layers:
+#   - Layer 1 (Static/CI): Always runs on push/PR to main/develop
+#   - Layer 2 (Integration): Runs after Layer 1 passes
+#   - E2E: Runs only on push to main (requires claude CLI, continue-on-error)
+#
+# Trigger paths: Only runs when forge-plugin/** or this workflow changes.
+
+name: Forge Tests
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'forge-plugin/**'
+      - '.github/workflows/forge-tests.yml'
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - 'forge-plugin/**'
+      - '.github/workflows/forge-tests.yml'
+
+jobs:
+  layer1-ci:
+    name: "Layer 1 — Static/CI Tests"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Python dependencies
+        run: pip install pytest pyyaml jsonschema
+
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y jq shellcheck
+
+      - name: Run Layer 1 pytest tests
+        working-directory: forge-plugin/tests
+        run: python -m pytest layer1/ -v --tb=short
+
+      - name: Run hook syntax checks
+        run: bash forge-plugin/tests/layer1/test_hook_syntax.sh
+
+      - name: Run shellcheck linting
+        run: bash forge-plugin/tests/layer1/test_shellcheck.sh
+
+  layer2-hooks:
+    name: "Layer 2 — Integration Tests"
+    runs-on: ubuntu-latest
+    needs: layer1-ci
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Python dependencies
+        run: pip install pytest pyyaml jsonschema
+
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Run hook integration tests
+        working-directory: forge-plugin/tests
+        run: python -m pytest layer2/hooks/ -v --tb=short
+
+      - name: Run memory lifecycle tests
+        working-directory: forge-plugin/tests
+        run: python -m pytest layer2/memory/ -v --tb=short
+
+      - name: Run context loading tests
+        working-directory: forge-plugin/tests
+        run: python -m pytest layer2/context/ -v --tb=short
+
+  layer2-e2e:
+    name: "E2E Tests (claude CLI)"
+    runs-on: ubuntu-latest
+    needs: layer2-hooks
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    continue-on-error: true
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check for claude CLI
+        id: check-claude
+        run: |
+          if command -v claude &>/dev/null; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "⚠ claude CLI not available — E2E tests skipped"
+          fi
+
+      - name: Run E2E plugin loading test
+        if: steps.check-claude.outputs.available == 'true'
+        run: bash forge-plugin/tests/layer2/e2e/test_plugin_loading.sh
+
+      - name: Run E2E command execution test
+        if: steps.check-claude.outputs.available == 'true'
+        run: bash forge-plugin/tests/layer2/e2e/test_command_execution.sh
+
+      - name: Run E2E skill invocation test
+        if: steps.check-claude.outputs.available == 'true'
+        run: bash forge-plugin/tests/layer2/e2e/test_skill_invocation.sh
