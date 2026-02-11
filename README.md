@@ -32,6 +32,7 @@ The Forge is not a plugin collection — it is a complete **Agentic Software Fac
 | 🪝 **Hooks** | 20 | Automated security, quality gates, and integrity enforcement |
 | 🔌 **MCP Servers** | 8 | External knowledge conduits (docs, browser, search, code intel) |
 | ⚙️ **Interfaces** | 4 | Abstract contracts decoupling all components from the filesystem |
+| 🧪 **Tests** | ~1,993 | Layered test suite — static validation, hook integration, E2E |
 
 ---
 
@@ -204,6 +205,27 @@ All components reference interfaces — never hardcoded filesystem paths. See [A
 
 ---
 
+## 🧪 Testing
+
+The Forge has a layered test suite (~1,993 total checks) validating structure, schemas, hook behavior, memory lifecycle, and context loading — using only bash, python3, jq, and optionally shellcheck.
+
+| Layer | What It Covers | Count |
+|-------|---------------|-------|
+| **Layer 1** (Static/CI) | JSON schemas, file structure, YAML frontmatter, cross-references, hook syntax | ~1,225 pytest + 96 bash |
+| **Layer 2** (Integration) | 20 hook I/O contracts, memory lifecycle, context loading protocol | ~504 pytest |
+| **E2E** | Plugin loading, command registration, skill discovery | ~168 bash |
+
+```bash
+# From forge-plugin/
+bash tests/run_all.sh           # Layer 1 only
+bash tests/run_all.sh --layer2  # Layer 1 + Layer 2
+bash tests/run_all.sh --e2e     # Everything
+```
+
+CI runs automatically via GitHub Actions on every push/PR. See [TESTING_ROADMAP.md](TESTING_ROADMAP.md) for the full testing architecture.
+
+---
+
 ## 📁 Project Structure
 
 ```
@@ -211,6 +233,7 @@ forge/
 ├── CLAUDE.md                    # The Forge Operating Manual (for Claude Code)
 ├── README.md                    # This file
 ├── ROADMAP.md                   # Vision and changelog
+├── TESTING_ROADMAP.md           # Testing architecture and specifications
 ├── CONTRIBUTING.md              # How to contribute
 ├── LICENSE                      # MIT License
 └── forge-plugin/                # The Forge Plugin
@@ -221,6 +244,7 @@ forge/
     ├── memory/                  # 4-layer project learning
     ├── hooks/                   # 20 automated handlers + hooks.json
     ├── interfaces/              # 4 core contracts + adapters + schemas
+    ├── tests/                   # Automated test suite (~1,993 checks)
     └── mcps/                    # 8 MCP server integrations
 ```
 
@@ -233,7 +257,7 @@ We welcome contributions! Whether you're forging a new skill, summoning a new ag
 1. 🍴 **Fork** [Olino3/forge](https://github.com/Olino3/forge)
 2. 🌿 **Branch** from `develop`
 3. ⚒️ **Build** following the conventions in [CONTRIBUTING.md](CONTRIBUTING.md)
-4. 🧪 **Test** with Claude Code
+4. 🧪 **Test** with `bash tests/run_all.sh --layer2`
 5. 📤 **PR** against `develop`
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on adding skills, agents, commands, context, and hooks.

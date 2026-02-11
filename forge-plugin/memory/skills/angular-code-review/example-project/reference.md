@@ -492,11 +492,7 @@ First review of this project - created comprehensive memory baseline.
 
 ## Usage Notes
 
-This reference shows examples only. In actual project memory:
-1. Create 4 separate files as shown above
-2. Update all files after each review
-3. Keep files concise and focused
-4. Document only project-specific information
+This reference shows examples only. In actual project memory, create 4 separate files as shown above, update all files after each review, and keep files concise and focused.
 
 ---
 
