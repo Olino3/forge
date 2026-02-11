@@ -1,11 +1,19 @@
 #!/bin/bash
 # ⚒️ The Forge — Layer 2 Test Runner
 #
+# DEPRECATED: This script is provided for convenience but the canonical entry point
+# is `tests/run_all.sh --layer2`. Both scripts work, but run_all.sh is preferred
+# because it handles all layers consistently and is used by CI.
+#
 # Runs all Layer 2 integration tests: hooks, memory, context, and E2E.
 #
 # Usage:
 #   bash tests/layer2/run_layer2.sh             # Integration tests only
 #   bash tests/layer2/run_layer2.sh --e2e       # Include E2E tests
+#
+# Preferred usage:
+#   bash tests/run_all.sh --layer2              # Integration tests via canonical runner
+#   bash tests/run_all.sh --e2e                 # Full test suite including E2E
 #
 # Exit codes:
 #   0 — All tests passed
