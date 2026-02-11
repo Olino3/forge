@@ -115,7 +115,7 @@ for group in $CONFLICT_GROUPS; do
         for pkg in $MEMBER_PACKAGES; do
             if echo "$PACKAGES" | grep -qi "^${pkg}$"; then
                 # Avoid duplicates
-                if [[ ! " ${DETECTED_IN_DEPS[*]:-} " =~ " ${member} " ]]; then
+                if [[ ! " ${DETECTED_IN_DEPS[*]:-} " =~ \ ${member}\ ]]; then
                     DETECTED_IN_DEPS+=("$member")
                 fi
                 break
@@ -140,7 +140,7 @@ for group in $CONFLICT_GROUPS; do
         for tag in $MEMBER_TAGS; do
             if echo "$ALL_CONTEXT_TAGS" | grep -qi "^${tag}$"; then
                 # Context has this tag — is this member in the project?
-                if [[ ! " ${DETECTED_IN_DEPS[*]:-} " =~ " ${member} " ]]; then
+                if [[ ! " ${DETECTED_IN_DEPS[*]:-} " =~ \ ${member}\ ]]; then
                     WARN="⚠️ Stale context: context files tagged [${tag}] exist but '${member}' is not in ${BASENAME}."
                     WARNINGS="${WARNINGS}${WARN}\n"
                     health_buffer_append "$WARN"
@@ -161,7 +161,7 @@ for group in $CONFLICT_GROUPS; do
         MEMBER_PACKAGES=$(jq -r ".\"$group\".members.\"$member\".packages[]" "$CONFLICTS_FILE" 2>/dev/null)
         for pkg in $MEMBER_PACKAGES; do
             if echo "$PACKAGES" | grep -qi "^${pkg}$"; then
-                if [[ ! " ${DETECTED_IN_DEPS[*]:-} " =~ " ${member} " ]]; then
+                if [[ ! " ${DETECTED_IN_DEPS[*]:-} " =~ \ ${member}\ ]]; then
                     DETECTED_IN_DEPS+=("$member")
                 fi
                 break

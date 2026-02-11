@@ -159,16 +159,16 @@ _sandbox_check_bash_command() {
 
     # Known dangerous path patterns (best-effort detection)
     local DANGEROUS_PATTERNS=(
-        '~/.ssh'
-        '~/.gnupg'
-        '~/.config'
-        '~/.bashrc'
-        '~/.bash_profile'
-        '~/.zshrc'
-        '~/.profile'
-        '~/.aws'
-        '~/.kube'
-        '~/.docker'
+        "$HOME/.ssh"
+        "$HOME/.gnupg"
+        "$HOME/.config"
+        "$HOME/.bashrc"
+        "$HOME/.bash_profile"
+        "$HOME/.zshrc"
+        "$HOME/.profile"
+        "$HOME/.aws"
+        "$HOME/.kube"
+        "$HOME/.docker"
         '/etc/passwd'
         '/etc/shadow'
         '/etc/hosts'
