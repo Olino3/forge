@@ -131,9 +131,12 @@ else
 fi
 
 # --- Test 6: Runtime command invocation (requires claude CLI) ---
+# NOTE: True runtime E2E testing of command invocation is not currently possible because the
+# `claude` CLI requires an interactive session. This test validates structure and discoverability.
+# Future options: (1) claude CLI batch/non-interactive mode, (2) dedicated Claude CLI test harness.
 if command -v claude &>/dev/null; then
-    info "claude CLI found — attempting runtime command verification..."
-    warn "Runtime command invocation tests not yet implemented (requires interactive claude session)"
+    info "claude CLI found — runtime command invocation tests not yet implemented"
+    warn "claude CLI requires interactive session; skipping runtime invocation"
 else
     warn "claude CLI not found — skipping runtime command invocation tests"
 fi

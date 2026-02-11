@@ -40,6 +40,11 @@ This directory contains **commands** - structured workflows that bridge the gap 
 | [`/test`](test/COMMAND.md) | utility | Test execution and validation | `test-cli-tools`, `generate-python-unit-tests`, `generate-jest-unit-tests` |
 | [`/build`](build/COMMAND.md) | utility | Project building and packaging | `generate-tilt-dev-environment` |
 | [`/brainstorm`](brainstorm/COMMAND.md) | orchestration | Requirements discovery and planning | `file-schema-analysis`, `database-schema-analysis` |
+| [`/remember`](remember/COMMAND.md) | utility | Memory management and recall | N/A |
+| [`/mock`](mock/COMMAND.md) | workflow | Mock service generation | `generate-mock-service` |
+| [`/azure-pipeline`](azure-pipeline/COMMAND.md) | workflow | Azure DevOps pipeline generation | `generate-azure-pipelines` |
+| [`/etl-pipeline`](etl-pipeline/COMMAND.md) | workflow | ETL pipeline scaffolding | `database-schema-analysis`, `file-schema-analysis` |
+| [`/azure-function`](azure-function/COMMAND.md) | workflow | Azure Function generation | `generate-azure-functions` |
 
 ## Command Selection Matrix
 
@@ -52,6 +57,11 @@ This directory contains **commands** - structured workflows that bridge the gap 
 | Run tests | `/test` | Use `skill:test-cli-tools` for systematic CLI testing |
 | Build project | `/build` | N/A - command is the right choice |
 | Explore requirements | `/brainstorm` | Use schema analysis skills for data modeling |
+| Store/recall knowledge | `/remember` | N/A - command is the right choice |
+| Create mock services | `/mock` | Use `skill:generate-mock-service` for fine-grained control |
+| Azure pipeline setup | `/azure-pipeline` | Use `skill:generate-azure-pipelines` for customization |
+| ETL pipeline creation | `/etl-pipeline` | Use schema analysis skills for data modeling first |
+| Azure function setup | `/azure-function` | Use `skill:generate-azure-functions` for advanced config |
 
 ## Command Workflow Pattern
 
@@ -131,22 +141,37 @@ commands/
 ├── analyze/
 │   ├── COMMAND.md
 │   └── examples.md
+├── azure-function/
+│   ├── COMMAND.md
+│   └── examples.md
+├── azure-pipeline/
+│   ├── COMMAND.md
+│   └── examples.md
+├── brainstorm/
+│   ├── COMMAND.md
+│   └── examples.md
+├── build/
+│   ├── COMMAND.md
+│   └── examples.md
+├── document/
+│   ├── COMMAND.md
+│   └── examples.md
+├── etl-pipeline/
+│   ├── COMMAND.md
+│   └── examples.md
 ├── implement/
 │   ├── COMMAND.md
 │   └── examples.md
 ├── improve/
 │   ├── COMMAND.md
 │   └── examples.md
-├── document/
+├── mock/
 │   ├── COMMAND.md
 │   └── examples.md
-├── test/
+├── remember/
 │   ├── COMMAND.md
 │   └── examples.md
-├── build/
-│   ├── COMMAND.md
-│   └── examples.md
-└── brainstorm/
+└── test/
     ├── COMMAND.md
     └── examples.md
 ```
