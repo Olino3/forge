@@ -1,0 +1,33 @@
+{
+  "$schema": "../interfaces/schemas/agent_config.schema.json",
+  "name": "prometheus",
+  "version": "1.0.0",
+  "description": "Master of foresight and strategic planning. Specializes in architecture design, technical roadmaps, refactoring strategies, and long-term system evolution",
+  "model": "sonnet",
+  "tools": ["Read", "Write", "Bash", "Grep", "Glob"],
+  "permissionMode": "auto",
+  "context": {
+    "primaryDomains": ["engineering"],
+    "secondaryDomains": ["python", "dotnet", "angular", "azure", "schema", "security"],
+    "alwaysLoadFiles": []
+  },
+  "memory": {
+    "storagePath": "forge-plugin/memory/agents/prometheus",
+    "categories": [
+      {"name": "architectures", "description": "Track system designs and decisions"},
+      {"name": "roadmaps", "description": "Store planning documents and milestones"},
+      {"name": "refactorings", "description": "Record refactoring strategies and outcomes"},
+      {"name": "decisions", "description": "Maintain architectural decision records (ADRs)"}
+    ]
+  },
+  "skills": [],
+  "hooks": [
+    {
+      "on_file_write": {
+        "patterns": ["ROADMAP.md", "ARCHITECTURE.md", "*.design.md", "ADR-*.md"],
+        "action": "validate_strategic_documents"
+      }
+    }
+  ],
+  "mcpServers": []
+}

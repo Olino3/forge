@@ -1,3 +1,40 @@
+---
+id: "python/dependency_management"
+domain: python
+title: "Python Dependency Management Reference"
+type: reference
+estimatedTokens: 1000
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Quick Command Reference"
+    estimatedTokens: 167
+    keywords: [quick, command, reference]
+  - name: "Version Constraint Syntax"
+    estimatedTokens: 75
+    keywords: [version, constraint, syntax]
+  - name: "Configuration Files"
+    estimatedTokens: 41
+    keywords: [configuration, files]
+  - name: "Best Practices"
+    estimatedTokens: 69
+    keywords: [best]
+  - name: "Common Issues"
+    estimatedTokens: 49
+    keywords: [issues]
+  - name: "CI/CD Integration"
+    estimatedTokens: 10
+    keywords: [cicd, integration]
+  - name: "Detection Patterns"
+    estimatedTokens: 52
+    keywords: [detection, patterns]
+  - name: "Official Documentation Links"
+    estimatedTokens: 37
+    keywords: [official, documentation, links]
+tags: [python, dependencies, pip, poetry, uv, conda, versioning]
+---
+
 # Python Dependency Management Reference
 
 Quick reference for managing Python dependencies across different package managers. For detailed documentation, see official sources linked below.

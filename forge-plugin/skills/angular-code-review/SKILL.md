@@ -1,6 +1,14 @@
 ---
 name: angular-code-review
 description: Deep Angular code review of changed files using git diff analysis. Focuses on production quality, security vulnerabilities, performance bottlenecks, architectural issues, and subtle bugs in code changes.
+version: 1.1.0
+context:
+  primary: [angular]
+  secondary: [security]
+  topics: [common_issues, component_patterns, service_patterns, rxjs_patterns, ngrx_patterns, performance_patterns, typescript_patterns, tailwind_patterns, primeng_patterns, security_patterns, context_detection]
+memory:
+  scope: per-project
+  files: [project_overview.md, common_patterns.md, known_issues.md, review_history.md]
 ---
 
 # Angular Code Review Expert
@@ -25,30 +33,33 @@ This skill consists of the following files:
 - `templates/report_template.md` - Comprehensive report format
 - `templates/inline_comment_template.md` - PR-style inline comment format
 
-**Context Files** (shared knowledge in `../../context/`):
-- `../../context/index.md` - Main context navigation guide
-- `../../context/angular/index.md` - Angular context navigation and quick reference
-- `../../context/angular/context_detection.md` - Framework and library detection
-- `../../context/angular/common_issues.md` - Universal Angular problems
-- `../../context/angular/component_patterns.md` - Component best practices
-- `../../context/angular/service_patterns.md` - Services and dependency injection
-- `../../context/angular/rxjs_patterns.md` - Observable patterns and operators
-- `../../context/angular/ngrx_patterns.md` - State management (NgRx, Akita)
-- `../../context/angular/performance_patterns.md` - Performance optimization
-- `../../context/angular/typescript_patterns.md` - TypeScript best practices
-- `../../context/angular/tailwind_patterns.md` - TailwindCSS with Angular
-- `../../context/angular/primeng_patterns.md` - PrimeNG component usage
-- `../../context/angular/security_patterns.md` - Angular-specific security
-- `../../context/security/index.md` - Security context navigation
-- `../../context/security/security_guidelines.md` - General security practices
+**Interface References**:
+- [ContextProvider](../../interfaces/context_provider.md) — `getDomainIndex("angular")`, `getConditionalContext("angular", topic)`, `getCrossDomainContext()`
+- [MemoryStore](../../interfaces/memory_store.md) — `getSkillMemory("angular-code-review", project)`, `update()`, `append()`
 
-**Memory Files** (project-specific learning in `../../memory/skills/angular-code-review/`):
-- `../../memory/index.md` - Memory system overview
-- `../../memory/skills/angular-code-review/index.md` - Angular review memory structure
-- `../../memory/skills/angular-code-review/{project-name}/project_overview.md` - Project framework and architecture
-- `../../memory/skills/angular-code-review/{project-name}/common_patterns.md` - Project-specific patterns
-- `../../memory/skills/angular-code-review/{project-name}/known_issues.md` - Documented technical debt
-- `../../memory/skills/angular-code-review/{project-name}/review_history.md` - Past review trends
+**Context** (via ContextProvider):
+- `contextProvider.getDomainIndex("angular")` — Angular context navigation and quick reference
+- `contextProvider.getConditionalContext("angular", "context_detection")` — Framework and library detection
+- `contextProvider.getConditionalContext("angular", "common_issues")` — Universal Angular problems
+- `contextProvider.getConditionalContext("angular", "component_patterns")` — Component best practices
+- `contextProvider.getConditionalContext("angular", "service_patterns")` — Services and dependency injection
+- `contextProvider.getConditionalContext("angular", "rxjs_patterns")` — Observable patterns and operators
+- `contextProvider.getConditionalContext("angular", "ngrx_patterns")` — State management (NgRx, Akita)
+- `contextProvider.getConditionalContext("angular", "performance_patterns")` — Performance optimization
+- `contextProvider.getConditionalContext("angular", "typescript_patterns")` — TypeScript best practices
+- `contextProvider.getConditionalContext("angular", "tailwind_patterns")` — TailwindCSS with Angular
+- `contextProvider.getConditionalContext("angular", "primeng_patterns")` — PrimeNG component usage
+- `contextProvider.getConditionalContext("angular", "security_patterns")` — Angular-specific security
+- `contextProvider.getDomainIndex("security")` — Security context navigation
+- `contextProvider.getConditionalContext("security", "security_guidelines")` — General security practices
+
+**Memory** (via MemoryStore):
+- `memoryStore.getSkillMemory("angular-code-review", project)` returns per-project files:
+- **Cross-skill discovery**: `memoryStore.getByProject(project)` — check for test results, component patterns, or other skill insights
+  - `project_overview.md` — Project framework and architecture
+  - `common_patterns.md` — Project-specific patterns
+  - `known_issues.md` — Documented technical debt
+  - `review_history.md` — Past review trends
 
 ---
 
@@ -96,25 +107,20 @@ This skill reviews code across **8 critical dimensions**:
 
 **Actions**:
 
-1. **Read Memory Index**:
-   - **READ** `../../memory/index.md` to understand the memory system
-   - **READ** `../../memory/skills/angular-code-review/index.md` to understand memory structure
-
-2. **Load Project Memory** (if it exists):
-   - Check if `../../memory/skills/angular-code-review/{project-name}/` directory exists
-   - If exists, **READ ALL** memory files:
+1. **Load Project Memory**:
+   - Use `memoryStore.getSkillMemory("angular-code-review", project)` to load project-specific memory
+   - If memory exists, review ALL memory files:
      - `project_overview.md` (CRITICAL - framework, architecture, conventions)
      - `common_patterns.md` (project-specific patterns)
      - `known_issues.md` (CRITICAL - prevents false positives on documented technical debt)
      - `review_history.md` (past trends and recurring issues)
 
-3. **Read Context Indexes**:
-   - **READ** `../../context/index.md` for overall context structure
-   - **READ** `../../context/angular/index.md` for Angular context navigation
-   - **READ** `../../context/security/index.md` for security context navigation
+2. **Load Context Indexes**:
+   - Use `contextProvider.getDomainIndex("angular")` for Angular context navigation
+   - Use `contextProvider.getDomainIndex("security")` for security context navigation
 
-4. **Detect Framework and Libraries**:
-   - **READ** `../../context/angular/context_detection.md` for detection patterns
+3. **Detect Framework and Libraries**:
+   - Use `contextProvider.getConditionalContext("angular", "context_detection")` for detection patterns
    - Analyze file structure, imports, and configurations to identify:
      - **Angular version** (2-18+)
      - **Module system**: Standalone components vs NgModules
@@ -143,20 +149,20 @@ This skill reviews code across **8 critical dimensions**:
 **Use the indexes from Step 2** to determine which context files are needed. Follow this decision matrix:
 
 **Always Load** (for every review):
-- `../../context/angular/common_issues.md` - Universal Angular problems
+- `contextProvider.getConditionalContext("angular", "common_issues")` — Universal Angular problems
 
 **Load Based on Detection** (from Step 2):
-- **Components/Templates detected** → `../../context/angular/component_patterns.md`
-- **Services/Dependency Injection detected** → `../../context/angular/service_patterns.md`
-- **Observables/RxJS detected** → `../../context/angular/rxjs_patterns.md`
-- **NgRx/Akita detected** → `../../context/angular/ngrx_patterns.md`
-- **Performance-critical code** → `../../context/angular/performance_patterns.md`
-- **TypeScript files** → `../../context/angular/typescript_patterns.md`
-- **TailwindCSS detected** → `../../context/angular/tailwind_patterns.md`
-- **PrimeNG components detected** → `../../context/angular/primeng_patterns.md`
+- **Components/Templates detected** → `contextProvider.getConditionalContext("angular", "component_patterns")`
+- **Services/Dependency Injection detected** → `contextProvider.getConditionalContext("angular", "service_patterns")`
+- **Observables/RxJS detected** → `contextProvider.getConditionalContext("angular", "rxjs_patterns")`
+- **NgRx/Akita detected** → `contextProvider.getConditionalContext("angular", "ngrx_patterns")`
+- **Performance-critical code** → `contextProvider.getConditionalContext("angular", "performance_patterns")`
+- **TypeScript files** → `contextProvider.getConditionalContext("angular", "typescript_patterns")`
+- **TailwindCSS detected** → `contextProvider.getConditionalContext("angular", "tailwind_patterns")`
+- **PrimeNG components detected** → `contextProvider.getConditionalContext("angular", "primeng_patterns")`
 - **Security-sensitive code** (auth, API calls, user input):
-  - `../../context/angular/security_patterns.md`
-  - `../../context/security/security_guidelines.md`
+  - `contextProvider.getConditionalContext("angular", "security_patterns")`
+  - `contextProvider.getConditionalContext("security", "security_guidelines")`
 
 **DO NOT** load context files that aren't relevant to the changed code (saves tokens, improves focus).
 
@@ -276,7 +282,7 @@ This skill reviews code across **8 critical dimensions**:
    - Save output to `/claudedocs/angular_review_{timestamp}.md`
 
 3. **Update Project Memory**:
-   - **Create directory** if first review: `../../memory/skills/angular-code-review/{project-name}/`
+   - Use `memoryStore.update("angular-code-review", project, filename, content)` for each memory file
    - **Create or UPDATE** the following files:
 
      **project_overview.md** (always update):
@@ -481,6 +487,11 @@ Deep analysis of performance patterns:
 ---
 
 ## Version History
+
+### v1.1.0 (2025-07-15)
+- Phase 4 Migration: Replaced all hardcoded `../../context/` and `../../memory/` paths with ContextProvider and MemoryStore interface calls
+- Added Interface References section with contextProvider/memoryStore method signatures
+- Updated YAML frontmatter with context/memory declarations
 
 ### v1.0.0 (2025-01-14)
 **Initial Release**

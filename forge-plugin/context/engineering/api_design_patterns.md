@@ -1,3 +1,34 @@
+---
+id: "engineering/api_design_patterns"
+domain: engineering
+title: "API Design Patterns"
+type: reference
+estimatedTokens: 350
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "REST Conventions Quick Reference"
+    estimatedTokens: 50
+    keywords: [rest, conventions, quick, reference]
+  - name: "Error Response Format"
+    estimatedTokens: 18
+    keywords: [error, response, format]
+  - name: "Pagination Patterns"
+    estimatedTokens: 29
+    keywords: [pagination, patterns]
+  - name: "Versioning Strategies"
+    estimatedTokens: 31
+    keywords: [versioning, strategies]
+  - name: "What to Check in Reviews"
+    estimatedTokens: 34
+    keywords: [check, reviews]
+  - name: "References"
+    estimatedTokens: 15
+    keywords: [references]
+tags: [engineering, api, rest, pagination, versioning, error-handling]
+---
+
 # API Design Patterns
 
 REST API conventions and patterns for consistent API design across projects.

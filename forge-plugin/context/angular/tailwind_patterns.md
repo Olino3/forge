@@ -1,3 +1,31 @@
+---
+id: "angular/tailwind_patterns"
+domain: angular
+title: "TailwindCSS with Angular"
+type: framework
+estimatedTokens: 250
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Configuration"
+    estimatedTokens: 30
+    keywords: [configuration, configuration]
+  - name: "Dynamic Classes"
+    estimatedTokens: 43
+    keywords: [dynamic, classes, dynamic-classes]
+  - name: "Responsive Design"
+    estimatedTokens: 11
+    keywords: [responsive, design, responsive]
+  - name: "Component Integration"
+    estimatedTokens: 18
+    keywords: [component, integration, components]
+  - name: "PrimeNG Conflicts"
+    estimatedTokens: 18
+    keywords: [primeng, conflicts, primeng-conflicts]
+tags: [angular, tailwindcss, css, responsive, dynamic-classes, primeng-conflicts]
+---
+
 # TailwindCSS with Angular
 
 Best practices for integrating TailwindCSS with Angular applications.

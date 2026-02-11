@@ -1,3 +1,15 @@
+---
+name: generate-azure-pipelines
+description: Generate Azure DevOps pipelines with CI/CD workflows and Bicep infrastructure as code
+version: 1.1.0
+context:
+  primary: [azure]
+  topics: [azure_pipelines_overview, azure_pipelines_cicd_patterns, azure_bicep_overview]
+memory:
+  scope: per-project
+  files: [pipeline_config.md, generated_files.md, bicep_resources.md, customizations.md]
+---
+
 # Skill: generate-azure-pipelines
 
 **Version**: 1.0.0
@@ -36,23 +48,23 @@ forge-plugin/skills/generate-azure-pipelines/
 
 ---
 
-## Required Reading
+## Interface References
 
-**Before executing this skill**, read these files in order:
+- [ContextProvider](../../interfaces/context_provider.md) — `getDomainIndex("azure")`, `getConditionalContext("azure", topic)`
+- [MemoryStore](../../interfaces/memory_store.md) — `getSkillMemory("generate-azure-pipelines", project)`, `update()`
 
-1. **Context indexes** (understand what context is available):
-   - `../../context/azure/index.md` - Azure context navigation
+**Context** (via ContextProvider):
+- `contextProvider.getDomainIndex("azure")` — Azure context navigation
+- `contextProvider.getConditionalContext("azure", "azure_pipelines_overview")` — Pipeline structure and syntax
+- `contextProvider.getConditionalContext("azure", "azure_pipelines_cicd_patterns")` — CI/CD patterns and decision matrix
+- `contextProvider.getConditionalContext("azure", "azure_bicep_overview")` — Bicep infrastructure as code
 
-2. **Memory index** (understand memory structure):
-   - `../../memory/skills/generate-azure-pipelines/index.md` - Memory structure for this skill
-
-3. **Context files** (load relevant Azure Pipelines knowledge):
-   - `../../context/azure/azure_pipelines_overview.md` - Pipeline structure and syntax
-   - `../../context/azure/azure_pipelines_cicd_patterns.md` - CI/CD patterns and decision matrix
-   - `../../context/azure/azure_bicep_overview.md` - Bicep infrastructure as code
-
-4. **Project memory** (if exists):
-   - `../../memory/skills/generate-azure-pipelines/{project-name}/` - Previous pipeline configurations
+**Memory** (via MemoryStore):
+- `memoryStore.getSkillMemory("generate-azure-pipelines", project)` returns per-project files:
+  - `pipeline_config.md` — Previous pipeline configurations
+  - `generated_files.md` — List of generated files
+  - `bicep_resources.md` — Infrastructure resources
+  - `customizations.md` — User-specific changes
 
 ---
 
@@ -244,10 +256,10 @@ Use **Socratic method** to gather requirements. Ask questions in this order:
 **Objective**: Understand available context and memory structure
 
 **Actions**:
-1. Read `../../context/azure/index.md` to understand Azure Pipelines context
-2. Read `../../memory/skills/generate-azure-pipelines/index.md` to understand memory structure
+1. Load Azure domain index via `contextProvider.getDomainIndex("azure")`
+2. Identify which context topics will be needed based on requirements
 
-**Verification**: Indexes loaded, know which context files to load next
+**Verification**: Domain index loaded, know which context topics to load next
 
 ---
 
@@ -257,8 +269,8 @@ Use **Socratic method** to gather requirements. Ask questions in this order:
 
 **Actions**:
 1. Determine project name from current directory or user input
-2. Check if `../../memory/skills/generate-azure-pipelines/{project-name}/` exists
-3. If exists, read all memory files:
+2. Load project memory via `memoryStore.getSkillMemory("generate-azure-pipelines", project)`
+3. If memory exists, review all memory files:
    - `pipeline_config.md` - Previous pipeline structure
    - `generated_files.md` - List of generated files
    - `bicep_resources.md` - Infrastructure resources
@@ -273,9 +285,9 @@ Use **Socratic method** to gather requirements. Ask questions in this order:
 **Objective**: Load Azure Pipelines and Bicep knowledge
 
 **Actions**:
-1. Read `../../context/azure/azure_pipelines_overview.md` - Pipeline structure, stages, jobs, tasks
-2. Read `../../context/azure/azure_pipelines_cicd_patterns.md` - CI/CD patterns and decision matrix
-3. Read `../../context/azure/azure_bicep_overview.md` - Bicep templates and syntax
+1. Load `contextProvider.getConditionalContext("azure", "azure_pipelines_overview")` - Pipeline structure, stages, jobs, tasks
+2. Load `contextProvider.getConditionalContext("azure", "azure_pipelines_cicd_patterns")` - CI/CD patterns and decision matrix
+3. Load `contextProvider.getConditionalContext("azure", "azure_bicep_overview")` - Bicep templates and syntax
 
 **Verification**: Context loaded, understand pipeline patterns and Bicep structure
 
@@ -399,22 +411,22 @@ Use **Socratic method** to gather requirements. Ask questions in this order:
 **Objective**: Store configuration for future reference
 
 **Actions**:
-1. Create/update `../../memory/skills/generate-azure-pipelines/{project-name}/pipeline_config.md`:
+1. Use `memoryStore.update("generate-azure-pipelines", project, "pipeline_config.md", content)` with:
    - Pipeline architecture (separate/combined)
    - Runtime and build tool
    - Deployment target
    - Environments
 
-2. Create/update `generated_files.md`:
+2. Use `memoryStore.update("generate-azure-pipelines", project, "generated_files.md", content)` with:
    - List all generated files with timestamps
    - Note which templates were used
 
-3. Create/update `bicep_resources.md`:
+3. Use `memoryStore.update("generate-azure-pipelines", project, "bicep_resources.md", content)` with:
    - List Azure resources in Bicep templates
    - Resource naming conventions
    - Environment-specific configurations
 
-4. Create/update `customizations.md`:
+4. Use `memoryStore.update("generate-azure-pipelines", project, "customizations.md", content)` with:
    - User-specific requirements
    - Deviations from standard templates
    - Custom pipeline steps
@@ -517,6 +529,11 @@ Generated pipelines use:
 ---
 
 ## Version History
+
+### v1.1.0 (2025-07-15)
+- Phase 4 Migration: Replaced hardcoded `../../context/` and `../../memory/` paths with ContextProvider and MemoryStore interface calls
+- Added YAML frontmatter with context/memory declarations
+- Added Interface References section
 
 ### v1.0.0 (2025-11-18)
 

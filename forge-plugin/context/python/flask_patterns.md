@@ -1,3 +1,46 @@
+---
+id: "python/flask_patterns"
+domain: python
+title: "Flask Patterns"
+type: framework
+estimatedTokens: 1000
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Common Anti-Patterns"
+    estimatedTokens: 103
+    keywords: [anti-patterns]
+  - name: "Application Factory"
+    estimatedTokens: 54
+    keywords: [application, factory]
+  - name: "Blueprints"
+    estimatedTokens: 51
+    keywords: [blueprints]
+  - name: "Request Context"
+    estimatedTokens: 59
+    keywords: [request, context]
+  - name: "Common Detection Patterns"
+    estimatedTokens: 119
+    keywords: [detection, patterns]
+  - name: "Security Issues"
+    estimatedTokens: 66
+    keywords: [security, issues]
+  - name: "Extensions"
+    estimatedTokens: 45
+    keywords: [extensions]
+  - name: "Testing"
+    estimatedTokens: 20
+    keywords: [testing]
+  - name: "Tools"
+    estimatedTokens: 14
+    keywords: [tools]
+  - name: "Official Resources"
+    estimatedTokens: 20
+    keywords: [official, resources]
+tags: [python, flask, blueprints, factory, security, extensions]
+---
+
 # Flask Patterns
 
 Quick reference for Flask best practices and common issues. For detailed examples, see [Flask documentation](https://flask.palletsprojects.com/).

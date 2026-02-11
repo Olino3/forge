@@ -13,12 +13,16 @@ description: Analyze and document file-based data schemas across multiple format
 
 - **SKILL.md** (this file): Main instructions and MANDATORY workflow
 - **examples.md**: Analysis scenarios with before/after examples
-- **../../context/schema/**: Schema analysis patterns and detection logic
-  - `index.md`, `file_formats.md`, `common_patterns.md`
-- **../../memory/skills/file-schema-analysis/**: Project-specific memory storage
-  - `{project-name}/`: Per-project learned patterns and context
+- **Context**: Schema analysis patterns loaded via `contextProvider.getDomainIndex("schema")`. See [ContextProvider Interface](../../interfaces/context_provider.md).
+- **Memory**: Project-specific memory accessed via `memoryStore.getSkillMemory("file-schema-analysis", "{project-name}")`. See [MemoryStore Interface](../../interfaces/memory_store.md).
 - **templates/**: `analysis_report.md`, `schema_visualization.md`
 - **scripts/**: Helper utilities for schema extraction
+
+## Interface References
+
+- **Context**: Loaded via [ContextProvider Interface](../../interfaces/context_provider.md)
+- **Memory**: Accessed via [MemoryStore Interface](../../interfaces/memory_store.md)
+- **Schemas**: Validated against [context_metadata.schema.json](../../interfaces/schemas/context_metadata.schema.json) and [memory_entry.schema.json](../../interfaces/schemas/memory_entry.schema.json)
 
 ## Analysis Focus Areas
 
@@ -60,18 +64,15 @@ File schema analysis evaluates 7 critical dimensions:
 **YOU MUST:**
 1. **CHECK PROJECT MEMORY FIRST**:
    - Identify the project name from the repository root or ask the user
-   - **READ** `../../memory/skills/file-schema-analysis/index.md` to understand the memory system
-   - Check `../../memory/skills/file-schema-analysis/{project-name}/` for existing project memory
-   - If memory exists, read the memory files to understand previously analyzed schemas, patterns, and project-specific context
+   - Use `memoryStore.getSkillMemory("file-schema-analysis", "{project-name}")` to load existing project memory. See [MemoryStore Interface](../../interfaces/memory_store.md).
+   - If memory exists, review previously analyzed schemas, patterns, and project-specific context
    - If no memory exists, you will create it later in this process
 
 2. **USE CONTEXT INDEXES FOR EFFICIENT LOADING**:
-   - **READ** `../../context/index.md` for overview of available context files
-   - **READ** `../../context/schema/index.md` to understand schema context files and when to use each
-   - Based on the file formats identified in Step 1, load relevant context files:
-     - Always load `common_patterns.md` for foundational concepts
-     - Load `file_formats.md` for file-specific patterns
-   - If analyzing security-sensitive schemas, read `../../context/security/index.md`
+   - Use `contextProvider.getDomainIndex("schema")` to discover available schema context files. See [ContextProvider Interface](../../interfaces/context_provider.md).
+   - Based on the file formats identified in Step 1, use `contextProvider.getConditionalContext("schema", detection)` to load relevant files
+   - Always load `common_patterns.md` via `contextProvider.getAlwaysLoadFiles("schema")`
+   - If analyzing security-sensitive schemas, use `contextProvider.getCrossDomainContext("schema", {"security": true})`
 
 3. **Ask clarifying questions** in Socratic format:
    - What is the purpose of these schema files?
@@ -178,12 +179,13 @@ File schema analysis evaluates 7 critical dimensions:
    - Dependency graph
 
 3. **UPDATE PROJECT MEMORY**:
-   - Create or update `../../memory/skills/file-schema-analysis/{project-name}/analysis_summary.md`
-   - Document discovered patterns
-   - Note schema conventions and naming patterns
-   - Record format preferences
-   - List dependencies and relationships
-   - Save metadata for future reference
+   - Use `memoryStore.update(layer="skill-specific", skill="file-schema-analysis", project="{project-name}", ...)` to store:
+   - Discovered patterns
+   - Schema conventions and naming patterns
+   - Format preferences
+   - Dependencies and relationships
+   - Metadata for future reference
+   - Timestamps and staleness tracking are handled automatically by MemoryStore. See [MemoryStore Interface](../../interfaces/memory_store.md).
 
 4. **Provide actionable recommendations**:
    - Suggest improvements for quality issues
@@ -292,6 +294,10 @@ When interacting with users, ask clarifying questions such as:
 
 ## Version History
 
+- **v1.1.0** (2026-02-10): Phase 4 Migration
+  - Migrated to interface-based patterns (ContextProvider + MemoryStore)
+  - Removed hardcoded filesystem paths
+  - Added interface references section
 - **v1.0.0** (2025-02-06): Initial release
   - Support for JSON Schema, Protobuf, GraphQL, OpenAPI, Avro, XML/XSD
   - Comprehensive analysis workflow

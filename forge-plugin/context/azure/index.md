@@ -1,3 +1,87 @@
+---
+id: "azure/index"
+domain: azure
+title: "Azure Context Index"
+type: index
+estimatedTokens: 1550
+loadingStrategy: always
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+indexedFiles:
+  - id: "azure/azure_functions_overview"
+    path: "azure_functions_overview.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "azure/azure_pipelines_overview"
+    path: "azure_pipelines_overview.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "azure/azure_pipelines_cicd_patterns"
+    path: "azure_pipelines_cicd_patterns.md"
+    type: pattern
+    loadingStrategy: onDemand
+  - id: "azure/azure_bicep_overview"
+    path: "azure_bicep_overview.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "azure/azure_verified_modules"
+    path: "azure_verified_modules.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "azure/azurite_setup"
+    path: "azurite_setup.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "azure/docker_compose_reference"
+    path: "docker_compose_reference.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "azure/dockerfile_reference"
+    path: "dockerfile_reference.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "azure/local_development_setup"
+    path: "local_development_setup.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "azure/tiltfile_reference"
+    path: "tiltfile_reference.md"
+    type: reference
+    loadingStrategy: onDemand
+sections:
+  - name: "Purpose"
+    estimatedTokens: 23
+    keywords: [purpose]
+  - name: "Conceptual Overview"
+    estimatedTokens: 38
+    keywords: [conceptual]
+  - name: "Directory Structure"
+    estimatedTokens: 87
+    keywords: [directory, structure]
+  - name: "Context Files"
+    estimatedTokens: 421
+    keywords: [context, files]
+  - name: "Decision Matrix"
+    estimatedTokens: 72
+    keywords: [decision, matrix]
+  - name: "Workflow: Generate Azure Functions Project"
+    estimatedTokens: 44
+    keywords: [workflow, generate, azure, functions, project]
+  - name: "Workflow: Generate Azure Pipelines"
+    estimatedTokens: 51
+    keywords: [workflow, generate, azure, pipelines]
+  - name: "Compact Approach"
+    estimatedTokens: 25
+    keywords: [compact, approach]
+  - name: "Related Files"
+    estimatedTokens: 24
+    keywords: [related, files]
+  - name: "Official Documentation"
+    estimatedTokens: 32
+    keywords: [official, documentation]
+tags: [azure, index, navigation, functions, pipelines, bicep, azurite, docker, tilt]
+---
+
 # Azure Context Index
 
 ## Purpose

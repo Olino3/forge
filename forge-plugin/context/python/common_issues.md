@@ -1,3 +1,30 @@
+---
+id: "python/common_issues"
+domain: python
+title: "Common Python Issues and Anti-Patterns"
+type: always
+estimatedTokens: 350
+loadingStrategy: always
+version: "1.0.0"
+lastUpdated: "2025-11-14"
+maintainedFor: "python-code-review"
+sections:
+  - name: "Core Language Issues"
+    estimatedTokens: 80
+    keywords: [mutable-defaults, closures, iteration, comparison]
+  - name: "Memory and Performance"
+    estimatedTokens: 70
+    keywords: [circular-references, string-concatenation, generators]
+  - name: "Detection Patterns"
+    estimatedTokens: 80
+    keywords: [code-patterns, review-signals]
+  - name: "Tools for Detection"
+    estimatedTokens: 40
+    keywords: [pylint, flake8, ruff, mypy, bandit]
+tags: [python, anti-patterns, code-review, universal]
+crossDomainTriggers: []
+---
+
 # Common Python Issues and Anti-Patterns
 
 Quick reference for universal Python anti-patterns and common issues. For detailed examples and explanations, see official Python docs and community resources.

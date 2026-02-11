@@ -1,21 +1,31 @@
 #!/bin/bash
-# Pre-commit hook: Quality gate before git commits
+# pre_commit_quality.sh — The Shield: Pre-commit Quality Gate
 #
-# Usage: bash pre_commit_quality.sh [command_string]
+# Hook:    PreToolUse (matcher: Bash)
+# Layer:   §6.1 The Shield
+# Purpose: Block git commit commands that would stage secrets or
+#          violate quality conventions.
 #
 # Checks:
-# 1. No .env, credentials.json, or secret files staged
-# 2. No /claudedocs/ output files accidentally staged
-# 3. Modified SKILL.md files have updated "Version History" section
-# 4. Memory files don't contain absolute paths (should be relative)
+#   1. No .env, credentials.json, or secret files staged
+#   2. No /claudedocs/ output files accidentally staged
+#   3. Modified SKILL.md files have updated "Version History" section
+#   4. Memory files don't contain absolute paths (should be relative)
 #
-# Returns exit code 1 to block commit if critical issues found
+# Input:  JSON on stdin (Claude Code PreToolUse format)
+# Output: JSON with hookSpecificOutput.permissionDecision (deny if secrets found)
+#         Exit code 2 = blocking error (per Claude Code convention)
 
 set -euo pipefail
 
+# --- Parse stdin ---------------------------------------------------------
+INPUT=$(cat)
+
+# Extract the command from tool_input
+COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty' 2>/dev/null)
+
 # Only run for git commit commands
-COMMAND="${1:-}"
-if [[ "$COMMAND" != *"git commit"* ]] && [[ "$COMMAND" != *"git -c"*"commit"* ]]; then
+if [[ -z "$COMMAND" ]] || { [[ "$COMMAND" != *"git commit"* ]] && [[ "$COMMAND" != *"git -c"*"commit"* ]]; }; then
     exit 0
 fi
 
@@ -60,15 +70,32 @@ done
 
 # Output results
 if [[ -n "$ISSUES" ]]; then
-    echo -e "Pre-commit quality gate FAILED:$ISSUES" >&2
+    FULL_MSG="Pre-commit quality gate BLOCKED:${ISSUES}"
     if [[ -n "$WARNINGS" ]]; then
-        echo -e "\nAdditional warnings:$WARNINGS" >&2
+        FULL_MSG="${FULL_MSG}\nAdditional warnings:${WARNINGS}"
     fi
-    exit 1
+    # Escape for JSON
+    ESCAPED_MSG=$(echo -e "$FULL_MSG" | sed 's/"/\\"/g' | tr '\n' ' ')
+    cat <<EOF
+{
+  "hookSpecificOutput": {
+    "hookEventName": "PreToolUse",
+    "permissionDecision": "deny",
+    "permissionDecisionReason": "🛡️ ${ESCAPED_MSG}"
+  }
+}
+EOF
+    exit 0
 fi
 
 if [[ -n "$WARNINGS" ]]; then
-    echo -e "Pre-commit warnings (non-blocking):$WARNINGS" >&2
+    # Non-blocking warnings — surface as additionalContext
+    ESCAPED_WARN=$(echo -e "Pre-commit warnings (non-blocking):${WARNINGS}" | sed 's/"/\\"/g' | tr '\n' ' ')
+    cat <<EOF
+{
+  "additionalContext": "⚠️ ${ESCAPED_WARN}"
+}
+EOF
 fi
 
 exit 0

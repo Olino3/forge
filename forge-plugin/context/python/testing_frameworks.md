@@ -1,3 +1,37 @@
+---
+id: "python/testing_frameworks"
+domain: python
+title: "Python Testing Frameworks"
+type: pattern
+estimatedTokens: 900
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Framework Detection"
+    estimatedTokens: 30
+    keywords: [framework, detection]
+  - name: "pytest (Recommended)"
+    estimatedTokens: 156
+    keywords: [pytest, recommended]
+  - name: "unittest (Standard Library)"
+    estimatedTokens: 101
+    keywords: [unittest, standard, library]
+  - name: "nose2 (Less Common)"
+    estimatedTokens: 15
+    keywords: [nose2, less]
+  - name: "Framework Comparison"
+    estimatedTokens: 55
+    keywords: [framework, comparison]
+  - name: "Choosing a Framework"
+    estimatedTokens: 42
+    keywords: [choosing, framework]
+  - name: "Related Context Files"
+    estimatedTokens: 13
+    keywords: [related, context, files]
+tags: [python, testing, pytest, unittest, fixtures, assertions]
+---
+
 # Python Testing Frameworks
 
 ## Framework Detection

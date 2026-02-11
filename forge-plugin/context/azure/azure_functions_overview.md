@@ -1,3 +1,46 @@
+---
+id: "azure/azure_functions_overview"
+domain: azure
+title: "Azure Functions Overview"
+type: reference
+estimatedTokens: 1350
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Programming Models Comparison"
+    estimatedTokens: 149
+    keywords: [programming, models, comparison]
+  - name: "Quick Comparison Table"
+    estimatedTokens: 56
+    keywords: [quick, comparison, table]
+  - name: "Common Triggers and Bindings"
+    estimatedTokens: 54
+    keywords: [triggers, bindings]
+  - name: "host.json Configuration"
+    estimatedTokens: 27
+    keywords: [hostjson, configuration]
+  - name: "Azure Functions CLI Commands"
+    estimatedTokens: 51
+    keywords: [azure, functions, cli, commands]
+  - name: "Migration from v1 to v2"
+    estimatedTokens: 60
+    keywords: [migration]
+  - name: "Detection Patterns"
+    estimatedTokens: 31
+    keywords: [detection, patterns]
+  - name: "Best Practices"
+    estimatedTokens: 42
+    keywords: [best]
+  - name: "Example .funcignore"
+    estimatedTokens: 10
+    keywords: [example, funcignore]
+  - name: "Official Documentation"
+    estimatedTokens: 14
+    keywords: [official, documentation]
+tags: [azure, functions, serverless, python, triggers, bindings, v1, v2]
+---
+
 # Azure Functions Overview
 
 ## Programming Models Comparison

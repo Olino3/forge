@@ -1,3 +1,20 @@
+---
+name: generate-mock-service
+description: Generate simulated service doppelgangers for testing and development. Creates mock servers (Express, Flask, FastAPI, WireMock, Prism) matching real API contracts with realistic responses, error scenarios, and Docker containerization.
+version: "1.1.0"
+context:
+  primary_domain: ""
+  always_load_files: []
+  detection_required: false
+  file_budget: 4
+memory:
+  scopes:
+    - type: "skill-specific"
+      files: [mock_config.md, generated_mocks.md, scenarios.md, integration_notes.md]
+    - type: "shared-project"
+      usage: "reference"
+---
+
 # Skill: generate-mock-service
 
 **Version**: 1.0.0
@@ -34,16 +51,17 @@ forge-plugin/skills/generate-mock-service/
 
 ## Required Reading
 
-**Before executing this skill**, read these files in order:
+**Before executing this skill**, load context and memory via interfaces:
 
-1. **Context indexes** (understand what context is available):
-   - Look for API, REST, testing context files
+1. **Context**: Use `contextProvider.getDomainIndex()` for relevant domain context. See [ContextProvider Interface](../../interfaces/context_provider.md).
 
-2. **Memory index** (understand memory structure):
-   - `../../memory/skills/generate-mock-service/index.md` - Memory structure for this skill
+2. **Skill memory**: Use `memoryStore.getSkillMemory("generate-mock-service", "{project-name}")` for previous mock configurations. See [MemoryStore Interface](../../interfaces/memory_store.md).
 
-3. **Project memory** (if exists):
-   - `../../memory/skills/generate-mock-service/{project-name}/` - Previous mock configurations
+## Interface References
+
+- **Context**: Loaded via [ContextProvider Interface](../../interfaces/context_provider.md)
+- **Memory**: Accessed via [MemoryStore Interface](../../interfaces/memory_store.md)
+- **Schemas**: Validated against [memory_entry.schema.json](../../interfaces/schemas/memory_entry.schema.json)
 
 ---
 
@@ -193,9 +211,9 @@ After understanding the mock requirements, ask user about:
 **Purpose**: Understand available context and memory
 
 **Actions**:
-1. Check for relevant context files in `../../context/`
-2. Check if `../../memory/skills/generate-mock-service/index.md` exists
-3. Identify which context files will be needed
+1. Use `contextProvider.getDomainIndex()` for relevant context files. See [ContextProvider Interface](../../interfaces/context_provider.md).
+2. Use `memoryStore.getSkillMemory("generate-mock-service", "{project-name}")` to check for existing memory. See [MemoryStore Interface](../../interfaces/memory_store.md).
+3. Identify which context domains are relevant to the mock target
 
 **Output**: Knowledge of available guidance and memory structure
 
@@ -206,8 +224,8 @@ After understanding the mock requirements, ask user about:
 **Purpose**: Understand previous mock configurations for this project
 
 **Actions**:
-1. Check if `../../memory/skills/generate-mock-service/{project-name}/` exists
-2. If exists, read:
+1. Use `memoryStore.getSkillMemory("generate-mock-service", "{project-name}")` to load project memory. See [MemoryStore Interface](../../interfaces/memory_store.md).
+2. If memory exists, review:
    - `mock_config.md` - Previous mock configurations
    - `generated_mocks.md` - What mocks were generated before
    - `scenarios.md` - Documented scenarios
@@ -398,8 +416,8 @@ After understanding the mock requirements, ask user about:
 **Purpose**: Store configuration for future reference
 
 **Actions**:
-1. Create `../../memory/skills/generate-mock-service/{project-name}/` directory
-2. Create `mock_config.md`:
+1. Use `memoryStore.update(layer="skill-specific", skill="generate-mock-service", project="{project-name}", ...)` to store:
+2. **mock_config.md**:
    - Service being mocked
    - Mock type (Express, Flask, WireMock, etc.)
    - Port configuration
@@ -515,6 +533,11 @@ After understanding the mock requirements, ask user about:
 
 ## Version History
 
+- **1.1.0** (2026-02-10): Phase 4 Migration
+  - Migrated to interface-based patterns (ContextProvider + MemoryStore)
+  - Added YAML frontmatter with declarative context/memory configuration
+  - Removed hardcoded filesystem paths
+  - Added interface references section
 - **1.0.0** (2026-02-06): Initial implementation
   - Multiple mock server types (Express, Flask, FastAPI, WireMock, Prism)
   - Realistic response generation

@@ -1,3 +1,20 @@
+---
+name: "{skill-name}"
+description: "{description}"
+version: "1.0.0"
+context:
+  primary_domain: "{domain}"
+  always_load_files: []
+  detection_required: false
+  file_budget: 4
+memory:
+  scopes:
+    - type: "skill-specific"
+      files: [project_overview.md, common_patterns.md]
+    - type: "shared-project"
+      usage: "reference"
+---
+
 # skill:{skill-name} - [Short Description]
 
 ## Version: 1.0.0
@@ -18,6 +35,13 @@ skills/{skill-name}/
     └── [output templates]
 ```
 
+## Interface References
+
+- **Context**: Loaded via [ContextProvider Interface](../../interfaces/context_provider.md)
+- **Memory**: Accessed via [MemoryStore Interface](../../interfaces/memory_store.md)
+- **Shared Patterns**: [Shared Loading Patterns](../../interfaces/shared_loading_patterns.md)
+- **Schemas**: Validated against [context_metadata.schema.json](../../interfaces/schemas/context_metadata.schema.json) and [memory_entry.schema.json](../../interfaces/schemas/memory_entry.schema.json)
+
 ## Mandatory Workflow
 
 > **IMPORTANT**: Execute ALL steps in order. Do not skip any step.
@@ -28,20 +52,13 @@ skills/{skill-name}/
 - Detect project type (language, framework, architecture)
 - Determine project name for memory lookup
 
-### Step 2: Load Indexes & Memory
+### Step 2: Load Memory
 
-- Read `../../context/loading_protocol.md` for context loading guidance
-- Read `../../context/{domain}/index.md` for available context files
-- Read `../../memory/projects/{project}/project_profile.md` (if exists) for shared project knowledge
-- Read `../../memory/skills/{this-skill}/{project}/` (if exists) for skill-specific memory
+> Follow [Standard Memory Loading](../../interfaces/shared_loading_patterns.md#pattern-1-standard-memory-loading) with `skill="{this-skill}"` and `domain="{domain}"`.
 
 ### Step 3: Load Context
 
-- Follow `loading_protocol.md` Steps 1-5 for the primary domain
-- Load always-load files for the domain
-- Load conditional files based on project detection
-- Check `../../context/cross_domain.md` for secondary context needs
-- Stay within 4-6 file token budget
+> Follow [Standard Context Loading](../../interfaces/shared_loading_patterns.md#pattern-2-standard-context-loading) for the `{domain}` domain. Stay within the file budget declared in frontmatter.
 
 ### Step 4: [Skill-Specific Core Action]
 
@@ -59,28 +76,21 @@ skills/{skill-name}/
 
 ### Step N: Update Memory
 
-- Update skill-specific memory in `../../memory/skills/{this-skill}/{project}/`
-- Update shared project memory if new project-level info was learned:
-  - Create `../../memory/projects/{project}/project_profile.md` if it doesn't exist
-  - Update `../../memory/projects/{project}/technology_stack.md` with new discoveries
-  - Add to `../../memory/projects/{project}/cross_skill_insights.md` if applicable
-- Add freshness timestamp `<!-- Last Updated: YYYY-MM-DD -->` to modified memory files
+> Follow [Standard Memory Update](../../interfaces/shared_loading_patterns.md#pattern-3-standard-memory-update) for `skill="{this-skill}"`. Store any newly learned patterns, conventions, or project insights.
 
 ## Compliance Checklist
 
 Before completing, verify:
 
 - [ ] All mandatory workflow steps executed in order
-- [ ] Context loading protocol followed (`loading_protocol.md`)
-- [ ] Shared project memory checked (`memory/projects/{project}/`)
-- [ ] Skill-specific memory checked (`memory/skills/{skill}/{project}/`)
+- [ ] Standard Memory Loading pattern followed (Step 2)
+- [ ] Standard Context Loading pattern followed (Step 3)
 - [ ] Output saved with standard naming convention
-- [ ] Skill-specific memory updated with new insights
-- [ ] Shared project memory updated if new project info learned
-- [ ] Freshness timestamps added to modified memory files
+- [ ] Standard Memory Update pattern followed (Step N)
 
 ## Version History
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.0.0 | 2026-02-11 | Refactored to use shared loading patterns; reduced boilerplate |
 | 1.0.0 | YYYY-MM-DD | Initial release |

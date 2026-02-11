@@ -40,17 +40,16 @@ context: [python, dotnet, angular, commands/documentation_standards]
 
 ### Step 2: Load Context & Memory
 
-**Context Loading** (index-first approach):
-1. Read `../../context/commands/index.md` for command guidance
-2. Load `../../context/commands/documentation_standards.md` for format conventions
-3. Based on detected language, load domain-specific doc standards:
+**Context Loading** (via ContextProvider):
+1. Load `contextProvider.getConditionalContext("commands", "documentation_standards")` for format conventions
+2. Based on detected language, load domain-specific doc standards:
    - **Python**: Google/NumPy docstring style, PEP 257
    - **.NET**: XML documentation comment patterns
    - **TypeScript/Angular**: JSDoc/TSDoc patterns
 
-**Memory Loading**:
+**Memory Loading** (via MemoryStore):
 1. Determine project name
-2. Check `../../memory/commands/{project}/document_conventions.md` for established patterns
+2. Load `memoryStore.getCommandMemory("document", project)` for established patterns
 3. If first run: Detect existing documentation style from codebase
 
 ### Step 3: Generate Documentation
@@ -131,8 +130,8 @@ context: [python, dotnet, angular, commands/documentation_standards]
 ```
 
 **Memory Updates**:
-1. Append to `../../memory/commands/{project}/command_history.md`
-2. Update `../../memory/commands/{project}/document_conventions.md`:
+1. Use `memoryStore.append("commands", project, "command_history.md", entry)`
+2. Use `memoryStore.update("commands", project, "document_conventions.md", content)` with:
    - Documentation style used, conventions detected, preferences learned
 
 ## Tool Coordination

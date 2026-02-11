@@ -1,3 +1,28 @@
+---
+id: "engineering/architecture_patterns"
+domain: engineering
+title: "Architecture Patterns"
+type: reference
+estimatedTokens: 400
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Pattern Decision Matrix"
+    estimatedTokens: 78
+    keywords: [pattern, decision, matrix]
+  - name: "When to Use Each"
+    estimatedTokens: 85
+    keywords: [each]
+  - name: "Tradeoffs Summary"
+    estimatedTokens: 48
+    keywords: [tradeoffs, summary]
+  - name: "References"
+    estimatedTokens: 14
+    keywords: [references]
+tags: [engineering, architecture, microservices, clean-architecture, cqrs, event-driven]
+---
+
 # Architecture Patterns
 
 Decision matrix for selecting architecture patterns. Use during `/brainstorm`, `/implement`, or architectural code reviews.

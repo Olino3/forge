@@ -1,3 +1,37 @@
+---
+id: "angular/service_testing_patterns"
+domain: angular
+title: "Angular Service Testing Patterns"
+type: pattern
+estimatedTokens: 500
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Quick Reference"
+    estimatedTokens: 72
+    keywords: [quick, reference]
+  - name: "HTTP Testing"
+    estimatedTokens: 42
+    keywords: [http, testing]
+  - name: "Observable Testing"
+    estimatedTokens: 37
+    keywords: [observable, testing]
+  - name: "Error Handling"
+    estimatedTokens: 26
+    keywords: [error, handling]
+  - name: "Service Dependencies"
+    estimatedTokens: 60
+    keywords: [service, dependencies]
+  - name: "Official Documentation"
+    estimatedTokens: 20
+    keywords: [official, documentation]
+  - name: "Related Context Files"
+    estimatedTokens: 16
+    keywords: [related, context, files]
+tags: [angular, testing, services, http-testing, mocking, observables]
+---
+
 # Angular Service Testing Patterns
 
 ## Quick Reference

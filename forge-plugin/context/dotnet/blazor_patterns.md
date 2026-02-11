@@ -1,3 +1,31 @@
+---
+id: "dotnet/blazor_patterns"
+domain: dotnet
+title: "Blazor Component Patterns - Quick Reference"
+type: framework
+estimatedTokens: 1150
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Authoritative References"
+    estimatedTokens: 33
+    keywords: [authoritative, references]
+  - name: "Common Blazor Patterns"
+    estimatedTokens: 288
+    keywords: [blazor, patterns]
+  - name: "Blazor Anti-Patterns"
+    estimatedTokens: 87
+    keywords: [blazor, anti-patterns]
+  - name: "Quick Review Checklist"
+    estimatedTokens: 169
+    keywords: [quick, review, checklist]
+  - name: "When to Read External Docs"
+    estimatedTokens: 52
+    keywords: [read, external, docs]
+tags: [dotnet, blazor, components, lifecycle, state, js-interop, forms, rendering]
+---
+
 # Blazor Component Patterns – Quick Reference
 
 Compact Blazor patterns for component design, state management, rendering, and JS interop.

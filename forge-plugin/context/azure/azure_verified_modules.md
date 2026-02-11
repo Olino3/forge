@@ -1,3 +1,61 @@
+---
+id: "azure/azure_verified_modules"
+domain: azure
+title: "Azure Verified Modules (AVM)"
+type: reference
+estimatedTokens: 1700
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Purpose"
+    estimatedTokens: 15
+    keywords: [purpose]
+  - name: "What are Azure Verified Modules?"
+    estimatedTokens: 21
+    keywords: [azure, verified, modules]
+  - name: "Key Benefits"
+    estimatedTokens: 47
+    keywords: [benefits]
+  - name: "Module Types"
+    estimatedTokens: 23
+    keywords: [module, types]
+  - name: "Using AVM Modules"
+    estimatedTokens: 93
+    keywords: [avm, modules]
+  - name: "Module Parameters"
+    estimatedTokens: 80
+    keywords: [module, parameters]
+  - name: "Finding Module Documentation"
+    estimatedTokens: 27
+    keywords: [finding, module, documentation]
+  - name: "Standard Module Structure"
+    estimatedTokens: 60
+    keywords: [standard, module, structure]
+  - name: "AVM Best Practices"
+    estimatedTokens: 102
+    keywords: [avm]
+  - name: "Integration with bicepparams"
+    estimatedTokens: 59
+    keywords: [integration, bicepparams]
+  - name: "Common Patterns"
+    estimatedTokens: 55
+    keywords: [patterns]
+  - name: "Module Versioning"
+    estimatedTokens: 34
+    keywords: [module, versioning]
+  - name: "Finding the Right Module"
+    estimatedTokens: 33
+    keywords: [finding, right, module]
+  - name: "Troubleshooting"
+    estimatedTokens: 33
+    keywords: [troubleshooting]
+  - name: "Official Resources"
+    estimatedTokens: 20
+    keywords: [official, resources]
+tags: [azure, bicep, avm, modules, registry, infrastructure]
+---
+
 # Azure Verified Modules (AVM)
 
 ## Purpose

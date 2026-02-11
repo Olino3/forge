@@ -39,20 +39,20 @@ context: [python, dotnet, angular, security, commands/analysis_patterns]
 ### Step 2: Load Context & Memory
 
 **Context Loading** (index-first approach):
-1. Read `../../context/index.md` for overview of available context
-2. Read `../../context/commands/index.md` for command-specific guidance
-3. Load `../../context/commands/analysis_patterns.md` for analysis methodologies
-4. Based on detected language, load domain-specific context:
-   - **Python**: Read `../../context/python/index.md`, then load `common_issues.md` and framework-specific files
-   - **.NET**: Read `../../context/dotnet/index.md`, then load `common_issues.md` and relevant patterns
-   - **Angular**: Read `../../context/angular/index.md`, then load `common_issues.md` and relevant patterns
-5. If `--focus security`: Load `../../context/security/security_guidelines.md`
+1. Use `contextProvider.getDomainIndex("commands")` for command-specific guidance
+2. Use `contextProvider.getConditionalContext("commands", {"command": "analyze"})` to load analysis methodologies
+3. Based on detected language, load domain-specific context:
+   - **Python**: Use `contextProvider.getDomainIndex("python")`, then `contextProvider.getAlwaysLoadFiles("python")` and `contextProvider.getConditionalContext("python", detection)`
+   - **.NET**: Use `contextProvider.getDomainIndex("dotnet")`, then `contextProvider.getAlwaysLoadFiles("dotnet")` and `contextProvider.getConditionalContext("dotnet", detection)`
+   - **Angular**: Use `contextProvider.getDomainIndex("angular")`, then `contextProvider.getAlwaysLoadFiles("angular")` and `contextProvider.getConditionalContext("angular", detection)`
+4. If `--focus security`: Use `contextProvider.getCrossDomainContext("{domain}", ["security_focus"])` to load security guidelines
 
 **Memory Loading**:
 1. Determine project name (from git repo name or directory)
-2. Check `../../memory/commands/{project}/command_history.md` for past analyses
-3. Load `../../memory/commands/{project}/analyze_insights.md` if exists
-4. Check skill memory for deeper context (e.g., `../../memory/skills/python-code-review/{project}/`)
+2. Use `memoryStore.getCommandMemory("{project}")` to load past analyses and insights
+3. Use `memoryStore.getSharedProjectMemory("{project}")` for cross-skill project knowledge
+
+See [ContextProvider](../../interfaces/context_provider.md) and [MemoryStore](../../interfaces/memory_store.md) interfaces.
 
 ### Step 3: Execute Analysis
 
@@ -146,10 +146,12 @@ Save results to `/claudedocs/analyze_{target}_{date}.md` using this format:
 ```
 
 **Memory Updates**:
-1. Append to `../../memory/commands/{project}/command_history.md`:
+1. Use `memoryStore.append("command/{project}/command_history", ...)` to record:
    - Date, command invocation, result summary, output file path
-2. Update `../../memory/commands/{project}/analyze_insights.md`:
+2. Use `memoryStore.update("command/{project}/analyze_insights", ...)` to record:
    - Patterns observed, recurring issues, project characteristics
+
+See [MemoryStore Interface](../../interfaces/memory_store.md) for `update()` and `append()` method details.
 
 ## Tool Coordination
 - **Glob**: File discovery and project structure analysis

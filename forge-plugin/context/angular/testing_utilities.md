@@ -1,3 +1,43 @@
+---
+id: "angular/testing_utilities"
+domain: angular
+title: "Angular Testing Utilities"
+type: reference
+estimatedTokens: 550
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "TestBed Configuration"
+    estimatedTokens: 49
+    keywords: [testbed, configuration]
+  - name: "Mocking Patterns"
+    estimatedTokens: 45
+    keywords: [mocking, patterns]
+  - name: "Async Testing"
+    estimatedTokens: 57
+    keywords: [async, testing]
+  - name: "Change Detection"
+    estimatedTokens: 18
+    keywords: [change, detection]
+  - name: "Querying Elements"
+    estimatedTokens: 37
+    keywords: [querying, elements]
+  - name: "NgRx Testing"
+    estimatedTokens: 33
+    keywords: [ngrx, testing]
+  - name: "Router Testing"
+    estimatedTokens: 27
+    keywords: [router, testing]
+  - name: "Official Documentation"
+    estimatedTokens: 20
+    keywords: [official, documentation]
+  - name: "Related Context Files"
+    estimatedTokens: 11
+    keywords: [related, context, files]
+tags: [angular, testing, testbed, mocking, async, ngrx-testing, router-testing]
+---
+
 # Angular Testing Utilities
 
 ## TestBed Configuration

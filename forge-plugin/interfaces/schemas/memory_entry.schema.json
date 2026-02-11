@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://forge-plugin/schemas/memory_entry.schema.json",
+  "title": "Memory Entry Metadata",
+  "description": "Schema for memory entry metadata in the Forge memory system. Enables structured memory operations with automatic staleness tracking and lifecycle management.",
+  "type": "object",
+  "required": ["id", "layer", "projectName", "fileType"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier in format {layer}/{projectName}/{fileType} or {layer}/{skillName}/{projectName}/{fileType}"
+    },
+    "layer": {
+      "type": "string",
+      "description": "Memory layer this entry belongs to",
+      "enum": ["shared-project", "skill-specific", "command", "agent"]
+    },
+    "projectName": {
+      "type": "string",
+      "description": "Project this memory belongs to (from git repo name or directory)"
+    },
+    "fileType": {
+      "type": "string",
+      "description": "Type of memory file",
+      "examples": ["project_profile", "project_overview", "common_patterns", "known_issues", "review_history", "technology_stack", "cross_skill_insights", "testing_patterns", "expected_behaviors", "command_history"]
+    },
+    "skillName": {
+      "type": "string",
+      "description": "Required when layer is 'skill-specific'. The skill this memory belongs to."
+    },
+    "commandName": {
+      "type": "string",
+      "description": "Required when layer is 'command'. The command this memory belongs to."
+    },
+    "agentName": {
+      "type": "string",
+      "description": "Required when layer is 'agent'. The agent this memory belongs to."
+    },
+    "content": {
+      "type": "string",
+      "description": "The markdown content of the memory file"
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "ISO date when this memory was first created",
+      "format": "date"
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "ISO date of last update (maps to <!-- Last Updated: YYYY-MM-DD --> timestamp)",
+      "format": "date"
+    },
+    "staleness": {
+      "type": "string",
+      "description": "Auto-computed from updatedAt. fresh: 0-30 days, aging: 31-90 days, stale: 90+ days",
+      "enum": ["fresh", "aging", "stale"]
+    },
+    "lineCount": {
+      "type": "integer",
+      "description": "Current line count of the file. Max 500 per lifecycle.md rules.",
+      "minimum": 0
+    },
+    "qualityChecks": {
+      "type": "object",
+      "description": "Results of quality_guidance.md automated checks",
+      "properties": {
+        "completeness": {
+          "type": "boolean",
+          "description": "Does project_overview cover language, framework, architecture, conventions, testing?"
+        },
+        "specificity": {
+          "type": "boolean",
+          "description": "Does the entry reference specific file paths rather than vague descriptions?"
+        },
+        "growthRate": {
+          "type": "string",
+          "description": "Growth assessment based on invocation count",
+          "enum": ["healthy", "stagnant", "unknown"]
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "layer": { "const": "skill-specific" } } },
+      "then": { "required": ["skillName"] }
+    },
+    {
+      "if": { "properties": { "layer": { "const": "command" } } },
+      "then": { "required": ["commandName"] }
+    },
+    {
+      "if": { "properties": { "layer": { "const": "agent" } } },
+      "then": { "required": ["agentName"] }
+    }
+  ],
+  "additionalProperties": false
+}

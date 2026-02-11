@@ -1,3 +1,49 @@
+---
+id: "python/virtual_environments"
+domain: python
+title: "Python Virtual Environments Reference"
+type: reference
+estimatedTokens: 1100
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "What is a Virtual Environment?"
+    estimatedTokens: 14
+    keywords: [virtual, environment]
+  - name: "Virtual Environment Types"
+    estimatedTokens: 69
+    keywords: [virtual, environment, types]
+  - name: "Quick Command Reference"
+    estimatedTokens: 106
+    keywords: [quick, command, reference]
+  - name: "Common Virtual Environment Locations"
+    estimatedTokens: 42
+    keywords: [virtual, environment, locations]
+  - name: "Best Practices"
+    estimatedTokens: 63
+    keywords: [best]
+  - name: "Common Issues & Solutions"
+    estimatedTokens: 85
+    keywords: [issues, solutions]
+  - name: "IDE Integration"
+    estimatedTokens: 39
+    keywords: [ide, integration]
+  - name: "Management Commands"
+    estimatedTokens: 53
+    keywords: [management, commands]
+  - name: "Environment Variables"
+    estimatedTokens: 35
+    keywords: [environment, variables]
+  - name: "Detection Patterns"
+    estimatedTokens: 40
+    keywords: [detection, patterns]
+  - name: "Official Documentation"
+    estimatedTokens: 25
+    keywords: [official, documentation]
+tags: [python, venv, virtualenv, poetry, conda, environments]
+---
+
 # Python Virtual Environments Reference
 
 Quick reference for creating, activating, and managing Python virtual environments. For detailed documentation, see official sources linked below.

@@ -52,17 +52,16 @@ context: [azure, commands/serverless_patterns]
 
 ### Step 2: Load Context & Memory
 
-**Context Loading**:
-1. Read `../../context/commands/index.md` for command guidance
-2. Load `../../context/commands/serverless_patterns.md` for best practices
-3. Load `../../context/azure/index.md` for Azure-specific patterns
-4. Load `../../context/azure/azure_functions.md` for Functions configuration
-5. Load `../../context/azure/tilt_azurite.md` for local development
+**Context Loading** (via ContextProvider):
+1. Load serverless best practices: `contextProvider.getConditionalContext("commands", "serverless_patterns")`
+2. Load Azure-specific patterns: `contextProvider.getConditionalContext("azure", "index")`
+3. Load Functions configuration: `contextProvider.getConditionalContext("azure", "azure_functions")`
+4. Load local development setup: `contextProvider.getConditionalContext("azure", "tilt_azurite")`
 
-**Memory Loading**:
+**Memory Loading** (via MemoryStore):
 1. Determine project name
-2. Check `../../memory/commands/{project}/azure_functions.md` for existing functions
-3. Load `../../memory/skills/generate-azure-functions/{project}/` for patterns
+2. Load existing functions: `memoryStore.getCommandMemory("azure-function", project)`
+3. Load function patterns: `memoryStore.getSkillMemory("generate-azure-functions", project)`
 4. Check for existing Azure infrastructure configuration
 
 ### Step 3: Gather Function Details
@@ -323,12 +322,12 @@ Use `/azure-pipeline` to create CI/CD pipeline:
 - Use `/azure-pipeline` for automated deployment
 ```
 
-**Memory Updates**:
-1. Append to `../../memory/commands/{project}/command_history.md`
-2. Update `../../memory/commands/{project}/azure_functions.md`:
+**Memory Updates** (via MemoryStore):
+1. `memoryStore.append("commands", project, "command_history.md", entry)`
+2. `memoryStore.update("commands", project, "azure_functions.md", content)`:
    - Function names, triggers, runtimes
    - Deployment configuration
-3. Update skill memory with function patterns
+3. `memoryStore.update("skills", project, "generate-azure-functions", functionPatterns)` — update skill memory with function patterns
 
 ## Tool Coordination
 - **Read**: Existing function code, configuration files

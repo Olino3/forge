@@ -13,12 +13,17 @@ description: Masters spreadsheet manipulation across Excel, Google Sheets, and L
 
 - **SKILL.md** (this file): Main instructions and MANDATORY workflow
 - **examples.md**: Usage scenarios with different spreadsheet tasks and generated solutions
-- **../../memory/skills/excel-skills/**: Project-specific memory storage
-  - `{project-name}/`: Per-project spreadsheet patterns and conventions
+- **Memory**: Project-specific memory accessed via `memoryStore.getSkillMemory("excel-skills", "{project-name}")`. See [MemoryStore Interface](../../interfaces/memory_store.md).
 - **templates/**:
   - `formula_template.md`: Standard formula output format template
   - `macro_template.md`: VBA/Apps Script macro template
   - `analysis_template.md`: Data analysis report template
+
+## Interface References
+
+- **Context**: Loaded via [ContextProvider Interface](../../interfaces/context_provider.md)
+- **Memory**: Accessed via [MemoryStore Interface](../../interfaces/memory_store.md)
+- **Schemas**: Validated against [memory_entry.schema.json](../../interfaces/schemas/memory_entry.schema.json)
 
 ## Focus Areas
 
@@ -66,7 +71,7 @@ Spreadsheet manipulation evaluates 7 critical dimensions:
    - Performance: Will this run on large datasets? (>10,000 rows)
    - Compatibility: Must it work across platforms or specific versions?
    - Maintenance: Will non-technical users need to modify this?
-4. **Check project memory**: Look in `../../memory/skills/excel-skills/{project-name}/` for project-specific conventions, naming patterns, or existing formulas
+4. **Check project memory**: Use `memoryStore.getSkillMemory("excel-skills", "{project-name}")` to load project-specific conventions, naming patterns, or existing formulas. See [MemoryStore Interface](../../interfaces/memory_store.md).
 5. **Plan the solution structure**: Break complex tasks into steps, identify helper columns if needed
 
 **DO NOT PROCEED WITHOUT A CLEAR SOLUTION APPROACH**
@@ -131,11 +136,13 @@ Spreadsheet manipulation evaluates 7 critical dimensions:
 
 **OPTIONAL: Update Project Memory**
 
-If project-specific patterns are discovered during the process, store insights in `../../memory/skills/excel-skills/{project-name}/`:
+If project-specific patterns are discovered during the process, use `memoryStore.update(layer="skill-specific", skill="excel-skills", project="{project-name}", ...)` to store insights:
 - Common column naming conventions
 - Recurring formula patterns
 - Standard data validation rules
 - Preferred automation approaches
+
+Timestamps and staleness tracking are handled automatically by MemoryStore. See [MemoryStore Interface](../../interfaces/memory_store.md).
 
 ---
 
@@ -219,6 +226,10 @@ Refer to official documentation:
 
 ## Version History
 
+- v1.1.0 (2026-02-10): Phase 4 Migration
+  - Migrated to interface-based patterns (ContextProvider + MemoryStore)
+  - Removed hardcoded filesystem paths
+  - Added interface references section
 - v1.0.0 (2026-02-06): Initial release
   - Mandatory 4-step workflow for spreadsheet tasks
   - Support for Excel, Google Sheets, LibreOffice Calc

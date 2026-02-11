@@ -1,3 +1,31 @@
+---
+id: "python/unit_testing_standards"
+domain: python
+title: "Python Unit Testing Standards"
+type: pattern
+estimatedTokens: 600
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Core Principles"
+    estimatedTokens: 124
+    keywords: [core, principles]
+  - name: "Quick Reference"
+    estimatedTokens: 51
+    keywords: [quick, reference]
+  - name: "Testing Patterns"
+    estimatedTokens: 74
+    keywords: [testing, patterns]
+  - name: "References"
+    estimatedTokens: 15
+    keywords: [references]
+  - name: "Related Context Files"
+    estimatedTokens: 14
+    keywords: [related, context, files]
+tags: [python, testing, unit-tests, aaa-pattern, naming, coverage]
+---
+
 # Python Unit Testing Standards
 
 ## Core Principles

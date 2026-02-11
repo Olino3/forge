@@ -1,3 +1,46 @@
+---
+id: "engineering/loading_protocol"
+domain: engineering
+title: "Context Loading Protocol"
+type: reference
+estimatedTokens: 600
+loadingStrategy: always
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Overview"
+    estimatedTokens: 23
+    keywords: [overview]
+  - name: "Step 1: Read Domain Index"
+    estimatedTokens: 36
+    keywords: [step, read, domain, index]
+  - name: "Step 2: Load Always Files"
+    estimatedTokens: 51
+    keywords: [step, load, always, files]
+  - name: "Step 3: Detect Project Type"
+    estimatedTokens: 54
+    keywords: [step, detect, project, type]
+  - name: "Step 4: Load Conditional Context"
+    estimatedTokens: 72
+    keywords: [step, load, conditional, context]
+  - name: "Step 5: Check Cross-Domain Context"
+    estimatedTokens: 35
+    keywords: [step, check, cross-domain, context]
+  - name: "Loading Modes"
+    estimatedTokens: 144
+    keywords: [loading, modes]
+  - name: "Quick Reference"
+    estimatedTokens: 24
+    keywords: [quick, reference]
+  - name: "For Skill Authors"
+    estimatedTokens: 28
+    keywords: [skill, authors]
+  - name: "For Command Authors"
+    estimatedTokens: 19
+    keywords: [command, authors]
+tags: [context, loading, protocol, engineering, reference]
+---
+
 # Context Loading Protocol
 
 A standardized protocol for all Forge skills and commands to load context efficiently. Reference this document in every skill/command workflow.
@@ -68,6 +111,34 @@ Some code requires context from multiple domains:
 - Any code review with schema files → also load `schema/common_patterns.md`
 
 See `cross_domain.md` for the complete trigger-to-context mapping.
+
+## Loading Modes
+
+The protocol supports two loading modes:
+
+### Traditional Mode (Default)
+
+The existing 5-step process described above. Skills and commands manually follow each step by reading files directly. This is the default and requires no additional setup.
+
+### Reference-First Mode (Opt-in)
+
+An alternative approach using [ContextProvider](../interfaces/context_provider.md) methods for structured, metadata-aware loading:
+
+1. **Catalog**: Call `contextProvider.getCatalog(domain)` to get a structured inventory of all context files with metadata (token costs, tags, loading strategy) -- zero content loaded
+2. **Evaluate**: Inspect metadata to decide which files are worth loading based on relevance and token budget
+3. **Materialize**: Call `contextProvider.materialize(reference)` to load full content, or `contextProvider.materializeSections(reference, sections)` to load only specific sections
+
+**When to use Reference-First Mode**:
+- Token-constrained scenarios where precise loading is critical
+- Skills that need to inspect metadata before committing to loading
+- Discovery-oriented workflows where you don't know which files are relevant
+
+**When to use Traditional Mode**:
+- Standard skill and command workflows
+- When the 5-step process is well-understood and sufficient
+- When the domain is familiar and file selection is straightforward
+
+Both modes produce the same outcome (relevant context loaded); they differ only in how files are discovered and selected.
 
 ## Quick Reference
 

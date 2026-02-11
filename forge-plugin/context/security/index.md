@@ -1,3 +1,61 @@
+---
+id: "security/index"
+domain: security
+title: "Security Context Files"
+type: index
+estimatedTokens: 1200
+loadingStrategy: always
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+indexedFiles:
+  - id: "security/security_guidelines"
+    path: "security_guidelines.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "security/owasp_python"
+    path: "owasp_python.md"
+    type: reference
+    loadingStrategy: onDemand
+sections:
+  - name: "Files in this Directory"
+    estimatedTokens: 51
+    keywords: [files, this, directory]
+  - name: "Files in this Folder"
+    estimatedTokens: 96
+    keywords: [files, this, folder]
+  - name: "Typical Usage Pattern"
+    estimatedTokens: 35
+    keywords: [typical, usage, pattern]
+  - name: "Maintenance Notes"
+    estimatedTokens: 106
+    keywords: [maintenance]
+  - name: "Quick Reference by Code Type"
+    estimatedTokens: 81
+    keywords: [quick, reference, code, type]
+  - name: "Security Review Checklist"
+    estimatedTokens: 133
+    keywords: [security, review, checklist]
+  - name: "Common Vulnerability Patterns"
+    estimatedTokens: 100
+    keywords: [vulnerability, patterns]
+  - name: "Integration with Python Context"
+    estimatedTokens: 54
+    keywords: [integration, python, context]
+  - name: "Framework-Specific Security Notes"
+    estimatedTokens: 63
+    keywords: [framework-specific, security]
+  - name: "Related Skills"
+    estimatedTokens: 12
+    keywords: [related, skills]
+  - name: "When to Escalate"
+    estimatedTokens: 55
+    keywords: [escalate]
+  - name: "Maintenance Notes"
+    estimatedTokens: 31
+    keywords: [maintenance]
+tags: [security, index, navigation, owasp, python, vulnerabilities]
+---
+
 # Security Context Files
 
 Context files for security-focused code review, vulnerability detection, and secure coding practices.

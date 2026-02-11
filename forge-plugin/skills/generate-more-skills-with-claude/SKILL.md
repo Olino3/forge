@@ -13,11 +13,16 @@ description: Generates new Claude Code skills following the Forge plugin archite
 
 - **SKILL.md** (this file): Main instructions and MANDATORY workflow
 - **examples.md**: Skill generation scenarios with complete outputs
-- **../../memory/skills/generate-more-skills-with-claude/**: Project-specific memory storage
-  - `{project-name}/`: Per-project skill generation patterns
+- **Memory**: Project-specific memory accessed via `memoryStore.getSkillMemory("generate-more-skills-with-claude", "{project-name}")`. See [MemoryStore Interface](../../interfaces/memory_store.md).
 - **templates/**:
   - `skill_template.md`: Template for generating SKILL.md files
   - `examples_template.md`: Template for generating examples.md files
+
+## Interface References
+
+- **Context**: Loaded via [ContextProvider Interface](../../interfaces/context_provider.md)
+- **Memory**: Accessed via [MemoryStore Interface](../../interfaces/memory_store.md)
+- **Schemas**: Validated against [memory_entry.schema.json](../../interfaces/schemas/memory_entry.schema.json)
 
 ## Focus Areas
 
@@ -84,16 +89,16 @@ Skill generation evaluates 8 critical dimensions:
 **YOU MUST:**
 1. **CHECK PROJECT MEMORY FIRST**:
    - Identify the project name from the repository root or ask the user
-   - Check `../../memory/skills/generate-more-skills-with-claude/{project-name}/` for existing memory
-   - If memory exists, read it to understand previously generated skills and patterns
+   - Use `memoryStore.getSkillMemory("generate-more-skills-with-claude", "{project-name}")` to load existing memory. See [MemoryStore Interface](../../interfaces/memory_store.md).
+   - If memory exists, review previously generated skills and patterns
    - If no memory exists, you will create it later in this process
 2. **REVIEW EXISTING SKILLS**:
    - Scan `forge-plugin/skills/` to identify similar or related skills
    - Study 2-3 exemplar skills that match the target complexity level
    - Identify reusable patterns from existing skills
 3. **IDENTIFY CONTEXT FILE NEEDS**:
-   - **READ** `../../context/index.md` for overview of available context files
-   - Determine which existing context files are relevant (angular, azure, dotnet, git, python, schema, security)
+   - Use `contextProvider.getDomainIndex("commands")` for overview of available context files. See [ContextProvider Interface](../../interfaces/context_provider.md).
+   - Determine which existing context domains are relevant (angular, azure, dotnet, git, python, schema, security)
    - Identify if new context files should be created for this skill's domain
 4. **UNDERSTAND THE SKILL PATTERN**:
    - Review the directory structure: SKILL.md, examples.md, templates/, scripts/
@@ -267,6 +272,10 @@ Refer to official documentation and resources:
 
 ## Version History
 
+- v1.1.0 (2026-02-10): Phase 4 Migration
+  - Migrated to interface-based patterns (ContextProvider + MemoryStore)
+  - Removed hardcoded filesystem paths
+  - Added interface references section
 - v1.0.0 (2026-02-09): Initial release
   - Mandatory 6-step workflow for skill generation
   - Template-based SKILL.md and examples.md generation

@@ -51,16 +51,15 @@ context: [azure, commands/pipeline_patterns]
 
 ### Step 2: Load Context & Memory
 
-**Context Loading**:
-1. Read `../../context/commands/index.md` for command guidance
-2. Load `../../context/commands/pipeline_patterns.md` for pipeline best practices
-3. Load `../../context/azure/index.md` for Azure-specific patterns
-4. Load `../../context/azure/azure_pipelines.md` for pipeline configuration
+**Context Loading** (via ContextProvider):
+1. Load pipeline best practices: `contextProvider.getConditionalContext("commands", "pipeline_patterns")`
+2. Load Azure-specific patterns: `contextProvider.getConditionalContext("azure", "index")`
+3. Load pipeline configuration: `contextProvider.getConditionalContext("azure", "azure_pipelines")`
 
-**Memory Loading**:
+**Memory Loading** (via MemoryStore):
 1. Determine project name
-2. Check `../../memory/commands/{project}/azure_config.md` for existing Azure setup
-3. Load `../../memory/skills/generate-azure-pipelines/{project}/` for patterns
+2. Load existing Azure setup: `memoryStore.getCommandMemory("azure-pipeline", project)`
+3. Load pipeline patterns: `memoryStore.getSkillMemory("generate-azure-pipelines", project)`
 4. Check for existing infrastructure as code (Bicep files)
 
 ### Step 3: Gather Pipeline Configuration
@@ -211,11 +210,11 @@ az deployment group create \
 - Use `/test` to validate deployment
 ```
 
-**Memory Updates**:
-1. Append to `../../memory/commands/{project}/command_history.md`
-2. Update `../../memory/commands/{project}/azure_config.md`:
+**Memory Updates** (via MemoryStore):
+1. `memoryStore.append("commands", project, "command_history.md", entry)`
+2. `memoryStore.update("commands", project, "azure_config.md", content)`:
    - Pipeline configuration, environments, deployment targets
-3. Update skill memory with pipeline patterns
+3. `memoryStore.update("skills", project, "generate-azure-pipelines", pipelinePatterns)` — update skill memory with pipeline patterns
 
 ## Tool Coordination
 - **Read**: Existing configuration files, Azure resources

@@ -1,3 +1,55 @@
+---
+id: "azure/azurite_setup"
+domain: azure
+title: "Azurite Storage Emulator Setup"
+type: reference
+estimatedTokens: 2400
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Overview"
+    estimatedTokens: 22
+    keywords: [overview]
+  - name: "Azurite Dockerfile"
+    estimatedTokens: 102
+    keywords: [azurite, dockerfile]
+  - name: "Azurite Initialization Script"
+    estimatedTokens: 274
+    keywords: [azurite, initialization, script]
+  - name: "Connection Strings"
+    estimatedTokens: 45
+    keywords: [connection, strings]
+  - name: "Custom Account Key"
+    estimatedTokens: 38
+    keywords: [custom, account]
+  - name: "Azurite Command Line Options"
+    estimatedTokens: 45
+    keywords: [azurite, command, line, options]
+  - name: "Data Persistence"
+    estimatedTokens: 67
+    keywords: [data, persistence]
+  - name: "Accessing Azurite Storage"
+    estimatedTokens: 81
+    keywords: [accessing, azurite, storage]
+  - name: "Health Checks"
+    estimatedTokens: 48
+    keywords: [health, checks]
+  - name: "Common Use Cases"
+    estimatedTokens: 100
+    keywords: [cases]
+  - name: "Troubleshooting"
+    estimatedTokens: 92
+    keywords: [troubleshooting]
+  - name: "Best Practices"
+    estimatedTokens: 43
+    keywords: [best]
+  - name: "Official Documentation"
+    estimatedTokens: 12
+    keywords: [official, documentation]
+tags: [azure, azurite, storage, emulator, blob, queue, table, docker]
+---
+
 # Azurite Storage Emulator Setup
 
 ## Overview

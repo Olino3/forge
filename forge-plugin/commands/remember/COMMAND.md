@@ -44,15 +44,15 @@ context: [commands/memory_patterns]
 ### Step 2: Load Context & Existing Memory
 
 **Context Loading**:
-1. Read `../../context/commands/index.md` for command guidance
-2. Load `../../context/commands/memory_patterns.md` (if exists) for memory organization patterns
+1. Use `contextProvider.getDomainIndex("commands")` for command guidance
+2. Use `contextProvider.getConditionalContext("commands", {"command": "remember"})` to load relevant patterns
 
 **Memory Loading**:
 1. Determine project name (from git repo name or directory)
-2. Check existing memory structure in `../../memory/`
-3. Load relevant existing memory files:
-   - Project memory: `../../memory/commands/{project}/`
-   - Skill memory: `../../memory/skills/{skill}/{project}/`
+2. Use `memoryStore.getCommandMemory("{project}")` for existing command memory
+3. Use `memoryStore.getSharedProjectMemory("{project}")` for cross-skill project knowledge
+
+See [ContextProvider](../../interfaces/context_provider.md) and [MemoryStore](../../interfaces/memory_store.md) interfaces.
 
 ### Step 3: Interactive Capture (if needed)
 
@@ -81,27 +81,29 @@ If content not provided inline, guide user through structured capture:
 
 ### Step 4: Organize & Store Memory
 
-Based on category and scope, store memory in appropriate location:
+Based on category and scope, store memory via the MemoryStore interface:
 
 **Project-scoped decisions**:
-- Path: `../../memory/commands/{project}/decisions.md`
+- Store via: `memoryStore.update(layer="command", project="{project}", fileType="decisions", ...)`
 - Format: Timestamped entries with context
 
 **Project-scoped patterns**:
-- Path: `../../memory/commands/{project}/patterns.md`
+- Store via: `memoryStore.update(layer="command", project="{project}", fileType="patterns", ...)`
 - Format: Pattern name, use case, implementation notes
 
 **Project-scoped conventions**:
-- Path: `../../memory/commands/{project}/conventions.md`
+- Store via: `memoryStore.update(layer="command", project="{project}", fileType="conventions", ...)`
 - Format: Categorized list (naming, structure, testing, etc.)
 
 **Project-scoped lessons**:
-- Path: `../../memory/commands/{project}/lessons_learned.md`
+- Store via: `memoryStore.update(layer="command", project="{project}", fileType="lessons_learned", ...)`
 - Format: Challenge, solution, takeaway
 
 **Skill-scoped memory**:
-- Path: `../../memory/skills/{skill}/{project}/notes.md`
+- Store via: `memoryStore.update(layer="skill-specific", skill="{skill}", project="{project}", fileType="notes", ...)`
 - Format: Skill-specific observations and learnings
+
+See [MemoryStore Interface](../../interfaces/memory_store.md) for `update()` and `append()` method details.
 
 ### Step 5: Generate Confirmation & Update Index
 
@@ -121,9 +123,9 @@ The knowledge has been added to project memory and will be available for future 
 ```
 
 **Memory Index Update**:
-1. Update `../../memory/commands/{project}/index.md` with new entry
+1. Update command memory index via `memoryStore.update(layer="command", project="{project}", fileType="index", ...)`
 2. Include timestamp, category, and brief summary
-3. Ensure easy retrieval for future commands
+3. Ensure easy retrieval for future commands (timestamps and staleness tracked automatically by MemoryStore)
 
 ## Tool Coordination
 - **Read**: Load existing memory files

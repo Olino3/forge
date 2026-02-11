@@ -1,3 +1,52 @@
+---
+id: "dotnet/common_issues"
+domain: dotnet
+title: ".NET Common Issues"
+type: always
+estimatedTokens: 1250
+loadingStrategy: always
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Critical Anti-Patterns"
+    estimatedTokens: 96
+    keywords: [critical, anti-patterns]
+  - name: "Async/Await Issues"
+    estimatedTokens: 60
+    keywords: [asyncawait, issues]
+  - name: "IDisposable Issues"
+    estimatedTokens: 55
+    keywords: [idisposable, issues]
+  - name: "LINQ Performance Issues"
+    estimatedTokens: 54
+    keywords: [linq, performance, issues]
+  - name: "Exception Handling Issues"
+    estimatedTokens: 51
+    keywords: [exception, handling, issues]
+  - name: "String Performance Issues"
+    estimatedTokens: 31
+    keywords: [string, performance, issues]
+  - name: "Nullable Reference Types Issues"
+    estimatedTokens: 44
+    keywords: [nullable, reference, types, issues]
+  - name: "Collection Issues"
+    estimatedTokens: 36
+    keywords: [collection, issues]
+  - name: "Memory Leak Patterns"
+    estimatedTokens: 52
+    keywords: [memory, leak, patterns]
+  - name: "Common Detection Patterns"
+    estimatedTokens: 84
+    keywords: [detection, patterns]
+  - name: "Checklist"
+    estimatedTokens: 66
+    keywords: [checklist]
+  - name: "Official Resources"
+    estimatedTokens: 22
+    keywords: [official, resources]
+tags: [dotnet, common-issues, async, disposable, linq, exceptions, memory-leaks]
+---
+
 # .NET Common Issues
 
 Quick reference for universal .NET problems. For detailed examples, see [.NET documentation](https://learn.microsoft.com/en-us/dotnet/).

@@ -1,3 +1,87 @@
+---
+id: "python/index"
+domain: python
+title: "Python Context Files Index"
+type: index
+estimatedTokens: 800
+loadingStrategy: always
+version: "1.0.0"
+lastUpdated: "2025-11-14"
+indexedFiles:
+  - id: "python/context_detection"
+    path: "context_detection.md"
+    type: detection
+    loadingStrategy: always
+  - id: "python/common_issues"
+    path: "common_issues.md"
+    type: always
+    loadingStrategy: always
+  - id: "python/dependency_management"
+    path: "dependency_management.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "python/virtual_environments"
+    path: "virtual_environments.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "python/datascience_patterns"
+    path: "datascience_patterns.md"
+    type: framework
+    loadingStrategy: onDemand
+  - id: "python/django_patterns"
+    path: "django_patterns.md"
+    type: framework
+    loadingStrategy: onDemand
+  - id: "python/fastapi_patterns"
+    path: "fastapi_patterns.md"
+    type: framework
+    loadingStrategy: onDemand
+  - id: "python/flask_patterns"
+    path: "flask_patterns.md"
+    type: framework
+    loadingStrategy: onDemand
+  - id: "python/ml_patterns"
+    path: "ml_patterns.md"
+    type: framework
+    loadingStrategy: onDemand
+  - id: "python/unit_testing_standards"
+    path: "unit_testing_standards.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "python/testing_frameworks"
+    path: "testing_frameworks.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "python/mocking_patterns"
+    path: "mocking_patterns.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "python/test_antipatterns"
+    path: "test_antipatterns.md"
+    type: reference
+    loadingStrategy: onDemand
+sections:
+  - name: "Files in this Directory"
+    estimatedTokens: 771
+    keywords: [files, this, directory]
+  - name: "Usage Workflow"
+    estimatedTokens: 151
+    keywords: [usage, workflow]
+  - name: "Quick Reference Matrix"
+    estimatedTokens: 83
+    keywords: [quick, reference, matrix]
+  - name: "Pattern Detection Hints"
+    estimatedTokens: 124
+    keywords: [pattern, detection, hints]
+  - name: "Related Skills"
+    estimatedTokens: 25
+    keywords: [related, skills]
+  - name: "Maintenance Notes"
+    estimatedTokens: 29
+    keywords: [maintenance]
+tags: [python, index, navigation]
+---
+
 # Python Context Files
 
 Context files for Python code review, framework-specific patterns, and common issues detection.

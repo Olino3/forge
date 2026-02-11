@@ -1,3 +1,26 @@
+---
+id: "git/diff_patterns"
+domain: git
+title: "Common Diff Patterns - Quick Reference"
+type: reference
+estimatedTokens: 200
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Change Type Patterns"
+    estimatedTokens: 60
+    keywords: [feature, bugfix, refactor, config, docs]
+  - name: "Risk Indicators"
+    estimatedTokens: 60
+    keywords: [security, breaking-change, database, performance]
+  - name: "Review Checklist"
+    estimatedTokens: 40
+    keywords: [checklist, review, scope]
+tags: [git, diff, patterns, risk-assessment]
+crossDomainTriggers: []
+---
+
 # Common Diff Patterns – Quick Reference
 
 Compact cues for classifying diffs and spotting risk. Use links for deeper guidance.

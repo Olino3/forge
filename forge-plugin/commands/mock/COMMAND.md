@@ -49,14 +49,13 @@ context: [commands/mocking_patterns]
 
 ### Step 2: Load Context & Memory
 
-**Context Loading**:
-1. Read `../../context/commands/index.md` for command guidance
-2. Load `../../context/commands/mocking_patterns.md` (if exists) for best practices
+**Context Loading** (via ContextProvider):
+1. Load `contextProvider.getConditionalContext("commands", "mocking_patterns")` for best practices
 
-**Memory Loading**:
+**Memory Loading** (via MemoryStore):
 1. Determine project name
-2. Check `../../memory/commands/{project}/mock_services.md` for existing mocks
-3. Load `../../memory/skills/generate-mock-service/{project}/` for patterns
+2. Load `memoryStore.getCommandMemory("mock", project)` for existing mocks
+3. Load `memoryStore.getSkillMemory("generate-mock-service", project)` for patterns
 
 ### Step 3: Gather API Specification
 
@@ -145,8 +144,8 @@ Save summary to `/claudedocs/mock_{service-name}_{date}.md`:
 ```
 
 **Memory Updates**:
-1. Append to `../../memory/commands/{project}/command_history.md`
-2. Update `../../memory/commands/{project}/mock_services.md`:
+1. Use `memoryStore.append("commands", project, "command_history.md", entry)`
+2. Use `memoryStore.update("commands", project, "mock_services.md", content)` with:
    - List of active mocks, endpoints, ports
 3. Update skill memory with mock patterns
 

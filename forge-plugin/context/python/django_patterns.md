@@ -1,3 +1,43 @@
+---
+id: "python/django_patterns"
+domain: python
+title: "Django Patterns"
+type: framework
+estimatedTokens: 950
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Common Anti-Patterns"
+    estimatedTokens: 126
+    keywords: [anti-patterns]
+  - name: "Models"
+    estimatedTokens: 66
+    keywords: [models]
+  - name: "Views"
+    estimatedTokens: 71
+    keywords: [views]
+  - name: "Forms"
+    estimatedTokens: 60
+    keywords: [forms]
+  - name: "Security Issues"
+    estimatedTokens: 72
+    keywords: [security, issues]
+  - name: "QuerySet Optimization"
+    estimatedTokens: 60
+    keywords: [queryset, optimization]
+  - name: "Common Detection Patterns"
+    estimatedTokens: 79
+    keywords: [detection, patterns]
+  - name: "Tools"
+    estimatedTokens: 20
+    keywords: [tools]
+  - name: "Official Resources"
+    estimatedTokens: 26
+    keywords: [official, resources]
+tags: [python, django, orm, security, views, forms, queryset]
+---
+
 # Django Patterns
 
 Quick reference for Django best practices and common issues. For detailed examples, see [Django documentation](https://docs.djangoproject.com/).

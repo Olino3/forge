@@ -1,3 +1,64 @@
+---
+id: "azure/azure_pipelines_overview"
+domain: azure
+title: "Azure Pipelines Overview"
+type: reference
+estimatedTokens: 2250
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Purpose"
+    estimatedTokens: 15
+    keywords: [purpose]
+  - name: "What are Azure Pipelines?"
+    estimatedTokens: 26
+    keywords: [azure, pipelines]
+  - name: "Pipeline Structure"
+    estimatedTokens: 123
+    keywords: [pipeline, structure]
+  - name: "Pipeline Execution Flow"
+    estimatedTokens: 240
+    keywords: [pipeline, execution, flow]
+  - name: "Triggers"
+    estimatedTokens: 47
+    keywords: [triggers]
+  - name: "Variables"
+    estimatedTokens: 48
+    keywords: [variables]
+  - name: "Conditions"
+    estimatedTokens: 31
+    keywords: [conditions]
+  - name: "Templates"
+    estimatedTokens: 49
+    keywords: [templates]
+  - name: "Environments and Approvals"
+    estimatedTokens: 36
+    keywords: [environments, approvals]
+  - name: "Service Connections"
+    estimatedTokens: 24
+    keywords: [service, connections]
+  - name: "Artifacts"
+    estimatedTokens: 25
+    keywords: [artifacts]
+  - name: "Multi-Stage Pipeline Example"
+    estimatedTokens: 93
+    keywords: [multi-stage, pipeline, example]
+  - name: "Best Practices"
+    estimatedTokens: 60
+    keywords: [best]
+  - name: "Detection Patterns"
+    estimatedTokens: 52
+    keywords: [detection, patterns]
+  - name: "When to Use"
+    estimatedTokens: 39
+    keywords: [when]
+  - name: "Official Resources"
+    estimatedTokens: 12
+    keywords: [official, resources]
+tags: [azure, pipelines, cicd, yaml, stages, jobs, triggers, templates]
+---
+
 # Azure Pipelines Overview
 
 ## Purpose

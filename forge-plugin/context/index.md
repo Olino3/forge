@@ -1,3 +1,86 @@
+---
+id: "engineering/index"
+domain: engineering
+title: "Context Directory Index"
+type: index
+estimatedTokens: 1500
+loadingStrategy: always
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+indexedFiles:
+  - id: "engineering/index"
+    path: "engineering/index.md"
+    type: index
+    loadingStrategy: always
+  - id: "angular/index"
+    path: "angular/index.md"
+    type: index
+    loadingStrategy: always
+  - id: "azure/index"
+    path: "azure/index.md"
+    type: index
+    loadingStrategy: always
+  - id: "commands/index"
+    path: "commands/index.md"
+    type: index
+    loadingStrategy: always
+  - id: "dotnet/index"
+    path: "dotnet/index.md"
+    type: index
+    loadingStrategy: always
+  - id: "git/index"
+    path: "git/index.md"
+    type: index
+    loadingStrategy: always
+  - id: "python/index"
+    path: "python/index.md"
+    type: index
+    loadingStrategy: always
+  - id: "schema/index"
+    path: "schema/index.md"
+    type: index
+    loadingStrategy: always
+  - id: "security/index"
+    path: "security/index.md"
+    type: index
+    loadingStrategy: always
+sections:
+  - name: "Purpose"
+    estimatedTokens: 24
+    keywords: [purpose]
+  - name: "Directory Structure"
+    estimatedTokens: 214
+    keywords: [directory, structure]
+  - name: "Quick Reference Guide"
+    estimatedTokens: 1442
+    keywords: [quick, reference, guide]
+  - name: "Usage Patterns"
+    estimatedTokens: 344
+    keywords: [usage, patterns]
+  - name: "Quick Reference Table"
+    estimatedTokens: 20
+    keywords: [quick, reference, table]
+  - name: "Official Documentation"
+    estimatedTokens: 20
+    keywords: [official, documentation]
+  - name: "Detection Patterns"
+    estimatedTokens: 20
+    keywords: [detection, patterns]
+  - name: "Common Issues"
+    estimatedTokens: 13
+    keywords: [issues]
+  - name: "Context vs Memory"
+    estimatedTokens: 57
+    keywords: [context, memory]
+  - name: "Maintenance Guidelines"
+    estimatedTokens: 98
+    keywords: [maintenance, guidelines]
+  - name: "Related Documentation"
+    estimatedTokens: 24
+    keywords: [related, documentation]
+tags: [context, index, navigation, engineering]
+---
+
 # Context Directory Index
 
 This directory contains **shared contextual knowledge** that provides consistent guidance across all skills. Context files are organized by domain and serve as reference materials for standards, patterns, and best practices.

@@ -41,16 +41,15 @@ context: [python, angular, commands/testing_strategies]
 
 ### Step 2: Load Context & Memory
 
-**Context Loading** (index-first approach):
-1. Read `../../context/commands/index.md` for command guidance
-2. Load `../../context/commands/testing_strategies.md` for testing patterns
-3. Based on detected framework, load domain-specific testing context:
-   - **Python**: `../../context/python/testing_frameworks.md`, `unit_testing_standards.md`
-   - **Angular**: `../../context/angular/jest_testing_standards.md`, `testing_utilities.md`
+**Context Loading** (via ContextProvider):
+1. Load testing patterns: `contextProvider.getConditionalContext("commands", "testing_strategies")`
+2. Based on detected framework, load domain-specific testing context:
+   - **Python**: `contextProvider.getConditionalContext("python", "testing_frameworks")`, `contextProvider.getConditionalContext("python", "unit_testing_standards")`
+   - **Angular**: `contextProvider.getConditionalContext("angular", "jest_testing_standards")`, `contextProvider.getConditionalContext("angular", "testing_utilities")`
 
-**Memory Loading**:
+**Memory Loading** (via MemoryStore):
 1. Determine project name
-2. Check `../../memory/commands/{project}/test_results.md` for historical results
+2. Load historical results: `memoryStore.getCommandMemory("test", project)`
 3. Load project-specific test patterns from skill memory if available
 
 ### Step 3: Generate Missing Tests (if --generate)
@@ -135,9 +134,9 @@ Save results to `/claudedocs/test_results_{date}.md`:
 - {recommendations}
 ```
 
-**Memory Updates**:
-1. Append to `../../memory/commands/{project}/command_history.md`
-2. Update `../../memory/commands/{project}/test_results.md`:
+**Memory Updates** (via MemoryStore):
+1. `memoryStore.append("commands", project, "command_history.md", entry)`
+2. `memoryStore.update("commands", project, "test_results.md", content)`:
    - Test counts, coverage trends, recurring failures
 
 ## Tool Coordination

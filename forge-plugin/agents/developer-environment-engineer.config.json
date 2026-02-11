@@ -1,0 +1,37 @@
+{
+  "$schema": "../interfaces/schemas/agent_config.schema.json",
+  "name": "developer-environment-engineer",
+  "version": "1.0.0",
+  "description": "Local tooling expert specializing in developer experience and local development environments",
+  "model": "sonnet",
+  "tools": ["Read", "Write", "Bash", "Grep", "Glob"],
+  "permissionMode": "auto",
+  "context": {
+    "primaryDomains": ["azure"],
+    "secondaryDomains": ["python", "dotnet", "angular"],
+    "alwaysLoadFiles": []
+  },
+  "memory": {
+    "storagePath": "forge-plugin/memory/agents/developer-environment-engineer",
+    "categories": [
+      {"name": "projects", "description": "Track development environment configurations per project"},
+      {"name": "tooling", "description": "Record development tools and utilities used"},
+      {"name": "workflows", "description": "Store developer workflow patterns and scripts"},
+      {"name": "mock_services", "description": "Maintain mock service configurations"}
+    ]
+  },
+  "skills": [
+    {"name": "generate-tilt-dev-environment", "required": true, "useCase": "Set up Tilt-based local development environments"},
+    {"name": "generate-mock-service", "required": true, "useCase": "Create mock services for testing"},
+    {"name": "test-cli-tools", "required": false, "useCase": "Set up and test CLI development tools"}
+  ],
+  "hooks": [
+    {
+      "on_file_write": {
+        "patterns": ["Tiltfile", "docker-compose*.yml", "Dockerfile", ".dockerignore", "Makefile", ".env*", "*.local.yml", "dev-*.yml"],
+        "action": "validate_dev_environment"
+      }
+    }
+  ],
+  "mcpServers": []
+}

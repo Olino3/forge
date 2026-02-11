@@ -1,0 +1,28 @@
+{
+  "$schema": "../interfaces/schemas/agent_config.schema.json",
+  "name": "data-scientist",
+  "version": "1.0.0",
+  "description": "Analytics and ML specialist for data analysis, machine learning, and statistical modeling",
+  "model": "sonnet",
+  "tools": ["view", "edit", "create", "grep", "glob", "bash", "task"],
+  "context": {
+    "primaryDomains": ["python", "schema"],
+    "secondaryDomains": ["engineering"],
+    "alwaysLoadFiles": []
+  },
+  "memory": {
+    "storagePath": "forge-plugin/memory/agents/data-scientist",
+    "categories": [
+      {"name": "datasets", "description": "Dataset characteristics and quirks"},
+      {"name": "features", "description": "Successful feature engineering techniques"},
+      {"name": "models", "description": "Model performance baselines"},
+      {"name": "patterns", "description": "Domain-specific patterns and insights"},
+      {"name": "pipelines", "description": "Reusable data processing pipelines"}
+    ]
+  },
+  "skills": [
+    {"name": "python-code-review", "required": true, "useCase": "Reviewing data science code quality"},
+    {"name": "commit-helper", "required": false, "useCase": "Documenting experiments and changes"},
+    {"name": "documentation-generator", "required": false, "useCase": "Documenting models and pipelines"}
+  ]
+}

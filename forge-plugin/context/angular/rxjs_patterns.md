@@ -1,3 +1,40 @@
+---
+id: "angular/rxjs_patterns"
+domain: angular
+title: "RxJS Patterns for Angular - Quick Reference"
+type: pattern
+estimatedTokens: 1150
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Subscription Management"
+    estimatedTokens: 102
+    keywords: [subscription, management, subscription-management]
+  - name: "Flattening Operators"
+    estimatedTokens: 103
+    keywords: [flattening, operators, flattening-operators]
+  - name: "Error Handling & Recovery"
+    estimatedTokens: 91
+    keywords: [error, handling, recovery, error-handling]
+  - name: "Subject Choices"
+    estimatedTokens: 81
+    keywords: [subject, choices, subjects]
+  - name: "Common Operator Patterns"
+    estimatedTokens: 57
+    keywords: [operator, patterns, operator-patterns]
+  - name: "RxJS Anti‑patterns to Flag"
+    estimatedTokens: 77
+    keywords: [rxjs, antipatterns, flag, anti-patterns]
+  - name: "Quick Checklist for Reviews"
+    estimatedTokens: 66
+    keywords: [quick, checklist, reviews]
+  - name: "External Resources"
+    estimatedTokens: 21
+    keywords: [external, resources]
+tags: [angular, rxjs, observables, subscriptions, operators, subjects, error-handling]
+---
+
 # RxJS Patterns for Angular - Quick Reference
 
 Detection patterns and solution references for common RxJS usage in Angular.

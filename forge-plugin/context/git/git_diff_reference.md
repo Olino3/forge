@@ -1,3 +1,26 @@
+---
+id: "git/git_diff_reference"
+domain: git
+title: "Git Diff Reference - Quick Links"
+type: reference
+estimatedTokens: 150
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Diff Format & Syntax"
+    estimatedTokens: 50
+    keywords: [unified-diff, format, headers, hunks]
+  - name: "Status Codes"
+    estimatedTokens: 30
+    keywords: [added, modified, deleted, renamed, copied]
+  - name: "Special Cases"
+    estimatedTokens: 40
+    keywords: [binary, rename, merge, large-diff]
+tags: [git, diff, format, reference]
+crossDomainTriggers: []
+---
+
 # Git Diff Reference – Quick Links
 
 Minimal reference for where to look up git diff format and commands. Use external docs for details.

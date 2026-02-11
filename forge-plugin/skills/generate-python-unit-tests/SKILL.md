@@ -1,3 +1,15 @@
+---
+name: generate-python-unit-tests
+description: Intelligent Python unit test generation with Socratic planning and project-specific memory.
+version: 1.1.0
+context:
+  primary: [python]
+  topics: [unit_testing_standards, testing_frameworks, mocking_patterns, test_antipatterns]
+memory:
+  scope: per-project
+  files: [testing_patterns.md, expected_behaviors.md, common_fixtures.md, framework_config.md]
+---
+
 # generate-python-unit-tests
 
 ## Title
@@ -10,75 +22,66 @@
 
 ## File Structure
 
+### Skill Files
 ```
-forge-plugin/
-├── context/
-│   └── python/
-│       ├── index.md                          # Context navigation (READ FIRST)
-│       ├── unit_testing_standards.md         # Unit testing best practices
-│       ├── testing_frameworks.md             # pytest, unittest, etc.
-│       ├── mocking_patterns.md               # Mock/patch patterns
-│       └── test_antipatterns.md              # What to avoid
-├── memory/
-│   ├── index.md                              # Memory system guide (READ FIRST)
-│   └── skills/
-│       └── generate-python-unit-tests/
-│           ├── index.md                      # Memory structure for this skill
-│           └── {project-name}/               # Per-project memory
-│               ├── testing_patterns.md       # Project's testing conventions
-│               ├── expected_behaviors.md     # Known expected behaviors
-│               ├── common_fixtures.md        # Reusable test fixtures
-│               └── framework_config.md       # Testing framework setup
-└── skills/
-    └── generate-python-unit-tests/
-        ├── SKILL.md                          # This file
-        ├── examples.md                       # Usage examples
-        ├── scripts/
-        │   └── test_analyzer.py              # Helper for analyzing existing tests
-        └── templates/
-            ├── test_file_template.txt        # Standard test file structure
-            └── test_case_template.txt        # Individual test case template
+forge-plugin/skills/generate-python-unit-tests/
+├── SKILL.md                          # This file
+├── examples.md                       # Usage examples
+├── scripts/
+│   └── test_analyzer.py              # Helper for analyzing existing tests
+└── templates/
+    ├── test_file_template.txt        # Standard test file structure
+    └── test_case_template.txt        # Individual test case template
 ```
+
+### Interface References
+- [ContextProvider](../../interfaces/context_provider.md) — `getDomainIndex("python")`, `getConditionalContext("python", topic)`
+- [MemoryStore](../../interfaces/memory_store.md) — `getSkillMemory("generate-python-unit-tests", project)`, `update()`
+
+### Context (via ContextProvider)
+- `contextProvider.getDomainIndex("python")` — Python context navigation
+- `contextProvider.getConditionalContext("python", "unit_testing_standards")` — Unit testing best practices
+- `contextProvider.getConditionalContext("python", "testing_frameworks")` — pytest, unittest, etc.
+- `contextProvider.getConditionalContext("python", "mocking_patterns")` — Mock/patch patterns
+- `contextProvider.getConditionalContext("python", "test_antipatterns")` — What to avoid
+
+### Memory (via MemoryStore)
+- `memoryStore.getSkillMemory("generate-python-unit-tests", project)` returns per-project files:
+  - `testing_patterns.md` — Project's testing conventions
+  - `expected_behaviors.md` — Known expected behaviors
+  - `common_fixtures.md` — Reusable test fixtures
+  - `framework_config.md` — Testing framework setup
 
 ## Required Reading
 
-### Mandatory Reads (Always Load These)
+### Context & Memory Loading (via Interfaces)
 
-**Before starting any test generation, you MUST read these files in order:**
+**Before starting any test generation, load resources in this order:**
 
-1. **Memory System Navigation**:
-   - `../../memory/index.md` - Understand memory vs context
-   - `../../memory/skills/generate-python-unit-tests/index.md` - Memory structure for this skill
+1. **Project Memory** (via MemoryStore):
+   - `memoryStore.getSkillMemory("generate-python-unit-tests", project)` — loads all per-project files if they exist
 
-2. **Context System Navigation**:
-   - `../../context/index.md` - Context system overview
-   - `../../context/python/index.md` - Python context navigation and framework detection
+2. **Domain Index** (via ContextProvider):
+   - `contextProvider.getDomainIndex("python")` — Python context navigation and framework detection
 
-3. **Project-Specific Memory** (if exists):
-   - `../../memory/skills/generate-python-unit-tests/{project-name}/testing_patterns.md`
-   - `../../memory/skills/generate-python-unit-tests/{project-name}/expected_behaviors.md`
-   - `../../memory/skills/generate-python-unit-tests/{project-name}/common_fixtures.md`
-   - `../../memory/skills/generate-python-unit-tests/{project-name}/framework_config.md`
+3. **Core Testing Context** (always load via ContextProvider):
+   - `contextProvider.getConditionalContext("python", "unit_testing_standards")` — Core testing principles
+   - `contextProvider.getConditionalContext("python", "testing_frameworks")` — Framework-specific patterns
+   - `contextProvider.getConditionalContext("python", "mocking_patterns")` — Mocking best practices
+   - `contextProvider.getConditionalContext("python", "test_antipatterns")` — What to avoid
 
-4. **Python Testing Context** (load based on context/python/index.md guidance):
-   - `../../context/python/unit_testing_standards.md` - Core testing principles
-   - `../../context/python/testing_frameworks.md` - Framework-specific patterns
-   - `../../context/python/mocking_patterns.md` - Mocking best practices
-   - `../../context/python/test_antipatterns.md` - What to avoid
+4. **Conditional Context** (load based on code analysis):
+   - Load additional context from Python domain via `contextProvider.getConditionalContext()` as needed
 
-5. **Additional Context** (conditional, based on code analysis):
-   - Load other context files from `../../context/python/` as needed for the specific code being tested
+### Loading Order
 
-### File Reading Order
-
-**CRITICAL**: Files must be read in this exact order:
+**CRITICAL**: Resources must be loaded in this exact order:
 
 ```
-1. Memory indexes (understand what memory exists)
-2. Context indexes (understand what context is available)
-3. Project memory (load project-specific patterns)
-4. Core context (testing standards, frameworks)
-5. Conditional context (based on code being tested)
+1. Project memory via memoryStore (load project-specific patterns)
+2. Domain index via contextProvider (understand available context)
+3. Core context via contextProvider (testing standards, frameworks)
+4. Conditional context via contextProvider (based on code being tested)
 ```
 
 ## Design Requirements
@@ -192,16 +195,13 @@ This workflow is **MANDATORY** and **NON-NEGOTIABLE**. Every step must be comple
 **Purpose**: Understand what memory and context is available.
 
 **Actions**:
-1. Read `../../memory/index.md` to understand memory system
-2. Read `../../memory/skills/generate-python-unit-tests/index.md` for skill-specific memory structure
-3. Read `../../context/index.md` for context system overview
-4. Read `../../context/python/index.md` for Python context navigation
+1. Load Python domain index via `contextProvider.getDomainIndex("python")`
+2. Identify which context topics will be needed based on code analysis
 
 **Validation**:
-- [ ] Memory system understood
-- [ ] Skill memory structure known
-- [ ] Context system understood
-- [ ] Python context map loaded
+- [ ] Domain index loaded
+- [ ] Python context map understood
+- [ ] Relevant topics identified
 
 ---
 
@@ -210,13 +210,13 @@ This workflow is **MANDATORY** and **NON-NEGOTIABLE**. Every step must be comple
 **Purpose**: Load project-specific testing patterns and conventions.
 
 **Actions**:
-1. Check if `../../memory/skills/generate-python-unit-tests/{project-name}/` exists
-2. If exists, read all memory files:
+1. Load project memory via `memoryStore.getSkillMemory("generate-python-unit-tests", project)`
+2. If memory exists, review all files:
    - `testing_patterns.md` - Project's testing conventions
    - `expected_behaviors.md` - Known expected behaviors
    - `common_fixtures.md` - Reusable test fixtures
    - `framework_config.md` - Testing framework setup
-3. If doesn't exist, note that this is a new project (memory will be created later)
+3. If no memory exists, note that this is a new project (memory will be created later)
 
 **Validation**:
 - [ ] Project memory checked
@@ -231,16 +231,16 @@ This workflow is **MANDATORY** and **NON-NEGOTIABLE**. Every step must be comple
 
 **Actions**:
 1. **Always load**:
-   - `../../context/python/unit_testing_standards.md`
-   - `../../context/python/testing_frameworks.md`
-   - `../../context/python/mocking_patterns.md`
-   - `../../context/python/test_antipatterns.md`
+   - `contextProvider.getConditionalContext("python", "unit_testing_standards")`
+   - `contextProvider.getConditionalContext("python", "testing_frameworks")`
+   - `contextProvider.getConditionalContext("python", "mocking_patterns")`
+   - `contextProvider.getConditionalContext("python", "test_antipatterns")`
 
 2. **Conditionally load** (based on code analysis):
-   - If async code: load async patterns
+   - If async code: load async patterns via contextProvider
    - If Django/Flask/FastAPI: load framework-specific context
    - If database code: load data testing patterns
-   - Use `../../context/python/index.md` as guide
+   - Use domain index from Step 2 as guide
 
 **Validation**:
 - [ ] Core testing context loaded
@@ -365,8 +365,7 @@ Before generating tests, I need to understand the expected behavior:
 **Purpose**: Store learned patterns for future test generation.
 
 **Actions**:
-1. If project memory doesn't exist, create:
-   - `../../memory/skills/generate-python-unit-tests/{project-name}/`
+1. Use `memoryStore.update("generate-python-unit-tests", project, filename, content)` for each file
 2. Create or update memory files:
    - **testing_patterns.md**: Document testing conventions observed/established
      - Test file location pattern
@@ -543,6 +542,12 @@ Context files provide stable guidance:
 - Mocking strategies (when and how to mock)
 
 ## Version History
+
+### v1.1.0 (2025-07-15)
+- Phase 4 Migration: Replaced hardcoded `../../context/` and `../../memory/` paths with ContextProvider and MemoryStore interface calls
+- Added YAML frontmatter with context/memory declarations
+- Added Interface References section
+- Updated workflow steps to use contextProvider/memoryStore
 
 ### v1.0.0 (2025-11-18)
 - Initial release

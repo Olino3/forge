@@ -1,3 +1,28 @@
+---
+id: "angular/test_antipatterns"
+domain: angular
+title: "Angular Test Anti-Patterns"
+type: pattern
+estimatedTokens: 800
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "What to Avoid"
+    estimatedTokens: 354
+    keywords: [avoid]
+  - name: "Quick Checklist"
+    estimatedTokens: 66
+    keywords: [quick, checklist]
+  - name: "Official Documentation"
+    estimatedTokens: 20
+    keywords: [official, documentation]
+  - name: "Related Context Files"
+    estimatedTokens: 18
+    keywords: [related, context, files]
+tags: [angular, testing, anti-patterns, change-detection, mocking, async]
+---
+
 # Angular Test Anti-Patterns
 
 ## What to Avoid

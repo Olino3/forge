@@ -1,3 +1,117 @@
+---
+id: "angular/index"
+domain: angular
+title: "Angular Context Files Index"
+type: index
+estimatedTokens: 2050
+loadingStrategy: always
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+indexedFiles:
+  - id: "angular/common_issues"
+    path: "common_issues.md"
+    type: always
+    loadingStrategy: always
+  - id: "angular/context_detection"
+    path: "context_detection.md"
+    type: detection
+    loadingStrategy: onDemand
+  - id: "angular/component_patterns"
+    path: "component_patterns.md"
+    type: pattern
+    loadingStrategy: onDemand
+  - id: "angular/component_testing_patterns"
+    path: "component_testing_patterns.md"
+    type: pattern
+    loadingStrategy: onDemand
+  - id: "angular/jest_testing_standards"
+    path: "jest_testing_standards.md"
+    type: pattern
+    loadingStrategy: onDemand
+  - id: "angular/ngrx_patterns"
+    path: "ngrx_patterns.md"
+    type: framework
+    loadingStrategy: onDemand
+  - id: "angular/performance_patterns"
+    path: "performance_patterns.md"
+    type: pattern
+    loadingStrategy: onDemand
+  - id: "angular/primeng_patterns"
+    path: "primeng_patterns.md"
+    type: framework
+    loadingStrategy: onDemand
+  - id: "angular/rxjs_patterns"
+    path: "rxjs_patterns.md"
+    type: pattern
+    loadingStrategy: onDemand
+  - id: "angular/security_patterns"
+    path: "security_patterns.md"
+    type: pattern
+    loadingStrategy: onDemand
+  - id: "angular/service_patterns"
+    path: "service_patterns.md"
+    type: pattern
+    loadingStrategy: onDemand
+  - id: "angular/service_testing_patterns"
+    path: "service_testing_patterns.md"
+    type: pattern
+    loadingStrategy: onDemand
+  - id: "angular/tailwind_patterns"
+    path: "tailwind_patterns.md"
+    type: framework
+    loadingStrategy: onDemand
+  - id: "angular/test_antipatterns"
+    path: "test_antipatterns.md"
+    type: pattern
+    loadingStrategy: onDemand
+  - id: "angular/testing_utilities"
+    path: "testing_utilities.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "angular/typescript_patterns"
+    path: "typescript_patterns.md"
+    type: pattern
+    loadingStrategy: onDemand
+sections:
+  - name: "Purpose"
+    estimatedTokens: 45
+    keywords: [purpose]
+  - name: "Directory Structure"
+    estimatedTokens: 86
+    keywords: [directory, structure]
+  - name: "Usage Guide"
+    estimatedTokens: 66
+    keywords: [usage, guide]
+  - name: "Context Loading Decision Matrix"
+    estimatedTokens: 512
+    keywords: [context, loading, decision, matrix]
+  - name: "Quick Reference: Loading Patterns by Scenario"
+    estimatedTokens: 105
+    keywords: [quick, reference, loading, patterns, scenario]
+  - name: "Integration with Other Context Domains"
+    estimatedTokens: 44
+    keywords: [integration, other, context, domains]
+  - name: "Evolution and Maintenance"
+    estimatedTokens: 62
+    keywords: [evolution, maintenance]
+  - name: "Context File Standards"
+    estimatedTokens: 48
+    keywords: [context, file, standards]
+  - name: "Token Efficiency"
+    estimatedTokens: 54
+    keywords: [token, efficiency]
+  - name: "Related Documentation"
+    estimatedTokens: 26
+    keywords: [related, documentation]
+  - name: "Version"
+    estimatedTokens: 11
+    keywords: [version]
+  - name: "Quick Start for Claude"
+    estimatedTokens: 62
+    keywords: [quick, start, claude]
+tags: [angular, typescript, index, navigation, code-review]
+---
+
 # Angular Context Index
 
 This directory contains shared contextual knowledge for Angular code review and development. These files provide reference materials, best practices, and standards applicable to all Angular projects.

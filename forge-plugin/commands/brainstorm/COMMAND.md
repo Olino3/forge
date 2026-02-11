@@ -39,14 +39,13 @@ context: [commands/brainstorming_patterns]
 
 ### Step 2: Load Context & Memory
 
-**Context Loading**:
-1. Read `../../context/commands/index.md` for command guidance
-2. Load `../../context/commands/brainstorming_patterns.md` for questioning techniques
-3. If data modeling involved: Load `../../context/schema/index.md`
+**Context Loading** (via ContextProvider):
+1. Load command guidance: `contextProvider.getConditionalContext("commands", "brainstorming_patterns")`
+2. If data modeling involved: `contextProvider.getConditionalContext("schema", "index")`
 
-**Memory Loading**:
+**Memory Loading** (via MemoryStore):
 1. Determine project name
-2. Check `../../memory/commands/{project}/brainstorm_notes.md` for past brainstorming
+2. Load past brainstorming: `memoryStore.getCommandMemory("brainstorm", project)`
 3. Load relevant skill memory for existing project understanding
 
 ### Step 3: Socratic Dialogue
@@ -165,9 +164,9 @@ Save results to `/claudedocs/requirements_{topic}_{date}.md`:
 - Use `/analyze` to assess existing codebase for integration points
 ```
 
-**Memory Updates**:
-1. Append to `../../memory/commands/{project}/command_history.md`
-2. Update `../../memory/commands/{project}/brainstorm_notes.md`:
+**Memory Updates** (via MemoryStore):
+1. `memoryStore.append("commands", project, "command_history.md", entry)`
+2. `memoryStore.update("commands", project, "brainstorm_notes.md", content)`:
    - Requirements gathered, decisions made, open questions
 
 ## Tool Coordination

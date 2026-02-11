@@ -1,3 +1,15 @@
+---
+name: generate-jest-unit-tests
+description: Intelligent Jest unit test generation for Angular components, services, and more with Socratic planning and project-specific memory.
+version: 1.1.0
+context:
+  primary: [angular]
+  topics: [jest_testing_standards, component_testing_patterns, service_testing_patterns, testing_utilities, test_antipatterns, ngrx_patterns, rxjs_patterns]
+memory:
+  scope: per-project
+  files: [testing_patterns.md, expected_behaviors.md, common_mocks.md, framework_config.md]
+---
+
 # generate-jest-unit-tests
 
 ## Title
@@ -10,78 +22,70 @@
 
 ## File Structure
 
+### Skill Files
 ```
-forge-plugin/
-├── context/
-│   └── angular/
-│       ├── index.md                          # Context navigation (READ FIRST)
-│       ├── jest_testing_standards.md         # Jest/Angular testing best practices
-│       ├── component_testing_patterns.md     # Component testing strategies
-│       ├── service_testing_patterns.md       # Service testing patterns
-│       ├── testing_utilities.md              # TestBed, mocking, spies, utilities
-│       └── test_antipatterns.md              # What to avoid
-├── memory/
-│   ├── index.md                              # Memory system guide (READ FIRST)
-│   └── skills/
-│       └── generate-jest-unit-tests/
-│           ├── index.md                      # Memory structure for this skill
-│           └── {project-name}/               # Per-project memory
-│               ├── testing_patterns.md       # Project's testing conventions
-│               ├── expected_behaviors.md     # Known expected behaviors
-│               ├── common_mocks.md           # Reusable mocks and test data
-│               └── framework_config.md       # Jest/TestBed configuration
-└── skills/
-    └── generate-jest-unit-tests/
-        ├── SKILL.md                          # This file
-        ├── examples.md                       # Usage examples
-        ├── scripts/
-        │   └── test_analyzer.ts              # Helper for analyzing existing tests
-        └── templates/
-            ├── component_test_template.txt   # Component test structure
-            ├── service_test_template.txt     # Service test structure
-            └── test_case_template.txt        # Individual test case template
+forge-plugin/skills/generate-jest-unit-tests/
+├── SKILL.md                          # This file
+├── examples.md                       # Usage examples
+├── scripts/
+│   └── test_analyzer.ts              # Helper for analyzing existing tests
+└── templates/
+    ├── component_test_template.txt   # Component test structure
+    ├── service_test_template.txt     # Service test structure
+    └── test_case_template.txt        # Individual test case template
 ```
+
+### Interface References
+- [ContextProvider](../../interfaces/context_provider.md) — `getDomainIndex("angular")`, `getConditionalContext("angular", topic)`
+- [MemoryStore](../../interfaces/memory_store.md) — `getSkillMemory("generate-jest-unit-tests", project)`, `update()`
+
+### Context (via ContextProvider)
+- `contextProvider.getDomainIndex("angular")` — Angular context navigation
+- `contextProvider.getConditionalContext("angular", "jest_testing_standards")` — Jest/Angular testing best practices
+- `contextProvider.getConditionalContext("angular", "component_testing_patterns")` — Component testing strategies
+- `contextProvider.getConditionalContext("angular", "service_testing_patterns")` — Service testing patterns
+- `contextProvider.getConditionalContext("angular", "testing_utilities")` — TestBed, mocking, spies, utilities
+- `contextProvider.getConditionalContext("angular", "test_antipatterns")` — What to avoid
+
+### Memory (via MemoryStore)
+- `memoryStore.getSkillMemory("generate-jest-unit-tests", project)` returns per-project files:
+  - `testing_patterns.md` — Project's testing conventions
+  - `expected_behaviors.md` — Known expected behaviors
+  - `common_mocks.md` — Reusable mocks and test data
+  - `framework_config.md` — Jest/TestBed configuration
 
 ## Required Reading
 
-### Mandatory Reads (Always Load These)
+### Context & Memory Loading (via Interfaces)
 
-**Before starting any test generation, you MUST read these files in order:**
+**Before starting any test generation, load resources in this order:**
 
-1. **Memory System Navigation**:
-   - `../../memory/index.md` - Understand memory vs context
-   - `../../memory/skills/generate-jest-unit-tests/index.md` - Memory structure for this skill
+1. **Project Memory** (via MemoryStore):
+   - `memoryStore.getSkillMemory("generate-jest-unit-tests", project)` — loads all per-project files if they exist
 
-2. **Context System Navigation**:
-   - `../../context/index.md` - Context system overview
-   - `../../context/angular/index.md` - Angular context navigation
+2. **Domain Index** (via ContextProvider):
+   - `contextProvider.getDomainIndex("angular")` — Angular context navigation
 
-3. **Project-Specific Memory** (if exists):
-   - `../../memory/skills/generate-jest-unit-tests/{project-name}/testing_patterns.md`
-   - `../../memory/skills/generate-jest-unit-tests/{project-name}/expected_behaviors.md`
-   - `../../memory/skills/generate-jest-unit-tests/{project-name}/common_mocks.md`
-   - `../../memory/skills/generate-jest-unit-tests/{project-name}/framework_config.md`
+3. **Core Testing Context** (always load via ContextProvider):
+   - `contextProvider.getConditionalContext("angular", "jest_testing_standards")` — Core testing principles
+   - `contextProvider.getConditionalContext("angular", "testing_utilities")` — TestBed, mocking, spies
+   - `contextProvider.getConditionalContext("angular", "test_antipatterns")` — What to avoid
 
-4. **Angular Testing Context** (load based on context/angular/index.md guidance):
-   - `../../context/angular/jest_testing_standards.md` - Core testing principles
-   - `../../context/angular/component_testing_patterns.md` - Component testing
-   - `../../context/angular/service_testing_patterns.md` - Service testing
-   - `../../context/angular/testing_utilities.md` - TestBed, mocking, spies
-   - `../../context/angular/test_antipatterns.md` - What to avoid
+4. **Conditional Context** (load based on code analysis):
+   - If component: `contextProvider.getConditionalContext("angular", "component_testing_patterns")`
+   - If service: `contextProvider.getConditionalContext("angular", "service_testing_patterns")`
+   - If NgRx: `contextProvider.getConditionalContext("angular", "ngrx_patterns")`
+   - If RxJS: `contextProvider.getConditionalContext("angular", "rxjs_patterns")`
 
-5. **Additional Context** (conditional, based on code analysis):
-   - Load other context files from `../../context/angular/` as needed
+### Loading Order
 
-### File Reading Order
-
-**CRITICAL**: Files must be read in this exact order:
+**CRITICAL**: Resources must be loaded in this exact order:
 
 ```
-1. Memory indexes (understand what memory exists)
-2. Context indexes (understand what context is available)
-3. Project memory (load project-specific patterns)
-4. Core context (testing standards, patterns)
-5. Conditional context (based on code being tested)
+1. Project memory via memoryStore (load project-specific patterns)
+2. Domain index via contextProvider (understand available context)
+3. Core context via contextProvider (testing standards, patterns)
+4. Conditional context via contextProvider (based on code being tested)
 ```
 
 ## Design Requirements
@@ -211,16 +215,13 @@ This workflow is **MANDATORY** and **NON-NEGOTIABLE**. Every step must be comple
 **Purpose**: Understand what memory and context is available.
 
 **Actions**:
-1. Read `../../memory/index.md` to understand memory system
-2. Read `../../memory/skills/generate-jest-unit-tests/index.md` for skill-specific memory structure
-3. Read `../../context/index.md` for context system overview
-4. Read `../../context/angular/index.md` for Angular context navigation
+1. Load Angular domain index via `contextProvider.getDomainIndex("angular")`
+2. Identify which context topics will be needed based on file types
 
 **Validation**:
-- [ ] Memory system understood
-- [ ] Skill memory structure known
-- [ ] Context system understood
-- [ ] Angular context map loaded
+- [ ] Domain index loaded
+- [ ] Angular context map understood
+- [ ] Relevant topics identified
 
 ---
 
@@ -229,13 +230,13 @@ This workflow is **MANDATORY** and **NON-NEGOTIABLE**. Every step must be comple
 **Purpose**: Load project-specific testing patterns and conventions.
 
 **Actions**:
-1. Check if `../../memory/skills/generate-jest-unit-tests/{project-name}/` exists
-2. If exists, read all memory files:
+1. Load project memory via `memoryStore.getSkillMemory("generate-jest-unit-tests", project)`
+2. If memory exists, review all files:
    - `testing_patterns.md` - Project's testing conventions
    - `expected_behaviors.md` - Known expected behaviors
    - `common_mocks.md` - Reusable mocks and test data
    - `framework_config.md` - Jest/TestBed configuration
-3. If doesn't exist, note that this is a new project (memory will be created later)
+3. If no memory exists, note that this is a new project (memory will be created later)
 
 **Validation**:
 - [ ] Project memory checked
@@ -250,16 +251,16 @@ This workflow is **MANDATORY** and **NON-NEGOTIABLE**. Every step must be comple
 
 **Actions**:
 1. **Always load**:
-   - `../../context/angular/jest_testing_standards.md`
-   - `../../context/angular/testing_utilities.md`
-   - `../../context/angular/test_antipatterns.md`
+   - `contextProvider.getConditionalContext("angular", "jest_testing_standards")`
+   - `contextProvider.getConditionalContext("angular", "testing_utilities")`
+   - `contextProvider.getConditionalContext("angular", "test_antipatterns")`
 
 2. **Conditionally load** (based on file type):
-   - If component: `../../context/angular/component_testing_patterns.md`
-   - If service: `../../context/angular/service_testing_patterns.md`
-   - If using NgRx: `../../context/angular/ngrx_patterns.md`
-   - If using RxJS heavily: `../../context/angular/rxjs_patterns.md`
-   - Use `../../context/angular/index.md` as guide
+   - If component: `contextProvider.getConditionalContext("angular", "component_testing_patterns")`
+   - If service: `contextProvider.getConditionalContext("angular", "service_testing_patterns")`
+   - If using NgRx: `contextProvider.getConditionalContext("angular", "ngrx_patterns")`
+   - If using RxJS heavily: `contextProvider.getConditionalContext("angular", "rxjs_patterns")`
+   - Use domain index from Step 2 as guide
 
 **Validation**:
 - [ ] Core testing context loaded
@@ -418,8 +419,7 @@ Before generating tests, I need to understand the expected behavior:
 **Purpose**: Store learned patterns for future test generation.
 
 **Actions**:
-1. If project memory doesn't exist, create:
-   - `../../memory/skills/generate-jest-unit-tests/{project-name}/`
+1. Use `memoryStore.update("generate-jest-unit-tests", project, filename, content)` for each file
 2. Create or update memory files:
    - **testing_patterns.md**: Document testing conventions observed/established
      - Test file location pattern
@@ -716,6 +716,12 @@ it('should_display_async_data', fakeAsync(() => {
 ```
 
 ## Version History
+
+### v1.1.0 (2025-07-15)
+- Phase 4 Migration: Replaced hardcoded `../../context/` and `../../memory/` paths with ContextProvider and MemoryStore interface calls
+- Added YAML frontmatter with context/memory declarations
+- Added Interface References section
+- Updated workflow steps to use contextProvider/memoryStore
 
 ### v1.0.0 (2025-11-18)
 - Initial release

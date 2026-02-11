@@ -13,8 +13,7 @@ description: Crafts meaningful change chronicles by analyzing git diffs and gene
 
 - **SKILL.md** (this file): Main instructions and MANDATORY workflow
 - **examples.md**: Usage scenarios with different commit types and generated messages
-- **../../memory/skills/commit-helper/**: Project-specific memory storage
-  - `{project-name}/`: Per-project commit conventions and patterns
+- **Memory**: Project-specific memory accessed via `memoryStore.getSkillMemory("commit-helper", "{project-name}")`. See [MemoryStore Interface](../../interfaces/memory_store.md).
 - **templates/**:
   - `commit_template.md`: Standard commit message output format template
 
@@ -64,7 +63,7 @@ Commit message crafting evaluates 7 critical dimensions:
    - `revert`: Reverting a previous commit
 2. **Identify scope**: Determine the affected module, component, or area (e.g., `auth`, `api`, `parser`, `cli`)
 3. **Detect breaking changes**: Look for removed public APIs, changed function signatures, renamed exports, schema migrations, or configuration format changes
-4. **Check project memory**: Look in `../../memory/skills/commit-helper/{project-name}/` for project-specific commit conventions, preferred scopes, or style guidelines
+4. **Check project memory**: Use `memoryStore.getSkillMemory("commit-helper", "{project-name}")` to load project-specific commit conventions, preferred scopes, or style guidelines. See [MemoryStore Interface](../../interfaces/memory_store.md) for method details.
 5. **Gather additional context**: If the change purpose is ambiguous, ask the user clarifying questions:
    - What motivated this change?
    - Is this related to a specific issue or ticket?
@@ -121,10 +120,12 @@ Commit message crafting evaluates 7 critical dimensions:
 
 **OPTIONAL: Update Project Memory**
 
-If project-specific conventions are discovered during the process, store insights in `../../memory/skills/commit-helper/{project-name}/`:
+If project-specific conventions are discovered during the process, use `memoryStore.update("commit-helper", "{project-name}", ...)` to store insights:
 - Preferred commit types and scopes
 - Project-specific conventions (e.g., ticket number format, scope naming)
 - Common patterns observed in existing commit history
+
+See [MemoryStore Interface](../../interfaces/memory_store.md) for `update()` and `append()` method details.
 
 ---
 
@@ -205,6 +206,9 @@ Refer to official documentation:
 
 ## Version History
 
+- v1.1.0 (2026-02-10): Migrated to interface-based memory access
+  - Replaced hardcoded memory paths with MemoryStore interface calls
+  - Added references to MemoryStore interface documentation
 - v1.0.0 (2025-01-XX): Initial release
   - Mandatory 4-step workflow for commit message generation
   - Conventional Commits compliance

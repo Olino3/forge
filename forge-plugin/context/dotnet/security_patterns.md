@@ -1,3 +1,61 @@
+---
+id: "dotnet/security_patterns"
+domain: dotnet
+title: ".NET Security Patterns"
+type: pattern
+estimatedTokens: 1550
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "OWASP Top 10 for .NET"
+    estimatedTokens: 95
+    keywords: [owasp, top, net]
+  - name: "SQL Injection Prevention"
+    estimatedTokens: 34
+    keywords: [sql, injection, prevention]
+  - name: "Cross-Site Scripting (XSS)"
+    estimatedTokens: 39
+    keywords: [cross-site, scripting, xss]
+  - name: "CSRF Protection"
+    estimatedTokens: 24
+    keywords: [csrf, protection]
+  - name: "Authentication"
+    estimatedTokens: 67
+    keywords: [authentication]
+  - name: "Authorization"
+    estimatedTokens: 72
+    keywords: [authorization]
+  - name: "Secrets Management"
+    estimatedTokens: 69
+    keywords: [secrets, management]
+  - name: "Input Validation"
+    estimatedTokens: 58
+    keywords: [input, validation]
+  - name: "File Upload Security"
+    estimatedTokens: 92
+    keywords: [file, upload, security]
+  - name: "Logging Security"
+    estimatedTokens: 37
+    keywords: [logging, security]
+  - name: "HTTPS and Security Headers"
+    estimatedTokens: 33
+    keywords: [https, security, headers]
+  - name: "JWT Security"
+    estimatedTokens: 69
+    keywords: [jwt, security]
+  - name: "Common Detection Patterns"
+    estimatedTokens: 63
+    keywords: [detection, patterns]
+  - name: "Security Checklist"
+    estimatedTokens: 66
+    keywords: [security, checklist]
+  - name: "Official Resources"
+    estimatedTokens: 23
+    keywords: [official, resources]
+tags: [dotnet, security, owasp, sql-injection, xss, csrf, authentication, jwt, secrets]
+---
+
 # .NET Security Patterns
 
 Quick reference for .NET security best practices (OWASP Top 10). For detailed guidance, see [ASP.NET Core security](https://learn.microsoft.com/en-us/aspnet/core/security/).

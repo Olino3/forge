@@ -1,3 +1,43 @@
+---
+id: "python/datascience_patterns"
+domain: python
+title: "Data Science Patterns (Pandas/NumPy)"
+type: framework
+estimatedTokens: 900
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Pandas Performance Anti-Patterns"
+    estimatedTokens: 111
+    keywords: [pandas, performance, anti-patterns]
+  - name: "NumPy Performance Anti-Patterns"
+    estimatedTokens: 79
+    keywords: [numpy, performance, anti-patterns]
+  - name: "Data Validation Issues"
+    estimatedTokens: 77
+    keywords: [data, validation, issues]
+  - name: "Memory Management Issues"
+    estimatedTokens: 65
+    keywords: [memory, management, issues]
+  - name: "Common Detection Patterns"
+    estimatedTokens: 93
+    keywords: [detection, patterns]
+  - name: "Best Practices Checklist"
+    estimatedTokens: 77
+    keywords: [checklist]
+  - name: "Key Pandas Methods"
+    estimatedTokens: 57
+    keywords: [pandas, methods]
+  - name: "Tools for Data Quality"
+    estimatedTokens: 24
+    keywords: [tools, data, quality]
+  - name: "Official Documentation"
+    estimatedTokens: 25
+    keywords: [official, documentation]
+tags: [python, pandas, numpy, datascience, performance, validation]
+---
+
 # Data Science Patterns (Pandas/NumPy)
 
 Quick reference for reviewing data science code. For detailed examples, see official documentation.

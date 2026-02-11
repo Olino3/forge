@@ -13,12 +13,10 @@ description: Deep Python code review of changed files using git diff analysis. F
 
 - **SKILL.md** (this file): Main instructions and MANDATORY workflow
 - **examples.md**: Review scenarios with before/after examples
-- **../../context/python/**: Framework patterns and detection logic
+- **Context**: Python and security domain context loaded via `contextProvider.getDomainIndex("python")` and `contextProvider.getDomainIndex("security")`. See [ContextProvider Interface](../../interfaces/context_provider.md).
   - `context_detection.md`, `common_issues.md`, `{framework}_patterns.md`
-- **../../context/security/**: Security guidelines and OWASP references
   - `security_guidelines.md`, `owasp_python.md`
-- **../../memory/skills/python-code-review/**: Project-specific memory storage
-  - `{project-name}/`: Per-project learned patterns and context
+- **Memory**: Project-specific memory accessed via `memoryStore.getSkillMemory("python-code-review", "{project-name}")`. See [MemoryStore Interface](../../interfaces/memory_store.md).
 - **templates/**: `report_template.md`, `inline_comment_template.md`
 
 ## Review Focus Areas
@@ -56,16 +54,17 @@ Deep reviews evaluate 8 critical dimensions **in the changed code**:
 ### ⚠️ STEP 2: Load Project Memory & Context Detection (REQUIRED)
 
 **YOU MUST:**
-1. **CHECK PROJECT MEMORY FIRST**: 
+1. **CHECK PROJECT MEMORY FIRST**:
    - Identify the project name from the repository root or ask the user
-   - **READ** `../../memory/skills/python-code-review/index.md` to understand the memory system
-   - Check `../../memory/skills/python-code-review/{project-name}/` for existing project memory
-   - If memory exists, read the memory files to understand previously learned patterns, frameworks, and project-specific context
-   - If no memory exists, you will create it later in this process
+   - Use `memoryStore.getSkillMemory("python-code-review", "{project-name}")` to load project-specific patterns
+   - **Cross-skill discovery**: Use `memoryStore.getByProject("{project-name}")` to check for schema analysis results, test findings, or other skill insights
+   - If memory exists: Review previously learned patterns, frameworks, and project-specific context
+   - If no memory exists (empty result): Note this is first review, you will create memory later
 2. **USE CONTEXT INDEXES FOR EFFICIENT LOADING**:
-   - **READ** `../../context/index.md` for overview of available context files
-   - **READ** `../../context/python/index.md` to understand Python context files and when to use each
-   - **READ** `../../context/security/index.md` to understand security context files
+   - Use `contextProvider.getDomainIndex("python")` to understand Python context files and when to use each
+   - Use `contextProvider.getDomainIndex("security")` to understand security context files
+
+See [ContextProvider](../../interfaces/context_provider.md) and [MemoryStore](../../interfaces/memory_store.md) interfaces.
 3. Analyze changed files' structure and imports
 4. Use `context_detection.md` to identify framework (as guided by the python index)
 5. Determine which specific context files to load based on the indexes (don't load all files)
@@ -81,23 +80,23 @@ Deep reviews evaluate 8 critical dimensions **in the changed code**:
 
 **YOU MUST use the indexes to load only relevant files**:
 
-**Use the index files from Step 2 to determine which context files to load:**
+**Use the domain indexes from Step 2 to determine which context files to load:**
 
-1. **ALWAYS**: `../../context/python/common_issues.md` (universal anti-patterns and deep bugs)
-2. **Based on framework detected** (refer to `../../context/python/index.md` for guidance):
-   - **If Django detected**: Load `django_patterns.md`
-   - **If Flask detected**: Load `flask_patterns.md`
-   - **If FastAPI detected**: Load `fastapi_patterns.md`
-   - **If data science detected**: Load `datascience_patterns.md`
-   - **If ML detected**: Load `ml_patterns.md`
-3. **For security-sensitive code** (refer to `../../context/security/index.md` for when to load):
-   - Auth/authorization code: Load both security files
-   - User input handling: Load `security_guidelines.md`
-   - Database queries: Load `security_guidelines.md`
-   - File operations: Load `security_guidelines.md`
-   - Comprehensive audit: Load both `security_guidelines.md` AND `owasp_python.md`
+1. **ALWAYS**: Use `contextProvider.getAlwaysLoadFiles("python")` to load universal anti-patterns and deep bugs (e.g., `common_issues.md`)
+2. **Based on framework detected**: Use `contextProvider.getConditionalContext("python", detection)` to load framework-specific patterns:
+   - **If Django detected**: Loads `django_patterns.md`
+   - **If Flask detected**: Loads `flask_patterns.md`
+   - **If FastAPI detected**: Loads `fastapi_patterns.md`
+   - **If data science detected**: Loads `datascience_patterns.md`
+   - **If ML detected**: Loads `ml_patterns.md`
+3. **For security-sensitive code**: Use `contextProvider.getCrossDomainContext("python", triggers)` where triggers include detected security concerns:
+   - Auth/authorization code: Loads both security files
+   - User input handling: Loads `security_guidelines.md`
+   - Database queries: Loads `security_guidelines.md`
+   - File operations: Loads `security_guidelines.md`
+   - Comprehensive audit: Loads both `security_guidelines.md` AND `owasp_python.md`
 
-**Progressive loading**: Only read files relevant to the detected framework and code type. The index files provide guidance on when each file is needed.
+**Progressive loading**: Only load files relevant to the detected framework and code type. The ContextProvider respects the 4-6 file token budget automatically.
 
 **DO NOT SKIP LOADING RELEVANT CONTEXT FILES**
 
@@ -152,14 +151,14 @@ Deep reviews evaluate 8 critical dimensions **in the changed code**:
 
 **After completing the review, UPDATE PROJECT MEMORY**:
 
-Create or update files in `../../memory/skills/python-code-review/{project-name}/`:
+Use `memoryStore.update("python-code-review", "{project-name}", ...)` to create or update memory files:
 
-1. **project_overview.md**: Framework, architecture patterns, deployment info
-2. **common_patterns.md**: Project-specific coding patterns and conventions discovered
-3. **known_issues.md**: Recurring issues or anti-patterns found in this project
-4. **review_history.md**: Summary of reviews performed with dates and key findings
+1. **project_overview**: Framework, architecture patterns, deployment info
+2. **common_patterns**: Project-specific coding patterns and conventions discovered
+3. **known_issues**: Recurring issues or anti-patterns found in this project
+4. **review_history**: Summary of reviews performed with dates and key findings
 
-This memory will be consulted in future reviews to provide context-aware analysis.
+Timestamps and staleness tracking are managed automatically by MemoryStore. See [MemoryStore Interface](../../interfaces/memory_store.md) for `update()` and `append()` method details.
 
 ---
 
@@ -167,10 +166,10 @@ This memory will be consulted in future reviews to provide context-aware analysi
 
 Before completing ANY review, verify:
 - [ ] Step 1: Git diff analyzed using `get-git-diff` skill and changed Python files identified
-- [ ] Step 2: Project memory checked in `../../memory/skills/python-code-review/{project-name}/` and context detected
-- [ ] Step 3: All relevant pattern files read from `../../context/python/` and `../../context/security/`
+- [ ] Step 2: Project memory loaded via `memoryStore.getSkillMemory()` and context detected via `contextProvider`
+- [ ] Step 3: All relevant context files loaded via `contextProvider.getAlwaysLoadFiles()`, `getConditionalContext()`, and `getCrossDomainContext()`
 - [ ] Step 4: Manual review completed for ALL categories on changed code only
-- [ ] Step 5: Output generated with all required fields AND project memory updated
+- [ ] Step 5: Output generated with all required fields AND project memory updated via `memoryStore.update()`
 
 **FAILURE TO COMPLETE ALL STEPS INVALIDATES THE REVIEW**
 
@@ -187,6 +186,10 @@ Refer to the official documentation:
 
 ## Version History
 
+- v2.2.0 (2026-02-10): Migrated to interface-based context and memory access
+  - Replaced hardcoded context paths with ContextProvider interface calls
+  - Replaced hardcoded memory paths with MemoryStore interface calls
+  - Added references to interface documentation
 - v2.1.0 (2025-11-14): Refactored to use centralized context and project-specific memory system
   - Context files moved to `forge-plugin/context/python/` and `forge-plugin/context/security/`
   - Project memory stored in `forge-plugin/memory/skills/python-code-review/{project-name}/`

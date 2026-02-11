@@ -1,3 +1,28 @@
+---
+id: "angular/primeng_patterns"
+domain: angular
+title: "PrimeNG Component Patterns"
+type: framework
+estimatedTokens: 300
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Table Component"
+    estimatedTokens: 69
+    keywords: [table, component, table]
+  - name: "Forms"
+    estimatedTokens: 42
+    keywords: [forms, forms]
+  - name: "Dialog"
+    estimatedTokens: 28
+    keywords: [dialog, dialog]
+  - name: "Accessibility"
+    estimatedTokens: 14
+    keywords: [accessibility, accessibility]
+tags: [angular, primeng, table, forms, dialog, accessibility]
+---
+
 # PrimeNG Component Patterns
 
 Best practices for using PrimeNG components in Angular applications.

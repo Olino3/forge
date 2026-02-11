@@ -1,3 +1,55 @@
+---
+id: "schema/file_formats"
+domain: schema
+title: "File Format Schema Patterns"
+type: reference
+estimatedTokens: 1550
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Overview"
+    estimatedTokens: 11
+    keywords: [overview]
+  - name: "JSON Schema Detection"
+    estimatedTokens: 98
+    keywords: [json, schema, detection]
+  - name: "XML Schema (XSD) Patterns"
+    estimatedTokens: 43
+    keywords: [xml, schema, xsd, patterns]
+  - name: "YAML Schema Analysis"
+    estimatedTokens: 42
+    keywords: [yaml, schema, analysis]
+  - name: "Protocol Buffers (Protobuf)"
+    estimatedTokens: 71
+    keywords: [protocol, buffers, protobuf]
+  - name: "Apache Avro"
+    estimatedTokens: 59
+    keywords: [apache, avro]
+  - name: "Apache Parquet"
+    estimatedTokens: 47
+    keywords: [apache, parquet]
+  - name: "CSV/TSV Schema Inference"
+    estimatedTokens: 38
+    keywords: [csvtsv, schema, inference]
+  - name: "GraphQL Schema"
+    estimatedTokens: 61
+    keywords: [graphql, schema]
+  - name: "OpenAPI/Swagger"
+    estimatedTokens: 60
+    keywords: [openapiswagger]
+  - name: "Schema Evolution Patterns"
+    estimatedTokens: 42
+    keywords: [schema, evolution, patterns]
+  - name: "Common Anti-Patterns"
+    estimatedTokens: 66
+    keywords: [anti-patterns]
+  - name: "Schema Documentation Extraction"
+    estimatedTokens: 40
+    keywords: [schema, documentation, extraction]
+tags: [schema, json, xml, yaml, protobuf, avro, parquet, graphql, openapi]
+---
+
 # File Format Schema Patterns
 
 ## Overview

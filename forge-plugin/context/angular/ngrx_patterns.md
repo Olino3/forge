@@ -1,3 +1,34 @@
+---
+id: "angular/ngrx_patterns"
+domain: angular
+title: "NgRx State Management Patterns - Quick Reference"
+type: framework
+estimatedTokens: 650
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Actions, Reducers, Selectors"
+    estimatedTokens: 58
+    keywords: [actions, reducers, selectors, core]
+  - name: "Effects"
+    estimatedTokens: 68
+    keywords: [effects, effects]
+  - name: "Entity + Normalization"
+    estimatedTokens: 45
+    keywords: [entity, normalization, entity]
+  - name: "Facade Pattern"
+    estimatedTokens: 47
+    keywords: [facade, pattern, facade]
+  - name: "General State Management Smells"
+    estimatedTokens: 63
+    keywords: [state, management, smells]
+  - name: "Quick Checklist"
+    estimatedTokens: 52
+    keywords: [quick, checklist]
+tags: [angular, ngrx, state-management, actions, reducers, selectors, effects]
+---
+
 # NgRx State Management Patterns – Quick Reference
 
 Best‑practice checklist for NgRx (and similar store libraries) in Angular.

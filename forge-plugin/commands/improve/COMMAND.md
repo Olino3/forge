@@ -37,20 +37,19 @@ context: [python, dotnet, angular, security, commands/refactoring_patterns]
 
 ### Step 2: Load Context & Memory
 
-**Context Loading** (index-first approach):
-1. Read `../../context/index.md` for overview
-2. Read `../../context/commands/index.md` for command guidance
-3. Load `../../context/commands/refactoring_patterns.md` for safe refactoring techniques
-4. Based on detected language, load domain-specific context:
-   - **Python**: `../../context/python/index.md` → `common_issues.md`, framework patterns
-   - **.NET**: `../../context/dotnet/index.md` → `common_issues.md`, relevant patterns
-   - **Angular**: `../../context/angular/index.md` → `common_issues.md`, relevant patterns
-5. If `--type security`: Load `../../context/security/security_guidelines.md`
+**Context Loading** (via ContextProvider):
+1. Load overview: `contextProvider.getDomainIndex()`
+2. Load refactoring techniques: `contextProvider.getConditionalContext("commands", "refactoring_patterns")`
+3. Based on detected language, load domain-specific context:
+   - **Python**: `contextProvider.getConditionalContext("python", "common_issues")` + framework patterns
+   - **.NET**: `contextProvider.getConditionalContext("dotnet", "common_issues")` + relevant patterns
+   - **Angular**: `contextProvider.getConditionalContext("angular", "common_issues")` + relevant patterns
+4. If `--type security`: `contextProvider.getConditionalContext("security", "security_guidelines")`
 
-**Memory Loading**:
+**Memory Loading** (via MemoryStore):
 1. Determine project name
-2. Check `../../memory/commands/{project}/improve_history.md` for past improvements
-3. Load `../../memory/commands/{project}/analyze_insights.md` for known issues
+2. Load past improvements: `memoryStore.getCommandMemory("improve", project)`
+3. Load known issues: `memoryStore.getCommandMemory("analyze", project)` (for analyze_insights)
 4. Check skill memory for project conventions
 
 ### Step 3: Analyze Before Improving
@@ -153,9 +152,9 @@ Save results to `/claudedocs/improve_{target}_{date}.md`:
 - Run `/analyze` to verify improvement
 ```
 
-**Memory Updates**:
-1. Append to `../../memory/commands/{project}/command_history.md`
-2. Update `../../memory/commands/{project}/improve_history.md`:
+**Memory Updates** (via MemoryStore):
+1. `memoryStore.append("commands", project, "command_history.md", entry)`
+2. `memoryStore.update("commands", project, "improve_history.md", content)`:
    - Changes applied, patterns improved, recurring issues
 
 ## Tool Coordination

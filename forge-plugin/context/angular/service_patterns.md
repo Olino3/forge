@@ -1,3 +1,31 @@
+---
+id: "angular/service_patterns"
+domain: angular
+title: "Angular Service Patterns"
+type: pattern
+estimatedTokens: 600
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Service Basics"
+    estimatedTokens: 48
+    keywords: [service, basics, basics]
+  - name: "HTTP Service Patterns"
+    estimatedTokens: 90
+    keywords: [http, service, patterns, http]
+  - name: "State Management Service"
+    estimatedTokens: 57
+    keywords: [state, management, service, state]
+  - name: "Dependency Injection Patterns"
+    estimatedTokens: 54
+    keywords: [dependency, injection, patterns]
+  - name: "HTTP Interceptors"
+    estimatedTokens: 75
+    keywords: [http, interceptors, interceptors]
+tags: [angular, services, dependency-injection, http, state-management, interceptors]
+---
+
 # Angular Service Patterns
 
 Best practices for Angular service design, dependency injection, and state management.

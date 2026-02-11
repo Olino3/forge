@@ -1,3 +1,40 @@
+---
+id: "git/index"
+domain: git
+title: "Git Context Files Index"
+type: index
+estimatedTokens: 200
+loadingStrategy: always
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+indexedFiles:
+  - id: "git/git_diff_reference"
+    path: "git_diff_reference.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "git/diff_patterns"
+    path: "diff_patterns.md"
+    type: reference
+    loadingStrategy: onDemand
+sections:
+  - name: "Files in this Directory"
+    estimatedTokens: 100
+    keywords: [files, this, directory]
+  - name: "Typical Usage Pattern"
+    estimatedTokens: 30
+    keywords: [typical, usage, pattern]
+  - name: "Quick Reference"
+    estimatedTokens: 24
+    keywords: [quick, reference]
+  - name: "Related Skills"
+    estimatedTokens: 12
+    keywords: [related, skills]
+  - name: "Maintenance Notes"
+    estimatedTokens: 18
+    keywords: [maintenance]
+tags: [git, diff, index, navigation]
+---
+
 # Git Context Files (Compact)
 
 Compact, link‑heavy context for git diff analysis, version control patterns, and commit analysis.

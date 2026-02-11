@@ -1,3 +1,49 @@
+---
+id: "dotnet/async_patterns"
+domain: dotnet
+title: "Async/Await Patterns"
+type: pattern
+estimatedTokens: 1000
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Critical Anti-Patterns"
+    estimatedTokens: 76
+    keywords: [critical, anti-patterns]
+  - name: "Async Rules"
+    estimatedTokens: 62
+    keywords: [async, rules]
+  - name: "Sync-over-Async Deadlock"
+    estimatedTokens: 37
+    keywords: [sync-over-async, deadlock]
+  - name: "ConfigureAwait"
+    estimatedTokens: 66
+    keywords: [configureawait]
+  - name: "ValueTask vs Task"
+    estimatedTokens: 63
+    keywords: [valuetask, task]
+  - name: "CancellationToken Patterns"
+    estimatedTokens: 45
+    keywords: [cancellationtoken, patterns]
+  - name: "IAsyncEnumerable"
+    estimatedTokens: 32
+    keywords: [iasyncenumerable]
+  - name: "Task.WhenAll / WhenAny"
+    estimatedTokens: 47
+    keywords: [taskwhenall, whenany]
+  - name: "Common Detection Patterns"
+    estimatedTokens: 50
+    keywords: [detection, patterns]
+  - name: "Async Checklist"
+    estimatedTokens: 45
+    keywords: [async, checklist]
+  - name: "Official Resources"
+    estimatedTokens: 23
+    keywords: [official, resources]
+tags: [dotnet, async, await, cancellation, valuetask, deadlock, configureawait]
+---
+
 # Async/Await Patterns
 
 Quick reference for async/await in .NET. For detailed examples, see [Async programming](https://learn.microsoft.com/en-us/dotnet/csharp/async).

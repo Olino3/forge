@@ -1,7 +1,13 @@
 ---
 name: python-dependency-management
 description: Intelligently manages Python dependencies and virtual environments by detecting the project's package manager (uv, poetry, conda, pip) and executing dependency operations using project-specific conventions.
-version: 1.0.0
+version: 1.1.0
+context:
+  primary: [python]
+  topics: [dependency_management, virtual_environments]
+memory:
+  scope: per-project
+  files: [package_manager.md, virtual_environment.md, dependency_patterns.md, configuration_files.md]
 ---
 
 # Python Dependency Management Skill
@@ -36,21 +42,20 @@ forge-plugin/skills/python-dependency-management/
     └── output_template.md             # Action report format
 ```
 
-### Context Files Referenced
-```
-../../context/python/
-├── dependency_management.md           # Package manager command reference
-└── virtual_environments.md            # Virtual environment best practices
-```
+### Interface References
+- [ContextProvider](../../interfaces/context_provider.md) — `getDomainIndex("python")`, `getConditionalContext("python", topic)`
+- [MemoryStore](../../interfaces/memory_store.md) — `getSkillMemory("python-dependency-management", project)`, `update()`, `append()`
 
-### Memory Files Created (Per Project)
-```
-../../memory/skills/python-dependency-management/{project-name}/
-├── package_manager.md                 # Which manager and version
-├── virtual_environment.md             # Venv location and activation
-├── dependency_patterns.md             # Installation patterns and preferences
-└── configuration_files.md             # Config files and their purposes
-```
+### Context (via ContextProvider)
+- `contextProvider.getConditionalContext("python", "dependency_management")` — Package manager command reference
+- `contextProvider.getConditionalContext("python", "virtual_environments")` — Virtual environment best practices
+
+### Memory (via MemoryStore)
+- `memoryStore.getSkillMemory("python-dependency-management", project)` returns per-project files:
+  - `package_manager.md` — Which manager and version
+  - `virtual_environment.md` — Venv location and activation
+  - `dependency_patterns.md` — Installation patterns and preferences
+  - `configuration_files.md` — Config files and their purposes
 
 ## Focus Areas
 
@@ -86,21 +91,18 @@ This skill evaluates and manages **7 critical dimensions** of Python dependency 
 ### ⚠️ STEP 2: Load Indexes and Project Memory
 
 **YOU MUST:**
-1. Read `../../memory/index.md` to understand the memory system
-2. Read `../../memory/skills/python-dependency-management/index.md` to understand memory structure
-3. Determine the project name from the git repository or directory name
-4. Check if project memory exists: `../../memory/skills/python-dependency-management/{project-name}/`
-5. If memory exists, load ALL memory files:
+1. Determine the project name from the git repository or directory name
+2. Load project memory via `memoryStore.getSkillMemory("python-dependency-management", project)`
+3. If memory exists, load ALL memory files:
    - `package_manager.md` - Remember which package manager this project uses
    - `virtual_environment.md` - Remember venv location and Python version
    - `dependency_patterns.md` - Remember project's dependency conventions
    - `configuration_files.md` - Remember which config files exist
-6. Read `../../context/index.md` to understand available context
-7. Read `../../context/python/index.md` to understand Python context loading
+4. Load domain index via `contextProvider.getDomainIndex("python")` to understand available context
 
 **DO NOT PROCEED** to Step 3 until you have:
 1. Loaded all existing project memory (or confirmed it doesn't exist yet)
-2. Read both context indexes
+2. Loaded the Python domain index via contextProvider
 3. Identified the project name
 
 ---
@@ -142,18 +144,18 @@ This skill evaluates and manages **7 critical dimensions** of Python dependency 
 ### ⚠️ STEP 4: Load Relevant Context
 
 **YOU MUST:**
-1. Load `../../context/python/dependency_management.md`:
+1. Load dependency management context via `contextProvider.getConditionalContext("python", "dependency_management")`:
    - Package manager command reference
    - Command equivalents across managers (uv/poetry/conda/pip)
    - Version constraint syntax for each manager
    - Configuration file formats
-2. Load `../../context/python/virtual_environments.md`:
+2. Load virtual environment context via `contextProvider.getConditionalContext("python", "virtual_environments")`:
    - Virtual environment activation methods
    - Best practices for venv management
    - Troubleshooting common venv issues
 
 **DO NOT PROCEED** to Step 5 until you have:
-1. Loaded both context files
+1. Loaded both context topics via contextProvider
 2. Understood the correct commands for the detected package manager
 
 ---
@@ -195,19 +197,18 @@ This skill evaluates and manages **7 critical dimensions** of Python dependency 
 1. **Update or create project memory files:**
 
    **If this is the first analysis (no memory existed):**
-   - Create `../../memory/skills/python-dependency-management/{project-name}/` directory
-   - Create `package_manager.md` with detected package manager and version
-   - Create `virtual_environment.md` with venv location, Python version, activation method
-   - Create `dependency_patterns.md` with initial patterns observed
-   - Create `configuration_files.md` with detected config files
+   - Use `memoryStore.update("python-dependency-management", project, "package_manager.md", content)` with detected package manager and version
+   - Use `memoryStore.update(...)` for `virtual_environment.md` with venv location, Python version, activation method
+   - Use `memoryStore.update(...)` for `dependency_patterns.md` with initial patterns observed
+   - Use `memoryStore.update(...)` for `configuration_files.md` with detected config files
 
    **If memory existed:**
-   - Update `dependency_patterns.md` with new patterns:
+   - Update `dependency_patterns.md` via `memoryStore.update(...)` with new patterns:
      - Version constraint preferences
      - Dev vs prod dependency separation
      - Common package combinations
-   - Update `configuration_files.md` if new config files were created/modified
-   - Update `package_manager.md` if version changed
+   - Update `configuration_files.md` via `memoryStore.update(...)` if new config files were created/modified
+   - Update `package_manager.md` via `memoryStore.update(...)` if version changed
 
 2. **Generate action report:**
    - Use `templates/output_template.md` as format
@@ -378,6 +379,11 @@ fi
 - [PEP 621 - Project Metadata](https://peps.python.org/pep-0621/)
 
 ## Version History
+
+### v1.1.0 (2025-07-15)
+- Phase 4 Migration: Replaced hardcoded `../../context/` and `../../memory/` paths with ContextProvider and MemoryStore interface calls
+- Added Interface References section
+- Updated workflow steps to use `contextProvider.getConditionalContext()` and `memoryStore.getSkillMemory()`/`memoryStore.update()`
 
 ### v1.0.0 (2025-11-14)
 - Initial release

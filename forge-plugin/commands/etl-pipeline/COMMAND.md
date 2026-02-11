@@ -55,15 +55,14 @@ context: [schema, commands/etl_patterns]
 
 ### Step 2: Load Context & Memory
 
-**Context Loading**:
-1. Read `../../context/commands/index.md` for command guidance
-2. Load `../../context/commands/etl_patterns.md` for pipeline best practices
-3. Load `../../context/schema/index.md` for data schema patterns
-4. Load `../../context/python/index.md` if using Python-based tools
+**Context Loading** (via ContextProvider):
+1. Load pipeline best practices: `contextProvider.getConditionalContext("commands", "etl_patterns")`
+2. Load data schema patterns: `contextProvider.getConditionalContext("schema", "index")`
+3. If using Python-based tools: `contextProvider.getConditionalContext("python", "index")`
 
-**Memory Loading**:
+**Memory Loading** (via MemoryStore):
 1. Determine project name
-2. Check `../../memory/commands/{project}/etl_pipelines.md` for existing pipelines
+2. Load existing pipelines: `memoryStore.getCommandMemory("etl-pipeline", project)`
 3. Load schema analysis results from previous runs
 4. Check for existing data models and transformation logic
 
@@ -295,9 +294,9 @@ airflow dags test {pipeline_name} 2026-02-10
 - Optimize: Profile and tune for performance
 ```
 
-**Memory Updates**:
-1. Append to `../../memory/commands/{project}/command_history.md`
-2. Update `../../memory/commands/{project}/etl_pipelines.md`:
+**Memory Updates** (via MemoryStore):
+1. `memoryStore.append("commands", project, "command_history.md", entry)`
+2. `memoryStore.update("commands", project, "etl_pipelines.md", content)`:
    - Pipeline configurations, schedules, source/target mappings
 3. Store schema mappings for future reference
 

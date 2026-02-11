@@ -1,3 +1,15 @@
+---
+name: generate-azure-functions
+description: Generate complete Azure Functions projects with local development environment using Tilt and Azurite
+version: 1.1.0
+context:
+  primary: [azure]
+  topics: [azure_functions_overview, local_development_setup, tiltfile_reference, docker_compose_reference, dockerfile_reference, azurite_setup]
+memory:
+  scope: per-project
+  files: [project_config.md, generated_files.md, customizations.md, setup_notes.md]
+---
+
 # Skill: generate-azure-functions
 
 **Version**: 1.0.0
@@ -34,26 +46,26 @@ forge-plugin/skills/generate-azure-functions/
 
 ---
 
-## Required Reading
+## Interface References
 
-**Before executing this skill**, read these files in order:
+- [ContextProvider](../../interfaces/context_provider.md) — `getDomainIndex("azure")`, `getConditionalContext("azure", topic)`
+- [MemoryStore](../../interfaces/memory_store.md) — `getSkillMemory("generate-azure-functions", project)`, `update()`
 
-1. **Context indexes** (understand what context is available):
-   - `../../context/azure/index.md` - Azure Functions context navigation
+**Context** (via ContextProvider):
+- `contextProvider.getDomainIndex("azure")` — Azure Functions context navigation
+- `contextProvider.getConditionalContext("azure", "azure_functions_overview")` — v1 vs v2 comparison
+- `contextProvider.getConditionalContext("azure", "local_development_setup")` — Tilt + Azurite architecture
+- `contextProvider.getConditionalContext("azure", "tiltfile_reference")` — Tiltfile patterns
+- `contextProvider.getConditionalContext("azure", "docker_compose_reference")` — Docker Compose patterns
+- `contextProvider.getConditionalContext("azure", "dockerfile_reference")` — Dockerfile patterns
+- `contextProvider.getConditionalContext("azure", "azurite_setup")` — Azurite setup patterns
 
-2. **Memory index** (understand memory structure):
-   - `../../memory/skills/generate-azure-functions/index.md` - Memory structure for this skill
-
-3. **Context files** (load relevant Azure Functions knowledge):
-   - `../../context/azure/azure_functions_overview.md` - v1 vs v2 comparison
-   - `../../context/azure/local_development_setup.md` - Tilt + Azurite architecture
-   - `../../context/azure/tiltfile_reference.md` - Tiltfile patterns (when generating Tiltfile)
-   - `../../context/azure/docker_compose_reference.md` - Docker Compose patterns (when generating compose file)
-   - `../../context/azure/dockerfile_reference.md` - Dockerfile patterns (when generating Dockerfiles)
-   - `../../context/azure/azurite_setup.md` - Azurite setup patterns
-
-4. **Project memory** (if exists):
-   - `../../memory/skills/generate-azure-functions/{project-name}/` - Previous project configurations
+**Memory** (via MemoryStore):
+- `memoryStore.getSkillMemory("generate-azure-functions", project)` returns per-project files:
+  - `project_config.md` — Previous project configurations
+  - `generated_files.md` — What was generated before
+  - `customizations.md` — User-specific modifications
+  - `setup_notes.md` — Important setup information
 
 ---
 
@@ -178,11 +190,10 @@ After analyzing requirements, ask user about:
 **Purpose**: Understand available context and memory
 
 **Actions**:
-1. Read `../../context/azure/index.md` to understand Azure Functions context
-2. Read `../../memory/skills/generate-azure-functions/index.md` to understand memory structure
-3. Identify which context files will be needed based on requirements
+1. Load Azure domain index via `contextProvider.getDomainIndex("azure")`
+2. Identify which context topics will be needed based on requirements
 
-**Output**: Knowledge of available guidance and memory structure
+**Output**: Knowledge of available guidance and domain structure
 
 ---
 
@@ -191,13 +202,13 @@ After analyzing requirements, ask user about:
 **Purpose**: Understand previous configurations for this project
 
 **Actions**:
-1. Check if `../../memory/skills/generate-azure-functions/{project-name}/` exists
-2. If exists, read:
+1. Load project memory via `memoryStore.getSkillMemory("generate-azure-functions", project)`
+2. If memory exists, review:
    - `project_config.md` - Previous configuration decisions
    - `generated_files.md` - What was generated before
    - `customizations.md` - User-specific modifications
    - `setup_notes.md` - Important setup information
-3. If not exists, note this is first-time generation
+3. If no memory exists, note this is first-time generation
 
 **Output**: Understanding of project history or recognition of new project
 
@@ -208,12 +219,12 @@ After analyzing requirements, ask user about:
 **Purpose**: Load relevant Azure Functions knowledge
 
 **Actions**:
-1. Read `../../context/azure/azure_functions_overview.md` - Always load
-2. Read `../../context/azure/local_development_setup.md` - Always load
-3. Read `../../context/azure/tiltfile_reference.md` - For Tiltfile generation
-4. Read `../../context/azure/docker_compose_reference.md` - For docker-compose generation
-5. Read `../../context/azure/dockerfile_reference.md` - For Dockerfile generation
-6. Read `../../context/azure/azurite_setup.md` - For Azurite setup
+1. Load `contextProvider.getConditionalContext("azure", "azure_functions_overview")` - Always load
+2. Load `contextProvider.getConditionalContext("azure", "local_development_setup")` - Always load
+3. Load `contextProvider.getConditionalContext("azure", "tiltfile_reference")` - For Tiltfile generation
+4. Load `contextProvider.getConditionalContext("azure", "docker_compose_reference")` - For docker-compose generation
+5. Load `contextProvider.getConditionalContext("azure", "dockerfile_reference")` - For Dockerfile generation
+6. Load `contextProvider.getConditionalContext("azure", "azurite_setup")` - For Azurite setup
 
 **Output**: Comprehensive understanding of Azure Functions patterns and best practices
 
@@ -357,7 +368,7 @@ After analyzing requirements, ask user about:
 **Purpose**: Store configuration for future reference
 
 **Actions**:
-1. Create `../../memory/skills/generate-azure-functions/{project-name}/` directory
+1. Use `memoryStore.update("generate-azure-functions", project, filename, content)` for each file
 2. Create `project_config.md`:
    - Programming model (v1/v2)
    - Runtime and version
@@ -428,7 +439,7 @@ Before generating, verify user has:
 - Azure Functions Core Tools installed
 - Python/Node/.NET SDK (for their chosen runtime)
 
-If missing, provide installation instructions from `../../context/azure/local_development_setup.md`.
+If missing, provide installation instructions from `contextProvider.getConditionalContext("azure", "local_development_setup")`.
 
 ### Multiple Function Apps Pattern
 
@@ -484,6 +495,11 @@ Before marking this skill as complete, verify:
 ---
 
 ## Version History
+
+### v1.1.0 (2025-07-15)
+- Phase 4 Migration: Replaced hardcoded `../../context/` and `../../memory/` paths with ContextProvider and MemoryStore interface calls
+- Added YAML frontmatter with context/memory declarations
+- Added Interface References section
 
 ### v1.0.0 (2025-11-18)
 - Initial skill implementation

@@ -1,3 +1,28 @@
+---
+id: "security/owasp_python"
+domain: security
+title: "OWASP Top 10 for Python - Quick Reference"
+type: reference
+estimatedTokens: 350
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Official OWASP Resources"
+    estimatedTokens: 22
+    keywords: [official, owasp, resources]
+  - name: "Mapping OWASP to Python Code"
+    estimatedTokens: 166
+    keywords: [mapping, owasp, python, code]
+  - name: "Quick OWASP‑Aligned Review Checklist"
+    estimatedTokens: 106
+    keywords: [quick, owaspaligned, review, checklist]
+  - name: "Additional References"
+    estimatedTokens: 16
+    keywords: [additional, references]
+tags: [security, owasp, python, top-10, vulnerabilities, audit]
+---
+
 # OWASP Top 10 for Python – Quick Reference
 
 Pointers for applying OWASP Top 10 to Python apps without embedding long examples.

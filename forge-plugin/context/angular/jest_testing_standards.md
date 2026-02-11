@@ -1,3 +1,31 @@
+---
+id: "angular/jest_testing_standards"
+domain: angular
+title: "Angular/Jest Testing Standards"
+type: pattern
+estimatedTokens: 400
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Core Principles"
+    estimatedTokens: 65
+    keywords: [core, principles]
+  - name: "Quick Reference"
+    estimatedTokens: 87
+    keywords: [quick, reference]
+  - name: "Framework Detection"
+    estimatedTokens: 23
+    keywords: [framework, detection]
+  - name: "Official Documentation"
+    estimatedTokens: 13
+    keywords: [official, documentation]
+  - name: "Related Context Files"
+    estimatedTokens: 16
+    keywords: [related, context, files]
+tags: [angular, testing, jest, jasmine, karma, naming-conventions]
+---
+
 # Angular/Jest Testing Standards
 
 ## Core Principles

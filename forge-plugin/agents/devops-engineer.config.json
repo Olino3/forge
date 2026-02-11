@@ -1,0 +1,39 @@
+{
+  "$schema": "../interfaces/schemas/agent_config.schema.json",
+  "name": "devops-engineer",
+  "version": "1.0.0",
+  "description": "Master of deployment and infrastructure specializing in CI/CD pipelines, infrastructure as code, containerization, and cloud deployments",
+  "model": "sonnet",
+  "tools": ["Read", "Write", "Bash", "Grep", "Glob"],
+  "permissionMode": "auto",
+  "context": {
+    "primaryDomains": ["azure"],
+    "secondaryDomains": ["engineering"],
+    "alwaysLoadFiles": []
+  },
+  "memory": {
+    "storagePath": "forge-plugin/memory/agents/devops-engineer",
+    "categories": [
+      {"name": "projects", "description": "Track deployment configurations per project"},
+      {"name": "infrastructure", "description": "Record infrastructure patterns and decisions"},
+      {"name": "pipelines", "description": "Store CI/CD pipeline templates and customizations"},
+      {"name": "environments", "description": "Maintain environment-specific configurations"}
+    ]
+  },
+  "skills": [
+    {"name": "generate-azure-pipelines", "required": true, "useCase": "Create CI/CD pipelines with Azure DevOps"},
+    {"name": "generate-azure-bicep", "required": true, "useCase": "Generate infrastructure as code with AVM"},
+    {"name": "generate-azure-functions", "required": false, "useCase": "Build serverless applications with Tilt and Azurite"},
+    {"name": "generate-tilt-dev-environment", "required": false, "useCase": "Set up local development environments"},
+    {"name": "generate-mock-service", "required": false, "useCase": "Create mock services for testing"}
+  ],
+  "hooks": [
+    {
+      "on_file_write": {
+        "patterns": ["*.bicep", "*.bicepparam", "azure-pipelines*.yml", "Tiltfile", "docker-compose*.yml", "Dockerfile"],
+        "action": "validate_devops_config"
+      }
+    }
+  ],
+  "mcpServers": []
+}

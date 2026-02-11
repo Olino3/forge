@@ -1,3 +1,55 @@
+---
+id: "azure/local_development_setup"
+domain: azure
+title: "Azure Functions Local Development Setup"
+type: reference
+estimatedTokens: 1650
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Overview"
+    estimatedTokens: 12
+    keywords: [overview]
+  - name: "Architecture"
+    estimatedTokens: 65
+    keywords: [architecture]
+  - name: "Prerequisites"
+    estimatedTokens: 79
+    keywords: [prerequisites]
+  - name: "Standard Port Allocation"
+    estimatedTokens: 64
+    keywords: [standard, port, allocation]
+  - name: "Environment Variables"
+    estimatedTokens: 60
+    keywords: [environment, variables]
+  - name: "Project Structure"
+    estimatedTokens: 75
+    keywords: [project, structure]
+  - name: "local.settings.json Template"
+    estimatedTokens: 38
+    keywords: [localsettingsjson, template]
+  - name: "Development Workflow"
+    estimatedTokens: 162
+    keywords: [development, workflow]
+  - name: "Common Issues and Solutions"
+    estimatedTokens: 73
+    keywords: [issues, solutions]
+  - name: "Best Practices"
+    estimatedTokens: 45
+    keywords: [best]
+  - name: "Debugging"
+    estimatedTokens: 51
+    keywords: [debugging]
+  - name: "Performance Tips"
+    estimatedTokens: 32
+    keywords: [performance, tips]
+  - name: "Official Documentation"
+    estimatedTokens: 12
+    keywords: [official, documentation]
+tags: [azure, local-dev, tilt, azurite, docker, debugging, workflow]
+---
+
 # Azure Functions Local Development Setup
 
 ## Overview

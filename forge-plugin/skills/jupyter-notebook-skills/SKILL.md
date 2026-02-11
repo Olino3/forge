@@ -13,12 +13,17 @@ description: Commands interactive data exploration through Jupyter Notebooks. Ge
 
 - **SKILL.md** (this file): Main instructions and MANDATORY workflow
 - **examples.md**: Usage scenarios with different data science tasks and generated notebook code
-- **../../memory/skills/jupyter-notebook-skills/**: Project-specific memory storage
-  - `{project-name}/`: Per-project analysis patterns, data schemas, and conventions
+- **Memory**: Project-specific memory accessed via `memoryStore.getSkillMemory("jupyter-notebook-skills", "{project-name}")`. See [MemoryStore Interface](../../interfaces/memory_store.md).
 - **templates/**:
   - `eda_template.md`: Exploratory Data Analysis notebook template
   - `ml_template.md`: Machine Learning workflow template
   - `visualization_template.md`: Data visualization template
+
+## Interface References
+
+- **Context**: Loaded via [ContextProvider Interface](../../interfaces/context_provider.md)
+- **Memory**: Accessed via [MemoryStore Interface](../../interfaces/memory_store.md)
+- **Schemas**: Validated against [memory_entry.schema.json](../../interfaces/schemas/memory_entry.schema.json)
 
 ## Focus Areas
 
@@ -74,7 +79,7 @@ Jupyter notebook data exploration evaluates 7 critical dimensions:
    - Outlier detection and handling (IQR, z-score, domain knowledge)
    - Encoding categorical variables (one-hot, label encoding, target encoding)
    - Feature scaling (standardization, normalization)
-5. **Check project memory**: Look in `../../memory/skills/jupyter-notebook-skills/{project-name}/` for project-specific data schemas, feature engineering patterns, or modeling approaches
+5. **Check project memory**: Use `memoryStore.getSkillMemory("jupyter-notebook-skills", "{project-name}")` to load project-specific data schemas, feature engineering patterns, or modeling approaches. See [MemoryStore Interface](../../interfaces/memory_store.md).
 
 **DO NOT PROCEED WITHOUT A CLEAR ANALYSIS PLAN**
 
@@ -206,11 +211,13 @@ Jupyter notebook data exploration evaluates 7 critical dimensions:
 
 **OPTIONAL: Update Project Memory**
 
-If project-specific patterns are discovered during analysis, store insights in `../../memory/skills/jupyter-notebook-skills/{project-name}/`:
+If project-specific patterns are discovered during analysis, use `memoryStore.update(layer="skill-specific", skill="jupyter-notebook-skills", project="{project-name}", ...)` to store insights:
 - Data schema and feature descriptions
 - Successful feature engineering patterns
 - Model performance benchmarks
 - Common data quality issues and solutions
+
+Timestamps and staleness tracking are handled automatically by MemoryStore. See [MemoryStore Interface](../../interfaces/memory_store.md).
 
 ---
 
@@ -375,6 +382,10 @@ Refer to official documentation and resources:
 
 ## Version History
 
+- v1.1.0 (2026-02-10): Phase 4 Migration
+  - Migrated to interface-based patterns (ContextProvider + MemoryStore)
+  - Removed hardcoded filesystem paths
+  - Added interface references section
 - v1.0.0 (2026-02-06): Initial release
   - Mandatory 4-step workflow for Jupyter notebook tasks
   - Support for EDA, statistical analysis, machine learning, visualization

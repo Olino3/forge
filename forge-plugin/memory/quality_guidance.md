@@ -2,6 +2,8 @@
 
 Practical guidance for skills to maintain high-quality memory files.
 
+> **Interface**: These quality checks are formalized by `memoryStore.validate(id)` in the [MemoryStore interface](../interfaces/memory_store.md). The `validate()` method runs completeness, accuracy, specificity, and growth checks automatically and returns structured results. Skills can supplement automated checks with the manual guidance below.
+
 ## Quality Checks
 
 ### Completeness Check
@@ -16,6 +18,8 @@ Does `project_overview.md` cover these essentials?
 
 If any are missing after 3+ invocations, the skill should actively investigate and fill gaps.
 
+**Automation**: `memoryStore.validate(id)` checks for these required fields and returns a `completeness` score with a list of missing items.
+
 ### Accuracy Check
 
 **Every 5th invocation**, spot-check 2-3 memory claims:
@@ -25,6 +29,8 @@ If any are missing after 3+ invocations, the skill should actively investigate a
 3. Pick a known issue → verify its status is current
 
 Update or remove inaccurate entries immediately.
+
+**Automation**: `memoryStore.validate(id)` flags entries whose `updatedAt` exceeds staleness thresholds (see [lifecycle.md](lifecycle.md)). Manual spot-checks remain essential for semantic accuracy.
 
 ### Specificity Check
 
@@ -66,6 +72,22 @@ If `common_patterns.md` hasn't grown in 5+ invocations, consider:
 | Line count | 50-300 lines | <10 or >500 lines |
 | Specificity | File paths, line numbers | Vague descriptions |
 | Growth rate | New insights each invocation | Static for 5+ invocations |
+
+## Using MemoryStore for Quality
+
+Skills should call `memoryStore.validate(id)` periodically (e.g., every 5th invocation) to get automated quality feedback:
+
+```
+memoryStore.validate("skill-specific/python-code-review/my-api/project_overview")
+→ {
+    completeness: { score: 0.8, missing: ["testing approach"] },
+    staleness: "fresh",
+    lineCount: 145,
+    warnings: ["approaching size limit for project_overview (200 lines)"]
+  }
+```
+
+For project-wide quality assessment, combine with `memoryStore.getStalenessReport()` to identify all entries needing attention.
 
 ---
 

@@ -1,3 +1,40 @@
+---
+id: "commands/build_patterns"
+domain: commands
+title: "Build Patterns"
+type: pattern
+estimatedTokens: 950
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Build System Detection"
+    estimatedTokens: 108
+    keywords: [build, system, detection]
+  - name: "Build Types"
+    estimatedTokens: 54
+    keywords: [build, types]
+  - name: "Docker Build Patterns"
+    estimatedTokens: 102
+    keywords: [docker, build, patterns]
+  - name: "Build Caching Strategies"
+    estimatedTokens: 82
+    keywords: [build, caching, strategies]
+  - name: "Build Error Handling"
+    estimatedTokens: 102
+    keywords: [build, error, handling]
+  - name: "Artifact Optimization"
+    estimatedTokens: 49
+    keywords: [artifact, optimization]
+  - name: "Skill Integration"
+    estimatedTokens: 14
+    keywords: [skill, integration]
+  - name: "Official References"
+    estimatedTokens: 20
+    keywords: [official, references]
+tags: [commands, build, docker, caching, artifacts, multi-stage, ci]
+---
+
 # Build Patterns
 
 Reference patterns for the `/build` command. Covers build system detection, Docker builds, caching strategies, and artifact optimization.
