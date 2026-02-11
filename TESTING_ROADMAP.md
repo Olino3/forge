@@ -343,31 +343,34 @@ Environment variables set by HookRunner:
 
 ---
 
-### Phase 6: CI Pipeline and E2E Tests
+### Phase 6: CI Pipeline and E2E Tests ✅
 
 **Goal**: Set up GitHub Actions CI and stub E2E tests for Claude CLI validation.
 
-**Files to create:**
+**Status**: Complete — 168 E2E bash checks (all passing), GitHub Actions workflow with 3 jobs, Layer 2 runner script, and tests README documentation. Total test suite: 1,225 pytest tests + 96 bash syntax checks + 168 E2E checks.
+
+**Files created:**
 
 | File | Purpose |
 |------|---------|
-| `.github/workflows/forge-tests.yml` | GitHub Actions workflow with Layer 1 (always) and Layer 2 (on merge to main) |
-| `tests/layer2/e2e/test_plugin_loading.sh` | Verify plugin loads via `claude --plugin-dir` (skips if no CLI) |
-| `tests/layer2/e2e/test_command_execution.sh` | Verify commands are registered and invocable (skips if no CLI) |
-| `tests/layer2/e2e/test_skill_invocation.sh` | Verify skills are discoverable and invocable (skips if no CLI) |
-| `tests/README.md` | Documentation: how to run, what each layer covers, how to add tests |
+| `.github/workflows/forge-tests.yml` | GitHub Actions workflow with 3 jobs: layer1-ci (every push/PR), layer2-hooks (after layer1), layer2-e2e (main only, continue-on-error) |
+| `tests/layer2/e2e/test_plugin_loading.sh` | Verifies plugin manifest, directory structure, command path resolution, and claude CLI acceptance (26 checks) |
+| `tests/layer2/e2e/test_command_execution.sh` | Verifies 12 commands registered, COMMAND.md files exist and have content, command index references (46 checks) |
+| `tests/layer2/e2e/test_skill_invocation.sh` | Verifies 22 skills discoverable, SKILL.md + examples.md files, workflow steps, agent-to-skill references (96 checks) |
+| `tests/README.md` | Documentation: quick start, prerequisites, layer descriptions, CI pipeline diagram, how to add tests, markers, fixture locations |
+| `tests/layer2/run_layer2.sh` | Dedicated Layer 2 runner with `--e2e` flag support |
 
-**CI workflow structure:**
+**CI workflow structure (implemented):**
 
 ```
 Job: layer1-ci (runs on every push/PR to main/develop)
-  - Install: python3, pyyaml, jsonschema, pytest, shellcheck, jq
+  - Install: python3.12, pyyaml, jsonschema, pytest, shellcheck, jq
   - Run: pytest forge-plugin/tests/layer1/ -v
   - Run: bash forge-plugin/tests/layer1/test_hook_syntax.sh
   - Run: bash forge-plugin/tests/layer1/test_shellcheck.sh
 
 Job: layer2-hooks (runs after layer1-ci passes)
-  - Install: python3, pyyaml, jsonschema, pytest, jq
+  - Install: python3.12, pyyaml, jsonschema, pytest, jq
   - Run: pytest forge-plugin/tests/layer2/hooks/ -v
   - Run: pytest forge-plugin/tests/layer2/memory/ -v
   - Run: pytest forge-plugin/tests/layer2/context/ -v
@@ -375,25 +378,35 @@ Job: layer2-hooks (runs after layer1-ci passes)
 Job: layer2-e2e (runs only on push to main, continue-on-error)
   - Check: claude CLI available?
   - Run: bash forge-plugin/tests/layer2/e2e/test_plugin_loading.sh
+  - Run: bash forge-plugin/tests/layer2/e2e/test_command_execution.sh
+  - Run: bash forge-plugin/tests/layer2/e2e/test_skill_invocation.sh
 
 Trigger paths: Only runs when forge-plugin/** or workflow file changes.
 ```
+
+**E2E tests implemented (3 scripts, 168 checks):**
+
+| Test File | Checks | Key Validations |
+|-----------|--------|----------------|
+| `test_plugin_loading.sh` | 26 | Plugin manifest is valid JSON; name, version, commands fields present; 12 command paths resolve; claude CLI accepts plugin directory; 8 required directories exist |
+| `test_command_execution.sh` | 46 | All 12 expected commands registered in plugin.json; each has COMMAND.md with content (>5 lines); command count matches; commands/index.md references checked |
+| `test_skill_invocation.sh` | 96 | All 22 skill directories exist; each has SKILL.md and examples.md; workflow step documentation checked; skill count validated; agent-to-skill references validated across 11 agent configs |
 
 ---
 
 ## Test Coverage Summary
 
-| Component | Layer 1 (Static) | Layer 2 (Integration) | Total Tests |
-|-----------|------------------|----------------------|-------------|
-| Agent configs (11) | Schema validation, file pairs, cross-refs | Config validator hook | ~25 |
-| Context files (81) | Frontmatter validation, cross-domain refs | Loading protocol (48 tests), frontmatter hook, drift detector, cross-domain triggers (16 tests) | ~174 |
-| Hook scripts (24) | Registration, syntax, shellcheck | Full I/O contract testing (all 24 hooks + shared lib) | ~480 |
-| Memory system | Directory structure, timestamp format | Freshness lifecycle (24 tests), pruning behaviour (17 tests), line limits (16 tests), quality gate, cross-pollinator | ~137 |
-| Skills (22) | File structure (`SKILL.md`, `examples.md`) | Compliance checker hook | ~25 |
-| Commands (12) | `COMMAND.md` exists, manifest refs | Command chain hook, E2E | ~15 |
-| Plugin manifest | JSON validity, field completeness | E2E loading | ~8 |
-| Shared libraries | — | `health_buffer.sh` unit tests | 10 |
-| **Total** | **~1,131** | **~504** | **~1,731** |
+| Component | Layer 1 (Static) | Layer 2 (Integration) | E2E | Total |
+|-----------|------------------|----------------------|-----|-------|
+| Agent configs (11) | Schema validation, file pairs, cross-refs | Config validator hook | Agent-to-skill refs | ~36 |
+| Context files (81) | Frontmatter validation, cross-domain refs | Loading protocol (48), frontmatter hook, drift detector, cross-domain triggers (16) | — | ~238 |
+| Hook scripts (20) | Registration, syntax, shellcheck (96 bash) | Full I/O contract testing (383 tests + 10 shared lib) | — | ~489 |
+| Memory system | Directory structure, timestamp format | Freshness lifecycle (24), pruning (17), line limits (16), quality gate, cross-pollinator | — | ~137 |
+| Skills (22) | File structure (`SKILL.md`, `examples.md`) | Compliance checker hook | Skill dirs, SKILL.md, examples.md, workflow steps (96 checks) | ~121+ |
+| Commands (12) | `COMMAND.md` exists, manifest refs | Command chain hook | Registration, COMMAND.md, content, index refs (46 checks) | ~61+ |
+| Plugin manifest | JSON validity, field completeness | — | Manifest, fields, path resolution, dir structure (26 checks) | ~34+ |
+| Shared libraries | — | `health_buffer.sh` unit tests (10) | — | 10 |
+| **Total** | **~1,225 pytest + 96 bash** | **~504 pytest** | **~168 bash** | **~1,993** |
 
 ---
 
@@ -449,9 +462,9 @@ After all phases are complete, the test suite should pass these checks:
 
 ### CI / Environment
 
-- [ ] **TODO**: `shellcheck` is not installed in the development environment. `test_shellcheck.sh` gracefully skips. CI workflow (Phase 6) should install it via `apt-get install shellcheck`.
+- [x] **DONE**: `shellcheck` is now installed in CI via `apt-get install shellcheck` in the GitHub Actions workflow (`forge-tests.yml`). Still not installed in the local development environment — `test_shellcheck.sh` continues to skip gracefully locally.
 
-- [ ] **TODO**: `tests/README.md` is listed in the directory structure spec but not yet created. Planned for Phase 6.
+- [x] **DONE**: `tests/README.md` created in Phase 6 — documents quick start, prerequisites, layer descriptions, CI pipeline, how to add tests, markers, and fixture locations.
 
 ### Hook Behavior Observations (discovered in Phase 3)
 
@@ -478,3 +491,15 @@ After all phases are complete, the test suite should pass these checks:
 - [ ] **TODO**: `health_buffer.sh` path resolution — `CLAUDE_PLUGIN_ROOT/../../.forge` goes TWO levels up from the plugin root, which assumes `CLAUDE_PLUGIN_ROOT` is set to a path nested two levels below the repo root. This is fragile and sensitive to directory layout changes. Consider using `git rev-parse --show-toplevel` instead, or document the expected CLAUDE_PLUGIN_ROOT path convention.
 
 - [ ] **TODO**: Hooks that derive file paths from `SCRIPT_DIR` → `FORGE_DIR` (memory_pruning_daemon, memory_cross_pollinator, root_agent_validator, output_archival) cannot be fully integration-tested against temporary directories without copying the hook script into the temp env. Tests use `_run_*_in_env()` helpers to work around this, but a more robust approach would be to make these hooks accept a configurable `FORGE_DIR` via environment variable override.
+
+### E2E / CI Observations (discovered in Phase 6)
+
+- [ ] **TODO**: `commands/index.md` does not reference the 5 newer commands: `remember`, `mock`, `azure-pipeline`, `etl-pipeline`, `azure-function`. The E2E test `test_command_execution.sh` warns about these missing references. The index file should be updated to include all 12 commands.
+
+- [ ] **TODO**: Most SKILL.md files have fewer than 4 of the 6 mandatory workflow steps documented with exact step names (`Initial Analysis`, `Load Memory`, `Load Context`, `Perform Analysis`, `Generate Output`, `Update Memory`). The E2E skill invocation test detects this as warnings for all 22 skills. Either the SKILL.md files should be updated to use these exact step names, or the mandatory workflow step convention should be relaxed/renamed to match what's actually used.
+
+- [ ] **TODO**: E2E tests currently validate structure and discoverability but cannot test runtime command/skill invocation since the `claude` CLI requires an interactive session. True runtime E2E testing would need a non-interactive invocation mode or a Claude CLI test harness. The current E2E scripts have placeholder sections for this.
+
+- [ ] **TODO**: The GitHub Actions CI workflow (`forge-tests.yml`) has not yet been validated in an actual CI run — it was tested locally only. The first push to a PR branch will be the real validation. Potential issues: the `working-directory` on Layer 1 pytest may need `FORGE_DIR` env var exported, and shellcheck exclusion rules may differ between Ubuntu versions.
+
+- [ ] **TODO**: `layer2/run_layer2.sh` was created but was not in the original Phase 6 spec. The original `run_all.sh` handled Layer 2 execution directly. Both paths work — `run_all.sh --layer2` and `layer2/run_layer2.sh` — but this creates two entry points for the same tests. Consider documenting which is canonical or removing the dedicated runner if unnecessary.
