@@ -5,7 +5,7 @@ title: "File Format Schema Patterns"
 type: reference
 estimatedTokens: 1550
 loadingStrategy: onDemand
-version: "1.0.0"
+version: "0.1.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: "Overview"

@@ -5,7 +5,7 @@ title: "Blazor Component Patterns - Quick Reference"
 type: framework
 estimatedTokens: 1150
 loadingStrategy: onDemand
-version: "1.0.0"
+version: "0.1.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: "Authoritative References"
@@ -124,5 +124,5 @@ Use this file for cues; use the links above for detailed APIs and examples.
 
 ---
 
-**Version**: 2.0.0 (Compact Reference Format)
+**Version**: 0.1.0-alpha (Compact Reference Format)
 **Last Updated**: 2025-11-15

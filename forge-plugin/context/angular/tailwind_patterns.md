@@ -5,7 +5,7 @@ title: "TailwindCSS with Angular"
 type: framework
 estimatedTokens: 250
 loadingStrategy: onDemand
-version: "1.0.0"
+version: "0.1.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: "Configuration"
@@ -145,4 +145,4 @@ When using both TailwindCSS and PrimeNG:
 
 ---
 
-**Version**: 1.0.0
+**Version**: 0.1.0-alpha

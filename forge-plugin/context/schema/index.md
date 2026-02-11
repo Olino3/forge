@@ -5,7 +5,7 @@ title: "Schema Analysis Context Files"
 type: index
 estimatedTokens: 500
 loadingStrategy: always
-version: "1.0.0"
+version: "0.1.0-alpha"
 lastUpdated: "2026-02-10"
 indexedFiles:
   - id: "schema/common_patterns"

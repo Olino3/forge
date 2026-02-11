@@ -5,7 +5,7 @@ title: "Azure Context Index"
 type: index
 estimatedTokens: 1550
 loadingStrategy: always
-version: "1.0.0"
+version: "0.1.0-alpha"
 lastUpdated: "2026-02-10"
 indexedFiles:
   - id: "azure/azure_functions_overview"

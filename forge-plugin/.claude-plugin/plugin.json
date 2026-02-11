@@ -1,7 +1,7 @@
 {
     "name": "forge-plugin",
     "description": "Forge brings the inventive spirit of Hephaestus and the wisdom of Athene to life, empowering users to craft innovative solutions with intelligent skills, powerful commands, and centralized context.",
-    "version": "1.1.0",
+    "version": "0.1.0-alpha",
     "author": {
         "name": "Olin Osborne III"
     },

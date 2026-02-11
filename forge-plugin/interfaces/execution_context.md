@@ -1,6 +1,6 @@
 # ExecutionContext Interface
 
-**Version**: 1.0.0
+**Version**: 0.1.0-alpha
 **Status**: Phase 4 - Interface Definition
 
 ## Purpose

@@ -5,7 +5,7 @@ title: "LINQ Optimization Patterns"
 type: pattern
 estimatedTokens: 1200
 loadingStrategy: onDemand
-version: "1.0.0"
+version: "0.1.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: "Common Anti-Patterns"
@@ -258,6 +258,6 @@ _db.Products.ToList().Where()
 
 ---
 
-**Version**: 1.0.0 (Compacted)
+**Version**: 0.1.0-alpha (Compacted)
 **Last Updated**: 2025-11-14
 **Maintained For**: dotnet-code-review skill

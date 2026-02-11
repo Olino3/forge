@@ -5,7 +5,7 @@ title: "Python Security Guidelines - Quick Reference"
 type: reference
 estimatedTokens: 250
 loadingStrategy: onDemand
-version: "2.0.0"
+version: "0.1.0-alpha"
 lastUpdated: "2025-11-14"
 sections:
   - name: "Authoritative References"
@@ -94,5 +94,5 @@ Use these as pointers; follow the links for detailed patterns and examples.
 
 ---
 
-**Version**: 2.0.0 (Compact Reference Format)
+**Version**: 0.1.0-alpha (Compact Reference Format)
 **Last Updated**: 2025-11-14

@@ -14,7 +14,7 @@
         "context_domains": 8,
         "memory_system": true
       },
-      "version": "1.1.0"
+      "version": "0.1.0-alpha"
     }
   ]
 }

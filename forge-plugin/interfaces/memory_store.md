@@ -1,6 +1,6 @@
 # MemoryStore Interface
 
-**Version**: 1.0.0
+**Version**: 0.1.0-alpha
 **Status**: Phase 1 - Interface Definition
 **Schema**: `schemas/memory_entry.schema.json`
 

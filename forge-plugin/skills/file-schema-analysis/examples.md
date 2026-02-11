@@ -66,7 +66,7 @@ Creates comprehensive analysis including:
 - **File**: api/schemas/user-schema.json
 - **Format**: JSON Schema Draft 7
 - **Complexity**: Medium (12 fields, 2 nested objects)
-- **Version**: 1.0.0
+- **Version**: 0.1.0-alpha
 
 ## Field Catalog
 

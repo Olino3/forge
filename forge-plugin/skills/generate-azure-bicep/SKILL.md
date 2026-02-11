@@ -1,7 +1,7 @@
 ---
 name: generate-azure-bicep
 description: Generate Azure Bicep infrastructure modules using Azure Verified Modules (AVM) and bicepparams
-version: 1.1.0
+version: "0.1.0-alpha"
 context:
   primary: [azure]
   topics: [azure_verified_modules, azure_bicep_overview]
@@ -12,7 +12,7 @@ memory:
 
 # Skill: generate-azure-bicep
 
-**Version**: 1.0.0
+**Version**: 0.1.0-alpha
 **Purpose**: Generate Azure Bicep infrastructure modules using Azure Verified Modules (AVM) and bicepparams
 **Author**: The Forge
 **Last Updated**: 2025-11-18

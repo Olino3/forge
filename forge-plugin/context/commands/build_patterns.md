@@ -5,7 +5,7 @@ title: "Build Patterns"
 type: pattern
 estimatedTokens: 950
 loadingStrategy: onDemand
-version: "1.0.0"
+version: "0.1.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: "Build System Detection"

@@ -5,7 +5,7 @@ title: "Async/Await Patterns"
 type: pattern
 estimatedTokens: 1000
 loadingStrategy: onDemand
-version: "1.0.0"
+version: "0.1.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: "Critical Anti-Patterns"
@@ -273,6 +273,6 @@ var task = GetDataAsync();
 
 ---
 
-**Version**: 1.0.0 (Compacted)
+**Version**: 0.1.0-alpha (Compacted)
 **Last Updated**: 2025-11-14
 **Maintained For**: dotnet-code-review skill

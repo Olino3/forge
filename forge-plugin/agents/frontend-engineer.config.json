@@ -1,7 +1,7 @@
 {
   "$schema": "../interfaces/schemas/agent_config.schema.json",
   "name": "frontend-engineer",
-  "version": "1.0.0",
+  "version": "0.1.0-alpha",
   "description": "UI/UX craftsperson specializing in modern frontend development with Angular, TypeScript, RxJS, and NgRx",
   "model": "sonnet",
   "tools": ["Read", "Write", "Bash", "Grep", "Glob"],

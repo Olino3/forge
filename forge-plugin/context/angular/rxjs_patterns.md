@@ -5,7 +5,7 @@ title: "RxJS Patterns for Angular - Quick Reference"
 type: pattern
 estimatedTokens: 1150
 loadingStrategy: onDemand
-version: "1.0.0"
+version: "0.1.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: "Subscription Management"
@@ -139,6 +139,6 @@ Detection patterns and solution references for common RxJS usage in Angular.
 
 ---
 
-**Version**: 2.0.0 (Compact Reference Format)
+**Version**: 0.1.0-alpha (Compact Reference Format)
 **Last Updated**: 2025-11-14
 **Angular Versions**: 2-18+

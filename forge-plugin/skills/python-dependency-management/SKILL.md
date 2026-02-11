@@ -1,7 +1,7 @@
 ---
 name: python-dependency-management
 description: Intelligently manages Python dependencies and virtual environments by detecting the project's package manager (uv, poetry, conda, pip) and executing dependency operations using project-specific conventions.
-version: 1.1.0
+version: "0.1.0-alpha"
 context:
   primary: [python]
   topics: [dependency_management, virtual_environments]
