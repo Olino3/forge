@@ -45,7 +45,8 @@ TRANSCRIPT_PATH=$(echo "$INPUT" | jq -r '.transcript_path // empty' 2>/dev/null)
 # --- Detect skill invocations in transcript ------------------------------
 # Skills are invoked via file reads of SKILL.md files.
 # Look for patterns like: "skills/*/SKILL.md" being read
-SKILLS_USED=$(grep -oE 'skills/[a-z0-9_-]+/SKILL\.md' "$TRANSCRIPT_PATH" 2>/dev/null | sort -u)
+# Note: Add || true to prevent pipefail crash when grep finds no matches (exit 1)
+SKILLS_USED=$(grep -oE 'skills/[a-z0-9_-]+/SKILL\.md' "$TRANSCRIPT_PATH" 2>/dev/null | sort -u || true)
 
 # No skills used = nothing to audit
 [[ -z "$SKILLS_USED" ]] && exit 0
@@ -102,10 +103,14 @@ if [[ -n "$VIOLATIONS" ]]; then
 
     ESCAPED=$(echo -e "$VIOLATIONS" | sed 's/"/\\"/g' | tr '\n' ' ' | sed 's/ $//')
 
+    # Use standard hookSpecificOutput.permissionDecision format for consistency with Shield hooks
     cat <<EOF
 {
-  "decision": "block",
-  "reason": "📋 Skill Compliance Checker: ${VIOLATION_COUNT} skill(s) did not follow the mandatory 6-step workflow (SKILL_TEMPLATE.md). ${ESCAPED} Please complete any missing steps before finishing."
+  "hookSpecificOutput": {
+    "permissionDecision": "deny",
+    "reason": "📋 Skill Compliance Checker: ${VIOLATION_COUNT} skill(s) did not follow the mandatory 6-step workflow (SKILL_TEMPLATE.md). ${ESCAPED} Please complete any missing steps before finishing."
+  },
+  "additionalContext": "📋 Skill compliance warning: ${VIOLATION_COUNT} skill(s) had workflow violations. Run /skill-audit for details."
 }
 EOF
 fi

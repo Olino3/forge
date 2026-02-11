@@ -13,11 +13,20 @@
 # --- Configuration -------------------------------------------------------
 
 # Resolve the .forge runtime directory relative to the repo root.
-# Hooks may be invoked from any cwd, so we derive the path from
-# CLAUDE_PLUGIN_ROOT (set by Claude Code for plugin hooks).
-_FORGE_RUNTIME_DIR="${CLAUDE_PLUGIN_ROOT:+${CLAUDE_PLUGIN_ROOT}/../../.forge}"
-if [[ -z "$_FORGE_RUNTIME_DIR" ]] || [[ ! -d "$(dirname "$_FORGE_RUNTIME_DIR")" ]]; then
-    # Fallback: derive from the script's own location
+# Priority:
+#   1. FORGE_RUNTIME_DIR env var (allows test injection)
+#   2. git rev-parse --show-toplevel (robust, works from any cwd)
+#   3. CLAUDE_PLUGIN_ROOT-based derivation (legacy fallback)
+#   4. Script location-based fallback
+if [[ -n "${FORGE_RUNTIME_DIR:-}" ]] && [[ -d "${FORGE_RUNTIME_DIR}" ]]; then
+    _FORGE_RUNTIME_DIR="$FORGE_RUNTIME_DIR"
+elif _GIT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null); then
+    _FORGE_RUNTIME_DIR="${_GIT_ROOT}/.forge"
+elif [[ -n "${CLAUDE_PLUGIN_ROOT:-}" ]]; then
+    # Legacy: CLAUDE_PLUGIN_ROOT is forge-plugin/, so ../../.forge
+    _FORGE_RUNTIME_DIR="${CLAUDE_PLUGIN_ROOT}/../../.forge"
+else
+    # Fallback: derive from the script's own location (lib/ → hooks/ → forge-plugin/ → repo/)
     _LIB_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     _FORGE_RUNTIME_DIR="$(cd "$_LIB_DIR/../../.." && pwd)/.forge"
 fi

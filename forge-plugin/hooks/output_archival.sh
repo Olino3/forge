@@ -11,8 +11,9 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-FORGE_DIR="$(dirname "$SCRIPT_DIR")"
-REPO_ROOT=$(git -C "$FORGE_DIR" rev-parse --show-toplevel 2>/dev/null || dirname "$FORGE_DIR")
+# Allow FORGE_DIR and REPO_ROOT override for testing in temporary directories
+FORGE_DIR="${FORGE_DIR:-$(dirname "$SCRIPT_DIR")}"
+REPO_ROOT="${REPO_ROOT:-$(git -C "$FORGE_DIR" rev-parse --show-toplevel 2>/dev/null || dirname "$FORGE_DIR")}"
 CLAUDEDOCS="${1:-$REPO_ROOT/claudedocs}"
 TODAY=$(date +%Y-%m-%d)
 YEAR_MONTH=$(date +%Y-%m)
