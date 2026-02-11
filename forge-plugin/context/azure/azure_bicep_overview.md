@@ -1,3 +1,61 @@
+---
+id: "azure/azure_bicep_overview"
+domain: azure
+title: "Azure Bicep Overview"
+type: reference
+estimatedTokens: 2350
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Purpose"
+    estimatedTokens: 13
+    keywords: [purpose]
+  - name: "What is Bicep?"
+    estimatedTokens: 24
+    keywords: [bicep]
+  - name: "Why Bicep?"
+    estimatedTokens: 52
+    keywords: [bicep]
+  - name: "Basic Bicep Syntax"
+    estimatedTokens: 88
+    keywords: [basic, bicep, syntax]
+  - name: "Bicep File Structure"
+    estimatedTokens: 204
+    keywords: [bicep, file, structure]
+  - name: "Bicep Parameters Files"
+    estimatedTokens: 24
+    keywords: [bicep, parameters, files]
+  - name: "Common Bicep Patterns"
+    estimatedTokens: 111
+    keywords: [bicep, patterns]
+  - name: "Bicep Project Structure"
+    estimatedTokens: 70
+    keywords: [bicep, project, structure]
+  - name: "Bicep CLI Commands"
+    estimatedTokens: 70
+    keywords: [bicep, cli, commands]
+  - name: "Bicep Decorators"
+    estimatedTokens: 30
+    keywords: [bicep, decorators]
+  - name: "Best Practices"
+    estimatedTokens: 72
+    keywords: [best]
+  - name: "Common Resource Types"
+    estimatedTokens: 60
+    keywords: [resource, types]
+  - name: "Bicep vs ARM JSON Example"
+    estimatedTokens: 66
+    keywords: [bicep, arm, json, example]
+  - name: "Detection Patterns"
+    estimatedTokens: 48
+    keywords: [detection, patterns]
+  - name: "Official Resources"
+    estimatedTokens: 13
+    keywords: [official, resources]
+tags: [azure, bicep, iac, arm, modules, parameters, deployment]
+---
+
 # Azure Bicep Overview
 
 ## Purpose

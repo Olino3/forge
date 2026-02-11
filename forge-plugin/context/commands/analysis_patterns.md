@@ -1,3 +1,37 @@
+---
+id: "commands/analysis_patterns"
+domain: commands
+title: "Analysis Patterns"
+type: pattern
+estimatedTokens: 700
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Analysis Methodologies"
+    estimatedTokens: 57
+    keywords: [analysis, methodologies]
+  - name: "Severity Classification"
+    estimatedTokens: 94
+    keywords: [severity, classification]
+  - name: "Multi-Language Analysis Strategy"
+    estimatedTokens: 69
+    keywords: [multi-language, analysis, strategy]
+  - name: "Analysis Domains"
+    estimatedTokens: 78
+    keywords: [analysis, domains]
+  - name: "Reporting Format"
+    estimatedTokens: 39
+    keywords: [reporting, format]
+  - name: "Skill Integration"
+    estimatedTokens: 30
+    keywords: [skill, integration]
+  - name: "Official References"
+    estimatedTokens: 20
+    keywords: [official, references]
+tags: [commands, analysis, static-analysis, severity, multi-language, code-quality]
+---
+
 # Analysis Patterns
 
 Reference patterns for the `/analyze` command. Covers static analysis methodologies, severity classification, and multi-language analysis strategies.

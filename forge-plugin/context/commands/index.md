@@ -1,3 +1,60 @@
+---
+id: "commands/index"
+domain: commands
+title: "Commands Context Index"
+type: index
+estimatedTokens: 300
+loadingStrategy: always
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+indexedFiles:
+  - id: "commands/analysis_patterns"
+    path: "analysis_patterns.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "commands/implementation_strategies"
+    path: "implementation_strategies.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "commands/refactoring_patterns"
+    path: "refactoring_patterns.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "commands/documentation_standards"
+    path: "documentation_standards.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "commands/testing_strategies"
+    path: "testing_strategies.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "commands/build_patterns"
+    path: "build_patterns.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "commands/brainstorming_patterns"
+    path: "brainstorming_patterns.md"
+    type: reference
+    loadingStrategy: onDemand
+sections:
+  - name: "Purpose"
+    estimatedTokens: 41
+    keywords: [purpose]
+  - name: "Available Context Files"
+    estimatedTokens: 72
+    keywords: [available, context, files]
+  - name: "Loading Patterns"
+    estimatedTokens: 95
+    keywords: [loading, patterns]
+  - name: "Context vs Domain Context"
+    estimatedTokens: 54
+    keywords: [context, domain, context]
+  - name: "Related Documentation"
+    estimatedTokens: 17
+    keywords: [related, documentation]
+tags: [commands, index, navigation]
+---
+
 # Commands Context Index
 
 This directory contains **shared contextual knowledge** for commands. These files provide patterns, strategies, and best practices that commands reference during execution.

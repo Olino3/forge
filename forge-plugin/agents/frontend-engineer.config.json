@@ -1,0 +1,37 @@
+{
+  "$schema": "../interfaces/schemas/agent_config.schema.json",
+  "name": "frontend-engineer",
+  "version": "1.0.0",
+  "description": "UI/UX craftsperson specializing in modern frontend development with Angular, TypeScript, RxJS, and NgRx",
+  "model": "sonnet",
+  "tools": ["Read", "Write", "Bash", "Grep", "Glob"],
+  "permissionMode": "auto",
+  "context": {
+    "primaryDomains": ["angular"],
+    "secondaryDomains": ["security", "engineering"],
+    "alwaysLoadFiles": []
+  },
+  "memory": {
+    "storagePath": "forge-plugin/memory/agents/frontend-engineer",
+    "categories": [
+      {"name": "projects", "description": "Track frontend projects, frameworks, and UI libraries"},
+      {"name": "components", "description": "Store reusable component patterns and designs"},
+      {"name": "state_management", "description": "Record state management approaches (NgRx, signals)"},
+      {"name": "ui_patterns", "description": "Maintain UI/UX patterns and design decisions"}
+    ]
+  },
+  "skills": [
+    {"name": "angular-code-review", "required": true, "useCase": "Deep code review for Angular applications"},
+    {"name": "generate-jest-unit-tests", "required": true, "useCase": "Generate Jest test suites for Angular components"},
+    {"name": "commit-helper", "required": false, "useCase": "Documenting frontend changes"}
+  ],
+  "hooks": [
+    {
+      "on_file_write": {
+        "patterns": ["*.ts", "*.html", "*.css", "*.scss", "*.component.ts", "*.service.ts", "*.module.ts", "package.json", "angular.json", "tsconfig*.json"],
+        "action": "validate_frontend_code"
+      }
+    }
+  ],
+  "mcpServers": []
+}

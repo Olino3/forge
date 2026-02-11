@@ -1,3 +1,31 @@
+---
+id: "engineering/testing_principles"
+domain: engineering
+title: "Testing Principles"
+type: reference
+estimatedTokens: 350
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Test Pyramid"
+    estimatedTokens: 60
+    keywords: [test, pyramid]
+  - name: "Coverage Strategy Decision Tree"
+    estimatedTokens: 44
+    keywords: [coverage, strategy, decision, tree]
+  - name: "Mock vs Integrate Decision"
+    estimatedTokens: 38
+    keywords: [mock, integrate, decision]
+  - name: "Test Quality Checklist"
+    estimatedTokens: 54
+    keywords: [test, quality, checklist]
+  - name: "References"
+    estimatedTokens: 17
+    keywords: [references]
+tags: [engineering, testing, test-pyramid, coverage, mocking, tdd]
+---
+
 # Testing Principles
 
 Universal testing strategy guidance for test generation and the `/test` command.

@@ -1,3 +1,44 @@
+---
+id: "schema/index"
+domain: schema
+title: "Schema Analysis Context Files"
+type: index
+estimatedTokens: 500
+loadingStrategy: always
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+indexedFiles:
+  - id: "schema/common_patterns"
+    path: "common_patterns.md"
+    type: always
+    loadingStrategy: always
+  - id: "schema/file_formats"
+    path: "file_formats.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "schema/database_patterns"
+    path: "database_patterns.md"
+    type: pattern
+    loadingStrategy: onDemand
+sections:
+  - name: "Overview"
+    estimatedTokens: 22
+    keywords: [overview]
+  - name: "File Guide"
+    estimatedTokens: 139
+    keywords: [file, guide]
+  - name: "Loading Strategy"
+    estimatedTokens: 51
+    keywords: [loading, strategy]
+  - name: "Related Context"
+    estimatedTokens: 21
+    keywords: [related, context]
+  - name: "Best Practices"
+    estimatedTokens: 39
+    keywords: [best]
+tags: [schema, index, navigation, file-formats, database, patterns]
+---
+
 # Schema Analysis Context Files
 
 ## Overview

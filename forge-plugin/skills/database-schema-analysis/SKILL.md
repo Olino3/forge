@@ -13,12 +13,16 @@ description: Analyze and document database schemas across SQL and NoSQL systems 
 
 - **SKILL.md** (this file): Main instructions and MANDATORY workflow
 - **examples.md**: Analysis scenarios with before/after examples
-- **../../context/schema/**: Schema analysis patterns and detection logic
-  - `index.md`, `database_patterns.md`, `common_patterns.md`
-- **../../memory/skills/database-schema-analysis/**: Project-specific memory storage
-  - `{project-name}/`: Per-project learned patterns and context
+- **Context**: Schema analysis patterns loaded via `contextProvider.getDomainIndex("schema")`. See [ContextProvider Interface](../../interfaces/context_provider.md).
+- **Memory**: Project-specific memory accessed via `memoryStore.getSkillMemory("database-schema-analysis", "{project-name}")`. See [MemoryStore Interface](../../interfaces/memory_store.md).
 - **templates/**: `db_schema_report.md`, `er_diagram.md`, `index_analysis.md`
 - **scripts/**: Helper utilities for database introspection
+
+## Interface References
+
+- **Context**: Loaded via [ContextProvider Interface](../../interfaces/context_provider.md)
+- **Memory**: Accessed via [MemoryStore Interface](../../interfaces/memory_store.md)
+- **Schemas**: Validated against [context_metadata.schema.json](../../interfaces/schemas/context_metadata.schema.json) and [memory_entry.schema.json](../../interfaces/schemas/memory_entry.schema.json)
 
 ## Analysis Focus Areas
 
@@ -61,17 +65,15 @@ Database schema analysis evaluates 8 critical dimensions:
 **YOU MUST:**
 1. **CHECK PROJECT MEMORY FIRST**:
    - Identify the project name from the repository root or ask the user
-   - **READ** `../../memory/skills/database-schema-analysis/index.md` to understand the memory system
-   - Check `../../memory/skills/database-schema-analysis/{project-name}/` for existing project memory
-   - If memory exists, read the memory files to understand previously analyzed schemas, patterns, and project-specific context
+   - Use `memoryStore.getSkillMemory("database-schema-analysis", "{project-name}")` to load existing project memory. See [MemoryStore Interface](../../interfaces/memory_store.md).
+   - If memory exists, review previously analyzed schemas, patterns, and project-specific context
    - If no memory exists, you will create it later in this process
 
 2. **USE CONTEXT INDEXES FOR EFFICIENT LOADING**:
-   - **READ** `../../context/index.md` for overview of available context files
-   - **READ** `../../context/schema/index.md` to understand schema context files and when to use each
-   - Load `common_patterns.md` for foundational concepts
-   - Load `database_patterns.md` for database-specific patterns
-   - If analyzing security aspects, read `../../context/security/index.md`
+   - Use `contextProvider.getDomainIndex("schema")` to discover available schema context files. See [ContextProvider Interface](../../interfaces/context_provider.md).
+   - Use `contextProvider.getAlwaysLoadFiles("schema")` to load foundational concepts (common_patterns.md)
+   - Use `contextProvider.getConditionalContext("schema", detection)` to load database-specific patterns
+   - If analyzing security aspects, use `contextProvider.getCrossDomainContext("schema", {"security": true})` for security context
 
 3. **Ask clarifying questions** in Socratic format:
    - What is the purpose of this database analysis?
@@ -204,12 +206,13 @@ Database schema analysis evaluates 8 critical dimensions:
    - Performance impact assessment
 
 4. **UPDATE PROJECT MEMORY**:
-   - Create or update `../../memory/skills/database-schema-analysis/{project-name}/schema_summary.md`
-   - Document database type and version
-   - Note naming conventions and patterns
-   - Record performance characteristics
-   - List migration history if available
-   - Save common query patterns
+   - Use `memoryStore.update(layer="skill-specific", skill="database-schema-analysis", project="{project-name}", ...)` to store:
+   - Database type and version
+   - Naming conventions and patterns
+   - Performance characteristics
+   - Migration history if available
+   - Common query patterns
+   - Timestamps and staleness tracking are handled automatically by MemoryStore. See [MemoryStore Interface](../../interfaces/memory_store.md).
 
 5. **Provide actionable recommendations**:
    - Prioritized list of improvements
@@ -350,6 +353,10 @@ When interacting with users, ask clarifying questions such as:
 
 ## Version History
 
+- **v1.1.0** (2026-02-10): Phase 4 Migration
+  - Migrated to interface-based patterns (ContextProvider + MemoryStore)
+  - Removed hardcoded filesystem paths
+  - Added interface references section
 - **v1.0.0** (2025-02-06): Initial release
   - Support for major SQL and NoSQL databases
   - Comprehensive analysis workflow

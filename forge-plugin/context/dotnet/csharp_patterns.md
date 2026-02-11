@@ -1,3 +1,40 @@
+---
+id: "dotnet/csharp_patterns"
+domain: dotnet
+title: "Modern C# Language Features"
+type: pattern
+estimatedTokens: 1150
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Common Anti-Patterns"
+    estimatedTokens: 76
+    keywords: [anti-patterns]
+  - name: "C# Version Features"
+    estimatedTokens: 268
+    keywords: [version, features]
+  - name: "Pattern Matching Quick Reference"
+    estimatedTokens: 60
+    keywords: [pattern, matching, quick, reference]
+  - name: "Records vs Classes"
+    estimatedTokens: 39
+    keywords: [records, classes]
+  - name: "Nullable Reference Types"
+    estimatedTokens: 51
+    keywords: [nullable, reference, types]
+  - name: "Common Detection Patterns"
+    estimatedTokens: 82
+    keywords: [detection, patterns]
+  - name: "Tools"
+    estimatedTokens: 16
+    keywords: [tools]
+  - name: "Official Resources"
+    estimatedTokens: 23
+    keywords: [official, resources]
+tags: [dotnet, csharp, nullable, records, pattern-matching, primary-constructors]
+---
+
 # Modern C# Language Features
 
 Quick reference for modern C# features (C# 8-12) and best practices. For detailed examples, see [C# documentation](https://learn.microsoft.com/en-us/dotnet/csharp/).

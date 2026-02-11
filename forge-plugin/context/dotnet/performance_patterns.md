@@ -1,3 +1,55 @@
+---
+id: "dotnet/performance_patterns"
+domain: dotnet
+title: ".NET Performance Optimization Patterns"
+type: pattern
+estimatedTokens: 1050
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Common Anti-Patterns"
+    estimatedTokens: 76
+    keywords: [anti-patterns]
+  - name: "String Performance"
+    estimatedTokens: 40
+    keywords: [string, performance]
+  - name: "Collection Performance"
+    estimatedTokens: 35
+    keywords: [collection, performance]
+  - name: "Memory Optimization"
+    estimatedTokens: 46
+    keywords: [memory, optimization]
+  - name: "Async Performance"
+    estimatedTokens: 38
+    keywords: [async, performance]
+  - name: "Database Performance"
+    estimatedTokens: 43
+    keywords: [database, performance]
+  - name: "Caching Patterns"
+    estimatedTokens: 49
+    keywords: [caching, patterns]
+  - name: "HTTP Client Best Practices"
+    estimatedTokens: 33
+    keywords: [http, client]
+  - name: "Large Object Heap (LOH)"
+    estimatedTokens: 30
+    keywords: [large, object, heap, loh]
+  - name: "Common Detection Patterns"
+    estimatedTokens: 72
+    keywords: [detection, patterns]
+  - name: "Performance Checklist"
+    estimatedTokens: 54
+    keywords: [performance, checklist]
+  - name: "Profiling Tools"
+    estimatedTokens: 21
+    keywords: [profiling, tools]
+  - name: "Official Resources"
+    estimatedTokens: 22
+    keywords: [official, resources]
+tags: [dotnet, performance, strings, collections, memory, caching, httpclient]
+---
+
 # .NET Performance Optimization Patterns
 
 Quick reference for performance optimization in .NET. For detailed examples, see [Performance best practices](https://learn.microsoft.com/en-us/dotnet/core/performance/).

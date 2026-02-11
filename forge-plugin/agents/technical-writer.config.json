@@ -1,0 +1,25 @@
+{
+  "$schema": "../interfaces/schemas/agent_config.schema.json",
+  "name": "technical-writer",
+  "version": "1.0.0",
+  "description": "Documentation artisan specializing in clear, comprehensive technical documentation",
+  "model": "sonnet",
+  "tools": ["view", "edit", "create", "grep", "glob", "bash"],
+  "context": {
+    "primaryDomains": ["engineering"],
+    "secondaryDomains": [],
+    "alwaysLoadFiles": []
+  },
+  "memory": {
+    "storagePath": "forge-plugin/memory/agents/technical-writer",
+    "categories": [
+      {"name": "projects", "description": "Project-specific documentation patterns and preferences"},
+      {"name": "styles", "description": "Documentation style guides and conventions"},
+      {"name": "templates", "description": "Frequently used documentation templates"}
+    ]
+  },
+  "skills": [
+    {"name": "documentation-generator", "required": true, "useCase": "Automated API and code documentation generation"},
+    {"name": "commit-helper", "required": false, "useCase": "Documenting changes in commit messages"}
+  ]
+}

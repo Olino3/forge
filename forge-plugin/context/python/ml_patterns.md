@@ -1,3 +1,43 @@
+---
+id: "python/ml_patterns"
+domain: python
+title: "Machine Learning Patterns"
+type: framework
+estimatedTokens: 1050
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Common Anti-Patterns"
+    estimatedTokens: 102
+    keywords: [anti-patterns]
+  - name: "Data Preparation Issues"
+    estimatedTokens: 61
+    keywords: [data, preparation, issues]
+  - name: "Model Training Issues"
+    estimatedTokens: 66
+    keywords: [model, training, issues]
+  - name: "Evaluation Issues"
+    estimatedTokens: 54
+    keywords: [evaluation, issues]
+  - name: "Common Detection Patterns"
+    estimatedTokens: 144
+    keywords: [detection, patterns]
+  - name: "Framework-Specific Patterns"
+    estimatedTokens: 78
+    keywords: [framework-specific, patterns]
+  - name: "Reproducibility Checklist"
+    estimatedTokens: 39
+    keywords: [reproducibility, checklist]
+  - name: "Tools"
+    estimatedTokens: 46
+    keywords: [tools]
+  - name: "Official Resources"
+    estimatedTokens: 24
+    keywords: [official, resources]
+tags: [python, ml, pytorch, tensorflow, sklearn, reproducibility, training]
+---
+
 # Machine Learning Patterns
 
 Quick reference for ML best practices with PyTorch, TensorFlow, and scikit-learn. For detailed examples, see official documentation.

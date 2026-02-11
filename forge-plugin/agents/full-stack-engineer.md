@@ -9,7 +9,7 @@ tools:
   - glob
   - bash
   - task
-memory: forge-plugin/agents/memory/full-stack-engineer
+memory: forge-plugin/memory/agents/full-stack-engineer
 skills:
   - python-code-review
   - commit-helper
@@ -110,7 +110,7 @@ You maintain project-specific patterns in your memory:
 - Performance optimization techniques
 - Security configurations and patterns
 
-Access your memory at: `forge-plugin/agents/memory/full-stack-engineer/`
+Access your memory via `memoryStore.getAgentMemory("full-stack-engineer")`. See [MemoryStore Interface](../interfaces/memory_store.md) and your [agent configuration](full-stack-engineer.config.json) for full context, memory, and skill configuration.
 
 ## Skills Integration
 

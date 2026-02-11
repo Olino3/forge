@@ -1,3 +1,34 @@
+---
+id: "angular/performance_patterns"
+domain: angular
+title: "Angular Performance Patterns - Quick Reference"
+type: pattern
+estimatedTokens: 550
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Change Detection"
+    estimatedTokens: 53
+    keywords: [change, detection, change-detection]
+  - name: "Lists & `*ngFor`"
+    estimatedTokens: 43
+    keywords: [lists, ngfor, trackby]
+  - name: "Lazy Loading & Defer"
+    estimatedTokens: 30
+    keywords: [lazy, loading, defer, lazy-loading]
+  - name: "Bundle Size"
+    estimatedTokens: 48
+    keywords: [bundle, size, bundle]
+  - name: "Memory & Leaks"
+    estimatedTokens: 39
+    keywords: [memory, leaks, memory]
+  - name: "Quick Checklist"
+    estimatedTokens: 47
+    keywords: [quick, checklist]
+tags: [angular, performance, change-detection, lazy-loading, bundle-size, trackby]
+---
+
 # Angular Performance Patterns - Quick Reference
 
 High-impact performance checks for Angular apps with minimal examples and links.

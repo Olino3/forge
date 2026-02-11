@@ -1,3 +1,29 @@
+---
+id: "security/security_guidelines"
+domain: security
+title: "Python Security Guidelines - Quick Reference"
+type: reference
+estimatedTokens: 250
+loadingStrategy: onDemand
+version: "2.0.0"
+lastUpdated: "2025-11-14"
+sections:
+  - name: "Authoritative References"
+    estimatedTokens: 30
+    keywords: [owasp, cwe, security-project]
+  - name: "What to Check"
+    estimatedTokens: 100
+    keywords: [input-validation, sql-injection, xss, auth, crypto, ssrf]
+  - name: "Tooling & Automation"
+    estimatedTokens: 40
+    keywords: [pip-audit, semgrep, bandit]
+  - name: "Quick Security Review Checklist"
+    estimatedTokens: 60
+    keywords: [checklist, validation, parameterized, secrets]
+tags: [security, owasp, python, review-checklist]
+crossDomainTriggers: []
+---
+
 # Python Security Guidelines – Quick Reference
 
 Compact guide to where to look for Python security best practices during code review.

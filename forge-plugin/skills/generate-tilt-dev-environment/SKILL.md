@@ -1,3 +1,20 @@
+---
+name: generate-tilt-dev-environment
+description: Generate complete local development environments using Tilt, Docker Compose, and containerization. Constructs local development realms with Tilt orchestration, live reload, and service dependencies.
+version: "1.1.0"
+context:
+  primary_domain: "azure"
+  always_load_files: []
+  detection_required: true
+  file_budget: 4
+memory:
+  scopes:
+    - type: "skill-specific"
+      files: [environment_config.md, generated_files.md, customizations.md, setup_notes.md]
+    - type: "shared-project"
+      usage: "reference"
+---
+
 # Skill: generate-tilt-dev-environment
 
 **Version**: 1.0.0
@@ -33,17 +50,17 @@ forge-plugin/skills/generate-tilt-dev-environment/
 
 ## Required Reading
 
-**Before executing this skill**, read these files in order:
+**Before executing this skill**, load context and memory via interfaces:
 
-1. **Context indexes** (understand what context is available):
-   - `../../context/azure/index.md` - Azure context navigation (if using Azure services)
-   - Look for Docker, containerization context files
+1. **Context**: Use `contextProvider.getDomainIndex("azure")` for Azure/container context. Use `contextProvider.detectProjectType()` for framework detection. See [ContextProvider Interface](../../interfaces/context_provider.md).
 
-2. **Memory index** (understand memory structure):
-   - `../../memory/skills/generate-tilt-dev-environment/index.md` - Memory structure for this skill
+2. **Skill memory**: Use `memoryStore.getSkillMemory("generate-tilt-dev-environment", "{project-name}")` for previous configurations. See [MemoryStore Interface](../../interfaces/memory_store.md).
 
-3. **Project memory** (if exists):
-   - `../../memory/skills/generate-tilt-dev-environment/{project-name}/` - Previous project configurations
+## Interface References
+
+- **Context**: Loaded via [ContextProvider Interface](../../interfaces/context_provider.md)
+- **Memory**: Accessed via [MemoryStore Interface](../../interfaces/memory_store.md)
+- **Schemas**: Validated against [memory_entry.schema.json](../../interfaces/schemas/memory_entry.schema.json)
 
 ---
 
@@ -203,9 +220,9 @@ After analyzing project structure, ask user about:
 **Purpose**: Understand available context and memory
 
 **Actions**:
-1. Check for relevant context files in `../../context/`
-2. Check if `../../memory/skills/generate-tilt-dev-environment/index.md` exists
-3. Identify which context files will be needed based on project type
+1. Use `contextProvider.getDomainIndex("azure")` for relevant context files. See [ContextProvider Interface](../../interfaces/context_provider.md).
+2. Use `memoryStore.getSkillMemory("generate-tilt-dev-environment", "{project-name}")` to check for existing memory. See [MemoryStore Interface](../../interfaces/memory_store.md).
+3. Identify which context domains are relevant based on project type
 
 **Output**: Knowledge of available guidance and memory structure
 
@@ -216,8 +233,8 @@ After analyzing project structure, ask user about:
 **Purpose**: Understand previous configurations for this project
 
 **Actions**:
-1. Check if `../../memory/skills/generate-tilt-dev-environment/{project-name}/` exists
-2. If exists, read:
+1. Use `memoryStore.getSkillMemory("generate-tilt-dev-environment", "{project-name}")` to load project memory. See [MemoryStore Interface](../../interfaces/memory_store.md).
+2. If memory exists, review:
    - `environment_config.md` - Previous configuration decisions
    - `generated_files.md` - What was generated before
    - `customizations.md` - User-specific modifications
@@ -233,11 +250,10 @@ After analyzing project structure, ask user about:
 **Purpose**: Load relevant development environment knowledge
 
 **Actions**:
-1. Read relevant context files based on project stack:
-   - `../../context/docker/` - If Docker context exists
-   - `../../context/python/` - For Python projects
-   - `../../context/azure/tiltfile_reference.md` - For Tilt patterns
-   - Framework-specific context files
+1. Use `contextProvider.getConditionalContext()` to load context based on project stack. See [ContextProvider Interface](../../interfaces/context_provider.md):
+   - For Python projects: `contextProvider.getDomainIndex("python")`
+   - For Azure services: `contextProvider.getDomainIndex("azure")`
+   - For framework-specific context: `contextProvider.detectProjectType()` + `contextProvider.getConditionalContext()`
 2. Note any best practices or patterns relevant to the project
 
 **Output**: Comprehensive understanding of development environment patterns
@@ -396,8 +412,8 @@ After analyzing project structure, ask user about:
 **Purpose**: Store configuration for future reference
 
 **Actions**:
-1. Create `../../memory/skills/generate-tilt-dev-environment/{project-name}/` directory
-2. Create `environment_config.md`:
+1. Use `memoryStore.update(layer="skill-specific", skill="generate-tilt-dev-environment", project="{project-name}", ...)` to store the following. Timestamps and staleness tracking are handled automatically by MemoryStore. See [MemoryStore Interface](../../interfaces/memory_store.md).
+2. **environment_config.md**:
    - Project type
    - Services configured
    - Programming languages and versions
@@ -482,6 +498,11 @@ After analyzing project structure, ask user about:
 
 ## Version History
 
+- **1.1.0** (2026-02-10): Phase 4 Migration
+  - Migrated to interface-based patterns (ContextProvider + MemoryStore)
+  - Added YAML frontmatter with declarative context/memory configuration
+  - Removed hardcoded filesystem paths
+  - Added interface references section
 - **1.0.0** (2026-02-06): Initial implementation
   - Tiltfile generation with live reload
   - Docker Compose orchestration

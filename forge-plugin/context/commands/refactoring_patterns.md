@@ -1,3 +1,37 @@
+---
+id: "commands/refactoring_patterns"
+domain: commands
+title: "Refactoring Patterns"
+type: pattern
+estimatedTokens: 1000
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Safe Refactoring Techniques"
+    estimatedTokens: 156
+    keywords: [safe, refactoring, techniques]
+  - name: "Code Smell Identification"
+    estimatedTokens: 150
+    keywords: [code, smell, identification]
+  - name: "Auto-Fix vs Approval-Required"
+    estimatedTokens: 75
+    keywords: [auto-fix, approval-required]
+  - name: "Technical Debt Tracking"
+    estimatedTokens: 84
+    keywords: [technical, debt, tracking]
+  - name: "Pre-Improvement Checklist"
+    estimatedTokens: 40
+    keywords: [pre-improvement, checklist]
+  - name: "Skill Integration"
+    estimatedTokens: 18
+    keywords: [skill, integration]
+  - name: "Official References"
+    estimatedTokens: 20
+    keywords: [official, references]
+tags: [commands, refactoring, code-smells, technical-debt, extract-method, safe-refactoring]
+---
+
 # Refactoring Patterns
 
 Reference patterns for the `/improve` command. Covers safe refactoring techniques, code smell identification, and technical debt management.

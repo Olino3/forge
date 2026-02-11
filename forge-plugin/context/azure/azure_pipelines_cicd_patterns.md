@@ -1,3 +1,40 @@
+---
+id: "azure/azure_pipelines_cicd_patterns"
+domain: azure
+title: "Azure Pipelines CI/CD Patterns"
+type: pattern
+estimatedTokens: 2600
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Purpose"
+    estimatedTokens: 17
+    keywords: [purpose]
+  - name: "CI/CD Pipeline Architectures"
+    estimatedTokens: 543
+    keywords: [cicd, pipeline, architectures]
+  - name: "Pipeline Organization Patterns"
+    estimatedTokens: 156
+    keywords: [pipeline, organization, patterns]
+  - name: "Common Pipeline Structures"
+    estimatedTokens: 114
+    keywords: [pipeline, structures]
+  - name: "Decision Matrix"
+    estimatedTokens: 72
+    keywords: [decision, matrix]
+  - name: "Best Practices"
+    estimatedTokens: 56
+    keywords: [best]
+  - name: "Anti-Patterns to Avoid"
+    estimatedTokens: 33
+    keywords: [anti-patterns, avoid]
+  - name: "Official Resources"
+    estimatedTokens: 10
+    keywords: [official, resources]
+tags: [azure, pipelines, cicd, patterns, templates, monorepo, iac, deployment]
+---
+
 # Azure Pipelines CI/CD Patterns
 
 ## Purpose

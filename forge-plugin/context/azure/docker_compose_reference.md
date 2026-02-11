@@ -1,3 +1,58 @@
+---
+id: "azure/docker_compose_reference"
+domain: azure
+title: "Docker Compose Reference for Azure Functions"
+type: reference
+estimatedTokens: 2100
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Basic Structure"
+    estimatedTokens: 22
+    keywords: [basic, structure]
+  - name: "Complete Example: docker-compose.dev.yml"
+    estimatedTokens: 98
+    keywords: [complete, example, docker-composedevyml]
+  - name: "Service Definitions"
+    estimatedTokens: 129
+    keywords: [service, definitions]
+  - name: "Environment Variables"
+    estimatedTokens: 76
+    keywords: [environment, variables]
+  - name: "Port Mapping Patterns"
+    estimatedTokens: 52
+    keywords: [port, mapping, patterns]
+  - name: "Volume Mounts"
+    estimatedTokens: 70
+    keywords: [volume, mounts]
+  - name: "depends_on"
+    estimatedTokens: 33
+    keywords: [dependson]
+  - name: "Health Checks (Optional)"
+    estimatedTokens: 42
+    keywords: [health, checks, optional]
+  - name: "Networks (Usually Not Needed)"
+    estimatedTokens: 30
+    keywords: [networks, usually, not, needed]
+  - name: "Multiple Function Apps Pattern"
+    estimatedTokens: 52
+    keywords: [multiple, function, apps, pattern]
+  - name: "Environment-Specific Files"
+    estimatedTokens: 42
+    keywords: [environment-specific, files]
+  - name: "Best Practices"
+    estimatedTokens: 45
+    keywords: [best]
+  - name: "Common Issues"
+    estimatedTokens: 52
+    keywords: [issues]
+  - name: "Official Documentation"
+    estimatedTokens: 13
+    keywords: [official, documentation]
+tags: [azure, docker-compose, services, environment, ports, volumes]
+---
+
 # Docker Compose Reference for Azure Functions
 
 ## Basic Structure

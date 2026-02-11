@@ -1,3 +1,37 @@
+---
+id: "schema/database_patterns"
+domain: schema
+title: "Database Schema Patterns"
+type: pattern
+estimatedTokens: 2100
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Overview"
+    estimatedTokens: 12
+    keywords: [overview]
+  - name: "Relational Database (SQL) Patterns"
+    estimatedTokens: 486
+    keywords: [relational, database, sql, patterns]
+  - name: "NoSQL Database Patterns"
+    estimatedTokens: 276
+    keywords: [nosql, database, patterns]
+  - name: "Schema Design Anti-Patterns"
+    estimatedTokens: 101
+    keywords: [schema, design, anti-patterns]
+  - name: "Performance Analysis Patterns"
+    estimatedTokens: 49
+    keywords: [performance, analysis, patterns]
+  - name: "Data Type Selection Guide"
+    estimatedTokens: 90
+    keywords: [data, type, selection, guide]
+  - name: "Migration Safety Patterns"
+    estimatedTokens: 68
+    keywords: [migration, safety, patterns]
+tags: [schema, database, sql, nosql, indexes, normalization, migration, mongodb, redis]
+---
+
 # Database Schema Patterns
 
 ## Overview

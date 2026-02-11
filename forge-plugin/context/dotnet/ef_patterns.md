@@ -1,3 +1,52 @@
+---
+id: "dotnet/ef_patterns"
+domain: dotnet
+title: "Entity Framework Patterns"
+type: framework
+estimatedTokens: 1250
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Critical Anti-Patterns"
+    estimatedTokens: 81
+    keywords: [critical, anti-patterns]
+  - name: "DbContext Lifetime"
+    estimatedTokens: 63
+    keywords: [dbcontext, lifetime]
+  - name: "N+1 Query Problem"
+    estimatedTokens: 89
+    keywords: [query, problem]
+  - name: "Query Optimization"
+    estimatedTokens: 84
+    keywords: [query, optimization]
+  - name: "SQL Injection Prevention"
+    estimatedTokens: 42
+    keywords: [sql, injection, prevention]
+  - name: "Migrations"
+    estimatedTokens: 62
+    keywords: [migrations]
+  - name: "Relationships"
+    estimatedTokens: 45
+    keywords: [relationships]
+  - name: "Transactions"
+    estimatedTokens: 27
+    keywords: [transactions]
+  - name: "Concurrency"
+    estimatedTokens: 59
+    keywords: [concurrency]
+  - name: "Common Detection Patterns"
+    estimatedTokens: 61
+    keywords: [detection, patterns]
+  - name: "EF Core Checklist"
+    estimatedTokens: 52
+    keywords: [core, checklist]
+  - name: "Official Resources"
+    estimatedTokens: 22
+    keywords: [official, resources]
+tags: [dotnet, entity-framework, dbcontext, queries, n-plus-one, migrations, concurrency]
+---
+
 # Entity Framework Patterns
 
 Quick reference for Entity Framework Core and EF6 best practices. For detailed examples, see [EF Core documentation](https://learn.microsoft.com/en-us/ef/core/).

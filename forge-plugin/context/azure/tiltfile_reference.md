@@ -1,3 +1,40 @@
+---
+id: "azure/tiltfile_reference"
+domain: azure
+title: "Tiltfile Reference for Azure Functions"
+type: reference
+estimatedTokens: 2100
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Basic Structure"
+    estimatedTokens: 23
+    keywords: [basic, structure]
+  - name: "Complete Example Tiltfile"
+    estimatedTokens: 127
+    keywords: [complete, example, tiltfile]
+  - name: "Tiltfile Components"
+    estimatedTokens: 457
+    keywords: [tiltfile, components]
+  - name: "Advanced Patterns"
+    estimatedTokens: 42
+    keywords: [advanced, patterns]
+  - name: "Tilt UI Features"
+    estimatedTokens: 51
+    keywords: [tilt, features]
+  - name: "Best Practices"
+    estimatedTokens: 47
+    keywords: [best]
+  - name: "Troubleshooting"
+    estimatedTokens: 51
+    keywords: [troubleshooting]
+  - name: "Official Documentation"
+    estimatedTokens: 11
+    keywords: [official, documentation]
+tags: [azure, tilt, tiltfile, live-update, docker-build, orchestration]
+---
+
 # Tiltfile Reference for Azure Functions
 
 ## Basic Structure

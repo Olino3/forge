@@ -1,3 +1,70 @@
+---
+id: "commands/brainstorming_patterns"
+domain: commands
+title: "Brainstorming Patterns"
+type: pattern
+estimatedTokens: 1200
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Socratic Questioning Techniques"
+    estimatedTokens: 135
+    keywords: [socratic, questioning, techniques]
+  - name: "Requirements Elicitation"
+    estimatedTokens: 78
+    keywords: [requirements, elicitation]
+  - name: "Feature: {name}"
+    estimatedTokens: 53
+    keywords: [feature, name]
+  - name: "Feasibility Analysis"
+    estimatedTokens: 139
+    keywords: [feasibility, analysis]
+  - name: "Prioritization Frameworks"
+    estimatedTokens: 110
+    keywords: [prioritization, frameworks]
+  - name: "Brainstorming Output Format"
+    estimatedTokens: 20
+    keywords: [brainstorming, output, format]
+  - name: "Problem Statement"
+    estimatedTokens: 20
+    keywords: [problem, statement]
+  - name: "Goals"
+    estimatedTokens: 20
+    keywords: [goals]
+  - name: "User Stories"
+    estimatedTokens: 20
+    keywords: [user, stories]
+  - name: "Functional Requirements"
+    estimatedTokens: 20
+    keywords: [functional, requirements]
+  - name: "Non-Functional Requirements"
+    estimatedTokens: 20
+    keywords: [non-functional, requirements]
+  - name: "Constraints"
+    estimatedTokens: 20
+    keywords: [constraints]
+  - name: "Open Questions"
+    estimatedTokens: 20
+    keywords: [open, questions]
+  - name: "Risks"
+    estimatedTokens: 20
+    keywords: [risks]
+  - name: "Estimated Scope"
+    estimatedTokens: 20
+    keywords: [estimated, scope]
+  - name: "Skill Integration"
+    estimatedTokens: 15
+    keywords: [skill, integration]
+  - name: "Boundaries"
+    estimatedTokens: 45
+    keywords: [boundaries]
+  - name: "Official References"
+    estimatedTokens: 20
+    keywords: [official, references]
+tags: [commands, brainstorming, requirements, socratic, prioritization, feasibility]
+---
+
 # Brainstorming Patterns
 
 Reference patterns for the `/brainstorm` command. Covers Socratic questioning, requirements elicitation, feasibility analysis, and prioritization techniques.

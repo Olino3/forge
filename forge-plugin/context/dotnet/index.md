@@ -1,3 +1,85 @@
+---
+id: "dotnet/index"
+domain: dotnet
+title: ".NET Context Files Index"
+type: index
+estimatedTokens: 3400
+loadingStrategy: always
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+indexedFiles:
+  - id: "dotnet/common_issues"
+    path: "common_issues.md"
+    type: always
+    loadingStrategy: always
+  - id: "dotnet/context_detection"
+    path: "context_detection.md"
+    type: detection
+    loadingStrategy: onDemand
+  - id: "dotnet/aspnet_patterns"
+    path: "aspnet_patterns.md"
+    type: framework
+    loadingStrategy: onDemand
+  - id: "dotnet/async_patterns"
+    path: "async_patterns.md"
+    type: pattern
+    loadingStrategy: onDemand
+  - id: "dotnet/blazor_patterns"
+    path: "blazor_patterns.md"
+    type: framework
+    loadingStrategy: onDemand
+  - id: "dotnet/csharp_patterns"
+    path: "csharp_patterns.md"
+    type: pattern
+    loadingStrategy: onDemand
+  - id: "dotnet/di_patterns"
+    path: "di_patterns.md"
+    type: pattern
+    loadingStrategy: onDemand
+  - id: "dotnet/ef_patterns"
+    path: "ef_patterns.md"
+    type: framework
+    loadingStrategy: onDemand
+  - id: "dotnet/linq_patterns"
+    path: "linq_patterns.md"
+    type: pattern
+    loadingStrategy: onDemand
+  - id: "dotnet/performance_patterns"
+    path: "performance_patterns.md"
+    type: pattern
+    loadingStrategy: onDemand
+  - id: "dotnet/security_patterns"
+    path: "security_patterns.md"
+    type: pattern
+    loadingStrategy: onDemand
+sections:
+  - name: "Purpose"
+    estimatedTokens: 50
+    keywords: [purpose]
+  - name: "Directory Structure"
+    estimatedTokens: 60
+    keywords: [directory, structure]
+  - name: "Usage Guide"
+    estimatedTokens: 66
+    keywords: [usage, guide]
+  - name: "Context Loading Decision Matrix"
+    estimatedTokens: 112
+    keywords: [context, loading, decision, matrix]
+  - name: "File Descriptions and When to Load"
+    estimatedTokens: 1397
+    keywords: [file, descriptions, load]
+  - name: "Quick Reference: Loading Patterns by Scenario"
+    estimatedTokens: 105
+    keywords: [quick, reference, loading, patterns, scenario]
+  - name: "Loading Efficiency Tips"
+    estimatedTokens: 52
+    keywords: [loading, efficiency, tips]
+  - name: "When to Add New Context Files"
+    estimatedTokens: 63
+    keywords: [add, new, context, files]
+tags: [dotnet, csharp, index, navigation, code-review]
+---
+
 # .NET Context Index
 
 This directory contains shared contextual knowledge for .NET code review and development. These files provide reference materials, best practices, and standards applicable to all .NET projects.

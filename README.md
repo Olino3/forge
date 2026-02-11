@@ -4,372 +4,259 @@
 
 <div align="center">
 
-🔥 **Welcome to the Forge** 🔥
+🔥 **An Agentic Software Factory for Claude Code** 🔥
 
-*A divine marketplace where Claude Code plugins are forged in the fires of innovation*
+*Where divine agents, battle-tested skills, and structured commands transform code into artifacts worthy of Mount Olympus*
 
-[![Marketplace](https://img.shields.io/badge/Claude_Code-Marketplace-blueviolet?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEyIDJMMiA3djEwbDEwIDVsMTAtNVY3TDEyIDJ6IiBmaWxsPSIjZmZmIi8+PC9zdmc+)](https://github.com/Olino3/forge)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 [![Forged in Shell](https://img.shields.io/badge/Forged_in-Shell-success?style=for-the-badge&logo=gnu-bash)](https://github.com/Olino3/forge)
-[![Open Source](https://img.shields.io/badge/Open-Source-orange?style=for-the-badge&logo=github)](https://github.com/Olino3/forge)
+[![Agents](https://img.shields.io/badge/Agents-11-blue?style=for-the-badge)](forge-plugin/agents/)
+[![Skills](https://img.shields.io/badge/Skills-22-orange?style=for-the-badge)](forge-plugin/skills/)
+[![Hooks](https://img.shields.io/badge/Hooks-20-red?style=for-the-badge)](forge-plugin/hooks/)
 
 </div>
 
 ---
 
-## 🏛️ The Legend
+## What Is The Forge?
 
-In the depths of Mount Olympus, Hephaestus toiled at his anvil, forging legendary artifacts that would shape the fate of gods and mortals alike. The **Forge** carries on this sacred tradition—a curated, versioned registry of plugins that you can discover and install directly from Claude Code.
+The Forge is not a plugin collection — it is a complete **Agentic Software Factory** that extends [Claude Code](https://claude.ai/code) with an entire engineering workshop. Built on pure convention (no build tools, no package managers, no compiled code), the Forge provides:
 
-⚡ **Forged in Shell** • Simple to host, inspect, and extend  
-🔨 **Battle-tested** • Curated plugins ready for production  
-✨ **Ever-evolving** • New tools added by the community
-
----
-
-## 🛠️ Wielding the Divine Tools
-
-Learn how to discover, install, and manage plugins to extend your Claude Code capabilities using the Forge as your marketplace.
-
-### 📜 Prerequisites
-
-Before entering the Forge, ensure you have:
-
-- ✅ **Claude Code** installed and running  
-- 🎯 **Basic CLI knowledge** to wield the command line  
-- 🔗 **Repository access**: [Olino3/forge](https://github.com/Olino3/forge)
+| Component | Count | What It Does |
+|-----------|-------|-------------|
+| 🏛️ **Agents** | 11 | AI personas with deep domain expertise (4 Olympian + 7 specialist) |
+| 🔨 **Skills** | 22 | Specialized capabilities — code review, test generation, infrastructure |
+| ⚡ **Commands** | 12 | Structured workflows — `/analyze`, `/implement`, `/test`, and more |
+| 📚 **Context** | 81 files | Shared knowledge across 9 domains with YAML frontmatter |
+| 🧠 **Memory** | 4 layers | Project-specific learning that grows with every invocation |
+| 🪝 **Hooks** | 20 | Automated security, quality gates, and integrity enforcement |
+| 🔌 **MCP Servers** | 8 | External knowledge conduits (docs, browser, search, code intel) |
+| ⚙️ **Interfaces** | 4 | Abstract contracts decoupling all components from the filesystem |
 
 ---
 
-## 🔥 Ignite the Forge
+## Quick Start
 
-Marketplaces are sacred catalogs where divine tools await discovery. Add the Forge to unlock its treasures.
-
-### ⚡ Summon the Marketplace
-
-Light the flames of the Forge in Claude Code:
+### Install the Forge
 
 ```bash
-/plugin marketplace add Olino3/forge
-```
-
-💡 **Alternative Invocation**: If your setup requires a direct registry path:
-
-```bash
-/plugin marketplace add https://raw.githubusercontent.com/Olino3/forge/main/registry.json
-```
-
-> ⚠️ **Note**: Adjust `registry.json` and path to match the actual manifest in this repository.
-
-### 👁️ Behold the Arsenal
-
-Once the Forge burns bright in your marketplaces, gaze upon its offerings:
-
-```bash
-/plugin
-```
-
-This invokes the sacred plugin management interface, where the Forge's divine creations await your selection alongside tools from other marketplaces.
-
-📚 **Master's Grimoire**: For advanced forge mastery—including Git repositories, local development, and team distribution—consult the official Claude Code documentation on **Plugin Marketplaces**.
-
----
-
-## ⚒️ Forge Your Toolkit
-
-Choose your path: wander the halls of discovery or command the flames directly.
-
-### 🗺️ Path of Discovery (Recommended for Exploration)
-
-Enter the sacred halls:
-
-```bash
-/plugin
-```
-
-**Your Quest**:
-
-1. 🔍 Select **"Browse Plugins"**  
-2. 📖 Behold the artifacts with their divine descriptions and powers  
-3. ⚡ Choose your tool and follow Hephaestus's guidance to claim it  
-
-### ⚡ Path of Command (For Swift Forging)
-
-Master smiths command the flames directly:
-
-#### 🔨 Forge a Specific Tool
-
-```bash
+# Add The Forge as a Claude Code plugin
 /plugin install forge-plugin@Olino3/forge
 ```
 
-#### ✨ Rekindle a Dormant Tool
+### Verify Installation
 
 ```bash
-/plugin enable forge-plugin@Olino3/forge
-```
-
-#### 💤 Rest a Tool (Without Destroying)
-
-```bash
-/plugin disable forge-plugin@Olino3/forge
-```
-
-#### 🔥 Return to the Flames
-
-```bash
-/plugin uninstall forge-plugin@Olino3/forge
-```
-
----
-
-## ✅ Verify Your Craftsmanship
-
-After forging a new tool, ensure it's tempered properly:
-
-### 1. 📋 **Inspect Your New Powers**
-
-Reveal what Hephaestus has bestowed:
-```bash
+# Check available commands
 /help
 ```
 
-Seek new commands or abilities granted by your artifact.
-
-### 2. 🧪 **Test in the Crucible**
-
-Wield the tool as intended—consult its sacred scrolls (documentation) within the Forge or its own repository.
-
-### 3. 🔍 **Divine Audit**
-
-Survey your complete arsenal:
+### Start Using It
 
 ```bash
-/plugin
+# Analyze your codebase
+/analyze src/ --focus security
+
+# Implement a feature with tests
+/implement "Add user authentication" --tests
+
+# Review Python code
+skill:python-code-review src/auth/
+
+# Summon a specialist agent
+@python-engineer Review this FastAPI service for performance issues
 ```
-
-Select **"Manage Plugins"** to witness:
-
-- ⚔️ All installed artifacts  
-- 🏛️ Their origin (Forge or other marketplaces)  
-- ⚡ Power to enable/disable or banish them
 
 ---
 
-## 🤖 Summoning Custom Agents
+## 🏛️ The Pantheon — 11 Agents
 
-The Forge includes specialized Claude Code agents that can be invoked for specific tasks.
+Agents are AI personas with deep domain expertise, persistent memory, and curated skill sets.
 
-### Available Agents
+### Divine Council (Olympian Tier)
 
-Call upon these expert agents using the `@` prefix:
+| Agent | Domain | Specialization |
+|-------|--------|---------------|
+| **@hephaestus** | Tool Creation | Forges new skills, templates, and meta-capabilities |
+| **@prometheus** | Strategy | Architecture design, roadmaps, ADRs, tech evaluation |
+| **@ares** | Deployment | Production deployment, incident response, monitoring |
+| **@poseidon** | Data Flow | ETL pipelines, event-driven architecture, data integration |
 
-#### 📝 @technical-writer
-Invoke the Documentation Artisan for creating clear, comprehensive documentation.
+### Specialist Legion
 
-**Example Usage:**
-```
-@technical-writer Please create a comprehensive README for the API module
-@technical-writer Review this documentation for clarity and technical accuracy
-@technical-writer Generate API documentation from the codebase
-```
+| Agent | Domain | Specialization |
+|-------|--------|---------------|
+| **@python-engineer** | Python | Django, Flask, FastAPI, testing, dependency management |
+| **@frontend-engineer** | Frontend | Angular, TypeScript, RxJS, NgRx, accessibility |
+| **@devops-engineer** | Infrastructure | Azure Pipelines, Docker, Kubernetes, CI/CD |
+| **@developer-environment-engineer** | Tooling | Tilt, Docker Compose, local dev environments |
+| **@data-scientist** | Analytics | Notebooks, pandas, ML, statistical analysis, visualization |
+| **@full-stack-engineer** | End-to-End | API design, frontend-backend integration, system architecture |
+| **@technical-writer** | Documentation | API docs, user guides, technical specifications |
 
-#### 🏗️ @full-stack-engineer
-Summon the End-to-End Architect for building complete full-stack applications.
-
-**Example Usage:**
-```
-@full-stack-engineer Design and implement a REST API with authentication
-@full-stack-engineer Review the frontend React components for best practices
-@full-stack-engineer Set up CI/CD pipeline with Docker and GitHub Actions
-```
-
-#### 📊 @data-scientist
-Call upon the Analytics and ML Specialist for data analysis and machine learning tasks.
-
-**Example Usage:**
-```
-@data-scientist Perform exploratory data analysis on the dataset
-@data-scientist Build a classification model to predict customer churn
-@data-scientist Optimize the hyperparameters of the current ML model
-```
-
-### Agent Features
-
-Each agent comes equipped with:
-- ✨ **Specialized Knowledge**: Deep expertise in their domain
-- 🛠️ **Tool Access**: Curated set of tools for their tasks
-- 🧠 **Memory**: Project-specific learning and pattern recognition
-- 🔌 **Skills**: Integration with forge skills and utilities
-- 📚 **Context**: Domain-specific best practices and guidelines
-
-> 💡 **Pro Tip**: Agents maintain memory of project patterns, so they become more effective over time!
+Each agent maintains project-specific memory, so they become more effective over time.
 
 ---
 
-## 🏗️ The Forge's Architecture
+## 🔨 The Armory — 22 Skills
 
-Behold the sacred structure where divine tools are born:
+Skills are deep, specialized capabilities invoked via `skill:{name}` syntax.
 
-```text
-🏛️ forge/
-├─ 🔮 .claude/                    # Claude's divine configurations
-│   └─ settings.local.json        # Local settings for the forge
-├─ 📦 .claude-plugin/             # Marketplace registry
-│   └─ marketplace.json           # Sacred catalog of available plugins
-├─ ⚒️ forge-plugin/               # The main forge workshop
-│   ├─ .claude-plugin/            # Plugin manifest
-│   │   └─ plugin.json            # Plugin definition
-│   ├─ 🤖 agents/                 # Custom Claude Code agents
-│   │   └─ devops-engineer.md     # DevOps automation expert
-│   │   ├─ technical-writer.md        # @technical-writer - Documentation artisan
-│   │   ├─ full-stack-engineer.md     # @full-stack-engineer - End-to-end architect
-│   │   ├─ data-scientist.md          # @data-scientist - Analytics and ML specialist
-│   ├─ context/                   # Centralized knowledge base
-│   │   ├─ azure/                 # Azure Functions patterns
-│   │   ├─ dotnet/                # .NET/C# standards
-│   │   ├─ python/                # Python best practices
-│   │   ├─ git/                   # Git diff references
-│   │   ├─ schema/                # Schema analysis patterns (file & database)
-│   │   └─ security/              # Security guidelines
-│   ├─ memory/                    # Project-specific learning
-│   │   ├─ agents/                # Per-agent memory
-│   │   └─ skills/                # Per-skill, per-project memory
-│   └─ skills/                    # Arsenal of divine skills
-│       ├─ get-git-diff/          # Git diff analysis tool
-│       │   ├─ scripts/           # Shell utilities
-│       │   ├─ templates/         # Output templates
-│       │   ├─ examples.md        # Usage examples
-│       │   └─ SKILL.md           # Skill documentation
-│       ├─ python-code-review/    # Python review expert
-│       │   ├─ templates/         # Review templates
-│       │   ├─ examples.md        # Review scenarios
-│       │   └─ SKILL.md           # Skill documentation
-│       ├─ generate-azure-functions/  # Azure Functions generator
-│       │   ├─ scripts/           # Project generation utilities
-│       │   ├─ templates/         # Tilt, Docker, Azurite templates
-│       │   ├─ examples.md        # Generation scenarios
-│       │   └─ SKILL.md           # Skill documentation
-│       ├─ file-schema-analysis/  # File schema analyzer
-│       │   ├─ scripts/           # Schema extraction utilities
-│       │   ├─ templates/         # Analysis report templates
-│       │   ├─ examples.md        # Analysis scenarios
-│       │   └─ SKILL.md           # Skill documentation
-│       ├─ database-schema-analysis/  # Database schema analyzer
-│       │   ├─ scripts/           # Database introspection utilities
-│       │   ├─ templates/         # ERD and report templates
-│       │   ├─ examples.md        # Analysis scenarios
-│       │   └─ SKILL.md           # Skill documentation
-│       ├─ commit-helper/         # Git commit message crafter
-│       │   ├─ templates/         # Commit message templates
-│       │   ├─ examples.md        # Commit examples
-│       │   └─ SKILL.md           # Skill documentation
-│       ├─ email-writer/          # Professional email composer
-│       │   ├─ templates/         # Email templates
-│       │   ├─ examples.md        # Email examples
-│       │   └─ SKILL.md           # Skill documentation
-│       ├─ slack-message-composer/  # Team communication shaper
-│       │   ├─ templates/         # Message templates
-│       │   ├─ examples.md        # Message examples
-│       │   └─ SKILL.md           # Skill documentation
-│       ├─ documentation-generator/  # Technical documentation writer
-│       │   ├─ templates/         # Documentation templates
-│       │   ├─ examples.md        # Documentation examples
-│       │   └─ SKILL.md           # Skill documentation
-│       ├─ excel-skills/          # Spreadsheet manipulation master
-│       │   ├─ templates/         # Formula and macro templates
-│       │   ├─ examples.md        # Spreadsheet task examples
-│       │   └─ SKILL.md           # Skill documentation
-│       └─ jupyter-notebook-skills/  # Interactive data exploration
-│           ├─ templates/         # Notebook templates (EDA, ML, viz)
-│           ├─ examples.md        # Data science examples
-│           └─ SKILL.md           # Skill documentation
-├─ 📜 CLAUDE.md                   # Divine instructions for Claude
-├─ 🗺️ ROADMAP.md                  # Future artifacts to forge
-├─ 🛡️ .gitignore                  # Protected artifacts
-└─ README.md                   # This divine manuscript
-```
-
-> 🔍 **Explore**: Each skill in the forge contains specialized knowledge and tools for specific tasks. The `.claude-plugin` directories define the marketplace and plugin structures for Claude Code.
-
-### 🤖 Custom Agents
-
-The Forge includes three specialized Claude Code agents (subagents) that can be invoked with the `@` prefix:
-
-#### @technical-writer
-**Documentation Artisan** - Expert in creating clear, comprehensive technical documentation.
-- Creates READMEs, API docs, user guides, and tutorials
-- Ensures consistent style, proper grammar, and technical accuracy
-- Leverages `documentation-generator` and `commit-helper` skills
-- Maintains project-specific documentation patterns in memory
-
-#### @full-stack-engineer
-**End-to-End Architect** - Builds complete full-stack applications with best practices.
-- Frontend (React, Vue, Angular) and Backend (Node.js, Python, Java, Go)
-- Database design, DevOps, CI/CD, and cloud infrastructure
-- Security-first approach following OWASP guidelines
-- Leverages `python-code-review`, `get-git-diff`, and other skills
-- Tracks architecture decisions and patterns in memory
-
-#### @data-scientist
-**Analytics and ML Specialist** - Expert in data analysis and machine learning.
-- Exploratory data analysis, statistical modeling, and visualization
-- Machine learning: supervised/unsupervised learning, deep learning
-- Python stack: NumPy, Pandas, Scikit-learn, TensorFlow, PyTorch
-- MLOps: model deployment, monitoring, and CI/CD for ML
-- Leverages `python-code-review` for code quality
-- Maintains dataset insights and ML patterns in memory
-
-Each agent follows Claude Code best practices with:
-- **Defined Tools**: Specific tools each agent can access
-- **Skills Integration**: Leverage existing forge skills
-- **Memory**: Project-specific learning and pattern storage
-- **MCP Servers**: Extensible via Model Context Protocol servers
+| Category | Skills |
+|----------|--------|
+| **Code Review** | `python-code-review` · `dotnet-code-review` · `angular-code-review` · `get-git-diff` |
+| **Test Generation** | `generate-python-unit-tests` · `generate-jest-unit-tests` · `test-cli-tools` |
+| **Infrastructure** | `generate-azure-functions` · `generate-azure-pipelines` · `generate-azure-bicep` · `generate-tilt-dev-environment` · `generate-mock-service` |
+| **Analysis** | `file-schema-analysis` · `database-schema-analysis` · `python-dependency-management` |
+| **Productivity** | `commit-helper` · `email-writer` · `slack-message-composer` · `documentation-generator` |
+| **Data Science** | `excel-skills` · `jupyter-notebook-skills` |
+| **Meta** | `generate-more-skills-with-claude` |
 
 ---
 
-## 🎁 Contribute to the Forge
+## ⚡ The War Room — 12 Commands
 
-Join Hephaestus's workshop! Forge new tools for the community:
+Commands are structured workflows that orchestrate skills, context, and memory.
 
-### 📝 The Sacred Ritual
+```bash
+/analyze     # Code analysis and quality assessment
+/implement   # Feature implementation with tests
+/improve     # Code refactoring and improvement
+/document    # Documentation generation
+/test        # Test execution and validation
+/build       # Project building and packaging
+/brainstorm  # Requirements discovery (Socratic method)
+/remember    # Project memory management
+/mock        # Mock service generation
+/azure-pipeline  # Azure CI/CD orchestration
+/etl-pipeline    # Data transformation pipelines
+/azure-function  # Serverless Azure Functions
+```
 
-1. 🍴 **Fork** [Olino3/forge](https://github.com/Olino3/forge)  
-2. ⚒️ **Add your plugin** to the `marketplace.json`  
-3. 📤 **Open a pull request** with:
-   - ✨ Plugin name and divine purpose  
-   - 📖 Clear description of powers granted  
-   - 💡 Example usage: `/plugin install ...`, commands, etc.
+Commands can be **chained**: `/analyze` → `/improve` → `/test` with `ExecutionContext` carrying results between them.
+
+---
+
+## 🪝 The Anvil — 20 Automated Hooks
+
+The Forge's nervous system — organized into 4 thematic layers, enforcing security, quality, and integrity automatically.
+
+| Layer | Hooks | Purpose |
+|-------|-------|---------|
+| 🛡️ **Shield** | 5 | Security & initialization — sandbox boundaries, dependency scanning, PII redaction, git hygiene |
+| 📜 **Chronicle** | 4 | Memory & learning — freshness enforcement, cross-pollination, quality gates, session-end pruning |
+| 👷 **Foreman** | 8 | Workflow & quality — skill compliance, frontmatter validation, context drift detection, output scoring |
+| 📢 **Town Crier** | 3 | Telemetry & reporting — health aggregation, session stats, context usage tracking |
+
+All hooks fire automatically across 9 Claude Code event types. No manual intervention needed.
+
+---
+
+## ⚙️ Architecture
+
+The Forge uses an **interface-driven architecture** with 4 core abstractions:
+
+```
+┌──────────────────────────────────────────────────────┐
+│  🛡️ SHIELD        📜 CHRONICLE      👷 FOREMAN       │
+│  Security          Memory            Workflow         │
+│  (5 hooks)         (4 hooks)         (8 hooks)        │
+├──────────────────────────────────────────────────────┤
+│  📢 TOWN CRIER — Telemetry (3 hooks)                 │
+├──────────────────────────────────────────────────────┤
+│              ⚙️ INTERFACE LAYER                       │
+│  ContextProvider · MemoryStore · SkillInvoker         │
+│              ExecutionContext                         │
+├──────────────────────────────────────────────────────┤
+│  🏛️ PANTHEON    🔨 ARMORY     ⚡ WAR ROOM            │
+│  11 Agents      22 Skills     12 Commands            │
+├──────────────────────────────────────────────────────┤
+│  📚 ARCHIVE (81 files) · 🧠 MEMORY (4 layers)        │
+│  🔌 CONDUITS (8 MCP servers)                         │
+└──────────────────────────────────────────────────────┘
+```
+
+| Interface | Purpose |
+|-----------|---------|
+| **ContextProvider** | Load shared knowledge by domain, tags, and sections |
+| **MemoryStore** | Read/write project memory with automated lifecycle |
+| **SkillInvoker** | Delegate to skills with structured I/O |
+| **ExecutionContext** | Pass context between chained commands |
+
+All components reference interfaces — never hardcoded filesystem paths. See [ARCHITECTURAL_ROADMAP.md](ARCHITECTURAL_ROADMAP.md) for the full technical design.
+
+---
+
+## 🔌 MCP Integrations
+
+8 external knowledge servers extend the Forge's reach:
+
+| Server | Purpose | Requires Key? |
+|--------|---------|:---:|
+| **sequential-thinking** | Step-by-step reasoning | No |
+| **context7** | Library documentation | No |
+| **playwright** | Browser automation & E2E testing | No |
+| **serena** | Code intelligence & navigation | No |
+| **chrome-devtools** | Chrome DevTools Protocol | No |
+| **magic** | UI component generation | Yes |
+| **morphllm-fast-apply** | Fast code transformations | Yes |
+| **tavily** | Web search & research | Yes (free tier) |
+
+---
+
+## 📁 Project Structure
+
+```
+forge/
+├── CLAUDE.md                    # The Forge Operating Manual (for Claude Code)
+├── README.md                    # This file
+├── ROADMAP.md                   # Vision and changelog
+├── CONTRIBUTING.md              # How to contribute
+├── LICENSE                      # MIT License
+└── forge-plugin/                # The Forge Plugin
+    ├── agents/                  # 11 agents (.md + .config.json each)
+    ├── skills/                  # 22 skills (SKILL.md + examples.md each)
+    ├── commands/                # 12 commands (COMMAND.md + examples.md each)
+    ├── context/                 # 81 files across 9 domains
+    ├── memory/                  # 4-layer project learning
+    ├── hooks/                   # 20 automated handlers + hooks.json
+    ├── interfaces/              # 4 core contracts + adapters + schemas
+    └── mcps/                    # 8 MCP server integrations
+```
+
+---
+
+## 🎁 Contributing
+
+We welcome contributions! Whether you're forging a new skill, summoning a new agent, or sharpening existing tools:
+
+1. 🍴 **Fork** [Olino3/forge](https://github.com/Olino3/forge)
+2. 🌿 **Branch** from `develop`
+3. ⚒️ **Build** following the conventions in [CONTRIBUTING.md](CONTRIBUTING.md)
+4. 🧪 **Test** with Claude Code
+5. 📤 **PR** against `develop`
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on adding skills, agents, commands, context, and hooks.
 
 ---
 
 ## 📜 License
 
-The divine laws governing this forge can be found in the `LICENSE` scroll in the repository root. If no license is inscribed, consider all works protected until divine decree is made.
+[MIT License](LICENSE) — forge freely.
 
 ---
 
-## 🆘 Seek Guidance
+## 🆘 Need Help?
 
-Should you encounter obstacles in your quest:
-
-### 🐛 Report Issues
-
-Open an issue in [Olino3/forge/issues](https://github.com/Olino3/forge/issues) with:
-
-- ⚡ The exact `/plugin` incantations you used  
-- 🔢 Your Claude Code version  
-- 📋 Error messages or divine omens (logs)  
-
-### 🤝 Contribute Solutions
-
-Or become a fellow smith—contribute fixes via pull request!
+- 📖 Read [CLAUDE.md](CLAUDE.md) for the complete operating manual
+- 🗺️ Check [ROADMAP.md](ROADMAP.md) for what's being built
+- 🐛 [Open an issue](https://github.com/Olino3/forge/issues) for bugs or requests
+- 🤝 [Submit a PR](https://github.com/Olino3/forge/pulls) to contribute
 
 ---
 
 <div align="center">
 
-**⚒️ May your code be as strong as Hephaestus's hammer ⚒️**
-
-*Forged with 🔥 by the community*
+**⚒️ Forged by Hephaestus. Tempered by experience. Worthy of Olympus. ⚒️**
 
 </div>

@@ -1,3 +1,15 @@
+---
+name: generate-azure-bicep
+description: Generate Azure Bicep infrastructure modules using Azure Verified Modules (AVM) and bicepparams
+version: 1.1.0
+context:
+  primary: [azure]
+  topics: [azure_verified_modules, azure_bicep_overview]
+memory:
+  scope: per-project
+  files: [bicep_config.md, avm_modules.md, resource_naming.md, customizations.md]
+---
+
 # Skill: generate-azure-bicep
 
 **Version**: 1.0.0
@@ -30,22 +42,22 @@ forge-plugin/skills/generate-azure-bicep/
 
 ---
 
-## Required Reading
+## Interface References
 
-**Before executing this skill**, read these files in order:
+- [ContextProvider](../../interfaces/context_provider.md) — `getDomainIndex("azure")`, `getConditionalContext("azure", topic)`
+- [MemoryStore](../../interfaces/memory_store.md) — `getSkillMemory("generate-azure-bicep", project)`, `update()`
 
-1. **Context indexes**:
-   - `../../context/azure/index.md` - Azure context navigation
+**Context** (via ContextProvider):
+- `contextProvider.getDomainIndex("azure")` — Azure context navigation
+- `contextProvider.getConditionalContext("azure", "azure_verified_modules")` — AVM concepts, usage patterns, best practices
+- `contextProvider.getConditionalContext("azure", "azure_bicep_overview")` — Bicep syntax and structure
 
-2. **Memory index**:
-   - `../../memory/skills/generate-azure-bicep/index.md` - Memory structure for this skill
-
-3. **Context files**:
-   - `../../context/azure/azure_verified_modules.md` - AVM concepts, usage patterns, best practices
-   - `../../context/azure/azure_bicep_overview.md` - Bicep syntax and structure
-
-4. **Project memory** (if exists):
-   - `../../memory/skills/generate-azure-bicep/{project-name}/` - Previous Bicep configurations
+**Memory** (via MemoryStore):
+- `memoryStore.getSkillMemory("generate-azure-bicep", project)` returns per-project files:
+  - `bicep_config.md` — Previous Bicep configurations
+  - `avm_modules.md` — AVM modules used and versions
+  - `resource_naming.md` — Naming conventions
+  - `customizations.md` — Custom wrapper modules
 
 ---
 
@@ -196,10 +208,10 @@ Use **Socratic method** to gather requirements. Ask questions in this order:
 **Objective**: Understand available context and memory structure
 
 **Actions**:
-1. Read `../../context/azure/index.md` to understand Azure Bicep context
-2. Read `../../memory/skills/generate-azure-bicep/index.md` to understand memory structure
+1. Load Azure domain index via `contextProvider.getDomainIndex("azure")`
+2. Identify which context topics will be needed based on requirements
 
-**Verification**: Indexes loaded, know which context files to load next
+**Verification**: Domain index loaded, know which context topics to load next
 
 ---
 
@@ -209,8 +221,8 @@ Use **Socratic method** to gather requirements. Ask questions in this order:
 
 **Actions**:
 1. Determine project name from current directory or user input
-2. Check if `../../memory/skills/generate-azure-bicep/{project-name}/` exists
-3. If exists, read all memory files:
+2. Load project memory via `memoryStore.getSkillMemory("generate-azure-bicep", project)`
+3. If memory exists, review all memory files:
    - `bicep_config.md` - Previous infrastructure setup
    - `avm_modules.md` - AVM modules used and versions
    - `resource_naming.md` - Naming conventions
@@ -225,8 +237,8 @@ Use **Socratic method** to gather requirements. Ask questions in this order:
 **Objective**: Load Azure Verified Modules and Bicep knowledge
 
 **Actions**:
-1. Read `../../context/azure/azure_verified_modules.md` - AVM usage, module references, best practices
-2. Read `../../context/azure/azure_bicep_overview.md` - Bicep syntax and structure
+1. Load AVM context via `contextProvider.getConditionalContext("azure", "azure_verified_modules")`
+2. Load Bicep overview via `contextProvider.getConditionalContext("azure", "azure_bicep_overview")`
 
 **Verification**: Context loaded, understand AVM patterns and Bicep syntax
 
@@ -399,22 +411,22 @@ Use **Socratic method** to gather requirements. Ask questions in this order:
 **Objective**: Store configuration for future reference
 
 **Actions**:
-1. Create/update `../../memory/skills/generate-azure-bicep/{project-name}/bicep_config.md`:
+1. Use `memoryStore.update("generate-azure-bicep", project, "bicep_config.md", content)` with:
    - Deployment scope (subscription, resource group)
    - Resource naming convention
    - Environments configured
    - Azure regions used
 
-2. Create/update `avm_modules.md`:
+2. Use `memoryStore.update("generate-azure-bicep", project, "avm_modules.md", content)` with:
    - List all AVM modules used
    - Module versions and purposes
    - Module dependencies
 
-3. Create/update `resource_naming.md`:
+3. Use `memoryStore.update("generate-azure-bicep", project, "resource_naming.md", content)` with:
    - Naming patterns for each resource type
    - Examples of generated names
 
-4. Create/update `customizations.md`:
+4. Use `memoryStore.update("generate-azure-bicep", project, "customizations.md", content)` with:
    - Custom wrapper modules created
    - Deviations from standard AVM usage
    - Special configurations
@@ -516,6 +528,11 @@ Otherwise, use AVM modules directly.
 ---
 
 ## Version History
+
+### v1.1.0 (2025-07-15)
+- Phase 4 Migration: Replaced hardcoded `../../context/` and `../../memory/` paths with ContextProvider and MemoryStore interface calls
+- Added YAML frontmatter with context/memory declarations
+- Added Interface References section
 
 ### v1.0.0 (2025-11-18)
 

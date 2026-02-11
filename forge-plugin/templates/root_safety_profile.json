@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://forge-plugin/templates/root_safety_profile.json",
+  "title": "Root Safety Profile",
+  "description": "Default safety constraints validated by root_agent_validator.sh at SessionStart. Projects can customize by placing a 'safety_profile.json' in .forge/.",
+  "version": "1.1.0",
+  "allowedTools": [
+    "Read",
+    "Write",
+    "Edit",
+    "Bash",
+    "Glob",
+    "Grep",
+    "Task",
+    "WebFetch",
+    "WebSearch"
+  ],
+  "contextLimits": {
+    "maxMemoryFileSizeLines": 500,
+    "maxProjectOverviewLines": 200,
+    "maxReviewHistoryLines": 300,
+    "stalenessThresholdDays": 90,
+    "agingThresholdDays": 31
+  },
+  "requiredStructure": {
+    "directories": [
+      "forge-plugin/agents",
+      "forge-plugin/skills",
+      "forge-plugin/commands",
+      "forge-plugin/context",
+      "forge-plugin/memory",
+      "forge-plugin/hooks",
+      "forge-plugin/interfaces"
+    ],
+    "files": [
+      "forge-plugin/hooks/hooks.json",
+      "forge-plugin/context/index.md",
+      "forge-plugin/memory/index.md",
+      "forge-plugin/interfaces/context_provider.md",
+      "forge-plugin/interfaces/memory_store.md",
+      "forge-plugin/interfaces/skill_invoker.md"
+    ]
+  },
+  "sandboxBoundary": {
+    "description": "Enforced by sandbox_boundary_guard.sh — restricts file operations to the project scope.",
+    "allowedPathPrefixes": [
+      "/tmp",
+      "/var/tmp",
+      "/dev/null",
+      "/dev/stdin",
+      "/dev/stdout",
+      "/dev/stderr"
+    ],
+    "deniedPathPatterns": [
+      "~/.ssh",
+      "~/.gnupg",
+      "~/.config",
+      "~/.bashrc",
+      "~/.bash_profile",
+      "~/.zshrc",
+      "~/.profile",
+      "~/.aws",
+      "~/.kube",
+      "~/.docker",
+      "/etc/passwd",
+      "/etc/shadow",
+      "/etc/hosts",
+      "/etc/sudoers",
+      "$HOME/.ssh",
+      "$HOME/.gnupg",
+      "$HOME/.config",
+      "$HOME/.aws"
+    ],
+    "deniedFilePatterns": [
+      ".env",
+      ".env.*",
+      "*.pem",
+      "*.key",
+      "*.p12",
+      "*.pfx",
+      "*.jks",
+      "*.keystore",
+      ".npmrc",
+      ".pypirc",
+      ".netrc",
+      ".htpasswd",
+      "credentials",
+      "credentials.json",
+      "credentials.yaml",
+      "credentials.yml",
+      "service-account*.json",
+      "*secret*",
+      ".git-credentials"
+    ]
+  }
+}

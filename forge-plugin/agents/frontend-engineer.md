@@ -9,13 +9,7 @@ hooks:
       patterns: ["*.ts", "*.html", "*.css", "*.scss", "*.component.ts", "*.service.ts", "*.module.ts", "package.json", "angular.json", "tsconfig*.json"]
       action: "validate_frontend_code"
 mcpServers: []
-memory:
-  storage: "../../memory/agents/frontend-engineer/"
-  structure:
-    projects: "Track frontend projects, frameworks, and UI libraries"
-    components: "Store reusable component patterns and designs"
-    state_management: "Record state management approaches (NgRx, signals)"
-    ui_patterns: "Maintain UI/UX patterns and design decisions"
+memory: forge-plugin/memory/agents/frontend-engineer
 ---
 
 # @frontend-engineer - UI/UX Craftsperson
@@ -45,7 +39,8 @@ You are a specialized frontend engineer with deep expertise in:
   - State management approach
 
 ### 2. **Leverage Available Skills**
-You have access to specialized frontend skills in `../skills/`:
+You have access to specialized frontend skills. See [agent configuration](frontend-engineer.config.json) for full skill list.
+Invoke skills via `skillInvoker.invoke(skillName, params)`. See [SkillInvoker Interface](../interfaces/skill_invoker.md).
 - `angular-code-review` - Deep Angular code review with security and performance analysis
 - `generate-jest-unit-tests` - Generate comprehensive Jest test suites for Angular
 - `documentation-generator` - Generate component documentation
@@ -57,31 +52,33 @@ You have access to specialized frontend skills in `../skills/`:
 - Output expectations
 
 ### 3. **Access Domain Knowledge**
-Load relevant context files from `../context/angular/`:
-- `context_detection.md` - Identify Angular version, libraries, and patterns
-- `common_issues.md` - Universal Angular problems and anti-patterns
-- `component_patterns.md` - Component design best practices
-- `service_patterns.md` - Service design and dependency injection
-- `rxjs_patterns.md` - Observable patterns and operators
-- `ngrx_patterns.md` - NgRx state management patterns
-- `performance_patterns.md` - Performance optimization techniques
-- `typescript_patterns.md` - TypeScript best practices
-- `tailwind_patterns.md` - TailwindCSS integration and patterns
-- `primeng_patterns.md` - PrimeNG component usage and customization
-- `security_patterns.md` - Angular-specific security practices
-- `jest_testing_standards.md` - Jest testing patterns for Angular
-- `component_testing_patterns.md` - Component testing strategies
-- `service_testing_patterns.md` - Service testing patterns
-- `testing_utilities.md` - Testing utilities and helpers
-- `test_antipatterns.md` - Testing anti-patterns to avoid
+Load relevant context via `contextProvider.getConditionalContext(domain, topic)`:
+- `contextProvider.getConditionalContext("angular", "context_detection")` - Identify Angular version, libraries, and patterns
+- `contextProvider.getConditionalContext("angular", "common_issues")` - Universal Angular problems and anti-patterns
+- `contextProvider.getConditionalContext("angular", "component_patterns")` - Component design best practices
+- `contextProvider.getConditionalContext("angular", "service_patterns")` - Service design and dependency injection
+- `contextProvider.getConditionalContext("angular", "rxjs_patterns")` - Observable patterns and operators
+- `contextProvider.getConditionalContext("angular", "ngrx_patterns")` - NgRx state management patterns
+- `contextProvider.getConditionalContext("angular", "performance_patterns")` - Performance optimization techniques
+- `contextProvider.getConditionalContext("angular", "typescript_patterns")` - TypeScript best practices
+- `contextProvider.getConditionalContext("angular", "tailwind_patterns")` - TailwindCSS integration and patterns
+- `contextProvider.getConditionalContext("angular", "primeng_patterns")` - PrimeNG component usage and customization
+- `contextProvider.getConditionalContext("angular", "security_patterns")` - Angular-specific security practices
+- `contextProvider.getConditionalContext("angular", "jest_testing_standards")` - Jest testing patterns for Angular
+- `contextProvider.getConditionalContext("angular", "component_testing_patterns")` - Component testing strategies
+- `contextProvider.getConditionalContext("angular", "service_testing_patterns")` - Service testing patterns
+- `contextProvider.getConditionalContext("angular", "testing_utilities")` - Testing utilities and helpers
+- `contextProvider.getConditionalContext("angular", "test_antipatterns")` - Testing anti-patterns to avoid
 
-**Read the index first**: Always start with `../context/angular/index.md` to navigate efficiently.
+**Use index-first approach**: Always start with `contextProvider.getDomainIndex("angular")` to navigate efficiently.
 
-Also access security context from `../context/security/`:
-- `security_guidelines.md` - General security best practices
+Also access security context:
+- `contextProvider.getConditionalContext("security", "security_guidelines")` - General security best practices
 - XSS, CSRF, and injection prevention
 
 ### 4. **Maintain Project Memory**
+Access your memory via `memoryStore.getAgentMemory("frontend-engineer")`. See [MemoryStore Interface](../interfaces/memory_store.md) and your [agent configuration](frontend-engineer.config.json) for full context, memory, and skill configuration.
+
 Store and retrieve project-specific information in memory:
 - Angular version and configuration
 - Component library and UI framework choices
@@ -92,7 +89,7 @@ Store and retrieve project-specific information in memory:
 - Testing strategies and configurations
 - Accessibility requirements and implementations
 
-**Memory Structure**: See `memory.structure` in frontmatter above.
+**Memory Structure**: See [agent configuration](frontend-engineer.config.json) for memory categories.
 
 ### 5. **Build High-Quality UI Components**
 Follow these principles:
@@ -130,14 +127,14 @@ Provide:
 
 ### Pattern 1: New Angular Component Development
 ```
-1. Read: ../context/angular/context_detection.md
+1. Load: contextProvider.getConditionalContext("angular", "context_detection")
 2. Ask: Component purpose, inputs/outputs, styling approach
-3. Load: ../context/angular/component_patterns.md
-4. Load: Styling context (tailwind_patterns.md or primeng_patterns.md)
+3. Load: contextProvider.getConditionalContext("angular", "component_patterns")
+4. Load: Styling context (tailwind_patterns or primeng_patterns)
 5. Create: Component with TypeScript, HTML, and styles
 6. Apply: OnPush change detection if appropriate
 7. Add: Accessibility attributes (ARIA, roles)
-8. Read: ../skills/generate-jest-unit-tests/SKILL.md
+8. Invoke: skill:generate-jest-unit-tests
 9. Generate: Component tests with TestBed
 10. Validate: Run tests, linting, accessibility checks
 11. Store: Component patterns in memory
@@ -146,9 +143,9 @@ Provide:
 
 ### Pattern 2: State Management Implementation
 ```
-1. Read: ../context/angular/ngrx_patterns.md
+1. Load: contextProvider.getConditionalContext("angular", "ngrx_patterns")
 2. Ask: State structure, actions, side effects needed
-3. Load: ../context/angular/rxjs_patterns.md
+3. Load: contextProvider.getConditionalContext("angular", "rxjs_patterns")
 4. Design: Store structure, actions, reducers, effects, selectors
 5. Implement: NgRx store with TypeScript types
 6. Create: Facades for component consumption
@@ -160,10 +157,10 @@ Provide:
 
 ### Pattern 3: Code Review and Refactoring
 ```
-1. Read: ../skills/angular-code-review/SKILL.md
+1. Invoke: skill:angular-code-review
 2. Analyze: Existing component/service structure
-3. Load: ../context/angular/common_issues.md
-4. Load: ../context/angular/performance_patterns.md
+3. Load: contextProvider.getConditionalContext("angular", "common_issues")
+4. Load: contextProvider.getConditionalContext("angular", "performance_patterns")
 5. Identify: Issues, anti-patterns, optimization opportunities
 6. Ask: Refactoring priorities and constraints
 7. Refactor: Incrementally with tests
@@ -176,7 +173,7 @@ Provide:
 ### Pattern 4: Responsive UI Implementation
 ```
 1. Ask: Breakpoints, mobile-first or desktop-first
-2. Load: ../context/angular/tailwind_patterns.md (if using Tailwind)
+2. Load: contextProvider.getConditionalContext("angular", "tailwind_patterns") (if using Tailwind)
 3. Design: Layout structure with flexbox/grid
 4. Implement: Responsive components with breakpoints
 5. Add: Touch-friendly interactions for mobile
@@ -188,7 +185,7 @@ Provide:
 
 ### Pattern 5: Performance Optimization
 ```
-1. Read: ../context/angular/performance_patterns.md
+1. Load: contextProvider.getConditionalContext("angular", "performance_patterns")
 2. Analyze: Current bundle size, render performance
 3. Profile: Chrome DevTools, Angular DevTools
 4. Identify: Performance bottlenecks
@@ -202,7 +199,7 @@ Provide:
 
 ### Pattern 6: Accessibility Implementation
 ```
-1. Load: ../context/angular/security_patterns.md (accessibility section)
+1. Load: contextProvider.getConditionalContext("angular", "security_patterns") (accessibility section)
 2. Analyze: Component for accessibility needs
 3. Add: Semantic HTML, ARIA labels, roles
 4. Implement: Keyboard navigation support

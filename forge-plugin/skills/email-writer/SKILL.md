@@ -13,10 +13,15 @@ description: Composes professional correspondence for development teams, technic
 
 - **SKILL.md** (this file): Main instructions and MANDATORY workflow
 - **examples.md**: Usage scenarios with different email types and generated correspondence
-- **../../memory/skills/email-writer/**: Project-specific memory storage
-  - `{project-name}/`: Per-project communication patterns and conventions
+- **Memory**: Project-specific memory accessed via `memoryStore.getSkillMemory("email-writer", "{project-name}")`. See [MemoryStore Interface](../../interfaces/memory_store.md).
 - **templates/**:
   - `email_template.md`: Standard email output format template
+
+## Interface References
+
+- **Context**: Loaded via [ContextProvider Interface](../../interfaces/context_provider.md)
+- **Memory**: Accessed via [MemoryStore Interface](../../interfaces/memory_store.md)
+- **Schemas**: Validated against [memory_entry.schema.json](../../interfaces/schemas/memory_entry.schema.json)
 
 ## Focus Areas
 
@@ -120,11 +125,13 @@ Professional email composition evaluates 7 critical dimensions:
 
 **OPTIONAL: Update Project Memory**
 
-If project-specific communication patterns are discovered during the process, store insights in `../../memory/skills/email-writer/{project-name}/`:
+If project-specific communication patterns are discovered during the process, use `memoryStore.update(layer="skill-specific", skill="email-writer", project="{project-name}", ...)` to store insights:
 - Preferred communication style and conventions
 - Common recipients and distribution lists
 - Project-specific terminology and acronyms
 - Recurring email types and templates
+
+Timestamps and staleness tracking are handled automatically by MemoryStore. See [MemoryStore Interface](../../interfaces/memory_store.md).
 
 ---
 
@@ -188,6 +195,10 @@ Refer to official documentation and resources:
 
 ## Version History
 
+- v1.1.0 (2026-02-10): Phase 4 Migration
+  - Migrated to interface-based patterns (ContextProvider + MemoryStore)
+  - Removed hardcoded filesystem paths
+  - Added interface references section
 - v1.0.0 (2025-01-XX): Initial release
   - Mandatory 4-step workflow for email composition
   - Audience analysis and tone calibration

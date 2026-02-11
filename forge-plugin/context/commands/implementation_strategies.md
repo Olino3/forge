@@ -1,3 +1,37 @@
+---
+id: "commands/implementation_strategies"
+domain: commands
+title: "Implementation Strategies"
+type: pattern
+estimatedTokens: 800
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Development Approaches"
+    estimatedTokens: 79
+    keywords: [development, approaches]
+  - name: "Implementation Workflow"
+    estimatedTokens: 77
+    keywords: [implementation, workflow]
+  - name: "Testing Integration Patterns"
+    estimatedTokens: 56
+    keywords: [testing, integration, patterns]
+  - name: "Incremental Development"
+    estimatedTokens: 57
+    keywords: [incremental, development]
+  - name: "Common Implementation Patterns"
+    estimatedTokens: 83
+    keywords: [implementation, patterns]
+  - name: "Error Handling Strategy"
+    estimatedTokens: 60
+    keywords: [error, handling, strategy]
+  - name: "Official References"
+    estimatedTokens: 20
+    keywords: [official, references]
+tags: [commands, implementation, tdd, bdd, incremental, error-handling, testing]
+---
+
 # Implementation Strategies
 
 Reference patterns for the `/implement` command. Covers development approaches, testing integration, and incremental development strategies.

@@ -1,3 +1,52 @@
+---
+id: "python/context_detection"
+domain: python
+title: "Python Framework and Context Detection"
+type: detection
+estimatedTokens: 1050
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Detection Strategy"
+    estimatedTokens: 20
+    keywords: [detection, strategy]
+  - name: "Web Frameworks"
+    estimatedTokens: 87
+    keywords: [web, frameworks]
+  - name: "Data Science / ML"
+    estimatedTokens: 73
+    keywords: [data, science]
+  - name: "Quick Detection Table"
+    estimatedTokens: 56
+    keywords: [quick, detection, table]
+  - name: "Configuration Files"
+    estimatedTokens: 74
+    keywords: [configuration, files]
+  - name: "Directory Structure Patterns"
+    estimatedTokens: 42
+    keywords: [directory, structure, patterns]
+  - name: "Multi-Framework Projects"
+    estimatedTokens: 45
+    keywords: [multi-framework, projects]
+  - name: "ORM Detection"
+    estimatedTokens: 48
+    keywords: [orm, detection]
+  - name: "Testing Framework Detection"
+    estimatedTokens: 33
+    keywords: [testing, framework, detection]
+  - name: "Decision Tree"
+    estimatedTokens: 38
+    keywords: [decision, tree]
+  - name: "Version Detection"
+    estimatedTokens: 35
+    keywords: [version, detection]
+  - name: "Official Documentation"
+    estimatedTokens: 26
+    keywords: [official, documentation]
+tags: [python, detection, framework, django, flask, fastapi, datascience, ml]
+---
+
 # Python Framework and Context Detection
 
 Quick reference for identifying which Python framework or context is being used. Use this to determine which pattern files to load.

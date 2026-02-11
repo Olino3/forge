@@ -1,3 +1,46 @@
+---
+id: "engineering/index"
+domain: engineering
+title: "Engineering Context Index"
+type: index
+estimatedTokens: 250
+loadingStrategy: always
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+indexedFiles:
+  - id: "engineering/code_review_principles"
+    path: "code_review_principles.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "engineering/api_design_patterns"
+    path: "api_design_patterns.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "engineering/testing_principles"
+    path: "testing_principles.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "engineering/architecture_patterns"
+    path: "architecture_patterns.md"
+    type: reference
+    loadingStrategy: onDemand
+  - id: "engineering/error_recovery"
+    path: "error_recovery.md"
+    type: reference
+    loadingStrategy: onDemand
+sections:
+  - name: "Directory Contents"
+    estimatedTokens: 60
+    keywords: [directory, contents]
+  - name: "When to Load"
+    estimatedTokens: 36
+    keywords: [load]
+  - name: "Loading Guidance"
+    estimatedTokens: 33
+    keywords: [loading, guidance]
+tags: [engineering, index, navigation, code-review, api, testing, architecture]
+---
+
 # Engineering Context Index
 
 General software engineering best practices applicable across all languages and frameworks. Load these files when skills or commands need universal engineering guidance beyond language-specific context.

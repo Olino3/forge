@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://forge-plugin/schemas/agent_config.schema.json",
+  "title": "Agent Configuration",
+  "description": "Schema for agent configuration in the Forge plugin. Normalizes agent definitions for consistent context, memory, and skill integration.",
+  "type": "object",
+  "required": ["name", "version", "context", "memory", "skills"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique agent identifier (kebab-case)",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "version": {
+      "type": "string",
+      "description": "Semantic version of the agent configuration",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the agent's purpose and expertise"
+    },
+    "context": {
+      "type": "object",
+      "description": "Context loading configuration for this agent",
+      "required": ["primaryDomains", "secondaryDomains", "alwaysLoadFiles"],
+      "properties": {
+        "primaryDomains": {
+          "type": "array",
+          "description": "Primary context domains this agent works with",
+          "items": {
+            "type": "string",
+            "enum": ["engineering", "angular", "azure", "commands", "dotnet", "git", "python", "schema", "security"]
+          }
+        },
+        "secondaryDomains": {
+          "type": "array",
+          "description": "Secondary context domains loaded on cross-domain triggers",
+          "items": {
+            "type": "string",
+            "enum": ["engineering", "angular", "azure", "commands", "dotnet", "git", "python", "schema", "security"]
+          }
+        },
+        "alwaysLoadFiles": {
+          "type": "array",
+          "description": "Context files always loaded for this agent (relative to forge-plugin/context/)",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "memory": {
+      "type": "object",
+      "description": "Memory configuration for this agent",
+      "required": ["storagePath", "categories"],
+      "properties": {
+        "storagePath": {
+          "type": "string",
+          "description": "Path to agent's memory directory (relative to forge-plugin/)"
+        },
+        "categories": {
+          "type": "array",
+          "description": "Memory categories this agent maintains",
+          "items": {
+            "type": "object",
+            "required": ["name", "description"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Category identifier (snake_case)"
+              },
+              "description": {
+                "type": "string",
+                "description": "What this memory category tracks"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "skills": {
+      "type": "array",
+      "description": "Skills this agent can invoke",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Skill name (matches skill directory name)"
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether this skill is essential for the agent's core function",
+            "default": false
+          },
+          "useCase": {
+            "type": "string",
+            "description": "When this agent would invoke this skill"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "model": {
+      "type": "string",
+      "description": "Preferred Claude model for this agent",
+      "enum": ["opus", "sonnet", "haiku"]
+    },
+    "tools": {
+      "type": "array",
+      "description": "Claude Code tools this agent has access to",
+      "items": { "type": "string" }
+    },
+    "permissionMode": {
+      "type": "string",
+      "description": "Permission mode for the agent's operations",
+      "enum": ["auto", "manual", "plan"]
+    },
+    "hooks": {
+      "type": "array",
+      "description": "Lifecycle hooks configured for this agent",
+      "items": {
+        "type": "object",
+        "description": "Hook configuration with event type and action"
+      }
+    },
+    "mcpServers": {
+      "type": "array",
+      "description": "MCP servers this agent uses",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}

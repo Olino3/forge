@@ -1,3 +1,43 @@
+---
+id: "dotnet/context_detection"
+domain: dotnet
+title: ".NET Context Detection"
+type: detection
+estimatedTokens: 700
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: ".NET Version Detection"
+    estimatedTokens: 67
+    keywords: [net, version, detection]
+  - name: "C# Version Detection"
+    estimatedTokens: 61
+    keywords: [version, detection]
+  - name: "Framework Type Detection"
+    estimatedTokens: 50
+    keywords: [framework, type, detection]
+  - name: "ORM Detection"
+    estimatedTokens: 36
+    keywords: [orm, detection]
+  - name: "Authentication System Detection"
+    estimatedTokens: 29
+    keywords: [authentication, system, detection]
+  - name: "Testing Framework Detection"
+    estimatedTokens: 22
+    keywords: [testing, framework, detection]
+  - name: "Common Package Ecosystem"
+    estimatedTokens: 43
+    keywords: [package, ecosystem]
+  - name: "Detection Checklist"
+    estimatedTokens: 36
+    keywords: [detection, checklist]
+  - name: "Official Resources"
+    estimatedTokens: 21
+    keywords: [official, resources]
+tags: [dotnet, detection, version, framework, orm, authentication, testing]
+---
+
 # .NET Context Detection
 
 Quick reference for identifying .NET project characteristics. For detailed version info, see [.NET documentation](https://learn.microsoft.com/en-us/dotnet/).

@@ -1,3 +1,67 @@
+---
+id: "commands/documentation_standards"
+domain: commands
+title: "Documentation Standards"
+type: pattern
+estimatedTokens: 900
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Documentation Types"
+    estimatedTokens: 53
+    keywords: [documentation, types]
+  - name: "Language-Specific Conventions"
+    estimatedTokens: 134
+    keywords: [language-specific, conventions]
+  - name: "API Documentation"
+    estimatedTokens: 74
+    keywords: [api, documentation]
+  - name: "Architecture Documentation"
+    estimatedTokens: 20
+    keywords: [architecture, documentation]
+  - name: "Status"
+    estimatedTokens: 20
+    keywords: [status]
+  - name: "Context"
+    estimatedTokens: 20
+    keywords: [context]
+  - name: "Decision"
+    estimatedTokens: 20
+    keywords: [decision]
+  - name: "Consequences"
+    estimatedTokens: 33
+    keywords: [consequences]
+  - name: "README Standards"
+    estimatedTokens: 11
+    keywords: [readme, standards]
+  - name: "Quick Start"
+    estimatedTokens: 20
+    keywords: [quick, start]
+  - name: "Installation"
+    estimatedTokens: 20
+    keywords: [installation]
+  - name: "Usage"
+    estimatedTokens: 20
+    keywords: [usage]
+  - name: "Contributing"
+    estimatedTokens: 20
+    keywords: [contributing]
+  - name: "License"
+    estimatedTokens: 21
+    keywords: [license]
+  - name: "Comment Best Practices"
+    estimatedTokens: 51
+    keywords: [comment]
+  - name: "Documentation Generation Strategy"
+    estimatedTokens: 48
+    keywords: [documentation, generation, strategy]
+  - name: "Official References"
+    estimatedTokens: 12
+    keywords: [official, references]
+tags: [commands, documentation, api-docs, comments, readme, adr, docstrings]
+---
+
 # Documentation Standards
 
 Reference patterns for the `/document` command. Covers API documentation, inline comments, architecture documentation, and README standards.

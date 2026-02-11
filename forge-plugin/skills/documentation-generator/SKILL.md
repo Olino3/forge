@@ -13,11 +13,16 @@ description: Generates comprehensive documentation for codebases, APIs, modules,
 
 - **SKILL.md** (this file): Main instructions and MANDATORY workflow
 - **examples.md**: Documentation scenarios with sample outputs
-- **../../memory/skills/documentation-generator/**: Project-specific memory storage
-  - `{project-name}/`: Per-project learned documentation patterns and conventions
+- **Memory**: Project-specific memory accessed via `memoryStore.getSkillMemory("documentation-generator", "{project-name}")`. See [MemoryStore Interface](../../interfaces/memory_store.md).
 - **templates/**:
   - `api_doc_template.md`: Template for API reference documentation
   - `module_doc_template.md`: Template for module/package documentation
+
+## Interface References
+
+- **Context**: Loaded via [ContextProvider Interface](../../interfaces/context_provider.md)
+- **Memory**: Accessed via [MemoryStore Interface](../../interfaces/memory_store.md)
+- **Schemas**: Validated against [memory_entry.schema.json](../../interfaces/schemas/memory_entry.schema.json)
 
 ## Documentation Focus Areas
 
@@ -81,8 +86,9 @@ Comprehensive documentation evaluates 7 critical dimensions:
 **YOU MUST:**
 1. **CHECK PROJECT MEMORY FIRST**:
    - Identify the project name from the repository root or ask the user
-   - Check `../../memory/skills/documentation-generator/{project-name}/` for existing project memory
-   - If memory exists, read all files to understand previously learned documentation conventions, style guides, and project-specific patterns
+   - Use `memoryStore.getSkillMemory("documentation-generator", "{project-name}")` to load existing project memory. See [MemoryStore Interface](../../interfaces/memory_store.md).
+   - **Cross-skill discovery**: Use `memoryStore.getByProject("{project-name}")` to gather insights from all previous skill executions for comprehensive documentation
+   - If memory exists, review previously learned documentation conventions, style guides, and project-specific patterns
    - If no memory exists, you will create it later in this process
 2. Check for existing documentation in the repository:
    - README files, CONTRIBUTING guides, API docs, wiki pages
@@ -129,11 +135,13 @@ Comprehensive documentation evaluates 7 critical dimensions:
 
 **After completing generation, UPDATE PROJECT MEMORY**:
 
-Create or update files in `../../memory/skills/documentation-generator/{project-name}/`:
+Use `memoryStore.update(layer="skill-specific", skill="documentation-generator", project="{project-name}", ...)` to store:
 
 1. **doc_conventions.md**: Documentation style, formatting rules, and tooling used
 2. **generated_docs.md**: Log of documentation generated with dates and scope
 3. **project_structure.md**: Key modules, APIs, and architecture notes discovered
+
+Timestamps and staleness tracking are handled automatically by MemoryStore. See [MemoryStore Interface](../../interfaces/memory_store.md).
 
 This memory will be consulted in future documentation tasks to maintain consistency.
 
@@ -144,7 +152,7 @@ This memory will be consulted in future documentation tasks to maintain consiste
 Before completing ANY documentation generation, verify:
 - [ ] Step 1: Documentation scope, target audience, and doc type identified
 - [ ] Step 2: Source material analyzed — structures, interfaces, and dependencies extracted
-- [ ] Step 3: Project memory checked in `../../memory/skills/documentation-generator/{project-name}/` and existing docs reviewed
+- [ ] Step 3: Project memory checked via `memoryStore.getSkillMemory()` and existing docs reviewed
 - [ ] Step 4: Documentation generated with overview, API reference, examples, and cross-references
 - [ ] Step 5: Output validated for completeness, accuracy, and clarity AND project memory updated
 
@@ -192,6 +200,10 @@ Refer to official documentation and standards:
 
 ## Version History
 
+- v1.1.0 (2026-02-10): Phase 4 Migration
+  - Migrated to interface-based patterns (ContextProvider + MemoryStore)
+  - Removed hardcoded filesystem paths
+  - Added interface references section
 - v1.0.0 (2025-01-XX): Initial release
   - Mandatory 5-step workflow
   - API and module documentation templates

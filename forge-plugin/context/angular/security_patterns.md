@@ -1,3 +1,34 @@
+---
+id: "angular/security_patterns"
+domain: angular
+title: "Angular Security Patterns"
+type: pattern
+estimatedTokens: 600
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "XSS Prevention"
+    estimatedTokens: 59
+    keywords: [xss, prevention, xss]
+  - name: "Authentication"
+    estimatedTokens: 69
+    keywords: [authentication, authentication]
+  - name: "HTTP Interceptors"
+    estimatedTokens: 65
+    keywords: [http, interceptors, interceptors]
+  - name: "Authorization"
+    estimatedTokens: 38
+    keywords: [authorization, authorization]
+  - name: "Input Validation"
+    estimatedTokens: 51
+    keywords: [input, validation, validation]
+  - name: "Sensitive Data"
+    estimatedTokens: 30
+    keywords: [sensitive, data, sensitive-data]
+tags: [angular, security, xss, authentication, csrf, jwt, guards, interceptors]
+---
+
 # Angular Security Patterns
 
 Security best practices specific to Angular applications.

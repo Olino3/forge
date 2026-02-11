@@ -1,0 +1,123 @@
+{
+  "_comment": "Framework conflict groups for context_drift_detector. Each key is a conflict group name. Values list mutually exclusive frameworks — a project should only use one from each group. 'packages' maps dep-file names to the tags/packages that indicate each framework. 'context_tags' maps to the tags used in context/ YAML frontmatter.",
+  "python_web": {
+    "description": "Python web frameworks (choose one)",
+    "members": {
+      "django": {
+        "packages": ["django", "djangorestframework", "django-rest-framework"],
+        "context_tags": ["django"]
+      },
+      "flask": {
+        "packages": ["flask", "flask-restful", "flask-sqlalchemy"],
+        "context_tags": ["flask"]
+      },
+      "fastapi": {
+        "packages": ["fastapi", "uvicorn"],
+        "context_tags": ["fastapi"]
+      }
+    }
+  },
+  "python_ml": {
+    "description": "Python ML frameworks (may coexist — warning only)",
+    "members": {
+      "pytorch": {
+        "packages": ["torch", "torchvision", "pytorch-lightning"],
+        "context_tags": ["pytorch"]
+      },
+      "tensorflow": {
+        "packages": ["tensorflow", "keras", "tf-keras"],
+        "context_tags": ["tensorflow"]
+      }
+    }
+  },
+  "js_frontend": {
+    "description": "JavaScript frontend frameworks (choose one)",
+    "members": {
+      "angular": {
+        "packages": ["@angular/core", "@angular/cli"],
+        "context_tags": ["angular"]
+      },
+      "react": {
+        "packages": ["react", "react-dom", "next"],
+        "context_tags": ["react"]
+      },
+      "vue": {
+        "packages": ["vue", "nuxt", "@vue/cli-service"],
+        "context_tags": ["vue"]
+      }
+    }
+  },
+  "js_state": {
+    "description": "Angular state management (choose one)",
+    "members": {
+      "ngrx": {
+        "packages": ["@ngrx/store", "@ngrx/effects"],
+        "context_tags": ["ngrx"]
+      },
+      "ngxs": {
+        "packages": ["@ngxs/store"],
+        "context_tags": ["ngxs"]
+      }
+    }
+  },
+  "js_testing": {
+    "description": "JavaScript test runners (choose one)",
+    "members": {
+      "jest": {
+        "packages": ["jest", "@jest/core", "ts-jest"],
+        "context_tags": ["jest"]
+      },
+      "vitest": {
+        "packages": ["vitest"],
+        "context_tags": ["vitest"]
+      },
+      "karma": {
+        "packages": ["karma", "karma-jasmine"],
+        "context_tags": ["karma"]
+      }
+    }
+  },
+  "dotnet_ui": {
+    "description": ".NET UI frameworks (choose one)",
+    "members": {
+      "blazor": {
+        "packages": ["Microsoft.AspNetCore.Components"],
+        "context_tags": ["blazor"]
+      },
+      "winforms": {
+        "packages": ["System.Windows.Forms"],
+        "context_tags": ["winforms"]
+      },
+      "wpf": {
+        "packages": ["System.Windows"],
+        "context_tags": ["wpf"]
+      }
+    }
+  },
+  "python_testing": {
+    "description": "Python test frameworks (pytest preferred; coexistence is fine)",
+    "members": {
+      "pytest": {
+        "packages": ["pytest", "pytest-cov", "pytest-mock", "pytest-asyncio"],
+        "context_tags": ["pytest"]
+      },
+      "unittest": {
+        "packages": [],
+        "context_tags": ["unittest-mock"]
+      }
+    }
+  },
+  "css_framework": {
+    "description": "CSS frameworks (choose one)",
+    "members": {
+      "tailwind": {
+        "packages": ["tailwindcss", "@tailwindcss/forms"],
+        "context_tags": ["tailwindcss"]
+      },
+      "bootstrap": {
+        "packages": ["bootstrap", "@ng-bootstrap/ng-bootstrap"],
+        "context_tags": ["bootstrap"]
+      }
+    }
+  }
+}

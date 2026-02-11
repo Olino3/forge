@@ -8,7 +8,7 @@ tools:
   - grep
   - glob
   - bash
-memory: forge-plugin/agents/memory/technical-writer
+memory: forge-plugin/memory/agents/technical-writer
 skills:
   - documentation-generator
   - commit-helper
@@ -74,7 +74,7 @@ You maintain project-specific documentation patterns in your memory:
 - Common code patterns and examples
 - Frequently referenced resources
 
-Access your memory at: `forge-plugin/agents/memory/technical-writer/`
+Access your memory via `memoryStore.read(layer="agent", agentName="technical-writer", ...)`. See [MemoryStore Interface](../interfaces/memory_store.md) and your [agent configuration](technical-writer.config.json) for full context, memory, and skill configuration.
 
 ## Skills Integration
 

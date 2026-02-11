@@ -1,3 +1,52 @@
+---
+id: "angular/component_patterns"
+domain: angular
+title: "Angular Component Patterns - Quick Reference"
+type: pattern
+estimatedTokens: 1250
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Smart vs Presentational Components"
+    estimatedTokens: 70
+    keywords: [smart, presentational, components, smart-vs-presentational]
+  - name: "Input/Output Best Practices"
+    estimatedTokens: 71
+    keywords: [inputoutput, input-output]
+  - name: "ViewChild & ContentChild"
+    estimatedTokens: 51
+    keywords: [viewchild, contentchild, viewchild-contentchild]
+  - name: "Component Lifecycle"
+    estimatedTokens: 60
+    keywords: [component, lifecycle, lifecycle]
+  - name: "Change Detection Strategies"
+    estimatedTokens: 61
+    keywords: [change, detection, strategies, change-detection]
+  - name: "Component Communication"
+    estimatedTokens: 69
+    keywords: [component, communication, communication]
+  - name: "Template Best Practices"
+    estimatedTokens: 75
+    keywords: [template, templates]
+  - name: "Content Projection"
+    estimatedTokens: 31
+    keywords: [content, projection, content-projection]
+  - name: "Standalone Components (Angular 14+)"
+    estimatedTokens: 39
+    keywords: [standalone, components, angular, standalone]
+  - name: "Component Testing"
+    estimatedTokens: 31
+    keywords: [component, testing, testing]
+  - name: "Quick Checklist for Component Reviews"
+    estimatedTokens: 60
+    keywords: [quick, checklist, component, reviews]
+  - name: "External Resources"
+    estimatedTokens: 21
+    keywords: [external, resources]
+tags: [angular, components, lifecycle, change-detection, inputs, outputs, templates]
+---
+
 # Angular Component Patterns - Quick Reference
 
 Best-practice patterns for Angular components with minimal detection cues and links to official docs.

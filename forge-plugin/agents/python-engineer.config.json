@@ -1,0 +1,38 @@
+{
+  "$schema": "../interfaces/schemas/agent_config.schema.json",
+  "name": "python-engineer",
+  "version": "1.0.0",
+  "description": "Python language specialist with deep expertise in Python development, testing, and frameworks",
+  "model": "sonnet",
+  "tools": ["Read", "Write", "Bash", "Grep", "Glob"],
+  "permissionMode": "auto",
+  "context": {
+    "primaryDomains": ["python"],
+    "secondaryDomains": ["security", "engineering"],
+    "alwaysLoadFiles": []
+  },
+  "memory": {
+    "storagePath": "forge-plugin/memory/agents/python-engineer",
+    "categories": [
+      {"name": "projects", "description": "Track Python projects, frameworks, and configurations"},
+      {"name": "patterns", "description": "Store project-specific coding patterns and conventions"},
+      {"name": "dependencies", "description": "Maintain dependency management strategies"},
+      {"name": "testing", "description": "Record testing approaches and configurations"}
+    ]
+  },
+  "skills": [
+    {"name": "python-code-review", "required": true, "useCase": "Deep code review with security and performance analysis"},
+    {"name": "generate-python-unit-tests", "required": true, "useCase": "Generate comprehensive pytest test suites"},
+    {"name": "python-dependency-management", "required": false, "useCase": "Manage dependencies and virtual environments"},
+    {"name": "jupyter-notebook-skills", "required": false, "useCase": "Work with Jupyter notebooks and data science code"}
+  ],
+  "hooks": [
+    {
+      "on_file_write": {
+        "patterns": ["*.py", "requirements*.txt", "setup.py", "pyproject.toml", "poetry.lock", "Pipfile", "Pipfile.lock"],
+        "action": "validate_python_code"
+      }
+    }
+  ],
+  "mcpServers": []
+}

@@ -1,3 +1,34 @@
+---
+id: "angular/component_testing_patterns"
+domain: angular
+title: "Angular Component Testing Patterns"
+type: pattern
+estimatedTokens: 500
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Quick Reference"
+    estimatedTokens: 32
+    keywords: [quick, reference]
+  - name: "Testing Patterns"
+    estimatedTokens: 108
+    keywords: [testing, patterns]
+  - name: "Mocking Strategies"
+    estimatedTokens: 64
+    keywords: [mocking, strategies]
+  - name: "Form Testing"
+    estimatedTokens: 32
+    keywords: [form, testing]
+  - name: "Official Documentation"
+    estimatedTokens: 10
+    keywords: [official, documentation]
+  - name: "Related Context Files"
+    estimatedTokens: 18
+    keywords: [related, context, files]
+tags: [angular, testing, components, testbed, fixtures, mocking]
+---
+
 # Angular Component Testing Patterns
 
 ## Quick Reference

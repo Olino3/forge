@@ -1,3 +1,46 @@
+---
+id: "angular/common_issues"
+domain: angular
+title: "Angular Common Issues - Quick Reference"
+type: always
+estimatedTokens: 1250
+loadingStrategy: always
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Memory Leaks"
+    estimatedTokens: 53
+    keywords: [memory, leaks, memory-leaks]
+  - name: "Change Detection Errors"
+    estimatedTokens: 54
+    keywords: [change, detection, errors, change-detection-errors]
+  - name: "Lifecycle Hook Misuse"
+    estimatedTokens: 53
+    keywords: [lifecycle, hook, misuse, lifecycle-hook-misuse]
+  - name: "Observable Subscription Problems"
+    estimatedTokens: 64
+    keywords: [observable, subscription, problems, observable-subscription-problems]
+  - name: "Template Syntax Mistakes"
+    estimatedTokens: 70
+    keywords: [template, syntax, mistakes, template-syntax-mistakes]
+  - name: "Zone.js Issues"
+    estimatedTokens: 48
+    keywords: [zonejs, issues, zonejs-issues]
+  - name: "Dependency Injection Problems"
+    estimatedTokens: 71
+    keywords: [dependency, injection, problems, dependency-injection-problems]
+  - name: "Router Navigation Issues"
+    estimatedTokens: 66
+    keywords: [router, navigation, issues, router-navigation-issues]
+  - name: "Quick Checklist for Reviews"
+    estimatedTokens: 150
+    keywords: [quick, checklist, reviews]
+  - name: "External Resources"
+    estimatedTokens: 38
+    keywords: [external, resources]
+tags: [angular, common-issues, memory-leaks, change-detection, lifecycle, observables]
+---
+
 # Angular Common Issues - Quick Reference
 
 Detection patterns and solution references for frequently encountered Angular problems.

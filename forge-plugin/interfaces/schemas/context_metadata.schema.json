@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://forge-plugin/schemas/context_metadata.schema.json",
+  "title": "Context File Metadata",
+  "description": "Schema for YAML frontmatter in Forge context files. Enables structured discovery and selective loading of context without reading file content.",
+  "type": "object",
+  "required": ["id", "domain", "title", "type", "estimatedTokens", "loadingStrategy"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier in format {domain}/{filename} (without extension)",
+      "pattern": "^[a-z]+/[a-z_]+$"
+    },
+    "domain": {
+      "type": "string",
+      "description": "Context domain this file belongs to",
+      "enum": ["engineering", "angular", "azure", "commands", "dotnet", "git", "python", "schema", "security"]
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable title of the context file"
+    },
+    "type": {
+      "type": "string",
+      "description": "How this file is used in the loading protocol",
+      "enum": ["always", "framework", "reference", "pattern", "index", "detection"]
+    },
+    "estimatedTokens": {
+      "type": "integer",
+      "description": "Approximate token count for full file content (excluding frontmatter)",
+      "minimum": 1
+    },
+    "loadingStrategy": {
+      "type": "string",
+      "description": "When this file should be loaded during context loading",
+      "enum": ["always", "onDemand", "lazy"]
+    },
+    "version": {
+      "type": "string",
+      "description": "Semantic version of the context file content",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "lastUpdated": {
+      "type": "string",
+      "description": "ISO date of last content update",
+      "format": "date"
+    },
+    "maintainedFor": {
+      "type": "string",
+      "description": "Primary skill or command this context file supports"
+    },
+    "sections": {
+      "type": "array",
+      "description": "Named sections within the file for selective loading",
+      "items": {
+        "type": "object",
+        "required": ["name", "estimatedTokens", "keywords"],
+        "properties": {
+          "name": { "type": "string" },
+          "estimatedTokens": { "type": "integer", "minimum": 1 },
+          "keywords": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          }
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "description": "Searchable tags for context discovery",
+      "items": { "type": "string" }
+    },
+    "crossDomainTriggers": {
+      "type": "array",
+      "description": "Other context files to load when this file is loaded (format: domain/filename)",
+      "items": { "type": "string" }
+    },
+    "detectionTriggers": {
+      "type": "array",
+      "description": "Code patterns that indicate this file should be loaded",
+      "items": { "type": "string" }
+    },
+    "indexedFiles": {
+      "type": "array",
+      "description": "For index-type files: catalog of files in this domain",
+      "items": {
+        "type": "object",
+        "required": ["id", "path", "type", "loadingStrategy"],
+        "properties": {
+          "id": { "type": "string" },
+          "path": { "type": "string" },
+          "type": { "type": "string", "enum": ["always", "framework", "reference", "pattern", "index", "detection"] },
+          "loadingStrategy": { "type": "string", "enum": ["always", "onDemand", "lazy"] }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

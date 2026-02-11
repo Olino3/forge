@@ -44,21 +44,21 @@ context: [python, dotnet, angular, azure, commands/implementation_strategies]
 ### Step 2: Load Context & Memory
 
 **Context Loading** (index-first approach):
-1. Read `../../context/index.md` for overview
-2. Read `../../context/commands/index.md` for command guidance
-3. Load `../../context/commands/implementation_strategies.md` for development approach
-4. Based on detected framework, load domain-specific context:
-   - **Python**: `../../context/python/index.md` → framework patterns (Django, FastAPI, Flask)
-   - **.NET**: `../../context/dotnet/index.md` → ASP.NET, EF, DI patterns
-   - **Angular**: `../../context/angular/index.md` → component, service, state patterns
-   - **Azure**: `../../context/azure/index.md` → if serverless/cloud components involved
-5. Load `../../context/security/security_guidelines.md` if implementing auth, user input, or data handling
+1. Use `contextProvider.getDomainIndex("commands")` for command guidance
+2. Use `contextProvider.getConditionalContext("commands", {"command": "implement"})` to load implementation strategies
+3. Based on detected framework, load domain-specific context:
+   - **Python**: Use `contextProvider.getDomainIndex("python")`, then `contextProvider.getConditionalContext("python", detection)` for framework patterns
+   - **.NET**: Use `contextProvider.getDomainIndex("dotnet")`, then `contextProvider.getConditionalContext("dotnet", detection)` for ASP.NET, EF, DI patterns
+   - **Angular**: Use `contextProvider.getDomainIndex("angular")`, then `contextProvider.getConditionalContext("angular", detection)` for component, service, state patterns
+   - **Azure**: Use `contextProvider.getDomainIndex("azure")` if serverless/cloud components involved
+4. If implementing auth, user input, or data handling: Use `contextProvider.getCrossDomainContext("{domain}", ["auth_code", "user_input"])` to load security guidelines
 
 **Memory Loading**:
 1. Determine project name
-2. Check `../../memory/commands/{project}/command_history.md` for related past implementations
-3. Load `../../memory/commands/{project}/implement_patterns.md` if exists
-4. Check relevant skill memory for project conventions
+2. Use `memoryStore.getCommandMemory("{project}")` for related past implementations and patterns
+3. Use `memoryStore.getSharedProjectMemory("{project}")` for cross-skill project conventions
+
+See [ContextProvider](../../interfaces/context_provider.md) and [MemoryStore](../../interfaces/memory_store.md) interfaces.
 
 ### Step 3: Plan Implementation
 
@@ -138,9 +138,11 @@ skill:test-cli-tools --target [implemented commands]
 ```
 
 **Memory Updates**:
-1. Append to `../../memory/commands/{project}/command_history.md`
-2. Update `../../memory/commands/{project}/implement_patterns.md`:
+1. Use `memoryStore.append("command/{project}/command_history", ...)` to record execution
+2. Use `memoryStore.update("command/{project}/implement_patterns", ...)` to record:
    - Patterns used, conventions followed, design decisions
+
+See [MemoryStore Interface](../../interfaces/memory_store.md) for `update()` and `append()` method details.
 
 ## Tool Coordination
 - **Read/Grep/Glob**: Project analysis and pattern detection

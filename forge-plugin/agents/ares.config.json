@@ -1,0 +1,33 @@
+{
+  "$schema": "../interfaces/schemas/agent_config.schema.json",
+  "name": "ares",
+  "version": "1.0.0",
+  "description": "Battle-tested deployment warrior. Master of production deployments, incident response, system hardening, and operational reliability",
+  "model": "sonnet",
+  "tools": ["Read", "Write", "Bash", "Grep", "Glob"],
+  "permissionMode": "auto",
+  "context": {
+    "primaryDomains": ["azure"],
+    "secondaryDomains": ["security", "dotnet", "python"],
+    "alwaysLoadFiles": []
+  },
+  "memory": {
+    "storagePath": "forge-plugin/memory/agents/ares",
+    "categories": [
+      {"name": "deployments", "description": "Track deployment configurations and outcomes"},
+      {"name": "incidents", "description": "Record incidents and post-mortems"},
+      {"name": "runbooks", "description": "Store operational procedures and playbooks"},
+      {"name": "monitoring", "description": "Maintain monitoring and alerting configurations"}
+    ]
+  },
+  "skills": [],
+  "hooks": [
+    {
+      "on_file_write": {
+        "patterns": ["*.deployment.yml", "*.runbook.md", "INCIDENT-*.md", "*.monitoring.yml"],
+        "action": "validate_operational_readiness"
+      }
+    }
+  ],
+  "mcpServers": []
+}

@@ -25,30 +25,12 @@ This skill consists of the following files:
 - `templates/report_template.md` - Comprehensive report format
 - `templates/inline_comment_template.md` - PR-style inline comment format
 
-**Context Files** (shared knowledge in `../../context/`):
-- `../../context/index.md` - Main context navigation guide
-- `../../context/dotnet/index.md` - .NET context navigation and quick reference
-- `../../context/dotnet/context_detection.md` - Framework and version detection
-- `../../context/dotnet/common_issues.md` - Universal .NET problems
-- `../../context/dotnet/aspnet_patterns.md` - ASP.NET Core/MVC patterns
-- `../../context/dotnet/ef_patterns.md` - Entity Framework patterns
-- `../../context/dotnet/blazor_patterns.md` - Blazor component patterns
-- `../../context/dotnet/di_patterns.md` - Dependency injection patterns
-- `../../context/dotnet/async_patterns.md` - Async/await best practices
-- `../../context/dotnet/csharp_patterns.md` - C# language features
-- `../../context/dotnet/linq_patterns.md` - LINQ optimization patterns
-- `../../context/dotnet/performance_patterns.md` - Performance optimization
-- `../../context/dotnet/security_patterns.md` - .NET-specific security
-- `../../context/security/index.md` - Security context navigation
-- `../../context/security/security_guidelines.md` - General security practices
+**Context**: .NET and security domain context loaded via `contextProvider.getDomainIndex("dotnet")` and `contextProvider.getDomainIndex("security")`. See [ContextProvider Interface](../../interfaces/context_provider.md).
+  - `context_detection.md`, `common_issues.md`, `aspnet_patterns.md`, `ef_patterns.md`, `blazor_patterns.md`, `di_patterns.md`, `async_patterns.md`, `csharp_patterns.md`, `linq_patterns.md`, `performance_patterns.md`, `security_patterns.md`
+  - `security_guidelines.md` (general security practices)
 
-**Memory Files** (project-specific learning in `../../memory/skills/dotnet-code-review/`):
-- `../../memory/index.md` - Memory system overview
-- `../../memory/skills/dotnet-code-review/index.md` - .NET review memory structure
-- `../../memory/skills/dotnet-code-review/{project-name}/project_overview.md` - Project framework and architecture
-- `../../memory/skills/dotnet-code-review/{project-name}/common_patterns.md` - Project-specific patterns
-- `../../memory/skills/dotnet-code-review/{project-name}/known_issues.md` - Documented technical debt
-- `../../memory/skills/dotnet-code-review/{project-name}/review_history.md` - Past review trends
+**Memory**: Project-specific memory accessed via `memoryStore.getSkillMemory("dotnet-code-review", "{project-name}")`. See [MemoryStore Interface](../../interfaces/memory_store.md).
+  - `project_overview.md`, `common_patterns.md`, `known_issues.md`, `review_history.md`
 
 ---
 
@@ -98,25 +80,20 @@ This skill reviews code across **8 critical dimensions**:
 
 **Actions**:
 
-1. **Read Memory Index**:
-   - **READ** `../../memory/index.md` to understand the memory system
-   - **READ** `../../memory/skills/dotnet-code-review/index.md` to understand memory structure
+1. **Load Project Memory**:
+   - Use `memoryStore.getSkillMemory("dotnet-code-review", "{project-name}")` to load all project-specific memory
+   - If memory exists, review:
+     - `project_overview` (CRITICAL - .NET version, framework, architecture, conventions)
+     - `common_patterns` (project-specific patterns)
+     - `known_issues` (CRITICAL - prevents false positives on documented technical debt)
+     - `review_history` (past trends and recurring issues)
+   - If no memory exists (empty result): Note this is first review
 
-2. **Load Project Memory** (if it exists):
-   - Check if `../../memory/skills/dotnet-code-review/{project-name}/` directory exists
-   - If exists, **READ ALL** memory files:
-     - `project_overview.md` (CRITICAL - .NET version, framework, architecture, conventions)
-     - `common_patterns.md` (project-specific patterns)
-     - `known_issues.md` (CRITICAL - prevents false positives on documented technical debt)
-     - `review_history.md` (past trends and recurring issues)
+2. **Load Context Indexes**:
+   - Use `contextProvider.getDomainIndex("dotnet")` for .NET context navigation
+   - Use `contextProvider.getDomainIndex("security")` for security context navigation
 
-3. **Read Context Indexes**:
-   - **READ** `../../context/index.md` for overall context structure
-   - **READ** `../../context/dotnet/index.md` for .NET context navigation
-   - **READ** `../../context/security/index.md` for security context navigation
-
-4. **Detect Framework and Libraries**:
-   - **READ** `../../context/dotnet/context_detection.md` for detection patterns
+3. **Detect Framework and Libraries**:
    - Analyze file structure, project files, and using statements to identify:
      - **.NET version**: .NET Framework 4.x vs .NET Core vs .NET 5-8+
      - **C# version**: Language features available (7.0, 8.0, 9.0, 10.0+)
@@ -127,7 +104,9 @@ This skill reviews code across **8 critical dimensions**:
      - **Testing framework**: xUnit, NUnit, MSTest
      - **Nullable reference types**: Enabled or disabled
 
-5. **Ask Socratic Questions** (if memory doesn't exist or is incomplete):
+See [ContextProvider](../../interfaces/context_provider.md) and [MemoryStore](../../interfaces/memory_store.md) interfaces.
+
+4. **Ask Socratic Questions** (if memory doesn't exist or is incomplete):
    - What is the primary purpose of this .NET application?
    - Are there specific security or performance concerns?
    - What is your target .NET version and C# version?
@@ -143,29 +122,31 @@ This skill reviews code across **8 critical dimensions**:
 
 **Purpose**: Load shared knowledge files relevant to the detected patterns and code being reviewed.
 
-**Use the indexes from Step 2** to determine which context files are needed. Follow this decision matrix:
+**Use the domain indexes from Step 2** to determine which context files are needed. Follow this decision matrix:
 
 **Always Load** (for every review):
-- `../../context/dotnet/common_issues.md` - Universal .NET problems
+- Use `contextProvider.getAlwaysLoadFiles("dotnet")` to load universal .NET problems (e.g., `common_issues.md`)
 
 **Load Based on Detection** (from Step 2):
-- **Controllers/API detected** → `../../context/dotnet/aspnet_patterns.md`
-- **DbContext/Queries detected** → `../../context/dotnet/ef_patterns.md`
-- **Async methods detected** → `../../context/dotnet/async_patterns.md`
-- **Blazor components detected** → `../../context/dotnet/blazor_patterns.md`
-- **Service registration detected** → `../../context/dotnet/di_patterns.md`
-- **LINQ queries detected** → `../../context/dotnet/linq_patterns.md`
-- **C# 8+ features detected** → `../../context/dotnet/csharp_patterns.md`
-- **Performance concerns** → `../../context/dotnet/performance_patterns.md`
+- Use `contextProvider.getConditionalContext("dotnet", detection)` to load framework-specific files based on detected patterns:
+  - **Controllers/API detected** → Loads `aspnet_patterns.md`
+  - **DbContext/Queries detected** → Loads `ef_patterns.md`
+  - **Async methods detected** → Loads `async_patterns.md`
+  - **Blazor components detected** → Loads `blazor_patterns.md`
+  - **Service registration detected** → Loads `di_patterns.md`
+  - **LINQ queries detected** → Loads `linq_patterns.md`
+  - **C# 8+ features detected** → Loads `csharp_patterns.md`
+  - **Performance concerns** → Loads `performance_patterns.md`
 
-**Load for Security-Sensitive Code** (use `../../context/security/index.md` for guidance):
-- **Authentication/Authorization** → Both security files
-- **User input handling** → `../../context/dotnet/security_patterns.md` + `../../context/security/security_guidelines.md`
-- **Database queries with user input** → Both security files
-- **File operations** → `../../context/security/security_guidelines.md`
-- **Comprehensive security audit** → All security files
+**Load for Security-Sensitive Code**:
+- Use `contextProvider.getCrossDomainContext("dotnet", triggers)` where triggers reflect detected security concerns:
+  - **Authentication/Authorization** → Loads both security files
+  - **User input handling** → Loads `security_patterns.md` + `security_guidelines.md`
+  - **Database queries with user input** → Loads both security files
+  - **File operations** → Loads `security_guidelines.md`
+  - **Comprehensive security audit** → Loads all security files
 
-**Progressive Loading**: Only read files relevant to the detected framework and code type. The index files provide guidance on when each file is needed.
+**Progressive Loading**: Only load files relevant to the detected framework and code type. The ContextProvider respects the 4-6 file token budget automatically.
 
 **DO NOT PROCEED** to Step 4 until you have loaded all relevant context files.
 
@@ -287,8 +268,8 @@ This skill reviews code across **8 critical dimensions**:
    - Save to `/claudedocs/{project-name}/dotnet-review-{date}.md`
 
 3. **Update Project Memory** (CRITICAL for continuous improvement):
-   
-   Create or update in `../../memory/skills/dotnet-code-review/{project-name}/`:
+
+   Use `memoryStore.update("dotnet-code-review", "{project-name}", ...)` to create or update:
    
    **project_overview.md**:
    - .NET version (.NET Framework 4.8, .NET 6, .NET 8, etc.)
@@ -324,6 +305,7 @@ This skill reviews code across **8 critical dimensions**:
    - First review: Create all 4 files with comprehensive information
    - Subsequent reviews: Update existing files, don't overwrite
    - Ask user if uncertain about project conventions
+   - Timestamps and staleness tracking are managed automatically by MemoryStore. See [MemoryStore Interface](../../interfaces/memory_store.md) for `update()` and `append()` method details.
 
 **DO NOT SKIP** memory updates - they are essential for preventing false positives and improving future reviews.
 
@@ -377,7 +359,7 @@ Before marking ANY review as complete, verify ALL items:
 ## Special Cases
 
 ### .NET Framework 4.x Legacy Code
-- Use `../../context/dotnet/aspnet_patterns.md` for System.Web patterns
+- Load `aspnet_patterns.md` (via ContextProvider) for System.Web patterns
 - Check for opportunities to modernize (e.g., async/await adoption)
 - Note migration paths to .NET Core/.NET 6+
 - Review for security issues common in older .NET versions
@@ -389,7 +371,7 @@ Before marking ANY review as complete, verify ALL items:
 - Review for performance (minimize payload size)
 
 ### Performance-Critical Code
-- Load `../../context/dotnet/performance_patterns.md`
+- Load `performance_patterns.md` (via `contextProvider.getConditionalContext("dotnet", detection)`)
 - Check for allocation hotspots
 - Review for efficient collections and algorithms
 - Suggest profiling if complex performance issues suspected
@@ -429,6 +411,13 @@ Examples:
 ---
 
 ## Version History
+
+### v1.1.0 (2026-02-10)
+
+**Interface Migration**
+- Replaced hardcoded context paths with ContextProvider interface calls
+- Replaced hardcoded memory paths with MemoryStore interface calls
+- Added references to interface documentation
 
 ### v1.0.0 (2025-01-14)
 

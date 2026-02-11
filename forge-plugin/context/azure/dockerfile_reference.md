@@ -1,3 +1,55 @@
+---
+id: "azure/dockerfile_reference"
+domain: azure
+title: "Dockerfile Reference for Azure Functions"
+type: reference
+estimatedTokens: 2200
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Base Images"
+    estimatedTokens: 54
+    keywords: [base, images]
+  - name: "Complete Python Dockerfile (with pip)"
+    estimatedTokens: 53
+    keywords: [complete, python, dockerfile, pip]
+  - name: "Complete Python Dockerfile (with Poetry)"
+    estimatedTokens: 78
+    keywords: [complete, python, dockerfile, poetry]
+  - name: "Python Dockerfile with Local Package"
+    estimatedTokens: 111
+    keywords: [python, dockerfile, local, package]
+  - name: "Node.js Dockerfile (with npm)"
+    estimatedTokens: 32
+    keywords: [nodejs, dockerfile, npm]
+  - name: ".NET Dockerfile"
+    estimatedTokens: 48
+    keywords: [net, dockerfile]
+  - name: "Dockerfile Optimization Patterns"
+    estimatedTokens: 86
+    keywords: [dockerfile, optimization, patterns]
+  - name: "Additional Tools Installation"
+    estimatedTokens: 78
+    keywords: [additional, tools, installation]
+  - name: "Environment Variables"
+    estimatedTokens: 41
+    keywords: [environment, variables]
+  - name: "Best Practices"
+    estimatedTokens: 122
+    keywords: [best]
+  - name: "Debugging Dockerfiles"
+    estimatedTokens: 60
+    keywords: [debugging, dockerfiles]
+  - name: "Common Issues"
+    estimatedTokens: 60
+    keywords: [issues]
+  - name: "Official Documentation"
+    estimatedTokens: 10
+    keywords: [official, documentation]
+tags: [azure, dockerfile, docker, python, poetry, multi-stage, functions]
+---
+
 # Dockerfile Reference for Azure Functions
 
 ## Base Images

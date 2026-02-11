@@ -1,3 +1,46 @@
+---
+id: "schema/common_patterns"
+domain: schema
+title: "Common Schema Patterns"
+type: always
+estimatedTokens: 1700
+loadingStrategy: always
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Overview"
+    estimatedTokens: 11
+    keywords: [overview]
+  - name: "Core Schema Elements"
+    estimatedTokens: 233
+    keywords: [core, schema, elements]
+  - name: "Schema Versioning Strategies"
+    estimatedTokens: 46
+    keywords: [schema, versioning, strategies]
+  - name: "Schema Evolution Patterns"
+    estimatedTokens: 61
+    keywords: [schema, evolution, patterns]
+  - name: "Documentation Patterns"
+    estimatedTokens: 129
+    keywords: [documentation, patterns]
+  - name: "Schema Design Principles"
+    estimatedTokens: 139
+    keywords: [schema, design, principles]
+  - name: "Anti-Patterns to Avoid"
+    estimatedTokens: 118
+    keywords: [anti-patterns, avoid]
+  - name: "Schema Quality Checklist"
+    estimatedTokens: 138
+    keywords: [schema, quality, checklist]
+  - name: "Cross-Platform Considerations"
+    estimatedTokens: 76
+    keywords: [cross-platform, considerations]
+  - name: "Schema Testing Strategies"
+    estimatedTokens: 69
+    keywords: [schema, testing, strategies]
+tags: [schema, patterns, entities, relationships, constraints, versioning, antipatterns]
+---
+
 # Common Schema Patterns
 
 ## Overview

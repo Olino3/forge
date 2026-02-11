@@ -45,16 +45,15 @@ context: [azure, commands/build_patterns]
 
 ### Step 2: Load Context & Memory
 
-**Context Loading** (index-first approach):
-1. Read `../../context/commands/index.md` for command guidance
-2. Load `../../context/commands/build_patterns.md` for build strategies
-3. If Docker/container build: Load `../../context/azure/dockerfile_reference.md`
-4. If Tilt-based: Load `../../context/azure/tiltfile_reference.md`
-5. If Docker Compose: Load `../../context/azure/docker_compose_reference.md`
+**Context Loading** (via ContextProvider):
+1. Load build strategies: `contextProvider.getConditionalContext("commands", "build_patterns")`
+2. If Docker/container build: `contextProvider.getConditionalContext("azure", "dockerfile_reference")`
+3. If Tilt-based: `contextProvider.getConditionalContext("azure", "tiltfile_reference")`
+4. If Docker Compose: `contextProvider.getConditionalContext("azure", "docker_compose_reference")`
 
-**Memory Loading**:
+**Memory Loading** (via MemoryStore):
 1. Determine project name
-2. Check `../../memory/commands/{project}/build_config.md` for build history
+2. Load build history: `memoryStore.getCommandMemory("build", project)`
 3. Load known build issues and workarounds
 
 ### Step 3: Validate Environment
@@ -125,9 +124,9 @@ Save results to `/claudedocs/build_report_{date}.md`:
 - {recommendations}
 ```
 
-**Memory Updates**:
-1. Append to `../../memory/commands/{project}/command_history.md`
-2. Update `../../memory/commands/{project}/build_config.md`:
+**Memory Updates** (via MemoryStore):
+1. `memoryStore.append("commands", project, "command_history.md", entry)`
+2. `memoryStore.update("commands", project, "build_config.md", content)`:
    - Build system, commands used, common errors, timing benchmarks
 
 ## Tool Coordination

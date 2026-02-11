@@ -1,3 +1,52 @@
+---
+id: "dotnet/aspnet_patterns"
+domain: dotnet
+title: "ASP.NET Core Patterns"
+type: framework
+estimatedTokens: 1350
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Common Anti-Patterns"
+    estimatedTokens: 66
+    keywords: [anti-patterns]
+  - name: "Controller Patterns"
+    estimatedTokens: 70
+    keywords: [controller, patterns]
+  - name: "Action Return Types"
+    estimatedTokens: 71
+    keywords: [action, return, types]
+  - name: "Status Codes"
+    estimatedTokens: 99
+    keywords: [status, codes]
+  - name: "Model Validation"
+    estimatedTokens: 68
+    keywords: [model, validation]
+  - name: "Middleware Pipeline"
+    estimatedTokens: 79
+    keywords: [middleware, pipeline]
+  - name: "CORS Configuration"
+    estimatedTokens: 25
+    keywords: [cors, configuration]
+  - name: "Authentication & Authorization"
+    estimatedTokens: 54
+    keywords: [authentication, authorization]
+  - name: "Configuration"
+    estimatedTokens: 52
+    keywords: [configuration]
+  - name: "Common Detection Patterns"
+    estimatedTokens: 64
+    keywords: [detection, patterns]
+  - name: "ASP.NET Core Checklist"
+    estimatedTokens: 53
+    keywords: [aspnet, core, checklist]
+  - name: "Official Resources"
+    estimatedTokens: 19
+    keywords: [official, resources]
+tags: [dotnet, aspnet, controllers, middleware, cors, authentication, validation]
+---
+
 # ASP.NET Core Patterns
 
 Quick reference for ASP.NET Core (Web API, MVC, Razor Pages, Minimal APIs). For detailed examples, see [ASP.NET Core documentation](https://learn.microsoft.com/en-us/aspnet/core/).

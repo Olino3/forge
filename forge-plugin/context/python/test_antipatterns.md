@@ -1,3 +1,70 @@
+---
+id: "python/test_antipatterns"
+domain: python
+title: "Python Test Anti-Patterns"
+type: pattern
+estimatedTokens: 1700
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "What to Avoid When Writing Tests"
+    estimatedTokens: 20
+    keywords: [avoid, writing, tests]
+  - name: "Testing Implementation Instead of Behavior"
+    estimatedTokens: 54
+    keywords: [testing, implementation, instead, behavior]
+  - name: "Brittle Tests with Hard-Coded Values"
+    estimatedTokens: 57
+    keywords: [brittle, tests, hard-coded, values]
+  - name: "Test Interdependence"
+    estimatedTokens: 71
+    keywords: [test, interdependence]
+  - name: "Over-Mocking"
+    estimatedTokens: 60
+    keywords: [over-mocking]
+  - name: "Testing Private Methods"
+    estimatedTokens: 49
+    keywords: [testing, private, methods]
+  - name: "Generic Test Names"
+    estimatedTokens: 46
+    keywords: [generic, test, names]
+  - name: "Multiple Unrelated Assertions"
+    estimatedTokens: 65
+    keywords: [multiple, unrelated, assertions]
+  - name: "Ignoring Test Failures"
+    estimatedTokens: 69
+    keywords: [ignoring, test, failures]
+  - name: "No Assertions"
+    estimatedTokens: 44
+    keywords: [assertions]
+  - name: "Overly Complex Test Setup"
+    estimatedTokens: 70
+    keywords: [overly, complex, test, setup]
+  - name: "Testing Frameworks Instead of Code"
+    estimatedTokens: 48
+    keywords: [testing, frameworks, instead, code]
+  - name: "Sleep/Wait in Tests"
+    estimatedTokens: 51
+    keywords: [sleepwait, tests]
+  - name: "Swallowing Exceptions in Tests"
+    estimatedTokens: 54
+    keywords: [swallowing, exceptions, tests]
+  - name: "Not Testing Edge Cases"
+    estimatedTokens: 54
+    keywords: [not, testing, edge, cases]
+  - name: "Quick Checklist"
+    estimatedTokens: 68
+    keywords: [quick, checklist]
+  - name: "References"
+    estimatedTokens: 12
+    keywords: [references]
+  - name: "Related Context Files"
+    estimatedTokens: 12
+    keywords: [related, context, files]
+tags: [python, testing, antipatterns, code-quality, best-practices]
+---
+
 # Python Test Anti-Patterns
 
 ## What to Avoid When Writing Tests

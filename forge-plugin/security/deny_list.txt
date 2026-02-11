@@ -1,0 +1,84 @@
+# Forge Security — Package Deny List
+#
+# Maintained by: dependency_sentinel.sh (§6.1 The Shield)
+# Purpose: Block known typosquatted, malicious, or high-severity packages
+#          from being installed by AI agents.
+#
+# Format:
+#   - One package name per line (case-insensitive matching)
+#   - Lines starting with # are comments
+#   - Blank lines are ignored
+#   - Use ecosystem prefix for disambiguation: npm:, pip:, go:
+#   - Unprefixed entries match across all ecosystems
+#
+# Sources:
+#   - OWASP dependency-check known malicious
+#   - npm/PyPI security advisories
+#   - Known typosquatting attacks
+#
+# Last Updated: 2026-02-11
+
+# === Python typosquats ===
+# Typosquats of popular Python packages
+colourama
+python-dateutil2
+python3-dateutil
+requestslib
+requsts
+requets
+urllib4
+djago
+djnago
+fask
+flsk
+nump
+numby
+pandsa
+scikitlearn
+scikit_learn
+tensorflw
+pytorh
+
+# === npm typosquats ===
+# Typosquats of popular npm packages
+npm:crossenv
+npm:cross-env.js
+npm:event-stream-fake
+npm:lodahs
+npm:loadsh
+npm:lodashs
+npm:expresss
+npm:exress
+npm:recat
+npm:reactt
+npm:babelcli
+npm:babel-clis
+
+# === Known malicious packages (cross-ecosystem) ===
+# Packages confirmed malicious in security advisories
+ctx
+phpass
+mitmproxy2
+libpeshnern
+libpeshka
+distutils-precedence
+pipconfig
+asciidoctor-download
+asciidoctor-download-toolchain
+
+# === High-risk deprecated packages ===
+# Packages with known critical vulnerabilities and no patches
+npm:node-uuid
+npm:request
+npm:nomnom
+
+# === Suspicious patterns ===
+# Packages that impersonate system/internal names
+pip:setup
+pip:pip
+pip:os
+pip:sys
+pip:http
+npm:npm
+npm:node
+npm:kernel

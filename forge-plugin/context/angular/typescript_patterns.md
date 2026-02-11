@@ -1,3 +1,37 @@
+---
+id: "angular/typescript_patterns"
+domain: angular
+title: "TypeScript Best Practices for Angular"
+type: pattern
+estimatedTokens: 450
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Strict Mode"
+    estimatedTokens: 15
+    keywords: [strict, mode, strict-mode]
+  - name: "Type Safety"
+    estimatedTokens: 48
+    keywords: [type, safety, type-safety]
+  - name: "Utility Types"
+    estimatedTokens: 63
+    keywords: [utility, types, utility-types]
+  - name: "Generics"
+    estimatedTokens: 44
+    keywords: [generics, generics]
+  - name: "Type Guards"
+    estimatedTokens: 26
+    keywords: [type, guards, type-guards]
+  - name: "Const Assertions"
+    estimatedTokens: 18
+    keywords: [const, assertions, const-assertions]
+  - name: "Null Safety"
+    estimatedTokens: 22
+    keywords: [null, safety, null-safety]
+tags: [angular, typescript, type-safety, generics, utility-types, null-safety]
+---
+
 # TypeScript Best Practices for Angular
 
 TypeScript patterns, type safety, and best practices for Angular development.

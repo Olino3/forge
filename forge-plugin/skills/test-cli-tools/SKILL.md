@@ -1,3 +1,15 @@
+---
+name: test-cli-tools
+description: Iterative testing of command-line interface tools with automated failure detection, documentation, and fix suggestions.
+version: 1.1.0
+context:
+  primary: []
+  topics: []
+memory:
+  scope: per-project
+  files: [tested_commands.md, known_issues.md, command_reference.md, test_results_history.md]
+---
+
 # test-cli-tools
 
 ## Title
@@ -10,62 +22,50 @@
 
 ## File Structure
 
+### Skill Files
 ```
-forge-plugin/
-├── context/
-│   └── cli/
-│       ├── index.md                          # CLI context navigation
-│       └── cli_testing_standards.md          # CLI testing best practices
-├── memory/
-│   ├── index.md                              # Memory system guide
-│   └── skills/
-│       └── test-cli-tools/
-│           ├── index.md                      # Memory structure for this skill
-│           └── {project-name}/               # Per-project memory
-│               ├── tested_commands.md        # Successfully tested commands
-│               ├── known_issues.md           # Known failing commands
-│               ├── command_reference.md      # Command syntax and usage
-│               └── test_results_history.md   # Historical test results
-└── skills/
-    └── test-cli-tools/
-        ├── SKILL.md                          # This file
-        ├── examples.md                       # Usage examples
-        ├── scripts/
-        │   └── test_runner.py                # Helper for running tests
-        └── templates/
-            ├── test_report_template.md       # Test report format
-            └── failure_report_template.md    # Failure documentation format
+forge-plugin/skills/test-cli-tools/
+├── SKILL.md                          # This file
+├── examples.md                       # Usage examples
+├── scripts/
+│   └── test_runner.py                # Helper for running tests
+└── templates/
+    ├── test_report_template.md       # Test report format
+    └── failure_report_template.md    # Failure documentation format
 ```
+
+### Interface References
+- [ContextProvider](../../interfaces/context_provider.md) — `detectProjectType()`, `getConditionalContext(domain, topic)` (if CLI context domain exists)
+- [MemoryStore](../../interfaces/memory_store.md) — `getSkillMemory("test-cli-tools", project)`, `update()`
+
+### Memory (via MemoryStore)
+- `memoryStore.getSkillMemory("test-cli-tools", project)` returns per-project files:
+  - `tested_commands.md` — Successfully tested commands
+  - `known_issues.md` — Known failing commands
+  - `command_reference.md` — Command syntax and usage
+  - `test_results_history.md` — Historical test results
 
 ## Required Reading
 
-### Mandatory Reads (Always Load These)
+### Context & Memory Loading (via Interfaces)
 
-**Before starting any CLI testing, you MUST read these files in order:**
+**Before starting any CLI testing, load resources in this order:**
 
-1. **Memory System Navigation**:
-   - `../../memory/index.md` - Understand memory vs context
-   - `../../memory/skills/test-cli-tools/index.md` - Memory structure for this skill
+1. **Project Memory** (via MemoryStore):
+   - `memoryStore.getSkillMemory("test-cli-tools", project)` — loads all per-project files if they exist
 
-2. **Context System Navigation**:
-   - `../../context/index.md` - Context system overview
-   - `../../context/cli/index.md` - CLI context navigation (if exists)
+2. **CLI Context** (via ContextProvider, if available):
+   - Use `contextProvider.detectProjectType()` to identify available domains
+   - Load CLI-specific context if the domain exists
 
-3. **Project-Specific Memory** (if exists):
-   - `../../memory/skills/test-cli-tools/{project-name}/tested_commands.md`
-   - `../../memory/skills/test-cli-tools/{project-name}/known_issues.md`
-   - `../../memory/skills/test-cli-tools/{project-name}/command_reference.md`
-   - `../../memory/skills/test-cli-tools/{project-name}/test_results_history.md`
+### Loading Order
 
-### File Reading Order
-
-**CRITICAL**: Files must be read in this exact order:
+**CRITICAL**: Resources must be loaded in this exact order:
 
 ```
-1. Memory indexes (understand what has been tested before)
-2. Context indexes (understand CLI testing standards)
-3. Project memory (load known commands and issues)
-4. CLI documentation (README, --help output)
+1. Project memory via memoryStore (load previously tested commands and issues)
+2. Available context via contextProvider (CLI testing standards, if domain exists)
+3. CLI documentation (README, --help output)
 ```
 
 ## Design Requirements
@@ -157,15 +157,12 @@ This workflow is **MANDATORY** and **NON-NEGOTIABLE**. Every step must be comple
 **Purpose**: Understand what memory and context is available.
 
 **Actions**:
-1. Read `../../memory/index.md` to understand memory system
-2. Read `../../memory/skills/test-cli-tools/index.md` for skill-specific memory structure
-3. Read `../../context/index.md` for context system overview
-4. Read `../../context/cli/index.md` if CLI context exists
+1. Use `contextProvider.detectProjectType()` to identify available context domains
+2. If CLI context domain exists, load it via `contextProvider.getDomainIndex("cli")`
 
 **Validation**:
-- [ ] Memory system understood
-- [ ] Skill memory structure known
-- [ ] Context system understood
+- [ ] Available context domains identified
+- [ ] CLI context loaded if available
 
 ---
 
@@ -174,13 +171,13 @@ This workflow is **MANDATORY** and **NON-NEGOTIABLE**. Every step must be comple
 **Purpose**: Load previously tested commands and known issues.
 
 **Actions**:
-1. Check if `../../memory/skills/test-cli-tools/{project-name}/` exists
-2. If exists, read all memory files:
+1. Load project memory via `memoryStore.getSkillMemory("test-cli-tools", project)`
+2. If memory exists, review all files:
    - `tested_commands.md` - Previously successful tests
    - `known_issues.md` - Known failing commands
    - `command_reference.md` - Command syntax reference
    - `test_results_history.md` - Historical results
-3. If doesn't exist, note that this is a new project (memory will be created later)
+3. If no memory exists, note that this is a new project (memory will be created later)
 4. Determine which commands need testing (all, or only new/changed ones)
 
 **Validation**:
@@ -327,8 +324,7 @@ This workflow is **MANDATORY** and **NON-NEGOTIABLE**. Every step must be comple
 **Purpose**: Store test results for future reference.
 
 **Actions**:
-1. If project memory doesn't exist, create:
-   - `../../memory/skills/test-cli-tools/{project-name}/`
+1. Use `memoryStore.update("test-cli-tools", project, filename, content)` for each file
 
 2. Create or update memory files:
 
@@ -504,6 +500,12 @@ Before completing the skill invocation, verify ALL items:
 - Commands with `--force` or `--yes` flags
 
 ## Version History
+
+### v1.1.0 (2025-07-15)
+- Phase 4 Migration: Replaced hardcoded `../../context/` and `../../memory/` paths with ContextProvider and MemoryStore interface calls
+- Added YAML frontmatter with context/memory declarations
+- Added Interface References section
+- Resolved non-existent `../../context/cli/` reference with graceful contextProvider fallback
 
 ### v1.0.0 (2025-11-18)
 - Initial release

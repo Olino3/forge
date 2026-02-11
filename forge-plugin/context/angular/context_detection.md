@@ -1,3 +1,31 @@
+---
+id: "angular/context_detection"
+domain: angular
+title: "Angular Context Detection - Quick Reference"
+type: detection
+estimatedTokens: 550
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "What to Look At"
+    estimatedTokens: 83
+    keywords: [look]
+  - name: "Version & Feature Signals"
+    estimatedTokens: 57
+    keywords: [version, feature, signals]
+  - name: "State Management Snapshot"
+    estimatedTokens: 47
+    keywords: [state, management, snapshot]
+  - name: "UI Library & Styling"
+    estimatedTokens: 63
+    keywords: [library, styling]
+  - name: "TypeScript & Tooling"
+    estimatedTokens: 12
+    keywords: [typescript, tooling]
+tags: [angular, detection, version, framework, state-management, ui-library]
+---
+
 # Angular Context Detection - Quick Reference
 
 Minimal cues to detect an Angular project's stack so you know which other context files to load.

@@ -1,0 +1,37 @@
+{
+  "$schema": "../interfaces/schemas/agent_config.schema.json",
+  "name": "poseidon",
+  "version": "1.0.0",
+  "description": "Master of data flow and stream orchestration. Specializes in ETL pipelines, data streaming, event-driven architectures, and data integration",
+  "model": "sonnet",
+  "tools": ["Read", "Write", "Bash", "Grep", "Glob"],
+  "permissionMode": "auto",
+  "context": {
+    "primaryDomains": ["schema"],
+    "secondaryDomains": ["python", "azure", "dotnet", "security"],
+    "alwaysLoadFiles": []
+  },
+  "memory": {
+    "storagePath": "forge-plugin/memory/agents/poseidon",
+    "categories": [
+      {"name": "pipelines", "description": "Track data pipeline architectures and patterns"},
+      {"name": "transformations", "description": "Record data transformation logic and schemas"},
+      {"name": "streams", "description": "Store stream processing configurations"},
+      {"name": "integrations", "description": "Maintain data source and sink integrations"}
+    ]
+  },
+  "skills": [
+    {"name": "database-schema-analysis", "required": true, "useCase": "Analyze database schemas for ETL source/target mapping"},
+    {"name": "file-schema-analysis", "required": true, "useCase": "Analyze file schemas for data transformation"},
+    {"name": "python-code-review", "required": false, "useCase": "Review Python data processing code"}
+  ],
+  "hooks": [
+    {
+      "on_file_write": {
+        "patterns": ["*.pipeline.yml", "*.etl.py", "*.stream.js", "*.kafka.yml", "*.airflow.py"],
+        "action": "validate_data_pipeline"
+      }
+    }
+  ],
+  "mcpServers": []
+}

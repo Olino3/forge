@@ -1,3 +1,26 @@
+---
+id: "engineering/code_review_principles"
+domain: engineering
+title: "Code Review Principles"
+type: reference
+estimatedTokens: 150
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Core Principles"
+    estimatedTokens: 40
+    keywords: [dry, solid, kiss, yagni]
+  - name: "Severity Classification"
+    estimatedTokens: 30
+    keywords: [critical, high, medium, low, severity]
+  - name: "Review Focus Areas"
+    estimatedTokens: 30
+    keywords: [correctness, security, performance, maintainability, testing]
+tags: [engineering, code-review, principles, universal]
+crossDomainTriggers: []
+---
+
 # Code Review Principles
 
 Universal code review standards applicable to all languages and frameworks.

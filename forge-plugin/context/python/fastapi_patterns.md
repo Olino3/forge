@@ -1,3 +1,34 @@
+---
+id: "python/fastapi_patterns"
+domain: python
+title: "FastAPI Patterns and Best Practices"
+type: framework
+estimatedTokens: 400
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2025-11-14"
+maintainedFor: "python-code-review"
+sections:
+  - name: "Common Anti-Patterns"
+    estimatedTokens: 90
+    keywords: [response-model, async, dependencies, validation]
+  - name: "Pydantic Models"
+    estimatedTokens: 50
+    keywords: [pydantic, validation, field, schema]
+  - name: "Async/Await Issues"
+    estimatedTokens: 50
+    keywords: [async, await, blocking, sync]
+  - name: "Dependency Injection"
+    estimatedTokens: 50
+    keywords: [depends, dependency, injection, state]
+  - name: "Security Issues"
+    estimatedTokens: 60
+    keywords: [auth, cors, sql-injection, rate-limiting]
+tags: [python, fastapi, pydantic, async, api]
+crossDomainTriggers: ["security/security_guidelines"]
+detectionTriggers: ["from fastapi import", "@router.get", "BaseModel"]
+---
+
 # FastAPI Patterns
 
 Quick reference for FastAPI best practices and common issues. For detailed examples, see [FastAPI documentation](https://fastapi.tiangolo.com/).

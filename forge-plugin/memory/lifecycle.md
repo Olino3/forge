@@ -2,6 +2,8 @@
 
 Rules for memory freshness, pruning, and archival to keep memory accurate and efficient.
 
+> **Interface**: These rules are formalized and automated by the [MemoryStore interface](../interfaces/memory_store.md). Skills and commands should use `memoryStore` methods rather than implementing lifecycle logic manually.
+
 ## Freshness Indicators
 
 Every memory file must include a timestamp comment as its first line:
@@ -10,7 +12,7 @@ Every memory file must include a timestamp comment as its first line:
 <!-- Last Updated: 2026-02-10 -->
 ```
 
-Skills must update this timestamp whenever they modify a memory file.
+**Automation**: `memoryStore.create()` and `memoryStore.update()` inject/refresh this timestamp automatically. Skills no longer need to manage timestamps manually.
 
 ## Staleness Thresholds
 
@@ -20,7 +22,11 @@ Skills must update this timestamp whenever they modify a memory file.
 | 31-90 days | Aging | Use but verify critical claims against current code |
 | 90+ days | Potentially stale | Add `[POTENTIALLY STALE]` note, verify before relying on |
 
+**Automation**: `memoryStore.read()` auto-computes staleness from the `<!-- Last Updated -->` timestamp. `memoryStore.getStalenessReport()` returns staleness status for all memory files in a project.
+
 ## Pruning Rules
+
+Pruning removes or archives entries that are no longer relevant. `memoryStore.prune(policy)` automates these rules — pass a policy object to control which file types to prune and their retention thresholds.
 
 ### review_history.md
 - Keep the **last 10 entries** in the main file
@@ -49,9 +55,11 @@ Skills must update this timestamp whenever they modify a memory file.
 | project_overview.md | 200 | Move detailed sections to separate files |
 | review_history.md | 300 | Archive older entries |
 
+**Automation**: `memoryStore.update()` and `memoryStore.append()` check line counts against these limits and return a `warning` string if exceeded. The write still succeeds — warnings are advisory.
+
 ## Reset Protocol
 
-To start fresh for a project:
+To start fresh for a project, use `memoryStore.delete()` for individual entries or the following commands:
 
 ```bash
 # Delete skill-specific memory
@@ -68,6 +76,8 @@ rm -rf memory/projects/{project-name}/
 On every 5th invocation of any skill, include this self-check:
 
 > **Memory verification**: Spot-check 2-3 claims from `project_overview.md` against actual code. Update or remove any inaccurate entries.
+
+**Automation**: `memoryStore.validate(id)` performs automated checks (completeness, accuracy, specificity, growth) as defined in [quality_guidance.md](quality_guidance.md). Use it in conjunction with manual spot-checks.
 
 ---
 

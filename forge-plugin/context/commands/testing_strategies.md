@@ -1,3 +1,37 @@
+---
+id: "commands/testing_strategies"
+domain: commands
+title: "Testing Strategies"
+type: pattern
+estimatedTokens: 900
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Test Pyramid"
+    estimatedTokens: 67
+    keywords: [test, pyramid]
+  - name: "Test Framework Detection"
+    estimatedTokens: 107
+    keywords: [test, framework, detection]
+  - name: "Test Execution Strategy"
+    estimatedTokens: 120
+    keywords: [test, execution, strategy]
+  - name: "Coverage Targets"
+    estimatedTokens: 75
+    keywords: [coverage, targets]
+  - name: "Test Failure Debugging"
+    estimatedTokens: 98
+    keywords: [test, failure, debugging]
+  - name: "Skill Integration"
+    estimatedTokens: 18
+    keywords: [skill, integration]
+  - name: "Official References"
+    estimatedTokens: 20
+    keywords: [official, references]
+tags: [commands, testing, test-pyramid, coverage, debugging, pytest, jest, xunit]
+---
+
 # Testing Strategies
 
 Reference patterns for the `/test` command. Covers test pyramid, coverage targets, test framework detection, and failure debugging strategies.

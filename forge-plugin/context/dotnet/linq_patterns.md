@@ -1,3 +1,49 @@
+---
+id: "dotnet/linq_patterns"
+domain: dotnet
+title: "LINQ Optimization Patterns"
+type: pattern
+estimatedTokens: 1200
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Common Anti-Patterns"
+    estimatedTokens: 72
+    keywords: [anti-patterns]
+  - name: "Deferred Execution"
+    estimatedTokens: 97
+    keywords: [deferred, execution]
+  - name: "IEnumerable vs IQueryable"
+    estimatedTokens: 72
+    keywords: [ienumerable, iqueryable]
+  - name: "Query Optimization Patterns"
+    estimatedTokens: 39
+    keywords: [query, optimization, patterns]
+  - name: "Common Performance Issues"
+    estimatedTokens: 63
+    keywords: [performance, issues]
+  - name: "First vs Single vs FirstOrDefault"
+    estimatedTokens: 90
+    keywords: [first, single, firstordefault]
+  - name: "Pagination Best Practices"
+    estimatedTokens: 57
+    keywords: [pagination]
+  - name: "GroupBy Optimization"
+    estimatedTokens: 45
+    keywords: [groupby, optimization]
+  - name: "Common Detection Patterns"
+    estimatedTokens: 42
+    keywords: [detection, patterns]
+  - name: "LINQ Optimization Checklist"
+    estimatedTokens: 56
+    keywords: [linq, optimization, checklist]
+  - name: "Official Resources"
+    estimatedTokens: 23
+    keywords: [official, resources]
+tags: [dotnet, linq, deferred-execution, iqueryable, performance, pagination]
+---
+
 # LINQ Optimization Patterns
 
 Quick reference for LINQ query optimization. For detailed examples, see [LINQ documentation](https://learn.microsoft.com/en-us/dotnet/csharp/linq/).

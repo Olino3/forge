@@ -1,3 +1,43 @@
+---
+id: "python/mocking_patterns"
+domain: python
+title: "Python Mocking Patterns"
+type: pattern
+estimatedTokens: 1150
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "When to Mock"
+    estimatedTokens: 57
+    keywords: [mock]
+  - name: "unittest.mock (Standard Library)"
+    estimatedTokens: 187
+    keywords: [unittestmock, standard, library]
+  - name: "pytest-mock (pytest Plugin)"
+    estimatedTokens: 51
+    keywords: [pytest-mock, pytest, plugin]
+  - name: "AsyncMock (Python 3.8+)"
+    estimatedTokens: 22
+    keywords: [asyncmock, python]
+  - name: "Common Patterns"
+    estimatedTokens: 100
+    keywords: [patterns]
+  - name: "Anti-Patterns"
+    estimatedTokens: 78
+    keywords: [anti-patterns]
+  - name: "MagicMock vs Mock"
+    estimatedTokens: 28
+    keywords: [magicmock, mock]
+  - name: "Quick Reference"
+    estimatedTokens: 57
+    keywords: [quick, reference]
+  - name: "Related Context Files"
+    estimatedTokens: 15
+    keywords: [related, context, files]
+tags: [python, testing, mocking, patch, unittest-mock, pytest-mock]
+---
+
 # Python Mocking Patterns
 
 ## When to Mock

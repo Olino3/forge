@@ -1,3 +1,34 @@
+---
+id: "engineering/error_recovery"
+domain: engineering
+title: "Error Recovery Patterns"
+type: reference
+estimatedTokens: 350
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Git Access Failures"
+    estimatedTokens: 60
+    keywords: [git, access, failures]
+  - name: "Memory Read/Write Failures"
+    estimatedTokens: 57
+    keywords: [memory, readwrite, failures]
+  - name: "Context File Failures"
+    estimatedTokens: 41
+    keywords: [context, file, failures]
+  - name: "Large Diff Handling"
+    estimatedTokens: 55
+    keywords: [large, diff, handling]
+  - name: "Permission Issues"
+    estimatedTokens: 19
+    keywords: [permission, issues]
+  - name: "General Recovery Principles"
+    estimatedTokens: 49
+    keywords: [recovery, principles]
+tags: [engineering, error-recovery, git, memory, context, permissions]
+---
+
 # Error Recovery Patterns
 
 Compact guide for skills to handle failures gracefully during execution.

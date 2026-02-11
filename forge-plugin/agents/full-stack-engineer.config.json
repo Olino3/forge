@@ -1,0 +1,29 @@
+{
+  "$schema": "../interfaces/schemas/agent_config.schema.json",
+  "name": "full-stack-engineer",
+  "version": "1.0.0",
+  "description": "End-to-end architect specializing in building complete full-stack applications with best practices",
+  "model": "sonnet",
+  "tools": ["view", "edit", "create", "grep", "glob", "bash", "task"],
+  "context": {
+    "primaryDomains": ["engineering"],
+    "secondaryDomains": ["python", "dotnet", "angular", "azure", "security"],
+    "alwaysLoadFiles": []
+  },
+  "memory": {
+    "storagePath": "forge-plugin/memory/agents/full-stack-engineer",
+    "categories": [
+      {"name": "architecture", "description": "Architecture decisions and patterns"},
+      {"name": "tech_stack", "description": "Technology stack choices and configurations"},
+      {"name": "patterns", "description": "Common code patterns and utilities"},
+      {"name": "performance", "description": "Performance optimization techniques"},
+      {"name": "security", "description": "Security configurations and patterns"}
+    ]
+  },
+  "skills": [
+    {"name": "python-code-review", "required": false, "useCase": "Backend Python code quality review"},
+    {"name": "commit-helper", "required": false, "useCase": "Documenting changes in commit messages"},
+    {"name": "get-git-diff", "required": false, "useCase": "Analyzing code changes across branches"},
+    {"name": "documentation-generator", "required": false, "useCase": "Generating project documentation"}
+  ]
+}

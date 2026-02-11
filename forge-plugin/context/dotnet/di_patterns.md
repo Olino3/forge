@@ -1,3 +1,46 @@
+---
+id: "dotnet/di_patterns"
+domain: dotnet
+title: "Dependency Injection Patterns"
+type: pattern
+estimatedTokens: 1100
+loadingStrategy: onDemand
+version: "1.0.0"
+lastUpdated: "2026-02-10"
+sections:
+  - name: "Common Anti-Patterns"
+    estimatedTokens: 68
+    keywords: [anti-patterns]
+  - name: "Service Lifetimes"
+    estimatedTokens: 68
+    keywords: [service, lifetimes]
+  - name: "Critical Lifetime Rules"
+    estimatedTokens: 84
+    keywords: [critical, lifetime, rules]
+  - name: "Background Services with Scoped Dependencies"
+    estimatedTokens: 61
+    keywords: [background, services, scoped, dependencies]
+  - name: "IHttpClientFactory"
+    estimatedTokens: 59
+    keywords: [ihttpclientfactory]
+  - name: "Options Pattern"
+    estimatedTokens: 77
+    keywords: [options, pattern]
+  - name: "Service Registration Patterns"
+    estimatedTokens: 36
+    keywords: [service, registration, patterns]
+  - name: "Common Detection Patterns"
+    estimatedTokens: 63
+    keywords: [detection, patterns]
+  - name: "DI Checklist"
+    estimatedTokens: 47
+    keywords: [checklist]
+  - name: "Official Resources"
+    estimatedTokens: 24
+    keywords: [official, resources]
+tags: [dotnet, dependency-injection, service-lifetime, httpclient, options-pattern]
+---
+
 # Dependency Injection Patterns
 
 Quick reference for DI in .NET. For detailed examples, see [Dependency injection in .NET](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection).

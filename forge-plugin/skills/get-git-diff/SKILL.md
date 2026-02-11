@@ -13,13 +13,10 @@ description: Examines git diffs between commits or branches with intelligent ana
 
 - **SKILL.md** (this file): Main instructions and MANDATORY workflow
 - **examples.md**: Usage scenarios with different diff types
-- **../../context/git/**: Shared git context files
-  - `index.md`: Quick reference guide - READ THIS FIRST to understand available context files
+- **Context**: Git domain context loaded via `contextProvider.getDomainIndex("git")`. See [ContextProvider Interface](../../interfaces/context_provider.md).
   - `git_diff_reference.md`: Unified diff format reference and best practices
   - `diff_patterns.md`: Common patterns to identify in code changes
-- **../../memory/skills/get-git-diff/**: Project-specific diff analysis memory
-  - `index.md`: Memory system guide - READ THIS to understand memory structure
-  - `{project-name}/`: Per-project diff patterns and insights
+- **Memory**: Project-specific memory accessed via `memoryStore.getSkillMemory("get-git-diff", "{project-name}")`. See [MemoryStore Interface](../../interfaces/memory_store.md).
 - **scripts/**:
   - `README.md`: Complete documentation for all helper scripts
   - `validate.sh`: Git repository and commit validation functions
@@ -65,11 +62,10 @@ Git diff analysis evaluates 7 critical dimensions:
 
 ### ⚠️ STEP 2: Load Context & Memory, Then Execute Git Diff (REQUIRED)
 
-**FIRST: Load indexes to understand available resources**
-1. **READ** `../../context/git/index.md` to understand available git context files
-2. **READ** `../../memory/skills/get-git-diff/index.md` to understand memory system
-3. Check for project-specific memory in `../../memory/skills/get-git-diff/{project-name}/`
-   - If exists: Load memory files to understand project patterns
+**FIRST: Load indexes and memory to understand available resources**
+1. **Load domain index**: Use `contextProvider.getDomainIndex("git")` to discover available git context files
+2. **Load skill memory**: Use `memoryStore.getSkillMemory("get-git-diff", "{project-name}")` to load project-specific patterns
+   - If memory exists: Review project patterns from previous analyses
    - If not: Note this is first analysis of this project
 
 **THEN: Execute git diff with special handling**
@@ -87,8 +83,7 @@ Git diff analysis evaluates 7 critical dimensions:
 ### � STEP 3: Analyze and Summarize (REQUIRED)
 
 **FIRST: Load relevant context files (use indexes from Step 2 for guidance)**
-1. **READ** `../../context/git/git_diff_reference.md` for diff format understanding
-2. **READ** `../../context/git/diff_patterns.md` for change pattern classification
+1. **Load context**: Use `contextProvider.getConditionalContext("git", detection)` to load relevant context files (`git_diff_reference.md`, `diff_patterns.md`)
 
 **THEN: Analyze and document**:
 1. **Commit Metadata**:
@@ -146,7 +141,7 @@ Git diff analysis evaluates 7 critical dimensions:
 
 **OPTIONAL: Update Project Memory**
 
-If patterns emerge during analysis, consider storing insights in `../../memory/skills/get-git-diff/{project-name}/`:
+If patterns emerge during analysis, consider storing insights via `memoryStore.update("get-git-diff", "{project-name}", ...)`:
 - Common file change patterns
 - Frequently modified areas
 - Notable commit patterns or conventions
@@ -249,9 +244,13 @@ Refer to official documentation:
 
 ## Version History
 
+- v1.2.0 (2026-02-10): Migrated to interface-based context and memory access
+  - Replaced hardcoded context paths with ContextProvider interface calls
+  - Replaced hardcoded memory paths with MemoryStore interface calls
+  - Added references to interface documentation
 - v1.1.0 (2025-01-XX): Centralized context and project memory
-  - Context files moved to ../../context/git/
-  - Project-specific memory system in ../../memory/skills/get-git-diff/
+  - Context files moved to shared git domain context
+  - Project-specific memory system added for get-git-diff skill
   - Optional memory updates for common patterns
 - v1.0.0 (2025-11-13): Initial release
   - Mandatory 4-step workflow
