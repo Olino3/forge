@@ -140,5 +140,4 @@ Detection patterns and solution references for common RxJS usage in Angular.
 ---
 
 **Version**: 0.1.0-alpha (Compact Reference Format)
-**Last Updated**: 2025-11-14
 **Angular Versions**: 2-18+
