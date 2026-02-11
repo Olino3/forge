@@ -22,7 +22,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # shellcheck source=lib/health_buffer.sh
 source "${SCRIPT_DIR}/lib/health_buffer.sh"
 
-FORGE_DIR="$(dirname "$SCRIPT_DIR")"
+# Allow FORGE_DIR override for testing in temporary directories
+FORGE_DIR="${FORGE_DIR:-$(dirname "$SCRIPT_DIR")}"
 MEMORY_DIR="$FORGE_DIR/memory"
 TODAY=$(date +%Y-%m-%d)
 
