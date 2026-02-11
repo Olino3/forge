@@ -104,7 +104,11 @@ if [ "$EXAMPLES_MISSING" -gt 0 ]; then
 fi
 
 # --- Test 4: SKILL.md files have expected workflow sections ---
-info "Checking SKILL.md workflow structure..."
+# NOTE: The 6-step workflow (Initial Analysis, Load Memory, Load Context, Perform Analysis,
+# Generate Output, Update Memory) is a RECOMMENDATION from SKILL_TEMPLATE.md, not a strict
+# requirement. Many existing skills use equivalent or adapted step names. This test reports
+# findings as informational rather than failures.
+info "Checking SKILL.md workflow structure (informational)..."
 WORKFLOW_STEPS=(
     "Initial Analysis"
     "Load Memory"
@@ -176,9 +180,12 @@ for config in $AGENT_CONFIGS; do
 done
 
 # --- Test 8: Runtime skill invocation (requires claude CLI) ---
+# NOTE: True runtime E2E testing of skill invocation is not currently possible because the
+# `claude` CLI requires an interactive session. This test validates structure and discoverability.
+# Future options: (1) claude CLI batch/non-interactive mode, (2) dedicated Claude CLI test harness.
 if command -v claude &>/dev/null; then
-    info "claude CLI found — attempting runtime skill verification..."
-    warn "Runtime skill invocation tests not yet implemented (requires interactive claude session)"
+    info "claude CLI found — runtime skill invocation tests not yet implemented"
+    warn "claude CLI requires interactive session; skipping runtime invocation"
 else
     warn "claude CLI not found — skipping runtime skill invocation tests"
 fi

@@ -9,6 +9,12 @@
 # Exit codes:
 #   0 — All tests passed
 #   1 — One or more tests failed
+#
+# CI Notes (GitHub Actions):
+#   - The workflow (forge-tests.yml) was validated locally; first CI run may reveal issues
+#   - FORGE_DIR is exported for Layer 1 pytest compatibility
+#   - shellcheck exclusion rules may differ between Ubuntu versions (use SC codes if needed)
+#   - For Layer 2 tests, use this script with --layer2 rather than layer2/run_layer2.sh
 
 set -euo pipefail
 
