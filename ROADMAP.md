@@ -103,6 +103,41 @@ Complete documentation rewrite to reflect the Factory's mature architecture.
 - [x] `ROADMAP.md` — Living vision document (this file)
 - [x] `README.md` — Public-facing showcase of the Software Factory
 
+### Phase 8 — The Proving Grounds (Testing Architecture) 🔨
+
+Layered testing architecture validating the entire plugin — from static file structure to runtime hook behavior — using only bash, python3, and optionally shellcheck. See `TESTING_ROADMAP.md` for full specifications.
+
+**Phase 1 — Foundation & Infrastructure ✅**
+- [x] `tests/conftest.py` — Shared pytest config with FORGE_DIR resolution, YAML frontmatter extraction, JSON loader
+- [x] `tests/pytest.ini` — Pytest configuration with markers
+- [x] `tests/run_all.sh` — Master test runner with `--layer2`/`--e2e` flags
+- [x] `tests/layer1/run_layer1.sh` — Layer 1 specific runner
+- [x] `test_json_schemas.py` — All 11 agent configs + hooks.json + plugin.json + safety profile validated against schemas (170 tests)
+- [x] `test_file_structure.py` — Agent file pairing, skill/command directory conventions, structural integrity
+- [x] `test_hook_syntax.sh` — Shebang, strict mode, `bash -n` syntax, executable permissions (96 checks)
+
+**Phase 2 — Static Validation (Context, Memory, Cross-References) ✅**
+- [x] `test_yaml_frontmatter.py` — All 81 context files validated against `context_metadata.schema.json` (813 tests)
+- [x] `test_cross_references.py` — Referential integrity: agent→skill, agent→domain, agent→memory, hooks.json→scripts, plugin→commands
+- [x] `test_hooks_registration.py` — Registration completeness, duplicate detection, known unregistered script tracking
+- [x] `test_memory_structure.py` — Directory structure, timestamp formats, line limit enforcement
+- [x] `test_plugin_manifest.py` — All 12 commands validated, path resolution, convention compliance
+- [x] `test_shellcheck.sh` — Bash linting at warning level (graceful skip if shellcheck absent)
+
+**Summary**: ~1,300 static validation tests across 10 test files (1,131 pytest + 96 bash + shellcheck)
+
+**Phase 3 — Hook Test Harness + Shield Layer Tests ✅**
+- [x] `layer2/hooks/hook_helpers.py` — HookRunner, HookResult, TempForgeEnvironment classes with path resolution constants
+- [x] `layer2/hooks/conftest.py` — Pytest fixtures (hook_runner, temp_forge_env, forge_dir, repo_root)
+- [x] `fixtures/hook_inputs/*.json` — 18 fixture files covering PreToolUse (Read, Write, Edit, Bash) and UserPromptSubmit events
+- [x] `test_sandbox_boundary_guard.py` — Project path allow/deny, sensitive files, bash dangerous paths/patterns (66 tests)
+- [x] `test_pii_redactor.py` — Email, SSN, AWS keys, GitHub tokens, private keys, phone numbers, multi-PII (23 tests)
+- [x] `test_dependency_sentinel.py` — pip/npm/yarn allow/deny, typosquats, malicious packages, deny list validation (54 tests)
+- [x] `test_git_hygiene_enforcer.py` — Push protection, force push, conventional commits, secrets in staged diffs (42 tests)
+- [x] `test_pre_commit_quality.py` — Staged secrets, claudedocs, SKILL.md version history, memory absolute paths (23 tests)
+
+**Summary**: ~1,508 total tests (1,131 Layer 1 pytest + 96 bash + shellcheck + 208 Layer 2 hook integration)
+
 ---
 
 ## Planned Agents
@@ -569,6 +604,7 @@ Key milestones in the Factory's history:
 |------|-----------|
 | **Feb 11, 2026** | Olympian Council Expansion — Planned 8 remaining Olympian agents (Zeus, Hera, Athena, Apollo, Artemis, Aphrodite, Hermes, Demeter) |
 | **Feb 11, 2026** | Enterprise Skills Catalog — Documented 173 skills from Vercel, Google Labs, Trail of Bits, Microsoft, Anthropic, Sentry |
+| **Feb 12, 2026** | Phase 8 — The Proving Grounds (Phase 1+2) — ~1,300 static validation tests across 10 test files |
 | **Feb 11, 2026** | Testing Roadmap — Comprehensive testing architecture with 6 phases and ~300 tests planned |
 | **Feb 11, 2026** | Community Skills Catalog — Documented 99+ planned skills across 15 domains |
 | **Feb 11, 2026** | Phase 7 — The Grand Reforging — Complete documentation rewrite |
@@ -590,7 +626,7 @@ Key milestones in the Factory's history:
 
 ---
 
-*Last Updated: February 11, 2026*
+*Last Updated: February 12, 2026*
 *Maintained by: The Forge Keepers*
 
 *Forged by Hephaestus. Tempered by experience. Worthy of Olympus.*

@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input": {
+    "command": "python3 -c 'print(1+1)'"
+  },
+  "cwd": "/home/user/project"
+}

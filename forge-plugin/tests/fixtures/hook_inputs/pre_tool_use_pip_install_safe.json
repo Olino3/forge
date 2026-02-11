@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input": {
+    "command": "pip install requests flask"
+  },
+  "cwd": "/home/user/project"
+}

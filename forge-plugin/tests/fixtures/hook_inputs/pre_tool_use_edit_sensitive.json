@@ -1,0 +1,8 @@
+{
+  "tool_name": "Edit",
+  "tool_input": {
+    "file_path": "/home/user/project/.env",
+    "content": "SECRET_KEY=abc123"
+  },
+  "cwd": "/home/user/project"
+}

@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input": {
+    "command": "npm install crossenv"
+  },
+  "cwd": "/home/user/project"
+}

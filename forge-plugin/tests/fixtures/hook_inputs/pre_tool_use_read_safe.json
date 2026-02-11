@@ -1,0 +1,7 @@
+{
+  "tool_name": "Read",
+  "tool_input": {
+    "file_path": "src/main.py"
+  },
+  "cwd": "/home/user/project"
+}
