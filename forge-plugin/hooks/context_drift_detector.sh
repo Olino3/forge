@@ -100,6 +100,16 @@ ALL_CONTEXT_TAGS=$(
     | sort -u
 )
 
+# --- Helper: check if a value is in an array ----------------------------
+array_contains() {
+    local needle="$1"; shift
+    local item
+    for item in "$@"; do
+        [[ "$item" == "$needle" ]] && return 0
+    done
+    return 1
+}
+
 # --- Check each conflict group -------------------------------------------
 WARNINGS=""
 CONFLICT_GROUPS=$(jq -r 'keys[] | select(. != "_comment")' "$CONFLICTS_FILE" 2>/dev/null)
@@ -115,7 +125,7 @@ for group in $CONFLICT_GROUPS; do
         for pkg in $MEMBER_PACKAGES; do
             if echo "$PACKAGES" | grep -qi "^${pkg}$"; then
                 # Avoid duplicates
-                if [[ ! " ${DETECTED_IN_DEPS[*]:-} " =~ \ ${member}\ ]]; then
+                if ! array_contains "$member" "${DETECTED_IN_DEPS[@]}"; then
                     DETECTED_IN_DEPS+=("$member")
                 fi
                 break
@@ -140,7 +150,7 @@ for group in $CONFLICT_GROUPS; do
         for tag in $MEMBER_TAGS; do
             if echo "$ALL_CONTEXT_TAGS" | grep -qi "^${tag}$"; then
                 # Context has this tag — is this member in the project?
-                if [[ ! " ${DETECTED_IN_DEPS[*]:-} " =~ \ ${member}\ ]]; then
+                if ! array_contains "$member" "${DETECTED_IN_DEPS[@]}"; then
                     WARN="⚠️ Stale context: context files tagged [${tag}] exist but '${member}' is not in ${BASENAME}."
                     WARNINGS="${WARNINGS}${WARN}\n"
                     health_buffer_append "$WARN"
@@ -161,7 +171,7 @@ for group in $CONFLICT_GROUPS; do
         MEMBER_PACKAGES=$(jq -r ".\"$group\".members.\"$member\".packages[]" "$CONFLICTS_FILE" 2>/dev/null)
         for pkg in $MEMBER_PACKAGES; do
             if echo "$PACKAGES" | grep -qi "^${pkg}$"; then
-                if [[ ! " ${DETECTED_IN_DEPS[*]:-} " =~ \ ${member}\ ]]; then
+                if ! array_contains "$member" "${DETECTED_IN_DEPS[@]}"; then
                     DETECTED_IN_DEPS+=("$member")
                 fi
                 break
