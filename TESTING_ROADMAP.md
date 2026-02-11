@@ -141,9 +141,11 @@ forge-plugin/
 
 ## Phases
 
-### Phase 1: Foundation and Infrastructure
+### Phase 1: Foundation and Infrastructure ✅
 
 **Goal**: Create the test directory structure, runner scripts, shared configuration, and the first high-value static tests.
+
+**Status**: Complete — 170 pytest tests + 96 bash checks, all passing.
 
 **Files to create:**
 - `tests/conftest.py` — Shared FORGE_DIR resolution, helper for extracting YAML frontmatter
@@ -174,9 +176,11 @@ forge-plugin/
 
 ---
 
-### Phase 2: Static Validation (Context, Memory, Cross-References)
+### Phase 2: Static Validation (Context, Memory, Cross-References) ✅
 
 **Goal**: Validate all 81 context files, memory structure, plugin manifest, cross-reference integrity, and hook registration completeness.
+
+**Status**: Complete — 961 pytest tests (957 passed, 4 known data quality failures) + shellcheck (skips gracefully if not installed). See TODOs section for known failures.
 
 **Tests to implement:**
 
@@ -210,9 +214,11 @@ forge-plugin/
 
 ---
 
-### Phase 3: Hook Test Harness and Security Hooks
+### Phase 3: Hook Test Harness and Security Hooks ✅
 
 **Goal**: Build the hook testing infrastructure and test the 5 Shield-layer security hooks — the highest-risk components.
+
+**Status**: Complete — 208 pytest integration tests, all passing. Infrastructure includes HookRunner subprocess harness, TempForgeEnvironment with git staging support, and 18 fixture files.
 
 **Infrastructure to create:**
 
@@ -404,3 +410,41 @@ After all phases are complete, the test suite should pass these checks:
 4. Breaking a convention (e.g., removing an agent's `.config.json`, adding a context file without frontmatter, referencing a non-existent skill) causes a test failure
 5. Breaking a hook (e.g., changing exit codes, breaking JSON output format) causes a hook integration test failure
 6. Memory lifecycle violations (e.g., exceeding line limits, missing timestamps) are caught by memory tests
+
+---
+
+## TODOs — Known Issues and Out-of-Scope Items
+
+> *Items discovered during test implementation that need attention but are outside the scope of the testing phases themselves.*
+
+### Data Quality Issues (caught by tests — 4 known failures)
+
+- [ ] **TODO**: `context/angular/typescript_patterns.md` — `sections[6].keywords[0]` is `null` instead of a string, violating `context_metadata.schema.json`. Fix the YAML frontmatter keyword entry. *(Caught by `test_yaml_frontmatter.py::TestSchemaCompliance`)*
+
+- [ ] **TODO**: `memory/skills/angular-code-review/example-project/reference.md` — 504 lines, exceeds the `reference` limit of 500 lines defined in `lifecycle.md`. *(Caught by `test_memory_structure.py::TestMemoryFileLineLimits`)*
+
+- [ ] **TODO**: `memory/skills/dotnet-code-review/example-project/project_overview.md` — 299 lines, exceeds the `project_overview` limit of 200 lines defined in `lifecycle.md`. *(Caught by `test_memory_structure.py::TestMemoryFileLineLimits`)*
+
+- [ ] **TODO**: `memory/skills/dotnet-code-review/example-project/review_history.md` — 343 lines, exceeds the `review_history` limit of 300 lines defined in `lifecycle.md`. *(Caught by `test_memory_structure.py::TestMemoryFileLineLimits`)*
+
+### Convention Inconsistencies
+
+- [ ] **TODO**: Memory timestamp format mismatch — `lifecycle.md` prescribes `<!-- Last Updated: YYYY-MM-DD -->` (HTML comment) but actual memory files use `**Last Updated**: YYYY-MM-DD` (bold markdown). Tests currently accept both formats. Should standardize on one format and update either the spec or the files.
+
+- [ ] **TODO**: Three hook scripts exist on disk but are NOT registered in `hooks.json`: `memory_sync.sh`, `session_context.sh`, `context_freshness.sh`. These may be legacy/deprecated or work-in-progress. Should be either registered or removed.
+
+### CI / Environment
+
+- [ ] **TODO**: `shellcheck` is not installed in the development environment. `test_shellcheck.sh` gracefully skips. CI workflow (Phase 6) should install it via `apt-get install shellcheck`.
+
+- [ ] **TODO**: `tests/README.md` is listed in the directory structure spec but not yet created. Planned for Phase 6.
+
+### Hook Behavior Observations (discovered in Phase 3)
+
+- [ ] **TODO**: `pre_commit_quality.sh` — `*.pem` and `*.key` SECRET_PATTERNS are grep'd with `-E "(^|/)${pattern}$"` which correctly matches filenames like `cert.pem` and `server.key` (the `*` is not a literal glob in this context). The regex works but the pattern names are misleading — consider documenting this or switching to explicit suffix patterns like `\.pem$`, `\.key$`.
+
+- [ ] **TODO**: `pre_commit_quality.sh` does NOT source `health_buffer.sh` unlike the other 4 Shield hooks. This means pre-commit warnings are not aggregated into the system health buffer. Consider adding health buffer integration for consistency.
+
+- [ ] **TODO**: All 5 Shield hooks always exit 0 regardless of allow/deny. Some hook comments mention "exit code 2 = blocking error" (e.g., in `pre_commit_quality.sh` line 17) but this convention is never used. The deny mechanism is exclusively via JSON `hookSpecificOutput.permissionDecision`. Consider removing misleading exit-code-2 comments.
+
+- [ ] **TODO**: `pii_redactor.sh` never issues a deny decision — it only emits `additionalContext` warnings. This is by design (warn-only for PII), but the hook description in `hooks.json` says "Scan for PII patterns" without clarifying the warn-only behavior. Consider documenting this explicitly.

@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input": {
+    "command": "ls -la src/"
+  },
+  "cwd": "/home/user/project"
+}

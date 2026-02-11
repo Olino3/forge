@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input": {
+    "command": "git commit -m \"chore: clean up unused imports\""
+  },
+  "cwd": "/home/user/project"
+}

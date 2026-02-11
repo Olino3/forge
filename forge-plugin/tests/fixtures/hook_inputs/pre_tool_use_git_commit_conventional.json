@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input": {
+    "command": "git commit -m \"feat(auth): add OAuth2 provider\""
+  },
+  "cwd": "/home/user/project"
+}
