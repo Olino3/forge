@@ -1,7 +1,7 @@
 {
   "$schema": "../interfaces/schemas/agent_config.schema.json",
   "name": "technical-writer",
-  "version": "1.0.0",
+  "version": "0.1.0-alpha",
   "description": "Documentation artisan specializing in clear, comprehensive technical documentation",
   "model": "sonnet",
   "tools": ["view", "edit", "create", "grep", "glob", "bash"],

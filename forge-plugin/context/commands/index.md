@@ -5,7 +5,7 @@ title: "Commands Context Index"
 type: index
 estimatedTokens: 300
 loadingStrategy: always
-version: "1.0.0"
+version: "0.1.0-alpha"
 lastUpdated: "2026-02-10"
 indexedFiles:
   - id: "commands/analysis_patterns"

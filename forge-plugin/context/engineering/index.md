@@ -5,7 +5,7 @@ title: "Engineering Context Index"
 type: index
 estimatedTokens: 250
 loadingStrategy: always
-version: "1.0.0"
+version: "0.1.0-alpha"
 lastUpdated: "2026-02-10"
 indexedFiles:
   - id: "engineering/code_review_principles"

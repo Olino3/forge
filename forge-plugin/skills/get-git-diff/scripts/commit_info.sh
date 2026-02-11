@@ -5,7 +5,7 @@
 # Functions for retrieving commit metadata and relationships.
 #
 # Author: Claude Code get-git-diff skill
-# Version: 1.0.0
+# Version: 0.1.0-alpha
 
 set -euo pipefail
 

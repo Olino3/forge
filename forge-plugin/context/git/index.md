@@ -5,7 +5,7 @@ title: "Git Context Files Index"
 type: index
 estimatedTokens: 200
 loadingStrategy: always
-version: "1.0.0"
+version: "0.1.0-alpha"
 lastUpdated: "2026-02-10"
 indexedFiles:
   - id: "git/git_diff_reference"

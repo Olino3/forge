@@ -1,7 +1,7 @@
 ---
 name: angular-code-review
 description: Deep Angular code review of changed files using git diff analysis. Focuses on production quality, security vulnerabilities, performance bottlenecks, architectural issues, and subtle bugs in code changes.
-version: 1.1.0
+version: "0.1.0-alpha"
 context:
   primary: [angular]
   secondary: [security]

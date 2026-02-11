@@ -29,7 +29,6 @@ HOOKS_DIR = FORGE_DIR / "hooks"
 # These are legacy, deprecated, or sourced-only scripts.
 KNOWN_UNREGISTERED_SCRIPTS = {
     "memory_sync.sh",
-    "session_context.sh",
     "context_freshness.sh",
 }
 

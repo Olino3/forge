@@ -1,7 +1,7 @@
 {
   "$schema": "../interfaces/schemas/agent_config.schema.json",
   "name": "full-stack-engineer",
-  "version": "1.0.0",
+  "version": "0.1.0-alpha",
   "description": "End-to-end architect specializing in building complete full-stack applications with best practices",
   "model": "sonnet",
   "tools": ["view", "edit", "create", "grep", "glob", "bash", "task"],

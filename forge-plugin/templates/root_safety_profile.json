@@ -3,7 +3,7 @@
   "$id": "https://forge-plugin/templates/root_safety_profile.json",
   "title": "Root Safety Profile",
   "description": "Default safety constraints validated by root_agent_validator.sh at SessionStart. Projects can customize by placing a 'safety_profile.json' in .forge/.",
-  "version": "1.1.0",
+  "version": "0.1.0-alpha",
   "allowedTools": [
     "Read",
     "Write",

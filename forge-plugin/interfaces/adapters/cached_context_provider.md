@@ -1,6 +1,6 @@
 # CachedContextProvider Adapter
 
-Version: 1.0.0
+Version: 0.1.0-alpha
 Status: Specification
 Last Updated: 2026-02-11
 

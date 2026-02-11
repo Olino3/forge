@@ -1,7 +1,7 @@
 ---
 name: generate-mock-service
 description: Generate simulated service doppelgangers for testing and development. Creates mock servers (Express, Flask, FastAPI, WireMock, Prism) matching real API contracts with realistic responses, error scenarios, and Docker containerization.
-version: "1.1.0"
+version: "0.1.0-alpha"
 context:
   primary_domain: ""
   always_load_files: []
@@ -17,7 +17,7 @@ memory:
 
 # Skill: generate-mock-service
 
-**Version**: 1.0.0
+**Version**: 0.1.0-alpha
 **Purpose**: Generate simulated service doppelgangers for testing and development
 **Author**: The Forge
 **Last Updated**: 2026-02-06

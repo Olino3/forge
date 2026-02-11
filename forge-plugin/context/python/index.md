@@ -5,7 +5,7 @@ title: "Python Context Files Index"
 type: index
 estimatedTokens: 800
 loadingStrategy: always
-version: "1.0.0"
+version: "0.1.0-alpha"
 lastUpdated: "2025-11-14"
 indexedFiles:
   - id: "python/context_detection"

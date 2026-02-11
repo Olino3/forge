@@ -1,6 +1,6 @@
 # SQLiteMemoryAdapter
 
-**Version**: 1.0.0
+**Version**: 0.1.0-alpha
 **Status**: Future Adapter Specification (Design Only)
 **Implements**: [`memory_store.md`](../memory_store.md) (MemoryStore interface)
 

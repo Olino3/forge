@@ -5,7 +5,7 @@ title: "NgRx State Management Patterns - Quick Reference"
 type: framework
 estimatedTokens: 650
 loadingStrategy: onDemand
-version: "1.0.0"
+version: "0.1.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: "Actions, Reducers, Selectors"
@@ -96,5 +96,5 @@ Best‑practice checklist for NgRx (and similar store libraries) in Angular.
 
 ---
 
-**Version**: 2.0.0 (Compact Reference Format)
+**Version**: 0.1.0-alpha (Compact Reference Format)
 **Last Updated**: 2025-11-14

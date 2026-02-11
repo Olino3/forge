@@ -5,7 +5,7 @@ title: ".NET Context Files Index"
 type: index
 estimatedTokens: 3400
 loadingStrategy: always
-version: "1.0.0"
+version: "0.1.0-alpha"
 lastUpdated: "2026-02-10"
 indexedFiles:
   - id: "dotnet/common_issues"
