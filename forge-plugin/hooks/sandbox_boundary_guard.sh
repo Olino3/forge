@@ -158,7 +158,18 @@ _sandbox_check_bash_command() {
     [[ -z "$COMMAND" ]] && return 0
 
     # Known dangerous path patterns (best-effort detection)
+    # shellcheck disable=SC2088  # Intentional: match literal ~ in user commands
     local DANGEROUS_PATTERNS=(
+        '~/.ssh'
+        '~/.gnupg'
+        '~/.config'
+        '~/.bashrc'
+        '~/.bash_profile'
+        '~/.zshrc'
+        '~/.profile'
+        '~/.aws'
+        '~/.kube'
+        '~/.docker'
         "$HOME/.ssh"
         "$HOME/.gnupg"
         "$HOME/.config"
