@@ -519,11 +519,11 @@ Evaluates `/claudedocs/` output files against four quality criteria and appends 
 
 **Behavior**: Non-blocking. Scores are informational for trend analysis. Logs grade to health buffer. Skips archive files and `manifest.md`.
 
-## Manual Hooks
+## Utility Scripts
 
-These are run on-demand and are **not** registered in `hooks.json`:
+These are run on-demand and are located in `hooks/lib/` (not registered in `hooks.json`):
 
-#### context_freshness.sh
+#### lib/context_freshness.sh
 
 Audits context file health:
 - Files without timestamps
@@ -531,22 +531,22 @@ Audits context file health:
 - Orphaned files not referenced by any SKILL.md
 - Tests first 20 HTTP links
 
-**Usage**: `bash forge-plugin/hooks/context_freshness.sh`
+**Usage**: `bash forge-plugin/hooks/lib/context_freshness.sh`
 
-#### session_context.sh
+#### lib/session_context.sh
 
 Displays project context at session start:
 - Detects project from git remote or directory name
 - Shows project profile if available
 - Lists skill memory status
 
-**Usage**: `bash forge-plugin/hooks/session_context.sh [project-name]`
+**Usage**: `bash forge-plugin/hooks/lib/session_context.sh [project-name]`
 
-## Deprecated Hooks
+## Legacy Scripts
 
-| Hook | Replacement | Migration |
-|------|-------------|-----------|
-| `memory_sync.sh` | `memory_quality_gate.sh` | All functionality absorbed (timestamping, line-count checks, logging). Additional quality checks added. |
+| Script | Replacement | Notes |
+|--------|-------------|-------|
+| `lib/memory_sync.sh` | `memory_quality_gate.sh` | All functionality absorbed (timestamping, line-count checks, logging). Additional quality checks added. Not recommended for use. |
 
 ## Creating Custom Hooks
 
