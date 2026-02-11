@@ -27,10 +27,7 @@ HOOKS_DIR = FORGE_DIR / "hooks"
 
 # Scripts that exist as files but are intentionally NOT registered in hooks.json.
 # These are legacy, deprecated, or sourced-only scripts.
-KNOWN_UNREGISTERED_SCRIPTS = {
-    "memory_sync.sh",
-    "context_freshness.sh",
-}
+KNOWN_UNREGISTERED_SCRIPTS: set[str] = set()
 
 VALID_EVENT_TYPES = {
     "PreToolUse", "PostToolUse", "SessionStart", "UserPromptSubmit",

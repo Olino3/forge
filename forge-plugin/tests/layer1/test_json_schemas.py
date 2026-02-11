@@ -50,7 +50,7 @@ VALID_DOMAINS = {
     "security",
 }
 
-SEMVER_PATTERN = re.compile(r"^\d+\.\d+\.\d+$")
+SEMVER_PATTERN = re.compile(r"^\d+\.\d+\.\d+(-[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*)?$")
 
 
 # ---------------------------------------------------------------------------
