@@ -12,7 +12,7 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 | Component | Count | Status |
 |-----------|-------|--------|
-| **Skills** | 299 | ✅ 77 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
+| **Skills** | 293 | ✅ 81 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
 | **Commands** | 12 | ✅ All operational, interface-based |
 | **Agents** | 19 | ✅ 12 Olympian + 7 specialist, all with config.json |
 | **Context Files** | 81 | ✅ 9 domains, all with YAML frontmatter |
@@ -45,6 +45,8 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 **Productivity** — commit-helper · email-writer · slack-message-composer · documentation-generator
 
 **Data Science** — excel-skills · jupyter-notebook-skills
+
+**Data & Database** — database-optimizer · pandas · postgres · sql
 
 **Developer Workflow** — create-agents · power-debug · dev-tools
 
@@ -160,14 +162,24 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 | **vue-expert-js** | Vue.js 3 Composition API and JavaScript patterns |
 | **vue-expert** | Comprehensive Vue.js application development |
 
-### Data & Database (4 skills)
+### Programming Languages (5 skills)
 
 | Skill | Description |
 |-------|-------------|
-| **database-optimizer** | SQL query optimization, indexing, and performance tuning |
-| **pandas** | Advanced data manipulation and analysis with pandas |
-| **postgres** | PostgreSQL administration, optimization, and advanced features |
-| **sql** | Expert SQL across multiple database engines |
+| **cpp** | Modern C++ (C++17/20/23) development and best practices |
+| **csharp** | C# language features and .NET ecosystem development |
+| **java-architect** | Enterprise Java architecture and design patterns |
+| **javascript** | Advanced JavaScript patterns, ES2024+, and runtime optimization |
+| **typescript** | TypeScript advanced types, generics, and strict configuration |
+
+### Data & Database (4 skills) — ✅ Forged
+
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **database-optimizer** | SQL query optimization, indexing, and performance tuning | ✅ Operational |
+| **pandas** | Advanced data manipulation and analysis with pandas | ✅ Operational |
+| **postgres** | PostgreSQL administration, optimization, and advanced features | ✅ Operational |
+| **sql** | Expert SQL across multiple database engines | ✅ Operational |
 
 ### Architecture & Design (4 skills)
 
