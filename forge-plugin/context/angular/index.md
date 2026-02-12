@@ -5,7 +5,7 @@ title: "Angular Context Files Index"
 type: index
 estimatedTokens: 2050
 loadingStrategy: always
-version: "0.1.0-alpha"
+version: "0.2.0-alpha"
 lastUpdated: "2026-02-10"
 indexedFiles:
   - id: "angular/common_issues"
@@ -435,7 +435,7 @@ All context files in this directory follow these standards:
 
 ## Version
 
-**Version**: 0.1.0-alpha
+**Version**: 0.2.0-alpha
 **Last Updated**: 2025-01-14
 **Angular Versions Covered**: 2-18+
 **Maintained By**: forge-plugin angular-code-review skill

@@ -1,7 +1,7 @@
 {
   "$schema": "../interfaces/schemas/agent_config.schema.json",
   "name": "developer-environment-engineer",
-  "version": "0.1.0-alpha",
+  "version": "0.2.0-alpha",
   "description": "Local tooling expert specializing in developer experience and local development environments",
   "model": "sonnet",
   "tools": ["Read", "Write", "Bash", "Grep", "Glob"],

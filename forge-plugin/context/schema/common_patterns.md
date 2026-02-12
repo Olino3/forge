@@ -5,7 +5,7 @@ title: "Common Schema Patterns"
 type: always
 estimatedTokens: 1700
 loadingStrategy: always
-version: "0.1.0-alpha"
+version: "0.2.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: "Overview"

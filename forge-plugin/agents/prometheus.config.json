@@ -1,7 +1,7 @@
 {
   "$schema": "../interfaces/schemas/agent_config.schema.json",
   "name": "prometheus",
-  "version": "0.1.0-alpha",
+  "version": "0.2.0-alpha",
   "description": "Master of foresight and strategic planning. Specializes in architecture design, technical roadmaps, refactoring strategies, and long-term system evolution",
   "model": "sonnet",
   "tools": ["Read", "Write", "Bash", "Grep", "Glob"],

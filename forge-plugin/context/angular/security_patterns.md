@@ -5,7 +5,7 @@ title: "Angular Security Patterns"
 type: pattern
 estimatedTokens: 600
 loadingStrategy: onDemand
-version: "0.1.0-alpha"
+version: "0.2.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: "XSS Prevention"
@@ -242,4 +242,4 @@ console.log('User ID:', user.id);
 
 ---
 
-**Version**: 0.1.0-alpha
+**Version**: 0.2.0-alpha

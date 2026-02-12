@@ -1,6 +1,6 @@
 # SkillInvoker Interface
 
-**Version**: 0.1.0-alpha
+**Version**: 0.2.0-alpha
 **Status**: Phase 1 - Interface Definition
 
 ## Purpose

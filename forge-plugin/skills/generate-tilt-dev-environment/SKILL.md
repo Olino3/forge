@@ -1,7 +1,7 @@
 ---
 name: generate-tilt-dev-environment
 description: Generate complete local development environments using Tilt, Docker Compose, and containerization. Constructs local development realms with Tilt orchestration, live reload, and service dependencies.
-version: "0.1.0-alpha"
+version: "0.2.0-alpha"
 context:
   primary_domain: "azure"
   always_load_files: []
@@ -17,7 +17,7 @@ memory:
 
 # Skill: generate-tilt-dev-environment
 
-**Version**: 0.1.0-alpha
+**Version**: 0.2.0-alpha
 **Purpose**: Generate complete local development environments using Tilt, Docker Compose, and containerization
 **Author**: The Forge
 **Last Updated**: 2026-02-06

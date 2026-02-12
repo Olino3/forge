@@ -5,7 +5,7 @@ title: "Python Test Anti-Patterns"
 type: pattern
 estimatedTokens: 1700
 loadingStrategy: onDemand
-version: "0.1.0-alpha"
+version: "0.2.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: "What to Avoid When Writing Tests"
