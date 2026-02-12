@@ -49,42 +49,6 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 ---
 
-## Planned Agents
-
-> *"The remaining Olympians await their summons — each divine power destined for its domain."*
-
-### The Olympian Council (8 agents)
-
-The complete pantheon of the Twelve Olympians, each embodying a core aspect of the software factory.
-
-| Agent | Domain | Divine Power | Status |
-|-------|--------|--------------|--------|
-| **@zeus** | Orchestration & Leadership | King of the gods — orchestrates multi-agent workflows, delegates tasks, oversees the entire factory. Commands the divine council and coordinates complex engineering initiatives. | ✅ Active |
-| **@hera** | Project Management & Governance | Queen of the gods — manages project lifecycles, enforces standards, maintains architectural coherence. Guards the integrity of the codebase and ensures team alignment. | ✅ Active |
-| **@athena** | Wisdom & Strategic Architecture | Goddess of wisdom and strategy — designs system architecture, evaluates technical decisions, provides strategic counsel. Synthesizes complex requirements into elegant solutions. | ✅ Active |
-| **@apollo** | Code Quality & Optimization | God of light and prophecy — illuminates code quality issues, predicts performance bottlenecks, optimizes algorithms. Brings clarity and precision to engineering challenges. | ✅ Active |
-| **@artemis** | Testing & Quality Assurance | Goddess of the hunt — tracks down bugs with precision, designs comprehensive test strategies, ensures code integrity. Hunts defects across the wilderness of the codebase. | ✅ Active |
-| **@aphrodite** | UX/UI & Design Systems | Goddess of beauty — crafts beautiful user experiences, designs elegant interfaces, ensures visual harmony. Makes software delightful and human-centered. | ✅ Active |
-| **@hermes** | Integration & Communication | Messenger of the gods — manages API integrations, handles inter-service communication, facilitates data exchange. Swift connector between disparate systems. | ✅ Active |
-| **@demeter** | Data Cultivation & Growth | Goddess of harvest — nurtures data pipelines, cultivates analytics, ensures data quality and growth. Tends to the fields of information that feed the factory. | ✅ Active |
-
-**Already Active (4 Olympians):**
-- ✅ **@hephaestus** — Tool creation and craftsmanship (blacksmith of the gods)
-- ✅ **@ares** — Deployment and DevOps warfare (god of war)
-- ✅ **@poseidon** — Data flow and streams (god of the seas)
-- ✅ **@prometheus** — Strategic foresight (titan of forethought) *Note: Titan, not Olympian*
-
-### Alternative Olympians
-
-*Two seats at the Olympian table were contested in mythology — Hestia and Dionysus.*
-
-| Agent | Domain | Divine Power | Status |
-|-------|--------|--------------|--------|
-| **@hestia** | Stability & Core Infrastructure | Goddess of the hearth — maintains foundational systems, ensures stability, guards core infrastructure. The eternal flame that keeps the factory running. | 🔮 Alternate |
-| **@dionysus** | Experimentation & Innovation | God of wine and ecstasy — drives creative exploration, facilitates A/B testing, encourages unconventional solutions. Breaks boundaries to discover new possibilities. | 🔮 Alternate |
-
----
-
 ## Planned Skills
 
 > *"The blueprints are drawn — these weapons await their turn at the anvil."*
@@ -465,7 +429,6 @@ The complete pantheon of the Twelve Olympians, each embodying a core aspect of t
 > *"The ultimate forge needs no smith — it reads the blueprint and shapes the metal itself."*
 
 ### Near-Term (Post Phase 7)
-- **Complete the Olympian Council**: Summon the remaining 8 Olympian agents (Zeus, Hera, Athena, Apollo, Artemis, Aphrodite, Hermes, Demeter)
 - **New skill domains**: React, Vue, Go, Rust code review
 - **Advanced command chains**: Multi-step automated workflows with rollback
 - **Agent collaboration**: Multiple agents coordinating on complex tasks
@@ -473,7 +436,7 @@ The complete pantheon of the Twelve Olympians, each embodying a core aspect of t
 - **Enterprise skill adoption**: Integrate selected skills from Vercel, Google Labs, Trail of Bits, Microsoft, and Anthropic catalogs
 
 ### Mid-Term
-- **The Olympian Council in session**: All 12 Olympians actively collaborating on complex engineering challenges
+- **Advanced Olympian Council workflows**: All 12 Olympians actively collaborating on complex engineering challenges with sophisticated delegation patterns
 - **Self-improving skills**: Skills that analyze their own output quality and refine themselves
 - **Autonomous memory curation**: Memory that self-organizes, merges, and prunes without intervention
 - **Cross-project learning**: Insights from one project improving analysis of similar projects
