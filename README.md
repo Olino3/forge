@@ -11,7 +11,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 [![Forged in Shell](https://img.shields.io/badge/Forged_in-Shell-success?style=for-the-badge&logo=gnu-bash)](https://github.com/Olino3/forge)
 [![Agents](https://img.shields.io/badge/Agents-19-blue?style=for-the-badge)](forge-plugin/agents/)
-[![Skills](https://img.shields.io/badge/Skills-22-orange?style=for-the-badge)](forge-plugin/skills/)
+[![Skills](https://img.shields.io/badge/Skills-28-orange?style=for-the-badge)](forge-plugin/skills/)
 [![Hooks](https://img.shields.io/badge/Hooks-20-red?style=for-the-badge)](forge-plugin/hooks/)
 
 </div>
@@ -25,7 +25,7 @@ The Forge is not a plugin collection — it is a complete **Agentic Software Fac
 | Component | Count | What It Does |
 |-----------|-------|-------------|
 | 🏛️ **Agents** | 19 | AI personas with deep domain expertise (12 Olympian + 7 specialist) |
-| 🔨 **Skills** | 22 | Specialized capabilities — code review, test generation, infrastructure |
+| 🔨 **Skills** | 28 | Specialized capabilities — code review, test generation, infrastructure |
 | ⚡ **Commands** | 12 | Structured workflows — `/analyze`, `/implement`, `/test`, and more |
 | 📚 **Context** | 81 files | Shared knowledge across 9 domains with YAML frontmatter |
 | 🧠 **Memory** | 4 layers | Project-specific learning that grows with every invocation |
@@ -107,7 +107,7 @@ Each agent maintains project-specific memory, so they become more effective over
 
 ---
 
-## 🔨 The Armory — 22 Skills
+## 🔨 The Armory — 28 Skills
 
 Skills are deep, specialized capabilities invoked via `skill:{name}` syntax.
 
@@ -116,6 +116,7 @@ Skills are deep, specialized capabilities invoked via `skill:{name}` syntax.
 | **Code Review** | `python-code-review` · `dotnet-code-review` · `angular-code-review` · `get-git-diff` |
 | **Test Generation** | `generate-python-unit-tests` · `generate-jest-unit-tests` · `test-cli-tools` |
 | **Infrastructure** | `generate-azure-functions` · `generate-azure-pipelines` · `generate-azure-bicep` · `generate-tilt-dev-environment` · `generate-mock-service` |
+| **Backend & Frameworks** | `django` · `dotnet-core` · `fastapi` · `nestjs` · `rails` · `php` |
 | **Analysis** | `file-schema-analysis` · `database-schema-analysis` · `python-dependency-management` |
 | **Productivity** | `commit-helper` · `email-writer` · `slack-message-composer` · `documentation-generator` |
 | **Data Science** | `excel-skills` · `jupyter-notebook-skills` |
@@ -178,7 +179,7 @@ The Forge uses an **interface-driven architecture** with 4 core abstractions:
 │              ExecutionContext                         │
 ├──────────────────────────────────────────────────────┤
 │  🏛️ PANTHEON    🔨 ARMORY     ⚡ WAR ROOM            │
-│  11 Agents      22 Skills     12 Commands            │
+│  11 Agents      28 Skills     12 Commands            │
 ├──────────────────────────────────────────────────────┤
 │  📚 ARCHIVE (81 files) · 🧠 MEMORY (4 layers)        │
 │  🔌 CONDUITS (8 MCP servers)                         │
@@ -245,7 +246,7 @@ forge/
 ├── LICENSE                      # MIT License
 └── forge-plugin/                # The Forge Plugin
     ├── agents/                  # 19 agents (.md + .config.json each)
-    ├── skills/                  # 22 skills (SKILL.md + examples.md each)
+    ├── skills/                  # 28 skills (SKILL.md + examples.md each)
     ├── commands/                # 12 commands (flat .md files + _docs/ for examples)
     ├── context/                 # 81 files across 9 domains
     ├── memory/                  # 4-layer project learning

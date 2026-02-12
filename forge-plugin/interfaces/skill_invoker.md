@@ -304,14 +304,14 @@ getAvailableSkills("python")
   ]
 
 getAvailableSkills()
-→ [all 22 skills with metadata]
+→ [all 28 skills with metadata]
 ```
 
 ---
 
 ## Skill Registry
 
-The 22 currently registered skills, organized by domain:
+The 28 currently registered skills, organized by domain:
 
 ### Code Review
 | Skill | Version | Domain | Delegated By |
@@ -336,6 +336,16 @@ The 22 currently registered skills, organized by domain:
 | `generate-azure-bicep` | 1.0.0 | infrastructure | `/azure-pipeline` |
 | `generate-tilt-dev-environment` | 1.0.0 | infrastructure | - |
 | `generate-mock-service` | 1.0.0 | infrastructure | `/mock` |
+
+### Backend & Frameworks
+| Skill | Version | Domain | Delegated By |
+|-------|---------|--------|-------------|
+| `django` | 1.0.0 | python | - |
+| `fastapi` | 1.0.0 | python | - |
+| `dotnet-core` | 1.0.0 | dotnet | - |
+| `nestjs` | 1.0.0 | engineering | - |
+| `rails` | 1.0.0 | engineering | - |
+| `php` | 1.0.0 | engineering | - |
 
 ### Analysis
 | Skill | Version | Domain | Delegated By |
@@ -374,4 +384,4 @@ The 22 currently registered skills, organized by domain:
 
 ---
 
-*Last Updated: 2026-02-10*
+*Last Updated: 2026-02-12*
