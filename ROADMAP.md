@@ -12,7 +12,7 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 | Component | Count | Status |
 |-----------|-------|--------|
-| **Skills** | 276 | ✅ 64 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
+| **Skills** | 286 | ✅ 71 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
 | **Commands** | 12 | ✅ All operational, interface-based |
 | **Agents** | 19 | ✅ 12 Olympian + 7 specialist, all with config.json |
 | **Context Files** | 81 | ✅ 9 domains, all with YAML frontmatter |
@@ -66,16 +66,16 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 > *"The blueprints are drawn — these weapons await their turn at the anvil."*
 
-### Frontend & UI (15 skills)
+### Frontend & UI (15 skills — 6 forged ✅)
 
-| Skill | Description |
-|-------|-------------|
-| **accessibility** | Build WCAG 2.1 AA compliant websites with semantic HTML, proper ARIA, focus management, and screen reader support. Includes color contrast (4.5:1 text), keyboard navigation, form labels, and live regions. |
-| **animate** | Zero-config animations for React, Vue, Solid, Svelte, Preact with @formkit/auto-animate (3.28kb). Prevents 15 errors. |
-| **nextjs** | Build Next.js 16 apps with App Router, Server Components/Actions, Cache Components ("use cache"), and async route params. Includes proxy.ts and React 19.2. Prevents 25 errors. |
-| **react-forms** | Build type-safe validated forms using React Hook Form v7 and Zod v4. Single schema works on client and server with full TypeScript inference via `z.infer`. |
-| **responsive-images** | Implement performant responsive images with srcset, sizes, lazy loading, and modern formats (WebP, AVIF). Covers aspect-ratio for CLS prevention, picture element for art direction, and fetchpriority. Triggers: `srcset`, `loading=`, `lazy`, `eager` |
-| **tailwind-patterns** | Production-ready Tailwind CSS patterns for common website components: responsive layouts, cards, navigation, forms, buttons, and typography. Includes spacing scale, breakpoints, mobile-first patterns. Triggers: `Tailwind CSS`, `CSS utility classes`, `first CSS`, `shadcn/ui components` |
+| Skill | Status | Description |
+|-------|--------|-------------|
+| **accessibility** | ✅ Forged | Build WCAG 2.1 AA compliant websites with semantic HTML, proper ARIA, focus management, and screen reader support. Includes color contrast (4.5:1 text), keyboard navigation, form labels, and live regions. |
+| **animate** | ✅ Forged | Zero-config animations for React, Vue, Solid, Svelte, Preact with @formkit/auto-animate (3.28kb). Prevents 15 errors. |
+| **nextjs** | ✅ Forged | Build Next.js 16 apps with App Router, Server Components/Actions, Cache Components ("use cache"), and async route params. Includes proxy.ts and React 19.2. Prevents 25 errors. |
+| **react-forms** | ✅ Forged | Build type-safe validated forms using React Hook Form v7 and Zod v4. Single schema works on client and server with full TypeScript inference via `z.infer`. |
+| **responsive-images** | ✅ Forged | Implement performant responsive images with srcset, sizes, lazy loading, and modern formats (WebP, AVIF). Covers aspect-ratio for CLS prevention, picture element for art direction, and fetchpriority. Triggers: `srcset`, `loading=`, `lazy`, `eager` |
+| **tailwind-patterns** | ✅ Forged | Production-ready Tailwind CSS patterns for common website components: responsive layouts, cards, navigation, forms, buttons, and typography. Includes spacing scale, breakpoints, mobile-first patterns. Triggers: `Tailwind CSS`, `CSS utility classes`, `first CSS`, `shadcn/ui components` |
  
 ### Authentication (5 skills) ✅
 
@@ -677,6 +677,7 @@ Current state and recent milestones:
 
 | Date | Milestone |
 |------|-----------|
+| **Feb 12, 2026** | Frontend & UI Skills — Forged 6 skills: accessibility, animate, nextjs, react-forms, responsive-images, tailwind-patterns |
 | **Feb 12, 2026** | Utilities Forged — 10 Utilities skills implemented: color-palette, email-gateway, favicon-gen, firecrawl-scraper, icon-design, image-gen, jquery-4, office, open-source-contributions, playwright-local |
 | **Feb 12, 2026** | Database & Storage Skills — Forged firebase-firestore, firebase-storage, snowflake-platform (3 new skills, 25 total) |
 | **Feb 12, 2026** | Roadmap Expansion — Added `/divine` command and 4 new hook events for memory/context integration |
