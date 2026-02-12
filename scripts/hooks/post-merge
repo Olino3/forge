@@ -1,0 +1,15 @@
+#!/bin/bash
+# .git/hooks/post-merge
+# Triggered after: git pull, git merge
+# Auto-updates submodules if .gitmodules changed
+
+# Check if .gitmodules was updated in this merge
+if git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD | grep --quiet "^.gitmodules$"; then
+    echo "📦 Submodule configuration changed, updating..."
+    git submodule update --init --recursive
+fi
+
+# Update submodules to latest (if they were already initialized)
+if [ -f ".gitmodules" ]; then
+    git submodule update --init --recursive --quiet
+fi

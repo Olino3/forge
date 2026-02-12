@@ -131,7 +131,7 @@ cd tests && python -m pytest layer2/context/ -v
 |-----------|-------------------|
 | `test_plugin_loading.sh` | Plugin manifest, directory structure, command path resolution |
 | `test_command_execution.sh` | 12 commands registered, COMMAND.md files, index references |
-| `test_skill_invocation.sh` | 22 skills discoverable, SKILL.md files, workflow steps, agent refs |
+| `test_skill_invocation.sh` | 28 skills discoverable, SKILL.md files, workflow steps, agent refs |
 
 **Run independently:**
 

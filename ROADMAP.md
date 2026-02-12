@@ -12,7 +12,7 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 | Component | Count | Status |
 |-----------|-------|--------|
-| **Skills** | 27 | ✅ All operational, interface-based |
+| **Skills** | 299 | ✅ 77 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
 | **Commands** | 12 | ✅ All operational, interface-based |
 | **Agents** | 19 | ✅ 12 Olympian + 7 specialist, all with config.json |
 | **Context Files** | 81 | ✅ 9 domains, all with YAML frontmatter |
@@ -20,6 +20,7 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 | **Adapters** | 3 | ✅ MarkdownFileContextProvider, MarkdownFileMemoryAdapter, CachedContextProvider |
 | **Hooks** | 20 | ✅ 9 events, 4 layers (Shield, Chronicle, Foreman, Town Crier) |
 | **MCP Servers** | 8 | ✅ Connected external conduits |
+| **Marketplace Plugins** | 38 | ✅ 1 core + 10 external + 27 Trail of Bits security plugins |
 
 ### The Pantheon (Active Agents)
 
@@ -35,6 +36,8 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 **Infrastructure** — generate-azure-functions · generate-azure-pipelines · generate-azure-bicep · generate-tilt-dev-environment · generate-mock-service
 
+**Backend & Frameworks** — django · dotnet-core · fastapi · nestjs · rails · php
+
 **Analysis** — file-schema-analysis · database-schema-analysis · python-dependency-management
 
 **Programming Languages** — cpp · csharp · java-architect · javascript · typescript
@@ -43,7 +46,17 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 **Data Science** — excel-skills · jupyter-notebook-skills
 
+**Developer Workflow** — create-agents · power-debug · dev-tools
+
+**Utilities** — color-palette · email-gateway · favicon-gen · firecrawl-scraper · icon-design · image-gen · jquery-4 · office · open-source-contributions · playwright-local
+
+**Database & Storage** — firebase-firestore · firebase-storage · snowflake-platform
+
+**Authentication** — azure-auth · better-auth · clerk-auth · firebase-auth · oauth-integrations
+
 **Meta** — generate-more-skills-with-claude
+
+**Planning & Workflow** — divine · docs-workflow · project-health · project-planning · project-session-management · project-workflow · skill-creator · skill-review · sub-agent-patterns
 
 ### The War Room (Active Commands)
 
@@ -55,85 +68,85 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 > *"The blueprints are drawn — these weapons await their turn at the anvil."*
 
-### Frontend & UI (15 skills)
+### Frontend & UI (15 skills — 6 forged ✅)
 
-| Skill | Description |
-|-------|-------------|
-| **accessibility** | Build WCAG 2.1 AA compliant websites with semantic HTML, proper ARIA, focus management, and screen reader support. Includes color contrast (4.5:1 text), keyboard navigation, form labels, and live regions. |
-| **animate** | Zero-config animations for React, Vue, Solid, Svelte, Preact with @formkit/auto-animate (3.28kb). Prevents 15 errors. |
-| **nextjs** | Build Next.js 16 apps with App Router, Server Components/Actions, Cache Components ("use cache"), and async route params. Includes proxy.ts and React 19.2. Prevents 25 errors. |
-| **react-forms** | Build type-safe validated forms using React Hook Form v7 and Zod v4. Single schema works on client and server with full TypeScript inference via `z.infer`. |
-| **responsive-images** | Implement performant responsive images with srcset, sizes, lazy loading, and modern formats (WebP, AVIF). Covers aspect-ratio for CLS prevention, picture element for art direction, and fetchpriority. Triggers: `srcset`, `loading=`, `lazy`, `eager` |
-| **tailwind-patterns** | Production-ready Tailwind CSS patterns for common website components: responsive layouts, cards, navigation, forms, buttons, and typography. Includes spacing scale, breakpoints, mobile-first patterns. Triggers: `Tailwind CSS`, `CSS utility classes`, `first CSS`, `shadcn/ui components` |
+| Skill | Status | Description |
+|-------|--------|-------------|
+| **accessibility** | ✅ Forged | Build WCAG 2.1 AA compliant websites with semantic HTML, proper ARIA, focus management, and screen reader support. Includes color contrast (4.5:1 text), keyboard navigation, form labels, and live regions. |
+| **animate** | ✅ Forged | Zero-config animations for React, Vue, Solid, Svelte, Preact with @formkit/auto-animate (3.28kb). Prevents 15 errors. |
+| **nextjs** | ✅ Forged | Build Next.js 16 apps with App Router, Server Components/Actions, Cache Components ("use cache"), and async route params. Includes proxy.ts and React 19.2. Prevents 25 errors. |
+| **react-forms** | ✅ Forged | Build type-safe validated forms using React Hook Form v7 and Zod v4. Single schema works on client and server with full TypeScript inference via `z.infer`. |
+| **responsive-images** | ✅ Forged | Implement performant responsive images with srcset, sizes, lazy loading, and modern formats (WebP, AVIF). Covers aspect-ratio for CLS prevention, picture element for art direction, and fetchpriority. Triggers: `srcset`, `loading=`, `lazy`, `eager` |
+| **tailwind-patterns** | ✅ Forged | Production-ready Tailwind CSS patterns for common website components: responsive layouts, cards, navigation, forms, buttons, and typography. Includes spacing scale, breakpoints, mobile-first patterns. Triggers: `Tailwind CSS`, `CSS utility classes`, `first CSS`, `shadcn/ui components` |
  
-### Authentication (5 skills)
+### Authentication (5 skills) ✅
 
 | Skill | Description |
 |-------|-------------|
-| **azure-auth** | Microsoft Entra ID (Azure AD) authentication for React SPAs with MSAL.js and Cloudflare Workers JWT validation using jose library. Full-stack pattern with Authorization Code Flow + PKCE. Prevents 8 errors. |
-| **better-auth** | Self-hosted auth for TypeScript/Cloudflare Workers with social auth, 2FA, passkeys, organizations, RBAC, and 15+ plugins. Requires Drizzle ORM or Kysely for D1 (no direct adapter). Triggers: `better-auth`, `authentication with D1`, `Cloudflare D1 auth setup` |
-| **clerk-auth** | Clerk auth with API Keys beta (Dec 2025), Next.js 16 proxy.ts (March 2025 CVE context), API version 2025-11-10 breaking changes, clerkMiddleware() options, webhooks, production considerations. Prevents 15 errors. Triggers: `clerk`, `clerk auth`, `@clerk/nextjs` |
-| **firebase-auth** | Build with Firebase Authentication — email/password, OAuth providers, phone auth, and custom tokens. Use when: setting up auth flows, implementing sign-in/sign-up, managing user sessions, protecting routes. Prevents 12 errors. |
-| **oauth-integrations** | Implement OAuth 2.0 authentication with GitHub, Okta, Google, and Microsoft Entra (Azure AD) ||
+| **azure-auth** ✅ | Microsoft Entra ID (Azure AD) authentication for React SPAs with MSAL.js and Cloudflare Workers JWT validation using jose library. Full-stack pattern with Authorization Code Flow + PKCE. Prevents 8 errors. |
+| **better-auth** ✅ | Self-hosted auth for TypeScript/Cloudflare Workers with social auth, 2FA, passkeys, organizations, RBAC, and 15+ plugins. Requires Drizzle ORM or Kysely for D1 (no direct adapter). Triggers: `better-auth`, `authentication with D1`, `Cloudflare D1 auth setup` |
+| **clerk-auth** ✅ | Clerk auth with API Keys beta (Dec 2025), Next.js 16 proxy.ts (March 2025 CVE context), API version 2025-11-10 breaking changes, clerkMiddleware() options, webhooks, production considerations. Prevents 15 errors. Triggers: `clerk`, `clerk auth`, `@clerk/nextjs` |
+| **firebase-auth** ✅ | Build with Firebase Authentication — email/password, OAuth providers, phone auth, and custom tokens. Use when: setting up auth flows, implementing sign-in/sign-up, managing user sessions, protecting routes. Prevents 12 errors. |
+| **oauth-integrations** ✅ | Implement OAuth 2.0 authentication with GitHub, Okta, Google, and Microsoft Entra (Azure AD) |
 
 ### Database & Storage (6 skills)
 
 | Skill | Description |
 |-------|-------------|
-| **firebase-firestore** | Build with Firestore NoSQL database — real-time sync, offline support, and scalable document storage. Use when: creating collections, querying documents, setting up security rules, handling real-time updates. Prevents 10 errors. |
-| **firebase-storage** | Build with Firebase Cloud Storage — file uploads, downloads, and secure access. Use when: uploading images/files, generating download URLs, implementing file pickers, setting up storage security rules. Prevents 9 errors. |
+| **firebase-firestore** | ✅ Build with Firestore NoSQL database — real-time sync, offline support, and scalable document storage. Use when: creating collections, querying documents, setting up security rules, handling real-time updates. Prevents 10 errors. |
+| **firebase-storage** | ✅ Build with Firebase Cloud Storage — file uploads, downloads, and secure access. Use when: uploading images/files, generating download URLs, implementing file pickers, setting up storage security rules. Prevents 9 errors. |
 | **neon-vercel-postgres** | Set up serverless Postgres with Neon or Vercel Postgres for Cloudflare Workers/Edge. Includes connection pooling, git-like branching, and Drizzle ORM integration. |
-| **snowflake-platform** | Build on Snowflake's AI Data Cloud with snow CLI, Cortex AI (COMPLETE, SUMMARIZE, AI_FILTER), Native Apps, and Snowpark. Covers JWT auth, account identifiers, Marketplace publishing. Prevents 11 errors. Triggers: `snowflake`, `snow cli`, `snowflake connection` |
+| **snowflake-platform** | ✅ Build on Snowflake's AI Data Cloud with snow CLI, Cortex AI (COMPLETE, SUMMARIZE, AI_FILTER), Native Apps, and Snowpark. Covers JWT auth, account identifiers, Marketplace publishing. Prevents 11 errors. Triggers: `snowflake`, `snow cli`, `snowflake connection` |
 | **vercel-blob** | Integrate Vercel Blob for file uploads and CDN-delivered assets in Next.js. Supports client-side uploads with presigned URLs and multipart transfers for large files. Prevents 16 errors. Triggers: `@vercel/blob`, `vercel blob`, `vercel file upload` |
 | **vercel-kv** | Integrate Redis-compatible Vercel KV for caching, session management, and rate limiting in Next.js. Powered by Upstash with strong consistency and TTL support. Triggers: `@vercel/kv`, `vercel kv`, `upstash vercel` |
 
-### Planning & Workflow (9 skills)
+### Planning & Workflow (9 skills) ✅
 
 | Skill | Description |
 |-------|-------------|
-| **divine** | Entry point to the divine toolkit — skills, agents, and commands that work with Claude Code's capabilities. |
-| **docs-workflow** | Four slash commands for documentation lifecycle: `/docs`, `/docs-init`, `/docs-update`, `/docs-claude`. Create, maintain, and audit CLAUDE.md, README.md, and docs/ structure with smart templates. Triggers: `create CLAUDE.md`, `initialize documentation`, `docs init`, `update documentation` |
-| **project-health** | AI-agent readiness auditing for project documentation and workflows. Triggers: `AI readability`, `agent readiness`, `context auditor`, `workflow validator` |
-| **project-planning** | Generate structured planning docs for web projects with context-safe phases, verification criteria, and exit conditions. Creates IMPLEMENTATION_PHASES.md plus conditional docs. Triggers: `new project`, `start a project`, `create app`, `build app` |
-| **project-session-management** | Track progress across sessions using SESSION.md with git checkpoints and concrete next actions. Converts IMPLEMENTATION_PHASES.md into trackable session state. Triggers: `create SESSION.md`, `set up session tracking`, `manage session state`, `session handoff` |
-| **project-workflow** | Nine integrated slash commands for complete project lifecycle: `/explore-idea`, `/plan-project`, `/plan-feature`, `/wrap-session`, `/continue-session`, `/workflow`, `/release`, `/brief`, `/reflect`. Triggers: `start new project`, `/plan-project` |
-| **skill-creator** | Design effective Claude Code skills with optimal descriptions, progressive disclosure, and error prevention patterns. Covers freedom levels, token efficiency, and quality standards. |
-| **skill-review** | Audit claude-skills with systematic 9-phase review: standards compliance, official docs verification, code accuracy, cross-file consistency, and version drift detection. Triggers: `review this skill`, `audit [skill-name]`, `check if X needs updates` |
-| **sub-agent-patterns** | Comprehensive guide to sub-agents in Claude Code: built-in agents (Explore, Plan, general-purpose), custom agent creation, configuration, and delegation patterns. Triggers: `sub-agent`, `sub-agents`, `subagent` |
+| **divine** ✅ | Entry point to the divine toolkit — skills, agents, and commands that work with Claude Code's capabilities. |
+| **docs-workflow** ✅ | Four slash commands for documentation lifecycle: `/docs`, `/docs-init`, `/docs-update`, `/docs-claude`. Create, maintain, and audit CLAUDE.md, README.md, and docs/ structure with smart templates. Triggers: `create CLAUDE.md`, `initialize documentation`, `docs init`, `update documentation` |
+| **project-health** ✅ | AI-agent readiness auditing for project documentation and workflows. Triggers: `AI readability`, `agent readiness`, `context auditor`, `workflow validator` |
+| **project-planning** ✅ | Generate structured planning docs for web projects with context-safe phases, verification criteria, and exit conditions. Creates IMPLEMENTATION_PHASES.md plus conditional docs. Triggers: `new project`, `start a project`, `create app`, `build app` |
+| **project-session-management** ✅ | Track progress across sessions using SESSION.md with git checkpoints and concrete next actions. Converts IMPLEMENTATION_PHASES.md into trackable session state. Triggers: `create SESSION.md`, `set up session tracking`, `manage session state`, `session handoff` |
+| **project-workflow** ✅ | Nine integrated slash commands for complete project lifecycle: `/explore-idea`, `/plan-project`, `/plan-feature`, `/wrap-session`, `/continue-session`, `/workflow`, `/release`, `/brief`, `/reflect`. Triggers: `start new project`, `/plan-project` |
+| **skill-creator** ✅ | Design effective Claude Code skills with optimal descriptions, progressive disclosure, and error prevention patterns. Covers freedom levels, token efficiency, and quality standards. |
+| **skill-review** ✅ | Audit claude-skills with systematic 9-phase review: standards compliance, official docs verification, code accuracy, cross-file consistency, and version drift detection. Triggers: `review this skill`, `audit [skill-name]`, `check if X needs updates` |
+| **sub-agent-patterns** ✅ | Comprehensive guide to sub-agents in Claude Code: built-in agents (Explore, Plan, general-purpose), custom agent creation, configuration, and delegation patterns. Triggers: `sub-agent`, `sub-agents`, `subagent` |
 
-### Utilities (11 skills)
+### Utilities (10 skills) — ⚒️ All Forged
 
-| Skill | Description |
-|-------|-------------|
-| **color-palette** | Generate complete, accessible color palettes from a single brand hex. Creates 11-shade scale (50-950), semantic tokens (background, foreground, card, muted), and dark mode variants. Includes WCAG contrast checking. Triggers: `color palette`, `tailwind colors`, `css variables`, `hsl colors` |
-| **email-gateway** | Multi-provider email sending for Cloudflare Workers and Node.js applications. Triggers: `resend`, `sendgrid`, `mailgun`, `smtp2go` |
-| **favicon-gen** | Generate custom favicons from logos, text, or brand colors — prevents launching with CMS defaults. Extract icons from logos, create monogram favicons from initials, or use branded shapes. Outputs all required formats. |
-| **firecrawl-scraper** | Convert websites into LLM-ready data with Firecrawl API. Features: scrape, crawl, map, search, extract, agent (autonomous), batch operations, and change tracking. Handles JavaScript, anti-bot bypass. Prevents 10 errors. |
-| **icon-design** | Select semantically appropriate icons for websites using Lucide, Heroicons, or Phosphor. Covers concept-to-icon mapping, React/HTML templates, and tree-shaking patterns. |
-| **image-gen** | Generate website images with Gemini 3 Native Image Generation. Covers hero banners, service cards, infographics with legible text, and multi-turn editing. Prevents 5 errors. Triggers: `gemini image generation`, `gemini-3-flash-image-generation`, `google genai` |
-| **jquery-4** | Migrate jQuery 3.x to 4.0.0 safely in WordPress and legacy web projects. Covers all breaking changes: removed APIs ($.isArray, $.trim, $.parseJSON, $.type), focus event order changes, slim build differences. |
-| **office** | Generate Office documents (DOCX, XLSX, PDF, PPTX) with TypeScript. Pure JS libraries that work everywhere: Claude Code CLI, Cloudflare Workers, browsers. Uses docx (Word), xlsx/SheetJS (Excel), pdf-lib (PDF). |
-| **open-source-contributions** | Create maintainer-friendly pull requests with clean code and professional communication. Triggers: `submit PR to [project]`, `create pull request for [repo]`, `contribute to [project]` |
-| **playwright-local** | Build browser automation and web scraping with Playwright on your local machine. Prevents 10 errors. |
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **color-palette** | Generate complete, accessible color palettes from a single brand hex. Creates 11-shade scale (50-950), semantic tokens (background, foreground, card, muted), and dark mode variants. Includes WCAG contrast checking. Triggers: `color palette`, `tailwind colors`, `css variables`, `hsl colors` | ⚒️ Forged |
+| **email-gateway** | Multi-provider email sending for Cloudflare Workers and Node.js applications. Triggers: `resend`, `sendgrid`, `mailgun`, `smtp2go` | ⚒️ Forged |
+| **favicon-gen** | Generate custom favicons from logos, text, or brand colors — prevents launching with CMS defaults. Extract icons from logos, create monogram favicons from initials, or use branded shapes. Outputs all required formats. | ⚒️ Forged |
+| **firecrawl-scraper** | Convert websites into LLM-ready data with Firecrawl API. Features: scrape, crawl, map, search, extract, agent (autonomous), batch operations, and change tracking. Handles JavaScript, anti-bot bypass. Prevents 10 errors. | ⚒️ Forged |
+| **icon-design** | Select semantically appropriate icons for websites using Lucide, Heroicons, or Phosphor. Covers concept-to-icon mapping, React/HTML templates, and tree-shaking patterns. | ⚒️ Forged |
+| **image-gen** | Generate website images with Gemini 3 Native Image Generation. Covers hero banners, service cards, infographics with legible text, and multi-turn editing. Prevents 5 errors. Triggers: `gemini image generation`, `gemini-3-flash-image-generation`, `google genai` | ⚒️ Forged |
+| **jquery-4** | Migrate jQuery 3.x to 4.0.0 safely in WordPress and legacy web projects. Covers all breaking changes: removed APIs ($.isArray, $.trim, $.parseJSON, $.type), focus event order changes, slim build differences. | ⚒️ Forged |
+| **office** | Generate Office documents (DOCX, XLSX, PDF, PPTX) with TypeScript. Pure JS libraries that work everywhere: Claude Code CLI, Cloudflare Workers, browsers. Uses docx (Word), xlsx/SheetJS (Excel), pdf-lib (PDF). | ⚒️ Forged |
+| **open-source-contributions** | Create maintainer-friendly pull requests with clean code and professional communication. Triggers: `submit PR to [project]`, `create pull request for [repo]`, `contribute to [project]` | ⚒️ Forged |
+| **playwright-local** | Build browser automation and web scraping with Playwright on your local machine. Prevents 10 errors. | ⚒️ Forged |
 
-### Developer Workflow (3 skills)
+### Developer Workflow (3 skills) — ✅ Forged
 
-| Skill | Description |
-|-------|-------------|
-| **create-agents** | Design and build custom Claude Code agents with effective descriptions, tool access patterns, and delegation strategies. Triggers: `create agent`, `custom agent`, `build agent`, `agent description` |
-| **power-debug** | Multi-agent investigation for stubborn bugs. Use when: going in circles debugging, need to investigate browser/API interactions, complex bugs resisting normal debugging, or when symptoms don't match expectations. |
-| **dev-tools** | Essential development workflow agents for code review, debugging, testing, documentation, and git operations. Triggers: `step` |
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **create-agents** | Design and build custom Claude Code agents with effective descriptions, tool access patterns, and delegation strategies. Triggers: `create agent`, `custom agent`, `build agent`, `agent description` | ✅ Operational |
+| **power-debug** | Multi-agent investigation for stubborn bugs. Use when: going in circles debugging, need to investigate browser/API interactions, complex bugs resisting normal debugging, or when symptoms don't match expectations. | ✅ Operational |
+| **dev-tools** | Essential development workflow agents for code review, debugging, testing, documentation, and git operations. Triggers: `step` | ✅ Operational |
 
 ### Backend & Frameworks (6 skills)
 
 | Skill | Description |
 |-------|-------------|
-| **django** | Expert-level Django development patterns and best practices |
-| **dotnet-core** | .NET Core/ASP.NET Core architecture and implementation |
-| **fastapi** | Modern Python API development with FastAPI framework |
-| **nestjs** | Enterprise-grade NestJS applications with TypeScript |
-| **rails** | Ruby on Rails application development and architecture |
-| **php** | Professional PHP development patterns and frameworks |
+| **django** | ✅ Expert-level Django development patterns and best practices |
+| **dotnet-core** | ✅ .NET Core/ASP.NET Core architecture and implementation |
+| **fastapi** | ✅ Modern Python API development with FastAPI framework |
+| **nestjs** | ✅ Enterprise-grade NestJS applications with TypeScript |
+| **rails** | ✅ Ruby on Rails application development and architecture |
+| **php** | ✅ Professional PHP development patterns and frameworks |
 
 ### Frontend & Mobile (7 skills)
 
@@ -236,33 +249,138 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 > *"The great workshops share their blueprints — wisdom forged in the fires of industry."*
 
-### Skills by Vercel Engineering Team (8 skills)
+### Skills by Vercel Engineering Team (5 skills) ✅
 
-| Skill | Description |
-|-------|-------------|
-| **react-best-practices** | React best practices and patterns (`vercel-labs/react-best-practices`) |
-| **vercel-deploy-claimable** | Deploy projects to Vercel (`vercel-labs/vercel-deploy-claimable`) |
-| **web-design-guidelines** | Web design guidelines and standards (`vercel-labs/web-design-guidelines`) |
-| **composition-patterns** | React component composition and reusable patterns (`vercel-labs/composition-patterns`) |
-| **next-best-practices** | Next.js best practices and recommended patterns (`vercel-labs/next-best-practices`) |
-| **next-cache-components** | Caching strategies and cache-aware components in Next.js (`vercel-labs/next-cache-components`) |
-| **next-upgrade** | Upgrade Next.js projects to newer versions (`vercel-labs/next-upgrade`) |
-| **react-native-skills** | React Native best practices and performance guidelines (`vercel-labs/react-native-skills`) |
+**Status**: Integrated via `vercel-skills` plugin in Forge marketplace
 
-### Skills by Google Labs (Stitch) (6 skills)
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **composition-patterns** | React component composition and reusable patterns (Vercel agent-skills) | ✅ Available |
+| **react-best-practices** | React best practices and patterns (Vercel agent-skills) | ✅ Available |
+| **react-native-skills** | React Native best practices and performance guidelines (Vercel agent-skills) | ✅ Available |
+| **web-design-guidelines** | Web design guidelines and standards (Vercel agent-skills) | ✅ Available |
+| **claude.ai** | Claude.ai integration patterns (Vercel agent-skills) | ✅ Available |
+
+**Installation**: 
+```bash
+/plugin install vercel-skills@forge-marketplace
+```
+
+**Planned** (from vercel-labs):
+- **vercel-deploy-claimable** — Deploy projects to Vercel
+- **next-best-practices** — Next.js best practices
+- **next-cache-components** — Caching strategies
+- **next-upgrade** — Upgrade Next.js projects
+
+### Skills by Google Labs (Stitch) (6 skills) ✅
+
+**Status**: Integrated via `stitch-skills` plugin in Forge marketplace
 
 *Agent Skills for the Stitch MCP server, compatible with Claude Code, Gemini CLI, Cursor, and more.*
 
-| Skill | Description |
-|-------|-------------|
-| **design-md** | Create and manage DESIGN.md files (`google-labs-code/design-md`) |
-| **enhance-prompt** | Improve prompts with design specs and UI/UX vocabulary (`google-labs-code/enhance-prompt`) |
-| **react-components** | Stitch to React components conversion (`google-labs-code/react-components`) |
-| **remotion** | Generate walkthrough videos from Stitch app designs (`google-labs-code/remotion`) |
-| **shadcn-ui** | Build UI components with shadcn/ui (`google-labs-code/shadcn-ui`) |
-| **stitch-loop** | Iterative design-to-code feedback loop (`google-labs-code/stitch-loop`) |
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **design-md** | Analyze Stitch projects and synthesize semantic design systems into DESIGN.md files | ✅ Available |
+| **enhance-prompt** | Transform vague UI ideas into Stitch-optimized prompts with enhanced specificity | ✅ Available |
+| **react-components** | Convert Stitch designs into modular Vite and React components with validation | ✅ Available |
+| **remotion** | Generate walkthrough videos from Stitch projects using Remotion | ✅ Available |
+| **shadcn-ui** | Expert guidance for shadcn/ui component integration and customization | ✅ Available |
+| **stitch-loop** | Generate multi-page websites using autonomous baton-passing loop pattern | ✅ Available |
 
-### Security Skills by Trail of Bits Team (22 skills)
+**Installation**: 
+```bash
+/plugin install stitch-skills@forge-marketplace
+```
+
+**Note**: Skills designed for Stitch MCP server integration. Full automation requires MCP setup; skills provide expert guidance without MCP.
+
+### Security & Development Skills by Trail of Bits (53 skills) ✅
+
+**Status**: Integrated via **27 plugins** in Forge marketplace (multi-marketplace import pattern)
+
+*Professional security research and development tools from Trail of Bits, covering vulnerability detection, smart contract auditing, static analysis, rule creation, and modern development practices.*
+
+**Plugin Categories**:
+
+| Category | Plugins | Description |
+|----------|---------|-------------|
+| **Security Analysis** | 11 | Vulnerability detection, audit workflows, timing analysis |
+| **Smart Contract Security** | 3 | Blockchain auditing, entry point analysis, compliance |
+| **Testing & Rules** | 4 | Property-based testing, Semgrep, YARA authoring |
+| **Development Tools** | 7 | Modern Python, devcontainers, GitHub integration |
+| **Integrations** | 2 | Burp Suite, external LLM reviews |
+
+**Available Plugins** (alphabetically):
+
+1. **ask-questions-if-underspecified** (development) - Clarify requirements before implementing
+2. **audit-context-building** (security) - Deep architectural context via ultra-granular code analysis
+3. **building-secure-contracts** (blockchain) - Smart contract security toolkit with vulnerability scanners for 6 blockchains
+4. **burpsuite-project-parser** (integration) - Search and extract data from Burp Suite project files
+5. **constant-time-analysis** (security) - Detect compiler-induced timing side-channels in cryptographic code
+6. **culture-index** (development) - Interpret Culture Index survey results for individuals and teams
+7. **debug-buttercup** (development) - Debug Buttercup Kubernetes deployments
+8. **devcontainer-setup** (development) - Create pre-configured devcontainers with Claude Code and language tooling
+9. **differential-review** (security) - Security-focused diff review with git history analysis and blast radius
+10. **dwarf-expert** (security) - Interact with and understand the DWARF debugging format
+11. **entry-point-analyzer** (blockchain) - Identify state-changing entry points in smart contracts for auditing
+12. **firebase-apk-scanner** (security) - Scan Android APKs for Firebase security misconfigurations
+13. **fix-review** (security) - Verify fix commits address audit findings without introducing bugs
+14. **gh-cli** (development) - Intercepts GitHub URL fetches, redirects to authenticated gh CLI
+15. **git-cleanup** (development) - Safely analyze and clean up local git branches and worktrees
+16. **insecure-defaults** (security) - Detect insecure default configurations like hardcoded credentials
+17. **modern-python** (development) - Modern Python best practices with uv, ruff, and pytest
+18. **property-based-testing** (testing) - Property-based testing guidance for multiple languages and smart contracts
+19. **second-opinion** (integration) - Run code reviews using external LLM CLIs (OpenAI Codex, Google Gemini)
+20. **semgrep-rule-creator** (testing) - Create custom Semgrep rules for detecting bug patterns and vulnerabilities
+21. **semgrep-rule-variant-creator** (testing) - Port existing Semgrep rules to new target languages
+22. **sharp-edges** (security) - Identify error-prone APIs, dangerous configurations, and footgun designs
+23. **spec-to-code-compliance** (blockchain) - Specification-to-code compliance checker for blockchain audits
+24. **static-analysis** (security) - Static analysis toolkit with CodeQL, Semgrep, and SARIF parsing
+25. **testing-handbook-skills** (testing) - Skills from Trail of Bits Application Security Testing Handbook
+26. **variant-analysis** (security) - Find similar vulnerabilities across codebases using pattern-based analysis
+27. **yara-authoring** (security) - YARA-X detection rule authoring with linting and quality analysis
+
+**Installation Examples**:
+```bash
+# Security researcher
+/plugin install sharp-edges@forge-marketplace
+/plugin install insecure-defaults@forge-marketplace
+/plugin install static-analysis@forge-marketplace
+
+# Smart contract auditor
+/plugin install building-secure-contracts@forge-marketplace
+/plugin install entry-point-analyzer@forge-marketplace
+/plugin install spec-to-code-compliance@forge-marketplace
+
+# Modern Python developer
+/plugin install modern-python@forge-marketplace
+/plugin install devcontainer-setup@forge-marketplace
+
+# Security team (comprehensive)
+/plugin install sharp-edges@forge-marketplace
+/plugin install differential-review@forge-marketplace
+/plugin install variant-analysis@forge-marketplace
+/plugin install semgrep-rule-creator@forge-marketplace
+```
+
+**Skills Count by Plugin** (53 total skills):
+- Most plugins contain 1-3 specialized skills
+- building-secure-contracts: 11 skills (6 blockchain scanners + 5 development guides)
+- static-analysis: 5 skills (CodeQL, Semgrep, SARIF)
+- modern-python: 4 skills (uv, ruff, pytest, project setup)
+- Full skill list available in each plugin's README
+
+**Integration Pattern**: Multi-Marketplace Import (Pattern Type 5)
+- Trail of Bits maintains their own `.claude-plugin/marketplace.json`
+- Forge imports all plugins with transformed paths
+- No wrappers, no symlinks - direct references
+- Largest single integration: 27 plugins in one operation
+
+**License**: Varies by plugin (see individual plugin manifests)
+
+---
+
+### Security Skills by Trail of Bits Team (22 skills) ARCHIVED
 
 | Skill | Description |
 |-------|-------------|
@@ -289,7 +407,81 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 | **testing-handbook-skills** | Testing Handbook skills: fuzzers, static analysis, sanitizers (`trailofbits/testing-handbook-skills`) |
 | **variant-analysis** | Find similar vulnerabilities via pattern-based analysis (`trailofbits/variant-analysis`) |
 
-### Skills by Microsoft — .NET (31 skills)
+### Skills by Sentry (15 skills) ✅
+
+**Status**: Integrated via `sentry-skills` plugin in Forge marketplace
+
+*Sentry-specific skills for code review, commits, PR management, and documentation.*
+
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **code-review** | Sentry code review guidelines and checklist | ✅ Available |
+| **commit** | Sentry commit message conventions | ✅ Available |
+| **create-pr** | Create pull requests following Sentry conventions | ✅ Available |
+| **find-bugs** | Find bugs and security vulnerabilities in branch changes | ✅ Available |
+| **iterate-pr** | Iterate on a PR until CI passes and feedback is addressed | ✅ Available |
+| **security-review** | Systematic security code review following OWASP guidelines | ✅ Available |
+| **code-simplifier** | Simplifies and refines code for clarity and maintainability | ✅ Available |
+| **brand-guidelines** | Write copy following Sentry brand guidelines | ✅ Available |
+| **doc-coauthoring** | Structured workflow for co-authoring documentation | ✅ Available |
+| **claude-settings-audit** | Analyze repo and generate recommended Claude settings | ✅ Available |
+| **agents-md** | Maintain AGENTS.md with concise agent instructions | ✅ Available |
+| **skill-creator** | Create new agent skills for the repository | ✅ Available |
+| **skill-scanner** | Scan and analyze existing agent skills | ✅ Available |
+| **django-access-review** | Django access control review | ✅ Available |
+| **django-perf-review** | Django performance review | ✅ Available |
+
+**Agents**: 2 (code-simplifier agent)
+
+**Installation**:
+```bash
+/plugin install sentry-skills@forge-marketplace
+```
+
+**License**: Apache-2.0
+
+---
+
+### Skills by Microsoft (133 skills) ✅
+
+**Status**: Integrated via **7 plugins** in Forge marketplace (multi-plugin architecture)
+
+*Domain-specific knowledge for Azure SDK and Microsoft AI Foundry development.*
+
+**Available Plugins**:
+
+| Plugin | Skills | Category | Description |
+|--------|--------|----------|-------------|
+| **ms-skills-core** | 6 | infrastructure | Language-agnostic tooling: azd, MCP, Copilot SDK, skill creation |
+| **ms-skills-python** | 41 | language | Azure SDK for Python developers |
+| **ms-skills-dotnet** | 29 | language | Azure SDK for .NET/C# developers |
+| **ms-skills-typescript** | 24 | language | Azure SDK for TypeScript/Node.js developers |
+| **ms-skills-java** | 26 | language | Azure SDK for Java developers |
+| **ms-skills-rust** | 7 | language | Azure SDK for Rust developers |
+| **ms-agents** | 6 agents + 1 plugin | productivity | Custom agents + deep-wiki documentation generator |
+
+**Installation Examples**:
+```bash
+# Python developer
+/plugin install ms-skills-python@forge-marketplace
+/plugin install ms-skills-core@forge-marketplace
+
+# .NET developer
+/plugin install ms-skills-dotnet@forge-marketplace
+/plugin install ms-skills-core@forge-marketplace
+
+# Full-stack team
+/plugin install ms-skills-python@forge-marketplace
+/plugin install ms-skills-typescript@forge-marketplace
+/plugin install ms-skills-core@forge-marketplace
+/plugin install ms-agents@forge-marketplace
+```
+
+**Architecture**: Multi-plugin wrapper pattern - each language gets its own plugin for selective installation and performance optimization.
+
+---
+
+### Skills by Microsoft — .NET (29 skills)
 
 *Domain-specific knowledge for Azure SDK and Foundry development.*
 
@@ -477,6 +669,9 @@ Current state and recent milestones:
 
 | Date | Milestone |
 |------|-----------|
+| **Feb 12, 2026** | Frontend & UI Skills — Forged 6 skills: accessibility, animate, nextjs, react-forms, responsive-images, tailwind-patterns |
+| **Feb 12, 2026** | Utilities Forged — 10 Utilities skills implemented: color-palette, email-gateway, favicon-gen, firecrawl-scraper, icon-design, image-gen, jquery-4, office, open-source-contributions, playwright-local |
+| **Feb 12, 2026** | Database & Storage Skills — Forged firebase-firestore, firebase-storage, snowflake-platform (3 new skills, 25 total) |
 | **Feb 12, 2026** | Roadmap Expansion — Added `/divine` command and 4 new hook events for memory/context integration |
 | **Feb 12, 2026** | Factory Stable — 22 skills, 12 commands, 11 agents, 81 context files, 20 hooks, ~1,683 tests |
 | **Feb 11, 2026** | Enterprise Skills Catalog — Documented 173 skills from Vercel, Google Labs, Trail of Bits, Microsoft, Anthropic, Sentry |
