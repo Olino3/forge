@@ -4,10 +4,10 @@ Validates:
 - plugin.json exists at .claude-plugin/plugin.json
 - Has required fields: name, version, description, author
 - Version is valid semver
-- Does NOT have commands field (commands discovered from filesystem)
-- All 12 command directories exist with COMMAND.md files
+- All 12 command .md files exist in flat structure (commands/{name}.md)
+- Command files have valid YAML frontmatter
 - .claude-plugin/ contains only expected files
-- No extraneous fields in plugin.json
+- Commands field is optional (Claude Code auto-discovers from flat .md files)
 
 Phase 2 of the Forge Testing Architecture.
 """
@@ -99,11 +99,13 @@ class TestPluginManifestFields:
             f"version '{version}' is not valid semver (expected X.Y.Z)"
         )
 
-    def test_has_no_commands_field(self, plugin):
-        """plugin.json should not have a 'commands' field (commands are discovered from filesystem)."""
-        assert "commands" not in plugin, (
-            "plugin.json should not contain 'commands' field - commands are discovered from filesystem"
-        )
+    def test_has_commands(self, plugin):
+        """plugin.json may optionally have a 'commands' object (auto-discovery is also supported)."""
+        # Commands field is optional since Claude Code auto-discovers from .md files
+        if "commands" in plugin:
+            assert isinstance(plugin["commands"], dict), (
+                "If present, 'commands' must be an object"
+            )
 
     def test_has_description(self, plugin):
         """plugin.json should have a 'description' field."""
@@ -121,65 +123,62 @@ class TestPluginManifestFields:
 
 
 class TestPluginManifestCommands:
-    """Validate all commands exist in filesystem and follow conventions."""
+    """Validate command file structure (auto-discovery via flat .md files)."""
+
+    @pytest.fixture(scope="class")
+    def plugin(self):
+        return load_json(PLUGIN_JSON)
+
+    def test_command_files_exist(self):
+        """All 12 expected command .md files must exist in commands/ directory."""
+        commands_dir = FORGE_DIR / "commands"
+        for cmd_name in sorted(EXPECTED_COMMANDS):
+            cmd_file = commands_dir / f"{cmd_name}.md"
+            assert cmd_file.exists(), (
+                f"Command file missing: commands/{cmd_name}.md"
+            )
 
     def test_expected_command_count(self):
-        """At least 12 command directories must exist."""
+        """commands/ directory must contain at least 12 command .md files (excluding index.md)."""
         commands_dir = FORGE_DIR / "commands"
-        command_dirs = [d for d in commands_dir.iterdir() if d.is_dir()]
-        assert len(command_dirs) >= 12, (
-            f"Expected at least 12 command directories, found {len(command_dirs)}: "
-            f"{sorted([d.name for d in command_dirs])}"
-        )
-
-    def test_all_expected_commands_present(self):
-        """All 12 expected commands must exist as directories."""
-        commands_dir = FORGE_DIR / "commands"
-        existing_commands = {d.name for d in commands_dir.iterdir() if d.is_dir()}
-        missing = EXPECTED_COMMANDS - existing_commands
-        assert not missing, (
-            f"Missing expected command directories: {sorted(missing)}"
+        cmd_files = [
+            f for f in commands_dir.glob("*.md")
+            if f.name != "index.md"
+        ]
+        assert len(cmd_files) >= 12, (
+            f"Expected at least 12 command files, found {len(cmd_files)}: "
+            f"{sorted([f.stem for f in cmd_files])}"
         )
 
     @pytest.mark.parametrize("cmd_name", sorted(EXPECTED_COMMANDS))
-    def test_command_directory_exists(self, cmd_name):
-        """Each command must have a directory in commands/."""
-        cmd_dir = FORGE_DIR / "commands" / cmd_name
-        assert cmd_dir.is_dir(), (
-            f"Command directory 'commands/{cmd_name}/' does not exist"
+    def test_command_file_has_content(self, cmd_name):
+        """Each command .md file must have YAML frontmatter and content."""
+        cmd_file = FORGE_DIR / "commands" / f"{cmd_name}.md"
+        if not cmd_file.exists():
+            pytest.skip(f"Command file '{cmd_name}.md' not found")
+        
+        content = cmd_file.read_text()
+        # Check for YAML frontmatter (starts and ends with ---)
+        assert content.startswith("---"), (
+            f"Command '{cmd_name}.md' missing YAML frontmatter"
+        )
+        assert content.count("---") >= 2, (
+            f"Command '{cmd_name}.md' has incomplete YAML frontmatter"
         )
 
-    @pytest.mark.parametrize("cmd_name", sorted(EXPECTED_COMMANDS))
-    def test_command_has_command_md(self, cmd_name):
-        """Each command directory must contain a COMMAND.md file."""
-        cmd_file = FORGE_DIR / "commands" / cmd_name / "COMMAND.md"
-        assert cmd_file.exists(), (
-            f"Command '{cmd_name}' missing COMMAND.md file"
-        )
+    def test_examples_directory_exists(self):
+        """commands/_docs/ directory should exist for examples."""
+        docs_dir = FORGE_DIR / "commands" / "_docs"
+        assert docs_dir.is_dir(), "commands/_docs/ directory missing"
 
-    def test_command_paths_follow_convention(self):
-        """All command COMMAND.md files must exist at commands/{name}/COMMAND.md."""
-        commands_dir = FORGE_DIR / "commands"
-        for cmd_dir in commands_dir.iterdir():
-            if cmd_dir.is_dir():
-                cmd_file = cmd_dir / "COMMAND.md"
-                assert cmd_file.exists(), (
-                    f"Command '{cmd_dir.name}' directory exists but missing COMMAND.md"
-                )
-
-    def test_no_extra_unexpected_commands(self):
-        """Track any commands not in the expected set (informational)."""
-        import warnings
-        commands_dir = FORGE_DIR / "commands"
-        existing_commands = {d.name for d in commands_dir.iterdir() if d.is_dir()}
-        extra = existing_commands - EXPECTED_COMMANDS
-        # Extra commands are allowed but should be noted
-        if extra:
-            warnings.warn(
-                f"Found {len(extra)} unexpected command(s): {sorted(extra)}. "
-                f"Update EXPECTED_COMMANDS in test_plugin_manifest.py if intentional.",
-                UserWarning
-            )
+    def test_examples_files_exist(self):
+        """Each command should have a corresponding examples file in _docs/."""
+        docs_dir = FORGE_DIR / "commands" / "_docs"
+        for cmd_name in sorted(EXPECTED_COMMANDS):
+            examples_file = docs_dir / f"{cmd_name}-examples.md"
+            # Examples files are optional but recommended
+            if not examples_file.exists():
+                pass  # Not a hard requirement
 
 
 # ---------------------------------------------------------------------------

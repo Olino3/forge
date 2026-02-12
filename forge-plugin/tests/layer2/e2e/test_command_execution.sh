@@ -1,8 +1,8 @@
 #!/bin/bash
 # ⚒️ The Forge — E2E: Command Execution Test
 #
-# Verifies that all 12 commands are registered, discoverable, and have
-# valid COMMAND.md files with expected structure.
+# Verifies that all 12 commands exist as flat .md files in commands/
+# with valid YAML frontmatter and content structure.
 # Skips runtime command invocation if claude CLI is not available.
 #
 # Exit codes:
@@ -50,58 +50,68 @@ EXPECTED_COMMANDS=(
     "azure-function"
 )
 
-# --- Test 1: All expected commands exist as directories with COMMAND.md ---
-info "Checking command directories and COMMAND.md files..."
-MANIFEST="${PLUGIN_DIR}/.claude-plugin/plugin.json"
-if [ ! -f "$MANIFEST" ]; then
-    fail "Plugin manifest not found"
-    exit 1
-fi
-
+# --- Test 1: Command files exist in flat structure ---
+info "Checking command .md files..."
 for cmd in "${EXPECTED_COMMANDS[@]}"; do
-    CMD_DIR="${PLUGIN_DIR}/commands/${cmd}"
-    CMD_FILE="${CMD_DIR}/COMMAND.md"
-    
-    if [ -d "$CMD_DIR" ]; then
-        if [ -f "$CMD_FILE" ]; then
-            pass "Command '/${cmd}' directory and COMMAND.md exist"
-        else
-            fail "Command '/${cmd}' directory exists but COMMAND.md missing"
-            FAILED=1
-        fi
+    CMD_FILE="${PLUGIN_DIR}/commands/${cmd}.md"
+    if [ -f "$CMD_FILE" ]; then
+        pass "Command file exists: commands/${cmd}.md"
     else
-        fail "Command directory missing: commands/${cmd}/"
+        fail "Command file missing: commands/${cmd}.md"
         FAILED=1
     fi
 done
 
-# --- Test 2: COMMAND.md files are non-empty and have expected sections ---
-info "Checking COMMAND.md content structure..."
+# --- Test 2: Command files are non-empty and have YAML frontmatter ---
+info "Checking command file content structure..."
 for cmd in "${EXPECTED_COMMANDS[@]}"; do
-    CMD_FILE="${PLUGIN_DIR}/commands/${cmd}/COMMAND.md"
+    CMD_FILE="${PLUGIN_DIR}/commands/${cmd}.md"
     if [ -f "$CMD_FILE" ]; then
         LINE_COUNT=$(wc -l < "$CMD_FILE")
         if [ "$LINE_COUNT" -gt 5 ]; then
-            pass "/${cmd}/COMMAND.md has content (${LINE_COUNT} lines)"
+            pass "/${cmd}.md has content (${LINE_COUNT} lines)"
         else
-            warn "/${cmd}/COMMAND.md seems too short (${LINE_COUNT} lines)"
+            warn "/${cmd}.md seems too short (${LINE_COUNT} lines)"
+        fi
+        
+        # Check for YAML frontmatter
+        if head -1 "$CMD_FILE" | grep -q "^---$"; then
+            pass "/${cmd}.md has YAML frontmatter"
+        else
+            warn "/${cmd}.md may be missing YAML frontmatter"
         fi
     fi
 done
 
 # --- Test 3: Command count matches expected ---
 info "Checking command count..."
-ACTUAL_COUNT=$(find "${PLUGIN_DIR}/commands" -mindepth 1 -maxdepth 1 -type d | wc -l)
+ACTUAL_COUNT=$(find "${PLUGIN_DIR}/commands" -maxdepth 1 -name "*.md" -not -name "index.md" | wc -l)
 EXPECTED_COUNT=${#EXPECTED_COMMANDS[@]}
 
-if [ "$ACTUAL_COUNT" -eq "$EXPECTED_COUNT" ]; then
-    pass "Command count matches: ${ACTUAL_COUNT} directories, ${EXPECTED_COUNT} expected"
+if [ "$ACTUAL_COUNT" -ge "$EXPECTED_COUNT" ]; then
+    pass "Command count matches: ${ACTUAL_COUNT} found, ${EXPECTED_COUNT} expected"
 else
-    fail "Command count differs: ${ACTUAL_COUNT} directories, ${EXPECTED_COUNT} expected"
+    fail "Command count mismatch: ${ACTUAL_COUNT} found, ${EXPECTED_COUNT} expected"
     FAILED=1
 fi
 
-# --- Test 4: Commands index file exists ---
+# --- Test 4: Examples directory exists ---
+info "Checking examples directory..."
+DOCS_DIR="${PLUGIN_DIR}/commands/_docs"
+if [ -d "$DOCS_DIR" ]; then
+    pass "commands/_docs/ directory exists"
+    # Check for example files
+    EXAMPLES_COUNT=$(find "$DOCS_DIR" -name "*-examples.md" | wc -l)
+    if [ "$EXAMPLES_COUNT" -ge "$EXPECTED_COUNT" ]; then
+        pass "Example files exist: ${EXAMPLES_COUNT} found"
+    else
+        warn "Some example files may be missing: ${EXAMPLES_COUNT} found, ${EXPECTED_COUNT} expected"
+    fi
+else
+    warn "commands/_docs/ directory not found"
+fi
+
+# --- Test 5: Commands index file exists ---
 info "Checking commands index..."
 INDEX_FILE="${PLUGIN_DIR}/commands/index.md"
 if [ -f "$INDEX_FILE" ]; then

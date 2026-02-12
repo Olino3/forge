@@ -5,7 +5,7 @@ Validates:
 - All required files from root_safety_profile.json exist
 - Each agent has paired .md + .config.json files
 - Each skill directory has SKILL.md + examples.md
-- Each command directory has COMMAND.md
+- Command .md files exist in flat structure (commands/{name}.md)
 - Memory layer subdirectories exist (agents, commands, projects, skills)
 - Context domain directories match valid domain set
 
@@ -167,33 +167,37 @@ class TestSkillStructure:
 # ---------------------------------------------------------------------------
 
 
-def _get_command_dirs() -> list[Path]:
-    """Return all command directories (exclude top-level files like index.md)."""
+def _get_command_files() -> list[Path]:
+    """Return all command .md files (exclude index.md and _docs/ directory)."""
     commands_dir = FORGE_DIR / "commands"
     return sorted(
-        d for d in commands_dir.iterdir()
-        if d.is_dir() and not d.name.startswith(".")
+        f for f in commands_dir.glob("*.md")
+        if f.name != "index.md"
     )
 
 
 class TestCommandStructure:
-    """Validate command directory conventions."""
+    """Validate command file conventions (flat structure)."""
 
     def test_commands_exist(self):
-        """At least one command directory must exist."""
-        assert len(_get_command_dirs()) > 0, "No command directories found"
+        """At least one command .md file must exist."""
+        assert len(_get_command_files()) > 0, "No command .md files found"
 
     @pytest.mark.parametrize(
-        "cmd_dir",
-        _get_command_dirs(),
-        ids=[d.name for d in _get_command_dirs()],
+        "cmd_file",
+        _get_command_files(),
+        ids=[f.stem for f in _get_command_files()],
     )
-    def test_command_has_command_md(self, cmd_dir):
-        """Every command directory must contain COMMAND.md."""
-        command_md = cmd_dir / "COMMAND.md"
-        assert command_md.exists(), (
-            f"Command '{cmd_dir.name}' missing COMMAND.md"
+    def test_command_file_exists(self, cmd_file):
+        """Every command must be a .md file in commands/ directory."""
+        assert cmd_file.exists(), (
+            f"Command '{cmd_file.stem}' file missing"
         )
+
+    def test_docs_directory_exists(self):
+        """commands/_docs/ directory should exist for examples."""
+        docs_dir = FORGE_DIR / "commands" / "_docs"
+        assert docs_dir.is_dir(), "commands/_docs/ directory missing"
 
 
 # ---------------------------------------------------------------------------
