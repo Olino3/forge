@@ -94,21 +94,12 @@ The complete pantheon of the Twelve Olympians, each embodying a core aspect of t
 | Skill | Description |
 |-------|-------------|
 | **accessibility** | Build WCAG 2.1 AA compliant websites with semantic HTML, proper ARIA, focus management, and screen reader support. Includes color contrast (4.5:1 text), keyboard navigation, form labels, and live regions. |
-| **auto-animate** | Zero-config animations for React, Vue, Solid, Svelte, Preact with @formkit/auto-animate (3.28kb). Prevents 15 errors. |
-| **hono-routing** | Build type-safe APIs with Hono for Cloudflare Workers, Deno, Bun, Node.js. Routing, middleware, validation (Zod/Valibot), RPC, streaming (SSE), WebSocket, security (CSRF, secureHeaders). |
-| **motion** | Build React animations with Motion (Framer Motion) — gestures (drag, hover, tap), scroll effects, spring physics, layout animations, SVG. Bundle: 2.3 KB (mini) to 34 KB (full). |
+| **animate** | Zero-config animations for React, Vue, Solid, Svelte, Preact with @formkit/auto-animate (3.28kb). Prevents 15 errors. |
 | **nextjs** | Build Next.js 16 apps with App Router, Server Components/Actions, Cache Components ("use cache"), and async route params. Includes proxy.ts and React 19.2. Prevents 25 errors. |
-| **react-hook-form-zod** | Build type-safe validated forms using React Hook Form v7 and Zod v4. Single schema works on client and server with full TypeScript inference via `z.infer`. |
+| **react-forms** | Build type-safe validated forms using React Hook Form v7 and Zod v4. Single schema works on client and server with full TypeScript inference via `z.infer`. |
 | **responsive-images** | Implement performant responsive images with srcset, sizes, lazy loading, and modern formats (WebP, AVIF). Covers aspect-ratio for CLS prevention, picture element for art direction, and fetchpriority. Triggers: `srcset`, `loading=`, `lazy`, `eager` |
 | **tailwind-patterns** | Production-ready Tailwind CSS patterns for common website components: responsive layouts, cards, navigation, forms, buttons, and typography. Includes spacing scale, breakpoints, mobile-first patterns. Triggers: `Tailwind CSS`, `CSS utility classes`, `first CSS`, `shadcn/ui components` |
-| **tailwind-v4-shadcn** | Set up Tailwind v4 with shadcn/ui using @theme inline pattern and CSS variable architecture. Four-step pattern: CSS variables, Tailwind mapping, base styles, automatic dark mode. Prevents 8 errors. |
-| **tanstack-query** | Manage server state in React with TanStack Query v5. Covers useMutationState, simplified optimistic updates, throwOnError, network mode (offline/PWA), and infiniteQueryOptions. |
-| **tanstack-router** | Build type-safe, file-based React routing with TanStack Router. Supports client-side navigation, route loaders, and TanStack Query integration. Prevents 20 errors. Triggers: `TanStack Router`, `@tanstack/react-router`, `type-safe routing` |
-| **tanstack-start** | Build full-stack React apps with TanStack Start on Cloudflare Workers. Type-safe routing, server functions, SSR/streaming, D1/KV/R2 integration. Prevents 9 errors. |
-| **tanstack-table** | Build headless data tables with TanStack Table v8. Server-side pagination, filtering, sorting, and virtualization for Cloudflare Workers + D1. Prevents 12 errors. Triggers: `data table`, `datagrid`, `table component`, `server-side pagination` |
-| **tiptap** | Build rich text editors with Tiptap — headless editor framework with React and Tailwind v4. Covers SSR-safe setup, image uploads, prose styling, and collaborative editing. |
-| **zustand-state-management** | Build type-safe global state in React with Zustand. Supports TypeScript, persist middleware, devtools, slices pattern, and Next.js SSR with hydration handling. Prevents 6 errors. |
-
+ 
 ### Authentication (5 skills)
 
 | Skill | Description |
@@ -117,7 +108,7 @@ The complete pantheon of the Twelve Olympians, each embodying a core aspect of t
 | **better-auth** | Self-hosted auth for TypeScript/Cloudflare Workers with social auth, 2FA, passkeys, organizations, RBAC, and 15+ plugins. Requires Drizzle ORM or Kysely for D1 (no direct adapter). Triggers: `better-auth`, `authentication with D1`, `Cloudflare D1 auth setup` |
 | **clerk-auth** | Clerk auth with API Keys beta (Dec 2025), Next.js 16 proxy.ts (March 2025 CVE context), API version 2025-11-10 breaking changes, clerkMiddleware() options, webhooks, production considerations. Prevents 15 errors. Triggers: `clerk`, `clerk auth`, `@clerk/nextjs` |
 | **firebase-auth** | Build with Firebase Authentication — email/password, OAuth providers, phone auth, and custom tokens. Use when: setting up auth flows, implementing sign-in/sign-up, managing user sessions, protecting routes. Prevents 12 errors. |
-| **oauth-integrations** | Implement OAuth 2.0 authentication with GitHub and Microsoft Entra (Azure AD) in Cloudflare Workers. Triggers: `GitHub OAuth`, `GitHub authentication`, `Microsoft OAuth` |
+| **oauth-integrations** | Implement OAuth 2.0 authentication with GitHub, Okta, Google, and Microsoft Entra (Azure AD) ||
 
 ### Database & Storage (6 skills)
 
@@ -129,14 +120,6 @@ The complete pantheon of the Twelve Olympians, each embodying a core aspect of t
 | **snowflake-platform** | Build on Snowflake's AI Data Cloud with snow CLI, Cortex AI (COMPLETE, SUMMARIZE, AI_FILTER), Native Apps, and Snowpark. Covers JWT auth, account identifiers, Marketplace publishing. Prevents 11 errors. Triggers: `snowflake`, `snow cli`, `snowflake connection` |
 | **vercel-blob** | Integrate Vercel Blob for file uploads and CDN-delivered assets in Next.js. Supports client-side uploads with presigned URLs and multipart transfers for large files. Prevents 16 errors. Triggers: `@vercel/blob`, `vercel blob`, `vercel file upload` |
 | **vercel-kv** | Integrate Redis-compatible Vercel KV for caching, session management, and rate limiting in Next.js. Powered by Upstash with strong consistency and TTL support. Triggers: `@vercel/kv`, `vercel kv`, `upstash vercel` |
-
-### Content Management (3 skills)
-
-| Skill | Description |
-|-------|-------------|
-| **sveltia-cms** | Set up Sveltia CMS — lightweight Git-backed CMS successor to Decap/Netlify CMS (300KB bundle, 270+ fixes). Framework-agnostic for Hugo, Jekyll, 11ty, Astro. Prevents 10 errors. |
-| **tinacms** | Build content-heavy sites with Git-backed TinaCMS. Provides visual editing for blogs, documentation, and marketing sites. Supports Next.js, Vite+React, and Astro with TinaCloud or Node.js self-hosting. Prevents 10 errors. |
-| **wordpress-plugin-core** | Build secure WordPress plugins with hooks, database interactions, Settings API, custom post types, and REST API. Covers Simple, OOP, and PSR-4 architecture patterns plus the Security Trinity. |
 
 ### Planning & Workflow (9 skills)
 
@@ -166,26 +149,25 @@ The complete pantheon of the Twelve Olympians, each embodying a core aspect of t
 | **office** | Generate Office documents (DOCX, XLSX, PDF, PPTX) with TypeScript. Pure JS libraries that work everywhere: Claude Code CLI, Cloudflare Workers, browsers. Uses docx (Word), xlsx/SheetJS (Excel), pdf-lib (PDF). |
 | **open-source-contributions** | Create maintainer-friendly pull requests with clean code and professional communication. Triggers: `submit PR to [project]`, `create pull request for [repo]`, `contribute to [project]` |
 | **playwright-local** | Build browser automation and web scraping with Playwright on your local machine. Prevents 10 errors. |
-| **seo-meta** | Generate complete SEO meta tags for every page. Covers title patterns, meta descriptions, Open Graph, Twitter Cards, and JSON-LD structured data (LocalBusiness, Service, FAQ, BreadcrumbList). Triggers: `seo`, `open graph`, `twitter cards`, `json-ld` |
 
 ### Developer Workflow (3 skills)
 
 | Skill | Description |
 |-------|-------------|
-| **agent-development** | Design and build custom Claude Code agents with effective descriptions, tool access patterns, and delegation strategies. Triggers: `create agent`, `custom agent`, `build agent`, `agent description` |
-| **deep-debug** | Multi-agent investigation for stubborn bugs. Use when: going in circles debugging, need to investigate browser/API interactions, complex bugs resisting normal debugging, or when symptoms don't match expectations. |
-| **developer-toolbox** | Essential development workflow agents for code review, debugging, testing, documentation, and git operations. Triggers: `step` |
+| **create-agents** | Design and build custom Claude Code agents with effective descriptions, tool access patterns, and delegation strategies. Triggers: `create agent`, `custom agent`, `build agent`, `agent description` |
+| **power-debug** | Multi-agent investigation for stubborn bugs. Use when: going in circles debugging, need to investigate browser/API interactions, complex bugs resisting normal debugging, or when symptoms don't match expectations. |
+| **dev-tools** | Essential development workflow agents for code review, debugging, testing, documentation, and git operations. Triggers: `step` |
 
 ### Backend & Frameworks (6 skills)
 
 | Skill | Description |
 |-------|-------------|
-| **django-expert** | Expert-level Django development patterns and best practices |
-| **dotnet-core-expert** | .NET Core/ASP.NET Core architecture and implementation |
-| **fastapi-expert** | Modern Python API development with FastAPI framework |
-| **nestjs-expert** | Enterprise-grade NestJS applications with TypeScript |
-| **rails-expert** | Ruby on Rails application development and architecture |
-| **php-pro** | Professional PHP development patterns and frameworks |
+| **django** | Expert-level Django development patterns and best practices |
+| **dotnet-core** | .NET Core/ASP.NET Core architecture and implementation |
+| **fastapi** | Modern Python API development with FastAPI framework |
+| **nestjs** | Enterprise-grade NestJS applications with TypeScript |
+| **rails** | Ruby on Rails application development and architecture |
+| **php** | Professional PHP development patterns and frameworks |
 
 ### Frontend & Mobile (7 skills)
 
@@ -203,29 +185,29 @@ The complete pantheon of the Twelve Olympians, each embodying a core aspect of t
 
 | Skill | Description |
 |-------|-------------|
-| **cpp-pro** | Modern C++ (C++17/20/23) development and best practices |
-| **csharp-developer** | C# language features and .NET ecosystem development |
+| **cpp** | Modern C++ (C++17/20/23) development and best practices |
+| **csharp** | C# language features and .NET ecosystem development |
 | **java-architect** | Enterprise Java architecture and design patterns |
-| **javascript-pro** | Advanced JavaScript patterns, ES2024+, and runtime optimization |
-| **typescript-pro** | TypeScript advanced types, generics, and strict configuration |
+| **javascript** | Advanced JavaScript patterns, ES2024+, and runtime optimization |
+| **typescript** | TypeScript advanced types, generics, and strict configuration |
 
 ### Data & Database (4 skills)
 
 | Skill | Description |
 |-------|-------------|
 | **database-optimizer** | SQL query optimization, indexing, and performance tuning |
-| **pandas-pro** | Advanced data manipulation and analysis with pandas |
-| **postgres-pro** | PostgreSQL administration, optimization, and advanced features |
-| **sql-pro** | Expert SQL across multiple database engines |
+| **pandas** | Advanced data manipulation and analysis with pandas |
+| **postgres** | PostgreSQL administration, optimization, and advanced features |
+| **sql** | Expert SQL across multiple database engines |
 
 ### Architecture & Design (4 skills)
 
 | Skill | Description |
 |-------|-------------|
-| **api-designer** | RESTful and RPC API design patterns and best practices |
-| **architecture-designer** | Software architecture patterns and system design |
-| **graphql-architect** | GraphQL schema design, resolvers, and federation |
-| **microservices-architect** | Microservices patterns, orchestration, and service mesh |
+| **api-design** | RESTful and RPC API design patterns and best practices |
+| **architecture-design** | Software architecture patterns and system design |
+| **graphql-design** | GraphQL schema design, resolvers, and federation |
+| **microservices-design** | Microservices patterns, orchestration, and service mesh |
 
 ### Cloud & Infrastructure (5 skills)
 
@@ -243,10 +225,10 @@ The complete pantheon of the Twelve Olympians, each embodying a core aspect of t
 |-------|-------------|
 | **code-documenter** | Technical documentation, API docs, and code comments |
 | **code-reviewer** | Code review best practices and quality assessment |
-| **debugging-wizard** | Advanced debugging techniques across languages and platforms |
-| **secure-code-guardian** | Secure coding practices and vulnerability prevention |
+| **debugging-expert** | Advanced debugging techniques across languages and platforms |
+| **secure-code** | Secure coding practices and vulnerability prevention |
 | **security-reviewer** | Security audits, threat modeling, and compliance |
-| **test-master** | Comprehensive testing strategies: unit, integration, E2E |
+| **testing** | Comprehensive testing strategies: unit, integration, E2E |
 
 ### Specialized (10 skills)
 
@@ -254,8 +236,7 @@ The complete pantheon of the Twelve Olympians, each embodying a core aspect of t
 |-------|-------------|
 | **cli-developer** | Command-line tool development and CLI UX patterns |
 | **feature-forge** | Feature development workflow and implementation patterns |
-| **fine-tuning-expert** | LLM fine-tuning, prompt engineering, and model optimization |
-| **fullstack-guardian** | Full-stack development oversight and architecture |
+| **fullstack-development** | Full-stack development oversight and architecture |
 | **legacy-modernizer** | Legacy code modernization and technical debt reduction |
 | **mcp-developer** | Model Context Protocol server development and integration |
 | **monitoring-expert** | Application monitoring, metrics, alerting, and observability |
