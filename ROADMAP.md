@@ -12,7 +12,7 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 | Component | Count | Status |
 |-----------|-------|--------|
-| **Skills** | 254 | ✅ 43 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
+| **Skills** | 264 | ✅ 53 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
 | **Commands** | 12 | ✅ All operational, interface-based |
 | **Agents** | 19 | ✅ 12 Olympian + 7 specialist, all with config.json |
 | **Context Files** | 81 | ✅ 9 domains, all with YAML frontmatter |
@@ -41,6 +41,8 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 **Productivity** — commit-helper · email-writer · slack-message-composer · documentation-generator
 
 **Data Science** — excel-skills · jupyter-notebook-skills
+
+**Utilities** — color-palette · email-gateway · favicon-gen · firecrawl-scraper · icon-design · image-gen · jquery-4 · office · open-source-contributions · playwright-local
 
 **Database & Storage** — firebase-firestore · firebase-storage · snowflake-platform
 
@@ -106,20 +108,20 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 | **skill-review** ✅ | Audit claude-skills with systematic 9-phase review: standards compliance, official docs verification, code accuracy, cross-file consistency, and version drift detection. Triggers: `review this skill`, `audit [skill-name]`, `check if X needs updates` |
 | **sub-agent-patterns** ✅ | Comprehensive guide to sub-agents in Claude Code: built-in agents (Explore, Plan, general-purpose), custom agent creation, configuration, and delegation patterns. Triggers: `sub-agent`, `sub-agents`, `subagent` |
 
-### Utilities (11 skills)
+### Utilities (10 skills) — ⚒️ All Forged
 
-| Skill | Description |
-|-------|-------------|
-| **color-palette** | Generate complete, accessible color palettes from a single brand hex. Creates 11-shade scale (50-950), semantic tokens (background, foreground, card, muted), and dark mode variants. Includes WCAG contrast checking. Triggers: `color palette`, `tailwind colors`, `css variables`, `hsl colors` |
-| **email-gateway** | Multi-provider email sending for Cloudflare Workers and Node.js applications. Triggers: `resend`, `sendgrid`, `mailgun`, `smtp2go` |
-| **favicon-gen** | Generate custom favicons from logos, text, or brand colors — prevents launching with CMS defaults. Extract icons from logos, create monogram favicons from initials, or use branded shapes. Outputs all required formats. |
-| **firecrawl-scraper** | Convert websites into LLM-ready data with Firecrawl API. Features: scrape, crawl, map, search, extract, agent (autonomous), batch operations, and change tracking. Handles JavaScript, anti-bot bypass. Prevents 10 errors. |
-| **icon-design** | Select semantically appropriate icons for websites using Lucide, Heroicons, or Phosphor. Covers concept-to-icon mapping, React/HTML templates, and tree-shaking patterns. |
-| **image-gen** | Generate website images with Gemini 3 Native Image Generation. Covers hero banners, service cards, infographics with legible text, and multi-turn editing. Prevents 5 errors. Triggers: `gemini image generation`, `gemini-3-flash-image-generation`, `google genai` |
-| **jquery-4** | Migrate jQuery 3.x to 4.0.0 safely in WordPress and legacy web projects. Covers all breaking changes: removed APIs ($.isArray, $.trim, $.parseJSON, $.type), focus event order changes, slim build differences. |
-| **office** | Generate Office documents (DOCX, XLSX, PDF, PPTX) with TypeScript. Pure JS libraries that work everywhere: Claude Code CLI, Cloudflare Workers, browsers. Uses docx (Word), xlsx/SheetJS (Excel), pdf-lib (PDF). |
-| **open-source-contributions** | Create maintainer-friendly pull requests with clean code and professional communication. Triggers: `submit PR to [project]`, `create pull request for [repo]`, `contribute to [project]` |
-| **playwright-local** | Build browser automation and web scraping with Playwright on your local machine. Prevents 10 errors. |
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **color-palette** | Generate complete, accessible color palettes from a single brand hex. Creates 11-shade scale (50-950), semantic tokens (background, foreground, card, muted), and dark mode variants. Includes WCAG contrast checking. Triggers: `color palette`, `tailwind colors`, `css variables`, `hsl colors` | ⚒️ Forged |
+| **email-gateway** | Multi-provider email sending for Cloudflare Workers and Node.js applications. Triggers: `resend`, `sendgrid`, `mailgun`, `smtp2go` | ⚒️ Forged |
+| **favicon-gen** | Generate custom favicons from logos, text, or brand colors — prevents launching with CMS defaults. Extract icons from logos, create monogram favicons from initials, or use branded shapes. Outputs all required formats. | ⚒️ Forged |
+| **firecrawl-scraper** | Convert websites into LLM-ready data with Firecrawl API. Features: scrape, crawl, map, search, extract, agent (autonomous), batch operations, and change tracking. Handles JavaScript, anti-bot bypass. Prevents 10 errors. | ⚒️ Forged |
+| **icon-design** | Select semantically appropriate icons for websites using Lucide, Heroicons, or Phosphor. Covers concept-to-icon mapping, React/HTML templates, and tree-shaking patterns. | ⚒️ Forged |
+| **image-gen** | Generate website images with Gemini 3 Native Image Generation. Covers hero banners, service cards, infographics with legible text, and multi-turn editing. Prevents 5 errors. Triggers: `gemini image generation`, `gemini-3-flash-image-generation`, `google genai` | ⚒️ Forged |
+| **jquery-4** | Migrate jQuery 3.x to 4.0.0 safely in WordPress and legacy web projects. Covers all breaking changes: removed APIs ($.isArray, $.trim, $.parseJSON, $.type), focus event order changes, slim build differences. | ⚒️ Forged |
+| **office** | Generate Office documents (DOCX, XLSX, PDF, PPTX) with TypeScript. Pure JS libraries that work everywhere: Claude Code CLI, Cloudflare Workers, browsers. Uses docx (Word), xlsx/SheetJS (Excel), pdf-lib (PDF). | ⚒️ Forged |
+| **open-source-contributions** | Create maintainer-friendly pull requests with clean code and professional communication. Triggers: `submit PR to [project]`, `create pull request for [repo]`, `contribute to [project]` | ⚒️ Forged |
+| **playwright-local** | Build browser automation and web scraping with Playwright on your local machine. Prevents 10 errors. | ⚒️ Forged |
 
 ### Developer Workflow (3 skills)
 
@@ -671,6 +673,7 @@ Current state and recent milestones:
 
 | Date | Milestone |
 |------|-----------|
+| **Feb 12, 2026** | Utilities Forged — 10 Utilities skills implemented: color-palette, email-gateway, favicon-gen, firecrawl-scraper, icon-design, image-gen, jquery-4, office, open-source-contributions, playwright-local |
 | **Feb 12, 2026** | Database & Storage Skills — Forged firebase-firestore, firebase-storage, snowflake-platform (3 new skills, 25 total) |
 | **Feb 12, 2026** | Roadmap Expansion — Added `/divine` command and 4 new hook events for memory/context integration |
 | **Feb 12, 2026** | Factory Stable — 22 skills, 12 commands, 11 agents, 81 context files, 20 hooks, ~1,683 tests |
