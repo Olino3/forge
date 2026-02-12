@@ -3,7 +3,7 @@
 Validates:
 - All 11 agent *.config.json files against agent_config.schema.json
 - hooks.json structure (valid event types)
-- plugin.json required fields and command path resolution
+- plugin.json required fields (name, version) - commands discovered from filesystem
 - root_safety_profile.json structure
 - framework_conflicts.json validity
 
@@ -253,7 +253,7 @@ class TestHooksJson:
 
 
 class TestPluginJson:
-    """Validate plugin.json structure and command paths."""
+    """Validate plugin.json structure (commands are discovered from filesystem)."""
 
     @pytest.fixture(scope="class")
     def plugin_data(self):
@@ -273,27 +273,10 @@ class TestPluginJson:
             f"plugin.json version '{plugin_data['version']}' is not valid semver"
         )
 
-    def test_plugin_has_commands(self, plugin_data):
-        """plugin.json must have a 'commands' object."""
-        assert "commands" in plugin_data, "plugin.json missing 'commands'"
-        assert isinstance(plugin_data["commands"], dict)
-        assert len(plugin_data["commands"]) > 0, "plugin.json 'commands' is empty"
-
-    def test_plugin_command_paths_exist(self, plugin_data):
-        """All command paths in plugin.json must resolve to existing files."""
-        commands = plugin_data.get("commands", {})
-        for cmd_name, cmd_path in commands.items():
-            full_path = FORGE_DIR / cmd_path
-            assert full_path.exists(), (
-                f"plugin.json: command '{cmd_name}' points to "
-                f"non-existent path '{cmd_path}'"
-            )
-
-    def test_plugin_lists_expected_command_count(self, plugin_data):
-        """plugin.json should list all 12 commands."""
-        commands = plugin_data.get("commands", {})
-        assert len(commands) >= 12, (
-            f"plugin.json has {len(commands)} commands, expected at least 12"
+    def test_plugin_has_no_commands(self, plugin_data):
+        """plugin.json should not have a 'commands' field (commands discovered from filesystem)."""
+        assert "commands" not in plugin_data, (
+            "plugin.json should not contain 'commands' field - commands are discovered from filesystem"
         )
 
 
