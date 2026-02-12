@@ -38,6 +38,44 @@ The Forge is not a plugin collection — it is a complete **Agentic Software Fac
 
 ## Quick Start
 
+### Clone with Dependencies
+
+The Forge uses git submodules for external skill repositories. Clone with all dependencies:
+
+```bash
+# Clone with all submodules (RECOMMENDED)
+git clone --recursive https://github.com/Olino3/forge.git
+cd forge
+
+# Run setup script (initializes submodules, verifies symlinks, validates plugins)
+./scripts/setup.sh
+```
+
+### Already Cloned Without `--recursive`?
+
+If you cloned without `--recursive`, you can initialize dependencies with one command:
+
+```bash
+# One command fixes everything
+./scripts/setup.sh
+```
+
+This will:
+- ✅ Initialize all git submodules (5 external repositories)
+- ✅ Verify 260 symlinks are healthy
+- ✅ Fix broken symlinks if found
+- ✅ Validate all 38 plugins
+
+### Troubleshooting Setup
+
+**Broken symlinks?** `./scripts/fix-symlinks.sh`  
+**Plugins not loading?** `./scripts/validate-plugins.sh`  
+**Submodule issues?** `git submodule update --init --recursive --force`
+
+See [SETUP.md](SETUP.md) for detailed setup instructions or [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for common issues.
+
+---
+
 ### Install the Forge
 
 ```bash
