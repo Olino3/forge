@@ -367,7 +367,7 @@ The 22 currently registered skills, organized by domain:
 
 ## Related Documents
 
-- **Commands that delegate**: `commands/analyze/COMMAND.md`, `commands/test/COMMAND.md`, `commands/mock/COMMAND.md`, `commands/azure-pipeline/COMMAND.md`, `commands/azure-function/COMMAND.md`, `commands/document/COMMAND.md`
+- **Commands that delegate**: `commands/analyze.md`, `commands/test.md`, `commands/mock.md`, `commands/azure-pipeline.md`, `commands/azure-function.md`, `commands/document.md`
 - **Skill template**: `skills/SKILL_TEMPLATE.md` - Defines the mandatory workflow all skills follow
 - **Output conventions**: `skills/OUTPUT_CONVENTIONS.md` - Output file naming and location rules
 - **Memory interface**: `interfaces/memory_store.md` - How skills interact with project memory

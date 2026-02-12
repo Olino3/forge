@@ -15,7 +15,7 @@ forge-plugin/
 │   └── schemas/   # JSON validation schemas (agent_config, context_metadata, memory_entry)
 ├── agents/        # 11 agents (4 Olympian + 7 specialist) with .md + .config.json each
 ├── skills/        # 22 skills — each directory has SKILL.md + examples.md
-├── commands/      # 12 slash commands — each directory has COMMAND.md + examples.md
+├── commands/      # 12 slash commands — flat .md files + _docs/ directory for examples
 ├── context/       # 81 files across 9 domains — shared, static knowledge with YAML frontmatter
 ├── memory/        # 4-layer dynamic learning (projects/, skills/, commands/, agents/)
 ├── hooks/         # 20 hook handlers across 9 events, 4 thematic layers
@@ -55,10 +55,11 @@ All components communicate through **convention-based interfaces** — never har
 
 ## Adding Commands
 
-1. Create `forge-plugin/commands/{command-name}/`
-2. Add `COMMAND.md` with: trigger, parameters, workflow steps, skill delegation
-3. Add `examples.md` with usage scenarios
-4. Commands can delegate to skills via `skillInvoker` and chain via `ExecutionContext`
+1. Create `forge-plugin/commands/{command-name}.md` (flat file structure)
+2. Add YAML frontmatter with: `name`, `description`, `category`, `complexity`, `skills`, `context`
+3. Add workflow steps using `contextProvider` and `memoryStore`
+4. Add usage examples in `forge-plugin/commands/_docs/{command-name}-examples.md`
+5. Commands can delegate to skills via `skillInvoker` and chain via `ExecutionContext`
 
 ## Adding Context
 

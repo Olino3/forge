@@ -33,18 +33,18 @@ This directory contains **commands** - structured workflows that bridge the gap 
 
 | Command | Category | Description | Related Skills |
 |---------|----------|-------------|----------------|
-| [`/analyze`](analyze/COMMAND.md) | utility | Code analysis and quality assessment | `python-code-review`, `dotnet-code-review`, `angular-code-review` |
-| [`/implement`](implement/COMMAND.md) | workflow | Feature implementation with testing | `generate-python-unit-tests`, `generate-jest-unit-tests` |
-| [`/improve`](improve/COMMAND.md) | workflow | Code improvement and refactoring | `python-code-review`, `dotnet-code-review` |
-| [`/document`](document/COMMAND.md) | utility | Documentation generation | N/A |
-| [`/test`](test/COMMAND.md) | utility | Test execution and validation | `test-cli-tools`, `generate-python-unit-tests`, `generate-jest-unit-tests` |
-| [`/build`](build/COMMAND.md) | utility | Project building and packaging | `generate-tilt-dev-environment` |
-| [`/brainstorm`](brainstorm/COMMAND.md) | orchestration | Requirements discovery and planning | `file-schema-analysis`, `database-schema-analysis` |
-| [`/remember`](remember/COMMAND.md) | utility | Memory management and recall | N/A |
-| [`/mock`](mock/COMMAND.md) | workflow | Mock service generation | `generate-mock-service` |
-| [`/azure-pipeline`](azure-pipeline/COMMAND.md) | workflow | Azure DevOps pipeline generation | `generate-azure-pipelines` |
-| [`/etl-pipeline`](etl-pipeline/COMMAND.md) | workflow | ETL pipeline scaffolding | `database-schema-analysis`, `file-schema-analysis` |
-| [`/azure-function`](azure-function/COMMAND.md) | workflow | Azure Function generation | `generate-azure-functions` |
+| [`/analyze`](analyze.md) | utility | Code analysis and quality assessment | `python-code-review`, `dotnet-code-review`, `angular-code-review` |
+| [`/implement`](implement.md) | workflow | Feature implementation with testing | `generate-python-unit-tests`, `generate-jest-unit-tests` |
+| [`/improve`](improve.md) | workflow | Code improvement and refactoring | `python-code-review`, `dotnet-code-review` |
+| [`/document`](document.md) | utility | Documentation generation | N/A |
+| [`/test`](test.md) | utility | Test execution and validation | `test-cli-tools`, `generate-python-unit-tests`, `generate-jest-unit-tests` |
+| [`/build`](build.md) | utility | Project building and packaging | `generate-tilt-dev-environment` |
+| [`/brainstorm`](brainstorm.md) | orchestration | Requirements discovery and planning | `file-schema-analysis`, `database-schema-analysis` |
+| [`/remember`](remember.md) | utility | Memory management and recall | N/A |
+| [`/mock`](mock.md) | workflow | Mock service generation | `generate-mock-service` |
+| [`/azure-pipeline`](azure-pipeline.md) | workflow | Azure DevOps pipeline generation | `generate-azure-pipelines` |
+| [`/etl-pipeline`](etl-pipeline.md) | workflow | ETL pipeline scaffolding | `database-schema-analysis`, `file-schema-analysis` |
+| [`/azure-function`](azure-function.md) | workflow | Azure Function generation | `generate-azure-functions` |
 
 ## Command Selection Matrix
 
