@@ -1,0 +1,33 @@
+{
+  "$schema": "../interfaces/schemas/agent_config.schema.json",
+  "name": "artemis",
+  "version": "0.1.0-alpha",
+  "description": "Goddess of the hunt and testing excellence. Master of tracking down bugs, designing test strategies, and ensuring code integrity",
+  "model": "sonnet",
+  "tools": ["Read", "Write", "Bash", "Grep", "Glob"],
+  "permissionMode": "auto",
+  "context": {
+    "primaryDomains": ["engineering"],
+    "secondaryDomains": ["python", "dotnet", "angular", "security"],
+    "alwaysLoadFiles": []
+  },
+  "memory": {
+    "storagePath": "forge-plugin/memory/agents/artemis",
+    "categories": [
+      {"name": "test_strategies", "description": "Track test strategies and patterns"},
+      {"name": "bug_patterns", "description": "Record common bug patterns and fixes"},
+      {"name": "coverage_reports", "description": "Store test coverage reports and trends"},
+      {"name": "test_configs", "description": "Maintain testing tool configurations"}
+    ]
+  },
+  "skills": [],
+  "hooks": [
+    {
+      "on_file_write": {
+        "patterns": ["TEST-*.md", "*.test.yml", "BUG-*.md", "*.spec.*"],
+        "action": "validate_test_strategy"
+      }
+    }
+  ],
+  "mcpServers": []
+}

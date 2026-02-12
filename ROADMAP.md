@@ -14,7 +14,7 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 |-----------|-------|--------|
 | **Skills** | 22 | ✅ All operational, interface-based |
 | **Commands** | 12 | ✅ All operational, interface-based |
-| **Agents** | 11 | ✅ 4 Olympian + 7 specialist, all with config.json |
+| **Agents** | 19 | ✅ 12 Olympian + 7 specialist, all with config.json |
 | **Context Files** | 81 | ✅ 9 domains, all with YAML frontmatter |
 | **Interfaces** | 4 | ✅ ContextProvider, MemoryStore, SkillInvoker, ExecutionContext |
 | **Adapters** | 3 | ✅ MarkdownFileContextProvider, MarkdownFileMemoryAdapter, CachedContextProvider |
@@ -23,7 +23,7 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 ### The Pantheon (Active Agents)
 
-**Olympian Tier** — @hephaestus (tool creation), @prometheus (strategy), @ares (deployment), @poseidon (data flow)
+**Olympian Tier** — @zeus (orchestration), @hera (governance), @athena (architecture), @apollo (quality), @artemis (testing), @aphrodite (UX/UI), @hermes (integration), @demeter (data cultivation), @hephaestus (tool creation), @prometheus (strategy), @ares (deployment), @poseidon (data flow)
 
 **Specialist Legion** — @python-engineer, @frontend-engineer, @devops-engineer, @developer-environment-engineer, @data-scientist, @full-stack-engineer, @technical-writer
 
@@ -59,14 +59,14 @@ The complete pantheon of the Twelve Olympians, each embodying a core aspect of t
 
 | Agent | Domain | Divine Power | Status |
 |-------|--------|--------------|--------|
-| **@zeus** | Orchestration & Leadership | King of the gods — orchestrates multi-agent workflows, delegates tasks, oversees the entire factory. Commands the divine council and coordinates complex engineering initiatives. | 📋 Planned |
-| **@hera** | Project Management & Governance | Queen of the gods — manages project lifecycles, enforces standards, maintains architectural coherence. Guards the integrity of the codebase and ensures team alignment. | 📋 Planned |
-| **@athena** | Wisdom & Strategic Architecture | Goddess of wisdom and strategy — designs system architecture, evaluates technical decisions, provides strategic counsel. Synthesizes complex requirements into elegant solutions. | 📋 Planned |
-| **@apollo** | Code Quality & Optimization | God of light and prophecy — illuminates code quality issues, predicts performance bottlenecks, optimizes algorithms. Brings clarity and precision to engineering challenges. | 📋 Planned |
-| **@artemis** | Testing & Quality Assurance | Goddess of the hunt — tracks down bugs with precision, designs comprehensive test strategies, ensures code integrity. Hunts defects across the wilderness of the codebase. | 📋 Planned |
-| **@aphrodite** | UX/UI & Design Systems | Goddess of beauty — crafts beautiful user experiences, designs elegant interfaces, ensures visual harmony. Makes software delightful and human-centered. | 📋 Planned |
-| **@hermes** | Integration & Communication | Messenger of the gods — manages API integrations, handles inter-service communication, facilitates data exchange. Swift connector between disparate systems. | 📋 Planned |
-| **@demeter** | Data Cultivation & Growth | Goddess of harvest — nurtures data pipelines, cultivates analytics, ensures data quality and growth. Tends to the fields of information that feed the factory. | 📋 Planned |
+| **@zeus** | Orchestration & Leadership | King of the gods — orchestrates multi-agent workflows, delegates tasks, oversees the entire factory. Commands the divine council and coordinates complex engineering initiatives. | ✅ Active |
+| **@hera** | Project Management & Governance | Queen of the gods — manages project lifecycles, enforces standards, maintains architectural coherence. Guards the integrity of the codebase and ensures team alignment. | ✅ Active |
+| **@athena** | Wisdom & Strategic Architecture | Goddess of wisdom and strategy — designs system architecture, evaluates technical decisions, provides strategic counsel. Synthesizes complex requirements into elegant solutions. | ✅ Active |
+| **@apollo** | Code Quality & Optimization | God of light and prophecy — illuminates code quality issues, predicts performance bottlenecks, optimizes algorithms. Brings clarity and precision to engineering challenges. | ✅ Active |
+| **@artemis** | Testing & Quality Assurance | Goddess of the hunt — tracks down bugs with precision, designs comprehensive test strategies, ensures code integrity. Hunts defects across the wilderness of the codebase. | ✅ Active |
+| **@aphrodite** | UX/UI & Design Systems | Goddess of beauty — crafts beautiful user experiences, designs elegant interfaces, ensures visual harmony. Makes software delightful and human-centered. | ✅ Active |
+| **@hermes** | Integration & Communication | Messenger of the gods — manages API integrations, handles inter-service communication, facilitates data exchange. Swift connector between disparate systems. | ✅ Active |
+| **@demeter** | Data Cultivation & Growth | Goddess of harvest — nurtures data pipelines, cultivates analytics, ensures data quality and growth. Tends to the fields of information that feed the factory. | ✅ Active |
 
 **Already Active (4 Olympians):**
 - ✅ **@hephaestus** — Tool creation and craftsmanship (blacksmith of the gods)

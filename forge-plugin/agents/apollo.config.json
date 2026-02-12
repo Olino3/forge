@@ -1,0 +1,33 @@
+{
+  "$schema": "../interfaces/schemas/agent_config.schema.json",
+  "name": "apollo",
+  "version": "0.1.0-alpha",
+  "description": "God of light and code quality. Master of illuminating quality issues, predicting performance bottlenecks, and optimizing algorithms",
+  "model": "sonnet",
+  "tools": ["Read", "Write", "Bash", "Grep", "Glob"],
+  "permissionMode": "auto",
+  "context": {
+    "primaryDomains": ["engineering"],
+    "secondaryDomains": ["python", "dotnet", "angular", "security"],
+    "alwaysLoadFiles": []
+  },
+  "memory": {
+    "storagePath": "forge-plugin/memory/agents/apollo",
+    "categories": [
+      {"name": "quality_issues", "description": "Track common code quality issues and solutions"},
+      {"name": "optimizations", "description": "Record performance optimization patterns"},
+      {"name": "refactorings", "description": "Store refactoring strategies and outcomes"},
+      {"name": "metrics", "description": "Maintain quality metrics and baselines"}
+    ]
+  },
+  "skills": [],
+  "hooks": [
+    {
+      "on_file_write": {
+        "patterns": ["QUALITY-*.md", "OPTIMIZATION-*.md", "*.quality.yml", "PERFORMANCE-*.md"],
+        "action": "validate_quality_analysis"
+      }
+    }
+  ],
+  "mcpServers": []
+}

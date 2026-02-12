@@ -1,0 +1,33 @@
+{
+  "$schema": "../interfaces/schemas/agent_config.schema.json",
+  "name": "demeter",
+  "version": "0.1.0-alpha",
+  "description": "Goddess of harvest and data cultivation. Master of nurturing data pipelines, cultivating analytics, and ensuring data quality and growth",
+  "model": "sonnet",
+  "tools": ["Read", "Write", "Bash", "Grep", "Glob"],
+  "permissionMode": "auto",
+  "context": {
+    "primaryDomains": ["schema"],
+    "secondaryDomains": ["python", "dotnet", "azure", "security"],
+    "alwaysLoadFiles": []
+  },
+  "memory": {
+    "storagePath": "forge-plugin/memory/agents/demeter",
+    "categories": [
+      {"name": "pipelines", "description": "Track data pipeline architectures and patterns"},
+      {"name": "schemas", "description": "Store schema designs and evolution strategies"},
+      {"name": "quality_rules", "description": "Record data quality rules and validation logic"},
+      {"name": "analytics", "description": "Maintain analytics patterns and dashboards"}
+    ]
+  },
+  "skills": [],
+  "hooks": [
+    {
+      "on_file_write": {
+        "patterns": ["DATA-*.md", "ANALYTICS-*.md", "*.data.yml", "PIPELINE-*.md"],
+        "action": "validate_data_quality"
+      }
+    }
+  ],
+  "mcpServers": []
+}
