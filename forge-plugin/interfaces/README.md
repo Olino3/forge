@@ -159,4 +159,4 @@ Run the full validation:
 bash tests/run_all.sh --layer2
 ```
 
-See [TESTING_ROADMAP.md](../../TESTING_ROADMAP.md) for the complete testing architecture and [tests/README.md](../tests/README.md) for how to run tests.
+See [tests/README.md](../tests/README.md) for how to run tests.
