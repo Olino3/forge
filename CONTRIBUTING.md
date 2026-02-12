@@ -110,16 +110,17 @@ Commands are structured workflows invoked via `/command-name` syntax.
 
 ### Step-by-Step
 
-1. **Create directory**: `forge-plugin/commands/{command-name}/`
-2. **Create `COMMAND.md`** with:
-   - YAML frontmatter: `name`, `description`, `category`, `complexity`, `skills`, `context`
-   - Structured workflow steps using `contextProvider` and `memoryStore`
-   - Skill delegation patterns via `skillInvoker` (when applicable)
-   - Output format specification
-3. **Create `examples.md`** with usage scenarios
-4. **Create context file** (optional): `forge-plugin/context/commands/{command}_patterns.md`
-   - Include YAML frontmatter with `tags` and `sections`
-5. **Update ROADMAP.md** to list the new command
+1. **Create command file**: `forge-plugin/commands/{command-name}.md` (flat file, not subdirectory)
+2. **Include YAML frontmatter** with: `name`, `description`, `category`, `complexity`, `skills`, `context`
+3. **Define workflow steps** using `contextProvider` and `memoryStore` interface references
+4. **Add skill delegation** patterns via `skillInvoker` (when applicable)
+5. **Specify output format** for `/claudedocs` reports
+6. **Create examples file**: `forge-plugin/commands/_docs/{command-name}-examples.md` with usage scenarios
+7. **Optional context file**: `forge-plugin/context/commands/{command}_patterns.md` (include YAML frontmatter)
+8. **Update command index**: Add entry to `forge-plugin/commands/index.md`
+9. **Update ROADMAP.md** to list the new command
+
+**Important**: Commands must be flat `.md` files, not subdirectories. Claude Code auto-discovers slash commands from `.md` files in the `commands/` directory. Subdirectories are treated as namespaces and create unwanted prefixed commands.
 
 ---
 
