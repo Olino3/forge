@@ -41,7 +41,6 @@ triggers:
 
 - **Context**: Loaded via [ContextProvider Interface](../../interfaces/context_provider.md)
 - **Memory**: Accessed via [MemoryStore Interface](../../interfaces/memory_store.md)
-- **Loading Patterns**: Follow [Shared Loading Patterns](../../context/loading_protocol.md)
 - **Schemas**: Validated against [memory_entry.schema.json](../../interfaces/schemas/memory_entry.schema.json)
 
 ## Audit Focus Areas

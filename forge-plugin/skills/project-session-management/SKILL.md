@@ -40,7 +40,6 @@ triggers:
 
 - **Context**: Loaded via [ContextProvider Interface](../../interfaces/context_provider.md)
 - **Memory**: Accessed via [MemoryStore Interface](../../interfaces/memory_store.md)
-- **Shared Patterns**: [Shared Loading Patterns](../../interfaces/shared_loading_patterns.md)
 - **Schemas**: Validated against [context_metadata.schema.json](../../interfaces/schemas/context_metadata.schema.json) and [memory_entry.schema.json](../../interfaces/schemas/memory_entry.schema.json)
 
 ## Session Management Focus Areas

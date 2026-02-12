@@ -36,7 +36,6 @@ skills/divine/
 
 - **Context**: Loaded via [ContextProvider Interface](../../interfaces/context_provider.md)
 - **Memory**: Accessed via [MemoryStore Interface](../../interfaces/memory_store.md)
-- **Shared Patterns**: [Shared Loading Patterns](../../interfaces/shared_loading_patterns.md)
 - **Schemas**: Validated against [context_metadata.schema.json](../../interfaces/schemas/context_metadata.schema.json) and [memory_entry.schema.json](../../interfaces/schemas/memory_entry.schema.json)
 
 ## Mandatory Workflow
@@ -51,15 +50,13 @@ skills/divine/
 
 ### Step 2: Load Memory
 
-> Follow [Standard Memory Loading](../../interfaces/shared_loading_patterns.md#pattern-1-standard-memory-loading) with `skill="divine"` and `domain="engineering"`.
-
+- Use `memoryStore.getSkillMemory("divine", "{project-name}")` to load existing project memory. See [MemoryStore Interface](../../interfaces/memory_store.md).
 - Load previously recommended workflows and their outcomes
 - Retrieve user preference patterns for tool selection
 
 ### Step 3: Load Context
 
-> Follow [Standard Context Loading](../../interfaces/shared_loading_patterns.md#pattern-2-standard-context-loading) for the `engineering` domain. Stay within the file budget declared in frontmatter.
-
+- Load engineering domain context via `contextProvider.getIndex("engineering")`. See [ContextProvider Interface](../../interfaces/context_provider.md).
 - Load the skill registry (all available SKILL.md files)
 - Load the agent registry (all agent .config.json files)
 - Load the command registry (all command .md files)
@@ -98,8 +95,7 @@ skills/divine/
 
 ### Step 8: Update Memory
 
-> Follow [Standard Memory Update](../../interfaces/shared_loading_patterns.md#pattern-3-standard-memory-update) for `skill="divine"`. Store any newly learned patterns, conventions, or project insights.
-
+- Use `memoryStore.update(layer="skill-specific", skill="divine", project="{project-name}", ...)` to store insights. See [MemoryStore Interface](../../interfaces/memory_store.md).
 - Record which tools were recommended and for what tasks
 - Track user feedback on recommendation quality
 - Update preference patterns for future recommendations
@@ -109,12 +105,12 @@ skills/divine/
 Before completing, verify:
 
 - [ ] All mandatory workflow steps executed in order
-- [ ] Standard Memory Loading pattern followed (Step 2)
-- [ ] Standard Context Loading pattern followed (Step 3)
+- [ ] Memory loaded via `memoryStore.getSkillMemory()` (Step 2)
+- [ ] Context loaded via `contextProvider.getIndex()` (Step 3)
 - [ ] Tool discovery completed with full catalog (Step 4)
 - [ ] Task-to-tool matching performed with scoring (Step 5)
 - [ ] Output saved with standard naming convention
-- [ ] Standard Memory Update pattern followed (Step 8)
+- [ ] Memory updated via `memoryStore.update()` (Step 8)
 
 ## Version History
 

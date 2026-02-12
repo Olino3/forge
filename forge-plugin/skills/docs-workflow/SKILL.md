@@ -36,7 +36,6 @@ skills/docs-workflow/
 
 - **Context**: Loaded via [ContextProvider Interface](../../interfaces/context_provider.md)
 - **Memory**: Accessed via [MemoryStore Interface](../../interfaces/memory_store.md)
-- **Shared Patterns**: [Shared Loading Patterns](../../interfaces/shared_loading_patterns.md)
 - **Schemas**: Validated against [context_metadata.schema.json](../../interfaces/schemas/context_metadata.schema.json) and [memory_entry.schema.json](../../interfaces/schemas/memory_entry.schema.json)
 
 ## Triggers
@@ -61,16 +60,14 @@ skills/docs-workflow/
 
 ### Step 2: Load Memory
 
-> Follow [Standard Memory Loading](../../interfaces/shared_loading_patterns.md#pattern-1-standard-memory-loading) with `skill="docs-workflow"` and `domain="engineering"`.
-
+- Use `memoryStore.getSkillMemory("docs-workflow", "{project-name}")` to load existing project memory. See [MemoryStore Interface](../../interfaces/memory_store.md).
 - Load project-specific documentation conventions and preferences
 - Retrieve prior documentation generation history and patterns
 - Check for established doc structure decisions from previous runs
 
 ### Step 3: Load Context
 
-> Follow [Standard Context Loading](../../interfaces/shared_loading_patterns.md#pattern-2-standard-context-loading) for the `engineering` domain. Stay within the file budget declared in frontmatter.
-
+- Load engineering domain context via `contextProvider.getIndex("engineering")`. See [ContextProvider Interface](../../interfaces/context_provider.md).
 - Load documentation standards and best practices
 - Load project-type-specific templates and conventions
 - Load output naming conventions from `../OUTPUT_CONVENTIONS.md`
@@ -126,8 +123,7 @@ Based on the command invoked, perform the appropriate action:
 
 ### Step 7: Update Memory
 
-> Follow [Standard Memory Update](../../interfaces/shared_loading_patterns.md#pattern-3-standard-memory-update) for `skill="docs-workflow"`. Store any newly learned patterns, conventions, or project insights.
-
+- Use `memoryStore.update(layer="skill-specific", skill="docs-workflow", project="{project-name}", ...)` to store insights. See [MemoryStore Interface](../../interfaces/memory_store.md).
 - Record documentation conventions discovered for this project
 - Track which templates and structures were used
 - Store documentation health history for trend tracking
@@ -138,12 +134,12 @@ Based on the command invoked, perform the appropriate action:
 Before completing, verify:
 
 - [ ] All mandatory workflow steps executed in order
-- [ ] Standard Memory Loading pattern followed (Step 2)
-- [ ] Standard Context Loading pattern followed (Step 3)
+- [ ] Memory loaded via `memoryStore.getSkillMemory()` (Step 2)
+- [ ] Context loaded via `contextProvider.getIndex()` (Step 3)
 - [ ] Documentation state assessed with gap analysis (Step 4)
 - [ ] Correct command action executed (Step 5)
 - [ ] Output saved with standard naming convention
-- [ ] Standard Memory Update pattern followed (Step 7)
+- [ ] Memory updated via `memoryStore.update()` (Step 7)
 
 ## Output File Naming Convention
 
