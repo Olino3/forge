@@ -115,14 +115,12 @@ strict: true
 ---
 description: "Shared PR creation configuration for Forge workflows"
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 safe-outputs:
   create-pull-request:
     labels: ["forge-automation", "agentic-workflow"]
-    max: 3
     close-older: true
-    expire: "+7d"
+    expires: 7
 ---
 ```
 
@@ -131,13 +129,13 @@ safe-outputs:
 ---
 description: "Shared issue creation configuration for Forge workflows"
 permissions:
-  issues: write
+  contents: read
 safe-outputs:
   create-issue:
     labels: ["forge-automation", "agentic-workflow"]
     max: 3
-    close-older: true
-    expire: "+7d"
+    close-older-issues: true
+    expires: 7
 ---
 ```
 
@@ -199,7 +197,7 @@ gh aw status
 
 ### Inspiration
 
-From [Peli's Factory — Continuous Simplicity](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-continuous-simplicity/):
+From [Peli's Factory — Continuous Simplicity](https://github.github.com/gh-aw/blog/continuous-simplicity/):
 
 - **[Automatic Code Simplifier](https://github.com/github/gh-aw/blob/v0.42.13/.github/workflows/code-simplifier.md?plain=1)** — 83% merge rate (5/6 PRs merged)
 - **[Duplicate Code Detector](https://github.com/github/gh-aw/blob/v0.42.13/.github/workflows/duplicate-code-detector.md?plain=1)** — 79% merge rate (76/96 PRs merged)
@@ -582,7 +580,7 @@ with a table of findings organized by severity:
 
 ### Inspiration
 
-From [Peli's Factory — Continuous Refactoring](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-continuous-refactoring/):
+From [Peli's Factory — Continuous Refactoring](https://github.github.com/gh-aw/blog/continuous-refactoring/):
 
 - **[Semantic Function Refactor](https://github.com/github/gh-aw/blob/v0.42.13/.github/workflows/semantic-function-refactor.md?plain=1)** — Spots misplaced functions and suggests reorganization
 - **[Daily File Diet](https://github.com/github/gh-aw/blob/v0.42.13/.github/workflows/daily-file-diet.md?plain=1)** — 79% merge rate (26/33 PRs merged)
@@ -706,7 +704,7 @@ safe-outputs:
 
 ### Inspiration
 
-From [Peli's Factory — Continuous Style](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-continuous-style/):
+From [Peli's Factory — Continuous Style](https://github.github.com/gh-aw/blog/continuous-style/):
 
 - **[Terminal Stylist](https://github.com/github/gh-aw/blob/v0.42.13/.github/workflows/terminal-stylist.md?plain=1)** — 80% merge rate (16/20 PRs merged via causal chain)
 
@@ -833,7 +831,7 @@ safe-outputs:
 
 ### Inspiration
 
-From [Peli's Factory — Continuous Improvement](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-continuous-improvement/):
+From [Peli's Factory — Continuous Improvement](https://github.github.com/gh-aw/blog/continuous-improvement/):
 
 - **Repository Quality Improver** — 62% merge rate (25/40 PRs merged)
 - **Go Module Usage Expert** — dependency freshness
@@ -1043,7 +1041,7 @@ For each improvement, create a PR targeting `${{ github.head_ref }}` with:
 
 ### Inspiration
 
-From [Peli's Factory — Continuous Documentation](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-documentation/):
+From [Peli's Factory — Continuous Documentation](https://github.github.com/gh-aw/blog/continuous-documentation/):
 
 - **[Daily Documentation Updater](https://github.com/github/gh-aw/blob/v0.42.13/.github/workflows/daily-doc-updater.md?plain=1)** — 96% merge rate (57/59 PRs merged) ⭐
 - **[Documentation Unbloat](https://github.com/github/gh-aw/blob/v0.42.13/.github/workflows/unbloat-docs.md?plain=1)** — 85% merge rate (88/103 PRs merged)
@@ -1256,17 +1254,17 @@ All PR-triggered workflows also support `workflow_dispatch` for on-demand runs.
 - [Frontmatter Reference](https://github.github.com/gh-aw/reference/frontmatter/)
 - [Safe Outputs Reference](https://github.github.com/gh-aw/reference/safe-outputs/)
 - [Workflow Structure](https://github.github.com/gh-aw/reference/workflow-structure/)
-- [Design Patterns](https://github.github.com/gh-aw/blog/2026-01-24-design-patterns/)
+- [Design Patterns](https://github.github.com/gh-aw/blog/design-patterns/)
 - [DailyOps Pattern](https://github.github.com/gh-aw/patterns/dailyops/)
-- [Authoring Workflows](https://github.github.com/gh-aw/blog/2026-02-08-authoring-workflows/)
+- [Authoring Workflows](https://github.github.com/gh-aw/blog/authoring-workflows/)
 
 ### Peli's Factory Blog Series
-- [Welcome to Peli's Agent Factory](https://github.github.com/gh-aw/blog/2026-01-12-welcome-to-pelis-agent-factory/)
-- [Continuous Simplicity](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-continuous-simplicity/) — Code Simplifier, Duplicate Code Detector
-- [Continuous Refactoring](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-continuous-refactoring/) — Semantic Function Refactor, Daily File Diet
-- [Continuous Style](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-continuous-style/) — Terminal Stylist
-- [Continuous Improvement](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-continuous-improvement/) — Repository Quality Improver
-- [Continuous Documentation](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-documentation/) — Daily Doc Updater, Doc Unbloat
+- [Welcome to Peli's Agent Factory](https://github.github.com/gh-aw/blog/welcome-to-pelis-agent-factory/)
+- [Continuous Simplicity](https://github.github.com/gh-aw/blog/continuous-simplicity/) — Code Simplifier, Duplicate Code Detector
+- [Continuous Refactoring](https://github.github.com/gh-aw/blog/continuous-refactoring/) — Semantic Function Refactor, Daily File Diet
+- [Continuous Style](https://github.github.com/gh-aw/blog/continuous-style/) — Terminal Stylist
+- [Continuous Improvement](https://github.github.com/gh-aw/blog/continuous-improvement/) — Repository Quality Improver
+- [Continuous Documentation](https://github.github.com/gh-aw/blog/continuous-documentation/) — Daily Doc Updater, Doc Unbloat
 
 ### Reference Workflows (source code)
 - [code-simplifier.md](https://github.com/github/gh-aw/blob/v0.42.13/.github/workflows/code-simplifier.md?plain=1)
