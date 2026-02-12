@@ -1,0 +1,10 @@
+{
+  "name": "ms-agents",
+  "version": "1.0.0",
+  "description": "Microsoft custom agents and deep-wiki documentation generator plugin",
+  "author": {
+    "name": "Microsoft",
+    "email": "opensource@microsoft.com",
+    "url": "https://github.com/microsoft"
+  }
+}

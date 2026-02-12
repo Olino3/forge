@@ -1,0 +1,20 @@
+{
+  "name": "ms-skills-rust",
+  "version": "1.0.0",
+  "description": "Microsoft Azure SDK skills for Rust developers. 7 skills covering Cosmos DB, Event Hub, Identity, Key Vault, and Storage.",
+  "author": {
+    "name": "Microsoft",
+    "url": "https://github.com/microsoft"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/microsoft/skills",
+  "repository": "https://github.com/microsoft/skills",
+  "keywords": [
+    "azure",
+    "rust",
+    "azure-sdk",
+    "cosmos-db",
+    "storage"
+  ],
+  "category": "language"
+}
