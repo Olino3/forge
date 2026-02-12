@@ -58,6 +58,28 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 ---
 
+## Agentic Workflows — Continuous Quality (Detailed Roadmap)
+
+> *"The tireless automatons of Hephaestus's workshop never sleep — they sweep the forge floor, sharpen every blade, and polish each shield while the gods rest."*
+
+A detailed, phased roadmap for implementing Continuous Quality Workflows using [GitHub Agentic Workflows (gh-aw)](https://github.github.com/gh-aw/) is maintained in **[AGENTIC_WORKFLOWS_ROADMAP.md](AGENTIC_WORKFLOWS_ROADMAP.md)**.
+
+The plan covers 7 phases across 10 workflows:
+
+| Phase | Workflows | Parallelizable |
+|-------|-----------|----------------|
+| **Phase 0** — Bootstrap | gh-aw init, shared imports, forge conventions | No (prerequisite) |
+| **Phase 1A** — Continuous Simplicity | Skill Simplifier, Duplication Detector | Yes (with 1B) |
+| **Phase 1B** — Continuous Context | Context Generator (on skill add), Context Pruner | Yes (with 1A) |
+| **Phase 2A** — Continuous Refactoring | Skill Structure Validator, Agent Config Validator | Yes (with 2B) |
+| **Phase 2B** — Continuous Style | Convention Enforcer, Hook Quality Checker | Yes (with 2A) |
+| **Phase 3** — Continuous Improvement | Health Dashboard, Cross-Reference Checker, Best Practices Improver | After 1A+1B |
+| **Phase 4** — Continuous Documentation | Doc Sync, Doc Unbloat | Yes (with Phase 3) |
+
+All workflows use the **Copilot engine** and leverage gh-aw's quick-start examples from [Peli's Agent Factory](https://github.github.com/gh-aw/blog/2026-01-12-welcome-to-pelis-agent-factory/), customized for Forge's Markdown/JSON/Bash codebase.
+
+---
+
 ## CI/CD Validation & Plugin Discovery
 
 > *"The forge's gates must be tested — every hammer strike verified, every blade inspected before it leaves the anvil."*
@@ -220,6 +242,7 @@ Inspired by [Peli's Agent Factory](https://github.github.com/gh-aw/blog/2026-01-
 | **Issue Triage Agent** | Auto-label, prioritize, and assign incoming issues based on content analysis and project context | On issue creation | [Peli's Issue Management](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-issue-management/) |
 | **Project Milestone Tracker** | Monitor progress toward milestones, identify blocked issues, suggest re-prioritization | Schedule (daily) | [Peli's Project Coordination](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-campaigns/) |
 | **Stale Issue/PR Gardener** | Identify stale issues and PRs, ping assignees, auto-close after grace period with summary comment | Schedule (weekly) | [Peli's Issue Management](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-issue-management/) |
+
 
 ### Implementation Plan
 
