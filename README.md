@@ -10,7 +10,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 [![Forged in Shell](https://img.shields.io/badge/Forged_in-Shell-success?style=for-the-badge&logo=gnu-bash)](https://github.com/Olino3/forge)
-[![Agents](https://img.shields.io/badge/Agents-11-blue?style=for-the-badge)](forge-plugin/agents/)
+[![Agents](https://img.shields.io/badge/Agents-19-blue?style=for-the-badge)](forge-plugin/agents/)
 [![Skills](https://img.shields.io/badge/Skills-22-orange?style=for-the-badge)](forge-plugin/skills/)
 [![Hooks](https://img.shields.io/badge/Hooks-20-red?style=for-the-badge)](forge-plugin/hooks/)
 
@@ -24,7 +24,7 @@ The Forge is not a plugin collection — it is a complete **Agentic Software Fac
 
 | Component | Count | What It Does |
 |-----------|-------|-------------|
-| 🏛️ **Agents** | 11 | AI personas with deep domain expertise (4 Olympian + 7 specialist) |
+| 🏛️ **Agents** | 19 | AI personas with deep domain expertise (12 Olympian + 7 specialist) |
 | 🔨 **Skills** | 22 | Specialized capabilities — code review, test generation, infrastructure |
 | ⚡ **Commands** | 12 | Structured workflows — `/analyze`, `/implement`, `/test`, and more |
 | 📚 **Context** | 81 files | Shared knowledge across 9 domains with YAML frontmatter |
@@ -70,7 +70,7 @@ skill:python-code-review src/auth/
 
 ---
 
-## 🏛️ The Pantheon — 11 Agents
+## 🏛️ The Pantheon — 19 Agents
 
 Agents are AI personas with deep domain expertise, persistent memory, and curated skill sets.
 
@@ -78,6 +78,14 @@ Agents are AI personas with deep domain expertise, persistent memory, and curate
 
 | Agent | Domain | Specialization |
 |-------|--------|---------------|
+| **@zeus** | Orchestration & Leadership | Multi-agent workflows, task delegation, factory oversight |
+| **@hera** | Project Management | Lifecycle management, standards enforcement, architectural coherence |
+| **@athena** | Wisdom & Architecture | System architecture, technical decisions, strategic counsel |
+| **@apollo** | Code Quality | Quality analysis, performance optimization, algorithm refinement |
+| **@artemis** | Testing & QA | Bug tracking, test strategy design, code integrity assurance |
+| **@aphrodite** | UX/UI & Design | User experience design, interface elegance, visual harmony |
+| **@hermes** | Integration | API integrations, inter-service communication, data exchange |
+| **@demeter** | Data Cultivation | Data pipelines, analytics, data quality and growth |
 | **@hephaestus** | Tool Creation | Forges new skills, templates, and meta-capabilities |
 | **@prometheus** | Strategy | Architecture design, roadmaps, ADRs, tech evaluation |
 | **@ares** | Deployment | Production deployment, incident response, monitoring |
@@ -236,7 +244,7 @@ forge/
 ├── CONTRIBUTING.md              # How to contribute
 ├── LICENSE                      # MIT License
 └── forge-plugin/                # The Forge Plugin
-    ├── agents/                  # 11 agents (.md + .config.json each)
+    ├── agents/                  # 19 agents (.md + .config.json each)
     ├── skills/                  # 22 skills (SKILL.md + examples.md each)
     ├── commands/                # 12 commands (flat .md files + _docs/ for examples)
     ├── context/                 # 81 files across 9 domains
