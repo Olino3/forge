@@ -123,6 +123,61 @@ See `CONTRIBUTING.md` for detailed instructions and the Microsoft/Vercel/Trail o
 | Agent structure | `.md` + `.config.json` + memory directory |
 | Output naming | Follow `OUTPUT_CONVENTIONS.md` |
 
+## Agentic Workflows (gh-aw)
+
+The Forge uses **GitHub Agentic Workflows** (`gh-aw` CLI extension) to run Copilot-powered agents as GitHub Actions. Workflow sources live in `.github/workflows/forge-*.md` and compile to `.lock.yml` files.
+
+### Quick Reference
+
+```bash
+gh extension install github/gh-aw   # Install CLI
+gh aw init                           # Bootstrap repo
+gh aw compile                        # Compile .md → .lock.yml
+gh aw status                         # Check workflow status
+gh aw fix --write                    # Fix deprecated fields
+```
+
+### Workflow Structure
+
+```
+.github/workflows/
+├── shared/                          # Shared imports
+│   ├── forge-base.md                # Engine (copilot) + base permissions
+│   ├── forge-pr-creator.md          # PR-creating workflow defaults
+│   ├── forge-issue-creator.md       # Issue-creating workflow defaults
+│   └── forge-conventions.md         # Forge project conventions
+├── forge-skill-simplifier.md        # Phase 1A
+├── forge-duplication-detector.md    # Phase 1A
+├── forge-context-generator.md       # Phase 1B
+├── forge-context-pruner.md          # Phase 1B
+└── forge-*.lock.yml                 # Compiled (DO NOT EDIT)
+```
+
+### Critical Rules for Writing Workflows
+
+1. **Strict mode is repo-level** — set by `gh aw init`, not a frontmatter field
+2. **Only read permissions allowed** — `contents: read`, `issues: read`, `pull-requests: read`
+3. **Never add write permissions** — safe-outputs automatically handle writes
+4. **Property names matter:**
+   - `expires` (NOT `expire`) — integer days
+   - `close-older-issues` (NOT `close-older`) — boolean, issue-only
+   - `max` — valid on `create-issue` only, NOT on `create-pull-request`
+5. **`default` toolset requires** `issues: read` + `pull-requests: read`
+6. **Never edit `.lock.yml` files** — always edit `.md` source and recompile
+7. **Import shared files** via `imports:` in frontmatter
+
+### Required Repository Secrets
+
+| Secret | Purpose |
+|--------|---------|
+| `GH_AW_GITHUB_TOKEN` | PAT for gh-aw agent operations |
+| `COPILOT_GITHUB_TOKEN` | PAT for Copilot execution |
+| `GH_AW_AGENT_TOKEN` | PAT for agent delegation |
+
+All are repository secrets (Settings → Secrets → Actions). Account must have active Copilot license.
+
+See `AGENTIC_WORKFLOWS_ROADMAP.md` for the full 7-phase plan. **Note:** Some roadmap code examples use outdated property names — always cross-reference with CLAUDE.md Section XVI.
+
 ## Key Files
 
 | File | Purpose |
@@ -139,6 +194,9 @@ See `CONTRIBUTING.md` for detailed instructions and the Microsoft/Vercel/Trail o
 | `forge-plugin/context/cross_domain.md` | Cross-domain trigger matrix |
 | `forge-plugin/memory/lifecycle.md` | Memory freshness, pruning, archival |
 | `forge-plugin/memory/quality_guidance.md` | Memory quality validation |
+| `AGENTIC_WORKFLOWS_ROADMAP.md` | Phased plan for agentic workflows |
+| `.github/workflows/shared/forge-base.md` | Shared base config (engine, permissions) |
+| `.github/workflows/shared/forge-conventions.md` | Forge conventions for agentic agents |
 
 ## Pull Request Checklist
 
@@ -151,6 +209,9 @@ See `CONTRIBUTING.md` for detailed instructions and the Microsoft/Vercel/Trail o
 - [ ] `ROADMAP.md` updated if adding new capabilities
 - [ ] `marketplace.json` updated if plugins added/removed
 - [ ] Symlinks verified with `./scripts/verify-symlinks.sh` if external plugins changed
+- [ ] Agentic workflows compile cleanly: `gh aw compile` shows 0 errors, 0 warnings
+- [ ] No write permissions in agentic workflow frontmatter (safe-outputs handles writes)
+- [ ] `.lock.yml` files regenerated after any workflow `.md` changes
 
 ---
 
