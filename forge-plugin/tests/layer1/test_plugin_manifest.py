@@ -168,13 +168,18 @@ class TestPluginManifestCommands:
                 )
 
     def test_no_extra_unexpected_commands(self):
-        """Warn about any commands not in the expected set (informational)."""
+        """Track any commands not in the expected set (informational)."""
+        import warnings
         commands_dir = FORGE_DIR / "commands"
         existing_commands = {d.name for d in commands_dir.iterdir() if d.is_dir()}
         extra = existing_commands - EXPECTED_COMMANDS
-        # Extra commands are allowed but noted
+        # Extra commands are allowed but should be noted
         if extra:
-            pass  # Not a failure, but tracks new additions
+            warnings.warn(
+                f"Found {len(extra)} unexpected command(s): {sorted(extra)}. "
+                f"Update EXPECTED_COMMANDS in test_plugin_manifest.py if intentional.",
+                UserWarning
+            )
 
 
 # ---------------------------------------------------------------------------

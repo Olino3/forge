@@ -75,11 +75,11 @@ if [ -f "$MANIFEST" ]; then
     fi
 
     # Commands field should NOT be present (discovered from filesystem)
-    COMMANDS=$(jq -r '.commands // "null"' "$MANIFEST")
-    if [ "$COMMANDS" = "null" ]; then
-        pass "Plugin correctly omits 'commands' field (discovered from filesystem)"
+    if jq -e 'has("commands")' "$MANIFEST" >/dev/null 2>&1; then
+        fail "Plugin has 'commands' field but commands should be discovered from filesystem"
+        FAILED=1
     else
-        warn "Plugin has 'commands' field but it should be discovered from filesystem"
+        pass "Plugin correctly omits 'commands' field (discovered from filesystem)"
     fi
 fi
 
