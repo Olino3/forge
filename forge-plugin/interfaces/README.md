@@ -2,7 +2,7 @@
 
 This directory contains the **interface contracts** that decouple all Forge consumers (skills, commands, agents) from direct filesystem paths. The interface layer provides consistent access patterns, validated metadata, and extensibility through swappable adapters.
 
-All 28 skills, 12 commands, and 11 agents use these interfaces. The 3 JSON schemas are validated automatically by the [test suite](../tests/README.md).
+All 102 skills, 12 commands, and 19 agents use these interfaces. The 3 JSON schemas are validated automatically by the [test suite](../tests/README.md).
 
 ## Architecture
 
@@ -11,7 +11,7 @@ All 28 skills, 12 commands, and 11 agents use these interfaces. The 3 JSON schem
 |                      Consumers                          |
 |  +----------+  +----------+  +----------+              |
 |  |  Skills   |  | Commands |  |  Agents  |              |
-|  |  (28)     |  |  (12)    |  |  (11)    |              |
+|  |  (102)    |  |  (12)    |  |  (19)    |              |
 |  +-----+----+  +-----+----+  +-----+----+              |
 |        |              |              |                   |
 |        v              v              v                   |

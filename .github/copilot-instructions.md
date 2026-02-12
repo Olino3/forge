@@ -13,8 +13,8 @@ forge-plugin/
 ├── interfaces/    # 4 core contracts (ContextProvider, MemoryStore, SkillInvoker, ExecutionContext)
 │   ├── adapters/  # Default implementations (MarkdownFileContextProvider, MarkdownFileMemoryAdapter)
 │   └── schemas/   # JSON validation schemas (agent_config, context_metadata, memory_entry)
-├── agents/        # 11 agents (4 Olympian + 7 specialist) with .md + .config.json each
-├── skills/        # 28 skills — each directory has SKILL.md + examples.md
+├── agents/        # 19 agents (12 Olympian + 7 specialist) with .md + .config.json each
+├── skills/        # 102 skills — each directory has SKILL.md + examples.md
 ├── commands/      # 12 slash commands — flat .md files + _docs/ directory for examples
 ├── context/       # 81 files across 9 domains — shared, static knowledge with YAML frontmatter
 ├── memory/        # 4-layer dynamic learning (projects/, skills/, commands/, agents/)
@@ -87,6 +87,29 @@ All components communicate through **convention-based interfaces** — never har
 | 👷 Foreman | Workflow & quality | `skill_compliance_checker`, `agent_config_validator` |
 | 📢 Town Crier | Telemetry & reporting | `system_health_emitter`, `forge_telemetry` |
 
+## Forge Marketplace & External Skills
+
+The Forge includes **212 external skills** from 5 enterprise/community sources, loaded via the **Forge Marketplace** (`.claude-plugin/marketplace.json`). There are **38 plugins** total.
+
+### Integration Patterns
+
+| Pattern | Example | Description |
+|---------|---------|-------------|
+| **Multi-Plugin Wrapper** | Microsoft | 1 submodule → 7 wrapper plugins with symlinks, per-language separation |
+| **Single Plugin Wrapper** | Vercel, Google Labs | 1 submodule → 1 wrapper plugin, single symlink |
+| **Native Plugin** | Trail of Bits, Sentry | Direct source path references into submodule, no wrappers |
+
+### Adding External Plugins
+
+1. Fork the upstream repository under `Olino3/`
+2. Add as git submodule: `git submodule add <fork-url> <path>`
+3. Create Plugin Wrapper directory with `.claude-plugin/plugin.json` and `skills/` symlinks (or use Native Plugin pattern)
+4. Register in `.claude-plugin/marketplace.json`
+5. Update `scripts/fix-symlinks.sh` and `scripts/verify-symlinks.sh`
+6. Run `./scripts/validate-plugins.sh` to verify
+
+See `CONTRIBUTING.md` for detailed instructions and the Microsoft/Vercel/Trail of Bits patterns as templates.
+
 ## Coding Conventions
 
 | Item | Convention |
@@ -106,8 +129,10 @@ All components communicate through **convention-based interfaces** — never har
 |------|---------|
 | `CLAUDE.md` | The Forge Operating Manual — definitive guide for Claude Code |
 | `CONTRIBUTING.md` | Full contribution guide |
+| `COOKBOOK.md` | Strategies, workflows, and persona-based plugin selection |
 | `ROADMAP.md` | Vision, capabilities, and changelog |
 | `ARCHITECTURAL_ROADMAP.md` | Technical architecture and migration phases |
+| `.claude-plugin/marketplace.json` | Forge Marketplace — 38 plugins for external skills |
 | `forge-plugin/hooks/hooks.json` | Hook registration manifest (20 handlers, 9 events) |
 | `forge-plugin/hooks/HOOKS_GUIDE.md` | Hook architecture guide — 4 thematic layers |
 | `forge-plugin/context/loading_protocol.md` | 5-step context loading protocol |
@@ -124,6 +149,8 @@ All components communicate through **convention-based interfaces** — never har
 - [ ] Memory directories created for new agents
 - [ ] No hardcoded filesystem paths — use interface references
 - [ ] `ROADMAP.md` updated if adding new capabilities
+- [ ] `marketplace.json` updated if plugins added/removed
+- [ ] Symlinks verified with `./scripts/verify-symlinks.sh` if external plugins changed
 
 ---
 

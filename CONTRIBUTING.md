@@ -13,6 +13,7 @@ Thank you for your interest in contributing to The Forge — an Agentic Software
 - [Adding New Commands](#adding-new-commands)
 - [Adding Context Files](#adding-context-files)
 - [Adding Hooks](#adding-hooks)
+- [Adding External Plugins](#adding-external-plugins)
 - [Coding Conventions](#coding-conventions)
 - [Pull Request Process](#pull-request-process)
 - [Code of Conduct](#code-of-conduct)
@@ -201,6 +202,89 @@ Hooks are bash scripts that execute in response to Claude Code events. The Forge
 
 ---
 
+## Adding External Plugins
+
+The Forge Marketplace (`.claude-plugin/marketplace.json`) supports loading skills from external repositories via git submodules. Currently **38 plugins** are registered: 1 core + 10 external wrappers + 27 Trail of Bits native plugins.
+
+### Integration Patterns
+
+Choose the pattern that best fits the upstream repository structure:
+
+| Pattern | When to Use | Example |
+|---------|------------|--------|
+| **Multi-Plugin Wrapper** | Upstream has many distinct skill directories (per-language, per-domain) | Microsoft (1 submodule → 7 wrapper plugins) |
+| **Single Plugin Wrapper** | Upstream has a single skills directory | Vercel, Google Labs |
+| **Native Plugin** | Upstream already has a `.claude-plugin/` structure | Trail of Bits, Sentry |
+
+### Step-by-Step: Adding an External Plugin
+
+1. **Fork the upstream repository** under the `Olino3/` GitHub organization
+   ```bash
+   # Fork via GitHub UI, then add as submodule
+   git submodule add https://github.com/Olino3/<forked-repo>.git <local-path>
+   ```
+
+2. **Choose your integration pattern**:
+
+   **Multi-Plugin Wrapper** (e.g., per-language separation):
+   ```
+   <vendor>/<vendor>-skills-<lang>-plugin/
+   ├── .claude-plugin/
+   │   └── plugin.json     # name, description, source path
+   └── skills/
+       └── <lang> -> ../../<vendor>/skills/<lang>/   # symlink
+   ```
+
+   **Single Plugin Wrapper**:
+   ```
+   <vendor>/<vendor>-skills-plugin/
+   ├── .claude-plugin/
+   │   └── plugin.json
+   └── skills -> ../<vendor>/<upstream-skills-dir>/   # symlink
+   ```
+
+   **Native Plugin** (no wrapper needed):
+   ```
+   # Reference the submodule path directly in marketplace.json
+   { "source": "<vendor>/skills/<plugin-name>" }
+   ```
+
+3. **Register in marketplace.json**:
+   ```json
+   {
+     "name": "<plugin-name>",
+     "description": "Description of the plugin",
+     "source": "<path-to-plugin-directory>"
+   }
+   ```
+
+4. **Update maintenance scripts**:
+   - `scripts/fix-symlinks.sh` — add symlink creation commands
+   - `scripts/verify-symlinks.sh` — add verification checks
+
+5. **Validate**:
+   ```bash
+   ./scripts/validate-plugins.sh
+   ./scripts/verify-symlinks.sh
+   ```
+
+### Stability Forks
+
+All external plugins are loaded from **forks under `Olino3/`**, not directly from upstream. This provides:
+- **Pinned versions** — upstream breaking changes don't affect The Forge
+- **Controlled updates** — pull upstream changes when ready
+- **Customization** — adjust plugin structures as needed
+
+To sync a fork with upstream:
+```bash
+cd <submodule-path>
+git fetch upstream
+git merge upstream/main
+cd ../.. && git add <submodule-path> && git commit -m "chore: sync <vendor> submodule"
+```
+
+---
+
 ## Coding Conventions
 
 | File Type | Convention |
@@ -237,6 +321,8 @@ Hooks are bash scripts that execute in response to Claude Code events. The Forge
 - [ ] New hooks registered in `hooks/hooks.json` and documented in `HOOKS_GUIDE.md`
 - [ ] No hardcoded filesystem paths (use interface references)
 - [ ] Memory directories use canonical paths (`memory/agents/`, `memory/skills/`, etc.)
+- [ ] `marketplace.json` updated if plugins added/removed
+- [ ] Symlinks verified with `./scripts/verify-symlinks.sh` if external plugins changed
 - [ ] ROADMAP.md updated
 - [ ] Tested with Claude Code
 
@@ -256,4 +342,4 @@ Open an issue or start a discussion. The Forge's fires are always burning, and f
 
 ---
 
-*Last Updated: 2026-02-11*
+*Last Updated: 2026-02-13*
