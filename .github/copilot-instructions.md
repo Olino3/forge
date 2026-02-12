@@ -14,7 +14,7 @@ forge-plugin/
 │   ├── adapters/  # Default implementations (MarkdownFileContextProvider, MarkdownFileMemoryAdapter)
 │   └── schemas/   # JSON validation schemas (agent_config, context_metadata, memory_entry)
 ├── agents/        # 11 agents (4 Olympian + 7 specialist) with .md + .config.json each
-├── skills/        # 22 skills — each directory has SKILL.md + examples.md
+├── skills/        # 28 skills — each directory has SKILL.md + examples.md
 ├── commands/      # 12 slash commands — flat .md files + _docs/ directory for examples
 ├── context/       # 81 files across 9 domains — shared, static knowledge with YAML frontmatter
 ├── memory/        # 4-layer dynamic learning (projects/, skills/, commands/, agents/)

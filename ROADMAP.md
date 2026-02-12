@@ -12,7 +12,7 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 | Component | Count | Status |
 |-----------|-------|--------|
-| **Skills** | 239 | ✅ 27 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
+| **Skills** | 305 | ✅ 93 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
 | **Commands** | 12 | ✅ All operational, interface-based |
 | **Agents** | 19 | ✅ 12 Olympian + 7 specialist, all with config.json |
 | **Context Files** | 81 | ✅ 9 domains, all with YAML frontmatter |
@@ -36,13 +36,29 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 **Infrastructure** — generate-azure-functions · generate-azure-pipelines · generate-azure-bicep · generate-tilt-dev-environment · generate-mock-service
 
+**Backend & Frameworks** — django · dotnet-core · fastapi · nestjs · rails · php
+
 **Analysis** — file-schema-analysis · database-schema-analysis · python-dependency-management
+
+**Programming Languages** — cpp · csharp · java-architect · javascript · typescript
 
 **Productivity** — commit-helper · email-writer · slack-message-composer · documentation-generator
 
 **Data Science** — excel-skills · jupyter-notebook-skills
 
+**Data & Database** — database-optimizer · pandas · postgres · sql
+
+**Developer Workflow** — create-agents · power-debug · dev-tools
+
+**Utilities** — color-palette · email-gateway · favicon-gen · firecrawl-scraper · icon-design · image-gen · jquery-4 · office · open-source-contributions · playwright-local
+
+**Database & Storage** — firebase-firestore · firebase-storage · snowflake-platform
+
+**Authentication** — azure-auth · better-auth · clerk-auth · firebase-auth · oauth-integrations
+
 **Meta** — generate-more-skills-with-claude
+
+**Planning & Workflow** — divine · docs-workflow · project-health · project-planning · project-session-management · project-workflow · skill-creator · skill-review · sub-agent-patterns
 
 ### The War Room (Active Commands)
 
@@ -54,97 +70,97 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 > *"The blueprints are drawn — these weapons await their turn at the anvil."*
 
-### Frontend & UI (15 skills)
+### Frontend & UI (15 skills — 6 forged ✅)
 
-| Skill | Description |
-|-------|-------------|
-| **accessibility** | Build WCAG 2.1 AA compliant websites with semantic HTML, proper ARIA, focus management, and screen reader support. Includes color contrast (4.5:1 text), keyboard navigation, form labels, and live regions. |
-| **animate** | Zero-config animations for React, Vue, Solid, Svelte, Preact with @formkit/auto-animate (3.28kb). Prevents 15 errors. |
-| **nextjs** | Build Next.js 16 apps with App Router, Server Components/Actions, Cache Components ("use cache"), and async route params. Includes proxy.ts and React 19.2. Prevents 25 errors. |
-| **react-forms** | Build type-safe validated forms using React Hook Form v7 and Zod v4. Single schema works on client and server with full TypeScript inference via `z.infer`. |
-| **responsive-images** | Implement performant responsive images with srcset, sizes, lazy loading, and modern formats (WebP, AVIF). Covers aspect-ratio for CLS prevention, picture element for art direction, and fetchpriority. Triggers: `srcset`, `loading=`, `lazy`, `eager` |
-| **tailwind-patterns** | Production-ready Tailwind CSS patterns for common website components: responsive layouts, cards, navigation, forms, buttons, and typography. Includes spacing scale, breakpoints, mobile-first patterns. Triggers: `Tailwind CSS`, `CSS utility classes`, `first CSS`, `shadcn/ui components` |
+| Skill | Status | Description |
+|-------|--------|-------------|
+| **accessibility** | ✅ Forged | Build WCAG 2.1 AA compliant websites with semantic HTML, proper ARIA, focus management, and screen reader support. Includes color contrast (4.5:1 text), keyboard navigation, form labels, and live regions. |
+| **animate** | ✅ Forged | Zero-config animations for React, Vue, Solid, Svelte, Preact with @formkit/auto-animate (3.28kb). Prevents 15 errors. |
+| **nextjs** | ✅ Forged | Build Next.js 16 apps with App Router, Server Components/Actions, Cache Components ("use cache"), and async route params. Includes proxy.ts and React 19.2. Prevents 25 errors. |
+| **react-forms** | ✅ Forged | Build type-safe validated forms using React Hook Form v7 and Zod v4. Single schema works on client and server with full TypeScript inference via `z.infer`. |
+| **responsive-images** | ✅ Forged | Implement performant responsive images with srcset, sizes, lazy loading, and modern formats (WebP, AVIF). Covers aspect-ratio for CLS prevention, picture element for art direction, and fetchpriority. Triggers: `srcset`, `loading=`, `lazy`, `eager` |
+| **tailwind-patterns** | ✅ Forged | Production-ready Tailwind CSS patterns for common website components: responsive layouts, cards, navigation, forms, buttons, and typography. Includes spacing scale, breakpoints, mobile-first patterns. Triggers: `Tailwind CSS`, `CSS utility classes`, `first CSS`, `shadcn/ui components` |
  
-### Authentication (5 skills)
+### Authentication (5 skills) ✅
 
 | Skill | Description |
 |-------|-------------|
-| **azure-auth** | Microsoft Entra ID (Azure AD) authentication for React SPAs with MSAL.js and Cloudflare Workers JWT validation using jose library. Full-stack pattern with Authorization Code Flow + PKCE. Prevents 8 errors. |
-| **better-auth** | Self-hosted auth for TypeScript/Cloudflare Workers with social auth, 2FA, passkeys, organizations, RBAC, and 15+ plugins. Requires Drizzle ORM or Kysely for D1 (no direct adapter). Triggers: `better-auth`, `authentication with D1`, `Cloudflare D1 auth setup` |
-| **clerk-auth** | Clerk auth with API Keys beta (Dec 2025), Next.js 16 proxy.ts (March 2025 CVE context), API version 2025-11-10 breaking changes, clerkMiddleware() options, webhooks, production considerations. Prevents 15 errors. Triggers: `clerk`, `clerk auth`, `@clerk/nextjs` |
-| **firebase-auth** | Build with Firebase Authentication — email/password, OAuth providers, phone auth, and custom tokens. Use when: setting up auth flows, implementing sign-in/sign-up, managing user sessions, protecting routes. Prevents 12 errors. |
-| **oauth-integrations** | Implement OAuth 2.0 authentication with GitHub, Okta, Google, and Microsoft Entra (Azure AD) ||
+| **azure-auth** ✅ | Microsoft Entra ID (Azure AD) authentication for React SPAs with MSAL.js and Cloudflare Workers JWT validation using jose library. Full-stack pattern with Authorization Code Flow + PKCE. Prevents 8 errors. |
+| **better-auth** ✅ | Self-hosted auth for TypeScript/Cloudflare Workers with social auth, 2FA, passkeys, organizations, RBAC, and 15+ plugins. Requires Drizzle ORM or Kysely for D1 (no direct adapter). Triggers: `better-auth`, `authentication with D1`, `Cloudflare D1 auth setup` |
+| **clerk-auth** ✅ | Clerk auth with API Keys beta (Dec 2025), Next.js 16 proxy.ts (March 2025 CVE context), API version 2025-11-10 breaking changes, clerkMiddleware() options, webhooks, production considerations. Prevents 15 errors. Triggers: `clerk`, `clerk auth`, `@clerk/nextjs` |
+| **firebase-auth** ✅ | Build with Firebase Authentication — email/password, OAuth providers, phone auth, and custom tokens. Use when: setting up auth flows, implementing sign-in/sign-up, managing user sessions, protecting routes. Prevents 12 errors. |
+| **oauth-integrations** ✅ | Implement OAuth 2.0 authentication with GitHub, Okta, Google, and Microsoft Entra (Azure AD) |
 
 ### Database & Storage (6 skills)
 
 | Skill | Description |
 |-------|-------------|
-| **firebase-firestore** | Build with Firestore NoSQL database — real-time sync, offline support, and scalable document storage. Use when: creating collections, querying documents, setting up security rules, handling real-time updates. Prevents 10 errors. |
-| **firebase-storage** | Build with Firebase Cloud Storage — file uploads, downloads, and secure access. Use when: uploading images/files, generating download URLs, implementing file pickers, setting up storage security rules. Prevents 9 errors. |
+| **firebase-firestore** | ✅ Build with Firestore NoSQL database — real-time sync, offline support, and scalable document storage. Use when: creating collections, querying documents, setting up security rules, handling real-time updates. Prevents 10 errors. |
+| **firebase-storage** | ✅ Build with Firebase Cloud Storage — file uploads, downloads, and secure access. Use when: uploading images/files, generating download URLs, implementing file pickers, setting up storage security rules. Prevents 9 errors. |
 | **neon-vercel-postgres** | Set up serverless Postgres with Neon or Vercel Postgres for Cloudflare Workers/Edge. Includes connection pooling, git-like branching, and Drizzle ORM integration. |
-| **snowflake-platform** | Build on Snowflake's AI Data Cloud with snow CLI, Cortex AI (COMPLETE, SUMMARIZE, AI_FILTER), Native Apps, and Snowpark. Covers JWT auth, account identifiers, Marketplace publishing. Prevents 11 errors. Triggers: `snowflake`, `snow cli`, `snowflake connection` |
+| **snowflake-platform** | ✅ Build on Snowflake's AI Data Cloud with snow CLI, Cortex AI (COMPLETE, SUMMARIZE, AI_FILTER), Native Apps, and Snowpark. Covers JWT auth, account identifiers, Marketplace publishing. Prevents 11 errors. Triggers: `snowflake`, `snow cli`, `snowflake connection` |
 | **vercel-blob** | Integrate Vercel Blob for file uploads and CDN-delivered assets in Next.js. Supports client-side uploads with presigned URLs and multipart transfers for large files. Prevents 16 errors. Triggers: `@vercel/blob`, `vercel blob`, `vercel file upload` |
 | **vercel-kv** | Integrate Redis-compatible Vercel KV for caching, session management, and rate limiting in Next.js. Powered by Upstash with strong consistency and TTL support. Triggers: `@vercel/kv`, `vercel kv`, `upstash vercel` |
 
-### Planning & Workflow (9 skills)
+### Planning & Workflow (9 skills) ✅
 
 | Skill | Description |
 |-------|-------------|
-| **divine** | Entry point to the divine toolkit — skills, agents, and commands that work with Claude Code's capabilities. |
-| **docs-workflow** | Four slash commands for documentation lifecycle: `/docs`, `/docs-init`, `/docs-update`, `/docs-claude`. Create, maintain, and audit CLAUDE.md, README.md, and docs/ structure with smart templates. Triggers: `create CLAUDE.md`, `initialize documentation`, `docs init`, `update documentation` |
-| **project-health** | AI-agent readiness auditing for project documentation and workflows. Triggers: `AI readability`, `agent readiness`, `context auditor`, `workflow validator` |
-| **project-planning** | Generate structured planning docs for web projects with context-safe phases, verification criteria, and exit conditions. Creates IMPLEMENTATION_PHASES.md plus conditional docs. Triggers: `new project`, `start a project`, `create app`, `build app` |
-| **project-session-management** | Track progress across sessions using SESSION.md with git checkpoints and concrete next actions. Converts IMPLEMENTATION_PHASES.md into trackable session state. Triggers: `create SESSION.md`, `set up session tracking`, `manage session state`, `session handoff` |
-| **project-workflow** | Nine integrated slash commands for complete project lifecycle: `/explore-idea`, `/plan-project`, `/plan-feature`, `/wrap-session`, `/continue-session`, `/workflow`, `/release`, `/brief`, `/reflect`. Triggers: `start new project`, `/plan-project` |
-| **skill-creator** | Design effective Claude Code skills with optimal descriptions, progressive disclosure, and error prevention patterns. Covers freedom levels, token efficiency, and quality standards. |
-| **skill-review** | Audit claude-skills with systematic 9-phase review: standards compliance, official docs verification, code accuracy, cross-file consistency, and version drift detection. Triggers: `review this skill`, `audit [skill-name]`, `check if X needs updates` |
-| **sub-agent-patterns** | Comprehensive guide to sub-agents in Claude Code: built-in agents (Explore, Plan, general-purpose), custom agent creation, configuration, and delegation patterns. Triggers: `sub-agent`, `sub-agents`, `subagent` |
+| **divine** ✅ | Entry point to the divine toolkit — skills, agents, and commands that work with Claude Code's capabilities. |
+| **docs-workflow** ✅ | Four slash commands for documentation lifecycle: `/docs`, `/docs-init`, `/docs-update`, `/docs-claude`. Create, maintain, and audit CLAUDE.md, README.md, and docs/ structure with smart templates. Triggers: `create CLAUDE.md`, `initialize documentation`, `docs init`, `update documentation` |
+| **project-health** ✅ | AI-agent readiness auditing for project documentation and workflows. Triggers: `AI readability`, `agent readiness`, `context auditor`, `workflow validator` |
+| **project-planning** ✅ | Generate structured planning docs for web projects with context-safe phases, verification criteria, and exit conditions. Creates IMPLEMENTATION_PHASES.md plus conditional docs. Triggers: `new project`, `start a project`, `create app`, `build app` |
+| **project-session-management** ✅ | Track progress across sessions using SESSION.md with git checkpoints and concrete next actions. Converts IMPLEMENTATION_PHASES.md into trackable session state. Triggers: `create SESSION.md`, `set up session tracking`, `manage session state`, `session handoff` |
+| **project-workflow** ✅ | Nine integrated slash commands for complete project lifecycle: `/explore-idea`, `/plan-project`, `/plan-feature`, `/wrap-session`, `/continue-session`, `/workflow`, `/release`, `/brief`, `/reflect`. Triggers: `start new project`, `/plan-project` |
+| **skill-creator** ✅ | Design effective Claude Code skills with optimal descriptions, progressive disclosure, and error prevention patterns. Covers freedom levels, token efficiency, and quality standards. |
+| **skill-review** ✅ | Audit claude-skills with systematic 9-phase review: standards compliance, official docs verification, code accuracy, cross-file consistency, and version drift detection. Triggers: `review this skill`, `audit [skill-name]`, `check if X needs updates` |
+| **sub-agent-patterns** ✅ | Comprehensive guide to sub-agents in Claude Code: built-in agents (Explore, Plan, general-purpose), custom agent creation, configuration, and delegation patterns. Triggers: `sub-agent`, `sub-agents`, `subagent` |
 
-### Utilities (11 skills)
+### Utilities (10 skills) — ⚒️ All Forged
 
-| Skill | Description |
-|-------|-------------|
-| **color-palette** | Generate complete, accessible color palettes from a single brand hex. Creates 11-shade scale (50-950), semantic tokens (background, foreground, card, muted), and dark mode variants. Includes WCAG contrast checking. Triggers: `color palette`, `tailwind colors`, `css variables`, `hsl colors` |
-| **email-gateway** | Multi-provider email sending for Cloudflare Workers and Node.js applications. Triggers: `resend`, `sendgrid`, `mailgun`, `smtp2go` |
-| **favicon-gen** | Generate custom favicons from logos, text, or brand colors — prevents launching with CMS defaults. Extract icons from logos, create monogram favicons from initials, or use branded shapes. Outputs all required formats. |
-| **firecrawl-scraper** | Convert websites into LLM-ready data with Firecrawl API. Features: scrape, crawl, map, search, extract, agent (autonomous), batch operations, and change tracking. Handles JavaScript, anti-bot bypass. Prevents 10 errors. |
-| **icon-design** | Select semantically appropriate icons for websites using Lucide, Heroicons, or Phosphor. Covers concept-to-icon mapping, React/HTML templates, and tree-shaking patterns. |
-| **image-gen** | Generate website images with Gemini 3 Native Image Generation. Covers hero banners, service cards, infographics with legible text, and multi-turn editing. Prevents 5 errors. Triggers: `gemini image generation`, `gemini-3-flash-image-generation`, `google genai` |
-| **jquery-4** | Migrate jQuery 3.x to 4.0.0 safely in WordPress and legacy web projects. Covers all breaking changes: removed APIs ($.isArray, $.trim, $.parseJSON, $.type), focus event order changes, slim build differences. |
-| **office** | Generate Office documents (DOCX, XLSX, PDF, PPTX) with TypeScript. Pure JS libraries that work everywhere: Claude Code CLI, Cloudflare Workers, browsers. Uses docx (Word), xlsx/SheetJS (Excel), pdf-lib (PDF). |
-| **open-source-contributions** | Create maintainer-friendly pull requests with clean code and professional communication. Triggers: `submit PR to [project]`, `create pull request for [repo]`, `contribute to [project]` |
-| **playwright-local** | Build browser automation and web scraping with Playwright on your local machine. Prevents 10 errors. |
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **color-palette** | Generate complete, accessible color palettes from a single brand hex. Creates 11-shade scale (50-950), semantic tokens (background, foreground, card, muted), and dark mode variants. Includes WCAG contrast checking. Triggers: `color palette`, `tailwind colors`, `css variables`, `hsl colors` | ⚒️ Forged |
+| **email-gateway** | Multi-provider email sending for Cloudflare Workers and Node.js applications. Triggers: `resend`, `sendgrid`, `mailgun`, `smtp2go` | ⚒️ Forged |
+| **favicon-gen** | Generate custom favicons from logos, text, or brand colors — prevents launching with CMS defaults. Extract icons from logos, create monogram favicons from initials, or use branded shapes. Outputs all required formats. | ⚒️ Forged |
+| **firecrawl-scraper** | Convert websites into LLM-ready data with Firecrawl API. Features: scrape, crawl, map, search, extract, agent (autonomous), batch operations, and change tracking. Handles JavaScript, anti-bot bypass. Prevents 10 errors. | ⚒️ Forged |
+| **icon-design** | Select semantically appropriate icons for websites using Lucide, Heroicons, or Phosphor. Covers concept-to-icon mapping, React/HTML templates, and tree-shaking patterns. | ⚒️ Forged |
+| **image-gen** | Generate website images with Gemini 3 Native Image Generation. Covers hero banners, service cards, infographics with legible text, and multi-turn editing. Prevents 5 errors. Triggers: `gemini image generation`, `gemini-3-flash-image-generation`, `google genai` | ⚒️ Forged |
+| **jquery-4** | Migrate jQuery 3.x to 4.0.0 safely in WordPress and legacy web projects. Covers all breaking changes: removed APIs ($.isArray, $.trim, $.parseJSON, $.type), focus event order changes, slim build differences. | ⚒️ Forged |
+| **office** | Generate Office documents (DOCX, XLSX, PDF, PPTX) with TypeScript. Pure JS libraries that work everywhere: Claude Code CLI, Cloudflare Workers, browsers. Uses docx (Word), xlsx/SheetJS (Excel), pdf-lib (PDF). | ⚒️ Forged |
+| **open-source-contributions** | Create maintainer-friendly pull requests with clean code and professional communication. Triggers: `submit PR to [project]`, `create pull request for [repo]`, `contribute to [project]` | ⚒️ Forged |
+| **playwright-local** | Build browser automation and web scraping with Playwright on your local machine. Prevents 10 errors. | ⚒️ Forged |
 
-### Developer Workflow (3 skills)
+### Developer Workflow (3 skills) — ✅ Forged
 
-| Skill | Description |
-|-------|-------------|
-| **create-agents** | Design and build custom Claude Code agents with effective descriptions, tool access patterns, and delegation strategies. Triggers: `create agent`, `custom agent`, `build agent`, `agent description` |
-| **power-debug** | Multi-agent investigation for stubborn bugs. Use when: going in circles debugging, need to investigate browser/API interactions, complex bugs resisting normal debugging, or when symptoms don't match expectations. |
-| **dev-tools** | Essential development workflow agents for code review, debugging, testing, documentation, and git operations. Triggers: `step` |
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **create-agents** | Design and build custom Claude Code agents with effective descriptions, tool access patterns, and delegation strategies. Triggers: `create agent`, `custom agent`, `build agent`, `agent description` | ✅ Operational |
+| **power-debug** | Multi-agent investigation for stubborn bugs. Use when: going in circles debugging, need to investigate browser/API interactions, complex bugs resisting normal debugging, or when symptoms don't match expectations. | ✅ Operational |
+| **dev-tools** | Essential development workflow agents for code review, debugging, testing, documentation, and git operations. Triggers: `step` | ✅ Operational |
 
 ### Backend & Frameworks (6 skills)
 
 | Skill | Description |
 |-------|-------------|
-| **django** | Expert-level Django development patterns and best practices |
-| **dotnet-core** | .NET Core/ASP.NET Core architecture and implementation |
-| **fastapi** | Modern Python API development with FastAPI framework |
-| **nestjs** | Enterprise-grade NestJS applications with TypeScript |
-| **rails** | Ruby on Rails application development and architecture |
-| **php** | Professional PHP development patterns and frameworks |
+| **django** | ✅ Expert-level Django development patterns and best practices |
+| **dotnet-core** | ✅ .NET Core/ASP.NET Core architecture and implementation |
+| **fastapi** | ✅ Modern Python API development with FastAPI framework |
+| **nestjs** | ✅ Enterprise-grade NestJS applications with TypeScript |
+| **rails** | ✅ Ruby on Rails application development and architecture |
+| **php** | ✅ Professional PHP development patterns and frameworks |
 
-### Frontend & Mobile (7 skills)
+### Frontend & Mobile (7 skills) — ✅ 6 Forged
 
-| Skill | Description |
-|-------|-------------|
-| **angular-architect** | Enterprise Angular application architecture and patterns |
-| **flutter-expert** | Cross-platform mobile development with Flutter/Dart |
-| **nextjs-developer** | (See above in Frontend & UI section) |
-| **react-expert** | Advanced React patterns, hooks, and architecture |
-| **react-native-expert** | Mobile app development with React Native |
-| **vue-expert-js** | Vue.js 3 Composition API and JavaScript patterns |
-| **vue-expert** | Comprehensive Vue.js application development |
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **angular-architect** | Enterprise Angular application architecture and patterns | ✅ Forged |
+| **flutter-expert** | Cross-platform mobile development with Flutter/Dart | ✅ Forged |
+| **nextjs-developer** | (See above in Frontend & UI section) | ↗️ See Frontend & UI |
+| **react-expert** | Advanced React patterns, hooks, and architecture | ✅ Forged |
+| **react-native-expert** | Mobile app development with React Native | ✅ Forged |
+| **vue-expert-js** | Vue.js 3 Composition API and JavaScript patterns | ✅ Forged |
+| **vue-expert** | Comprehensive Vue.js application development | ✅ Forged |
 
 ### Programming Languages (5 skills)
 
@@ -156,14 +172,14 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 | **javascript** | Advanced JavaScript patterns, ES2024+, and runtime optimization |
 | **typescript** | TypeScript advanced types, generics, and strict configuration |
 
-### Data & Database (4 skills)
+### Data & Database (4 skills) — ✅ Forged
 
-| Skill | Description |
-|-------|-------------|
-| **database-optimizer** | SQL query optimization, indexing, and performance tuning |
-| **pandas** | Advanced data manipulation and analysis with pandas |
-| **postgres** | PostgreSQL administration, optimization, and advanced features |
-| **sql** | Expert SQL across multiple database engines |
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **database-optimizer** | SQL query optimization, indexing, and performance tuning | ✅ Operational |
+| **pandas** | Advanced data manipulation and analysis with pandas | ✅ Operational |
+| **postgres** | PostgreSQL administration, optimization, and advanced features | ✅ Operational |
+| **sql** | Expert SQL across multiple database engines | ✅ Operational |
 
 ### Architecture & Design (4 skills)
 
@@ -665,6 +681,10 @@ Current state and recent milestones:
 
 | Date | Milestone |
 |------|-----------|
+| **Feb 12, 2026** | Frontend & Mobile Skills — 6 new skills forged: angular-architect, flutter-expert, react-expert, react-native-expert, vue-expert-js, vue-expert |
+| **Feb 12, 2026** | Frontend & UI Skills — Forged 6 skills: accessibility, animate, nextjs, react-forms, responsive-images, tailwind-patterns |
+| **Feb 12, 2026** | Utilities Forged — 10 Utilities skills implemented: color-palette, email-gateway, favicon-gen, firecrawl-scraper, icon-design, image-gen, jquery-4, office, open-source-contributions, playwright-local |
+| **Feb 12, 2026** | Database & Storage Skills — Forged firebase-firestore, firebase-storage, snowflake-platform (3 new skills, 25 total) |
 | **Feb 12, 2026** | Roadmap Expansion — Added `/divine` command and 4 new hook events for memory/context integration |
 | **Feb 12, 2026** | Factory Stable — 22 skills, 12 commands, 11 agents, 81 context files, 20 hooks, ~1,683 tests |
 | **Feb 11, 2026** | Enterprise Skills Catalog — Documented 173 skills from Vercel, Google Labs, Trail of Bits, Microsoft, Anthropic, Sentry |
