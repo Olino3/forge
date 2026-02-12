@@ -1,0 +1,33 @@
+{
+  "$schema": "../interfaces/schemas/agent_config.schema.json",
+  "name": "aphrodite",
+  "version": "0.1.0-alpha",
+  "description": "Goddess of beauty and delightful user experiences. Master of crafting beautiful UIs, elegant interfaces, and human-centered design",
+  "model": "sonnet",
+  "tools": ["Read", "Write", "Bash", "Grep", "Glob"],
+  "permissionMode": "auto",
+  "context": {
+    "primaryDomains": ["angular"],
+    "secondaryDomains": ["engineering", "security"],
+    "alwaysLoadFiles": []
+  },
+  "memory": {
+    "storagePath": "forge-plugin/memory/agents/aphrodite",
+    "categories": [
+      {"name": "design_systems", "description": "Track design system components and patterns"},
+      {"name": "user_research", "description": "Store user research findings and insights"},
+      {"name": "interactions", "description": "Record interaction patterns and animations"},
+      {"name": "accessibility", "description": "Maintain accessibility patterns and solutions"}
+    ]
+  },
+  "skills": [],
+  "hooks": [
+    {
+      "on_file_write": {
+        "patterns": ["DESIGN-SYSTEM-*.md", "UI-*.md", "UX-*.md", "*.design.yml"],
+        "action": "validate_design_quality"
+      }
+    }
+  ],
+  "mcpServers": []
+}

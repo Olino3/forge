@@ -1,0 +1,33 @@
+{
+  "$schema": "../interfaces/schemas/agent_config.schema.json",
+  "name": "hermes",
+  "version": "0.1.0-alpha",
+  "description": "Messenger of the gods and integration specialist. Master of API integrations, inter-service communication, and data exchange",
+  "model": "sonnet",
+  "tools": ["Read", "Write", "Bash", "Grep", "Glob"],
+  "permissionMode": "auto",
+  "context": {
+    "primaryDomains": ["engineering"],
+    "secondaryDomains": ["python", "dotnet", "angular", "azure", "security"],
+    "alwaysLoadFiles": []
+  },
+  "memory": {
+    "storagePath": "forge-plugin/memory/agents/hermes",
+    "categories": [
+      {"name": "api_designs", "description": "Track API designs and specifications"},
+      {"name": "integrations", "description": "Store integration patterns and architectures"},
+      {"name": "message_schemas", "description": "Record message schemas and contracts"},
+      {"name": "security_patterns", "description": "Maintain authentication and authorization patterns"}
+    ]
+  },
+  "skills": [],
+  "hooks": [
+    {
+      "on_file_write": {
+        "patterns": ["API-*.md", "INTEGRATION-*.md", "*.api.yml", "MESSAGE-*.md"],
+        "action": "validate_integration_design"
+      }
+    }
+  ],
+  "mcpServers": []
+}
