@@ -5,7 +5,7 @@ title: "Machine Learning Patterns"
 type: framework
 estimatedTokens: 1050
 loadingStrategy: onDemand
-version: "0.1.0-alpha"
+version: "0.2.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: "Common Anti-Patterns"
@@ -250,6 +250,6 @@ model.fit(X_train, y_train, validation_data=(X_val, y_val), callbacks=callbacks)
 
 ---
 
-**Version**: 0.1.0-alpha (Compacted)
+**Version**: 0.2.0-alpha (Compacted)
 **Last Updated**: 2025-11-14
 **Maintained For**: python-code-review skill

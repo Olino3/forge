@@ -1,7 +1,7 @@
 {
   "$schema": "../interfaces/schemas/agent_config.schema.json",
   "name": "ares",
-  "version": "0.1.0-alpha",
+  "version": "0.2.0-alpha",
   "description": "Battle-tested deployment warrior. Master of production deployments, incident response, system hardening, and operational reliability",
   "model": "sonnet",
   "tools": ["Read", "Write", "Bash", "Grep", "Glob"],

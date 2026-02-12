@@ -5,7 +5,7 @@ title: "Python Mocking Patterns"
 type: pattern
 estimatedTokens: 1150
 loadingStrategy: onDemand
-version: "0.1.0-alpha"
+version: "0.2.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: "When to Mock"

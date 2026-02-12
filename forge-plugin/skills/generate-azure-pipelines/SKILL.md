@@ -1,7 +1,7 @@
 ---
 name: generate-azure-pipelines
 description: Generate Azure DevOps pipelines with CI/CD workflows and Bicep infrastructure as code
-version: "0.1.0-alpha"
+version: "0.2.0-alpha"
 context:
   primary: [azure]
   topics: [azure_pipelines_overview, azure_pipelines_cicd_patterns, azure_bicep_overview]
@@ -12,7 +12,7 @@ memory:
 
 # Skill: generate-azure-pipelines
 
-**Version**: 0.1.0-alpha
+**Version**: 0.2.0-alpha
 **Purpose**: Generate Azure DevOps pipelines with CI/CD workflows and Bicep infrastructure as code
 **Author**: The Forge
 **Last Updated**: 2025-11-18

@@ -5,7 +5,7 @@
 # Functions for validating git repositories and commit references.
 #
 # Author: Claude Code get-git-diff skill
-# Version: 0.1.0-alpha
+# Version: 0.2.0-alpha
 
 set -euo pipefail
 
