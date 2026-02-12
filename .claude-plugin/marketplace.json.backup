@@ -1,0 +1,128 @@
+{
+  "name": "forge-marketplace",
+  "metadata": {
+    "description": "The Forge - An Agentic Software Factory with specialized agents, skills, commands, and integrations for AI-assisted development"
+  },
+  "owner": {
+    "name": "Olin Osborne III"
+  },
+  "plugins": [
+    {
+      "name": "forge-plugin",
+      "source": "./forge-plugin",
+      "description": "Sing, clear-voiced Muses, of Hephaestus famed for inventions.  With bright-eyed Athene he taught men glorious gifts throughout the world, -- men who before used to dwell in caves in the mountains like wild beasts.  But now that they have learned craft through Hephaestus the famed worker, easily they live a peaceful life in their own houses the whole year round."
+    },
+    {
+      "name": "vercel-skills",
+      "source": "./vercel/vercel-skills-plugin",
+      "description": "Vercel agent skills for React, React Native, composition patterns, and web design. Includes best practices for component architecture, state management, and modern React patterns.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Vercel"
+      },
+      "category": "framework",
+      "keywords": ["react", "react-native", "composition", "design", "vercel", "best-practices"]
+    },
+    {
+      "name": "stitch-skills",
+      "source": "./google-labs-code/stitch-skills-plugin",
+      "description": "Google Labs agent skills for Stitch design-to-code workflows, including DESIGN.md generation, React component conversion, prompt enhancement, and shadcn/ui integration.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Google Labs"
+      },
+      "category": "framework",
+      "keywords": ["stitch", "design-to-code", "react", "shadcn-ui", "design-system", "google-labs"]
+    },
+    {
+      "name": "ms-skills-core",
+      "source": "./microsoft/ms-skills-core-plugin",
+      "description": "Microsoft core skills for Azure deployment, MCP builders, GitHub integration, and AI skill creation. Language-agnostic tooling and infrastructure.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Microsoft"
+      },
+      "category": "infrastructure",
+      "keywords": ["azure", "microsoft", "azd", "mcp", "copilot-sdk"]
+    },
+    {
+      "name": "ms-skills-python",
+      "source": "./microsoft/ms-skills-python-plugin",
+      "description": "Microsoft Azure SDK skills for Python developers. 41 skills covering AI, data, storage, messaging, monitoring, and Azure services.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Microsoft"
+      },
+      "category": "language",
+      "keywords": ["azure", "python", "azure-sdk", "ai", "cosmos-db"]
+    },
+    {
+      "name": "ms-skills-dotnet",
+      "source": "./microsoft/ms-skills-dotnet-plugin",
+      "description": "Microsoft Azure SDK skills for .NET developers. 29 skills covering AI, data, storage, resource management, and Azure services.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Microsoft"
+      },
+      "category": "language",
+      "keywords": ["azure", "dotnet", "csharp", "azure-sdk", "ai"]
+    },
+    {
+      "name": "ms-skills-typescript",
+      "source": "./microsoft/ms-skills-typescript-plugin",
+      "description": "Microsoft Azure SDK skills for TypeScript/Node.js developers. 24 skills covering AI, data, storage, and Azure services.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Microsoft"
+      },
+      "category": "language",
+      "keywords": ["azure", "typescript", "nodejs", "azure-sdk"]
+    },
+    {
+      "name": "ms-skills-java",
+      "source": "./microsoft/ms-skills-java-plugin",
+      "description": "Microsoft Azure SDK skills for Java developers. 26 skills covering AI, data, messaging, and Azure services.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Microsoft"
+      },
+      "category": "language",
+      "keywords": ["azure", "java", "azure-sdk", "ai"]
+    },
+    {
+      "name": "ms-skills-rust",
+      "source": "./microsoft/ms-skills-rust-plugin",
+      "description": "Microsoft Azure SDK skills for Rust developers. 7 skills covering Cosmos DB, Event Hub, Identity, Key Vault, and Storage.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Microsoft"
+      },
+      "category": "language",
+      "keywords": ["azure", "rust", "azure-sdk"]
+    },
+    {
+      "name": "ms-agents",
+      "source": "./microsoft/ms-agents-plugin",
+      "description": "Microsoft custom agents and plugins for Azure development. Includes backend, frontend, infrastructure, planner, presenter, scaffolder agents, and deep-wiki documentation generator.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Microsoft"
+      },
+      "category": "productivity",
+      "keywords": ["azure", "agents", "documentation", "deep-wiki"]
+    },
+    {
+      "name": "sentry-skills",
+      "source": "./sentry-team/skills/plugins/sentry-skills",
+      "description": "Sentry-specific agent skills for code review, commits, PR management, security review, and documentation. Includes brand guidelines and Django-specific patterns.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Sentry",
+        "email": "oss@sentry.io"
+      },
+      "license": "Apache-2.0",
+      "category": "productivity",
+      "keywords": ["sentry", "code-review", "commits", "security", "django", "documentation"]
+    }
+  ]
+}

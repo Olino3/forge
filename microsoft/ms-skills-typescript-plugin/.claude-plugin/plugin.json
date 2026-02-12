@@ -1,0 +1,20 @@
+{
+  "name": "ms-skills-typescript",
+  "version": "1.0.0",
+  "description": "Microsoft Azure SDK skills for TypeScript/Node.js developers. 24 skills covering AI, data, storage, and Azure services.",
+  "author": {
+    "name": "Microsoft",
+    "url": "https://github.com/microsoft"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/microsoft/skills",
+  "repository": "https://github.com/microsoft/skills",
+  "keywords": [
+    "azure",
+    "typescript",
+    "nodejs",
+    "azure-sdk",
+    "ai"
+  ],
+  "category": "language"
+}

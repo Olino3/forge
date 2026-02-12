@@ -1,5 +1,8 @@
 {
   "name": "forge-marketplace",
+  "metadata": {
+    "description": "The Forge - An Agentic Software Factory with specialized agents, skills, commands, and integrations for AI-assisted development"
+  },
   "owner": {
     "name": "Olin Osborne III"
   },
@@ -8,6 +11,600 @@
       "name": "forge-plugin",
       "source": "./forge-plugin",
       "description": "Sing, clear-voiced Muses, of Hephaestus famed for inventions.  With bright-eyed Athene he taught men glorious gifts throughout the world, -- men who before used to dwell in caves in the mountains like wild beasts.  But now that they have learned craft through Hephaestus the famed worker, easily they live a peaceful life in their own houses the whole year round."
-      }
+    },
+    {
+      "name": "vercel-skills",
+      "source": "./vercel/vercel-skills-plugin",
+      "description": "Vercel agent skills for React, React Native, composition patterns, and web design. Includes best practices for component architecture, state management, and modern React patterns.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Vercel"
+      },
+      "category": "framework",
+      "keywords": [
+        "react",
+        "react-native",
+        "composition",
+        "design",
+        "vercel",
+        "best-practices"
+      ]
+    },
+    {
+      "name": "stitch-skills",
+      "source": "./google-labs-code/stitch-skills-plugin",
+      "description": "Google Labs agent skills for Stitch design-to-code workflows, including DESIGN.md generation, React component conversion, prompt enhancement, and shadcn/ui integration.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Google Labs"
+      },
+      "category": "framework",
+      "keywords": [
+        "stitch",
+        "design-to-code",
+        "react",
+        "shadcn-ui",
+        "design-system",
+        "google-labs"
+      ]
+    },
+    {
+      "name": "ms-skills-core",
+      "source": "./microsoft/ms-skills-core-plugin",
+      "description": "Microsoft core skills for Azure deployment, MCP builders, GitHub integration, and AI skill creation. Language-agnostic tooling and infrastructure.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Microsoft"
+      },
+      "category": "infrastructure",
+      "keywords": [
+        "azure",
+        "microsoft",
+        "azd",
+        "mcp",
+        "copilot-sdk"
+      ]
+    },
+    {
+      "name": "ms-skills-python",
+      "source": "./microsoft/ms-skills-python-plugin",
+      "description": "Microsoft Azure SDK skills for Python developers. 41 skills covering AI, data, storage, messaging, monitoring, and Azure services.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Microsoft"
+      },
+      "category": "language",
+      "keywords": [
+        "azure",
+        "python",
+        "azure-sdk",
+        "ai",
+        "cosmos-db"
+      ]
+    },
+    {
+      "name": "ms-skills-dotnet",
+      "source": "./microsoft/ms-skills-dotnet-plugin",
+      "description": "Microsoft Azure SDK skills for .NET developers. 29 skills covering AI, data, storage, resource management, and Azure services.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Microsoft"
+      },
+      "category": "language",
+      "keywords": [
+        "azure",
+        "dotnet",
+        "csharp",
+        "azure-sdk",
+        "ai"
+      ]
+    },
+    {
+      "name": "ms-skills-typescript",
+      "source": "./microsoft/ms-skills-typescript-plugin",
+      "description": "Microsoft Azure SDK skills for TypeScript/Node.js developers. 24 skills covering AI, data, storage, and Azure services.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Microsoft"
+      },
+      "category": "language",
+      "keywords": [
+        "azure",
+        "typescript",
+        "nodejs",
+        "azure-sdk"
+      ]
+    },
+    {
+      "name": "ms-skills-java",
+      "source": "./microsoft/ms-skills-java-plugin",
+      "description": "Microsoft Azure SDK skills for Java developers. 26 skills covering AI, data, messaging, and Azure services.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Microsoft"
+      },
+      "category": "language",
+      "keywords": [
+        "azure",
+        "java",
+        "azure-sdk",
+        "ai"
+      ]
+    },
+    {
+      "name": "ms-skills-rust",
+      "source": "./microsoft/ms-skills-rust-plugin",
+      "description": "Microsoft Azure SDK skills for Rust developers. 7 skills covering Cosmos DB, Event Hub, Identity, Key Vault, and Storage.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Microsoft"
+      },
+      "category": "language",
+      "keywords": [
+        "azure",
+        "rust",
+        "azure-sdk"
+      ]
+    },
+    {
+      "name": "ms-agents",
+      "source": "./microsoft/ms-agents-plugin",
+      "description": "Microsoft custom agents and plugins for Azure development. Includes backend, frontend, infrastructure, planner, presenter, scaffolder agents, and deep-wiki documentation generator.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Microsoft"
+      },
+      "category": "productivity",
+      "keywords": [
+        "azure",
+        "agents",
+        "documentation",
+        "deep-wiki"
+      ]
+    },
+    {
+      "name": "sentry-skills",
+      "source": "./sentry-team/skills/plugins/sentry-skills",
+      "description": "Sentry-specific agent skills for code review, commits, PR management, security review, and documentation. Includes brand guidelines and Django-specific patterns.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Sentry",
+        "email": "oss@sentry.io"
+      },
+      "license": "Apache-2.0",
+      "category": "productivity",
+      "keywords": [
+        "sentry",
+        "code-review",
+        "commits",
+        "security",
+        "django",
+        "documentation"
+      ]
+    },
+    {
+      "name": "ask-questions-if-underspecified",
+      "version": "1.0.1",
+      "description": "Clarify requirements before implementing. When doubting, ask questions.",
+      "author": {
+        "name": "Kevin Valerio",
+        "email": "opensource@trailofbits.com",
+        "url": "https://github.com/trailofbits"
+      },
+      "source": "./trailofbits/skills/plugins/ask-questions-if-underspecified",
+      "category": "development",
+      "keywords": [
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "audit-context-building",
+      "description": "Build deep architectural context through ultra-granular code analysis before vulnerability hunting",
+      "version": "1.0.0",
+      "author": {
+        "name": "Omar Inuwa"
+      },
+      "source": "./trailofbits/skills/plugins/audit-context-building",
+      "category": "security",
+      "keywords": [
+        "security",
+        "vulnerability",
+        "audit",
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "building-secure-contracts",
+      "version": "1.0.1",
+      "description": "Comprehensive smart contract security toolkit based on Trail of Bits' Building Secure Contracts framework. Includes vulnerability scanners for 6 blockchains and 5 development guideline assistants.",
+      "author": {
+        "name": "Omar Inuwa"
+      },
+      "source": "./trailofbits/skills/plugins/building-secure-contracts",
+      "category": "blockchain",
+      "keywords": [
+        "blockchain",
+        "smart-contract",
+        "solidity",
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "burpsuite-project-parser",
+      "version": "1.0.0",
+      "description": "Search and extract data from Burp Suite project files (.burp) for use in Claude",
+      "author": {
+        "name": "Will Vandevanter"
+      },
+      "source": "./trailofbits/skills/plugins/burpsuite-project-parser",
+      "category": "integration",
+      "keywords": [
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "constant-time-analysis",
+      "version": "0.1.0",
+      "description": "Detect compiler-induced timing side-channels in cryptographic code",
+      "author": {
+        "name": "Scott Arciszewski",
+        "email": "opensource@trailofbits.com"
+      },
+      "source": "./trailofbits/skills/plugins/constant-time-analysis",
+      "category": "security",
+      "keywords": [
+        "security",
+        "vulnerability",
+        "audit",
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "culture-index",
+      "version": "1.0.0",
+      "description": "Interprets Culture Index survey results for individuals and teams",
+      "author": {
+        "name": "Dan Guido"
+      },
+      "source": "./trailofbits/skills/plugins/culture-index",
+      "category": "development",
+      "keywords": [
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "debug-buttercup",
+      "version": "1.0.0",
+      "description": "Debug Buttercup Kubernetes deployments",
+      "author": {
+        "name": "Ronald Eytchison",
+        "email": "opensource@trailofbits.com"
+      },
+      "source": "./trailofbits/skills/plugins/debug-buttercup",
+      "category": "development",
+      "keywords": [
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "devcontainer-setup",
+      "version": "0.1.0",
+      "description": "Create pre-configured devcontainers with Claude Code and language-specific tooling",
+      "author": {
+        "name": "Alexis Challande",
+        "url": "https://github.com/trailofbits"
+      },
+      "source": "./trailofbits/skills/plugins/devcontainer-setup",
+      "category": "development",
+      "keywords": [
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "differential-review",
+      "description": "Security-focused differential review of code changes with git history analysis and blast radius estimation",
+      "version": "1.0.0",
+      "author": {
+        "name": "Omar Inuwa"
+      },
+      "source": "./trailofbits/skills/plugins/differential-review",
+      "category": "security",
+      "keywords": [
+        "security",
+        "vulnerability",
+        "audit",
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "firebase-apk-scanner",
+      "version": "2.1.0",
+      "description": "Scan Android APKs for Firebase security misconfigurations including open databases, storage buckets, authentication issues, and exposed cloud functions. For authorized security research only.",
+      "author": {
+        "name": "Nick Sellier"
+      },
+      "source": "./trailofbits/skills/plugins/firebase-apk-scanner",
+      "category": "security",
+      "keywords": [
+        "security",
+        "vulnerability",
+        "audit",
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "gh-cli",
+      "version": "1.0.0",
+      "description": "Intercepts GitHub URL fetches and curl/wget commands, redirecting to the authenticated gh CLI. Includes gh CLI usage guidance.",
+      "author": {
+        "name": "William Tan",
+        "email": "opensource@trailofbits.com",
+        "url": "https://github.com/trailofbits"
+      },
+      "source": "./trailofbits/skills/plugins/gh-cli",
+      "category": "development",
+      "keywords": [
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "fix-review",
+      "description": "Verify fix commits address audit findings without introducing bugs",
+      "version": "0.1.0",
+      "author": {
+        "name": "Trail of Bits",
+        "email": "opensource@trailofbits.com"
+      },
+      "source": "./trailofbits/skills/plugins/fix-review",
+      "category": "security",
+      "keywords": [
+        "security",
+        "vulnerability",
+        "audit",
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "dwarf-expert",
+      "description": "Interact with and understand the DWARF debugging format",
+      "version": "1.0.0",
+      "author": {
+        "name": "Evan Hellman",
+        "email": "opensource@trailofbits.com"
+      },
+      "source": "./trailofbits/skills/plugins/dwarf-expert",
+      "category": "security",
+      "keywords": [
+        "security",
+        "vulnerability",
+        "audit",
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "entry-point-analyzer",
+      "version": "1.0.0",
+      "description": "Analyzes smart contract codebases to identify state-changing entry points for security auditing. Detects externally callable functions that modify state, categorizes them by access level, and generates structured audit reports.",
+      "author": {
+        "name": "Nicolas Donboly",
+        "email": "opensource@trailofbits.com",
+        "url": "https://github.com/trailofbits"
+      },
+      "source": "./trailofbits/skills/plugins/entry-point-analyzer",
+      "category": "blockchain",
+      "keywords": [
+        "blockchain",
+        "smart-contract",
+        "solidity",
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "property-based-testing",
+      "description": "Property-based testing guidance for multiple languages and smart contracts",
+      "version": "1.1.0",
+      "author": {
+        "name": "Henrik Brodin",
+        "email": "opensource@trailofbits.com"
+      },
+      "source": "./trailofbits/skills/plugins/property-based-testing",
+      "category": "testing",
+      "keywords": [
+        "testing",
+        "quality",
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "semgrep-rule-creator",
+      "version": "1.1.0",
+      "description": "Create custom Semgrep rules for detecting bug patterns and security vulnerabilities",
+      "author": {
+        "name": "Maciej Domanski"
+      },
+      "source": "./trailofbits/skills/plugins/semgrep-rule-creator",
+      "category": "testing",
+      "keywords": [
+        "testing",
+        "quality",
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "semgrep-rule-variant-creator",
+      "version": "1.0.0",
+      "description": "Creates language variants of existing Semgrep rules with proper applicability analysis and test-driven validation",
+      "author": {
+        "name": "Maciej Domanski",
+        "email": "opensource@trailofbits.com"
+      },
+      "source": "./trailofbits/skills/plugins/semgrep-rule-variant-creator",
+      "category": "testing",
+      "keywords": [
+        "testing",
+        "quality",
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "sharp-edges",
+      "version": "1.0.0",
+      "description": "Identify error-prone APIs, dangerous configurations, and footgun designs that enable security mistakes",
+      "author": {
+        "name": "Scott Arciszewski",
+        "email": "opensource@trailofbits.com",
+        "url": "https://github.com/trailofbits"
+      },
+      "source": "./trailofbits/skills/plugins/sharp-edges",
+      "category": "security",
+      "keywords": [
+        "security",
+        "vulnerability",
+        "audit",
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "static-analysis",
+      "version": "1.0.3",
+      "description": "Static analysis toolkit with CodeQL, Semgrep, and SARIF parsing for security vulnerability detection",
+      "author": {
+        "name": "Axel Mierczuk & Pawe\u0142 P\u0142atek"
+      },
+      "source": "./trailofbits/skills/plugins/static-analysis",
+      "category": "security",
+      "keywords": [
+        "security",
+        "vulnerability",
+        "audit",
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "spec-to-code-compliance",
+      "description": "Specification-to-code compliance checker for blockchain audits with evidence-based alignment analysis",
+      "version": "1.0.0",
+      "author": {
+        "name": "Omar Inuwa"
+      },
+      "source": "./trailofbits/skills/plugins/spec-to-code-compliance",
+      "category": "blockchain",
+      "keywords": [
+        "blockchain",
+        "smart-contract",
+        "solidity",
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "testing-handbook-skills",
+      "version": "1.0.1",
+      "description": "Skills from the Trail of Bits Application Security Testing Handbook (appsec.guide)",
+      "author": {
+        "name": "Pawe\u0142 P\u0142atek"
+      },
+      "source": "./trailofbits/skills/plugins/testing-handbook-skills",
+      "category": "testing",
+      "keywords": [
+        "testing",
+        "quality",
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "variant-analysis",
+      "version": "1.0.0",
+      "description": "Find similar vulnerabilities and bugs across codebases using pattern-based analysis",
+      "author": {
+        "name": "Axel Mierczuk"
+      },
+      "source": "./trailofbits/skills/plugins/variant-analysis",
+      "category": "security",
+      "keywords": [
+        "security",
+        "vulnerability",
+        "audit",
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "modern-python",
+      "version": "1.3.0",
+      "description": "Modern Python best practices. Use when creating new Python projects, and writing Python scripts, or migrating existing projects from legacy tools.",
+      "author": {
+        "name": "William Tan",
+        "email": "opensource@trailofbits.com",
+        "url": "https://github.com/trailofbits"
+      },
+      "source": "./trailofbits/skills/plugins/modern-python",
+      "category": "development",
+      "keywords": [
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "insecure-defaults",
+      "version": "1.0.0",
+      "description": "Detects and verifies insecure default configurations including hardcoded credentials, fallback secrets, weak authentication defaults, and dangerous configuration values that remain active in production",
+      "author": {
+        "name": "Trail of Bits",
+        "email": "opensource@trailofbits.com",
+        "url": "https://github.com/trailofbits"
+      },
+      "source": "./trailofbits/skills/plugins/insecure-defaults",
+      "category": "security",
+      "keywords": [
+        "security",
+        "vulnerability",
+        "audit",
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "second-opinion",
+      "version": "1.0.0",
+      "description": "Runs code reviews using external LLM CLIs (OpenAI Codex, Google Gemini) on uncommitted changes, branch diffs, or specific commits",
+      "author": {
+        "name": "Dan Guido"
+      },
+      "source": "./trailofbits/skills/plugins/second-opinion",
+      "category": "integration",
+      "keywords": [
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "yara-authoring",
+      "version": "2.0.0",
+      "description": "YARA-X detection rule authoring with linting and quality analysis",
+      "author": {
+        "name": "Trail of Bits",
+        "email": "opensource@trailofbits.com",
+        "url": "https://github.com/trailofbits"
+      },
+      "source": "./trailofbits/skills/plugins/yara-authoring",
+      "category": "security",
+      "keywords": [
+        "security",
+        "vulnerability",
+        "audit",
+        "trailofbits"
+      ]
+    },
+    {
+      "name": "git-cleanup",
+      "version": "1.0.0",
+      "description": "Safely analyzes and cleans up local git branches and worktrees by categorizing them as merged, squash-merged, superseded, or active work.",
+      "author": {
+        "name": "Henrik Brodin",
+        "email": "opensource@trailofbits.com",
+        "url": "https://github.com/trailofbits"
+      },
+      "source": "./trailofbits/skills/plugins/git-cleanup",
+      "category": "development",
+      "keywords": [
+        "trailofbits"
+      ]
+    }
   ]
 }
