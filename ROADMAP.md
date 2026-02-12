@@ -12,7 +12,7 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 | Component | Count | Status |
 |-----------|-------|--------|
-| **Skills** | 234 | ✅ 22 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
+| **Skills** | 239 | ✅ 27 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
 | **Commands** | 12 | ✅ All operational, interface-based |
 | **Agents** | 19 | ✅ 12 Olympian + 7 specialist, all with config.json |
 | **Context Files** | 81 | ✅ 9 domains, all with YAML frontmatter |
@@ -174,15 +174,15 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 | **graphql-design** | GraphQL schema design, resolvers, and federation |
 | **microservices-design** | Microservices patterns, orchestration, and service mesh |
 
-### Cloud & Infrastructure (5 skills)
+### Cloud & Infrastructure (5 skills) ✅
 
-| Skill | Description |
-|-------|-------------|
-| **cloud-architect** | Multi-cloud architecture and cloud-native design patterns |
-| **devops-engineer** | CI/CD pipelines, infrastructure automation, and DevOps practices |
-| **kubernetes-specialist** | Kubernetes cluster management, deployments, and operators |
-| **sre-engineer** | Site reliability engineering, observability, and incident response |
-| **terraform-engineer** | Infrastructure as Code with Terraform across cloud providers |
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **cloud-architect** | Multi-cloud architecture and cloud-native design patterns | ✅ Active |
+| **devops-engineer** | CI/CD pipelines, infrastructure automation, and DevOps practices | ✅ Active |
+| **kubernetes-specialist** | Kubernetes cluster management, deployments, and operators | ✅ Active |
+| **sre-engineer** | Site reliability engineering, observability, and incident response | ✅ Active |
+| **terraform-engineer** | Infrastructure as Code with Terraform across cloud providers | ✅ Active |
 
 ### Quality & Security (6 skills)
 
