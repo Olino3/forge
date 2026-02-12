@@ -1,0 +1,22 @@
+{
+  "name": "ms-skills-core",
+  "version": "1.0.0",
+  "description": "Microsoft core skills for Azure deployment, MCP builders, GitHub integration, and AI skill creation. Language-agnostic tooling and infrastructure.",
+  "author": {
+    "name": "Microsoft",
+    "url": "https://github.com/microsoft"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/microsoft/skills",
+  "repository": "https://github.com/microsoft/skills",
+  "keywords": [
+    "azure",
+    "microsoft",
+    "azd",
+    "mcp",
+    "copilot-sdk",
+    "tooling",
+    "infrastructure"
+  ],
+  "category": "infrastructure"
+}

@@ -12,7 +12,7 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 | Component | Count | Status |
 |-----------|-------|--------|
-| **Skills** | 31 | ✅ All operational, interface-based |
+| **Skills** | 245 | ✅ 33 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
 | **Commands** | 12 | ✅ All operational, interface-based |
 | **Agents** | 19 | ✅ 12 Olympian + 7 specialist, all with config.json |
 | **Context Files** | 81 | ✅ 9 domains, all with YAML frontmatter |
@@ -20,6 +20,7 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 | **Adapters** | 3 | ✅ MarkdownFileContextProvider, MarkdownFileMemoryAdapter, CachedContextProvider |
 | **Hooks** | 20 | ✅ 9 events, 4 layers (Shield, Chronicle, Foreman, Town Crier) |
 | **MCP Servers** | 8 | ✅ Connected external conduits |
+| **Marketplace Plugins** | 38 | ✅ 1 core + 10 external + 27 Trail of Bits security plugins |
 
 ### The Pantheon (Active Agents)
 
@@ -246,33 +247,138 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 > *"The great workshops share their blueprints — wisdom forged in the fires of industry."*
 
-### Skills by Vercel Engineering Team (8 skills)
+### Skills by Vercel Engineering Team (5 skills) ✅
 
-| Skill | Description |
-|-------|-------------|
-| **react-best-practices** | React best practices and patterns (`vercel-labs/react-best-practices`) |
-| **vercel-deploy-claimable** | Deploy projects to Vercel (`vercel-labs/vercel-deploy-claimable`) |
-| **web-design-guidelines** | Web design guidelines and standards (`vercel-labs/web-design-guidelines`) |
-| **composition-patterns** | React component composition and reusable patterns (`vercel-labs/composition-patterns`) |
-| **next-best-practices** | Next.js best practices and recommended patterns (`vercel-labs/next-best-practices`) |
-| **next-cache-components** | Caching strategies and cache-aware components in Next.js (`vercel-labs/next-cache-components`) |
-| **next-upgrade** | Upgrade Next.js projects to newer versions (`vercel-labs/next-upgrade`) |
-| **react-native-skills** | React Native best practices and performance guidelines (`vercel-labs/react-native-skills`) |
+**Status**: Integrated via `vercel-skills` plugin in Forge marketplace
 
-### Skills by Google Labs (Stitch) (6 skills)
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **composition-patterns** | React component composition and reusable patterns (Vercel agent-skills) | ✅ Available |
+| **react-best-practices** | React best practices and patterns (Vercel agent-skills) | ✅ Available |
+| **react-native-skills** | React Native best practices and performance guidelines (Vercel agent-skills) | ✅ Available |
+| **web-design-guidelines** | Web design guidelines and standards (Vercel agent-skills) | ✅ Available |
+| **claude.ai** | Claude.ai integration patterns (Vercel agent-skills) | ✅ Available |
+
+**Installation**: 
+```bash
+/plugin install vercel-skills@forge-marketplace
+```
+
+**Planned** (from vercel-labs):
+- **vercel-deploy-claimable** — Deploy projects to Vercel
+- **next-best-practices** — Next.js best practices
+- **next-cache-components** — Caching strategies
+- **next-upgrade** — Upgrade Next.js projects
+
+### Skills by Google Labs (Stitch) (6 skills) ✅
+
+**Status**: Integrated via `stitch-skills` plugin in Forge marketplace
 
 *Agent Skills for the Stitch MCP server, compatible with Claude Code, Gemini CLI, Cursor, and more.*
 
-| Skill | Description |
-|-------|-------------|
-| **design-md** | Create and manage DESIGN.md files (`google-labs-code/design-md`) |
-| **enhance-prompt** | Improve prompts with design specs and UI/UX vocabulary (`google-labs-code/enhance-prompt`) |
-| **react-components** | Stitch to React components conversion (`google-labs-code/react-components`) |
-| **remotion** | Generate walkthrough videos from Stitch app designs (`google-labs-code/remotion`) |
-| **shadcn-ui** | Build UI components with shadcn/ui (`google-labs-code/shadcn-ui`) |
-| **stitch-loop** | Iterative design-to-code feedback loop (`google-labs-code/stitch-loop`) |
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **design-md** | Analyze Stitch projects and synthesize semantic design systems into DESIGN.md files | ✅ Available |
+| **enhance-prompt** | Transform vague UI ideas into Stitch-optimized prompts with enhanced specificity | ✅ Available |
+| **react-components** | Convert Stitch designs into modular Vite and React components with validation | ✅ Available |
+| **remotion** | Generate walkthrough videos from Stitch projects using Remotion | ✅ Available |
+| **shadcn-ui** | Expert guidance for shadcn/ui component integration and customization | ✅ Available |
+| **stitch-loop** | Generate multi-page websites using autonomous baton-passing loop pattern | ✅ Available |
 
-### Security Skills by Trail of Bits Team (22 skills)
+**Installation**: 
+```bash
+/plugin install stitch-skills@forge-marketplace
+```
+
+**Note**: Skills designed for Stitch MCP server integration. Full automation requires MCP setup; skills provide expert guidance without MCP.
+
+### Security & Development Skills by Trail of Bits (53 skills) ✅
+
+**Status**: Integrated via **27 plugins** in Forge marketplace (multi-marketplace import pattern)
+
+*Professional security research and development tools from Trail of Bits, covering vulnerability detection, smart contract auditing, static analysis, rule creation, and modern development practices.*
+
+**Plugin Categories**:
+
+| Category | Plugins | Description |
+|----------|---------|-------------|
+| **Security Analysis** | 11 | Vulnerability detection, audit workflows, timing analysis |
+| **Smart Contract Security** | 3 | Blockchain auditing, entry point analysis, compliance |
+| **Testing & Rules** | 4 | Property-based testing, Semgrep, YARA authoring |
+| **Development Tools** | 7 | Modern Python, devcontainers, GitHub integration |
+| **Integrations** | 2 | Burp Suite, external LLM reviews |
+
+**Available Plugins** (alphabetically):
+
+1. **ask-questions-if-underspecified** (development) - Clarify requirements before implementing
+2. **audit-context-building** (security) - Deep architectural context via ultra-granular code analysis
+3. **building-secure-contracts** (blockchain) - Smart contract security toolkit with vulnerability scanners for 6 blockchains
+4. **burpsuite-project-parser** (integration) - Search and extract data from Burp Suite project files
+5. **constant-time-analysis** (security) - Detect compiler-induced timing side-channels in cryptographic code
+6. **culture-index** (development) - Interpret Culture Index survey results for individuals and teams
+7. **debug-buttercup** (development) - Debug Buttercup Kubernetes deployments
+8. **devcontainer-setup** (development) - Create pre-configured devcontainers with Claude Code and language tooling
+9. **differential-review** (security) - Security-focused diff review with git history analysis and blast radius
+10. **dwarf-expert** (security) - Interact with and understand the DWARF debugging format
+11. **entry-point-analyzer** (blockchain) - Identify state-changing entry points in smart contracts for auditing
+12. **firebase-apk-scanner** (security) - Scan Android APKs for Firebase security misconfigurations
+13. **fix-review** (security) - Verify fix commits address audit findings without introducing bugs
+14. **gh-cli** (development) - Intercepts GitHub URL fetches, redirects to authenticated gh CLI
+15. **git-cleanup** (development) - Safely analyze and clean up local git branches and worktrees
+16. **insecure-defaults** (security) - Detect insecure default configurations like hardcoded credentials
+17. **modern-python** (development) - Modern Python best practices with uv, ruff, and pytest
+18. **property-based-testing** (testing) - Property-based testing guidance for multiple languages and smart contracts
+19. **second-opinion** (integration) - Run code reviews using external LLM CLIs (OpenAI Codex, Google Gemini)
+20. **semgrep-rule-creator** (testing) - Create custom Semgrep rules for detecting bug patterns and vulnerabilities
+21. **semgrep-rule-variant-creator** (testing) - Port existing Semgrep rules to new target languages
+22. **sharp-edges** (security) - Identify error-prone APIs, dangerous configurations, and footgun designs
+23. **spec-to-code-compliance** (blockchain) - Specification-to-code compliance checker for blockchain audits
+24. **static-analysis** (security) - Static analysis toolkit with CodeQL, Semgrep, and SARIF parsing
+25. **testing-handbook-skills** (testing) - Skills from Trail of Bits Application Security Testing Handbook
+26. **variant-analysis** (security) - Find similar vulnerabilities across codebases using pattern-based analysis
+27. **yara-authoring** (security) - YARA-X detection rule authoring with linting and quality analysis
+
+**Installation Examples**:
+```bash
+# Security researcher
+/plugin install sharp-edges@forge-marketplace
+/plugin install insecure-defaults@forge-marketplace
+/plugin install static-analysis@forge-marketplace
+
+# Smart contract auditor
+/plugin install building-secure-contracts@forge-marketplace
+/plugin install entry-point-analyzer@forge-marketplace
+/plugin install spec-to-code-compliance@forge-marketplace
+
+# Modern Python developer
+/plugin install modern-python@forge-marketplace
+/plugin install devcontainer-setup@forge-marketplace
+
+# Security team (comprehensive)
+/plugin install sharp-edges@forge-marketplace
+/plugin install differential-review@forge-marketplace
+/plugin install variant-analysis@forge-marketplace
+/plugin install semgrep-rule-creator@forge-marketplace
+```
+
+**Skills Count by Plugin** (53 total skills):
+- Most plugins contain 1-3 specialized skills
+- building-secure-contracts: 11 skills (6 blockchain scanners + 5 development guides)
+- static-analysis: 5 skills (CodeQL, Semgrep, SARIF)
+- modern-python: 4 skills (uv, ruff, pytest, project setup)
+- Full skill list available in each plugin's README
+
+**Integration Pattern**: Multi-Marketplace Import (Pattern Type 5)
+- Trail of Bits maintains their own `.claude-plugin/marketplace.json`
+- Forge imports all plugins with transformed paths
+- No wrappers, no symlinks - direct references
+- Largest single integration: 27 plugins in one operation
+
+**License**: Varies by plugin (see individual plugin manifests)
+
+---
+
+### Security Skills by Trail of Bits Team (22 skills) ARCHIVED
 
 | Skill | Description |
 |-------|-------------|
@@ -299,7 +405,81 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 | **testing-handbook-skills** | Testing Handbook skills: fuzzers, static analysis, sanitizers (`trailofbits/testing-handbook-skills`) |
 | **variant-analysis** | Find similar vulnerabilities via pattern-based analysis (`trailofbits/variant-analysis`) |
 
-### Skills by Microsoft — .NET (31 skills)
+### Skills by Sentry (15 skills) ✅
+
+**Status**: Integrated via `sentry-skills` plugin in Forge marketplace
+
+*Sentry-specific skills for code review, commits, PR management, and documentation.*
+
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **code-review** | Sentry code review guidelines and checklist | ✅ Available |
+| **commit** | Sentry commit message conventions | ✅ Available |
+| **create-pr** | Create pull requests following Sentry conventions | ✅ Available |
+| **find-bugs** | Find bugs and security vulnerabilities in branch changes | ✅ Available |
+| **iterate-pr** | Iterate on a PR until CI passes and feedback is addressed | ✅ Available |
+| **security-review** | Systematic security code review following OWASP guidelines | ✅ Available |
+| **code-simplifier** | Simplifies and refines code for clarity and maintainability | ✅ Available |
+| **brand-guidelines** | Write copy following Sentry brand guidelines | ✅ Available |
+| **doc-coauthoring** | Structured workflow for co-authoring documentation | ✅ Available |
+| **claude-settings-audit** | Analyze repo and generate recommended Claude settings | ✅ Available |
+| **agents-md** | Maintain AGENTS.md with concise agent instructions | ✅ Available |
+| **skill-creator** | Create new agent skills for the repository | ✅ Available |
+| **skill-scanner** | Scan and analyze existing agent skills | ✅ Available |
+| **django-access-review** | Django access control review | ✅ Available |
+| **django-perf-review** | Django performance review | ✅ Available |
+
+**Agents**: 2 (code-simplifier agent)
+
+**Installation**:
+```bash
+/plugin install sentry-skills@forge-marketplace
+```
+
+**License**: Apache-2.0
+
+---
+
+### Skills by Microsoft (133 skills) ✅
+
+**Status**: Integrated via **7 plugins** in Forge marketplace (multi-plugin architecture)
+
+*Domain-specific knowledge for Azure SDK and Microsoft AI Foundry development.*
+
+**Available Plugins**:
+
+| Plugin | Skills | Category | Description |
+|--------|--------|----------|-------------|
+| **ms-skills-core** | 6 | infrastructure | Language-agnostic tooling: azd, MCP, Copilot SDK, skill creation |
+| **ms-skills-python** | 41 | language | Azure SDK for Python developers |
+| **ms-skills-dotnet** | 29 | language | Azure SDK for .NET/C# developers |
+| **ms-skills-typescript** | 24 | language | Azure SDK for TypeScript/Node.js developers |
+| **ms-skills-java** | 26 | language | Azure SDK for Java developers |
+| **ms-skills-rust** | 7 | language | Azure SDK for Rust developers |
+| **ms-agents** | 6 agents + 1 plugin | productivity | Custom agents + deep-wiki documentation generator |
+
+**Installation Examples**:
+```bash
+# Python developer
+/plugin install ms-skills-python@forge-marketplace
+/plugin install ms-skills-core@forge-marketplace
+
+# .NET developer
+/plugin install ms-skills-dotnet@forge-marketplace
+/plugin install ms-skills-core@forge-marketplace
+
+# Full-stack team
+/plugin install ms-skills-python@forge-marketplace
+/plugin install ms-skills-typescript@forge-marketplace
+/plugin install ms-skills-core@forge-marketplace
+/plugin install ms-agents@forge-marketplace
+```
+
+**Architecture**: Multi-plugin wrapper pattern - each language gets its own plugin for selective installation and performance optimization.
+
+---
+
+### Skills by Microsoft — .NET (29 skills)
 
 *Domain-specific knowledge for Azure SDK and Foundry development.*
 
