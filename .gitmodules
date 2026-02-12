@@ -1,0 +1,20 @@
+[submodule "trailofbits/skills"]
+	path = trailofbits/skills
+	url = https://github.com/Olino3/skills-trailofbits.git
+	branch = main
+[submodule "vercel/agent-skills"]
+	path = vercel/agent-skills
+	url = https://github.com/Olino3/agent-skills-vercel.git
+	branch = main
+[submodule "google-labs-code/stitch-skills"]
+	path = google-labs-code/stitch-skills
+	url = https://github.com/Olino3/stitch-skills-google.git
+	branch = main
+[submodule "microsoft/skills"]
+	path = microsoft/skills
+	url = https://github.com/Olino3/skills-microsoft.git
+	branch = main
+[submodule "sentry-team/skills"]
+	path = sentry-team/skills
+	url = https://github.com/Olino3/skills-sentry.git
+	branch = main

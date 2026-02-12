@@ -1,0 +1,21 @@
+{
+  "name": "ms-skills-dotnet",
+  "version": "1.0.0",
+  "description": "Microsoft Azure SDK skills for .NET developers. 29 skills covering AI, data, storage, resource management, and Azure services.",
+  "author": {
+    "name": "Microsoft",
+    "url": "https://github.com/microsoft"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/microsoft/skills",
+  "repository": "https://github.com/microsoft/skills",
+  "keywords": [
+    "azure",
+    "dotnet",
+    "csharp",
+    "azure-sdk",
+    "ai",
+    "storage"
+  ],
+  "category": "language"
+}
