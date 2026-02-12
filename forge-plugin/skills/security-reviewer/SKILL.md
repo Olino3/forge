@@ -1,6 +1,6 @@
 ---
 name: security-reviewer
-description: Security audits, threat modeling, and compliance assessment for existing codebases. Performs systematic security reviews using STRIDE threat modeling, attack surface analysis, authentication and authorization audits, data flow and trust boundary analysis, dependency vulnerability assessment, and compliance checking against OWASP Top 10, CWE, and SANS frameworks. Classifies findings by severity and maps to CWE IDs. Use for security audits, threat modeling, compliance assessments, and penetration testing guidance across any language or architecture.
+description: Security audits, threat modeling, and compliance assessment for existing codebases. Performs systematic reviews using STRIDE, attack surface analysis, auth audits, data flow analysis, dependency vulnerability assessment, and compliance checking against OWASP Top 10, CWE, and SANS. Classifies findings by severity and maps to CWE IDs. Use for security audits, threat modeling, compliance assessments, and penetration testing guidance.
 ---
 
 # Security Reviewer
