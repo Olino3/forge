@@ -97,7 +97,8 @@ EXPECTED_COUNT=${#EXPECTED_COMMANDS[@]}
 if [ "$ACTUAL_COUNT" -eq "$EXPECTED_COUNT" ]; then
     pass "Command count matches: ${ACTUAL_COUNT} directories, ${EXPECTED_COUNT} expected"
 else
-    warn "Command count differs: ${ACTUAL_COUNT} directories, ${EXPECTED_COUNT} expected"
+    fail "Command count differs: ${ACTUAL_COUNT} directories, ${EXPECTED_COUNT} expected"
+    FAILED=1
 fi
 
 # --- Test 4: Commands index file exists ---
