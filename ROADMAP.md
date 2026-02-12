@@ -12,7 +12,7 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 | Component | Count | Status |
 |-----------|-------|--------|
-| **Skills** | 311 | ✅ 99 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
+| **Skills** | 315 | ✅ 103 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
 | **Commands** | 12 | ✅ All operational, interface-based |
 | **Agents** | 19 | ✅ 12 Olympian + 7 specialist, all with config.json |
 | **Context Files** | 81 | ✅ 9 domains, all with YAML frontmatter |
@@ -183,14 +183,14 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 | **postgres** | PostgreSQL administration, optimization, and advanced features | ✅ Operational |
 | **sql** | Expert SQL across multiple database engines | ✅ Operational |
 
-### Architecture & Design (4 skills)
+### Architecture & Design (4 skills) — ✅ Forged
 
-| Skill | Description |
-|-------|-------------|
-| **api-design** | RESTful and RPC API design patterns and best practices |
-| **architecture-design** | Software architecture patterns and system design |
-| **graphql-design** | GraphQL schema design, resolvers, and federation |
-| **microservices-design** | Microservices patterns, orchestration, and service mesh |
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **api-design** | RESTful and RPC API design patterns and best practices | ✅ Forged |
+| **architecture-design** | Software architecture patterns and system design | ✅ Forged |
+| **graphql-design** | GraphQL schema design, resolvers, and federation | ✅ Forged |
+| **microservices-design** | Microservices patterns, orchestration, and service mesh | ✅ Forged |
 
 ### Cloud & Infrastructure (5 skills) ✅
 
@@ -683,6 +683,7 @@ Current state and recent milestones:
 
 | Date | Milestone |
 |------|-----------|
+| **Feb 12, 2026** | Architecture & Design Skills — Forged 4 skills (api-design, architecture-design, graphql-design, microservices-design) with 100 tests |
 | **Feb 12, 2026** | Frontend & Mobile Skills — 6 new skills forged: angular-architect, flutter-expert, react-expert, react-native-expert, vue-expert-js, vue-expert |
 | **Feb 12, 2026** | Frontend & UI Skills — Forged 6 skills: accessibility, animate, nextjs, react-forms, responsive-images, tailwind-patterns |
 | **Feb 12, 2026** | Utilities Forged — 10 Utilities skills implemented: color-palette, email-gateway, favicon-gen, firecrawl-scraper, icon-design, image-gen, jquery-4, office, open-source-contributions, playwright-local |
