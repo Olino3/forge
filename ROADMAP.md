@@ -210,6 +210,36 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 ---
 
+## Planned Commands
+
+> *"New incantations to invoke the divine powers — commands that guide the forge's mighty hand."*
+
+| Command | Description |
+|---------|-------------|
+| **/divine** | Analyze the codebase and suggest possible workflows and cookbooks with commands, skills, and agents from the forge-plugin. Recommends strategies and techniques to integrate agentic coding into the codebase using The Forge plugin. Entry point for discovering optimal forge patterns for your specific project. |
+
+---
+
+## Planned Hooks
+
+> *"The watchers and keepers — hooks that guard the gates of knowledge and wisdom."*
+
+### Memory & Context Management (User-Triggered)
+
+| Hook Event | Description |
+|------------|-------------|
+| **on_user_prompt** | Load relevant memory and context when user initiates a prompt, ensuring the agent has access to prior learnings and project-specific knowledge |
+| **on_skill_use** | Store insights, patterns, and outcomes when skills are invoked, building a knowledge base of what works in this project |
+
+### External Plugin Integration
+
+| Hook Event | Description |
+|------------|-------------|
+| **on_external_skill_load** | Integrate Forge's memory and context management for skills from other Claude Code plugins, enabling unified knowledge sharing |
+| **on_external_skill_complete** | Capture and store learnings from external plugin skills into Forge's memory system for future reference |
+
+---
+
 ## Enterprise & Official Skills
 
 > *"The great workshops share their blueprints — wisdom forged in the fires of industry."*
@@ -455,6 +485,7 @@ Current state and recent milestones:
 
 | Date | Milestone |
 |------|-----------|
+| **Feb 12, 2026** | Roadmap Expansion — Added `/divine` command and 4 new hook events for memory/context integration |
 | **Feb 12, 2026** | Factory Stable — 22 skills, 12 commands, 11 agents, 81 context files, 20 hooks, ~1,683 tests |
 | **Feb 11, 2026** | Enterprise Skills Catalog — Documented 173 skills from Vercel, Google Labs, Trail of Bits, Microsoft, Anthropic, Sentry |
 | **Feb 11, 2026** | Community Skills Catalog — Documented 99+ planned skills across 15 domains |
