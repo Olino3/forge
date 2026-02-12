@@ -12,7 +12,7 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 | Component | Count | Status |
 |-----------|-------|--------|
-| **Skills** | 293 | ✅ 81 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
+| **Skills** | 299 | ✅ 87 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
 | **Commands** | 12 | ✅ All operational, interface-based |
 | **Agents** | 19 | ✅ 12 Olympian + 7 specialist, all with config.json |
 | **Context Files** | 81 | ✅ 9 domains, all with YAML frontmatter |
@@ -150,17 +150,17 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 | **rails** | ✅ Ruby on Rails application development and architecture |
 | **php** | ✅ Professional PHP development patterns and frameworks |
 
-### Frontend & Mobile (7 skills)
+### Frontend & Mobile (7 skills) — ✅ 6 Forged
 
-| Skill | Description |
-|-------|-------------|
-| **angular-architect** | Enterprise Angular application architecture and patterns |
-| **flutter-expert** | Cross-platform mobile development with Flutter/Dart |
-| **nextjs-developer** | (See above in Frontend & UI section) |
-| **react-expert** | Advanced React patterns, hooks, and architecture |
-| **react-native-expert** | Mobile app development with React Native |
-| **vue-expert-js** | Vue.js 3 Composition API and JavaScript patterns |
-| **vue-expert** | Comprehensive Vue.js application development |
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **angular-architect** | Enterprise Angular application architecture and patterns | ✅ Forged |
+| **flutter-expert** | Cross-platform mobile development with Flutter/Dart | ✅ Forged |
+| **nextjs-developer** | (See above in Frontend & UI section) | ↗️ See Frontend & UI |
+| **react-expert** | Advanced React patterns, hooks, and architecture | ✅ Forged |
+| **react-native-expert** | Mobile app development with React Native | ✅ Forged |
+| **vue-expert-js** | Vue.js 3 Composition API and JavaScript patterns | ✅ Forged |
+| **vue-expert** | Comprehensive Vue.js application development | ✅ Forged |
 
 ### Programming Languages (5 skills)
 
@@ -681,6 +681,7 @@ Current state and recent milestones:
 
 | Date | Milestone |
 |------|-----------|
+| **Feb 12, 2026** | Frontend & Mobile Skills — 6 new skills forged: angular-architect, flutter-expert, react-expert, react-native-expert, vue-expert-js, vue-expert |
 | **Feb 12, 2026** | Frontend & UI Skills — Forged 6 skills: accessibility, animate, nextjs, react-forms, responsive-images, tailwind-patterns |
 | **Feb 12, 2026** | Utilities Forged — 10 Utilities skills implemented: color-palette, email-gateway, favicon-gen, firecrawl-scraper, icon-design, image-gen, jquery-4, office, open-source-contributions, playwright-local |
 | **Feb 12, 2026** | Database & Storage Skills — Forged firebase-firestore, firebase-storage, snowflake-platform (3 new skills, 25 total) |
