@@ -1,0 +1,20 @@
+{
+  "name": "ms-skills-java",
+  "version": "1.0.0",
+  "description": "Microsoft Azure SDK skills for Java developers. 26 skills covering AI, data, messaging, and Azure services.",
+  "author": {
+    "name": "Microsoft",
+    "url": "https://github.com/microsoft"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/microsoft/skills",
+  "repository": "https://github.com/microsoft/skills",
+  "keywords": [
+    "azure",
+    "java",
+    "azure-sdk",
+    "ai",
+    "messaging"
+  ],
+  "category": "language"
+}

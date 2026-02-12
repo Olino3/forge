@@ -1,0 +1,23 @@
+{
+  "name": "ms-skills-python",
+  "version": "1.0.0",
+  "description": "Microsoft Azure SDK skills for Python developers. 41 skills covering AI, data, storage, messaging, monitoring, and Azure services.",
+  "author": {
+    "name": "Microsoft",
+    "url": "https://github.com/microsoft"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/microsoft/skills",
+  "repository": "https://github.com/microsoft/skills",
+  "keywords": [
+    "azure",
+    "python",
+    "azure-sdk",
+    "ai",
+    "cosmos-db",
+    "storage",
+    "messaging",
+    "monitoring"
+  ],
+  "category": "language"
+}
