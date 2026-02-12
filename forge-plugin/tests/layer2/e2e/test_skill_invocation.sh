@@ -1,7 +1,7 @@
 #!/bin/bash
 # ⚒️ The Forge — E2E: Skill Invocation Test
 #
-# Verifies that all 22 skills are discoverable, have valid SKILL.md files,
+# Verifies that all 28 skills are discoverable, have valid SKILL.md files,
 # and follow the expected skill directory conventions.
 # Skips runtime skill invocation if claude CLI is not available.
 #
@@ -34,7 +34,7 @@ echo ""
 
 FAILED=0
 
-# --- Expected skills (22 skills from CLAUDE.md) ---
+# --- Expected skills (28 skills from CLAUDE.md) ---
 EXPECTED_SKILLS=(
     "angular-code-review"
     "commit-helper"
@@ -44,6 +44,7 @@ EXPECTED_SKILLS=(
     "email-writer"
     "excel-skills"
     "file-schema-analysis"
+    "fastapi"
     "generate-azure-bicep"
     "generate-azure-functions"
     "generate-azure-pipelines"
@@ -54,8 +55,13 @@ EXPECTED_SKILLS=(
     "generate-tilt-dev-environment"
     "get-git-diff"
     "jupyter-notebook-skills"
+    "django"
+    "dotnet-core"
+    "nestjs"
+    "php"
     "python-code-review"
     "python-dependency-management"
+    "rails"
     "slack-message-composer"
     "test-cli-tools"
 )

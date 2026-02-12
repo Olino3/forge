@@ -12,7 +12,7 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 | Component | Count | Status |
 |-----------|-------|--------|
-| **Skills** | 268 | ✅ 57 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
+| **Skills** | 276 | ✅ 64 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
 | **Commands** | 12 | ✅ All operational, interface-based |
 | **Agents** | 19 | ✅ 12 Olympian + 7 specialist, all with config.json |
 | **Context Files** | 81 | ✅ 9 domains, all with YAML frontmatter |
@@ -35,6 +35,8 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 **Test Generation** — generate-python-unit-tests · generate-jest-unit-tests · test-cli-tools
 
 **Infrastructure** — generate-azure-functions · generate-azure-pipelines · generate-azure-bicep · generate-tilt-dev-environment · generate-mock-service
+
+**Backend & Frameworks** — django · dotnet-core · fastapi · nestjs · rails · php
 
 **Analysis** — file-schema-analysis · database-schema-analysis · python-dependency-management
 
@@ -137,12 +139,12 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 | Skill | Description |
 |-------|-------------|
-| **django** | Expert-level Django development patterns and best practices |
-| **dotnet-core** | .NET Core/ASP.NET Core architecture and implementation |
-| **fastapi** | Modern Python API development with FastAPI framework |
-| **nestjs** | Enterprise-grade NestJS applications with TypeScript |
-| **rails** | Ruby on Rails application development and architecture |
-| **php** | Professional PHP development patterns and frameworks |
+| **django** | ✅ Expert-level Django development patterns and best practices |
+| **dotnet-core** | ✅ .NET Core/ASP.NET Core architecture and implementation |
+| **fastapi** | ✅ Modern Python API development with FastAPI framework |
+| **nestjs** | ✅ Enterprise-grade NestJS applications with TypeScript |
+| **rails** | ✅ Ruby on Rails application development and architecture |
+| **php** | ✅ Professional PHP development patterns and frameworks |
 
 ### Frontend & Mobile (7 skills)
 
