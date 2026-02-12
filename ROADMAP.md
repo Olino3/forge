@@ -12,7 +12,7 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 | Component | Count | Status |
 |-----------|-------|--------|
-| **Skills** | 22 | ✅ All operational, interface-based |
+| **Skills** | 27 | ✅ All operational, interface-based |
 | **Commands** | 12 | ✅ All operational, interface-based |
 | **Agents** | 19 | ✅ 12 Olympian + 7 specialist, all with config.json |
 | **Context Files** | 81 | ✅ 9 domains, all with YAML frontmatter |
@@ -41,6 +41,8 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 **Data Science** — excel-skills · jupyter-notebook-skills
 
+**Authentication** — azure-auth · better-auth · clerk-auth · firebase-auth · oauth-integrations
+
 **Meta** — generate-more-skills-with-claude
 
 ### The War Room (Active Commands)
@@ -64,15 +66,15 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 | **responsive-images** | Implement performant responsive images with srcset, sizes, lazy loading, and modern formats (WebP, AVIF). Covers aspect-ratio for CLS prevention, picture element for art direction, and fetchpriority. Triggers: `srcset`, `loading=`, `lazy`, `eager` |
 | **tailwind-patterns** | Production-ready Tailwind CSS patterns for common website components: responsive layouts, cards, navigation, forms, buttons, and typography. Includes spacing scale, breakpoints, mobile-first patterns. Triggers: `Tailwind CSS`, `CSS utility classes`, `first CSS`, `shadcn/ui components` |
  
-### Authentication (5 skills)
+### Authentication (5 skills) ✅
 
 | Skill | Description |
 |-------|-------------|
-| **azure-auth** | Microsoft Entra ID (Azure AD) authentication for React SPAs with MSAL.js and Cloudflare Workers JWT validation using jose library. Full-stack pattern with Authorization Code Flow + PKCE. Prevents 8 errors. |
-| **better-auth** | Self-hosted auth for TypeScript/Cloudflare Workers with social auth, 2FA, passkeys, organizations, RBAC, and 15+ plugins. Requires Drizzle ORM or Kysely for D1 (no direct adapter). Triggers: `better-auth`, `authentication with D1`, `Cloudflare D1 auth setup` |
-| **clerk-auth** | Clerk auth with API Keys beta (Dec 2025), Next.js 16 proxy.ts (March 2025 CVE context), API version 2025-11-10 breaking changes, clerkMiddleware() options, webhooks, production considerations. Prevents 15 errors. Triggers: `clerk`, `clerk auth`, `@clerk/nextjs` |
-| **firebase-auth** | Build with Firebase Authentication — email/password, OAuth providers, phone auth, and custom tokens. Use when: setting up auth flows, implementing sign-in/sign-up, managing user sessions, protecting routes. Prevents 12 errors. |
-| **oauth-integrations** | Implement OAuth 2.0 authentication with GitHub, Okta, Google, and Microsoft Entra (Azure AD) ||
+| **azure-auth** ✅ | Microsoft Entra ID (Azure AD) authentication for React SPAs with MSAL.js and Cloudflare Workers JWT validation using jose library. Full-stack pattern with Authorization Code Flow + PKCE. Prevents 8 errors. |
+| **better-auth** ✅ | Self-hosted auth for TypeScript/Cloudflare Workers with social auth, 2FA, passkeys, organizations, RBAC, and 15+ plugins. Requires Drizzle ORM or Kysely for D1 (no direct adapter). Triggers: `better-auth`, `authentication with D1`, `Cloudflare D1 auth setup` |
+| **clerk-auth** ✅ | Clerk auth with API Keys beta (Dec 2025), Next.js 16 proxy.ts (March 2025 CVE context), API version 2025-11-10 breaking changes, clerkMiddleware() options, webhooks, production considerations. Prevents 15 errors. Triggers: `clerk`, `clerk auth`, `@clerk/nextjs` |
+| **firebase-auth** ✅ | Build with Firebase Authentication — email/password, OAuth providers, phone auth, and custom tokens. Use when: setting up auth flows, implementing sign-in/sign-up, managing user sessions, protecting routes. Prevents 12 errors. |
+| **oauth-integrations** ✅ | Implement OAuth 2.0 authentication with GitHub, Okta, Google, and Microsoft Entra (Azure AD) |
 
 ### Database & Storage (6 skills)
 
