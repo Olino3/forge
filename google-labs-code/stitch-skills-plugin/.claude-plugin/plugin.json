@@ -1,0 +1,24 @@
+{
+  "name": "stitch-skills",
+  "version": "1.0.0",
+  "description": "Google Labs agent skills for Stitch design-to-code workflows, including DESIGN.md generation, React component conversion, prompt enhancement, and shadcn/ui integration.",
+  "author": {
+    "name": "Google Labs",
+    "email": "stitch-team@google.com"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/google-labs-code/stitch-skills",
+  "repository": "https://github.com/google-labs-code/stitch-skills",
+  "keywords": [
+    "stitch",
+    "design-to-code",
+    "react",
+    "shadcn-ui",
+    "design-system",
+    "ui-generation",
+    "google-labs",
+    "remotion",
+    "component-generation"
+  ],
+  "category": "framework"
+}
