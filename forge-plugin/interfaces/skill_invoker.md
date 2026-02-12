@@ -304,74 +304,202 @@ getAvailableSkills("python")
   ]
 
 getAvailableSkills()
-→ [all 28 skills with metadata]
+→ [all 102 skills with metadata]
 ```
 
 ---
 
 ## Skill Registry
 
-The 28 currently registered skills, organized by domain:
+The 102 currently registered core skills, organized by domain:
 
-### Code Review
-| Skill | Version | Domain | Delegated By |
-|-------|---------|--------|-------------|
-| `python-code-review` | 2.1.0 | python | `/analyze` |
-| `dotnet-code-review` | 1.0.0 | dotnet | `/analyze` |
-| `angular-code-review` | - | angular | `/analyze` |
-| `get-git-diff` | 1.1.0 | git | `python-code-review`, `dotnet-code-review`, `angular-code-review` |
+### Frontend & UI (6)
+| Skill | Domain | Delegated By |
+|-------|--------|-------------|
+| `accessibility` | frontend | - |
+| `animate` | frontend | - |
+| `nextjs` | frontend | - |
+| `react-forms` | frontend | - |
+| `responsive-images` | frontend | - |
+| `tailwind-patterns` | frontend | - |
 
-### Test Generation
-| Skill | Version | Domain | Delegated By |
-|-------|---------|--------|-------------|
-| `generate-python-unit-tests` | - | python | `/test` |
-| `generate-jest-unit-tests` | - | angular | `/test` |
-| `test-cli-tools` | - | testing | `/test` |
+### Frontend & Mobile (6)
+| Skill | Domain | Delegated By |
+|-------|--------|-------------|
+| `angular-architect` | angular | - |
+| `flutter-expert` | mobile | - |
+| `react-expert` | frontend | - |
+| `react-native-expert` | mobile | - |
+| `vue-expert` | frontend | - |
+| `vue-expert-js` | frontend | - |
 
-### Infrastructure
-| Skill | Version | Domain | Delegated By |
-|-------|---------|--------|-------------|
-| `generate-azure-functions` | 1.0.0 | infrastructure | `/azure-function` |
-| `generate-azure-pipelines` | 1.0.0 | infrastructure | `/azure-pipeline` |
-| `generate-azure-bicep` | 1.0.0 | infrastructure | `/azure-pipeline` |
-| `generate-tilt-dev-environment` | 1.0.0 | infrastructure | - |
-| `generate-mock-service` | 1.0.0 | infrastructure | `/mock` |
+### Authentication (5)
+| Skill | Domain | Delegated By |
+|-------|--------|-------------|
+| `azure-auth` | azure | - |
+| `better-auth` | engineering | - |
+| `clerk-auth` | engineering | - |
+| `firebase-auth` | engineering | - |
+| `oauth-integrations` | engineering | - |
 
-### Backend & Frameworks
-| Skill | Version | Domain | Delegated By |
-|-------|---------|--------|-------------|
-| `django` | 1.0.0 | python | - |
-| `fastapi` | 1.0.0 | python | - |
-| `dotnet-core` | 1.0.0 | dotnet | - |
-| `nestjs` | 1.0.0 | engineering | - |
-| `rails` | 1.0.0 | engineering | - |
-| `php` | 1.0.0 | engineering | - |
+### Backend & Frameworks (6)
+| Skill | Domain | Delegated By |
+|-------|--------|-------------|
+| `django` | python | - |
+| `dotnet-core` | dotnet | - |
+| `fastapi` | python | - |
+| `nestjs` | engineering | - |
+| `rails` | engineering | - |
+| `php` | engineering | - |
 
-### Analysis
-| Skill | Version | Domain | Delegated By |
-|-------|---------|--------|-------------|
-| `file-schema-analysis` | 1.0.0 | schema | `/analyze` |
-| `database-schema-analysis` | 1.0.0 | schema | `/analyze` |
-| `python-dependency-management` | - | python | - |
+### Architecture & Design (4)
+| Skill | Domain | Delegated By |
+|-------|--------|-------------|
+| `api-design` | engineering | - |
+| `architecture-design` | engineering | - |
+| `graphql-design` | engineering | - |
+| `microservices-design` | engineering | - |
 
-### Productivity
-| Skill | Version | Domain | Delegated By |
-|-------|---------|--------|-------------|
-| `commit-helper` | 1.0.0 | productivity | - |
-| `email-writer` | 1.0.0 | productivity | - |
-| `slack-message-composer` | 1.0.0 | productivity | - |
-| `documentation-generator` | 1.0.0 | productivity | `/document` |
+### Cloud & Infrastructure (5)
+| Skill | Domain | Delegated By |
+|-------|--------|-------------|
+| `cloud-architect` | infrastructure | - |
+| `devops-engineer` | infrastructure | - |
+| `kubernetes-specialist` | infrastructure | - |
+| `sre-engineer` | infrastructure | - |
+| `terraform-engineer` | infrastructure | - |
 
-### Data Science
-| Skill | Version | Domain | Delegated By |
-|-------|---------|--------|-------------|
-| `excel-skills` | 1.0.0 | data-science | - |
-| `jupyter-notebook-skills` | 1.0.0 | data-science | - |
+### Programming Languages (5)
+| Skill | Domain | Delegated By |
+|-------|--------|-------------|
+| `cpp` | engineering | - |
+| `csharp` | dotnet | - |
+| `java-architect` | engineering | - |
+| `javascript` | engineering | - |
+| `typescript` | engineering | - |
 
-### Meta
-| Skill | Version | Domain | Delegated By |
-|-------|---------|--------|-------------|
-| `generate-more-skills-with-claude` | 1.0.0 | meta | - |
+### Data & Database (6)
+| Skill | Domain | Delegated By |
+|-------|--------|-------------|
+| `database-optimizer` | schema | `/analyze` |
+| `database-schema-analysis` | schema | `/analyze` |
+| `pandas` | data-science | - |
+| `postgres` | schema | - |
+| `snowflake-platform` | schema | - |
+| `sql` | schema | - |
+
+### Database & Storage (2)
+| Skill | Domain | Delegated By |
+|-------|--------|-------------|
+| `firebase-firestore` | engineering | - |
+| `firebase-storage` | engineering | - |
+
+### Quality & Security (6)
+| Skill | Domain | Delegated By |
+|-------|--------|-------------|
+| `code-documenter` | engineering | `/document` |
+| `code-reviewer` | engineering | `/analyze` |
+| `debugging-expert` | engineering | - |
+| `secure-code` | security | - |
+| `security-reviewer` | security | `/analyze` |
+| `testing` | testing | `/test` |
+
+### Code Review (4)
+| Skill | Domain | Delegated By |
+|-------|--------|-------------|
+| `python-code-review` | python | `/analyze` |
+| `dotnet-code-review` | dotnet | `/analyze` |
+| `angular-code-review` | angular | `/analyze` |
+| `get-git-diff` | git | `python-code-review`, `dotnet-code-review`, `angular-code-review` |
+
+### Test Generation (3)
+| Skill | Domain | Delegated By |
+|-------|--------|-------------|
+| `generate-python-unit-tests` | python | `/test` |
+| `generate-jest-unit-tests` | angular | `/test` |
+| `test-cli-tools` | testing | `/test` |
+
+### Infrastructure (5)
+| Skill | Domain | Delegated By |
+|-------|--------|-------------|
+| `generate-azure-functions` | infrastructure | `/azure-function` |
+| `generate-azure-pipelines` | infrastructure | `/azure-pipeline` |
+| `generate-azure-bicep` | infrastructure | `/azure-pipeline` |
+| `generate-tilt-dev-environment` | infrastructure | - |
+| `generate-mock-service` | infrastructure | `/mock` |
+
+### Planning & Workflow (9)
+| Skill | Domain | Delegated By |
+|-------|--------|-------------|
+| `divine` | meta | - |
+| `docs-workflow` | productivity | `/document` |
+| `project-health` | meta | `/analyze` |
+| `project-planning` | meta | - |
+| `project-session-management` | meta | - |
+| `project-workflow` | meta | - |
+| `skill-creator` | meta | - |
+| `skill-review` | meta | - |
+| `sub-agent-patterns` | meta | - |
+
+### Developer Workflow (3)
+| Skill | Domain | Delegated By |
+|-------|--------|-------------|
+| `create-agents` | meta | - |
+| `dev-tools` | engineering | - |
+| `power-debug` | engineering | - |
+
+### Specialized (8)
+| Skill | Domain | Delegated By |
+|-------|--------|-------------|
+| `cli-developer` | engineering | - |
+| `feature-forge` | engineering | - |
+| `fullstack-development` | engineering | - |
+| `legacy-modernizer` | engineering | - |
+| `mcp-developer` | engineering | - |
+| `monitoring-expert` | infrastructure | - |
+| `prompt-engineer` | meta | - |
+| `websocket-engineer` | engineering | - |
+
+### Productivity (5)
+| Skill | Domain | Delegated By |
+|-------|--------|-------------|
+| `commit-helper` | productivity | - |
+| `documentation-generator` | productivity | `/document` |
+| `email-writer` | productivity | - |
+| `email-gateway` | productivity | - |
+| `slack-message-composer` | productivity | - |
+
+### Utilities (10)
+| Skill | Domain | Delegated By |
+|-------|--------|-------------|
+| `color-palette` | frontend | - |
+| `favicon-gen` | frontend | - |
+| `firecrawl-scraper` | engineering | - |
+| `icon-design` | frontend | - |
+| `image-gen` | frontend | - |
+| `jquery-4` | frontend | - |
+| `office` | productivity | - |
+| `open-source-contributions` | engineering | - |
+| `playwright-local` | testing | - |
+
+### Analysis (2)
+| Skill | Domain | Delegated By |
+|-------|--------|-------------|
+| `file-schema-analysis` | schema | `/analyze` |
+| `python-dependency-management` | python | - |
+
+### Data Science (2)
+| Skill | Domain | Delegated By |
+|-------|--------|-------------|
+| `excel-skills` | data-science | - |
+| `jupyter-notebook-skills` | data-science | - |
+
+### Meta (1)
+| Skill | Domain | Delegated By |
+|-------|--------|-------------|
+| `generate-more-skills-with-claude` | meta | - |
+
+> **Note**: An additional **212 external skills** are available via the Forge Marketplace plugins. See `README.md` and `ROADMAP.md` for the complete external skills catalog.
 
 ---
 
