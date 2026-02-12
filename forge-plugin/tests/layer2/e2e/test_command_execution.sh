@@ -50,35 +50,23 @@ EXPECTED_COMMANDS=(
     "azure-function"
 )
 
-# --- Test 1: All expected commands are registered in plugin.json ---
-info "Checking command registration in plugin.json..."
+# --- Test 1: All expected commands exist as directories with COMMAND.md ---
+info "Checking command directories and COMMAND.md files..."
 MANIFEST="${PLUGIN_DIR}/.claude-plugin/plugin.json"
 if [ ! -f "$MANIFEST" ]; then
     fail "Plugin manifest not found"
     exit 1
 fi
 
-REGISTERED_COMMANDS=$(jq -r '.commands | keys[]' "$MANIFEST" 2>/dev/null | sort)
-
-for cmd in "${EXPECTED_COMMANDS[@]}"; do
-    if echo "$REGISTERED_COMMANDS" | grep -qx "$cmd"; then
-        pass "Command '/${cmd}' registered in plugin.json"
-    else
-        fail "Command '/${cmd}' NOT registered in plugin.json"
-        FAILED=1
-    fi
-done
-
-# --- Test 2: Each command directory has COMMAND.md ---
-info "Checking COMMAND.md files..."
 for cmd in "${EXPECTED_COMMANDS[@]}"; do
     CMD_DIR="${PLUGIN_DIR}/commands/${cmd}"
     CMD_FILE="${CMD_DIR}/COMMAND.md"
+    
     if [ -d "$CMD_DIR" ]; then
         if [ -f "$CMD_FILE" ]; then
-            pass "/${cmd}/COMMAND.md exists"
+            pass "Command '/${cmd}' directory and COMMAND.md exist"
         else
-            fail "/${cmd}/COMMAND.md missing"
+            fail "Command '/${cmd}' directory exists but COMMAND.md missing"
             FAILED=1
         fi
     else
@@ -87,7 +75,7 @@ for cmd in "${EXPECTED_COMMANDS[@]}"; do
     fi
 done
 
-# --- Test 3: COMMAND.md files are non-empty and have expected sections ---
+# --- Test 2: COMMAND.md files are non-empty and have expected sections ---
 info "Checking COMMAND.md content structure..."
 for cmd in "${EXPECTED_COMMANDS[@]}"; do
     CMD_FILE="${PLUGIN_DIR}/commands/${cmd}/COMMAND.md"
@@ -101,19 +89,19 @@ for cmd in "${EXPECTED_COMMANDS[@]}"; do
     fi
 done
 
-# --- Test 4: Command count matches expected ---
+# --- Test 3: Command count matches expected ---
 info "Checking command count..."
-REGISTERED_COUNT=$(jq '.commands | length' "$MANIFEST")
+ACTUAL_COUNT=$(find "${PLUGIN_DIR}/commands" -mindepth 1 -maxdepth 1 -type d | wc -l)
 EXPECTED_COUNT=${#EXPECTED_COMMANDS[@]}
 
-if [ "$REGISTERED_COUNT" -eq "$EXPECTED_COUNT" ]; then
-    pass "Command count matches: ${REGISTERED_COUNT} registered, ${EXPECTED_COUNT} expected"
+if [ "$ACTUAL_COUNT" -eq "$EXPECTED_COUNT" ]; then
+    pass "Command count matches: ${ACTUAL_COUNT} directories, ${EXPECTED_COUNT} expected"
 else
-    fail "Command count mismatch: ${REGISTERED_COUNT} registered, ${EXPECTED_COUNT} expected"
+    fail "Command count differs: ${ACTUAL_COUNT} directories, ${EXPECTED_COUNT} expected"
     FAILED=1
 fi
 
-# --- Test 5: Commands index file exists ---
+# --- Test 4: Commands index file exists ---
 info "Checking commands index..."
 INDEX_FILE="${PLUGIN_DIR}/commands/index.md"
 if [ -f "$INDEX_FILE" ]; then
@@ -130,7 +118,7 @@ else
     warn "commands/index.md not found"
 fi
 
-# --- Test 6: Runtime command invocation (requires claude CLI) ---
+# --- Test 5: Runtime command invocation (requires claude CLI) ---
 # NOTE: True runtime E2E testing of command invocation is not currently possible because the
 # `claude` CLI requires an interactive session. This test validates structure and discoverability.
 # Future options: (1) claude CLI batch/non-interactive mode, (2) dedicated Claude CLI test harness.

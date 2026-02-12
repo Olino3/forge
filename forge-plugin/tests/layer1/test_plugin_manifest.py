@@ -2,10 +2,10 @@
 
 Validates:
 - plugin.json exists at .claude-plugin/plugin.json
-- Has required fields: name, version, commands
+- Has required fields: name, version, description, author
 - Version is valid semver
-- All 12 commands are listed
-- Each command path exists as a file
+- Does NOT have commands field (commands discovered from filesystem)
+- All 12 command directories exist with COMMAND.md files
 - .claude-plugin/ contains only expected files
 - No extraneous fields in plugin.json
 
@@ -99,10 +99,11 @@ class TestPluginManifestFields:
             f"version '{version}' is not valid semver (expected X.Y.Z)"
         )
 
-    def test_has_commands(self, plugin):
-        """plugin.json must have a 'commands' object."""
-        assert "commands" in plugin, "Missing 'commands'"
-        assert isinstance(plugin["commands"], dict)
+    def test_has_no_commands_field(self, plugin):
+        """plugin.json should not have a 'commands' field (commands are discovered from filesystem)."""
+        assert "commands" not in plugin, (
+            "plugin.json should not contain 'commands' field - commands are discovered from filesystem"
+        )
 
     def test_has_description(self, plugin):
         """plugin.json should have a 'description' field."""
@@ -120,68 +121,65 @@ class TestPluginManifestFields:
 
 
 class TestPluginManifestCommands:
-    """Validate all commands are listed and paths resolve."""
+    """Validate all commands exist in filesystem and follow conventions."""
 
-    @pytest.fixture(scope="class")
-    def plugin(self):
-        return load_json(PLUGIN_JSON)
-
-    def test_expected_command_count(self, plugin):
-        """plugin.json must list at least 12 commands."""
-        commands = plugin.get("commands", {})
-        assert len(commands) >= 12, (
-            f"Expected at least 12 commands, found {len(commands)}: "
-            f"{sorted(commands.keys())}"
+    def test_expected_command_count(self):
+        """At least 12 command directories must exist."""
+        commands_dir = FORGE_DIR / "commands"
+        command_dirs = [d for d in commands_dir.iterdir() if d.is_dir()]
+        assert len(command_dirs) >= 12, (
+            f"Expected at least 12 command directories, found {len(command_dirs)}: "
+            f"{sorted([d.name for d in command_dirs])}"
         )
 
-    def test_all_expected_commands_present(self, plugin):
-        """All 12 expected commands must be listed."""
-        commands = set(plugin.get("commands", {}).keys())
-        missing = EXPECTED_COMMANDS - commands
+    def test_all_expected_commands_present(self):
+        """All 12 expected commands must exist as directories."""
+        commands_dir = FORGE_DIR / "commands"
+        existing_commands = {d.name for d in commands_dir.iterdir() if d.is_dir()}
+        missing = EXPECTED_COMMANDS - existing_commands
         assert not missing, (
-            f"Missing expected commands: {sorted(missing)}"
+            f"Missing expected command directories: {sorted(missing)}"
         )
 
     @pytest.mark.parametrize("cmd_name", sorted(EXPECTED_COMMANDS))
-    def test_command_path_exists(self, plugin, cmd_name):
-        """Each command path must resolve to an existing file."""
-        commands = plugin.get("commands", {})
-        if cmd_name not in commands:
-            pytest.skip(f"Command '{cmd_name}' not in plugin.json")
-        cmd_path = commands[cmd_name]
-        full_path = FORGE_DIR / cmd_path
-        assert full_path.exists(), (
-            f"Command '{cmd_name}' → '{cmd_path}' does not exist"
+    def test_command_directory_exists(self, cmd_name):
+        """Each command must have a directory in commands/."""
+        cmd_dir = FORGE_DIR / "commands" / cmd_name
+        assert cmd_dir.is_dir(), (
+            f"Command directory 'commands/{cmd_name}/' does not exist"
         )
 
     @pytest.mark.parametrize("cmd_name", sorted(EXPECTED_COMMANDS))
-    def test_command_path_points_to_command_md(self, plugin, cmd_name):
-        """Each command path should point to a COMMAND.md file."""
-        commands = plugin.get("commands", {})
-        if cmd_name not in commands:
-            pytest.skip(f"Command '{cmd_name}' not in plugin.json")
-        cmd_path = commands[cmd_name]
-        assert cmd_path.endswith("COMMAND.md"), (
-            f"Command '{cmd_name}' path '{cmd_path}' should end with COMMAND.md"
+    def test_command_has_command_md(self, cmd_name):
+        """Each command directory must contain a COMMAND.md file."""
+        cmd_file = FORGE_DIR / "commands" / cmd_name / "COMMAND.md"
+        assert cmd_file.exists(), (
+            f"Command '{cmd_name}' missing COMMAND.md file"
         )
 
-    def test_command_paths_follow_convention(self, plugin):
-        """All command paths must follow commands/{name}/COMMAND.md convention."""
-        commands = plugin.get("commands", {})
-        for cmd_name, cmd_path in commands.items():
-            expected = f"commands/{cmd_name}/COMMAND.md"
-            assert cmd_path == expected, (
-                f"Command '{cmd_name}' path '{cmd_path}' doesn't follow "
-                f"convention '{expected}'"
-            )
+    def test_command_paths_follow_convention(self):
+        """All command COMMAND.md files must exist at commands/{name}/COMMAND.md."""
+        commands_dir = FORGE_DIR / "commands"
+        for cmd_dir in commands_dir.iterdir():
+            if cmd_dir.is_dir():
+                cmd_file = cmd_dir / "COMMAND.md"
+                assert cmd_file.exists(), (
+                    f"Command '{cmd_dir.name}' directory exists but missing COMMAND.md"
+                )
 
-    def test_no_extra_unexpected_commands(self, plugin):
-        """Warn about any commands not in the expected set (informational)."""
-        commands = set(plugin.get("commands", {}).keys())
-        extra = commands - EXPECTED_COMMANDS
-        # Extra commands are allowed but noted
+    def test_no_extra_unexpected_commands(self):
+        """Track any commands not in the expected set (informational)."""
+        import warnings
+        commands_dir = FORGE_DIR / "commands"
+        existing_commands = {d.name for d in commands_dir.iterdir() if d.is_dir()}
+        extra = existing_commands - EXPECTED_COMMANDS
+        # Extra commands are allowed but should be noted
         if extra:
-            pass  # Not a failure, but tracks new additions
+            warnings.warn(
+                f"Found {len(extra)} unexpected command(s): {sorted(extra)}. "
+                f"Update EXPECTED_COMMANDS in test_plugin_manifest.py if intentional.",
+                UserWarning
+            )
 
 
 # ---------------------------------------------------------------------------

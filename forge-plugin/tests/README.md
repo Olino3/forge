@@ -55,7 +55,7 @@ pip install pytest pyyaml jsonschema
 | `test_cross_references.py` | Skills in agent configs exist, domains exist, memory paths exist |
 | `test_hooks_registration.py` | All hook scripts registered in hooks.json, all registered scripts exist |
 | `test_memory_structure.py` | Memory directory structure, timestamps, line limits |
-| `test_plugin_manifest.py` | plugin.json validity, 12 commands, command paths resolve |
+| `test_plugin_manifest.py` | plugin.json validity, 12 command directories exist with COMMAND.md files |
 | `test_hook_syntax.sh` | Shebangs, `set -euo pipefail`, `bash -n` syntax, executable permissions |
 | `test_shellcheck.sh` | Bash linting (skips gracefully if shellcheck not installed) |
 
