@@ -301,22 +301,26 @@ class TestHooksJsonScriptReferences:
 
 
 class TestPluginCommandReferences:
-    """Validate plugin.json command paths exist."""
+    """Validate command directories exist in filesystem."""
 
-    @pytest.fixture(scope="class")
-    def plugin_data(self):
-        return load_json(FORGE_DIR / ".claude-plugin" / "plugin.json")
-
-    def test_all_command_paths_exist(self, plugin_data):
-        """Every command path in plugin.json must exist."""
-        commands = plugin_data.get("commands", {})
+    def test_all_command_paths_exist(self):
+        """Every expected command directory must exist with COMMAND.md file."""
+        expected_commands = {
+            "analyze", "implement", "improve", "document", "test", "build",
+            "brainstorm", "remember", "mock", "azure-pipeline", "etl-pipeline",
+            "azure-function",
+        }
+        commands_dir = FORGE_DIR / "commands"
         missing = []
-        for cmd_name, cmd_path in commands.items():
-            full_path = FORGE_DIR / cmd_path
-            if not full_path.exists():
-                missing.append(f"{cmd_name}: {cmd_path}")
+        for cmd_name in expected_commands:
+            cmd_dir = commands_dir / cmd_name
+            cmd_file = cmd_dir / "COMMAND.md"
+            if not cmd_dir.is_dir():
+                missing.append(f"{cmd_name}: directory not found")
+            elif not cmd_file.exists():
+                missing.append(f"{cmd_name}: COMMAND.md not found")
         assert not missing, (
-            f"plugin.json references non-existent command files: {missing}"
+            f"Command validation failed: {missing}"
         )
 
 
