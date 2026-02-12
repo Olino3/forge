@@ -12,7 +12,7 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 | Component | Count | Status |
 |-----------|-------|--------|
-| **Skills** | 234 | ✅ 22 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
+| **Skills** | 245 | ✅ 33 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
 | **Commands** | 12 | ✅ All operational, interface-based |
 | **Agents** | 19 | ✅ 12 Olympian + 7 specialist, all with config.json |
 | **Context Files** | 81 | ✅ 9 domains, all with YAML frontmatter |
@@ -43,6 +43,8 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 **Data Science** — excel-skills · jupyter-notebook-skills
 
 **Meta** — generate-more-skills-with-claude
+
+**Planning & Workflow** — divine · docs-workflow · project-health · project-planning · project-session-management · project-workflow · skill-creator · skill-review · sub-agent-patterns
 
 ### The War Room (Active Commands)
 
@@ -86,19 +88,19 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 | **vercel-blob** | Integrate Vercel Blob for file uploads and CDN-delivered assets in Next.js. Supports client-side uploads with presigned URLs and multipart transfers for large files. Prevents 16 errors. Triggers: `@vercel/blob`, `vercel blob`, `vercel file upload` |
 | **vercel-kv** | Integrate Redis-compatible Vercel KV for caching, session management, and rate limiting in Next.js. Powered by Upstash with strong consistency and TTL support. Triggers: `@vercel/kv`, `vercel kv`, `upstash vercel` |
 
-### Planning & Workflow (9 skills)
+### Planning & Workflow (9 skills) ✅
 
 | Skill | Description |
 |-------|-------------|
-| **divine** | Entry point to the divine toolkit — skills, agents, and commands that work with Claude Code's capabilities. |
-| **docs-workflow** | Four slash commands for documentation lifecycle: `/docs`, `/docs-init`, `/docs-update`, `/docs-claude`. Create, maintain, and audit CLAUDE.md, README.md, and docs/ structure with smart templates. Triggers: `create CLAUDE.md`, `initialize documentation`, `docs init`, `update documentation` |
-| **project-health** | AI-agent readiness auditing for project documentation and workflows. Triggers: `AI readability`, `agent readiness`, `context auditor`, `workflow validator` |
-| **project-planning** | Generate structured planning docs for web projects with context-safe phases, verification criteria, and exit conditions. Creates IMPLEMENTATION_PHASES.md plus conditional docs. Triggers: `new project`, `start a project`, `create app`, `build app` |
-| **project-session-management** | Track progress across sessions using SESSION.md with git checkpoints and concrete next actions. Converts IMPLEMENTATION_PHASES.md into trackable session state. Triggers: `create SESSION.md`, `set up session tracking`, `manage session state`, `session handoff` |
-| **project-workflow** | Nine integrated slash commands for complete project lifecycle: `/explore-idea`, `/plan-project`, `/plan-feature`, `/wrap-session`, `/continue-session`, `/workflow`, `/release`, `/brief`, `/reflect`. Triggers: `start new project`, `/plan-project` |
-| **skill-creator** | Design effective Claude Code skills with optimal descriptions, progressive disclosure, and error prevention patterns. Covers freedom levels, token efficiency, and quality standards. |
-| **skill-review** | Audit claude-skills with systematic 9-phase review: standards compliance, official docs verification, code accuracy, cross-file consistency, and version drift detection. Triggers: `review this skill`, `audit [skill-name]`, `check if X needs updates` |
-| **sub-agent-patterns** | Comprehensive guide to sub-agents in Claude Code: built-in agents (Explore, Plan, general-purpose), custom agent creation, configuration, and delegation patterns. Triggers: `sub-agent`, `sub-agents`, `subagent` |
+| **divine** ✅ | Entry point to the divine toolkit — skills, agents, and commands that work with Claude Code's capabilities. |
+| **docs-workflow** ✅ | Four slash commands for documentation lifecycle: `/docs`, `/docs-init`, `/docs-update`, `/docs-claude`. Create, maintain, and audit CLAUDE.md, README.md, and docs/ structure with smart templates. Triggers: `create CLAUDE.md`, `initialize documentation`, `docs init`, `update documentation` |
+| **project-health** ✅ | AI-agent readiness auditing for project documentation and workflows. Triggers: `AI readability`, `agent readiness`, `context auditor`, `workflow validator` |
+| **project-planning** ✅ | Generate structured planning docs for web projects with context-safe phases, verification criteria, and exit conditions. Creates IMPLEMENTATION_PHASES.md plus conditional docs. Triggers: `new project`, `start a project`, `create app`, `build app` |
+| **project-session-management** ✅ | Track progress across sessions using SESSION.md with git checkpoints and concrete next actions. Converts IMPLEMENTATION_PHASES.md into trackable session state. Triggers: `create SESSION.md`, `set up session tracking`, `manage session state`, `session handoff` |
+| **project-workflow** ✅ | Nine integrated slash commands for complete project lifecycle: `/explore-idea`, `/plan-project`, `/plan-feature`, `/wrap-session`, `/continue-session`, `/workflow`, `/release`, `/brief`, `/reflect`. Triggers: `start new project`, `/plan-project` |
+| **skill-creator** ✅ | Design effective Claude Code skills with optimal descriptions, progressive disclosure, and error prevention patterns. Covers freedom levels, token efficiency, and quality standards. |
+| **skill-review** ✅ | Audit claude-skills with systematic 9-phase review: standards compliance, official docs verification, code accuracy, cross-file consistency, and version drift detection. Triggers: `review this skill`, `audit [skill-name]`, `check if X needs updates` |
+| **sub-agent-patterns** ✅ | Comprehensive guide to sub-agents in Claude Code: built-in agents (Explore, Plan, general-purpose), custom agent creation, configuration, and delegation patterns. Triggers: `sub-agent`, `sub-agents`, `subagent` |
 
 ### Utilities (11 skills)
 
