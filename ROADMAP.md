@@ -12,7 +12,7 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 | Component | Count | Status |
 |-----------|-------|--------|
-| **Skills** | 286 | ✅ 71 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
+| **Skills** | 299 | ✅ 77 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
 | **Commands** | 12 | ✅ All operational, interface-based |
 | **Agents** | 19 | ✅ 12 Olympian + 7 specialist, all with config.json |
 | **Context Files** | 81 | ✅ 9 domains, all with YAML frontmatter |
@@ -39,6 +39,8 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 **Backend & Frameworks** — django · dotnet-core · fastapi · nestjs · rails · php
 
 **Analysis** — file-schema-analysis · database-schema-analysis · python-dependency-management
+
+**Programming Languages** — cpp · csharp · java-architect · javascript · typescript
 
 **Productivity** — commit-helper · email-writer · slack-message-composer · documentation-generator
 
@@ -157,16 +159,6 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 | **react-native-expert** | Mobile app development with React Native |
 | **vue-expert-js** | Vue.js 3 Composition API and JavaScript patterns |
 | **vue-expert** | Comprehensive Vue.js application development |
-
-### Programming Languages (5 skills)
-
-| Skill | Description |
-|-------|-------------|
-| **cpp** | Modern C++ (C++17/20/23) development and best practices |
-| **csharp** | C# language features and .NET ecosystem development |
-| **java-architect** | Enterprise Java architecture and design patterns |
-| **javascript** | Advanced JavaScript patterns, ES2024+, and runtime optimization |
-| **typescript** | TypeScript advanced types, generics, and strict configuration |
 
 ### Data & Database (4 skills)
 
