@@ -12,7 +12,7 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 | Component | Count | Status |
 |-----------|-------|--------|
-| **Skills** | 22 | ✅ All operational, interface-based |
+| **Skills** | 28 | ✅ All operational, interface-based |
 | **Commands** | 12 | ✅ All operational, interface-based |
 | **Agents** | 19 | ✅ 12 Olympian + 7 specialist, all with config.json |
 | **Context Files** | 81 | ✅ 9 domains, all with YAML frontmatter |
@@ -133,17 +133,17 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 | **rails** | Ruby on Rails application development and architecture |
 | **php** | Professional PHP development patterns and frameworks |
 
-### Frontend & Mobile (7 skills)
+### Frontend & Mobile (7 skills) — ✅ 6 Forged
 
-| Skill | Description |
-|-------|-------------|
-| **angular-architect** | Enterprise Angular application architecture and patterns |
-| **flutter-expert** | Cross-platform mobile development with Flutter/Dart |
-| **nextjs-developer** | (See above in Frontend & UI section) |
-| **react-expert** | Advanced React patterns, hooks, and architecture |
-| **react-native-expert** | Mobile app development with React Native |
-| **vue-expert-js** | Vue.js 3 Composition API and JavaScript patterns |
-| **vue-expert** | Comprehensive Vue.js application development |
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **angular-architect** | Enterprise Angular application architecture and patterns | ✅ Forged |
+| **flutter-expert** | Cross-platform mobile development with Flutter/Dart | ✅ Forged |
+| **nextjs-developer** | (See above in Frontend & UI section) | ↗️ See Frontend & UI |
+| **react-expert** | Advanced React patterns, hooks, and architecture | ✅ Forged |
+| **react-native-expert** | Mobile app development with React Native | ✅ Forged |
+| **vue-expert-js** | Vue.js 3 Composition API and JavaScript patterns | ✅ Forged |
+| **vue-expert** | Comprehensive Vue.js application development | ✅ Forged |
 
 ### Programming Languages (5 skills)
 
@@ -485,6 +485,7 @@ Current state and recent milestones:
 
 | Date | Milestone |
 |------|-----------|
+| **Feb 12, 2026** | Frontend & Mobile Skills — 6 new skills forged: angular-architect, flutter-expert, react-expert, react-native-expert, vue-expert-js, vue-expert |
 | **Feb 12, 2026** | Roadmap Expansion — Added `/divine` command and 4 new hook events for memory/context integration |
 | **Feb 12, 2026** | Factory Stable — 22 skills, 12 commands, 11 agents, 81 context files, 20 hooks, ~1,683 tests |
 | **Feb 11, 2026** | Enterprise Skills Catalog — Documented 173 skills from Vercel, Google Labs, Trail of Bits, Microsoft, Anthropic, Sentry |
