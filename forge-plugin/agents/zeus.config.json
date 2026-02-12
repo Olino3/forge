@@ -1,0 +1,33 @@
+{
+  "$schema": "../interfaces/schemas/agent_config.schema.json",
+  "name": "zeus",
+  "version": "0.1.0-alpha",
+  "description": "King of the gods and orchestrator of multi-agent workflows. Master of delegation, coordination, and complex engineering initiatives",
+  "model": "sonnet",
+  "tools": ["Read", "Write", "Bash", "Grep", "Glob"],
+  "permissionMode": "auto",
+  "context": {
+    "primaryDomains": ["engineering"],
+    "secondaryDomains": ["python", "dotnet", "angular", "azure", "security"],
+    "alwaysLoadFiles": []
+  },
+  "memory": {
+    "storagePath": "forge-plugin/memory/agents/zeus",
+    "categories": [
+      {"name": "workflows", "description": "Track multi-agent workflow patterns"},
+      {"name": "delegations", "description": "Record task delegation strategies"},
+      {"name": "orchestrations", "description": "Store complex project orchestrations"},
+      {"name": "collaborations", "description": "Maintain agent collaboration patterns"}
+    ]
+  },
+  "skills": [],
+  "hooks": [
+    {
+      "on_file_write": {
+        "patterns": ["ORCHESTRATION-*.md", "*.workflow.yml", "DELEGATION-*.md"],
+        "action": "validate_orchestration_strategy"
+      }
+    }
+  ],
+  "mcpServers": []
+}

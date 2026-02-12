@@ -1,0 +1,33 @@
+{
+  "$schema": "../interfaces/schemas/agent_config.schema.json",
+  "name": "hera",
+  "version": "0.1.0-alpha",
+  "description": "Queen of the gods and guardian of project integrity. Master of project management, governance, and architectural coherence",
+  "model": "sonnet",
+  "tools": ["Read", "Write", "Bash", "Grep", "Glob"],
+  "permissionMode": "auto",
+  "context": {
+    "primaryDomains": ["engineering"],
+    "secondaryDomains": ["python", "dotnet", "angular", "security"],
+    "alwaysLoadFiles": []
+  },
+  "memory": {
+    "storagePath": "forge-plugin/memory/agents/hera",
+    "categories": [
+      {"name": "standards", "description": "Track coding standards and conventions"},
+      {"name": "quality_gates", "description": "Record quality gate configurations"},
+      {"name": "compliance", "description": "Store compliance requirements and audits"},
+      {"name": "governance", "description": "Maintain governance decisions and policies"}
+    ]
+  },
+  "skills": [],
+  "hooks": [
+    {
+      "on_file_write": {
+        "patterns": ["PROJECT-*.md", "STANDARDS-*.md", "*.governance.yml", "ALIGNMENT-*.md"],
+        "action": "validate_project_governance"
+      }
+    }
+  ],
+  "mcpServers": []
+}

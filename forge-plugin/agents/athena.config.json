@@ -1,0 +1,33 @@
+{
+  "$schema": "../interfaces/schemas/agent_config.schema.json",
+  "name": "athena",
+  "version": "0.1.0-alpha",
+  "description": "Goddess of wisdom and strategic architecture. Master of system design, technical decisions, and elegant solutions",
+  "model": "sonnet",
+  "tools": ["Read", "Write", "Bash", "Grep", "Glob"],
+  "permissionMode": "auto",
+  "context": {
+    "primaryDomains": ["engineering"],
+    "secondaryDomains": ["python", "dotnet", "angular", "azure", "security"],
+    "alwaysLoadFiles": []
+  },
+  "memory": {
+    "storagePath": "forge-plugin/memory/agents/athena",
+    "categories": [
+      {"name": "architectures", "description": "Track system architecture designs"},
+      {"name": "decisions", "description": "Store architectural decision records (ADRs)"},
+      {"name": "patterns", "description": "Maintain design patterns and their applications"},
+      {"name": "evaluations", "description": "Record technology evaluations and selections"}
+    ]
+  },
+  "skills": [],
+  "hooks": [
+    {
+      "on_file_write": {
+        "patterns": ["ARCHITECTURE-*.md", "DESIGN-*.md", "ADR-*.md", "*.architecture.yml"],
+        "action": "validate_architectural_design"
+      }
+    }
+  ],
+  "mcpServers": []
+}
