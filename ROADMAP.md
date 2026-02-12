@@ -197,17 +197,17 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 ### Specialized (10 skills)
 
-| Skill | Description |
-|-------|-------------|
-| **cli-developer** | Command-line tool development and CLI UX patterns |
-| **feature-forge** | Feature development workflow and implementation patterns |
-| **fullstack-development** | Full-stack development oversight and architecture |
-| **legacy-modernizer** | Legacy code modernization and technical debt reduction |
-| **mcp-developer** | Model Context Protocol server development and integration |
-| **monitoring-expert** | Application monitoring, metrics, alerting, and observability |
-| **playwright-expert** | (See above in Utilities section) |
-| **prompt-engineer** | LLM prompt design, optimization, and evaluation |
-| **websocket-engineer** | Real-time communication with WebSocket patterns |
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **cli-developer** | Command-line tool development and CLI UX patterns | ✅ Forged |
+| **feature-forge** | Feature development workflow and implementation patterns | ✅ Forged |
+| **fullstack-development** | Full-stack development oversight and architecture | ✅ Forged |
+| **legacy-modernizer** | Legacy code modernization and technical debt reduction | ✅ Forged |
+| **mcp-developer** | Model Context Protocol server development and integration | ✅ Forged |
+| **monitoring-expert** | Application monitoring, metrics, alerting, and observability | ✅ Forged |
+| **playwright-expert** | (See above in Utilities section) | |
+| **prompt-engineer** | LLM prompt design, optimization, and evaluation | ✅ Forged |
+| **websocket-engineer** | Real-time communication with WebSocket patterns | ✅ Forged |
 
 ---
 
