@@ -12,7 +12,7 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 | Component | Count | Status |
 |-----------|-------|--------|
-| **Skills** | 22 | ✅ All operational, interface-based |
+| **Skills** | 25 | ✅ All operational, interface-based |
 | **Commands** | 12 | ✅ All operational, interface-based |
 | **Agents** | 19 | ✅ 12 Olympian + 7 specialist, all with config.json |
 | **Context Files** | 81 | ✅ 9 domains, all with YAML frontmatter |
@@ -40,6 +40,8 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 **Productivity** — commit-helper · email-writer · slack-message-composer · documentation-generator
 
 **Data Science** — excel-skills · jupyter-notebook-skills
+
+**Developer Workflow** — create-agents · power-debug · dev-tools
 
 **Meta** — generate-more-skills-with-claude
 
@@ -114,13 +116,13 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 | **open-source-contributions** | Create maintainer-friendly pull requests with clean code and professional communication. Triggers: `submit PR to [project]`, `create pull request for [repo]`, `contribute to [project]` |
 | **playwright-local** | Build browser automation and web scraping with Playwright on your local machine. Prevents 10 errors. |
 
-### Developer Workflow (3 skills)
+### Developer Workflow (3 skills) — ✅ Forged
 
-| Skill | Description |
-|-------|-------------|
-| **create-agents** | Design and build custom Claude Code agents with effective descriptions, tool access patterns, and delegation strategies. Triggers: `create agent`, `custom agent`, `build agent`, `agent description` |
-| **power-debug** | Multi-agent investigation for stubborn bugs. Use when: going in circles debugging, need to investigate browser/API interactions, complex bugs resisting normal debugging, or when symptoms don't match expectations. |
-| **dev-tools** | Essential development workflow agents for code review, debugging, testing, documentation, and git operations. Triggers: `step` |
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **create-agents** | Design and build custom Claude Code agents with effective descriptions, tool access patterns, and delegation strategies. Triggers: `create agent`, `custom agent`, `build agent`, `agent description` | ✅ Operational |
+| **power-debug** | Multi-agent investigation for stubborn bugs. Use when: going in circles debugging, need to investigate browser/API interactions, complex bugs resisting normal debugging, or when symptoms don't match expectations. | ✅ Operational |
+| **dev-tools** | Essential development workflow agents for code review, debugging, testing, documentation, and git operations. Triggers: `step` | ✅ Operational |
 
 ### Backend & Frameworks (6 skills)
 
