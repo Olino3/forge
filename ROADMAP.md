@@ -12,7 +12,7 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 | Component | Count | Status |
 |-----------|-------|--------|
-| **Skills** | 234 | ✅ 22 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
+| **Skills** | 240 | ✅ 28 Forge + 212 external (Vercel, Google Labs, Microsoft, Sentry, Trail of Bits) — current snapshot, subject to change |
 | **Commands** | 12 | ✅ All operational, interface-based |
 | **Agents** | 19 | ✅ 12 Olympian + 7 specialist, all with config.json |
 | **Context Files** | 81 | ✅ 9 domains, all with YAML frontmatter |
@@ -43,6 +43,8 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 **Data Science** — excel-skills · jupyter-notebook-skills
 
 **Meta** — generate-more-skills-with-claude
+
+**Quality & Security** — code-documenter · code-reviewer · debugging-expert · secure-code · security-reviewer · testing
 
 ### The War Room (Active Commands)
 
@@ -184,16 +186,16 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 | **sre-engineer** | Site reliability engineering, observability, and incident response |
 | **terraform-engineer** | Infrastructure as Code with Terraform across cloud providers |
 
-### Quality & Security (6 skills)
+### Quality & Security (6 skills) ✅
 
-| Skill | Description |
-|-------|-------------|
-| **code-documenter** | Technical documentation, API docs, and code comments |
-| **code-reviewer** | Code review best practices and quality assessment |
-| **debugging-expert** | Advanced debugging techniques across languages and platforms |
-| **secure-code** | Secure coding practices and vulnerability prevention |
-| **security-reviewer** | Security audits, threat modeling, and compliance |
-| **testing** | Comprehensive testing strategies: unit, integration, E2E |
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **code-documenter** | Technical documentation, API docs, and code comments | ✅ Forged |
+| **code-reviewer** | Code review best practices and quality assessment | ✅ Forged |
+| **debugging-expert** | Advanced debugging techniques across languages and platforms | ✅ Forged |
+| **secure-code** | Secure coding practices and vulnerability prevention | ✅ Forged |
+| **security-reviewer** | Security audits, threat modeling, and compliance | ✅ Forged |
+| **testing** | Comprehensive testing strategies: unit, integration, E2E | ✅ Forged |
 
 ### Specialized (10 skills)
 
