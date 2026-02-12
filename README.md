@@ -238,7 +238,7 @@ forge/
 └── forge-plugin/                # The Forge Plugin
     ├── agents/                  # 11 agents (.md + .config.json each)
     ├── skills/                  # 22 skills (SKILL.md + examples.md each)
-    ├── commands/                # 12 commands (COMMAND.md + examples.md each)
+    ├── commands/                # 12 commands (flat .md files + _docs/ for examples)
     ├── context/                 # 81 files across 9 domains
     ├── memory/                  # 4-layer project learning
     ├── hooks/                   # 20 automated handlers + hooks.json
