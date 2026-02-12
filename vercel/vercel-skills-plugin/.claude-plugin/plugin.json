@@ -1,0 +1,23 @@
+{
+  "name": "vercel-skills",
+  "version": "1.0.0",
+  "description": "Vercel agent skills for React, React Native, composition patterns, and web design. Includes best practices for component architecture, state management, and modern React patterns.",
+  "author": {
+    "name": "Vercel",
+    "email": "support@vercel.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/vercel/agent-skills",
+  "repository": "https://github.com/vercel/agent-skills",
+  "keywords": [
+    "react",
+    "react-native",
+    "composition",
+    "design",
+    "vercel",
+    "best-practices",
+    "patterns",
+    "web-design"
+  ],
+  "category": "framework"
+}
