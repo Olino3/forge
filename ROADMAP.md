@@ -12,7 +12,7 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 | Component | Count | Status |
 |-----------|-------|--------|
-| **Skills** | 22 | ✅ All operational, interface-based |
+| **Skills** | 26 | ✅ All operational, interface-based |
 | **Commands** | 12 | ✅ All operational, interface-based |
 | **Agents** | 19 | ✅ 12 Olympian + 7 specialist, all with config.json |
 | **Context Files** | 81 | ✅ 9 domains, all with YAML frontmatter |
@@ -40,6 +40,8 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 **Productivity** — commit-helper · email-writer · slack-message-composer · documentation-generator
 
 **Data Science** — excel-skills · jupyter-notebook-skills
+
+**Data & Database** — database-optimizer · pandas · postgres · sql
 
 **Meta** — generate-more-skills-with-claude
 
@@ -155,14 +157,14 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 | **javascript** | Advanced JavaScript patterns, ES2024+, and runtime optimization |
 | **typescript** | TypeScript advanced types, generics, and strict configuration |
 
-### Data & Database (4 skills)
+### Data & Database (4 skills) — ✅ Forged
 
-| Skill | Description |
-|-------|-------------|
-| **database-optimizer** | SQL query optimization, indexing, and performance tuning |
-| **pandas** | Advanced data manipulation and analysis with pandas |
-| **postgres** | PostgreSQL administration, optimization, and advanced features |
-| **sql** | Expert SQL across multiple database engines |
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **database-optimizer** | SQL query optimization, indexing, and performance tuning | ✅ Operational |
+| **pandas** | Advanced data manipulation and analysis with pandas | ✅ Operational |
+| **postgres** | PostgreSQL administration, optimization, and advanced features | ✅ Operational |
+| **sql** | Expert SQL across multiple database engines | ✅ Operational |
 
 ### Architecture & Design (4 skills)
 
