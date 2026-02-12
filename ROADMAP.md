@@ -12,7 +12,7 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 | Component | Count | Status |
 |-----------|-------|--------|
-| **Skills** | 22 | ✅ All operational, interface-based |
+| **Skills** | 26 | ✅ All operational, interface-based |
 | **Commands** | 12 | ✅ All operational, interface-based |
 | **Agents** | 19 | ✅ 12 Olympian + 7 specialist, all with config.json |
 | **Context Files** | 81 | ✅ 9 domains, all with YAML frontmatter |
@@ -164,14 +164,14 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 | **postgres** | PostgreSQL administration, optimization, and advanced features |
 | **sql** | Expert SQL across multiple database engines |
 
-### Architecture & Design (4 skills)
+### Architecture & Design (4 skills) — ✅ Forged
 
-| Skill | Description |
-|-------|-------------|
-| **api-design** | RESTful and RPC API design patterns and best practices |
-| **architecture-design** | Software architecture patterns and system design |
-| **graphql-design** | GraphQL schema design, resolvers, and federation |
-| **microservices-design** | Microservices patterns, orchestration, and service mesh |
+| Skill | Description | Status |
+|-------|-------------|--------|
+| **api-design** | RESTful and RPC API design patterns and best practices | ✅ Forged |
+| **architecture-design** | Software architecture patterns and system design | ✅ Forged |
+| **graphql-design** | GraphQL schema design, resolvers, and federation | ✅ Forged |
+| **microservices-design** | Microservices patterns, orchestration, and service mesh | ✅ Forged |
 
 ### Cloud & Infrastructure (5 skills)
 
@@ -485,6 +485,7 @@ Current state and recent milestones:
 
 | Date | Milestone |
 |------|-----------|
+| **Feb 12, 2026** | Architecture & Design Skills — Forged 4 skills (api-design, architecture-design, graphql-design, microservices-design) with 100 tests |
 | **Feb 12, 2026** | Roadmap Expansion — Added `/divine` command and 4 new hook events for memory/context integration |
 | **Feb 12, 2026** | Factory Stable — 22 skills, 12 commands, 11 agents, 81 context files, 20 hooks, ~1,683 tests |
 | **Feb 11, 2026** | Enterprise Skills Catalog — Documented 173 skills from Vercel, Google Labs, Trail of Bits, Microsoft, Anthropic, Sentry |
