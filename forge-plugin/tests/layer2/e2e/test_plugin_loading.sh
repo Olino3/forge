@@ -59,7 +59,6 @@ info "Checking plugin manifest fields..."
 if [ -f "$MANIFEST" ]; then
     NAME=$(jq -r '.name // empty' "$MANIFEST")
     VERSION=$(jq -r '.version // empty' "$MANIFEST")
-    COMMANDS=$(jq -r '.commands // empty' "$MANIFEST")
 
     if [ -n "$NAME" ]; then
         pass "Plugin name: ${NAME}"
@@ -75,30 +74,37 @@ if [ -f "$MANIFEST" ]; then
         FAILED=1
     fi
 
-    if [ "$COMMANDS" != "null" ] && [ -n "$COMMANDS" ]; then
-        CMD_COUNT=$(jq '.commands | length' "$MANIFEST")
-        pass "Plugin has ${CMD_COUNT} commands registered"
+    # Commands field should NOT be present (discovered from filesystem)
+    COMMANDS=$(jq -r '.commands // "null"' "$MANIFEST")
+    if [ "$COMMANDS" = "null" ]; then
+        pass "Plugin correctly omits 'commands' field (discovered from filesystem)"
     else
-        fail "Plugin missing 'commands' field"
-        FAILED=1
+        warn "Plugin has 'commands' field but it should be discovered from filesystem"
     fi
 fi
 
-# --- Test 3: All command paths resolve ---
-info "Checking command path resolution..."
-if [ -f "$MANIFEST" ]; then
-    CMD_NAMES=$(jq -r '.commands | keys[]' "$MANIFEST" 2>/dev/null)
-    for cmd in $CMD_NAMES; do
-        CMD_PATH=$(jq -r ".commands[\"${cmd}\"]" "$MANIFEST")
-        FULL_PATH="${PLUGIN_DIR}/${CMD_PATH}"
-        if [ -f "$FULL_PATH" ]; then
-            pass "Command '/${cmd}' → ${CMD_PATH}"
+# --- Test 3: Command directories exist ---
+info "Checking command directories exist..."
+EXPECTED_COMMANDS=(
+    "analyze" "implement" "improve" "document" "test" "build"
+    "brainstorm" "remember" "mock" "azure-pipeline" "etl-pipeline" "azure-function"
+)
+
+for cmd in "${EXPECTED_COMMANDS[@]}"; do
+    CMD_DIR="${PLUGIN_DIR}/commands/${cmd}"
+    if [ -d "$CMD_DIR" ]; then
+        CMD_FILE="${CMD_DIR}/COMMAND.md"
+        if [ -f "$CMD_FILE" ]; then
+            pass "Command directory and COMMAND.md exist: commands/${cmd}/"
         else
-            fail "Command '/${cmd}' references missing file: ${CMD_PATH}"
+            fail "Command directory exists but COMMAND.md missing: commands/${cmd}/"
             FAILED=1
         fi
-    done
-fi
+    else
+        fail "Command directory missing: commands/${cmd}/"
+        FAILED=1
+    fi
+done
 
 # --- Test 4: Try loading plugin via claude CLI (if available) ---
 info "Attempting plugin load via claude CLI..."
