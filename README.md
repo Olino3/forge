@@ -222,7 +222,7 @@ bash tests/run_all.sh --layer2  # Layer 1 + Layer 2
 bash tests/run_all.sh --e2e     # Everything
 ```
 
-CI runs automatically via GitHub Actions on every push/PR. See [TESTING_ROADMAP.md](TESTING_ROADMAP.md) for the full testing architecture.
+CI runs automatically via GitHub Actions on every push/PR.
 
 ---
 
@@ -233,7 +233,6 @@ forge/
 ├── CLAUDE.md                    # The Forge Operating Manual (for Claude Code)
 ├── README.md                    # This file
 ├── ROADMAP.md                   # Vision and changelog
-├── TESTING_ROADMAP.md           # Testing architecture and specifications
 ├── CONTRIBUTING.md              # How to contribute
 ├── LICENSE                      # MIT License
 └── forge-plugin/                # The Forge Plugin

@@ -49,117 +49,6 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 ---
 
-## What's Been Forged
-
-### Phase 5 — Optimization & Hardening ✅
-
-Refined the interface layer for robustness and performance.
-
-- [x] Three-tier cached context provider with session-scoped invalidation
-- [x] Shared loading patterns replacing 15-35 lines/skill with ~5 lines
-- [x] Deprecation rules for legacy patterns with detection regex
-- [x] Future adapter designs: SQLite, Context7 MCP, VectorStore
-
-### Phase 6 — The Anvil (Hooks & Automated Reinforcement) ✅
-
-Expanded the hook system from 5 legacy scripts to **20 registered handlers across 9 events**, organized into 4 thematic layers with comprehensive security, memory hygiene, workflow enforcement, and health reporting.
-
-**🛡️ The Shield — Security & Initialization (5 hooks)**
-- [x] `root_agent_validator` — Validate root session safety config on start
-- [x] `dependency_sentinel` — Block malicious/typosquatted package installs
-- [x] `git_hygiene_enforcer` — Enforce branch naming, conventional commits, block pushes to main
-- [x] `sandbox_boundary_guard` — Prevent file operations outside project directory
-- [x] `pii_redactor` — Sanitize PII from user input before model context
-
-**📜 The Chronicle — Memory & Learning (4 hooks)**
-- [x] `memory_freshness_enforcer` — Auto-flag stale memory (>90 days) with system notifications
-- [x] `memory_cross_pollinator` — Propagate critical findings to shared project memory
-- [x] `memory_quality_gate` — Validate memory entries on write via `memoryStore.validate()`
-- [x] `memory_pruning_daemon` — Batch-prune memory files post-session to enforce line limits
-
-**👷 The Foreman — Workflow & Quality (8 hooks)**
-- [x] `skill_compliance_checker` — Audit skill invocations for mandatory workflow step compliance
-- [x] `agent_config_validator` — Validate agent config.json against schema before spawn
-- [x] `context_drift_detector` — Detect dependency changes that conflict with loaded context
-- [x] `frontmatter_validator` — Enforce YAML frontmatter schema on context file edits
-- [x] `output_quality_scorer` — Score skill output completeness and actionability
-- [x] `command_chain_context` — Persist ExecutionContext between chained commands
-- [x] `pre_commit_quality` — Block commits with secrets or `/claudedocs` files
-- [x] `output_archival` — Archive skill output with manifest tracking
-
-**📢 The Town Crier — Operational & Telemetry (3 hooks)**
-- [x] `forge_telemetry` — Aggregate session stats (skills, memory writes, token usage)
-- [x] `context_usage_tracker` — Identify unreferenced/over-used context files
-- [x] `system_health_emitter` — Aggregate all hook warnings into single `[System Health]` block
-
-### Phase 7 — The Grand Reforging (Documentation & Identity) ✅
-
-Complete documentation rewrite to reflect the Factory's mature architecture.
-
-- [x] `CLAUDE.md` — Rewritten as the Forge Operating Manual
-- [x] `copilot-instructions.md` — Rewritten as the Contributor's Codex
-- [x] `CONTRIBUTING.md` — Comprehensive contribution guide
-- [x] `LICENSE` — MIT License
-- [x] `ROADMAP.md` — Living vision document (this file)
-- [x] `README.md` — Public-facing showcase of the Software Factory
-
-### Phase 8 — The Proving Grounds (Testing Architecture) 🔨
-
-Layered testing architecture validating the entire plugin — from static file structure to runtime hook behavior — using only bash, python3, and optionally shellcheck. See `TESTING_ROADMAP.md` for full specifications.
-
-**Phase 1 — Foundation & Infrastructure ✅**
-- [x] `tests/conftest.py` — Shared pytest config with FORGE_DIR resolution, YAML frontmatter extraction, JSON loader
-- [x] `tests/pytest.ini` — Pytest configuration with markers
-- [x] `tests/run_all.sh` — Master test runner with `--layer2`/`--e2e` flags
-- [x] `tests/layer1/run_layer1.sh` — Layer 1 specific runner
-- [x] `test_json_schemas.py` — All 11 agent configs + hooks.json + plugin.json + safety profile validated against schemas (170 tests)
-- [x] `test_file_structure.py` — Agent file pairing, skill/command directory conventions, structural integrity
-- [x] `test_hook_syntax.sh` — Shebang, strict mode, `bash -n` syntax, executable permissions (96 checks)
-
-**Phase 2 — Static Validation (Context, Memory, Cross-References) ✅**
-- [x] `test_yaml_frontmatter.py` — All 81 context files validated against `context_metadata.schema.json` (813 tests)
-- [x] `test_cross_references.py` — Referential integrity: agent→skill, agent→domain, agent→memory, hooks.json→scripts, plugin→commands
-- [x] `test_hooks_registration.py` — Registration completeness, duplicate detection, known unregistered script tracking
-- [x] `test_memory_structure.py` — Directory structure, timestamp formats, line limit enforcement
-- [x] `test_plugin_manifest.py` — All 12 commands validated, path resolution, convention compliance
-- [x] `test_shellcheck.sh` — Bash linting at warning level (graceful skip if shellcheck absent)
-
-**Summary**: ~1,300 static validation tests across 10 test files (1,131 pytest + 96 bash + shellcheck)
-
-**Phase 3 — Hook Test Harness + Shield Layer Tests ✅**
-- [x] `layer2/hooks/hook_helpers.py` — HookRunner, HookResult, TempForgeEnvironment classes with path resolution constants
-- [x] `layer2/hooks/conftest.py` — Pytest fixtures (hook_runner, temp_forge_env, forge_dir, repo_root)
-- [x] `fixtures/hook_inputs/*.json` — 18 fixture files covering PreToolUse (Read, Write, Edit, Bash) and UserPromptSubmit events
-- [x] `test_sandbox_boundary_guard.py` — Project path allow/deny, sensitive files, bash dangerous paths/patterns (66 tests)
-- [x] `test_pii_redactor.py` — Email, SSN, AWS keys, GitHub tokens, private keys, phone numbers, multi-PII (23 tests)
-- [x] `test_dependency_sentinel.py` — pip/npm/yarn allow/deny, typosquats, malicious packages, deny list validation (54 tests)
-- [x] `test_git_hygiene_enforcer.py` — Push protection, force push, conventional commits, secrets in staged diffs (42 tests)
-- [x] `test_pre_commit_quality.py` — Staged secrets, claudedocs, SKILL.md version history, memory absolute paths (23 tests)
-
-**Summary**: ~1,508 total tests (1,131 Layer 1 pytest + 96 bash + shellcheck + 208 Layer 2 hook integration)
-
-**Phase 4 — Chronicle, Foreman & Town Crier Hook Tests ✅**
-- [x] `test_health_buffer_lib.py` — health_buffer.sh shared library: append, flush, max-line cap, init (10 tests)
-- [x] `test_memory_freshness_enforcer.py` — Memory age classification: fresh/aging/stale/missing timestamp, operational skip (17 tests)
-- [x] `test_memory_quality_gate.py` — Timestamp injection, line limits, vague entry & absolute path detection (15 tests)
-- [x] `test_memory_cross_pollinator.py` — Critical/Security/Breaking/Performance section propagation (10 tests)
-- [x] `test_memory_pruning_daemon.py` — Line-limit pruning (200/300/500), header preservation, operational skip (9 tests)
-- [x] `test_frontmatter_validator.py` — Domain/type/strategy enum validation, missing fields, special file skip (18 tests)
-- [x] `test_agent_config_validator.py` — Real agent configs, built-in agent skip, informational-only (11 tests)
-- [x] `test_skill_compliance_checker.py` — 6-step workflow compliance, compliant/non-compliant sessions (9 tests)
-- [x] `test_output_quality_scorer.py` — Claudedocs scoring (Completeness/Actionability/Formatting/Naming), metadata append (9 tests)
-- [x] `test_context_drift_detector.py` — Dependency file recognition, missing conflicts file handling (11 tests)
-- [x] `test_command_chain_context.py` — chain_state.json creation, command chaining, session reset (11 tests)
-- [x] `test_output_archival.py` — Archive creation, manifest tracking, standalone script execution (6 tests)
-- [x] `test_root_agent_validator.py` — Real structure validation, component counts, .forge creation (7 tests)
-- [x] `test_system_health_emitter.py` — Buffer seeding, flush+emit cycle, empty buffer handling (7 tests)
-- [x] `test_forge_telemetry.py` — Metrics extraction (tool calls, skills, memory, context, commands), telemetry logging (13 tests)
-- [x] `test_context_usage_tracker.py` — Context usage analysis, waste estimation, telemetry logging (12 tests)
-
-**Summary**: ~1,683 total tests (1,131 Layer 1 pytest + 96 bash + shellcheck + 208 Phase 3 + 175 Phase 4 hook integration)
-
----
-
 ## Planned Agents
 
 > *"The remaining Olympians await their summons — each divine power destined for its domain."*
@@ -618,29 +507,14 @@ The complete pantheon of the Twelve Olympians, each embodying a core aspect of t
 
 ## Forge Chronicle
 
-Key milestones in the Factory's history:
+Current state and recent milestones:
 
 | Date | Milestone |
 |------|-----------|
-| **Feb 11, 2026** | Olympian Council Expansion — Planned 8 remaining Olympian agents (Zeus, Hera, Athena, Apollo, Artemis, Aphrodite, Hermes, Demeter) |
+| **Feb 12, 2026** | Factory Stable — 22 skills, 12 commands, 11 agents, 81 context files, 20 hooks, ~1,683 tests |
 | **Feb 11, 2026** | Enterprise Skills Catalog — Documented 173 skills from Vercel, Google Labs, Trail of Bits, Microsoft, Anthropic, Sentry |
-| **Feb 12, 2026** | Phase 8 — The Proving Grounds (Phase 1+2) — ~1,300 static validation tests across 10 test files |
-| **Feb 11, 2026** | Testing Roadmap — Comprehensive testing architecture with 6 phases and ~300 tests planned |
 | **Feb 11, 2026** | Community Skills Catalog — Documented 99+ planned skills across 15 domains |
-| **Feb 11, 2026** | Phase 7 — The Grand Reforging — Complete documentation rewrite |
-| **Feb 11, 2026** | Phase 6 — The Anvil — 20 hooks across 9 events and 4 layers |
-| **Feb 11, 2026** | Phase 5 — Optimization & Hardening — Cached context, shared patterns, future adapters |
-| **Feb 10, 2026** | Phase 4 — Interface migration complete (22 skills, 12 commands, 11 agents migrated) |
 | **Feb 10, 2026** | MCP Integration — 8 external knowledge conduits connected |
-| **Feb 10, 2026** | Infrastructure — Hooks, loading protocol, memory lifecycle, quality guidance |
-| **Feb 10, 2026** | Commands Phase 2 — 5 new commands (/remember, /mock, /azure-pipeline, /etl-pipeline, /azure-function) |
-| **Feb 9, 2026** | Commands Phase 1 — 7 commands (/analyze, /implement, /improve, /document, /test, /build, /brainstorm) |
-| **Feb 9, 2026** | Divine Council — 4 Olympian agents summoned (Hephaestus, Prometheus, Ares, Poseidon) |
-| **Feb 9, 2026** | Specialist agents — Python Engineer, Frontend Engineer, Developer Environment Engineer |
-| **Feb 9, 2026** | Meta-skill — generate-more-skills-with-claude for autonomous skill creation |
-| **Feb 6, 2026** | Data Science & Productivity — 6 skills (excel, jupyter, commit-helper, email, slack, docs) |
-| **Feb 6, 2026** | Dev Environment — generate-tilt-dev-environment, generate-mock-service |
-| **Feb 6, 2026** | Schema Analysis — file-schema-analysis, database-schema-analysis |
 | **Nov 18, 2025** | Azure Functions — generate-azure-functions with Tilt + Azurite |
 | **Nov 14, 2025** | .NET Code Review — dotnet-code-review with 12 context files |
 
