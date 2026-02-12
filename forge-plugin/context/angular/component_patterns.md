@@ -5,7 +5,7 @@ title: "Angular Component Patterns - Quick Reference"
 type: pattern
 estimatedTokens: 1250
 loadingStrategy: onDemand
-version: "0.1.0-alpha"
+version: "0.2.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: "Smart vs Presentational Components"
@@ -194,6 +194,6 @@ Review focus:
 
 ---
 
-**Version**: 0.1.0-alpha (Compact Reference Format)
+**Version**: 0.2.0-alpha (Compact Reference Format)
 **Last Updated**: 2025-11-14
 **Angular Versions**: 2-18+

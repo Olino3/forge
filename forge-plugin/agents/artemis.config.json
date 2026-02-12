@@ -1,7 +1,7 @@
 {
   "$schema": "../interfaces/schemas/agent_config.schema.json",
   "name": "artemis",
-  "version": "0.1.0-alpha",
+  "version": "0.2.0-alpha",
   "description": "Goddess of the hunt and testing excellence. Master of tracking down bugs, designing test strategies, and ensuring code integrity",
   "model": "sonnet",
   "tools": ["Read", "Write", "Bash", "Grep", "Glob"],

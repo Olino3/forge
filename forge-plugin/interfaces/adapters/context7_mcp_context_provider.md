@@ -1,6 +1,6 @@
 # Context7 MCP Context Provider Adapter
 
-**Version**: 0.1.0-alpha
+**Version**: 0.2.0-alpha
 **Status**: Future Adapter Specification (Design Only)
 **Implements**: [`context_provider.md`](../context_provider.md) (ContextProvider interface)
 

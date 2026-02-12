@@ -5,7 +5,7 @@ title: "FastAPI Patterns and Best Practices"
 type: framework
 estimatedTokens: 400
 loadingStrategy: onDemand
-version: "0.1.0-alpha"
+version: "0.2.0-alpha"
 lastUpdated: "2025-11-14"
 maintainedFor: "python-code-review"
 sections:
@@ -182,6 +182,6 @@ async def create_item(item: Item):
 
 ---
 
-**Version**: 0.1.0-alpha (Compacted)
+**Version**: 0.2.0-alpha (Compacted)
 **Last Updated**: 2025-11-14
 **Maintained For**: python-code-review skill

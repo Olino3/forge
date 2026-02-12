@@ -1,7 +1,7 @@
 {
   "$schema": "../interfaces/schemas/agent_config.schema.json",
   "name": "zeus",
-  "version": "0.1.0-alpha",
+  "version": "0.2.0-alpha",
   "description": "King of the gods and orchestrator of multi-agent workflows. Master of delegation, coordination, and complex engineering initiatives",
   "model": "sonnet",
   "tools": ["Read", "Write", "Bash", "Grep", "Glob"],

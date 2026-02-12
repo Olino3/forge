@@ -5,7 +5,7 @@ title: "Common Python Issues and Anti-Patterns"
 type: always
 estimatedTokens: 350
 loadingStrategy: always
-version: "0.1.0-alpha"
+version: "0.2.0-alpha"
 lastUpdated: "2025-11-14"
 maintainedFor: "python-code-review"
 sections:
@@ -167,6 +167,6 @@ list = [1, 2, 3]  # Shadows built-in 'list'
 
 ---
 
-**Version**: 0.1.0-alpha (Compacted)
+**Version**: 0.2.0-alpha (Compacted)
 **Last Updated**: 2025-11-14
 **Maintained For**: python-code-review skill

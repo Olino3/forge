@@ -1,7 +1,7 @@
 {
   "$schema": "../interfaces/schemas/agent_config.schema.json",
   "name": "hephaestus",
-  "version": "0.1.0-alpha",
+  "version": "0.2.0-alpha",
   "description": "Chief artificer and tool creator. Master craftsman specializing in forging new skills, creating custom tools, and extending the Forge",
   "model": "sonnet",
   "tools": ["Read", "Write", "Bash", "Grep", "Glob"],
