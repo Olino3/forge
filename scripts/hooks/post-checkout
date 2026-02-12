@@ -1,0 +1,20 @@
+#!/bin/bash
+# .git/hooks/post-checkout
+# Triggered after: git checkout, git clone
+# Auto-updates submodules and verifies symlinks
+
+# Only run for branch checkouts, not file checkouts
+if [ "$3" == "1" ]; then
+    echo "🔗 Forge: Checking dependencies after checkout..."
+    
+    # Update submodules
+    git submodule update --init --recursive --quiet
+    
+    # Verify symlinks (optional - comment out if too slow)
+    FORGE_ROOT="$(git rev-parse --show-toplevel)"
+    if [ -f "$FORGE_ROOT/scripts/verify-symlinks.sh" ]; then
+        if ! bash "$FORGE_ROOT/scripts/verify-symlinks.sh" 2>/dev/null | grep -q "All .* symlinks are healthy"; then
+            echo "⚠️  Broken symlinks detected. Run: ./scripts/fix-symlinks.sh"
+        fi
+    fi
+fi
