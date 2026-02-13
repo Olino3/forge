@@ -39,7 +39,7 @@ For hooks under `forge-plugin/hooks/`:
 
 1. `set -euo pipefail` is present in each `.sh`.
 2. Optional grep-like checks fail safely when no matches are found.
-3. Hooks using health reporting source `forge-plugin/hooks/lib/health_buffer.sh`.
+3. Hooks using health reporting should source `forge-plugin/hooks/lib/health_buffer.sh`.
 4. No long-running or blocking patterns that violate the <5s design target.
 5. Hook scripts are registered in `forge-plugin/hooks/hooks.json`.
 6. Hook behavior is documented in `forge-plugin/hooks/HOOKS_GUIDE.md`.
