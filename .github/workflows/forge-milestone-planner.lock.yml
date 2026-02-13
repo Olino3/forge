@@ -19,7 +19,7 @@
 #   gh aw compile
 # For more information: https://github.com/github/gh-aw/blob/main/.github/aw/github-agentic-workflows.md
 #
-# Generate release notes from merged PRs for tags and published releases
+# Plan features and bugfixes for newly created milestones; create feature issues and associate existing issues
 #
 # Resolved workflow manifest:
 #   Imports:
@@ -27,25 +27,21 @@
 #     - shared/forge-conventions.md
 #     - shared/forge-issue-creator.md
 #
-# frontmatter-hash: bf55640eb2dcfa055aeda3cb64e247c468bbdc4522d2cfe3b0ed7b0579953e2a
+# frontmatter-hash: b52c9468d40d92471c2fd6cd088a1a2a603f2665b2657149eab9cfa498038d0a
 
-name: "Forge Release Notes Generator"
+name: "Forge Milestone Planner"
 "on":
-  push:
-    tags:
-    - v*
-    - release-*
-  release:
+  milestone:
     types:
-    - published
+    - created
   workflow_dispatch:
 
 permissions: {}
 
 concurrency:
-  group: "gh-aw-${{ github.workflow }}-${{ github.ref }}"
+  group: "gh-aw-${{ github.workflow }}"
 
-run-name: "Forge Release Notes Generator"
+run-name: "Forge Milestone Planner"
 
 jobs:
   activation:
@@ -65,7 +61,7 @@ jobs:
       - name: Check workflow file timestamps
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
-          GH_AW_WORKFLOW_FILE: "forge-release-notes-generator.lock.yml"
+          GH_AW_WORKFLOW_FILE: "forge-milestone-planner.lock.yml"
         with:
           script: |
             const { setupGlobals } = require('/opt/gh-aw/actions/setup_globals.cjs');
@@ -80,6 +76,8 @@ jobs:
       contents: read
       issues: read
       pull-requests: read
+    concurrency:
+      group: "gh-aw-copilot-${{ github.workflow }}"
     env:
       DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
       GH_AW_ASSETS_ALLOWED_EXTS: ""
@@ -146,7 +144,7 @@ jobs:
               version: "",
               agent_version: "0.0.407",
               cli_version: "v0.43.15",
-              workflow_name: "Forge Release Notes Generator",
+              workflow_name: "Forge Milestone Planner",
               experimental: false,
               supports_tools_allowlist: true,
               supports_http_transport: true,
@@ -204,12 +202,12 @@ jobs:
           mkdir -p /tmp/gh-aw/safeoutputs
           mkdir -p /tmp/gh-aw/mcp-logs/safeoutputs
           cat > /opt/gh-aw/safeoutputs/config.json << 'GH_AW_SAFE_OUTPUTS_CONFIG_EOF'
-          {"create_issue":{"expires":720,"max":1},"missing_data":{},"missing_tool":{},"noop":{"max":1}}
+          {"create_issue":{"expires":720,"max":5},"missing_data":{},"missing_tool":{},"noop":{"max":1}}
           GH_AW_SAFE_OUTPUTS_CONFIG_EOF
           cat > /opt/gh-aw/safeoutputs/tools.json << 'GH_AW_SAFE_OUTPUTS_TOOLS_EOF'
           [
             {
-              "description": "Create a new GitHub issue for tracking bugs, feature requests, or tasks. Use this for actionable work items that need assignment, labeling, and status tracking. For reports, announcements, or status updates that don't require task tracking, use create_discussion instead. CONSTRAINTS: Maximum 1 issue(s) can be created. Title will be prefixed with \"[release-notes] \". Labels [forge-automation release notes] will be automatically added.",
+              "description": "Create a new GitHub issue for tracking bugs, feature requests, or tasks. Use this for actionable work items that need assignment, labeling, and status tracking. For reports, announcements, or status updates that don't require task tracking, use create_discussion instead. CONSTRAINTS: Maximum 5 issue(s) can be created. Title will be prefixed with \"[Feature] \". Labels [forge-automation milestone-feature planning] will be automatically added.",
               "inputSchema": {
                 "additionalProperties": false,
                 "properties": {
@@ -564,7 +562,7 @@ jobs:
           {{#runtime-import .github/workflows/shared/forge-conventions.md}}
           GH_AW_PROMPT_EOF
           cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
-          {{#runtime-import .github/workflows/forge-release-notes-generator.md}}
+          {{#runtime-import .github/workflows/forge-milestone-planner.md}}
           GH_AW_PROMPT_EOF
       - name: Substitute placeholders
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
@@ -809,7 +807,7 @@ jobs:
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
           GH_AW_NOOP_MAX: 1
-          GH_AW_WORKFLOW_NAME: "Forge Release Notes Generator"
+          GH_AW_WORKFLOW_NAME: "Forge Milestone Planner"
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
@@ -822,7 +820,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Forge Release Notes Generator"
+          GH_AW_WORKFLOW_NAME: "Forge Milestone Planner"
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
@@ -835,10 +833,10 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Forge Release Notes Generator"
+          GH_AW_WORKFLOW_NAME: "Forge Milestone Planner"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
-          GH_AW_WORKFLOW_ID: "forge-release-notes-generator"
+          GH_AW_WORKFLOW_ID: "forge-milestone-planner"
           GH_AW_SECRET_VERIFICATION_RESULT: ${{ needs.agent.outputs.secret_verification_result }}
           GH_AW_CHECKOUT_PR_SUCCESS: ${{ needs.agent.outputs.checkout_pr_success }}
         with:
@@ -853,7 +851,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Forge Release Notes Generator"
+          GH_AW_WORKFLOW_NAME: "Forge Milestone Planner"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
           GH_AW_NOOP_MESSAGE: ${{ steps.noop.outputs.noop_message }}
@@ -873,7 +871,7 @@ jobs:
           GH_AW_COMMENT_ID: ${{ needs.activation.outputs.comment_id }}
           GH_AW_COMMENT_REPO: ${{ needs.activation.outputs.comment_repo }}
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          GH_AW_WORKFLOW_NAME: "Forge Release Notes Generator"
+          GH_AW_WORKFLOW_NAME: "Forge Milestone Planner"
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
           GH_AW_DETECTION_CONCLUSION: ${{ needs.detection.result }}
         with:
@@ -889,6 +887,8 @@ jobs:
     if: needs.agent.outputs.output_types != '' || needs.agent.outputs.has_patch == 'true'
     runs-on: ubuntu-latest
     permissions: {}
+    concurrency:
+      group: "gh-aw-copilot-${{ github.workflow }}"
     timeout-minutes: 10
     outputs:
       success: ${{ steps.parse_results.outputs.success }}
@@ -917,8 +917,8 @@ jobs:
       - name: Setup threat detection
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
-          WORKFLOW_NAME: "Forge Release Notes Generator"
-          WORKFLOW_DESCRIPTION: "Generate release notes from merged PRs for tags and published releases"
+          WORKFLOW_NAME: "Forge Milestone Planner"
+          WORKFLOW_DESCRIPTION: "Plan features and bugfixes for newly created milestones; create feature issues and associate existing issues"
           HAS_PATCH: ${{ needs.agent.outputs.has_patch }}
         with:
           script: |
@@ -1017,8 +1017,8 @@ jobs:
     timeout-minutes: 15
     env:
       GH_AW_ENGINE_ID: "copilot"
-      GH_AW_WORKFLOW_ID: "forge-release-notes-generator"
-      GH_AW_WORKFLOW_NAME: "Forge Release Notes Generator"
+      GH_AW_WORKFLOW_ID: "forge-milestone-planner"
+      GH_AW_WORKFLOW_NAME: "Forge Milestone Planner"
     outputs:
       create_discussion_error_count: ${{ steps.process_safe_outputs.outputs.create_discussion_error_count }}
       create_discussion_errors: ${{ steps.process_safe_outputs.outputs.create_discussion_errors }}
@@ -1045,7 +1045,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_SAFE_OUTPUTS_HANDLER_CONFIG: "{\"create_issue\":{\"expires\":720,\"labels\":[\"forge-automation\",\"release\",\"notes\"],\"max\":1,\"title_prefix\":\"[release-notes] \"},\"missing_data\":{},\"missing_tool\":{}}"
+          GH_AW_SAFE_OUTPUTS_HANDLER_CONFIG: "{\"create_issue\":{\"expires\":720,\"labels\":[\"forge-automation\",\"milestone-feature\",\"planning\"],\"max\":5,\"title_prefix\":\"[Feature] \"},\"missing_data\":{},\"missing_tool\":{}}"
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |

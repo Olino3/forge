@@ -2,7 +2,7 @@
 
 > *"The tireless automatons of Hephaestus's workshop never sleep — they sweep the forge floor, sharpen every blade, and polish each shield while the gods rest."*
 
-This guide explains, in plain language, how The Forge's **19 agentic workflows** work alongside you as a contributor. No deep infrastructure knowledge required — just an understanding of PRs, issues, and releases.
+This guide explains, in plain language, how The Forge's **20 agentic workflows** work alongside you as a contributor. No deep infrastructure knowledge required — just an understanding of PRs, issues, and releases.
 
 ---
 
@@ -381,7 +381,7 @@ The release notes are a **draft** — you copy them into the GitHub Release desc
 
 ## The Complete Workflow Catalog
 
-All 19 workflows at a glance, organized by when they run:
+All 20 workflows at a glance, organized by when they run:
 
 ### Event-triggered workflows (run when something happens)
 
@@ -394,6 +394,7 @@ All 19 workflows at a glance, organized by when they run:
 | **Best Practices Improver** | PR to `develop` | Draft PR (on your branch) | Alignment with Claude Code best practices |
 | **Context Generator** | Push to `main` (post-merge) | Draft PR | Missing context files for new skills |
 | **Issue Triage Agent** | Issue opened/reopened | Issue | Labels, priority, assignment recommendations |
+| **Milestone Planner** | Milestone created | Issue (multiple) | Feature decomposition and issue association |
 | **Release Notes Generator** | Tag push or release publish | Issue | Categorized changelog from merged PRs |
 
 ### Scheduled workflows (run on a timer)
@@ -426,6 +427,7 @@ Every workflow output is labeled and prefixed:
 | `[duplication]` | Duplication Detector | Repeated content |
 | `[context-maintenance]` | Context Pruner | Stale/broken context |
 | `[triage]` | Issue Triage Agent | Intake recommendation |
+| `[Feature]` | Milestone Planner | Feature decomposition |
 | `[milestone]` | Milestone Tracker | Progress report |
 | `[pm]` | Project Manager Agent | Roadmap execution plan |
 | `[stale]` | Stale Gardener | Dormant work review |
