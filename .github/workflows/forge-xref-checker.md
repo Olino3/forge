@@ -62,7 +62,7 @@ For each `forge-plugin/agents/*.config.json`:
 
 **Check**: Do commands reference skills that exist?
 
-For each command in `forge-plugin/commands/*/`:
+For each command in `forge-plugin/commands/*.md`:
 - Parse YAML frontmatter
 - Extract `skills` array
 - Verify each skill exists in `forge-plugin/skills/`
@@ -167,7 +167,7 @@ Create a single issue with broken references organized by severity:
 ### Commands → Skills
 
 - [ ] `{command-name}` references skill `{skill}` which doesn't exist
-  - **Location**: `forge-plugin/commands/{command-name}/COMMAND.md`
+  - **Location**: `forge-plugin/commands/{command-name}.md`
   - **Fix**: Update command frontmatter or restore skill
 
 ### Agents → MCPs
