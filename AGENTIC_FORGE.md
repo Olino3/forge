@@ -2,7 +2,7 @@
 
 > *"The tireless automatons of Hephaestus's workshop never sleep — they sweep the forge floor, sharpen every blade, and polish each shield while the gods rest."*
 
-This guide explains, in plain language, how The Forge's **20 agentic workflows** work alongside you as a contributor. No deep infrastructure knowledge required — just an understanding of PRs, issues, and releases.
+This guide explains, in plain language, how The Forge's **22 agentic workflows** work alongside you as a contributor. No deep infrastructure knowledge required — just an understanding of PRs, issues, and releases.
 
 ---
 
@@ -381,7 +381,7 @@ The release notes are a **draft** — you copy them into the GitHub Release desc
 
 ## The Complete Workflow Catalog
 
-All 20 workflows at a glance, organized by when they run:
+All 22 workflows at a glance, organized by when they run:
 
 ### Event-triggered workflows (run when something happens)
 
@@ -392,10 +392,12 @@ All 20 workflows at a glance, organized by when they run:
 | **Context Pruner** | PR to `develop`/`main` | Issue | Frontmatter validity, stale refs, index integrity |
 | **Convention Enforcer** | PR to `develop`/`main` | Draft PR | Naming, formatting, convention adherence |
 | **Best Practices Improver** | PR to `develop` | Draft PR (on your branch) | Alignment with Claude Code best practices |
+| **Milestone Progress Reviewer** | PR (milestone-associated) | Issue + PR comment | Milestone gaps, progress tracking, remediation work items |
 | **Context Generator** | Push to `main` (post-merge) | Draft PR | Missing context files for new skills |
 | **CI Failure Diagnostician** | `Forge Tests` workflow fails (2nd consecutive) | Draft PR | Root cause analysis and proposed fixes for test failures |
 | **Issue Triage Agent** | Issue opened/reopened | Issue | Labels, priority, assignment recommendations |
 | **Milestone Planner** | Milestone created | Issue (multiple) | Feature decomposition and issue association |
+| **Feature Decomposer** | Issue labeled `milestone-feature` | Issue (multiple) | Decomposes features into Copilot-assignable work items |
 | **Release Notes Generator** | Tag push or release publish | Issue | Categorized changelog from merged PRs |
 
 ### Scheduled workflows (run on a timer)

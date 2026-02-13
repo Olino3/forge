@@ -58,11 +58,11 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 ---
 
-## Agentic Workflows — 20 Autonomous Quality Agents
+## Agentic Workflows — 22 Autonomous Quality Agents
 
 > *"The tireless automatons of Hephaestus's workshop never sleep — they sweep the forge floor, sharpen every blade, and polish each shield while the gods rest."*
 
-The Forge runs **20 autonomous agentic workflows** via [GitHub Agentic Workflows (gh-aw)](https://github.github.com/gh-aw/), powered by the Copilot engine. These workflows continuously monitor, validate, and improve the codebase — creating issues with findings or draft PRs with proposed changes. Nothing merges without human approval.
+The Forge runs **22 autonomous agentic workflows** via [GitHub Agentic Workflows (gh-aw)](https://github.github.com/gh-aw/), powered by the Copilot engine. These workflows continuously monitor, validate, and improve the codebase — creating issues with findings or draft PRs with proposed changes. Nothing merges without human approval.
 
 See **[AGENTIC_FORGE.md](AGENTIC_FORGE.md)** for the contributor-facing guide and **[AGENTIC_WORKFLOWS_ROADMAP.md](AGENTIC_WORKFLOWS_ROADMAP.md)** for the technical roadmap.
 
@@ -76,7 +76,7 @@ See **[AGENTIC_FORGE.md](AGENTIC_FORGE.md)** for the contributor-facing guide an
 | **Continuous Documentation** | Doc Sync, Doc Unbloat | Schedule |
 | **Continuous Testing** | CI Failure Diagnostician | CI failure events |
 | **Operations & Release** | Release Notes Generator, Dependency Update Sentinel | Release / daily |
-| **Planning & Coordination** | Issue Triage Agent, Project Milestone Tracker, Project Manager Agent, Stale Gardener | Issue events / schedule |
+| **Planning & Coordination** | Issue Triage Agent, Milestone Planner, Feature Decomposer, Milestone Progress Reviewer, Project Milestone Tracker, Project Manager Agent, Stale Gardener | Issue events / schedule / PR events |
 
 **Infrastructure**: 5 shared imports, 5 issue templates, `SECURITY.md`, all workflows compile with 0 errors.
 
@@ -210,7 +210,7 @@ Give custom agents explicit access to specific skills and MCP servers based on t
 
 > *"The forge runs day and night — tireless agents keeping the workshop in perfect order."*
 
-Future agentic workflow expansions beyond the current 19 operational workflows:
+Future agentic workflow expansions beyond the current 22 operational workflows:
 
 ### Testing & Validation Workflows (Planned)
 
@@ -219,15 +219,17 @@ Future agentic workflow expansions beyond the current 19 operational workflows:
 | **Improve Test Coverage** | Analyze coverage gaps, generate missing unit/integration tests, submit as PRs | Schedule (weekly) | [Peli's Testing & Validation](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-testing-validation/) |
 | **Diagnose CI Failures** | On CI failure, automatically investigate root cause — parse logs, identify flaky tests, bisect regressions, post diagnosis as PR comment | On CI failure | [Peli's Fault Investigation](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-quality-hygiene/) |
 
-### Continuous Milestone Delivery (Planned)
+### Continuous Milestone Delivery (Implemented ✅)
 
 A proactive system of three interlocking agents that autonomously drive milestones from planning through completion. When a milestone is created, the **Milestone Planner** breaks it into feature issues. The **Feature Decomposer** then splits each feature into Copilot-assignable sub-issues. As PRs land, the **Milestone Progress Reviewer** evaluates remaining gaps and creates new work items to keep the milestone on track.
 
-| Workflow | Description | Trigger | Reference |
-|----------|-------------|---------|----------|
-| **Milestone Planner** | On milestone creation, analyze ROADMAP targets and codebase state to plan features and bugfixes for the release; create feature request issues for each planned item and associate existing relevant issues with the milestone | Milestone created | — |
-| **Feature Decomposer** | For each feature issue added to a milestone, decompose it into actionable work items; create a sub-issue for each work item with acceptance criteria and assign Copilot for autonomous implementation | Issue milestoned | — |
-| **Milestone Progress Reviewer** | On each PR, evaluate how far along the associated feature and milestone are; identify delivery gaps and create new feature issues or sub-issues as needed to maintain milestone trajectory | PR events | — |
+**Status**: All 3 workflows ✅ Implemented
+
+| Workflow | Description | Trigger | Status |
+|----------|-------------|---------|--------|
+| **Milestone Planner** | On milestone creation, analyze ROADMAP targets and codebase state to plan features and bugfixes for the release; create feature request issues for each planned item and associate existing relevant issues with the milestone | Milestone created | ✅ Implemented |
+| **Feature Decomposer** | For each feature issue labeled `milestone-feature`, decompose it into 3-5 actionable work items; create a sub-issue for each work item with acceptance criteria, file paths, and implementation guidance for Copilot | Issue labeled `milestone-feature` | ✅ Implemented |
+| **Milestone Progress Reviewer** | On each milestone-associated PR, evaluate milestone progress and identify delivery gaps; create work items (<300 LOC) or features (>300 LOC) as remediation issues to maintain milestone trajectory | PR events (milestone-associated) | ✅ Implemented |
 
 ---
 
