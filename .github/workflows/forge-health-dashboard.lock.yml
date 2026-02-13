@@ -26,13 +26,15 @@
 #     - shared/forge-base.md
 #     - shared/forge-conventions.md
 #     - shared/forge-issue-creator.md
+#     - shared/forge-quality-issue-template.md
 #
-# frontmatter-hash: c09c0e3ae402f73401f380a49afcff157e960dca28a074fd25913136d745f74e
+# frontmatter-hash: 8378f5c2ae034daafc6805a547eae7dd88fe1e1f675db15ff65a49acebd9f240
 
 name: "Forge Health Dashboard"
 "on":
   schedule:
-  - cron: "0 9 * * 0"
+  - cron: "48 5 * * 0"
+    # Friendly format: weekly on sunday (scattered)
   workflow_dispatch:
 
 permissions: {}
@@ -558,6 +560,9 @@ jobs:
           GH_AW_PROMPT_EOF
           cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
           {{#runtime-import .github/workflows/shared/forge-issue-creator.md}}
+          GH_AW_PROMPT_EOF
+          cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
+          {{#runtime-import .github/workflows/shared/forge-quality-issue-template.md}}
           GH_AW_PROMPT_EOF
           cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
           {{#runtime-import .github/workflows/shared/forge-conventions.md}}

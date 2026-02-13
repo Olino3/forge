@@ -3,10 +3,10 @@ description: "Detect broken cross-references between Forge components"
 imports:
   - shared/forge-base.md
   - shared/forge-issue-creator.md
+  - shared/forge-quality-issue-template.md
   - shared/forge-conventions.md
 on:
-  schedule:
-    - cron: "0 8 * * 2"  # Tuesdays at 8am UTC
+  schedule: "weekly on tuesday"
   workflow_dispatch:
 permissions:
   contents: read

@@ -1,0 +1,79 @@
+name: Quality issue
+description: Track quality findings such as duplication, dead code, and structural drift.
+title: "[quality] "
+labels:
+  - quality
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This template is used for workflow-generated and manually reported quality findings.
+  - type: dropdown
+    id: quality_type
+    attributes:
+      label: Quality issue type
+      options:
+        - Duplicated skills/content
+        - Dead code or stale assets
+        - Broken cross-reference
+        - Template/schema non-compliance
+        - Hook/workflow quality regression
+        - Documentation drift
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - critical
+        - warning
+        - info
+    validations:
+      required: true
+  - type: textarea
+    id: affected
+    attributes:
+      label: Affected components
+      description: List impacted files, skills, agents, commands, hooks, or workflows.
+      placeholder: |
+        - forge-plugin/skills/...
+        - .github/workflows/...
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Concrete evidence with paths, snippets, or metrics.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: Why this matters for quality, reliability, or maintainability.
+    validations:
+      required: true
+  - type: textarea
+    id: remediation
+    attributes:
+      label: Proposed remediation
+      description: Specific, actionable fix steps.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation steps
+      description: How should we verify the issue is fixed?
+      placeholder: |
+        - [ ] Step 1
+        - [ ] Step 2
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Links to related PRs, issues, or reports.
+

@@ -3,6 +3,7 @@ description: "Validate Forge hook scripts for quality, safety, and performance"
 imports:
   - shared/forge-base.md
   - shared/forge-issue-creator.md
+  - shared/forge-quality-issue-template.md
   - shared/forge-conventions.md
 on:
   schedule: "weekly on friday"

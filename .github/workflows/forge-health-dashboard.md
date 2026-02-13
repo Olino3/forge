@@ -3,10 +3,10 @@ description: "Weekly Forge health dashboard summarizing all quality dimensions"
 imports:
   - shared/forge-base.md
   - shared/forge-issue-creator.md
+  - shared/forge-quality-issue-template.md
   - shared/forge-conventions.md
 on:
-  schedule:
-    - cron: "0 9 * * 0"  # Sundays at 9am UTC
+  schedule: "weekly on sunday"
   workflow_dispatch:
 permissions:
   contents: read
@@ -89,12 +89,28 @@ Compare against last week's report (if exists):
 - **Agents added/removed** — net change in agent count
 - **Hooks added/removed** — net change in hook count
 
+### 7. Delivery & Operations Metrics
+
+Track repository execution health from issue/PR activity:
+
+- **Test coverage trend** — latest coverage and week-over-week delta (if available from CI artifacts/reports)
+- **Issue velocity** — issues opened vs closed in trailing 7 and 30 days
+- **PR cycle time** — median time from PR open to merge in trailing 30 days
+- **Review throughput** — merged PR count and review turnaround trends
+- **Code quality trend** — trendline from quality workflow findings (critical/warning/info counts)
+
 ## Output Format
 
 Create a single issue with:
 
 ```markdown
 # Forge Health Report — {YYYY-MM-DD}
+
+Template: quality_issue
+Source Workflow: forge-health-dashboard
+Run Trigger: schedule
+Detected On: {YYYY-MM-DD}
+Severity: info
 
 ## 📊 Executive Summary
 
@@ -157,6 +173,16 @@ Create a single issue with:
 | Agents | {+/-n} | {📈/📉/➡️} |
 | Hooks | {+/-n} | {📈/📉/➡️} |
 
+## 🚚 Delivery & Operations Metrics
+
+| Metric | 7-Day | 30-Day | Trend | Status |
+|--------|-------|--------|-------|--------|
+| Test Coverage | {x%} | {x%} | {📈/📉/➡️} | {🟢/🟡/🔴} |
+| Issue Velocity (opened/closed) | {n}/{n} | {n}/{n} | {📈/📉/➡️} | {🟢/🟡/🔴} |
+| PR Cycle Time (median) | {xh} | {xh} | {📈/📉/➡️} | {🟢/🟡/🔴} |
+| Review Throughput (merged PRs) | {n} | {n} | {📈/📉/➡️} | {🟢/🟡/🔴} |
+| Quality Findings (C/W/I) | {n/n/n} | {n/n/n} | {📈/📉/➡️} | {🟢/🟡/🔴} |
+
 ## 🎯 Action Items
 
 {List of prioritized recommendations based on findings}
@@ -169,6 +195,7 @@ Create a single issue with:
 - Only create one issue per week (max: 1, close-older-issues: true)
 - If no significant changes from last week, still create report but note stability
 - Include direct links to problematic files for easy navigation
+- Keep issue structure aligned with `.github/ISSUE_TEMPLATE/quality_issue.yml`
 
 ## Analysis Tools
 

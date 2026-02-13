@@ -26,8 +26,9 @@
 #     - shared/forge-base.md
 #     - shared/forge-conventions.md
 #     - shared/forge-issue-creator.md
+#     - shared/forge-quality-issue-template.md
 #
-# frontmatter-hash: 2bc7d4b77b1f3cbfacc42e46cab420f7673c681c056e789465cdcee0204f08cf
+# frontmatter-hash: b93b0b4a0749ee8d9a318653c07d7bc40d59996c6a5349f6a3e0a866fd2b30a7
 
 name: "Forge Skill Structure Validator"
 "on":
@@ -568,6 +569,9 @@ jobs:
           GH_AW_PROMPT_EOF
           cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
           {{#runtime-import .github/workflows/shared/forge-issue-creator.md}}
+          GH_AW_PROMPT_EOF
+          cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
+          {{#runtime-import .github/workflows/shared/forge-quality-issue-template.md}}
           GH_AW_PROMPT_EOF
           cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
           {{#runtime-import .github/workflows/shared/forge-conventions.md}}

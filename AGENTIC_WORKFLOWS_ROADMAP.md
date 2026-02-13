@@ -9,13 +9,16 @@ This document details the phased plan for implementing **Continuous Quality Work
 ## Table of Contents
 
 - [Architecture Overview](#architecture-overview)
-- [Phase 0 — Bootstrap & Foundation](#phase-0--bootstrap--foundation)
-- [Phase 1A — Continuous Simplicity](#phase-1a--continuous-simplicity)
-- [Phase 1B — Continuous Context](#phase-1b--continuous-context)
-- [Phase 2A — Continuous Refactoring](#phase-2a--continuous-refactoring)
-- [Phase 2B — Continuous Style](#phase-2b--continuous-style)
-- [Phase 3 — Continuous Improvement](#phase-3--continuous-improvement)
-- [Phase 4 — Continuous Documentation](#phase-4--continuous-documentation)
+- [Foundation: Completed Agentic Workflows](#foundation-completed-agentic-workflows)
+  - [Bootstrap & Infrastructure](#bootstrap--infrastructure)
+  - [Continuous Simplicity (Phase 1A)](#continuous-simplicity-phase-1a)
+  - [Continuous Context (Phase 1B)](#continuous-context-phase-1b)
+  - [Continuous Refactoring (Phase 2A)](#continuous-refactoring-phase-2a)
+  - [Continuous Style (Phase 2B)](#continuous-style-phase-2b)
+  - [Continuous Improvement (Phase 3)](#continuous-improvement-phase-3)
+  - [Continuous Documentation (Phase 4)](#continuous-documentation-phase-4)
+  - [Workflow Schedule Overview](#workflow-schedule-overview)
+- [Future Phases](#future-phases)
 - [Dependency Graph](#dependency-graph)
 - [Risk Register](#risk-register)
 - [Success Metrics](#success-metrics)
@@ -62,1148 +65,418 @@ All workflows use the **Copilot engine** (GitHub-native, no external API keys). 
 
 ---
 
-## Phase 0 — Bootstrap & Foundation
+## Foundation: Completed Agentic Workflows
 
-> **Goal**: Set up gh-aw infrastructure in the Forge repository.
-> **Duration**: 1-2 days
-> **Dependencies**: None
-> **Parallelizable**: No (must complete before all other phases)
+> **Status**: ✅ **COMPLETE** — All foundational workflows operational as of February 13, 2026  
+> **Total Workflows**: 13 workflows across 7 categories  
+> **Compilation Status**: 0 errors, 4 warnings (schedule scattering only)
 
-### Step 0.1: Install gh-aw CLI
-
-```bash
-# Install GitHub CLI (if not already)
-gh auth login
-
-# Install gh-aw extension
-gh extension install github/gh-aw
-```
-
-### Step 0.2: Initialize Repository
-
-```bash
-cd /path/to/forge
-gh aw init
-```
-
-This creates:
-- `.github/workflows/` directory structure for agentic workflows
-- Necessary configuration files
-- Action pin manifest (`.github/aw/actions-lock.json`)
-
-### Step 0.3: Configure Copilot Engine Secret
-
-Since we're using the **Copilot engine**, ensure the repository has access to GitHub Copilot. No additional secrets are required beyond the default `GITHUB_TOKEN`.
-
-### Step 0.4: Create Shared Imports
-
-Create reusable shared configuration files for all Forge workflows:
-
-**`.github/workflows/shared/forge-base.md`** — Common permissions and constraints:
-```markdown
----
-description: "Shared base configuration for all Forge agentic workflows"
-permissions:
-  contents: read
-engine: copilot
-strict: true
----
-```
-
-**`.github/workflows/shared/forge-pr-creator.md`** — For workflows that create PRs:
-```markdown
----
-description: "Shared PR creation configuration for Forge workflows"
-permissions:
-  contents: read
-safe-outputs:
-  create-pull-request:
-    labels: ["forge-automation", "agentic-workflow"]
-    close-older: true
-    expires: 7
----
-```
-
-**`.github/workflows/shared/forge-issue-creator.md`** — For workflows that create issues:
-```markdown
----
-description: "Shared issue creation configuration for Forge workflows"
-permissions:
-  contents: read
-safe-outputs:
-  create-issue:
-    labels: ["forge-automation", "agentic-workflow"]
-    max: 3
-    close-older-issues: true
-    expires: 7
----
-```
-
-### Step 0.5: Create Forge Conventions Reference
-
-**`.github/workflows/shared/forge-conventions.md`** — Inline context for all Forge agents:
-```markdown
----
-description: "Forge project conventions for agentic workflows"
----
-
-## Forge Project Structure
-
-- **Skills**: `forge-plugin/skills/{name}/SKILL.md` + `examples.md`
-- **Agents**: `forge-plugin/agents/{name}.md` + `{name}.config.json`
-- **Context**: `forge-plugin/context/{domain}/` with YAML frontmatter
-- **Hooks**: `forge-plugin/hooks/{name}.sh` (bash, `set -euo pipefail`)
-- **Commands**: `forge-plugin/commands/{name}.md` with YAML frontmatter
-
-## Key Conventions
-
-- All documentation is Markdown
-- All config is JSON (2-space or 4-space indent)
-- All scripts are Bash with `set -e`
-- Skills follow the 6-step mandatory workflow
-- Context files have YAML frontmatter with tags, sections, estimated tokens
-- Hooks must complete in < 5 seconds
-- No hardcoded filesystem paths — use interface references
-```
-
-### Step 0.6: Compile & Validate Baseline
-
-```bash
-# Compile all shared imports
-gh aw compile
-
-# Validate compilation
-gh aw status
-```
-
-### Deliverables
-
-| Artifact | Path |
-|----------|------|
-| gh-aw initialized repo | `.github/workflows/`, `.github/aw/` |
-| Shared base import | `.github/workflows/shared/forge-base.md` |
-| Shared PR creator import | `.github/workflows/shared/forge-pr-creator.md` |
-| Shared issue creator import | `.github/workflows/shared/forge-issue-creator.md` |
-| Forge conventions reference | `.github/workflows/shared/forge-conventions.md` |
+The Forge now has a comprehensive suite of autonomous quality improvement workflows running continuously via GitHub Actions powered by Copilot agents. This foundation provides automated code simplification, context generation, structure validation, style enforcement, health monitoring, and documentation synchronization.
 
 ---
 
-## Phase 1A — Continuous Simplicity
+### Bootstrap & Infrastructure
 
-> **Goal**: Detect and reduce unnecessary complexity in Forge's Markdown, JSON, and Bash assets.
-> **Duration**: 2-3 days
-> **Dependencies**: Phase 0
-> **Parallelizable with**: Phase 1B
+**Goal**: Establish gh-aw infrastructure and shared configuration patterns.
 
-### Inspiration
+#### Setup Components
 
-From [Peli's Factory — Continuous Simplicity](https://github.github.com/gh-aw/blog/continuous-simplicity/):
+| Component | Purpose | Status |
+|-----------|---------|--------|
+| **gh-aw CLI** | Command-line tool for workflow management | ✅ Installed |
+| **Repository Init** | Initialize agentic workflow structure | ✅ Complete |
+| **Shared Imports** | Reusable workflow configuration fragments | ✅ 4 files |
+| **Copilot Engine** | GitHub-native AI execution engine | ✅ Configured |
 
-- **[Automatic Code Simplifier](https://github.com/github/gh-aw/blob/v0.42.13/.github/workflows/code-simplifier.md?plain=1)** — 83% merge rate (5/6 PRs merged)
-- **[Duplicate Code Detector](https://github.com/github/gh-aw/blob/v0.42.13/.github/workflows/duplicate-code-detector.md?plain=1)** — 79% merge rate (76/96 PRs merged)
+#### Shared Configuration Files
 
-### Quick-Start (from gh-aw)
+Located in `.github/workflows/shared/`:
 
-```bash
-# Add the reference workflow, then customize
-gh aw add-wizard https://github.com/github/gh-aw/blob/v0.42.13/.github/workflows/code-simplifier.md
-```
+1. **forge-base.md** — Common engine and permissions
+   - Engine: `copilot`
+   - Base permissions: `contents: read`
+   - Strict mode enforcement
 
-### Workflow 1A.1: Forge Skill Simplifier
+2. **forge-pr-creator.md** — PR-creating workflow defaults
+   - Safe-outputs for pull requests
+   - Standard labels and expiration
+   - Draft PR defaults
 
-**File**: `.github/workflows/forge-skill-simplifier.md`
+3. **forge-issue-creator.md** — Issue-creating workflow defaults
+   - Safe-outputs for issues
+   - Max limits and auto-close
+   - Expiration policies
 
-**Purpose**: Analyze `SKILL.md` files for overcomplicated instructions, redundant sections, inconsistent structure, and verbose examples.
-
-**Forge-Specific Adaptations** (vs. gh-aw's Code Simplifier):
-
-| gh-aw Original | Forge Adaptation |
-|----------------|------------------|
-| Analyzes Go source files | Analyzes `forge-plugin/skills/*/SKILL.md` files |
-| Looks for code complexity | Looks for instruction verbosity, section bloat, inconsistent patterns |
-| Creates PRs with simplified code | Creates PRs with simplified skill documentation |
-| Runs on recently modified files | Runs on changed skills in PR, 3 per run max |
-
-**Frontmatter Configuration**:
-```yaml
----
-description: "Simplify Forge skill documentation by reducing verbosity and improving clarity"
-imports:
-  - shared/forge-base.md
-  - shared/forge-pr-creator.md
-  - shared/forge-conventions.md
-on:
-  pull_request:
-    types: [opened, synchronize]
-    branches: [develop, main]
-  workflow_dispatch:
-permissions:
-  contents: write
-  pull-requests: write
-tools:
-  github:
-    toolsets: [default]
-safe-outputs:
-  create-pull-request:
-    labels: ["forge-automation", "simplicity", "skills"]
-    title-prefix: "[simplify] "
-    max: 3
-    close-older: true
-    expire: "+7d"
----
-```
-
-**Prompt** (natural language body):
-```markdown
-# Forge Skill Simplifier
-
-Analyze skill files in `forge-plugin/skills/` for simplification opportunities.
-
-## Analysis Targets
-
-For each `SKILL.md` file, check for:
-
-1. **Verbose instructions** — can they be expressed more concisely?
-2. **Redundant sections** — duplicate information across Overview, Workflow Steps, etc.
-3. **Inconsistent structure** — deviations from `SKILL_TEMPLATE.md` pattern
-4. **Over-engineered examples** — examples that demonstrate too many concepts at once
-5. **Dead references** — links to skills, agents, or context files that don't exist
-
-## Constraints
-
-- Preserve all meaningful content — only remove true redundancy
-- Keep technical accuracy — don't simplify at the cost of correctness
-- Follow the 6-step mandatory workflow pattern
-- Maximum 3 PRs per run
-- Each PR should address one skill file
-
-## Output
-
-For each simplification, create a PR with:
-- Clear title: `[simplify] {skill-name}: {what was simplified}`
-- Description explaining what was simplified and why
-- Before/after comparison in PR body
-```
-
-### Workflow 1A.2: Forge Duplication Detector
-
-**File**: `.github/workflows/forge-duplication-detector.md`
-
-**Purpose**: Find duplicated content patterns across skills, context files, and agent configs.
-
-**Forge-Specific Focus**:
-- Duplicate instructions across similar skills (e.g., all auth skills sharing boilerplate)
-- Copy-pasted context sections that should be cross-referenced
-- Identical hook logic that should be extracted to `hooks/lib/`
-- Duplicate frontmatter patterns that should become shared templates
-
-**Frontmatter Configuration**:
-```yaml
----
-description: "Detect duplicated content across Forge skills, context, and hooks"
-imports:
-  - shared/forge-base.md
-  - shared/forge-issue-creator.md
-  - shared/forge-conventions.md
-on:
-  pull_request:
-    types: [opened, synchronize]
-    branches: [develop, main]
-  workflow_dispatch:
-permissions:
-  contents: read
-  issues: write
-tools:
-  github:
-    toolsets: [default]
-safe-outputs:
-  create-issue:
-    labels: ["forge-automation", "simplicity", "duplication"]
-    title-prefix: "[duplication] "
-    max: 3
-    close-older: true
-    expire: "+14d"
-    assignees: ["copilot"]
----
-```
-
-### Deliverables
-
-| Artifact | Path |
-|----------|------|
-| Skill Simplifier workflow | `.github/workflows/forge-skill-simplifier.md` |
-| Duplication Detector workflow | `.github/workflows/forge-duplication-detector.md` |
-| Compiled lock files | `.github/workflows/*.lock.yml` |
+4. **forge-conventions.md** — Forge project structure context
+   - Skill organization patterns
+   - Agent configuration standards
+   - Context file conventions
+   - Hook system architecture
 
 ---
 
-## Phase 1B — Continuous Context
+### Continuous Simplicity (Phase 1A)
 
-> **Goal**: Automatically generate context files when new skills are added, and prune/maintain existing context files.
-> **Duration**: 3-4 days
-> **Dependencies**: Phase 0
-> **Parallelizable with**: Phase 1A
+**Goal**: Reduce code complexity and eliminate duplication.  
+**Completed**: February 2026
 
-This is a **Forge-original workflow** — not based on a gh-aw reference. It addresses a unique Forge need: the `forge-plugin/context/` system requires high-quality, structured context files that stay in sync with skills.
+| Workflow | File | Type | Trigger | Purpose |
+|----------|------|------|---------|---------|
+| **Skill Simplifier** | `forge-skill-simplifier.md` | PR | PRs to `develop`/`main` | Simplify verbose skill documentation |
+| **Duplication Detector** | `forge-duplication-detector.md` | PR | PRs to `develop`/`main` | Detect duplicate content across skills/agents/commands |
 
-### Workflow 1B.1: Context Generator (On Skill Add)
+#### Key Features
 
-**File**: `.github/workflows/forge-context-generator.md`
+**Skill Simplifier**:
+- Analyzes changed `SKILL.md` files for verbosity
+- Reduces redundant sections
+- Improves clarity while preserving technical accuracy
+- Creates PRs with before/after comparisons
+- Max 3 PRs per run, 7-day expiration
 
-**Purpose**: When a PR adds a new skill to `forge-plugin/skills/`, automatically generate corresponding context files with proper YAML frontmatter.
-
-**Trigger**: On PR merge that adds files matching `forge-plugin/skills/*/SKILL.md`
-
-**How it works**:
-
-1. **Detect new skills** — Compare merged PR's changed files against existing context domains
-2. **Determine domain** — Map the new skill to the appropriate context domain (python, dotnet, angular, engineering, etc.)
-3. **Generate context file** — Create a context `.md` file with:
-   - Valid YAML frontmatter (id, domain, title, type, estimatedTokens, loadingStrategy, sections, tags)
-   - Common issues section derived from the skill's domain expertise
-   - Quick reference for the skill's key patterns
-   - Integration notes with existing context
-4. **Update domain index** — Add the new file entry to `context/{domain}/index.md`
-5. **Update top-level index** — Update `context/index.md` with file count changes
-6. **Create PR** — Submit for human review
-
-**Frontmatter Configuration**:
-```yaml
----
-description: "Generate context files when new skills are added to Forge"
-imports:
-  - shared/forge-base.md
-  - shared/forge-pr-creator.md
-  - shared/forge-conventions.md
-on:
-  pull_request:
-    types: [closed]
-    paths:
-      - "forge-plugin/skills/*/SKILL.md"
-permissions:
-  contents: write
-  pull-requests: write
-tools:
-  github:
-    toolsets: [default, pull_requests]
-safe-outputs:
-  create-pull-request:
-    labels: ["forge-automation", "context", "new-skill"]
-    title-prefix: "[context] "
-    max: 1
-    expire: "+14d"
----
-```
-
-**Prompt**:
-```markdown
-# Forge Context Generator
-
-When a new skill is added to `forge-plugin/skills/`, generate a matching context file.
-
-## Step 1: Identify New Skills
-
-Check the merged PR for new `SKILL.md` files added under `forge-plugin/skills/`.
-If this PR does not add new skills (only modifies existing ones), exit with no action.
-
-## Step 2: Determine Context Domain
-
-Map the skill to an existing context domain based on its category:
-
-| Skill Category | Context Domain |
-|---------------|----------------|
-| Python-related (django, fastapi, pandas, etc.) | `python/` |
-| .NET-related (dotnet-core, csharp) | `dotnet/` |
-| Angular-related | `angular/` |
-| Azure-related (azure-auth, generate-azure-*) | `azure/` |
-| Security-related (secure-code, security-reviewer) | `security/` |
-| Git-related (get-git-diff, commit-helper) | `git/` |
-| General engineering | `engineering/` |
-
-If no domain exists, place in `engineering/`.
-
-## Step 3: Generate Context File
-
-Create `forge-plugin/context/{domain}/{skill-name}.md` with this structure:
-
-```yaml
----
-id: "{domain}/{skill-name}"
-domain: {domain}
-title: "{Skill Display Name} Context"
-type: reference
-estimatedTokens: 400
-loadingStrategy: conditional
-version: "0.2.0-alpha"
-lastUpdated: "{today's date}"
-sections:
-  - name: "Overview"
-    estimatedTokens: 50
-    keywords: [overview, {skill-name}]
-  - name: "Common Issues"
-    estimatedTokens: 150
-    keywords: [common, issues, problems]
-  - name: "Quick Reference"
-    estimatedTokens: 100
-    keywords: [quick, reference, patterns]
-  - name: "Integration"
-    estimatedTokens: 100
-    keywords: [integration, workflow]
-tags: [{domain}, {skill-name}, context, reference]
----
-```
-
-Populate sections by reading the skill's `SKILL.md` and extracting:
-- **Overview**: Key purpose and when to use this skill
-- **Common Issues**: Typical problems and pitfalls (from the skill's domain)
-- **Quick Reference**: Essential patterns, commands, or configurations
-- **Integration**: How this skill connects to other Forge skills and context
-
-## Step 4: Update Domain Index
-
-Add the new file to `forge-plugin/context/{domain}/index.md`.
-
-## Step 5: Create PR
-
-Create a single PR with all generated context files for human review.
-Include in the PR body:
-- Which skills triggered the generation
-- Which domains were targeted
-- What sections were generated
-- Token estimates for each file
-```
-
-### Workflow 1B.2: Context Pruner & Maintainer
-
-**File**: `.github/workflows/forge-context-pruner.md`
-
-**Purpose**: Maintain existing context files by:
-1. Detecting **stale context** — files referencing skills/agents that no longer exist
-2. Validating **frontmatter integrity** — required fields, valid domains, reasonable token estimates
-3. Identifying **drift** — context that has diverged from its source skill's current capabilities
-4. Pruning **orphaned entries** — domain index entries pointing to deleted files
-
-**Trigger**: PRs to develop/main + on-demand
-
-**Frontmatter Configuration**:
-```yaml
----
-description: "Prune stale context files and validate context integrity in Forge"
-imports:
-  - shared/forge-base.md
-  - shared/forge-issue-creator.md
-  - shared/forge-conventions.md
-on:
-  pull_request:
-    types: [opened, synchronize]
-    branches: [develop, main]
-  workflow_dispatch:
-permissions:
-  contents: read
-  issues: write
-tools:
-  github:
-    toolsets: [default]
-safe-outputs:
-  create-issue:
-    labels: ["forge-automation", "context", "maintenance"]
-    title-prefix: "[context-maintenance] "
-    max: 1
-    close-older: true
-    expire: "+14d"
----
-```
-
-**Prompt**:
-```markdown
-# Forge Context Pruner & Maintainer
-
-Validate and maintain the integrity of Forge's context file system.
-
-## Validation Checks
-
-### 1. Staleness Detection
-For each context file in `forge-plugin/context/`:
-- Check if referenced skills still exist in `forge-plugin/skills/`
-- Check if referenced agents still exist in `forge-plugin/agents/`
-- Flag files with `lastUpdated` older than 90 days
-
-### 2. Frontmatter Validation
-Every context file must have:
-- `id` (string, format: "{domain}/{filename}")
-- `domain` (string, must match parent directory)
-- `title` (string)
-- `type` (string: reference | guide | checklist)
-- `estimatedTokens` (number, > 0, < 5000)
-- `loadingStrategy` (string: always | conditional | on-demand)
-- `version` (string, semver)
-- `lastUpdated` (string, ISO date)
-- `sections` (array with name, estimatedTokens, keywords)
-- `tags` (array of strings)
-
-### 3. Drift Detection
-Compare context file content against its source skill's SKILL.md:
-- Are the context's "Common Issues" still relevant?
-- Has the skill added capabilities not reflected in context?
-- Are framework versions mentioned still current?
-
-### 4. Index Integrity
-- Every file in `forge-plugin/context/{domain}/` must have an entry in `{domain}/index.md`
-- Every entry in `{domain}/index.md` must point to an existing file
-- `forge-plugin/context/index.md` file counts must match actual counts
-
-## Output
-
-Create a single issue titled "[context-maintenance] Context Health Report — {date}"
-with a table of findings organized by severity:
-- 🔴 **Critical**: Broken references, missing required frontmatter
-- 🟡 **Warning**: Stale content, drift from source skills
-- 🟢 **Info**: Suggestions for improvement
-```
-
-### Deliverables
-
-| Artifact | Path |
-|----------|------|
-| Context Generator workflow | `.github/workflows/forge-context-generator.md` |
-| Context Pruner workflow | `.github/workflows/forge-context-pruner.md` |
-| Compiled lock files | `.github/workflows/*.lock.yml` |
+**Duplication Detector**:
+- Scans for duplicate code patterns across components
+- Identifies copy-paste between skills, agents, and commands
+- Suggests consolidation into shared utilities
+- Creates issues with specific refactoring recommendations
 
 ---
 
-## Phase 2A — Continuous Refactoring
+### Continuous Context (Phase 1B)
 
-> **Goal**: Identify structural improvements across Forge's skill and agent organization.
-> **Duration**: 2-3 days
-> **Dependencies**: Phase 0
-> **Parallelizable with**: Phase 2B
+**Goal**: Maintain context file integrity and coverage.  
+**Completed**: February 2026
 
-### Inspiration
+| Workflow | File | Type | Trigger | Purpose |
+|----------|------|------|---------|---------|
+| **Context Generator** | `forge-context-generator.md` | PR | PRs to `main` (post-merge) | Auto-generate context files for new skills |
+| **Context Pruner** | `forge-context-pruner.md` | Issue | PRs to `develop`/`main` | Validate context integrity and detect drift |
 
-From [Peli's Factory — Continuous Refactoring](https://github.github.com/gh-aw/blog/continuous-refactoring/):
+#### Key Features
 
-- **[Semantic Function Refactor](https://github.com/github/gh-aw/blob/v0.42.13/.github/workflows/semantic-function-refactor.md?plain=1)** — Spots misplaced functions and suggests reorganization
-- **[Daily File Diet](https://github.com/github/gh-aw/blob/v0.42.13/.github/workflows/daily-file-diet.md?plain=1)** — 79% merge rate (26/33 PRs merged)
+**Context Generator**:
+- Detects new skills added in merged PRs
+- Generates context files with proper YAML frontmatter
+- Follows `context_metadata.schema.json` validation
+- Creates PRs with generated context for review
+- Ensures new skills have corresponding context coverage
 
-### Quick-Start (from gh-aw)
-
-```bash
-gh aw add-wizard https://github.com/github/gh-aw/blob/v0.42.13/.github/workflows/semantic-function-refactor.md
-gh aw add-wizard https://github.com/github/gh-aw/blob/v0.42.13/.github/workflows/daily-file-diet.md
-```
-
-### Workflow 2A.1: Forge Skill Structure Validator
-
-**File**: `.github/workflows/forge-skill-validator.md`
-
-**Purpose**: Validate all skills adhere to `SKILL_TEMPLATE.md` structure and identify skills that need restructuring.
-
-**Forge-Specific Adaptations**:
-
-| Dimension | What It Checks |
-|-----------|----------------|
-| **Template Compliance** | Does each `SKILL.md` have all required sections from `SKILL_TEMPLATE.md`? |
-| **6-Step Workflow** | Does each skill follow Initial Analysis → Load Memory → Load Context → Perform Analysis → Generate Output → Update Memory? |
-| **Examples Presence** | Does each skill dir contain `examples.md`? |
-| **Skill Isolation** | Can the skill operate independently without hardcoded references to other skills? |
-| **Output Conventions** | Does the skill reference `OUTPUT_CONVENTIONS.md` for its output format? |
-
-**Frontmatter Configuration**:
-```yaml
----
-description: "Validate Forge skill structure compliance against SKILL_TEMPLATE.md"
-imports:
-  - shared/forge-base.md
-  - shared/forge-issue-creator.md
-  - shared/forge-conventions.md
-on:
-  schedule: "0 9 * * 2,4"  # Tuesdays and Thursdays
-  workflow_dispatch:
-permissions:
-  contents: read
-  issues: write
-tools:
-  github:
-    toolsets: [default]
-safe-outputs:
-  create-issue:
-    labels: ["forge-automation", "refactoring", "skills"]
-    title-prefix: "[skill-structure] "
-    max: 5
-    close-older: true
-    expire: "+14d"
-    assignees: ["copilot"]
----
-```
-
-### Workflow 2A.2: Forge Agent Config Validator
-
-**File**: `.github/workflows/forge-agent-validator.md`
-
-**Purpose**: Validate all agent configurations against `agent_config.schema.json` and check cross-references.
-
-**Validation Checks**:
-
-| Check | Description |
-|-------|-------------|
-| **Schema Compliance** | Does `.config.json` conform to `interfaces/schemas/agent_config.schema.json`? |
-| **Skill References** | Do all skills listed in `contextDomains` and `skills` actually exist? |
-| **MCP References** | Do referenced MCPs exist in `forge-plugin/mcps/`? |
-| **Memory Directory** | Does the agent's `memoryPath` directory exist? |
-| **Personality File** | Does the corresponding `.md` file exist with required sections? |
-| **Model Consistency** | Is the declared model compatible with the agent's task profile? |
-
-**Frontmatter Configuration**:
-```yaml
----
-description: "Validate Forge agent configurations for schema compliance and reference integrity"
-imports:
-  - shared/forge-base.md
-  - shared/forge-issue-creator.md
-  - shared/forge-conventions.md
-on:
-  schedule: "0 9 * * 3"  # Wednesdays
-  pull_request:
-    types: [opened, synchronize]
-    paths:
-      - "forge-plugin/agents/*.config.json"
-      - "forge-plugin/agents/*.md"
-  workflow_dispatch:
-permissions:
-  contents: read
-  issues: write
-tools:
-  github:
-    toolsets: [default]
-safe-outputs:
-  create-issue:
-    labels: ["forge-automation", "refactoring", "agents"]
-    title-prefix: "[agent-config] "
-    max: 3
-    close-older: true
-    expire: "+14d"
----
-```
-
-### Deliverables
-
-| Artifact | Path |
-|----------|------|
-| Skill Structure Validator | `.github/workflows/forge-skill-validator.md` |
-| Agent Config Validator | `.github/workflows/forge-agent-validator.md` |
-| Compiled lock files | `.github/workflows/*.lock.yml` |
+**Context Pruner**:
+- Validates YAML frontmatter in all context files
+- Detects stale content (>90 days old)
+- Identifies broken skill/agent references
+- Checks domain index integrity
+- Creates consolidated health reports as issues
 
 ---
 
-## Phase 2B — Continuous Style
+### Continuous Refactoring (Phase 2A)
 
-> **Goal**: Enforce consistent style and conventions across all Forge assets.
-> **Duration**: 2-3 days
-> **Dependencies**: Phase 0
-> **Parallelizable with**: Phase 2A
+**Goal**: Validate structural compliance and configuration integrity.  
+**Completed**: February 2026
 
-### Inspiration
+| Workflow | File | Type | Trigger | Purpose |
+|----------|------|------|---------|---------|
+| **Skill Validator** | `forge-skill-validator.md` | Issue | Tue/Thu 09:00 UTC | Validate skill template compliance |
+| **Agent Validator** | `forge-agent-validator.md` | Issue | Wed 09:00 UTC, PRs to agents | Validate agent configs against schema |
 
-From [Peli's Factory — Continuous Style](https://github.github.com/gh-aw/blog/continuous-style/):
+#### Key Features
 
-- **[Terminal Stylist](https://github.com/github/gh-aw/blob/v0.42.13/.github/workflows/terminal-stylist.md?plain=1)** — 80% merge rate (16/20 PRs merged via causal chain)
+**Skill Validator**:
+- Checks all skills against `SKILL_TEMPLATE.md` structure
+- Validates 6-step mandatory workflow adherence
+- Detects missing `examples.md` files
+- Ensures output conventions compliance
+- Bi-weekly automated runs + PR-triggered validation
 
-### Quick-Start (from gh-aw)
-
-```bash
-gh aw add-wizard https://github.com/github/gh-aw/blob/v0.42.13/.github/workflows/terminal-stylist.md
-```
-
-### Workflow 2B.1: Forge Convention Enforcer
-
-**File**: `.github/workflows/forge-convention-enforcer.md`
-
-**Purpose**: Enforce Forge-specific style conventions across all asset types.
-
-**Style Rules**:
-
-| Asset | Convention | Example |
-|-------|-----------|---------|
-| Skill dirs | kebab-case | `react-forms/` not `ReactForms/` |
-| Agent files | kebab-case `.md` + `.config.json` | `apollo.md` + `apollo.config.json` |
-| Context frontmatter | Required YAML fields present | `id`, `domain`, `tags`, `sections` |
-| Hook scripts | `set -euo pipefail` first line after shebang | Every `.sh` in `hooks/` |
-| JSON config | Consistent indentation (match existing) | 2-space or 4-space, not mixed |
-| Markdown headings | ATX-style (`#`), no trailing `#` | `## Section` not `## Section ##` |
-| Interface references | No hardcoded paths | `contextProvider.getIndex()` not `context/python/index.md` |
-
-**Frontmatter Configuration**:
-```yaml
----
-description: "Enforce Forge coding conventions and style consistency"
-imports:
-  - shared/forge-base.md
-  - shared/forge-pr-creator.md
-  - shared/forge-conventions.md
-on:
-  pull_request:
-    types: [opened, synchronize]
-    branches: [develop, main]
-  workflow_dispatch:
-permissions:
-  contents: write
-  pull-requests: write
-tools:
-  github:
-    toolsets: [default]
-safe-outputs:
-  create-pull-request:
-    labels: ["forge-automation", "style", "conventions"]
-    title-prefix: "[style] "
-    max: 3
-    close-older: true
-    expire: "+7d"
----
-```
-
-### Workflow 2B.2: Forge Hook Quality Checker
-
-**File**: `.github/workflows/forge-hook-checker.md`
-
-**Purpose**: Validate hook scripts for correctness, safety, and performance budget compliance.
-
-**Checks**:
-
-| Check | Rationale |
-|-------|-----------|
-| `set -euo pipefail` present | Fail-fast on errors |
-| No commands without `\|\| true` on optional greps | Prevent false failures |
-| Sources `lib/health_buffer.sh` if using health reporting | Shared utility dependency |
-| No `sleep` or long-running commands | 5-second budget |
-| Idempotent (safe to run multiple times) | Hook reliability |
-| Registered in `hooks.json` | Discovery requirement |
-| Documented in `HOOKS_GUIDE.md` | Discoverability |
-
-**Frontmatter Configuration**:
-```yaml
----
-description: "Validate Forge hook scripts for quality, safety, and performance"
-imports:
-  - shared/forge-base.md
-  - shared/forge-issue-creator.md
-  - shared/forge-conventions.md
-on:
-  schedule: "0 7 * * 5"  # Fridays at 7am
-  pull_request:
-    types: [opened, synchronize]
-    paths:
-      - "forge-plugin/hooks/*.sh"
-      - "forge-plugin/hooks/hooks.json"
-  workflow_dispatch:
-permissions:
-  contents: read
-  issues: write
-tools:
-  github:
-    toolsets: [default]
-  bash: ["shellcheck", "grep", "wc", "time"]
-safe-outputs:
-  create-issue:
-    labels: ["forge-automation", "hooks", "quality"]
-    title-prefix: "[hook-quality] "
-    max: 1
-    close-older: true
-    expire: "+14d"
----
-```
-
-### Deliverables
-
-| Artifact | Path |
-|----------|------|
-| Convention Enforcer workflow | `.github/workflows/forge-convention-enforcer.md` |
-| Hook Quality Checker workflow | `.github/workflows/forge-hook-checker.md` |
-| Compiled lock files | `.github/workflows/*.lock.yml` |
+**Agent Validator**:
+- Validates JSON configs against `agent_config.schema.json`
+- Checks skill references exist
+- Verifies MCP server references
+- Confirms memory directory structure
+- Creates issues with specific fix instructions
 
 ---
 
-## Phase 3 — Continuous Improvement
+### Continuous Style (Phase 2B)
 
-> **Goal**: Holistic repository health analysis and cross-cutting quality improvements.
-> **Duration**: 3-4 days
-> **Dependencies**: Phase 1A, Phase 1B (for context awareness)
-> **Parallelizable with**: Phase 4
-> **Status**: ✅ **COMPLETE** (2026-02-13)
+**Goal**: Enforce consistent conventions across all asset types.  
+**Completed**: February 2026
 
-### Inspiration
+| Workflow | File | Type | Trigger | Purpose |
+|----------|------|------|---------|---------|
+| **Convention Enforcer** | `forge-convention-enforcer.md` | PR | PRs to `develop`/`main` | Enforce Forge coding conventions |
+| **Hook Quality Checker** | `forge-hook-checker.md` | Issue | Fri 07:00 UTC, PRs to hooks | Validate hook script quality |
 
-From [Peli's Factory — Continuous Improvement](https://github.github.com/gh-aw/blog/continuous-improvement/):
+#### Key Features
 
-- **Repository Quality Improver** — 62% merge rate (25/40 PRs merged)
-- **Go Module Usage Expert** — dependency freshness
-- **Typist** — type safety improvements
+**Convention Enforcer**:
+- Enforces kebab-case naming for skills/agents
+- Validates YAML frontmatter completeness
+- Checks for interface references (no hardcoded paths)
+- Ensures consistent JSON indentation
+- Creates PRs with automated style fixes
 
-### Workflow 3.1: Forge Health Dashboard
-
-**File**: `.github/workflows/forge-health-dashboard.md`
-
-**Purpose**: Generate a weekly health report covering all Forge quality dimensions.
-
-**Report Sections**:
-
-| Section | Metrics |
-|---------|---------|
-| **Skills Health** | Total count, template compliance %, skills missing `examples.md`, skills with outdated versions |
-| **Context Health** | File count per domain, stale files (>90 days), orphaned index entries, coverage gaps (skills without context) |
-| **Agent Health** | Config validation results, broken skill/MCP references, missing memory dirs |
-| **Hook Health** | Scripts passing shellcheck, registered in hooks.json, documented in HOOKS_GUIDE |
-| **Cross-Reference Integrity** | Broken links between skills, agents, context, and commands |
-| **Growth Trends** | Skills/context/agents added since last report |
-
-**Frontmatter Configuration**:
-```yaml
----
-description: "Weekly Forge health dashboard summarizing all quality dimensions"
-imports:
-  - shared/forge-base.md
-  - shared/forge-conventions.md
-on:
-  schedule: "0 9 * * 0"  # Sundays at 9am
-  workflow_dispatch:
-permissions:
-  contents: read
-  issues: write
-tools:
-  github:
-    toolsets: [default]
-  bash: ["find", "jq", "wc", "grep"]
-safe-outputs:
-  create-issue:
-    labels: ["forge-automation", "health-dashboard", "weekly-report"]
-    title-prefix: "[health] "
-    max: 1
-    close-older: true
----
-```
-
-### Workflow 3.2: Forge Cross-Reference Checker
-
-**File**: `.github/workflows/forge-xref-checker.md`
-
-**Purpose**: Detect broken cross-references between Forge components.
-
-**Cross-Reference Matrix**:
-
-```
-Skills ←→ Context Files (domain mapping)
-Skills ←→ Agent Configs (skills[] array)  
-Skills ←→ Commands (skills[] in frontmatter)
-Agents ←→ MCP Configs (allowedMcps[])
-Context ←→ Domain Indexes (file listings)
-Hooks  ←→ hooks.json (registration)
-Hooks  ←→ HOOKS_GUIDE.md (documentation)
-```
-
-**Frontmatter Configuration**:
-```yaml
----
-description: "Detect broken cross-references between Forge components"
-imports:
-  - shared/forge-base.md
-  - shared/forge-issue-creator.md
-  - shared/forge-conventions.md
-on:
-  schedule: "0 8 * * 2"  # Tuesdays
-  workflow_dispatch:
-permissions:
-  contents: read
-  issues: write
-tools:
-  github:
-    toolsets: [default]
-  bash: ["jq", "grep", "find"]
-safe-outputs:
-  create-issue:
-    labels: ["forge-automation", "cross-reference", "integrity"]
-    title-prefix: "[xref] "
-    max: 1
-    close-older: true
-    expire: "+14d"
----
-```
-
-### Workflow 3.3: Forge Best Practices Improver
-
-**File**: `.github/workflows/forge-best-practices-improver.md`
-
-**Purpose**: When a feature branch PR targets `develop`, analyze the changed skills, agents, and commands for alignment with current best practices from Anthropic's [Claude Code](https://github.com/anthropics/claude-code) repository conventions. Create a PR **back to the triggering feature branch** with improvements, so the author can review and merge before the feature lands on `develop`.
-
-**Why Anthropic's Claude Code?**
-
-| Reason | Detail |
-|--------|--------|
-| **Canonical reference** | Claude Code's `CLAUDE.md` and plugin conventions are the upstream standard Forge extends |
-| **Evolving best practices** | Anthropic updates their conventions frequently; this workflow keeps Forge current |
-| **Quality uplift** | Skills, agents, and commands that follow upstream patterns are more compatible and maintainable |
-
-**Analysis Scope**:
-
-| Component | Checks |
-|-----------|--------|
-| **Skills** | SKILL.md follows latest CLAUDE.md patterns, examples use current idioms, no deprecated conventions |
-| **Agents** | Config references valid tools/models, personality sections follow current prompting best practices |
-| **Commands** | Frontmatter uses current schema, workflow steps align with recommended patterns |
-
-**Trigger**: Feature branch PRs to `develop` only (not main — improvements should land before release)
-
-**Frontmatter Configuration**:
-```yaml
----
-description: "Improve skills, agents, and commands based on Anthropic Claude Code best practices"
-imports:
-  - shared/forge-base.md
-  - shared/forge-pr-creator.md
-  - shared/forge-conventions.md
-on:
-  pull_request:
-    types: [opened, synchronize]
-    branches: [develop]
-  workflow_dispatch:
-permissions:
-  contents: write
-  pull-requests: write
-tools:
-  github:
-    toolsets: [default]
-safe-outputs:
-  create-pull-request:
-    base-ref: ${{ github.head_ref }}  # PR targets the feature branch, not develop
-    labels: ["forge-automation", "best-practices", "improvement"]
-    title-prefix: "[best-practices] "
-    max: 1
-    close-older: true
-    expire: "+7d"
----
-```
-
-**Prompt**:
-```markdown
-# Forge Best Practices Improver
-
-You are an expert on Anthropic's Claude Code conventions and Forge plugin architecture.
-When a feature branch PR targets `develop`, analyze the **changed files** for improvement
-opportunities based on current best practices.
-
-## Reference Sources
-
-1. **Anthropic Claude Code repo** — https://github.com/anthropics/claude-code
-   - Check their CLAUDE.md, plugin conventions, and recommended patterns
-2. **Forge conventions** — `CONTRIBUTING.md`, `CLAUDE.md`, skill/agent/command templates
-
-## Analysis Steps
-
-1. Identify which skills, agents, or commands were modified in this PR
-2. For each modified file, compare against current Anthropic Claude Code conventions
-3. Look for:
-   - Outdated prompting patterns that Anthropic has since improved
-   - Missing best-practice sections (e.g., error handling, edge cases)
-   - Inconsistencies with upstream CLAUDE.md conventions
-   - Opportunities to leverage newer Claude Code capabilities
-4. Generate improvement PRs **targeting the feature branch** (not develop)
-
-## Constraints
-
-- Only improve files that were **changed in the triggering PR** — don't scan the whole repo
-- Each improvement must include a rationale citing the specific best practice
-- Preserve the author's intent and domain-specific customizations
-- Maximum 1 improvement PR per triggering PR
-- If no improvements needed, do nothing (don't create empty PRs)
-
-## Output
-
-For each improvement, create a PR targeting `${{ github.head_ref }}` with:
-- Clear title: `[best-practices] {component}: {improvement summary}`
-- Description linking to the specific Anthropic convention or pattern
-- Before/after comparison showing the improvement
-```
-
-### Deliverables
-
-| Artifact | Path | Status |
-|----------|------|--------|
-| Health Dashboard workflow | `.github/workflows/forge-health-dashboard.md` | ✅ Created |
-| Cross-Reference Checker | `.github/workflows/forge-xref-checker.md` | ✅ Created |
-| Best Practices Improver | `.github/workflows/forge-best-practices-improver.md` | ✅ Created |
-| Compiled lock files | `.github/workflows/*.lock.yml` | ✅ Compiled |
-
-### Implementation Summary
-
-Phase 3 workflows successfully implemented on **2026-02-13**:
-
-1. **forge-health-dashboard.md** (51 KB compiled)
-   - Weekly Sunday reports at 9am UTC
-   - Comprehensive health metrics across all Forge dimensions
-   - Creates issues with `[health]` prefix
-   - Closes older issues automatically
-
-2. **forge-xref-checker.md** (51 KB compiled)
-   - Tuesday bi-weekly validation at 8am UTC
-   - 8 cross-reference matrices validated
-   - Detects broken links between skills, agents, context, commands, hooks
-   - Creates consolidated integrity reports
-
-3. **forge-best-practices-improver.md** (54 KB compiled)
-   - Triggered on PRs to `develop` branch
-   - Analyzes changed files against Anthropic Claude Code conventions
-   - Creates improvement PRs targeting feature branches
-   - Ensures quality uplift before features land on develop
-
-**Compilation Status**: 11 workflows total, 0 errors, 4 warnings (schedule scattering only)
+**Hook Quality Checker**:
+- Validates `set -euo pipefail` presence
+- Checks 5-second performance budget
+- Ensures idempotency and graceful failure
+- Verifies hooks.json registration
+- Confirms HOOKS_GUIDE.md documentation
+- Optional shellcheck integration
 
 ---
 
-## Phase 4 — Continuous Documentation
+### Continuous Improvement (Phase 3)
 
-> **Goal**: Keep Forge documentation accurate and consistent with code changes.
-> **Duration**: 2-3 days
-> **Dependencies**: Phase 0
-> **Parallelizable with**: Phase 3
+**Goal**: Holistic health monitoring and best practices alignment.  
+**Completed**: February 13, 2026
 
-### Inspiration
+| Workflow | File | Type | Trigger | Purpose |
+|----------|------|------|---------|---------|
+| **Health Dashboard** | `forge-health-dashboard.md` | Issue | Sun 09:00 UTC | Weekly comprehensive health report |
+| **Cross-Reference Checker** | `forge-xref-checker.md` | Issue | Tue 08:00 UTC | Detect broken references between components |
+| **Best Practices Improver** | `forge-best-practices-improver.md` | PR | PRs to `develop` | Align with Anthropic Claude Code conventions |
 
-From [Peli's Factory — Continuous Documentation](https://github.github.com/gh-aw/blog/continuous-documentation/):
+#### Key Features
 
-- **[Daily Documentation Updater](https://github.com/github/gh-aw/blob/v0.42.13/.github/workflows/daily-doc-updater.md?plain=1)** — 96% merge rate (57/59 PRs merged) ⭐
-- **[Documentation Unbloat](https://github.com/github/gh-aw/blob/v0.42.13/.github/workflows/unbloat-docs.md?plain=1)** — 85% merge rate (88/103 PRs merged)
+**Health Dashboard**:
+- 6 comprehensive health dimensions:
+  - Skills Health (template compliance, examples, versions)
+  - Context Health (staleness, orphaned entries, coverage)
+  - Agent Health (config validation, broken references)
+  - Hook Health (shellcheck, registration, documentation)
+  - Cross-Reference Integrity (8 validation matrices)
+  - Growth Trends (week-over-week changes)
+- Creates single consolidated weekly issue
+- Color-coded status indicators (🟢/🟡/🔴)
+- Auto-closes previous week's report
 
-### Quick-Start (from gh-aw)
+**Cross-Reference Checker**:
+- Validates 8 cross-reference matrices:
+  1. Skills ↔ Context Files
+  2. Skills ↔ Agent Configs
+  3. Skills ↔ Commands
+  4. Agents ↔ MCP Configs
+  5. Context ↔ Domain Indexes
+  6. Hooks ↔ hooks.json
+  7. Hooks ↔ HOOKS_GUIDE.md
+  8. Commands ↔ Context Domains
+- Organized by severity (Critical/Warning/Info)
+- Provides actionable fix suggestions
+- Bi-weekly automated validation
 
-```bash
-gh aw add-wizard https://github.com/github/gh-aw/blob/v0.42.13/.github/workflows/daily-doc-updater.md
-gh aw add-wizard https://github.com/github/gh-aw/blob/v0.42.13/.github/workflows/unbloat-docs.md
-```
+**Best Practices Improver**:
+- Triggered on feature branch PRs to `develop`
+- Analyzes only changed files (skills/agents/commands/context)
+- Compares against Anthropic Claude Code best practices
+- Checks for outdated patterns, missing sections, interface violations
+- Creates improvement PRs targeting the feature branch (not develop)
+- Includes before/after comparisons with rationale
+- Ensures quality uplift before features land on develop
 
-### Workflow 4.1: Forge Doc Sync
-
-**File**: `.github/workflows/forge-doc-sync.md`
-
-**Purpose**: Ensure `ROADMAP.md`, `CONTRIBUTING.md`, `COOKBOOK.md`, `README.md` and other top-level docs stay in sync with the actual state of skills, agents, commands, and hooks.
-
-**Sync Targets**:
-
-| Document | What to Check |
-|----------|---------------|
-| `ROADMAP.md` | Skill/agent/command/hook counts match reality |
-| `CONTRIBUTING.md` | File structure examples match actual layout |
-| `COOKBOOK.md` | Referenced skills/commands still exist |
-| `README.md` | Feature claims match implemented capabilities |
-| Domain `index.md` files | File listings match directory contents |
-
-**Frontmatter Configuration**:
-```yaml
 ---
-description: "Keep Forge top-level documentation in sync with codebase reality"
-imports:
-  - shared/forge-base.md
-  - shared/forge-pr-creator.md
-  - shared/forge-conventions.md
-on:
-  schedule: "0 7 * * 1-5"  # Weekdays at 7am
-  workflow_dispatch:
-permissions:
-  contents: write
-  pull-requests: write
-tools:
-  github:
-    toolsets: [default]
-safe-outputs:
-  create-pull-request:
-    labels: ["forge-automation", "documentation", "sync"]
-    title-prefix: "[docs] "
-    max: 3
-    close-older: true
-    expire: "+7d"
+
+### Continuous Documentation (Phase 4)
+
+**Goal**: Keep documentation synchronized with codebase reality.  
+**Completed**: February 2026
+
+| Workflow | File | Type | Trigger | Purpose |
+|----------|------|------|---------|---------|
+| **Doc Sync** | `forge-doc-sync.md` | PR | Mon-Fri 07:00 UTC | Sync top-level docs with codebase |
+| **Doc Unbloat** | `forge-doc-unbloat.md` | PR | Thu 10:00 UTC | Simplify verbose documentation |
+
+#### Key Features
+
+**Doc Sync**:
+- Validates component counts in ROADMAP.md
+- Checks file structure examples in CONTRIBUTING.md
+- Verifies skill/command references in COOKBOOK.md
+- Ensures README.md claims match implementation
+- Updates domain index.md file listings
+- Creates PRs with synchronized updates
+- Weekday automation (Mon-Fri)
+
+**Doc Unbloat**:
+- Reviews documentation for verbosity
+- Removes redundant explanations
+- Improves scannability with better formatting
+- Preserves technical accuracy
+- Creates PRs with simplified versions
+- Weekly Thursday runs
+
 ---
-```
 
-### Workflow 4.2: Forge Doc Unbloat
+### Workflow Schedule Overview
 
-**File**: `.github/workflows/forge-doc-unbloat.md`
+Strategic distribution across the week to minimize overlap and PR noise:
 
-**Purpose**: Review and simplify documentation by reducing verbosity, removing redundancy, and improving scannability.
+| Day / Event | Time (UTC) | Workflow | Type | Status |
+|-------------|-----------|----------|------|--------|
+| **Sunday** | 09:00 | Health Dashboard | Issue | Active |
+| **Monday-Friday** | 07:00 | Doc Sync | PR | Active |
+| **Tuesday** | 08:00 | Cross-Reference Checker | Issue | Active |
+| **Tuesday** | 09:00 | Skill Validator | Issue | Active |
+| **Wednesday** | 09:00 | Agent Validator | Issue | Active |
+| **Thursday** | 09:00 | Skill Validator | Issue | Active |
+| **Thursday** | 10:00 | Doc Unbloat | PR | Active |
+| **Friday** | 07:00 | Hook Quality Checker | Issue | Active |
+| **Weekly (Sat)** | Scattered | Stale Issue/PR Gardener | Issue | Planned rollout |
+| **Daily** | Scattered | Dependency Update Sentinel | PR | Planned rollout |
+| **Daily** | Scattered | Project Milestone Tracker | Issue | Planned rollout |
+| **Weekly (Mon)** | Scattered | Project Manager Agent | Issue | Planned rollout |
+| **PR Events** | - | Skill Simplifier | PR | Active |
+| **PR Events** | - | Duplication Detector | PR | Active |
+| **PR Events** | - | Context Pruner | Issue | Active |
+| **PR Events** | - | Convention Enforcer | PR | Active |
+| **PR Events** | - | Best Practices Improver (to develop) | PR | Active |
+| **PR Merge** | - | Context Generator (main only) | PR | Active |
+| **Issue Events** | - | Issue Triage Agent | Issue | Planned rollout |
+| **Tag/Release Events** | - | Release Notes Generator | Issue | Planned rollout |
+| **ROADMAP Change Events** | - | Project Manager Agent | Issue | Planned rollout |
 
-**Frontmatter Configuration**:
-```yaml
+**Total**: 11 scheduled + 10 event-triggered workflows
+
+All workflows support `workflow_dispatch` for manual triggering.
+
 ---
-description: "Reduce documentation bloat in Forge by simplifying verbose content"
-imports:
-  - shared/forge-base.md
-  - shared/forge-pr-creator.md
-  - shared/forge-conventions.md
-on:
-  schedule: "0 10 * * 4"  # Thursdays at 10am
-  workflow_dispatch:
-permissions:
-  contents: write
-  pull-requests: write
-tools:
-  github:
-    toolsets: [default]
-safe-outputs:
-  create-pull-request:
-    labels: ["forge-automation", "documentation", "unbloat"]
-    title-prefix: "[docs-unbloat] "
-    max: 3
-    close-older: true
-    expire: "+7d"
+
+## Future Phases
+
+The foundational workflows (Phases 0-4) are complete. The next execution phases align directly to `ROADMAP.md` workflow targets.
+
+### Phase 5 — Issue Intake Foundation & Template Migration
+
+> **Status**: 🚧 Ready for implementation rollout
+> **Goal**: Standardize issue intake and align workflow-generated issues to a canonical quality template.
+
+#### Deliverables
+
+1. Add issue templates under `.github/ISSUE_TEMPLATE/`:
+   - `bug_report.yml`
+   - `feature_request.yml`
+   - `documentation_improvement.yml`
+   - `security_vulnerability.yml`
+   - `quality_issue.yml`
+2. Add `.github/ISSUE_TEMPLATE/config.yml`:
+   - disable blank issues
+   - security contact link
+3. Add `SECURITY.md` reporting policy.
+4. Add shared workflow import:
+   - `.github/workflows/shared/forge-quality-issue-template.md`
+5. Migrate all existing issue-producing workflows to the quality issue contract:
+   - `forge-agent-validator.md`
+   - `forge-context-pruner.md`
+   - `forge-duplication-detector.md`
+   - `forge-health-dashboard.md`
+   - `forge-hook-checker.md`
+   - `forge-skill-validator.md`
+   - `forge-xref-checker.md`
+
 ---
-```
 
-### Deliverables
+### Phase 6 — Operations & Release Workflows
 
-| Artifact | Path |
-|----------|------|
-| Doc Sync workflow | `.github/workflows/forge-doc-sync.md` |
-| Doc Unbloat workflow | `.github/workflows/forge-doc-unbloat.md` |
-| Compiled lock files | `.github/workflows/*.lock.yml` |
+> **Status**: 🚧 Ready for implementation rollout
+> **Goal**: Automate release intelligence, dependency hygiene, and operational metrics.
+
+#### Workflows
+
+| Workflow | File | Trigger | Output |
+|----------|------|---------|--------|
+| **Release Notes Generator** | `.github/workflows/forge-release-notes-generator.md` | On tag/release + manual | Draft release notes issue categorized by feature/fix/breaking |
+| **Dependency Update Sentinel** | `.github/workflows/forge-dependency-update-sentinel.md` | Daily + manual | Draft dependency upgrade PR with compatibility analysis |
+| **Health Dashboard (expanded)** | `.github/workflows/forge-health-dashboard.md` | Weekly + manual | Weekly issue including test coverage, issue velocity, PR cycle time, code quality trend |
+
+#### Notes
+
+- Health Dashboard expansion preserves existing Forge-structure metrics and adds delivery/operations metrics.
+- Dependency updates remain conservative: no broad, unscoped version churn.
+
+---
+
+### Phase 7 — Planning & Coordination Workflows
+
+> **Status**: 🚧 Ready for implementation rollout
+> **Goal**: Automate backlog triage, milestone tracking, roadmap execution planning, and stale work gardening.
+
+#### Workflows
+
+| Workflow | File | Trigger | Output |
+|----------|------|---------|--------|
+| **Issue Triage Agent** | `.github/workflows/forge-issue-triage-agent.md` | Issue opened/reopened + manual | Triage recommendation issue with labels/priority/assignment guidance |
+| **Project Milestone Tracker** | `.github/workflows/forge-project-milestone-tracker.md` | Daily + manual | Milestone progress and blocker report issue |
+| **Project Manager Agent** | `.github/workflows/forge-project-manager-agent.md` | Weekly + on ROADMAP changes + manual | Roadmap execution plan issue with decomposed work packages |
+| **Stale Issue/PR Gardener** | `.github/workflows/forge-stale-gardener.md` | Weekly + manual | Stale inventory issue with ping/close recommendations |
+
+---
+
+### Phase 8 — Rollout, Validation, and Tuning
+
+> **Status**: 📋 Planned
+> **Goal**: Verify workflow behavior, tune noise levels, and harden operational guardrails.
+
+#### Rollout Sequence
+
+1. Compile all workflow specs (`gh aw compile`) and resolve errors.
+2. Run each new workflow via `workflow_dispatch` once before relying on schedules.
+3. Review issue/PR output quality against template contracts.
+4. Tune labels, severity thresholds, and output verbosity to reduce false positives.
+5. Promote stable workflows to ongoing scheduled operations.
+
+#### Guardrails
+
+✅ Shared imports for consistency  
+✅ Read-only permissions with safe-outputs for writes  
+✅ Staggered schedules to avoid overlap/noise  
+✅ Human review for all generated PRs  
+✅ Conservative stale/closure policies with grace periods
 
 ---
 
 ## Dependency Graph
 
+**Status**: Foundation complete (Phases 0-4), expansion phases (5-8) in rollout
+
 ```
-Phase 0 (Bootstrap)
+Phase 0 (Bootstrap) ✅
   │
-  ├──→ Phase 1A (Simplicity)     ←── can run in parallel ──→  Phase 1B (Context)
-  │         │                                                       │
-  │         └──→ Phase 3 (Improvement) ←──── depends on ───────────┘
+  ├──→ Phase 1A (Simplicity) ✅    ←── parallel ──→  Phase 1B (Context) ✅
+  │         │                                              │
+  │         └──→ Phase 3 (Improvement) ✅ ←─ depends ─────┘
   │                    │
-  ├──→ Phase 2A (Refactoring)    ←── can run in parallel ──→  Phase 2B (Style)
+  ├──→ Phase 2A (Refactoring) ✅   ←── parallel ──→  Phase 2B (Style) ✅
   │
-  └──→ Phase 4 (Documentation)  ←── can run in parallel ──→  Phase 3 (Improvement)
+  └──→ Phase 4 (Documentation) ✅  ←── parallel ──→  Phase 3 ✅
+
+Phase 5 (Issue Intake Foundation) 🚧
+  │
+  ├──→ Phase 6 (Operations & Release) 🚧
+  ├──→ Phase 7 (Planning & Coordination) 🚧
+  └──→ Phase 8 (Rollout & Tuning) 📋
 ```
 
-### Parallelization Matrix
+### Implementation History
 
-| Phase | Can Run With | Blocked By |
-|-------|-------------|------------|
-| **0** | Nothing | Nothing |
-| **1A** | 1B, 2A, 2B, 4 | 0 |
-| **1B** | 1A, 2A, 2B, 4 | 0 |
-| **2A** | 1A, 1B, 2B, 4 | 0 |
-| **2B** | 1A, 1B, 2A, 4 | 0 |
-| **3** | 4 | 1A, 1B |
-| **4** | 1A, 1B, 2A, 2B, 3 | 0 |
+Foundation phases were completed in February 2026; expansion phases are now staged:
 
-### Recommended Execution Order
+| Phase | Duration | Completion Date | Workflows |
+|-------|----------|----------------|-----------|
+| **0** | Bootstrap | Feb 2026 | Shared imports (4 files) |
+| **1A** | Simplicity | Feb 2026 | Skill Simplifier, Duplication Detector |
+| **1B** | Context | Feb 2026 | Context Generator, Context Pruner |
+| **2A** | Refactoring | Feb 2026 | Skill Validator, Agent Validator |
+| **2B** | Style | Feb 2026 | Convention Enforcer, Hook Quality Checker |
+| **3** | Improvement | Feb 13, 2026 | Health Dashboard, Cross-Reference Checker, Best Practices Improver |
+| **4** | Documentation | Feb 2026 | Doc Sync, Doc Unbloat |
+| **5** | Issue Intake Foundation | Planned rollout | Issue templates + quality issue migration |
+| **6** | Operations & Release | Planned rollout | Release Notes Generator, Dependency Sentinel, Health Dashboard expansion |
+| **7** | Planning & Coordination | Planned rollout | Issue Triage, Milestone Tracker, Project Manager Agent, Stale Gardener |
+| **8** | Rollout & Tuning | Planned | Canary, validation, threshold tuning |
 
-For a single developer:
-```
-Week 1:  Phase 0 → Phase 1A + Phase 1B (parallel)
-Week 2:  Phase 2A + Phase 2B (parallel) → Phase 4
-Week 3:  Phase 3 (depends on 1A + 1B outputs)
-```
-
-For two developers:
-```
-Dev A:  Phase 0 → Phase 1A → Phase 2A → Phase 3
-Dev B:  (wait for Phase 0) → Phase 1B → Phase 2B → Phase 4
-```
+**Foundation Delivery Time**: ~4 weeks  
+**Workflow Inventory**: 19 workflow specs (13 active foundation + 6 expansion) + 5 shared imports
 
 ---
 
@@ -1222,52 +495,46 @@ Dev B:  (wait for Phase 0) → Phase 1B → Phase 2B → Phase 4
 
 ## Success Metrics
 
-### Phase Completion Criteria
+### Foundation Completion Criteria
 
-| Phase | Done When |
-|-------|-----------|
-| 0 | `gh aw compile` succeeds, shared imports compile, `gh aw status` shows ready |
-| 1A | Both simplicity workflows run successfully, first PR/issue created |
-| 1B | Context generator fires on test skill PR, pruner produces first health report |
-| 2A | Skill validator catches known non-compliant skill, agent validator catches test error |
-| 2B | Convention enforcer proposes at least one valid style fix |
-| 3 | Health dashboard produces accurate report, xref checker finds known broken link, best practices improver creates valid improvement PR on feature branch |
-| 4 | Doc sync catches intentionally stale count, unbloat proposes readable simplification |
+✅ **All criteria met as of February 13, 2026**
 
-### Ongoing KPIs (post-launch)
+| Phase | Completion Criteria | Status |
+|-------|-------------------|--------|
+| **0** | `gh aw compile` succeeds, shared imports compile, `gh aw status` shows ready | ✅ Complete |
+| **1A** | Both simplicity workflows run successfully, first PR/issue created | ✅ Complete |
+| **1B** | Context generator fires on test skill PR, pruner produces first health report | ✅ Complete |
+| **2A** | Skill validator catches known non-compliant skill, agent validator catches test error | ✅ Complete |
+| **2B** | Convention enforcer proposes at least one valid style fix | ✅ Complete |
+| **3** | Health dashboard produces accurate report, xref checker finds known broken link, best practices improver creates valid improvement PR on feature branch | ✅ Complete |
+| **4** | Doc sync catches intentionally stale count, unbloat proposes readable simplification | ✅ Complete |
 
-| Metric | Target | Measurement |
-|--------|--------|-------------|
-| **Merge Rate** | > 70% | Merged PRs / Created PRs per workflow |
-| **False Positive Rate** | < 20% | Closed-without-merge PRs + wontfix issues |
-| **Context Coverage** | > 80% | Skills with matching context files / total skills |
-| **Template Compliance** | > 90% | Skills passing structure validation / total skills |
-| **Agent Config Validity** | 100% | Agents passing schema validation / total agents |
-| **Hook Budget Compliance** | 100% | Hooks completing < 5s / total hooks |
+### Expansion Phase Completion Criteria (Phases 5-8)
 
----
+| Phase | Completion Criteria | Status |
+|-------|-------------------|--------|
+| **5** | Issue templates created, `SECURITY.md` present, all issue-producing workflows import quality issue contract | 🚧 In rollout |
+| **6** | Release notes workflow drafts release issue on tag, dependency sentinel proposes valid draft PR, health dashboard includes delivery metrics | 🚧 In rollout |
+| **7** | Triage/milestone/manager/stale workflows generate actionable planning reports with low noise | 🚧 In rollout |
+| **8** | Canary manual runs pass, schedules enabled, false-positive rate remains under threshold for 2 weeks | 📋 Planned |
 
-## Workflow Schedule Overview
+### Ongoing KPIs (Active Monitoring)
 
-Spread across the week to avoid overlapping runs and PR noise:
+These metrics guide continuous workflow tuning:
 
-| Trigger | Schedule / Event | Workflow |
-|---------|-----------------|----------|
-| **PR** | `pull_request → develop, main` | Forge Skill Simplifier |
-| **PR** | `pull_request → develop, main` | Forge Duplication Detector |
-| **PR** | `pull_request → develop, main` | Context Pruner & Maintainer |
-| **PR** | `pull_request → develop, main` | Forge Convention Enforcer |
-| **PR** | `pull_request → develop` (feature branches) | Forge Best Practices Improver |
-| **PR merge** | `push → main` (post-merge) | Forge Context Generator |
-| **Schedule** | Mon-Fri 07:00 | Forge Doc Sync |
-| **Schedule** | Tue 08:00 | Forge Cross-Reference Checker |
-| **Schedule** | Tue, Thu 09:00 | Forge Skill Structure Validator |
-| **Schedule** | Wed 09:00 | Forge Agent Config Validator |
-| **Schedule** | Thu 10:00 | Forge Doc Unbloat |
-| **Schedule** | Fri 07:00 | Forge Hook Quality Checker |
-| **Schedule** | Sun 09:00 | Forge Health Dashboard |
-
-All PR-triggered workflows also support `workflow_dispatch` for on-demand runs.
+| Metric | Target | Measurement | Tracking Method |
+|--------|--------|-------------|-----------------|
+| **Merge Rate** | > 70% | Merged PRs / Created PRs per workflow | GitHub PR analytics |
+| **False Positive Rate** | < 20% | Closed-without-merge PRs + wontfix issues | Issue/PR close reasons |
+| **Context Coverage** | > 80% | Skills with matching context files / total skills | Health Dashboard weekly |
+| **Template Compliance** | > 90% | Skills passing structure validation / total skills | Skill Validator reports |
+| **Agent Config Validity** | 100% | Agents passing schema validation / total agents | Agent Validator reports |
+| **Hook Budget Compliance** | 100% | Hooks completing < 5s / total hooks | Hook Quality Checker |
+| **Cross-Reference Integrity** | > 95% | Valid references / total references | Cross-Reference Checker |
+| **Documentation Freshness** | > 90% | Up-to-date docs / total docs | Doc Sync reports |
+| **Issue Triage Latency** | < 24h | Median time from issue creation to triage recommendation | Issue Triage Agent reports |
+| **Milestone Predictability** | > 80% | Milestones delivered within planned window | Milestone Tracker reports |
+| **Stale Backlog Ratio** | < 15% | Stale issues+PRs / total active issues+PRs | Stale Gardener reports |
 
 ---
 
@@ -1290,6 +557,10 @@ All PR-triggered workflows also support `workflow_dispatch` for on-demand runs.
 - [Continuous Style](https://github.github.com/gh-aw/blog/continuous-style/) — Terminal Stylist
 - [Continuous Improvement](https://github.github.com/gh-aw/blog/continuous-improvement/) — Repository Quality Improver
 - [Continuous Documentation](https://github.github.com/gh-aw/blog/continuous-documentation/) — Daily Doc Updater, Doc Unbloat
+- [Operations & Release Workflows](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-operations-release/) — Release Notes, Dependency Sentinel
+- [Metrics & Analytics Workflows](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-metrics-analytics/) — Health reporting and trend metrics
+- [Issue Management Workflows](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-issue-management/) — Triage and stale management
+- [Project Coordination Workflows](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-campaigns/) — Milestone and roadmap coordination
 
 ### Reference Workflows (source code)
 - [code-simplifier.md](https://github.com/github/gh-aw/blob/v0.42.13/.github/workflows/code-simplifier.md?plain=1)
@@ -1311,7 +582,7 @@ All PR-triggered workflows also support `workflow_dispatch` for on-demand runs.
 
 ---
 
-*Last Updated: February 12, 2026*
+*Last Updated: February 13, 2026*
 *Maintained by: The Forge Keepers*
 
 *Forged by Hephaestus. Automated by his tireless automatons. Worthy of Olympus.*

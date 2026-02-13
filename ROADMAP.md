@@ -241,6 +241,9 @@ Inspired by [Peli's Agent Factory](https://github.github.com/gh-aw/blog/2026-01-
 |----------|-------------|---------|----------|
 | **Issue Triage Agent** | Auto-label, prioritize, and assign incoming issues based on content analysis and project context | On issue creation | [Peli's Issue Management](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-issue-management/) |
 | **Project Milestone Tracker** | Monitor progress toward milestones, identify blocked issues, suggest re-prioritization | Schedule (daily) | [Peli's Project Coordination](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-campaigns/) |
+
+| **Project Manager Agent** | Auto-analyze project state against ROADMAP, decompose milestones into tracked issues, synthesize milestone roadmaps, propose feature prioritization | Schedule (weekly) + on ROADMAP change | [Peli's Project Coordination](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-campaigns/) |
+
 | **Stale Issue/PR Gardener** | Identify stale issues and PRs, ping assignees, auto-close after grace period with summary comment | Schedule (weekly) | [Peli's Issue Management](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-issue-management/) |
 
 
