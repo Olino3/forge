@@ -218,6 +218,16 @@ Future agentic workflow expansions beyond the current 19 operational workflows:
 | **Improve Test Coverage** | Analyze coverage gaps, generate missing unit/integration tests, submit as PRs | Schedule (weekly) | [Peli's Testing & Validation](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-testing-validation/) |
 | **Diagnose CI Failures** | On CI failure, automatically investigate root cause — parse logs, identify flaky tests, bisect regressions, post diagnosis as PR comment | On CI failure | [Peli's Fault Investigation](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-quality-hygiene/) |
 
+### Continuous Milestone Delivery (Planned)
+
+A proactive system of three interlocking agents that autonomously drive milestones from planning through completion. When a milestone is created, the **Milestone Planner** breaks it into feature issues. The **Feature Decomposer** then splits each feature into Copilot-assignable sub-issues. As PRs land, the **Milestone Progress Reviewer** evaluates remaining gaps and creates new work items to keep the milestone on track.
+
+| Workflow | Description | Trigger | Reference |
+|----------|-------------|---------|----------|
+| **Milestone Planner** | On milestone creation, analyze ROADMAP targets and codebase state to plan features and bugfixes for the release; create feature request issues for each planned item and associate existing relevant issues with the milestone | Milestone created | — |
+| **Feature Decomposer** | For each feature issue added to a milestone, decompose it into actionable work items; create a sub-issue for each work item with acceptance criteria and assign Copilot for autonomous implementation | Issue milestoned | — |
+| **Milestone Progress Reviewer** | On each PR, evaluate how far along the associated feature and milestone are; identify delivery gaps and create new feature issues or sub-issues as needed to maintain milestone trajectory | PR events | — |
+
 ---
 
 ## Multi-Platform Compatibility
@@ -272,6 +282,7 @@ Extend skill and agent compatibility beyond Claude Code to support additional AI
 
 ### Mid-Term
 - **Testing & validation workflows**: Automated test coverage improvement and CI failure diagnosis
+- **Continuous Milestone Delivery workflows**: Proactive milestone planning, feature decomposition, and progress-driven gap filling via autonomous agents
 - **Advanced Olympian Council workflows**: All 12 Olympians actively collaborating on complex engineering challenges with sophisticated delegation patterns
 - **Self-improving skills**: Skills that analyze their own output quality and refine themselves
 - **Meta-agents**: Agents that monitor and improve the health of other agents and workflows

@@ -67,6 +67,9 @@ These workflows are candidates for implementation after Phase 8 stabilization:
 |----------|-------------|---------|----------|
 | **Improve Test Coverage** | Analyze coverage gaps, generate missing tests | Schedule (weekly) | [Peli's Testing & Validation](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-testing-validation/) |
 | **Diagnose CI Failures** | Auto-investigate CI failures, post root cause analysis | On CI failure | [Peli's Fault Investigation](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-quality-hygiene/) |
+| **Milestone Planner** | Plan features and bugfixes for newly created milestones; create feature issues and associate existing issues | Milestone created | — |
+| **Feature Decomposer** | Decompose milestone feature issues into Copilot-assignable sub-issues with acceptance criteria | Issue milestoned | — |
+| **Milestone Progress Reviewer** | Evaluate milestone and feature delivery gaps on each PR; create remediation issues to maintain trajectory | PR events | — |
 
 ---
 
@@ -86,6 +89,8 @@ These metrics guide continuous workflow tuning:
 | **Documentation Freshness** | > 90% | Doc Sync reports |
 | **Issue Triage Latency** | < 24h | Issue Triage Agent |
 | **Milestone Predictability** | > 80% | Milestone Tracker |
+| **Milestone Delivery Rate** | > 75% | Milestone Progress Reviewer |
+| **Feature Decomposition Coverage** | > 90% | Feature Decomposer |
 | **Stale Backlog Ratio** | < 15% | Stale Gardener |
 
 ---
