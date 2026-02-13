@@ -49,3 +49,18 @@ All workflow-generated issues must include:
 - Vague findings without file paths or line numbers
 - Multiple issues for the same root cause (consolidate when possible)
 - Issues for experimental code or intentional divergence from conventions
+
+## Usage in Workflows
+
+Workflows should reference these requirements in their "Output" sections and add workflow-specific details:
+
+```markdown
+## Output
+
+Create issues following the [standard quality requirements](shared/forge-quality-issue-template.md#standard-issue-quality-requirements).
+
+For this workflow, include:
+- {Workflow-specific requirement 1}
+- {Workflow-specific requirement 2}
+- {Workflow-specific requirement 3}
+```
