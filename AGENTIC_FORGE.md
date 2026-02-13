@@ -395,6 +395,7 @@ All 20 workflows at a glance, organized by when they run:
 | **Context Generator** | Push to `main` (post-merge) | Draft PR | Missing context files for new skills |
 | **CI Failure Diagnostician** | `Forge Tests` workflow fails (2nd consecutive) | Draft PR | Root cause analysis and proposed fixes for test failures |
 | **Issue Triage Agent** | Issue opened/reopened | Issue | Labels, priority, assignment recommendations |
+| **Milestone Planner** | Milestone created | Issue (multiple) | Feature decomposition and issue association |
 | **Release Notes Generator** | Tag push or release publish | Issue | Categorized changelog from merged PRs |
 
 ### Scheduled workflows (run on a timer)
@@ -428,6 +429,7 @@ Every workflow output is labeled and prefixed:
 | `[duplication]` | Duplication Detector | Repeated content |
 | `[context-maintenance]` | Context Pruner | Stale/broken context |
 | `[triage]` | Issue Triage Agent | Intake recommendation |
+| `[Feature]` | Milestone Planner | Feature decomposition |
 | `[milestone]` | Milestone Tracker | Progress report |
 | `[pm]` | Project Manager Agent | Roadmap execution plan |
 | `[stale]` | Stale Gardener | Dormant work review |
