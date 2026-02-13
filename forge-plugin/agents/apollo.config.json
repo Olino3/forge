@@ -1,7 +1,7 @@
 {
   "$schema": "../interfaces/schemas/agent_config.schema.json",
   "name": "apollo",
-  "version": "0.2.0-alpha",
+  "version": "0.3.0-alpha",
   "description": "God of light and code quality. Master of illuminating quality issues, predicting performance bottlenecks, and optimizing algorithms",
   "model": "sonnet",
   "tools": ["Read", "Write", "Bash", "Grep", "Glob"],

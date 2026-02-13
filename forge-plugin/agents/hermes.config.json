@@ -1,7 +1,7 @@
 {
   "$schema": "../interfaces/schemas/agent_config.schema.json",
   "name": "hermes",
-  "version": "0.2.0-alpha",
+  "version": "0.3.0-alpha",
   "description": "Messenger of the gods and integration specialist. Master of API integrations, inter-service communication, and data exchange",
   "model": "sonnet",
   "tools": ["Read", "Write", "Bash", "Grep", "Glob"],

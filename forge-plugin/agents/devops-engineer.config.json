@@ -1,7 +1,7 @@
 {
   "$schema": "../interfaces/schemas/agent_config.schema.json",
   "name": "devops-engineer",
-  "version": "0.2.0-alpha",
+  "version": "0.3.0-alpha",
   "description": "Master of deployment and infrastructure specializing in CI/CD pipelines, infrastructure as code, containerization, and cloud deployments",
   "model": "sonnet",
   "tools": ["Read", "Write", "Bash", "Grep", "Glob"],

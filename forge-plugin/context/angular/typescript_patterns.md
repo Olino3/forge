@@ -5,7 +5,7 @@ title: "TypeScript Best Practices for Angular"
 type: pattern
 estimatedTokens: 450
 loadingStrategy: onDemand
-version: "0.2.0-alpha"
+version: "0.3.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: "Strict Mode"
@@ -202,4 +202,4 @@ const name = user?.name ?? 'Unknown';
 
 ---
 
-**Version**: 0.2.0-alpha
+**Version**: 0.3.0-alpha

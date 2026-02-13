@@ -1,7 +1,7 @@
 ---
 name: "{skill-name}"
 description: "{description}"
-version: "0.2.0-alpha"
+version: "0.3.0-alpha"
 context:
   primary_domain: "{domain}"
   always_load_files: []
@@ -17,7 +17,7 @@ memory:
 
 # skill:{skill-name} - [Short Description]
 
-## Version: 0.2.0-alpha
+## Version: 0.3.0-alpha
 
 ## Purpose
 

@@ -11,7 +11,7 @@
       "name": "forge-core",
       "source": "./forge-plugin",
       "description": "(RECOMMENDED) The Forge core plugin — 102 skills, 19 agents, 12 commands, 81 context files, 20 hooks, and 4 interfaces for AI-assisted software development. Install this first, then add external plugins for your specific use case.",
-      "version": "0.2.0-alpha",
+      "version": "0.3.0-alpha",
       "category": "productivity",
       "keywords": ["forge", "agents", "skills", "commands", "agentic", "software-factory"]
     },

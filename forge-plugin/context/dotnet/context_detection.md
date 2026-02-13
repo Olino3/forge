@@ -5,7 +5,7 @@ title: ".NET Context Detection"
 type: detection
 estimatedTokens: 700
 loadingStrategy: onDemand
-version: "0.2.0-alpha"
+version: "0.3.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: ".NET Version Detection"
@@ -160,6 +160,6 @@ Quick reference for identifying .NET project characteristics. For detailed versi
 
 ---
 
-**Version**: 0.2.0-alpha (Compacted)
+**Version**: 0.3.0-alpha (Compacted)
 **Last Updated**: 2025-11-14
 **Maintained For**: dotnet-code-review skill

@@ -5,7 +5,7 @@ title: "OWASP Top 10 for Python - Quick Reference"
 type: reference
 estimatedTokens: 350
 loadingStrategy: onDemand
-version: "0.2.0-alpha"
+version: "0.3.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: "Official OWASP Resources"
@@ -83,5 +83,5 @@ Use these as the canonical source for definitions, examples, and mitigations.
 
 ---
 
-**Version**: 0.2.0-alpha (Compact Reference Format)
+**Version**: 0.3.0-alpha (Compact Reference Format)
 **Last Updated**: 2025-11-14

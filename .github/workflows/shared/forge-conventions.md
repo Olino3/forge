@@ -20,7 +20,7 @@ description: "Forge project conventions for agentic workflows"
 - Hooks must complete in < 5 seconds
 - No hardcoded filesystem paths — use interface references
 
-## Asset Counts (as of v0.2.0-alpha)
+## Asset Counts (as of v0.3.0-alpha)
 
 | Asset Type | Count | Location |
 |-----------|-------|----------|

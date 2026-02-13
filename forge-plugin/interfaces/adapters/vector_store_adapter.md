@@ -1,6 +1,6 @@
 # VectorStore Adapter
 
-**Version**: 0.2.0-alpha
+**Version**: 0.3.0-alpha
 **Status**: Future Adapter Specification (Design Only)
 
 ---
