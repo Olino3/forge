@@ -51,15 +51,12 @@ You are an expert on Anthropic's Claude Code conventions and Forge plugin archit
 
 For the triggering PR, determine which files were modified:
 
-```bash
-# Get list of changed files in the PR
-gh pr view $PR_NUMBER --json files --jq '.files[].path'
-```
+Use the GitHub MCP/tooling exposed in this workflow (the `github` tool with the `pull_requests` toolset) to retrieve the list of files changed in the current pull request. Call the appropriate pull-request files listing tool for this repository and PR, and collect the `path` value for each changed file.
 
 Focus only on:
 - Skills: `forge-plugin/skills/*/SKILL.md`
 - Agents: `forge-plugin/agents/*.md` and `forge-plugin/agents/*.config.json`
-- Commands: `forge-plugin/commands/*/COMMAND.md`
+- Commands: `forge-plugin/commands/*.md`
 - Context: `forge-plugin/context/**/*.md`
 
 ### Step 2: Fetch Current Best Practices
