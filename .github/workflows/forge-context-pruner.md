@@ -3,6 +3,7 @@ description: "Prune stale context files and validate context integrity in Forge"
 imports:
   - shared/forge-base.md
   - shared/forge-issue-creator.md
+  - shared/forge-quality-issue-template.md
   - shared/forge-conventions.md
 on:
   pull_request:

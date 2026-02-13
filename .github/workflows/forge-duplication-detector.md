@@ -3,6 +3,7 @@ description: "Detect duplicated content across Forge skills, context, and hooks"
 imports:
   - shared/forge-base.md
   - shared/forge-issue-creator.md
+  - shared/forge-quality-issue-template.md
   - shared/forge-conventions.md
 on:
   pull_request:

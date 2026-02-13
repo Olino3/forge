@@ -3,6 +3,7 @@ description: "Validate Forge skill structure compliance against SKILL_TEMPLATE.m
 imports:
   - shared/forge-base.md
   - shared/forge-issue-creator.md
+  - shared/forge-quality-issue-template.md
   - shared/forge-conventions.md
 on:
   schedule: "0 9 * * 2,4"
@@ -60,4 +61,3 @@ Create issues for meaningful violations only, with:
 - Exact files and missing/invalid elements
 - Concrete remediation steps
 - Severity (critical/warning/info)
-

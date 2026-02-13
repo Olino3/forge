@@ -19,45 +19,41 @@
 #   gh aw compile
 # For more information: https://github.com/github/gh-aw/blob/main/.github/aw/github-agentic-workflows.md
 #
-# Validate Forge hook scripts for quality, safety, and performance
+# Analyze project state against ROADMAP and synthesize milestone execution plans
 #
 # Resolved workflow manifest:
 #   Imports:
 #     - shared/forge-base.md
 #     - shared/forge-conventions.md
 #     - shared/forge-issue-creator.md
-#     - shared/forge-quality-issue-template.md
 #
-# frontmatter-hash: 7759a4c863047c64260004e07e8000b416cf5e66cf1f4e98254dfe024b576d50
+# frontmatter-hash: a0c7fe82024a0b30972dcd0fd9067299dcf9c09544b3c728682d72d0a85eaea2
 
-name: "Forge Hook Quality Checker"
+name: "Forge Project Manager Agent"
 "on":
-  pull_request:
+  push:
+    branches:
+    - main
+    - develop
     paths:
-    - forge-plugin/hooks/*.sh
-    - forge-plugin/hooks/hooks.json
-    - forge-plugin/hooks/HOOKS_GUIDE.md
-    types:
-    - opened
-    - synchronize
+    - ROADMAP.md
+    - AGENTIC_WORKFLOWS_ROADMAP.md
   schedule:
-  - cron: "42 18 * * 5"
-    # Friendly format: weekly on friday (scattered)
+  - cron: "28 19 * * 1"
+    # Friendly format: weekly on monday (scattered)
   workflow_dispatch:
 
 permissions: {}
 
 concurrency:
-  group: "gh-aw-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}"
-  cancel-in-progress: true
+  group: "gh-aw-${{ github.workflow }}-${{ github.ref }}"
 
-run-name: "Forge Hook Quality Checker"
+run-name: "Forge Project Manager Agent"
 
 jobs:
   activation:
     needs: pre_activation
-    if: >
-      (needs.pre_activation.outputs.activated == 'true') && ((github.event_name != 'pull_request') || (github.event.pull_request.head.repo.id == github.repository_id))
+    if: needs.pre_activation.outputs.activated == 'true'
     runs-on: ubuntu-slim
     permissions:
       contents: read
@@ -72,7 +68,7 @@ jobs:
       - name: Check workflow file timestamps
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
-          GH_AW_WORKFLOW_FILE: "forge-hook-checker.lock.yml"
+          GH_AW_WORKFLOW_FILE: "forge-project-manager-agent.lock.yml"
         with:
           script: |
             const { setupGlobals } = require('/opt/gh-aw/actions/setup_globals.cjs');
@@ -157,7 +153,7 @@ jobs:
               version: "",
               agent_version: "0.0.407",
               cli_version: "v0.43.10",
-              workflow_name: "Forge Hook Quality Checker",
+              workflow_name: "Forge Project Manager Agent",
               experimental: false,
               supports_tools_allowlist: true,
               supports_http_transport: true,
@@ -220,7 +216,7 @@ jobs:
           cat > /opt/gh-aw/safeoutputs/tools.json << 'GH_AW_SAFE_OUTPUTS_TOOLS_EOF'
           [
             {
-              "description": "Create a new GitHub issue for tracking bugs, feature requests, or tasks. Use this for actionable work items that need assignment, labeling, and status tracking. For reports, announcements, or status updates that don't require task tracking, use create_discussion instead. CONSTRAINTS: Maximum 1 issue(s) can be created. Title will be prefixed with \"[hook-quality] \". Labels [forge-automation hooks quality] will be automatically added.",
+              "description": "Create a new GitHub issue for tracking bugs, feature requests, or tasks. Use this for actionable work items that need assignment, labeling, and status tracking. For reports, announcements, or status updates that don't require task tracking, use create_discussion instead. CONSTRAINTS: Maximum 1 issue(s) can be created. Title will be prefixed with \"[pm] \". Labels [forge-automation roadmap planning] will be automatically added.",
               "inputSchema": {
                 "additionalProperties": false,
                 "properties": {
@@ -572,13 +568,10 @@ jobs:
           {{#runtime-import .github/workflows/shared/forge-issue-creator.md}}
           GH_AW_PROMPT_EOF
           cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
-          {{#runtime-import .github/workflows/shared/forge-quality-issue-template.md}}
-          GH_AW_PROMPT_EOF
-          cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
           {{#runtime-import .github/workflows/shared/forge-conventions.md}}
           GH_AW_PROMPT_EOF
           cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
-          {{#runtime-import .github/workflows/forge-hook-checker.md}}
+          {{#runtime-import .github/workflows/forge-project-manager-agent.md}}
           GH_AW_PROMPT_EOF
       - name: Substitute placeholders
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
@@ -823,7 +816,7 @@ jobs:
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
           GH_AW_NOOP_MAX: 1
-          GH_AW_WORKFLOW_NAME: "Forge Hook Quality Checker"
+          GH_AW_WORKFLOW_NAME: "Forge Project Manager Agent"
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
@@ -836,7 +829,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Forge Hook Quality Checker"
+          GH_AW_WORKFLOW_NAME: "Forge Project Manager Agent"
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
@@ -849,10 +842,10 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Forge Hook Quality Checker"
+          GH_AW_WORKFLOW_NAME: "Forge Project Manager Agent"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
-          GH_AW_WORKFLOW_ID: "forge-hook-checker"
+          GH_AW_WORKFLOW_ID: "forge-project-manager-agent"
           GH_AW_SECRET_VERIFICATION_RESULT: ${{ needs.agent.outputs.secret_verification_result }}
           GH_AW_CHECKOUT_PR_SUCCESS: ${{ needs.agent.outputs.checkout_pr_success }}
         with:
@@ -867,7 +860,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Forge Hook Quality Checker"
+          GH_AW_WORKFLOW_NAME: "Forge Project Manager Agent"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
           GH_AW_NOOP_MESSAGE: ${{ steps.noop.outputs.noop_message }}
@@ -887,7 +880,7 @@ jobs:
           GH_AW_COMMENT_ID: ${{ needs.activation.outputs.comment_id }}
           GH_AW_COMMENT_REPO: ${{ needs.activation.outputs.comment_repo }}
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          GH_AW_WORKFLOW_NAME: "Forge Hook Quality Checker"
+          GH_AW_WORKFLOW_NAME: "Forge Project Manager Agent"
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
           GH_AW_DETECTION_CONCLUSION: ${{ needs.detection.result }}
         with:
@@ -931,8 +924,8 @@ jobs:
       - name: Setup threat detection
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
-          WORKFLOW_NAME: "Forge Hook Quality Checker"
-          WORKFLOW_DESCRIPTION: "Validate Forge hook scripts for quality, safety, and performance"
+          WORKFLOW_NAME: "Forge Project Manager Agent"
+          WORKFLOW_DESCRIPTION: "Analyze project state against ROADMAP and synthesize milestone execution plans"
           HAS_PATCH: ${{ needs.agent.outputs.has_patch }}
         with:
           script: |
@@ -998,7 +991,6 @@ jobs:
           if-no-files-found: ignore
 
   pre_activation:
-    if: (github.event_name != 'pull_request') || (github.event.pull_request.head.repo.id == github.repository_id)
     runs-on: ubuntu-slim
     outputs:
       activated: ${{ steps.check_membership.outputs.is_team_member == 'true' }}
@@ -1032,8 +1024,8 @@ jobs:
     timeout-minutes: 15
     env:
       GH_AW_ENGINE_ID: "copilot"
-      GH_AW_WORKFLOW_ID: "forge-hook-checker"
-      GH_AW_WORKFLOW_NAME: "Forge Hook Quality Checker"
+      GH_AW_WORKFLOW_ID: "forge-project-manager-agent"
+      GH_AW_WORKFLOW_NAME: "Forge Project Manager Agent"
     outputs:
       create_discussion_error_count: ${{ steps.process_safe_outputs.outputs.create_discussion_error_count }}
       create_discussion_errors: ${{ steps.process_safe_outputs.outputs.create_discussion_errors }}
@@ -1060,7 +1052,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_SAFE_OUTPUTS_HANDLER_CONFIG: "{\"create_issue\":{\"close_older_issues\":true,\"expires\":336,\"labels\":[\"forge-automation\",\"hooks\",\"quality\"],\"max\":1,\"title_prefix\":\"[hook-quality] \"},\"missing_data\":{},\"missing_tool\":{}}"
+          GH_AW_SAFE_OUTPUTS_HANDLER_CONFIG: "{\"create_issue\":{\"close_older_issues\":true,\"expires\":336,\"labels\":[\"forge-automation\",\"roadmap\",\"planning\"],\"max\":1,\"title_prefix\":\"[pm] \"},\"missing_data\":{},\"missing_tool\":{}}"
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |

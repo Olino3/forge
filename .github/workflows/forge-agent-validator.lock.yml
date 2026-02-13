@@ -26,8 +26,9 @@
 #     - shared/forge-base.md
 #     - shared/forge-conventions.md
 #     - shared/forge-issue-creator.md
+#     - shared/forge-quality-issue-template.md
 #
-# frontmatter-hash: 875d145b710d8c00dd42704b7943319b3bf534a58ca09a198d9a5b122f4db5d1
+# frontmatter-hash: 56772138c5f1b564a17c7d51b5244964b1f81a90184ae9b3c0f64e319708171f
 
 name: "Forge Agent Config Validator"
 "on":
@@ -569,6 +570,9 @@ jobs:
           GH_AW_PROMPT_EOF
           cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
           {{#runtime-import .github/workflows/shared/forge-issue-creator.md}}
+          GH_AW_PROMPT_EOF
+          cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
+          {{#runtime-import .github/workflows/shared/forge-quality-issue-template.md}}
           GH_AW_PROMPT_EOF
           cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
           {{#runtime-import .github/workflows/shared/forge-conventions.md}}
