@@ -5,7 +5,7 @@ title: "Python Dependency Management Reference"
 type: reference
 estimatedTokens: 1000
 loadingStrategy: onDemand
-version: "0.2.0-alpha"
+version: "0.3.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: "Quick Command Reference"
@@ -221,6 +221,6 @@ Use these to identify package manager:
 
 ---
 
-**Version**: 0.2.0-alpha (Compacted)
+**Version**: 0.3.0-alpha (Compacted)
 **Last Updated**: 2025-11-14
 **Maintained For**: python-dependency-management skill

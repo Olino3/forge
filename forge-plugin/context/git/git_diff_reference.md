@@ -5,7 +5,7 @@ title: "Git Diff Reference - Quick Links"
 type: reference
 estimatedTokens: 150
 loadingStrategy: onDemand
-version: "0.2.0-alpha"
+version: "0.3.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: "Diff Format & Syntax"
@@ -92,6 +92,6 @@ Use cases (remember, look up syntax in docs):
 
 ---
 
-**Version**: 0.2.0-alpha (Compact Reference Format)
+**Version**: 0.3.0-alpha (Compact Reference Format)
 **Last Updated**: 2025-11-14
 **Maintained For**: get-git-diff skill

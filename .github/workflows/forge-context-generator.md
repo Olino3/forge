@@ -68,7 +68,7 @@ title: "{Skill Display Name} Context"
 type: reference
 estimatedTokens: 400
 loadingStrategy: conditional
-version: "0.2.0-alpha"
+version: "0.3.0-alpha"
 lastUpdated: "{today's date in YYYY-MM-DD format}"
 sections:
   - name: "Overview"

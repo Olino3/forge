@@ -1,7 +1,7 @@
 ---
 name: test-cli-tools
 description: Iterative testing of command-line interface tools with automated failure detection, documentation, and fix suggestions.
-version: "0.2.0-alpha"
+version: "0.3.0-alpha"
 context:
   primary: []
   topics: []

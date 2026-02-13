@@ -5,7 +5,7 @@ title: "Data Science Patterns (Pandas/NumPy)"
 type: framework
 estimatedTokens: 900
 loadingStrategy: onDemand
-version: "0.2.0-alpha"
+version: "0.3.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: "Pandas Performance Anti-Patterns"
@@ -171,6 +171,6 @@ See [Pandas API reference](https://pandas.pydata.org/docs/reference/index.html)
 
 ---
 
-**Version**: 0.2.0-alpha (Compacted)
+**Version**: 0.3.0-alpha (Compacted)
 **Last Updated**: 2025-11-14
 **Maintained For**: python-code-review skill

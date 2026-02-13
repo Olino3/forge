@@ -348,5 +348,5 @@ See `example-project/` directory for reference implementation.
 
 ---
 
-**Version**: 0.2.0-alpha
+**Version**: 0.3.0-alpha
 **Last Updated**: 2025-01-14

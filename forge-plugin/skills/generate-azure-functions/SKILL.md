@@ -1,7 +1,7 @@
 ---
 name: generate-azure-functions
 description: Generate complete Azure Functions projects with local development environment using Tilt and Azurite
-version: "0.2.0-alpha"
+version: "0.3.0-alpha"
 context:
   primary: [azure]
   topics: [azure_functions_overview, local_development_setup, tiltfile_reference, docker_compose_reference, dockerfile_reference, azurite_setup]
@@ -12,7 +12,7 @@ memory:
 
 # Skill: generate-azure-functions
 
-**Version**: 0.2.0-alpha
+**Version**: 0.3.0-alpha
 **Purpose**: Generate complete Azure Functions projects with local development environment using Tilt and Azurite
 **Author**: The Forge
 **Last Updated**: 2025-11-18

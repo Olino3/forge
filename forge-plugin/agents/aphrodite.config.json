@@ -1,7 +1,7 @@
 {
   "$schema": "../interfaces/schemas/agent_config.schema.json",
   "name": "aphrodite",
-  "version": "0.2.0-alpha",
+  "version": "0.3.0-alpha",
   "description": "Goddess of beauty and delightful user experiences. Master of crafting beautiful UIs, elegant interfaces, and human-centered design",
   "model": "sonnet",
   "tools": ["Read", "Write", "Bash", "Grep", "Glob"],

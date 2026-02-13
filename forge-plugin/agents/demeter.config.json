@@ -1,7 +1,7 @@
 {
   "$schema": "../interfaces/schemas/agent_config.schema.json",
   "name": "demeter",
-  "version": "0.2.0-alpha",
+  "version": "0.3.0-alpha",
   "description": "Goddess of harvest and data cultivation. Master of nurturing data pipelines, cultivating analytics, and ensuring data quality and growth",
   "model": "sonnet",
   "tools": ["Read", "Write", "Bash", "Grep", "Glob"],

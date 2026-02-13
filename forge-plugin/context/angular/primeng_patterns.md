@@ -5,7 +5,7 @@ title: "PrimeNG Component Patterns"
 type: framework
 estimatedTokens: 300
 loadingStrategy: onDemand
-version: "0.2.0-alpha"
+version: "0.3.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: "Table Component"
@@ -181,4 +181,4 @@ Always provide ARIA labels:
 
 ---
 
-**Version**: 0.2.0-alpha
+**Version**: 0.3.0-alpha

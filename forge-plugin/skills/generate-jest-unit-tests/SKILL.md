@@ -1,7 +1,7 @@
 ---
 name: generate-jest-unit-tests
 description: Intelligent Jest unit test generation for Angular components, services, and more with Socratic planning and project-specific memory.
-version: "0.2.0-alpha"
+version: "0.3.0-alpha"
 context:
   primary: [angular]
   topics: [jest_testing_standards, component_testing_patterns, service_testing_patterns, testing_utilities, test_antipatterns, ngrx_patterns, rxjs_patterns]

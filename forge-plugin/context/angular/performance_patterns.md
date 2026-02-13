@@ -5,7 +5,7 @@ title: "Angular Performance Patterns - Quick Reference"
 type: pattern
 estimatedTokens: 550
 loadingStrategy: onDemand
-version: "0.2.0-alpha"
+version: "0.3.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: "Change Detection"
@@ -93,6 +93,6 @@ High-impact performance checks for Angular apps with minimal examples and links.
 
 ---
 
-**Version**: 0.2.0-alpha (Compact Reference Format)
+**Version**: 0.3.0-alpha (Compact Reference Format)
 **Last Updated**: 2025-11-14
 **Angular Versions**: 2-18+

@@ -1,7 +1,7 @@
 ---
 name: generate-python-unit-tests
 description: Intelligent Python unit test generation with Socratic planning and project-specific memory.
-version: "0.2.0-alpha"
+version: "0.3.0-alpha"
 context:
   primary: [python]
   topics: [unit_testing_standards, testing_frameworks, mocking_patterns, test_antipatterns]

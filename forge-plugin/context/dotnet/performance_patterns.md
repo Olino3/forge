@@ -5,7 +5,7 @@ title: ".NET Performance Optimization Patterns"
 type: pattern
 estimatedTokens: 1050
 loadingStrategy: onDemand
-version: "0.2.0-alpha"
+version: "0.3.0-alpha"
 lastUpdated: "2026-02-10"
 sections:
   - name: "Common Anti-Patterns"
@@ -225,6 +225,6 @@ var products = _db.Products.ToList();  // Tracking enabled
 
 ---
 
-**Version**: 0.2.0-alpha (Compacted)
+**Version**: 0.3.0-alpha (Compacted)
 **Last Updated**: 2025-11-14
 **Maintained For**: dotnet-code-review skill

@@ -73,11 +73,25 @@ This will:
 
 ### Troubleshooting Setup
 
-**Broken symlinks?** `./scripts/fix-symlinks.sh`  
-**Plugins not loading?** `./scripts/validate-plugins.sh`  
+**Broken symlinks?** `make fix-symlinks` or `./scripts/fix-symlinks.sh`
+**Plugins not loading?** `make validate` or `./scripts/validate-plugins.sh`
 **Submodule issues?** `git submodule update --init --recursive --force`
 
 See [SETUP.md](SETUP.md) for detailed setup instructions or [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for common issues.
+
+### Build System
+
+The Forge includes a Makefile for common operations:
+
+```bash
+make help      # Show all available commands
+make setup     # Initialize repository
+make test      # Run tests
+make validate  # Validate plugins and symlinks
+make version   # Show current version
+```
+
+See [docs/VERSION_MANAGEMENT.md](docs/VERSION_MANAGEMENT.md) for version management and all available Make targets.
 
 ---
 

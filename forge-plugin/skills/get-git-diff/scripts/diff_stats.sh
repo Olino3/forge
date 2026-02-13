@@ -5,7 +5,7 @@
 # Functions for calculating and analyzing diff statistics.
 #
 # Author: Claude Code get-git-diff skill
-# Version: 0.2.0-alpha
+# Version: 0.3.0-alpha
 
 set -euo pipefail
 

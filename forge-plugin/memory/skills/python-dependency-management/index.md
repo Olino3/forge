@@ -379,6 +379,6 @@ See `templates/memory_template.md` for the complete structure to use when creati
 
 ---
 
-**Version**: 0.2.0-alpha
+**Version**: 0.3.0-alpha
 **Last Updated**: 2025-11-14
 **Maintained By**: python-dependency-management skill

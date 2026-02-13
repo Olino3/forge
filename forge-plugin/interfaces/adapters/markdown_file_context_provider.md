@@ -1,6 +1,6 @@
 # MarkdownFileContextProvider Adapter
 
-Version: 0.2.0-alpha
+Version: 0.3.0-alpha
 Status: Specification
 Last Updated: 2026-02-10
 
@@ -169,7 +169,7 @@ Not all context files have YAML frontmatter yet. For files without frontmatter, 
 Many context files end with a footer block like:
 
 ```
-**Version**: 0.2.0-alpha (Compacted)
+**Version**: 0.3.0-alpha (Compacted)
 **Last Updated**: 2025-11-14
 **Maintained For**: python-code-review skill
 ```

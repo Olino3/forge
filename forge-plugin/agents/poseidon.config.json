@@ -1,7 +1,7 @@
 {
   "$schema": "../interfaces/schemas/agent_config.schema.json",
   "name": "poseidon",
-  "version": "0.2.0-alpha",
+  "version": "0.3.0-alpha",
   "description": "Master of data flow and stream orchestration. Specializes in ETL pipelines, data streaming, event-driven architectures, and data integration",
   "model": "sonnet",
   "tools": ["Read", "Write", "Bash", "Grep", "Glob"],
