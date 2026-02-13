@@ -58,25 +58,26 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 ---
 
-## Agentic Workflows — Continuous Quality (Detailed Roadmap)
+## Agentic Workflows — 19 Autonomous Quality Agents
 
 > *"The tireless automatons of Hephaestus's workshop never sleep — they sweep the forge floor, sharpen every blade, and polish each shield while the gods rest."*
 
-A detailed, phased roadmap for implementing Continuous Quality Workflows using [GitHub Agentic Workflows (gh-aw)](https://github.github.com/gh-aw/) is maintained in **[AGENTIC_WORKFLOWS_ROADMAP.md](AGENTIC_WORKFLOWS_ROADMAP.md)**.
+The Forge runs **19 autonomous agentic workflows** via [GitHub Agentic Workflows (gh-aw)](https://github.github.com/gh-aw/), powered by the Copilot engine. These workflows continuously monitor, validate, and improve the codebase — creating issues with findings or draft PRs with proposed changes. Nothing merges without human approval.
 
-The plan covers 7 phases across 10 workflows:
+See **[AGENTIC_FORGE.md](AGENTIC_FORGE.md)** for the contributor-facing guide and **[AGENTIC_WORKFLOWS_ROADMAP.md](AGENTIC_WORKFLOWS_ROADMAP.md)** for the technical roadmap.
 
-| Phase | Workflows | Parallelizable |
-|-------|-----------|----------------|
-| **Phase 0** — Bootstrap | gh-aw init, shared imports, forge conventions | No (prerequisite) |
-| **Phase 1A** — Continuous Simplicity | Skill Simplifier, Duplication Detector | Yes (with 1B) |
-| **Phase 1B** — Continuous Context | Context Generator (on skill add), Context Pruner | Yes (with 1A) |
-| **Phase 2A** — Continuous Refactoring | Skill Structure Validator, Agent Config Validator | Yes (with 2B) |
-| **Phase 2B** — Continuous Style | Convention Enforcer, Hook Quality Checker | Yes (with 2A) |
-| **Phase 3** — Continuous Improvement | Health Dashboard, Cross-Reference Checker, Best Practices Improver | After 1A+1B |
-| **Phase 4** — Continuous Documentation | Doc Sync, Doc Unbloat | Yes (with Phase 3) |
+| Category | Workflows | Trigger |
+|----------|-----------|---------|
+| **Continuous Simplicity** | Skill Simplifier, Duplication Detector | PR events |
+| **Continuous Context** | Context Generator, Context Pruner | PR events / merge |
+| **Continuous Refactoring** | Skill Validator, Agent Validator | Schedule + PR |
+| **Continuous Style** | Convention Enforcer, Hook Quality Checker | PR + schedule |
+| **Continuous Improvement** | Health Dashboard, Cross-Reference Checker, Best Practices Improver | Schedule + PR |
+| **Continuous Documentation** | Doc Sync, Doc Unbloat | Schedule |
+| **Operations & Release** | Release Notes Generator, Dependency Update Sentinel | Release / daily |
+| **Planning & Coordination** | Issue Triage Agent, Project Milestone Tracker, Project Manager Agent, Stale Gardener | Issue events / schedule |
 
-All workflows use the **Copilot engine** and leverage gh-aw's quick-start examples from [Peli's Agent Factory](https://github.github.com/gh-aw/blog/2026-01-12-welcome-to-pelis-agent-factory/), customized for Forge's Markdown/JSON/Bash codebase.
+**Infrastructure**: 5 shared imports, 5 issue templates, `SECURITY.md`, all workflows compile with 0 errors.
 
 ---
 
@@ -204,56 +205,18 @@ Give custom agents explicit access to specific skills and MCP servers based on t
 
 ---
 
-## Agentic Workflows — GitHub Actions Integration
+## Agentic Workflows — Planned Expansions
 
 > *"The forge runs day and night — tireless agents keeping the workshop in perfect order."*
 
-Inspired by [Peli's Agent Factory](https://github.github.com/gh-aw/blog/2026-01-12-welcome-to-pelis-agent-factory/) (GitHub Next + Microsoft Research), implement automated agentic workflows as GitHub Actions that run continuously alongside development. Each workflow is a specialized agent defined in Markdown, compiled into secure GitHub Actions with scoped permissions and guardrails.
+Future agentic workflow expansions beyond the current 19 operational workflows:
 
-### Continuous Quality Workflows
-
-| Workflow | Description | Trigger | Reference |
-|----------|-------------|---------|----------|
-| **Continuous Simplicity** | Proactively identify and propose simplification PRs — remove dead code, flatten abstractions, reduce complexity scores | Schedule (daily) + on PR merge | [Peli's Continuous Simplicity](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-continuous-simplicity/) |
-| **Continuous Refactoring** | Detect code smells, duplication, and anti-patterns; propose targeted refactoring PRs with before/after metrics | Schedule (daily) | [Peli's Continuous Refactoring](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-continuous-refactoring/) |
-| **Continuous Style** | Enforce coding conventions, naming standards, and project-specific patterns beyond what linters catch | On PR + schedule (weekly) | [Peli's Continuous Style](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-continuous-style/) |
-| **Continuous Improvement** | Analyze merged PRs for optimization opportunities — performance, bundle size, query efficiency | On PR merge | [Peli's Continuous Improvement](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-continuous-improvement/) |
-| **Continuous Documentation** | Keep README, API docs, and inline comments in sync with code changes; flag stale documentation | On PR merge + schedule (weekly) | [Peli's Continuous Documentation](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-documentation/) |
-
-### Testing & Validation Workflows
+### Testing & Validation Workflows (Planned)
 
 | Workflow | Description | Trigger | Reference |
 |----------|-------------|---------|----------|
 | **Improve Test Coverage** | Analyze coverage gaps, generate missing unit/integration tests, submit as PRs | Schedule (weekly) | [Peli's Testing & Validation](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-testing-validation/) |
 | **Diagnose CI Failures** | On CI failure, automatically investigate root cause — parse logs, identify flaky tests, bisect regressions, post diagnosis as PR comment | On CI failure | [Peli's Fault Investigation](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-quality-hygiene/) |
-
-### Operations & Release Workflows
-
-| Workflow | Description | Trigger | Reference |
-|----------|-------------|---------|----------|
-| **Release Notes Generator** | Compile changelog from merged PRs, categorize by type (feature/fix/breaking), draft release notes | On tag/release | [Peli's Operations & Release](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-operations-release/) |
-| **Dependency Update Sentinel** | Monitor dependencies for security advisories and updates, propose upgrade PRs with compatibility analysis | Schedule (daily) | [Peli's Operations & Release](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-operations-release/) |
-| **Health Dashboard** | Generate weekly repository health reports — test coverage trends, issue velocity, PR cycle time, code quality metrics | Schedule (weekly) | [Peli's Metrics & Analytics](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-metrics-analytics/) |
-
-### Planning & Coordination Workflows
-
-| Workflow | Description | Trigger | Reference |
-|----------|-------------|---------|----------|
-| **Issue Triage Agent** | Auto-label, prioritize, and assign incoming issues based on content analysis and project context | On issue creation | [Peli's Issue Management](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-issue-management/) |
-| **Project Milestone Tracker** | Monitor progress toward milestones, identify blocked issues, suggest re-prioritization | Schedule (daily) | [Peli's Project Coordination](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-campaigns/) |
-
-| **Project Manager Agent** | Auto-analyze project state against ROADMAP, decompose milestones into tracked issues, synthesize milestone roadmaps, propose feature prioritization | Schedule (weekly) + on ROADMAP change | [Peli's Project Coordination](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-campaigns/) |
-
-| **Stale Issue/PR Gardener** | Identify stale issues and PRs, ping assignees, auto-close after grace period with summary comment | Schedule (weekly) | [Peli's Issue Management](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-issue-management/) |
-
-
-### Implementation Plan
-
-1. Define each workflow as a Markdown specification in `.github/workflows/agents/`
-2. Compile Markdown specs into GitHub Actions YAML with scoped permissions (read-only by default, write for PR-creating workflows)
-3. Use Forge skills as the execution engine — each workflow delegates to relevant skills
-4. Implement guardrails: max changes per PR, human-approval gates for destructive operations, cost budgets per run
-5. Add meta-agent that monitors workflow health, tracks costs, and adjusts schedules based on value delivered
 
 ---
 
@@ -308,7 +271,7 @@ Extend skill and agent compatibility beyond Claude Code to support additional AI
 - **Multi-platform transpilers**: Export Forge skills to Copilot CLI, Gemini CLI, Cursor, Codex, and Factory formats
 
 ### Mid-Term
-- **Agentic GitHub workflows**: 13 automated workflows inspired by Peli's Factory — continuous simplicity, refactoring, style, improvement, documentation, CI diagnosis, test coverage, release automation, issue triage, and project coordination
+- **Testing & validation workflows**: Automated test coverage improvement and CI failure diagnosis
 - **Advanced Olympian Council workflows**: All 12 Olympians actively collaborating on complex engineering challenges with sophisticated delegation patterns
 - **Self-improving skills**: Skills that analyze their own output quality and refine themselves
 - **Meta-agents**: Agents that monitor and improve the health of other agents and workflows
@@ -331,6 +294,7 @@ Current state and recent milestones:
 
 | Date | Milestone |
 |------|-----------|
+| **Feb 13, 2026** | Agentic Workflows Complete — 19 autonomous workflows operational (quality, documentation, operations, planning), 5 issue templates, SECURITY.md, AGENTIC_FORGE.md contributor guide |
 | **Feb 13, 2026** | Documentation Overhaul — All planned internal skills forged (102 core skills), Forge Marketplace documented (38 plugins, 212 external skills), COOKBOOK.md created |
 | **Feb 12, 2026** | Architecture & Design Skills — Forged 4 skills (api-design, architecture-design, graphql-design, microservices-design) with 100 tests |
 | **Feb 12, 2026** | Frontend & Mobile Skills — 6 new skills forged: angular-architect, flutter-expert, react-expert, react-native-expert, vue-expert-js, vue-expert |
