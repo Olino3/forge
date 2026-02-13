@@ -34,3 +34,18 @@ Include this block at the top of every workflow-generated quality issue:
 - Include explicit file paths and evidence for every finding.
 - Prefer one consolidated issue per run unless separate issues are clearly necessary.
 
+## Standard Issue Quality Requirements
+
+All workflow-generated issues must include:
+
+1. **Evidence:** File paths, line numbers, exact error messages, or failing validation rules
+2. **Remediation:** Concrete, actionable steps to resolve the issue
+3. **Severity:** Appropriate classification (critical/warning/info) when applicable
+4. **Scope:** Specific components, files, or assets affected
+
+### Anti-Patterns to Avoid
+
+- Creating issues for style preferences without convention backing
+- Vague findings without file paths or line numbers
+- Multiple issues for the same root cause (consolidate when possible)
+- Issues for experimental code or intentional divergence from conventions
