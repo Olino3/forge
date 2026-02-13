@@ -2,22 +2,18 @@
 
 Validates:
 - All context files have valid YAML frontmatter
-- Required fields: tags, sections (arrays)
+- Required fields: id or title
 - No empty or orphaned context files
-- Domain index files reference existing context files
+- Domain index files exist for all domains
 - Context files are not stale (optional: warns for >90 day lastUpdated)
 
 This replaces the agentic forge-context-pruner.md workflow with deterministic checks.
 """
 
-import sys
-from datetime import datetime, timezone
 from pathlib import Path
 
 import pytest
-import yaml
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from conftest import FORGE_DIR, extract_yaml_frontmatter
 
 
@@ -47,6 +43,10 @@ def _get_top_level_context_files() -> list[tuple[str, Path]]:
     return [
         (f.name, f) for f in sorted(CONTEXT_DIR.glob("*.md"))
     ]
+
+
+# Compute domain context files once at module level for parametrization
+_DOMAIN_CONTEXT_FILES = _get_domain_context_files()
 
 
 class TestContextFilesExist:
@@ -81,8 +81,8 @@ class TestContextFrontmatter:
 
     @pytest.mark.parametrize(
         "rel_path, filepath",
-        _get_domain_context_files(),
-        ids=[r for r, _ in _get_domain_context_files()],
+        _DOMAIN_CONTEXT_FILES,
+        ids=[r for r, _ in _DOMAIN_CONTEXT_FILES],
     )
     def test_has_yaml_frontmatter(self, rel_path, filepath):
         fm = extract_yaml_frontmatter(filepath)
@@ -90,8 +90,8 @@ class TestContextFrontmatter:
 
     @pytest.mark.parametrize(
         "rel_path, filepath",
-        _get_domain_context_files(),
-        ids=[r for r, _ in _get_domain_context_files()],
+        _DOMAIN_CONTEXT_FILES,
+        ids=[r for r, _ in _DOMAIN_CONTEXT_FILES],
     )
     def test_frontmatter_has_required_fields(self, rel_path, filepath):
         fm = extract_yaml_frontmatter(filepath)
@@ -110,20 +110,21 @@ class TestContextNotEmpty:
 
     @pytest.mark.parametrize(
         "rel_path, filepath",
-        _get_domain_context_files(),
-        ids=[r for r, _ in _get_domain_context_files()],
+        _DOMAIN_CONTEXT_FILES,
+        ids=[r for r, _ in _DOMAIN_CONTEXT_FILES],
     )
     def test_has_content_beyond_frontmatter(self, rel_path, filepath):
         text = filepath.read_text(encoding="utf-8")
-        # Strip frontmatter
+        # Strip frontmatter in a delimiter-aware way: require '---' to be on its own line
+        body = text.strip()
         if text.startswith("---"):
-            end = text.find("---", 3)
-            if end != -1:
-                body = text[end + 3:].strip()
-            else:
-                body = text.strip()
-        else:
-            body = text.strip()
+            lines = text.splitlines(keepends=True)
+            if lines:
+                for i, line in enumerate(lines[1:], start=1):
+                    if line.strip() == "---":
+                        # Body starts after the closing delimiter line
+                        body = "".join(lines[i + 1:]).strip()
+                        break
         assert len(body) > 50, (
             f"{rel_path} has too little content ({len(body)} chars) — may be orphaned"
         )
@@ -143,13 +144,6 @@ class TestDomainIndexIntegrity:
             if idx.is_file():
                 indexes.append((domain_dir.name, idx))
         return indexes
-
-    @pytest.mark.parametrize(
-        "domain, index_path",
-        [],  # Will be dynamically populated
-    )
-    def test_domain_has_index(self, domain, index_path):
-        assert index_path.is_file()
 
     def test_all_domains_have_indexes(self):
         """Every domain subdirectory should have an index.md."""
