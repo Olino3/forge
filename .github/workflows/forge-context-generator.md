@@ -9,6 +9,9 @@ on:
     types: [closed]
     paths:
       - "forge-plugin/skills/*/SKILL.md"
+engine:
+  id: copilot
+  model: gpt-4.1
 permissions:
   contents: read
   issues: read

@@ -2,7 +2,7 @@
 
 > *"The tireless automatons of Hephaestus's workshop never sleep — they sweep the forge floor, sharpen every blade, and polish each shield while the gods rest."*
 
-This guide explains, in plain language, how The Forge's **22 agentic workflows** work alongside you as a contributor. No deep infrastructure knowledge required — just an understanding of PRs, issues, and releases.
+This guide explains, in plain language, how The Forge's **11 agentic workflows** work alongside you as a contributor. No deep infrastructure knowledge required — just an understanding of PRs, issues, and releases.
 
 ---
 
@@ -83,6 +83,25 @@ The Forge's development lifecycle has four stages where automation is active. He
 >
 > Every workflow creates either an **issue** (a finding to consider) or a **draft PR** (a change to review). Nothing is auto-merged. Nothing is auto-closed without a grace period. You are always in control.
 
+### No-op handling
+
+Workflows intelligently avoid creating noise when there's nothing to report:
+
+**PR-creating workflows** (Component Improver, Doc Maintainer, Test Coverage Improver, CI Failure Diagnostician, Dependency Sentinel, Context Generator):
+- Use `if-no-changes: "ignore"` in their safe-outputs configuration
+- **Only create a PR when changes are proposed** — if analysis finds no improvements needed, no PR is created
+- You only see draft PRs when there's actual work to review
+
+**Issue-creating workflows** (Stale Gardener, Project Manager Agent, Milestone Lifecycle):
+- **Always create an issue with summary counts**, even if counts are zero
+- Provides audit trail that the workflow ran successfully and found no problems
+- Weekly/daily summary format allows tracking trends over time (e.g., "Stale issues: 0" shows the repo is healthy)
+
+**Deterministic CI** (Quality Gate):
+- Runs on every PR and weekly schedule
+- Reports pass/fail status in GitHub Actions summary
+- No issue/PR creation — just CI checkmarks
+
 ---
 
 ## What Happens When You Open a PR
@@ -98,63 +117,53 @@ This is where you'll interact with automation the most. When you open or update 
 ┌──────────────────────────────────────────────────────────┐
 │                    PR OPENED / UPDATED                    │
 │                                                          │
-│  GitHub detects the PR event and triggers these          │
-│  workflows based on changed file paths:                  │
+│  GitHub detects the PR event and triggers workflows      │
+│  based on changed file paths and target branches:        │
 │                                                          │
-│  ┌──────────────────┐  Changed skills/agents/context?    │
-│  │ Skill Simplifier │──▶ Creates a PR simplifying        │
-│  │                  │    verbose documentation            │
+│  ┌──────────────────┐  Changed skills/agents/commands/   │
+│  │ Component        │  context? PR to develop/main?      │
+│  │ Improver         │──▶ Creates a PR with best          │
+│  │                  │    practices alignment and          │
+│  │                  │    documentation improvements       │
 │  └──────────────────┘                                    │
 │                                                          │
-│  ┌──────────────────┐  Changed any Forge files?          │
-│  │ Duplication      │──▶ Creates an issue listing         │
-│  │ Detector         │    duplicated content               │
-│  └──────────────────┘                                    │
-│                                                          │
-│  ┌──────────────────┐  Changed context files?            │
-│  │ Context Pruner   │──▶ Creates an issue if frontmatter  │
-│  │                  │    is invalid or refs are broken     │
-│  └──────────────────┘                                    │
-│                                                          │
-│  ┌──────────────────┐  Changed any Forge files?          │
-│  │ Convention       │──▶ Creates a PR fixing naming,      │
-│  │ Enforcer         │    formatting, convention drift      │
-│  └──────────────────┘                                    │
-│                                                          │
-│  ┌──────────────────┐  PR targets develop?               │
-│  │ Best Practices   │──▶ Creates a PR on YOUR branch      │
-│  │ Improver         │    with quality improvements         │
-│  └──────────────────┘                                    │
-│                                                          │
-│  ┌──────────────────┐  Changed hook scripts?             │
-│  │ Hook Quality     │──▶ Creates an issue if hooks         │
-│  │ Checker          │    violate safety/perf rules         │
+│  ┌──────────────────┐  All PRs                           │
+│  │ Quality Gate CI  │──▶ Runs deterministic tests:       │
+│  │ (forge-tests.yml)│    - Schema validation              │
+│  │                  │    - Context integrity              │
+│  │                  │    - Duplication detection          │
+│  │                  │    - Convention enforcement         │
+│  │                  │    - Cross-reference validation     │
+│  │                  │    - Hook syntax checks             │
 │  └──────────────────┘                                    │
 │                                                          │
 └──────────────────────────────────────────────────────────┘
        │
        ▼
-  Human reviewer sees your code + workflow outputs
-  and makes the merge decision
+  Human reviewer sees your code + CI results + workflow
+  suggestions and makes the merge decision
 ```
 
 ### What you'll actually see
 
-When a workflow activates on your PR, one of two things appears:
+When a workflow activates on your PR, you'll see:
 
-1. **A new issue** is created — labeled `forge-automation` — with findings about your changes. Check the Issues tab for anything prefixed with `[duplication]`, `[context-maintenance]`, `[skill-structure]`, or `[hook-quality]`.
+1. **CI Results** — The Quality Gate CI runs on every PR, showing pass/fail status for:
+   - Schema validation (agents, context, hooks)
+   - Context integrity (YAML frontmatter, cross-references)
+   - Duplication detection
+   - Convention enforcement (naming, structure)
+   - Cross-reference validation
 
-2. **A new draft PR** is created — either targeting your branch (Best Practices Improver) or targeting `develop`/`main` (Simplifier, Convention Enforcer). These show up as separate PRs you can review, cherry-pick from, or ignore.
+2. **Draft PR (if improvements found)** — Component Improver may create a draft PR targeting `develop`/`main` with suggested improvements to your changes. Review at your pace; it auto-expires after 14 days.
 
 ### What to do about workflow outputs
 
 | Output you see | What it means | What to do |
 |---|---|---|
-| `[duplication]` issue | Content is repeated across files | Consider consolidating; close the issue if intentional |
-| `[context-maintenance]` issue | Broken references or stale frontmatter | Fix the references in your PR before merging |
-| `[skill-structure]` issue | Your skill is missing required sections | Add the missing sections per `SKILL_TEMPLATE.md` |
-| Draft PR on your branch | Suggested quality improvements | Review the diff, merge if helpful, close if not |
-| Draft PR on develop/main | Simplification or convention fix | Review at your pace; it auto-expires after 7 days |
+| CI failure | Validation checks failed | Review the CI logs, fix the issues in your PR |
+| `[improve]` draft PR | Best practices improvements suggested | Review the diff, merge if helpful, close if not |
+| Green CI checkmarks | All validation checks passed | Your PR meets quality standards |
 
 ### What happens after your PR merges
 
@@ -211,7 +220,7 @@ This triage issue is a **recommendation**, not an auto-action. Maintainers revie
 
 ### Why templates matter
 
-Workflow-generated issues (from Health Dashboard, Cross-Reference Checker, etc.) also follow the **Quality Issue** template structure. This means all issues — whether created by humans or automation — share a consistent format that makes triage, filtering, and milestone planning predictable.
+Workflow-generated issues (from Component Improver, Milestone Lifecycle, etc.) also follow the **Quality Issue** template structure. This means all issues — whether created by humans or automation — share a consistent format that makes triage, filtering, and milestone planning predictable.
 
 ---
 
@@ -227,32 +236,16 @@ Even when no one is actively contributing, scheduled workflows run to keep the r
 │                                                                  │
 │  ┌──────────────────────────────┐                                │
 │  │ Dependency Update Sentinel   │  Checks dependency surfaces    │
-│  │ (06:00 UTC, scattered)       │  for outdated or vulnerable    │
+│  │ (scattered)                  │  for outdated or vulnerable    │
 │  │                              │  references. Creates a draft   │
 │  │ Output: Draft PR             │  PR with safe upgrades.        │
 │  └──────────────────────────────┘                                │
 │                                                                  │
 │  ┌──────────────────────────────┐                                │
-│  │ Project Milestone Tracker    │  Scans open milestones for     │
-│  │ (08:00 UTC, scattered)       │  progress, blocked items, and  │
-│  │                              │  velocity trends. Creates a    │
-│  │ Output: Issue                │  daily status report.          │
-│  └──────────────────────────────┘                                │
-│                                                                  │
-└──────────────────────────────────────────────────────────────────┘
-```
-
-### Weekday workflows (Monday–Friday)
-
-```
-┌──────────────────────────────────────────────────────────────────┐
-│                    MONDAY THROUGH FRIDAY                          │
-│                                                                  │
-│  ┌──────────────────────────────┐                                │
-│  │ Doc Sync                     │  Validates that README,        │
-│  │ (07:00 UTC)                  │  ROADMAP, CONTRIBUTING, and    │
-│  │                              │  COOKBOOK match the actual      │
-│  │ Output: PR                   │  codebase counts and paths.    │
+│  │ Milestone Lifecycle Manager  │  Scans open milestones for     │
+│  │ (08:00 UTC)                  │  progress, blocked items, and  │
+│  │                              │  velocity trends. Also handles │
+│  │ Output: Issue                │  planning on milestone.created │
 │  └──────────────────────────────┘                                │
 │                                                                  │
 └──────────────────────────────────────────────────────────────────┘
@@ -266,62 +259,43 @@ Even when no one is actively contributing, scheduled workflows run to keep the r
 │                                                                  │
 │  SUNDAY                                                          │
 │  ┌──────────────────────────────┐                                │
-│  │ Health Dashboard             │  The "executive summary"       │
-│  │ (09:00 UTC)                  │  of repo health. Covers 7      │
-│  │                              │  dimensions: skills, context,  │
-│  │ Output: Issue                │  agents, hooks, cross-refs,    │
-│  │                              │  growth trends, and delivery   │
-│  │                              │  metrics (issue velocity,      │
-│  │                              │  PR cycle time, coverage).     │
+│  │ Forge Quality Gate (CI)      │  Deterministic tests: schema   │
+│  │ (09:00 UTC)                  │  validation, context integrity │
+│  │                              │  duplication detection, naming │
+│  │ Output: CI Results           │  conventions, cross-references │
+│  │ (GITHUB_STEP_SUMMARY)       │  — NO LLMs, pure pytest/bash. │
 │  └──────────────────────────────┘                                │
 │                                                                  │
 │  MONDAY                                                          │
 │  ┌──────────────────────────────┐                                │
 │  │ Project Manager Agent        │  Compares ROADMAP targets      │
-│  │ (09:00 UTC)                  │  against actual implementation │
+│  │ (scattered)                  │  against actual implementation │
 │  │                              │  state. Proposes milestone     │
 │  │ Output: Issue                │  breakdowns and priorities.    │
 │  └──────────────────────────────┘                                │
 │                                                                  │
 │  TUESDAY                                                         │
-│  ┌──────────────────────────────┐  ┌──────────────────────────┐  │
-│  │ Cross-Reference Checker      │  │ Skill Validator          │  │
-│  │ (08:00 UTC)                  │  │ (09:00 UTC)              │  │
-│  │                              │  │                          │  │
-│  │ Validates 8 reference        │  │ Checks skill template    │  │
-│  │ matrices between skills,     │  │ compliance, mandatory    │  │
-│  │ agents, context, hooks,      │  │ 6-step workflow, and     │  │
-│  │ commands, and MCPs.          │  │ examples.md presence.    │  │
-│  │                              │  │                          │  │
-│  │ Output: Issue                │  │ Output: Issue            │  │
-│  └──────────────────────────────┘  └──────────────────────────┘  │
+│  ┌──────────────────────────────┐                                │
+│  │ Test Coverage Improver       │  Identifies coverage gaps and  │
+│  │ (09:00 UTC)                  │  generates missing pytest      │
+│  │                              │  tests for the test harness.   │
+│  │ Output: Draft PR             │                                │
+│  └──────────────────────────────┘                                │
 │                                                                  │
 │  WEDNESDAY                                                       │
 │  ┌──────────────────────────────┐                                │
-│  │ Agent Validator              │  Validates all .config.json    │
-│  │ (09:00 UTC)                  │  files against the agent       │
-│  │                              │  schema and checks skill/MCP   │
-│  │ Output: Issue                │  references exist.             │
+│  │ Component Improver           │  Two-stage pipeline: analyzes  │
+│  │ (scattered)                  │  components for best practices │
+│  │                              │  alignment, then simplifies    │
+│  │ Output: Draft PR             │  verbose documentation.        │
 │  └──────────────────────────────┘                                │
 │                                                                  │
 │  THURSDAY                                                        │
-│  ┌──────────────────────────────┐  ┌──────────────────────────┐  │
-│  │ Skill Validator (2nd run)    │  │ Doc Unbloat              │  │
-│  │ (09:00 UTC)                  │  │ (10:00 UTC)              │  │
-│  │                              │  │                          │  │
-│  │ Same as Tuesday run.         │  │ Reviews docs for         │  │
-│  │                              │  │ verbosity and creates    │  │
-│  │ Output: Issue                │  │ PRs with simplified      │  │
-│  │                              │  │ versions.                │  │
-│  └──────────────────────────────┘  │                          │  │
-│                                    │ Output: PR               │  │
-│                                    └──────────────────────────┘  │
-│  FRIDAY                                                          │
 │  ┌──────────────────────────────┐                                │
-│  │ Hook Quality Checker         │  Validates set -euo pipefail,  │
-│  │ (07:00 UTC)                  │  5-second budget, idempotency, │
-│  │                              │  hooks.json registration, and  │
-│  │ Output: Issue                │  HOOKS_GUIDE.md documentation. │
+│  │ Doc Maintainer               │  Two-stage pipeline: syncs     │
+│  │ (scattered)                  │  docs with codebase state,     │
+│  │                              │  then reduces verbosity in     │
+│  │ Output: Draft PR             │  top-level documentation.      │
 │  └──────────────────────────────┘                                │
 │                                                                  │
 │  SATURDAY                                                        │
@@ -339,10 +313,9 @@ Even when no one is actively contributing, scheduled workflows run to keep the r
 
 Every Monday, check the **Issues** tab filtered by `forge-automation` label. The weekend and previous-week runs will have produced:
 
-- A **Health Dashboard** issue with the overall score and drill-down tables
-- A **Cross-Reference** issue (if any broken links were found)
+- A **Quality Gate** CI summary with test results across all validation checks
 - Possibly a **Stale Review** issue listing dormant work
-- Any **validation issues** from Skill/Agent/Hook checkers
+- Any **Component Improver** or **Doc Maintainer** draft PRs with suggested changes
 
 These are informational. Fix what matters, close what doesn't apply.
 
@@ -381,64 +354,62 @@ The release notes are a **draft** — you copy them into the GitHub Release desc
 
 ## The Complete Workflow Catalog
 
-All 22 workflows at a glance, organized by when they run:
+All 11 agentic workflows + 1 CI workflow at a glance, organized by when they run:
 
 ### Event-triggered workflows (run when something happens)
 
-| Workflow | Trigger | Creates | What it checks |
-|---|---|---|---|
-| **Skill Simplifier** | PR to `develop`/`main` | Draft PR | Verbosity in skill documentation |
-| **Duplication Detector** | PR to `develop`/`main` | Issue | Repeated content across components |
-| **Context Pruner** | PR to `develop`/`main` | Issue | Frontmatter validity, stale refs, index integrity |
-| **Convention Enforcer** | PR to `develop`/`main` | Draft PR | Naming, formatting, convention adherence |
-| **Best Practices Improver** | PR to `develop` | Draft PR (on your branch) | Alignment with Claude Code best practices |
-| **Milestone Progress Reviewer** | PR (milestone-associated) | Issue + PR comment | Milestone gaps, progress tracking, remediation work items |
-| **Context Generator** | Push to `main` (post-merge) | Draft PR | Missing context files for new skills |
-| **CI Failure Diagnostician** | `Forge Tests` workflow fails (2nd consecutive) | Draft PR | Root cause analysis and proposed fixes for test failures |
-| **Issue Triage Agent** | Issue opened/reopened | Issue | Labels, priority, assignment recommendations |
-| **Milestone Planner** | Milestone created | Issue (multiple) | Feature decomposition and issue association |
-| **Feature Decomposer** | Issue labeled `milestone-feature` | Issue (multiple) | Decomposes features into Copilot-assignable work items |
-| **Release Notes Generator** | Tag push or release publish | Issue | Categorized changelog from merged PRs |
+| Workflow | Trigger | Creates | Model | What it checks |
+|---|---|---|---|---|
+| **Component Improver** | PR to `develop`/`main` + weekly Wed | Draft PR | `gemini-3-pro` | Best practices alignment + documentation improvements |
+| **Context Generator** | Push to `main` (post-merge) | Draft PR | `gpt-4.1` | Missing context files for new skills |
+| **CI Failure Diagnostician** | `Forge Tests` workflow fails | Draft PR | `gpt-4.1` | Root cause analysis and proposed fixes for test failures |
+| **Milestone Lifecycle** | Milestone created + daily 08:00 UTC | Issue | `claude-opus-4.6` | Feature planning, progress tracking, blocker identification |
+| **Feature Decomposer** | Issue labeled `milestone-feature` | Issue (multiple) | `gemini-3-pro` | Decomposes features into Copilot-assignable work items |
+| **Release Notes Generator** | Tag push or release publish | Issue | `claude-haiku-4.5` | Categorized changelog from merged PRs |
 
 ### Scheduled workflows (run on a timer)
 
-| Workflow | Schedule | Creates | What it checks |
-|---|---|---|---|
-| **Health Dashboard** | Sun 09:00 UTC | Issue | 7 health dimensions + delivery metrics |
-| **Doc Sync** | Mon–Fri 07:00 UTC | Draft PR | Doc accuracy vs actual codebase |
-| **Cross-Reference Checker** | Tue 08:00 UTC | Issue | 8 reference matrices between components |
-| **Skill Validator** | Tue + Thu 09:00 UTC | Issue | Template compliance, 6-step workflow |
-| **Test Coverage Improver** | Tue 09:00 UTC | Draft PR | Coverage gaps in test harness, generates missing tests |
-| **Agent Validator** | Wed 09:00 UTC | Issue | Schema compliance, ref integrity |
-| **Doc Unbloat** | Thu 10:00 UTC | Draft PR | Documentation verbosity |
-| **Hook Quality Checker** | Fri 07:00 UTC | Issue | Script safety, performance, registration |
-| **Stale Gardener** | Sat (scattered) | Issue | Dormant issues and PRs |
-| **Dependency Sentinel** | Daily (scattered) | Draft PR | Outdated dependency references |
-| **Milestone Tracker** | Daily (scattered) | Issue | Progress, blockers, velocity |
-| **Project Manager Agent** | Mon (scattered) + ROADMAP changes | Issue | Roadmap–implementation gap analysis |
+| Workflow | Schedule | Creates | Model | What it checks |
+|---|---|---|---|---|
+| **Quality Gate (CI)** | Sun 09:00 UTC + every PR | CI Results | N/A (pytest/bash) | Schema validation, context integrity, duplicates, conventions, cross-refs |
+| **Project Manager Agent** | Mon (scattered) + ROADMAP changes | Issue | `claude-opus-4.6` | Roadmap–implementation gap analysis |
+| **Test Coverage Improver** | Tue 09:00 UTC | Draft PR | `gpt-4.1` | Coverage gaps in test harness, generates missing tests |
+| **Doc Maintainer** | Thu (scattered) | Draft PR | `gemini-3-pro` | Doc accuracy + verbosity reduction (two-stage pipeline) |
+| **Stale Gardener** | Sat (scattered) | Issue | `gpt-5.1-codex-mini` | Dormant issues and PRs |
+| **Dependency Sentinel** | Daily (scattered) | Draft PR | `gpt-5.1-codex-mini` | Outdated dependency references |
+
+### Migrated to Deterministic CI (no longer agentic)
+
+The following validation tasks were moved from LLM-powered agentic workflows to fast, deterministic `pytest` tests in `forge-tests.yml`:
+
+| Former Workflow | CI Replacement | Test File |
+|---|---|---|
+| Agent Validator | `validate-agents` job | `test_json_schemas.py`, `test_cross_references.py` |
+| Skill Validator | `validate-skills` job | `test_file_structure.py`, `test_yaml_frontmatter.py` |
+| Hook Quality Checker | `validate-hooks` job | `test_hook_syntax.sh`, `test_shellcheck.sh` |
+| Context Pruner | `validate-context` job | `test_context_integrity.py` |
+| Cross-Reference Checker | `check-xrefs` job | `test_xref_links.py` |
+| Duplication Detector | `detect-duplicates` job | `test_duplication.py` |
+| Convention Enforcer | `enforce-conventions` job | `test_conventions.py` |
+| Health Dashboard | `quality-report` job | Aggregates all CI results |
 
 ### How to tell workflow outputs apart
 
 Every workflow output is labeled and prefixed:
 
-| Prefix in title | Source workflow | Type |
-|---|---|---|
-| `[health]` | Health Dashboard | Weekly report |
-| `[xref]` | Cross-Reference Checker | Broken links |
-| `[skill-structure]` | Skill Validator | Template gaps |
-| `[agent-config]` | Agent Validator | Schema failures |
-| `[hook-quality]` | Hook Quality Checker | Script issues |
-| `[duplication]` | Duplication Detector | Repeated content |
-| `[context-maintenance]` | Context Pruner | Stale/broken context |
-| `[triage]` | Issue Triage Agent | Intake recommendation |
-| `[Feature]` | Milestone Planner | Feature decomposition |
-| `[milestone]` | Milestone Tracker | Progress report |
-| `[pm]` | Project Manager Agent | Roadmap execution plan |
-| `[stale]` | Stale Gardener | Dormant work review |
-| `[deps]` | Dependency Sentinel | Upgrade proposal |
-| `[ci-fix]` | CI Failure Diagnostician | Auto-diagnosed test fix |
-| `[test-coverage]` | Test Coverage Improver | Missing test generation |
-| `[release-notes]` | Release Notes Generator | Changelog draft |
+| Prefix in title | Source workflow | Type | Model |
+|---|---|---|---|
+| `[improve]` | Component Improver | Best practices + documentation | `gemini-3-pro` |
+| `[context]` | Context Generator | New skill context files | `gpt-4.1` |
+| `[ci-fix]` | CI Failure Diagnostician | Auto-diagnosed test fix | `gpt-4.1` |
+| `[milestone]` | Milestone Lifecycle | Planning + progress + review | `claude-opus-4.6` |
+| `[Work item]` | Feature Decomposer | Decomposed work items | `gemini-3-pro` |
+| `[release-notes]` | Release Notes Generator | Changelog draft | `claude-haiku-4.5` |
+| `[pm]` | Project Manager Agent | Roadmap execution plan | `claude-opus-4.6` |
+| `[test-coverage]` | Test Coverage Improver | Missing test generation | `gpt-4.1` |
+| `[docs]` | Doc Maintainer | Sync + unbloat | `gemini-3-pro` |
+| `[stale]` | Stale Gardener | Dormant work review | `gpt-5.1-codex-mini` |
+| `[deps]` | Dependency Sentinel | Upgrade proposal | `gpt-5.1-codex-mini` |
 
 All workflow-generated items also carry the **`forge-automation`** label, so you can filter them:
 - **Issues → Labels → `forge-automation`** to see all automation outputs
@@ -453,41 +424,37 @@ All workflow-generated items also carry the **`forge-automation`** label, so you
 You create `forge-plugin/skills/my-new-skill/SKILL.md` and `examples.md`, then open a PR to `develop`.
 
 **What happens automatically:**
-1. **Skill Simplifier** reviews your `SKILL.md` for verbosity → may create a simplification PR
-2. **Convention Enforcer** checks naming and frontmatter → may create a fix PR
-3. **Best Practices Improver** checks against Claude Code patterns → may suggest improvements on your branch
-4. **Context Pruner** validates that your skill's context references exist → may create an issue
+1. **Quality Gate CI** runs on your PR → validates schema, structure, naming conventions, and cross-references
+2. **Component Improver** triggers on your PR → may create a draft PR with best-practices improvements
 
 **After merge to `main`:**
-5. **Context Generator** detects your new skill has no context file → creates a PR adding one
+3. **Context Generator** detects your new skill has no context file → creates a draft PR adding one
 
 **On the next scheduled run:**
-6. **Skill Validator** checks your skill against `SKILL_TEMPLATE.md` → creates an issue if sections are missing
-7. **Health Dashboard** includes your skill in the weekly count and compliance percentage
+4. **Component Improver** (Wednesday) may suggest additional improvements during its weekly scan
 
 ### Scenario 2: "I modified an agent config"
 
 You update `forge-plugin/agents/athena.config.json` and open a PR.
 
 **What happens automatically:**
-1. **Agent Validator** (if the PR triggers it) checks JSON schema compliance
-2. **Convention Enforcer** ensures consistent formatting
-3. **Cross-Reference Checker** (on next Tuesday) validates that skills/MCPs in the config still exist
+1. **Quality Gate CI** validates JSON schema compliance, cross-references, and conventions
+2. **Component Improver** may suggest improvements to the agent documentation
 
 ### Scenario 3: "I changed a hook script"
 
 You edit `forge-plugin/hooks/memory_quality_gate.sh` and open a PR.
 
 **What happens automatically:**
-1. **Hook Quality Checker** validates `set -euo pipefail`, performance budget, registration in `hooks.json`, and documentation in `HOOKS_GUIDE.md`
-2. **Convention Enforcer** checks formatting consistency
+1. **Quality Gate CI** validates hook syntax, safety modes (`set -euo pipefail`), and `hooks.json` registration
+2. **Component Improver** may suggest improvements to hook documentation or structure
 
 ### Scenario 4: "I just want to see overall repo health"
 
-No code changes needed. Check the **Issues** tab:
-1. Look for the latest `[health]` issue (created every Sunday)
-2. It contains tables with traffic-light indicators (🟢/🟡/🔴) for every quality dimension
-3. The Action Items section at the bottom lists the highest-priority fixes
+No code changes needed. Check the **CI results**:
+1. Go to **Actions → Forge Tests** and look at the latest run
+2. The **Quality Gate Summary** step shows traffic-light results for all validation checks
+3. Check the **Issues** tab filtered by `forge-automation` for actionable findings
 
 ### Scenario 5: "I want to cut a release"
 
@@ -509,9 +476,18 @@ No. Workflow outputs are **suggestions**. Some findings are intentional design c
 
 Yes. Every workflow supports `workflow_dispatch`. Go to **Actions → select the workflow → Run workflow**. This is useful for testing or getting an on-demand check.
 
-### "A workflow created a PR on my branch. What do I do?"
+### "What happens when a workflow has no changes to propose?"
 
-The **Best Practices Improver** does this. Review the diff — if the changes are good, merge the PR into your branch. If not, close it. Your original PR is not affected either way.
+**PR-creating workflows** (Component Improver, Doc Maintainer, Test Coverage Improver, etc.) use `if-no-changes: "ignore"` in their safe-outputs configuration. This means:
+- If the workflow analyzes code but finds no improvements needed → **no PR is created**
+- If the workflow would create an empty PR → **no PR is created**
+- You only see PRs when there's actual work to review
+
+**Issue-creating workflows** (Stale Gardener, Project Manager Agent, Milestone Lifecycle) always create an issue with summary counts, even if the counts are zero. This provides an audit trail that the workflow ran successfully and found no problems.
+
+### "A workflow created a PR. What do I do?"
+
+Review the diff in the draft PR. If the changes improve code quality, approve and merge it. If not, close it with a brief comment explaining why. The workflow learns from these decisions over time.
 
 ### "How do I know if a workflow ran on my PR?"
 
@@ -532,10 +508,11 @@ Security issues should never be reported publicly. The security vulnerability te
 ### "I'm a maintainer. What should I check weekly?"
 
 Every Monday morning, review:
-1. The Sunday `[health]` issue — your executive dashboard
+1. The Sunday **Quality Gate CI** results — validation status across the codebase
 2. Any `[stale]` issue from Saturday — dormant work to ping or close
 3. The Monday `[pm]` issue — roadmap alignment and priorities
-4. Open `forge-automation` PRs — merge the useful ones, close the rest
+4. Open `forge-automation` draft PRs — merge the useful ones, close the rest
+5. Any `[milestone]` issues from daily runs — blocker identification and progress tracking
 
 ---
 
@@ -559,8 +536,9 @@ Every Monday morning, review:
 │   │   ├── forge-conventions.md          Forge project structure context
 │   │   └── forge-quality-issue-template.md  Issue body contract
 │   │
-│   ├── forge-*.md                     ← 19 workflow source files (human-readable)
-│   └── forge-*.lock.yml               ← Compiled GitHub Actions (auto-generated)
+│   ├── forge-*.md                     ← 11 workflow source files (human-readable)
+│   ├── forge-*.lock.yml               ← Compiled GitHub Actions (auto-generated)
+│   └── forge-tests.yml                ← Deterministic CI pipeline (8 validation jobs)
 
 AGENTIC_WORKFLOWS_ROADMAP.md          ← Technical roadmap, schedule, and KPIs
 AGENTIC_FORGE.md                      ← This file — contributor guide

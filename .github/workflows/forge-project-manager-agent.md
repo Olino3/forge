@@ -12,6 +12,9 @@ on:
       - "ROADMAP.md"
       - "AGENTIC_WORKFLOWS_ROADMAP.md"
   workflow_dispatch:
+engine:
+  id: copilot
+  model: claude-opus-4.6
 permissions:
   contents: read
   issues: read

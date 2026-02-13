@@ -12,6 +12,9 @@ on:
   release:
     types: [published]
   workflow_dispatch:
+engine:
+  id: copilot
+  model: claude-haiku-4.5
 permissions:
   contents: read
   issues: read

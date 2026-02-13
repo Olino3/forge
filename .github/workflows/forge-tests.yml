@@ -1,11 +1,15 @@
 # ⚒️ The Forge — CI Test Pipeline
 #
-# Runs the Forge test suite across two layers:
+# Runs the Forge test suite across two layers + quality validation:
 #   - Layer 1 (Static/CI): Always runs on push/PR to main/develop
+#   - Quality Gate: Migrated validation checks (context, duplication, conventions, xrefs)
 #   - Layer 2 (Integration): Runs after Layer 1 passes
 #   - E2E: Runs only on push to main (requires claude CLI, continue-on-error)
 #
-# Trigger paths: Only runs when forge-plugin/** or this workflow changes.
+# Also runs weekly (Sunday 9am UTC) as a comprehensive scheduled health check,
+# replacing 7 separate agentic validator workflows.
+#
+# Trigger paths: Only runs when forge-plugin/** or workflow config changes.
 
 name: Forge Tests
 
@@ -20,6 +24,8 @@ on:
     paths:
       - 'forge-plugin/**'
       - '.github/workflows/forge-tests.yml'
+  schedule:
+    - cron: "0 9 * * 0"  # Weekly Sunday 9am UTC — replaces agentic validator schedules
 
 jobs:
   layer1-ci:
@@ -112,3 +118,104 @@ jobs:
       - name: Run E2E skill invocation test
         if: steps.check-claude.outputs.available == 'true'
         run: bash forge-plugin/tests/layer2/e2e/test_skill_invocation.sh
+
+  # ===================================================================
+  # Quality Gate — Migrated from agentic workflows
+  # Replaces: agent-validator, skill-validator, hook-checker,
+  #           context-pruner, xref-checker, duplication-detector,
+  #           convention-enforcer, health-dashboard
+  # ===================================================================
+
+  validate-context:
+    name: "Quality Gate — Context Integrity"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install pytest pyyaml jsonschema
+
+      - name: Run context integrity tests
+        working-directory: forge-plugin/tests
+        run: python -m pytest layer1/test_context_integrity.py -v --tb=short
+
+  detect-duplicates:
+    name: "Quality Gate — Duplication Detection"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install pytest pyyaml
+
+      - name: Run duplication tests
+        working-directory: forge-plugin/tests
+        run: python -m pytest layer1/test_duplication.py -v --tb=short
+
+  enforce-conventions:
+    name: "Quality Gate — Convention Enforcement"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install pytest pyyaml
+
+      - name: Run convention tests
+        working-directory: forge-plugin/tests
+        run: python -m pytest layer1/test_conventions.py -v --tb=short
+
+  check-xref-links:
+    name: "Quality Gate — Cross-Reference Links"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install pytest pyyaml
+
+      - name: Run cross-reference link tests
+        working-directory: forge-plugin/tests
+        run: python -m pytest layer1/test_xref_links.py -v --tb=short
+
+  quality-report:
+    name: "Quality Gate — Summary"
+    needs: [layer1-ci, validate-context, detect-duplicates, enforce-conventions, check-xref-links]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate summary
+        run: |
+          echo "## ⚒️ Forge Quality Gate Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Layer 1 (Static) | ${{ needs.layer1-ci.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Context Integrity | ${{ needs.validate-context.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Duplication Detection | ${{ needs.detect-duplicates.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Convention Enforcement | ${{ needs.enforce-conventions.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Cross-Reference Links | ${{ needs.check-xref-links.result }} |" >> $GITHUB_STEP_SUMMARY

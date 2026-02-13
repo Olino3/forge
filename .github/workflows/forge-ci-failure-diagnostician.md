@@ -12,6 +12,9 @@ on:
       - main
       - develop
   workflow_dispatch:
+engine:
+  id: copilot
+  model: gpt-4.1
 permissions:
   contents: read
   actions: read

@@ -7,6 +7,9 @@ imports:
 on:
   schedule: "0 9 * * 2"
   workflow_dispatch:
+engine:
+  id: copilot
+  model: gpt-4.1
 permissions:
   contents: read
   issues: read

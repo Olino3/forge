@@ -7,6 +7,9 @@ imports:
 on:
   schedule: "daily"
   workflow_dispatch:
+engine:
+  id: copilot
+  model: gpt-5.1-codex-mini
 permissions:
   contents: read
   issues: read
