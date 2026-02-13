@@ -2,69 +2,497 @@
 
 > *"Hephaestus's forge never cools. Each skill sharpened, each agent awakened, each command invoked brings us closer to the perfect workshop — where mortal developers wield divine tools."*
 
----
+**Current Version**: `0.3.0-alpha` · **Target**: Beta · **Versioning**: Alpha bumps increment minor by 1 — versions track state, not scope. Focus is velocity.
 
-## The Factory Today
-
-The Forge is a fully operational **Agentic Software Factory** — a Claude Code plugin built on convention, powered by 4 core interfaces, and staffed by a pantheon of divine agents.
-
-## Future Work
-
-> *"The blueprints are drawn — these weapons await their turn at the anvil."*
-
-### Planned Skills
-
-| Skill | Category | Description |
-|-------|----------|-------------|
-| **neon-vercel-postgres** | Database & Storage | Set up serverless Postgres with Neon or Vercel Postgres for Cloudflare Workers/Edge. Includes connection pooling, git-like branching, and Drizzle ORM integration |
-| **vercel-blob** | Database & Storage | Integrate Vercel Blob for file uploads and CDN-delivered assets in Next.js. Supports client-side uploads with presigned URLs and multipart transfers |
-| **vercel-kv** | Database & Storage | Integrate Redis-compatible Vercel KV for caching, session management, and rate limiting in Next.js |
+Each milestone maps 1:1 to a [GitHub Milestone](https://github.com/Olino3/forge/milestones). This roadmap always details the next two milestones; remaining milestones carry goal-level plans until they enter the detail window.
 
 ---
 
-### Planned Commands
+## Beta Vision
 
-| Command | Description |
-|---------|-------------|
-| **/divine** | Analyze the codebase and suggest possible workflows and cookbooks with commands, skills, and agents from the forge-plugin. Recommends strategies and techniques to integrate agentic coding into the codebase using The Forge plugin. Entry point for discovering optimal forge patterns for your specific project. |
+> *"What survives the furnace of alpha is worthy of the hands of mortals."*
 
----
+Beta graduation means the Forge is **reliable, measurable, and portable**. The system exits alpha when:
 
-### Planned Hooks
+| Criterion | Measurement |
+|-----------|-------------|
+| **Agent reliability** | All 19 agents reliably complete their designated tasks (≥80% session quality score) |
+| **Skill completeness** | All core skills pass deterministic + mocked tests with full 6-step workflow compliance |
+| **Memory/context reliability** | No data loss, no stale reads, hook-enforced lifecycle across all operations |
+| **Measurable quality** | Every session produces quality scores; trends are trackable across sessions |
+| **Multi-platform** | Works on Claude Code (native) AND GitHub Copilot (via transpiled adapters) |
+| **Installable** | External contributors can install, configure, and use the system with documented onboarding |
+| **Secure** | Layer 3 security tests all pass |
+| **No critical bugs** | Zero critical issues open for >7 days |
 
-#### Memory & Context Management (User-Triggered)
-
-| Hook Event | Description |
-|------------|-------------|
-| **on_user_prompt** | Load relevant memory and context when user initiates a prompt, ensuring the agent has access to prior learnings and project-specific knowledge |
-| **on_skill_use** | Store insights, patterns, and outcomes when skills are invoked, building a knowledge base of what works in this project |
-
-#### External Plugin Integration
-
-| Hook Event | Description |
-|------------|-------------|
-| **on_external_skill_load** | Integrate Forge's memory and context management for skills from other Claude Code plugins, enabling unified knowledge sharing |
-| **on_external_skill_complete** | Capture and store learnings from external plugin skills into Forge's memory system for future reference |
-
-#### Plugin Security Hooks
-
-| Hook Event | Description |
-|------------|-------------|
-| **on_plugin_install** | Validate plugin integrity, verify checksums, and scan for known malicious patterns before allowing installation |
-| **on_skill_output** | Inspect skill outputs for prompt injection artifacts, sensitive data leakage, and unexpected tool calls before returning results |
-| **on_external_skill_load** (security layer) | Enforce allowlists for external plugin sources, validate symlink targets, and check plugin signatures against trusted registries |
-| **on_submodule_update** | Scan updated submodule contents for supply chain risks — new dependencies, modified entry points, or altered plugin manifests |
-| **on_context_injection** | Detect and sanitize context payloads that may contain prompt injection attempts or adversarial instructions embedded in data files |
+**Beta version**: TBD — determined after v0.8.0-alpha based on quality data readiness. Could be v0.9.0-beta or later.
 
 ---
 
-## Agentic Workflows — 22 Autonomous Quality Agents
+## Current State — v0.3.0-alpha
 
-> *"The tireless automatons of Hephaestus's workshop never sleep — they sweep the forge floor, sharpen every blade, and polish each shield while the gods rest."*
+> *"The workshop stands. The tools are forged. Now they must be tempered."*
 
-The Forge runs **22 autonomous agentic workflows** via [GitHub Agentic Workflows (gh-aw)](https://github.github.com/gh-aw/), powered by the Copilot engine. These workflows continuously monitor, validate, and improve the codebase — creating issues with findings or draft PRs with proposed changes. Nothing merges without human approval.
+| Component | Count | Status |
+|-----------|-------|--------|
+| Core skills | 102 | Forged, not all verified for 6-step compliance |
+| External skills (marketplace) | 212 across 38 plugins | Documented, symlinks validated |
+| Agents | 19 (12 Olympian + 7 specialist) | Configs exist, not all populate `skills[]` |
+| Commands | 12 | Formatted, not all tested in Claude Code |
+| Context files | 81 across 9 domains | YAML frontmatter validated (Layer 1) |
+| Hooks | 20 across 9 events, 4 layers | Registered, Layer 2 tested |
+| MCP integrations | 8 servers | Documented with activation protocol |
+| Agentic workflows | 19 operational | Compiled, not all dispatch-tested |
+| Tests | ~1,993 across 2 layers + E2E | Layer 1 CI-ready, Layer 2/E2E gated |
+| Interfaces | 4 (specification-only) | Convention-based, not enforced |
 
-See **[AGENTIC_FORGE.md](AGENTIC_FORGE.md)** for the contributor-facing guide and **[AGENTIC_WORKFLOWS_ROADMAP.md](AGENTIC_WORKFLOWS_ROADMAP.md)** for the technical roadmap.
+### Known Gaps
+
+- Agent configs have empty `skills: []` arrays (Athena and others)
+- Skills reference `contextProvider.*`/`memoryStore.*` — but enforcement is honor-system
+- Layer 3 security testing: described but no test files exist
+- `TESTING_ROADMAP.md` referenced in CLAUDE.md but missing
+- Document count inconsistencies (19 vs 22 workflows across docs)
+- Telemetry is local-only, no cross-session aggregation
+- No quality scoring baseline established
+
+---
+
+## Milestone: v0.4.0-alpha — Foundation Hardening
+
+> *"Before the blade can cut, the steel must be folded a thousand times."*
+
+**Theme**: Everything works. Hooks enforce it. Tests prove it.
+
+**GitHub Milestone**: [`v0.4.0-alpha`](https://github.com/Olino3/forge/milestone/v0.4.0-alpha)
+
+---
+
+### 1. Agent Compliance Audit
+
+Verify every agent meets the Forge contract.
+
+| Task | Acceptance Criteria |
+|------|-------------------|
+| Validate all 19 agent `.config.json` files against `agent_config.schema.json` | All pass schema validation |
+| Populate empty `skills[]` — every agent declares ≥1 skill | No agent has `skills: []` |
+| Verify every agent `.md` includes all 6 workflow steps (Initial Analysis → Load Memory → Load Context → Core Action → Generate Output → Update Memory) | All 19 agent `.md` files contain all 6 steps |
+| Verify `context.primaryDomains`, `context.alwaysLoadFiles`, `memory.storagePath`, `memory.categories` are correctly populated | All required fields present and valid |
+
+**Requirements**: Audit tooling (Layer 1 test `test_cross_references.py` can be extended)
+
+---
+
+### 2. Skill Compliance Audit
+
+Ensure all 102 core skills follow the 6-step mandatory workflow.
+
+| Task | Acceptance Criteria |
+|------|-------------------|
+| Validate every `SKILL.md` against `SKILL_TEMPLATE.md` structure | All skills match template sections |
+| Verify YAML frontmatter includes `context.primary_domain`, `context.file_budget`, `memory.scopes` | Frontmatter validates for all 102 skills |
+| Verify each skill uses `contextProvider.*` and `memoryStore.*` interface references — no raw file paths | Zero hardcoded paths in workflow steps |
+| Ensure every skill directory has both `SKILL.md` and `examples.md` | 102/102 directories complete |
+
+**Requirements**: Extend `test_file_structure.py` and `test_yaml_frontmatter.py`
+
+---
+
+### 3. Command & Agent Formatting for Claude Code
+
+Verify commands and agents render correctly in Claude Code's interface.
+
+| Task | Acceptance Criteria |
+|------|-------------------|
+| Verify all 12 commands are invokable via `/command` in Claude Code | Documented with invocation logs for each command |
+| Verify `@agent` mentions in command workflows resolve correctly | Agent delegation works for all referenced agents |
+| Verify `skill:{name}` delegation syntax in command workflow steps | Skill delegation invokes the correct skill |
+| Test YAML frontmatter format, trigger syntax, and usage blocks render properly | No formatting errors in Claude Code UI |
+
+**Requirements**: Manual testing with Claude Code; document results per command
+**Consideration**: This step requires interactive Claude Code sessions — cannot be fully automated. Create a test checklist and capture invocation evidence.
+
+---
+
+### 4. Hook-Driven Memory & Context Management
+
+Replace direct memory/context file I/O with transparent hook interception. Hooks become the primary mechanism — skills no longer perform raw file reads/writes for memory and context.
+
+#### Architecture
+
+```
+Before (v0.3.0):  Skill → direct file I/O → memory/*.md / context/**/*.md
+After  (v0.4.0):  Skill → tool call → Hook intercepts → managed I/O → memory/*.md / context/**/*.md
+```
+
+| Task | Acceptance Criteria |
+|------|-------------------|
+| **`PreToolUse(Read)` — context auto-injection**: When a skill's `SKILL.md` is read, hook pre-loads the skill's declared context domains into the session | Context domains from skill frontmatter are available without explicit loading |
+| **`PreToolUse(Read)` — memory freshness**: Intercept reads of `memory/*.md` files, inject freshness metadata and relevant cross-domain context automatically | All memory reads include freshness header; stale reads trigger warnings |
+| **`PostToolUse(Write|Edit)` — memory lifecycle**: Intercept writes to `memory/` paths, automatically categorize entries, add timestamps, enforce line limits, trigger cross-pollination | Consolidates logic from `memory_quality_gate`, `memory_freshness_enforcer`, `memory_cross_pollinator` |
+| **Remove direct I/O from skills**: Skills no longer call `contextProvider.*`/`memoryStore.*` for file operations — hooks handle transparently | Zero direct memory/context file I/O in skill workflow steps |
+| **Backward compatibility**: Existing Layer 2 memory tests still pass | All 30 Layer 2 tests green |
+
+**Tradeoffs**:
+- **Pro**: Enforcement — skills can't bypass memory/context management
+- **Pro**: Centralized logic — one place to audit memory hygiene
+- **Con**: Couples to Claude Code's hook event model — skills become less portable (addressed in v0.6.0 via adapters)
+- **Con**: Debugging is harder when I/O is implicit — mitigated by adding verbose logging to hooks
+
+**Requirements**: Refactor 3 hooks (`memory_quality_gate`, `memory_freshness_enforcer`, `memory_cross_pollinator`) into a unified interception layer. Update all skill SKILL.md files to remove direct I/O instructions.
+
+---
+
+### 5. Layer 3 Security Testing
+
+Create the security testing infrastructure described in the current roadmap.
+
+| Category | Tests | Acceptance Criteria |
+|----------|-------|-------------------|
+| **Prompt injection** (4) | skill-injection-scan, context-poisoning-test, output-sanitization, indirect-injection-via-data | Scan all SKILL.md + context files for hijack patterns; verify memory can't inject unauthorized instructions; validate chained output sanitization; test data file injection vectors |
+| **Plugin security** (4) | permission-scope-audit, plugin-isolation-test, manifest-tampering-detect, mcp-server-trust-boundary | Verify plugin file access stays within manifest scope; confirm cross-plugin isolation; detect manifest modifications; validate MCP permission boundaries |
+| **Supply chain** (4) | submodule-provenance, dependency-drift-detect, skill-content-hash, typosquat-detection | All submodules point to `Olino3/` forks; SHA manifest matches; content hashes stable; no typosquat matches against known packages |
+
+| Infrastructure | Acceptance Criteria |
+|---------------|-------------------|
+| Create `forge-plugin/tests/layer3/` directory structure | Directory exists with test files |
+| Wire into `run_all.sh` with `--layer3` flag | `make test-security` runs Layer 3 |
+| Add to CI pipeline | Layer 3 runs on PRs touching hooks, skills, or plugins |
+
+**Requirements**: 12 test files, test runner integration, CI pipeline update
+
+---
+
+### 6. Automated Testing — Deterministic + Mocked
+
+Extend testing beyond static validation to cover actual agent/skill/command behavior.
+
+#### Deterministic Tests (no LLM)
+
+| Test | Validates |
+|------|----------|
+| Agent→skill resolution | Every agent config's `skills[]` references skills that exist |
+| Command→skill resolution | Every command's `skills` frontmatter references existing skills |
+| Hook→file pattern matching | Every hook's file pattern matches ≥1 real file in the repo |
+| Skill→context resolution | Every skill's declared `context.primary_domain` has files in that context domain |
+| Cross-reference integrity | Agent → skill → context → memory chain is fully connected |
+
+#### Mocked LLM Tests (fixture-based)
+
+| Flow | Description |
+|------|-------------|
+| `/implement` end-to-end | Command invocation → skill delegation → memory write; uses recorded Claude responses from fixture files |
+| Agent task completion | Agent receives task → selects skill → produces output → output scored; validate the full chain |
+| Hook chain execution | File write triggers PostToolUse hooks in correct order; validate hook JSON stdin/stdout contract |
+
+| Task | Acceptance Criteria |
+|------|-------------------|
+| Create test fixtures directory with recorded responses | `tests/fixtures/` with ≥3 flow fixtures |
+| Build hook event simulator (JSON stdin/stdout mock) | Hook tests run in isolation without Claude Code |
+| ≥80% component coverage | 80%+ of agent configs, skills, commands, hooks have ≥1 dedicated test |
+| CI performance | Full test suite completes in <5 minutes |
+
+**Consideration**: Mocked tests can drift from real LLM behavior. Fixtures should be refreshed when skills change significantly. Telemetry sampling in v0.5.0 provides a mechanism to auto-generate fresh fixtures.
+
+---
+
+### 7. Metrics & Telemetry Enforcement
+
+Ensure telemetry fires reliably on every session and produces actionable data.
+
+| Task | Acceptance Criteria |
+|------|-------------------|
+| Verify `forge_telemetry.sh` fires on every session stop | Every session with ≥1 skill/command produces a telemetry entry in `.forge/telemetry.log` |
+| Verify `output_quality_scorer.sh` scores every `/claudedocs/` output | All output files have quality metadata blocks |
+| Verify `context_usage_tracker.sh` tracks all context loads | `.forge/context_usage.json` reflects actual context usage |
+| Create `session_summary` hook (Stop event) | Human-readable session report aggregating telemetry, quality scores, and context usage |
+| No silent failures | Telemetry hooks log errors to `.forge/health_buffer` instead of failing silently |
+
+**Requirements**: Validate existing hook scripts handle edge cases (empty sessions, no skills invoked, no output files)
+
+---
+
+### 8. Documentation Hygiene
+
+Fix known inconsistencies and create missing referenced files.
+
+| Task | Acceptance Criteria |
+|------|-------------------|
+| Create `TESTING_ROADMAP.md` | File exists; referenced from CLAUDE.md and README.md |
+| Fix workflow count inconsistencies (19 vs 22 across docs) | Single accurate count across ROADMAP, CLAUDE.md, AGENTIC_FORGE.md |
+| Update CLAUDE.md architecture summary counts | Agent count (19), skill count (102), workflow count match reality |
+| Verify all internal cross-references resolve | No broken links in `.md` files |
+
+---
+
+### v0.4.0-alpha Completion Criteria
+
+- [ ] All 19 agent configs pass schema validation and reference ≥1 skill
+- [ ] All 102 skills validated for 6-step workflow and frontmatter compliance
+- [ ] All 12 commands tested and documented in Claude Code
+- [ ] Hook-driven memory/context management replaces direct I/O
+- [ ] 12 Layer 3 security tests passing
+- [ ] ≥80% component test coverage (deterministic + mocked)
+- [ ] Telemetry fires on every session; quality scores on all outputs
+- [ ] Zero document inconsistencies; all referenced files exist
+
+---
+
+## Milestone: v0.5.0-alpha — Modular Architecture & Quality Signals
+
+> *"The master smith organizes the workshop — each tool in its place, each apprentice with their specialty."*
+
+**Theme**: Break apart the monolith. Scope agent access. Measure quality. Optimize cost.
+
+**GitHub Milestone**: [`v0.5.0-alpha`](https://github.com/Olino3/forge/milestone/v0.5.0-alpha)
+
+---
+
+### 1. 5-Category Plugin Decomposition
+
+Split 102 core skills from monolithic `forge-plugin/skills/` into 5 focused installable plugins plus the core.
+
+| Plugin | Category | Est. Skills | Examples |
+|--------|----------|-------------|---------|
+| **forge-core** (always installed) | Foundation | — | 19 agents, 12+ commands, hooks, MCPs, interfaces, context, memory |
+| **forge-skills-backend** | Backend / API / Data | ~25 | Python, .NET, Java, SQL, Django, FastAPI, ETL, data modeling, database skills |
+| **forge-skills-frontend** | Frontend / UI / Mobile | ~18 | React, Angular, Vue, Next.js, Flutter, accessibility, CSS, responsive |
+| **forge-skills-quality** | Testing / Security / Review | ~20 | Unit tests, code review, security audit, debugging, refactoring, linting |
+| **forge-skills-infra** | DevOps / Cloud / Architecture | ~18 | CI/CD, Docker, K8s, Azure, Terraform, cloud architecture, API design |
+| **forge-skills-productivity** | Utilities / Planning / Docs | ~21 | Commit helper, documentation, project planning, office tools, image gen |
+
+| Task | Acceptance Criteria |
+|------|-------------------|
+| Categorize all 102 skills into 5 categories | Every skill assigned to exactly one category; cross-cutting skills go to primary category |
+| Create `plugin.json` for each skill plugin | 5 valid plugin manifests |
+| Create `forge-skills-all` meta-plugin | Installs all 5 skill plugins (backward-compatible default) |
+| Update `marketplace.json` | New plugins registered; no broken references |
+| Migration script | Moves skills without breaking agent/command references |
+| Skill name resolution | Core agents resolve skills by name regardless of which plugin provides them |
+
+**Tradeoff**: Skills like `generate-python-unit-tests` span backend and quality. Decision: assign to PRIMARY category (quality for test-gen skills). Document the categorization rationale.
+
+**Requirements**: v0.4.0 complete (skills are validated and compliant before being moved)
+
+---
+
+### 2. Agent Skill & MCP Scoping
+
+Give each agent access to only the skills and MCPs relevant to its domain.
+
+| Task | Acceptance Criteria |
+|------|-------------------|
+| Add `allowedSkills` (array, glob patterns) to `agent_config.schema.json` | Schema validates; `additionalProperties` constraint updated |
+| Add `allowedMcps` (array, MCP server names) to `agent_config.schema.json` | Schema validates |
+| Populate all 19 agent configs with scoped skill lists | Every agent declares specific `allowedSkills` |
+| Extend `agent_config_validator` hook | Warns when agent attempts out-of-scope skill use |
+| Default scope: all skills (backward-compatible) | Existing workflows unchanged |
+| Scope escalation via `@zeus` | Zeus can delegate any skill to any agent when orchestrating |
+
+**Scoping examples**:
+
+| Agent | `allowedSkills` | `allowedMcps` |
+|-------|----------------|---------------|
+| `@python-engineer` | `fastapi, django, pandas, python-*, generate-python-*` | `context7, github` |
+| `@frontend-engineer` | `nextjs, react-*, tailwind-*, accessibility, animate, generate-jest-*` | `context7, playwright` |
+| `@devops-engineer` | `cloud-*, kubernetes-*, terraform-*, sre-*, generate-azure-*` | `context7, github` |
+
+---
+
+### 3. Session Quality Scoring
+
+Move from per-file quality scores to composite session scoring.
+
+| Task | Acceptance Criteria |
+|------|-------------------|
+| Create `session_quality_scorer` hook (Stop event) | Fires on session end; produces composite score |
+| Score dimensions: task completion, context relevance, memory hygiene, output quality | All 4 dimensions produce sub-scores |
+| Composite score (0–100) with thresholds: red (<50), yellow (50–75), green (>75) | Score categorized with actionable feedback |
+| Store in `.forge/quality_scores.json` with timestamps | Persistent across sessions; trend-visible |
+| Sample session outputs for quality analysis | ≥3 output files sampled per session |
+
+**Consideration**: Scoring is heuristic without LLM evaluation. Calibrate thresholds using real data from v0.4.0 telemetry before enforcing gates.
+
+---
+
+### 4. Token Optimization — Model Routing + Context Reduction
+
+Reduce cost per session through intelligent model selection and context management.
+
+#### Model Routing
+
+| Task | Acceptance Criteria |
+|------|-------------------|
+| Add `modelOverride` field to skill YAML frontmatter (`opus`, `sonnet`, `haiku`) | Schema supports the field |
+| Classify skills: template/scaffold → `haiku`; analytical → `sonnet`; complex reasoning → `opus` | ≥30% of skills have `modelOverride` set |
+| Agent `model` field provides default; skill `modelOverride` takes precedence | Precedence documented and tested |
+
+**Consideration**: Claude Code may not support mid-session model switching. If so, model routing operates at agent-level only (already supported via `model` field). Skill-level routing becomes advisory metadata for future platforms.
+
+#### Context Reduction
+
+| Task | Acceptance Criteria |
+|------|-------------------|
+| Implement lazy context loading — hooks inject only the active domain's context, not all `alwaysLoadFiles` | Context loaded on-demand per domain |
+| Add `context_budget` field to skill frontmatter (max files to load) | Skills declare and respect budgets |
+| Context summarization for files >200 lines (load headers + summary, full on demand) | Large context files use summary mode by default |
+
+#### Token Tracking
+
+| Task | Acceptance Criteria |
+|------|-------------------|
+| Add token usage estimation to `forge_telemetry.sh` (approximate from file sizes) | Per-session token estimate in telemetry log |
+| Report cost breakdown: context loading vs. skill execution vs. memory I/O | Breakdown visible in session summary |
+
+---
+
+### v0.5.0-alpha Completion Criteria
+
+- [ ] 102 skills distributed across 5 category plugins + core
+- [ ] `forge-skills-all` meta-plugin installs everything (backward-compatible)
+- [ ] All 19 agents declare `allowedSkills` and `allowedMcps`
+- [ ] Agent scope violations produce warnings (not blocks)
+- [ ] Every session produces a composite quality score (0–100)
+- [ ] ≥30% of skills specify `modelOverride`
+- [ ] Context loading respects `context_budget`
+- [ ] Token estimates appear in telemetry
+
+---
+
+## Milestone: v0.6.0-alpha — Multi-Platform Compatibility
+
+> *"A weapon forged by Hephaestus serves any warrior who wields it — not just the one who commissioned it."*
+
+**Theme**: Break free from Claude Code exclusivity. GitHub Copilot is the first expansion target.
+
+**GitHub Milestone**: [`v0.6.0-alpha`](https://github.com/Olino3/forge/milestone/v0.6.0-alpha)
+
+### Goals
+
+| Goal | Description |
+|------|-------------|
+| **Universal Skill Schema** | Platform-agnostic skill definition (JSON/YAML) capturing intent, context, examples, workflow — transpilable to native formats |
+| **GitHub Copilot Transpiler** | Convert `SKILL.md` → `.instructions.md` / `.github/copilot-instructions.md`; convert agent configs → Copilot custom instructions |
+| **Adapter layer** | Platform adapters in `interfaces/adapters/` translating `SkillInvoker` and `ContextProvider` to platform conventions |
+| **Graceful degradation** | Hook-driven memory/context (v0.4.0) is Claude Code-specific; Copilot adapter degrades to read-only context injection or Copilot-native mechanisms |
+| **Test matrix** | CI validates transpiled outputs are well-formed for Copilot |
+
+### Target Platforms
+
+| Platform | Skill Format | Agent Format | Priority |
+|----------|-------------|-------------|---------|
+| **Claude Code** | `SKILL.md` (native) | `.md` + `.config.json` (native) | ✅ Current |
+| **GitHub Copilot CLI** | `.instructions.md` / `.github/copilot-instructions.md` | Custom instructions | 🎯 v0.6.0 |
+| **Gemini CLI** | `AGENTS.md` + skill files | Agent config files | 🔲 v0.6.0+ |
+| **Cursor** | `.cursor/rules/` rule files | Cursor agent rules | 🔲 v0.6.0+ |
+| **Codex** (OpenAI) | `AGENTS.md` + instruction files | Agent spec files | 🔲 Future |
+
+### Deliverables
+
+| Deliverable | Description |
+|-------------|-------------|
+| `forge-export-copilot` | Transpile Forge skills into GitHub Copilot `.instructions.md` files |
+| `forge-export-gemini` | Generate Gemini CLI-compatible `AGENTS.md` and skill files |
+| `forge-export-cursor` | Convert Forge skills into Cursor `.cursor/rules/` rule files |
+| `forge-compat-tests` | Cross-platform test suite verifying transpiled outputs work on each target |
+
+### Key Constraint
+
+Hook-driven memory/context from v0.4.0 is Claude Code-specific. The adapter layer must define how memory and context work on each platform:
+- **Copilot**: Context injected via `.instructions.md` preamble; memory is read-only (no hooks to enforce writes)
+- **Gemini/Cursor**: Context via their native file-discovery mechanisms; memory may require platform-specific plugins
+
+---
+
+## Milestone: v0.7.0-alpha — Intelligent Orchestration
+
+> *"The forge runs itself — the smith need only speak, and the hammers know where to strike."*
+
+**Theme**: MCP-native memory/context. Dynamic model routing. Cross-platform task handoff.
+
+**GitHub Milestone**: [`v0.7.0-alpha`](https://github.com/Olino3/forge/milestone/v0.7.0-alpha)
+
+### Goals
+
+| Goal | Description |
+|------|-------------|
+| **Internal MCP for memory/context** | Replace hook-driven memory/context with a locally-running MCP server providing `memory_read`, `memory_write`, `context_load`, `context_search` tools. Decouples from Claude Code hooks; makes memory/context available to any MCP-compatible platform |
+| **Dynamic model routing** | Route skills to models based on task complexity metrics (not just static config). Use telemetry data from v0.5.0 to auto-classify skill complexity: simple skills → haiku, moderate → sonnet, complex → opus |
+| **Continuous Maintenance** | Agentic workflows monitor upstream platform changelogs (Claude Code, Copilot, Gemini), detect breaking changes, auto-generate PRs to update adapters/transpilers |
+| **Cross-platform task handoff** | When a platform hits usage limits (e.g., rate limits), seamlessly hand off the current task to another platform (Copilot, Aider, etc.). Requires: shared memory (via MCP), task state serialization, handoff protocol |
+
+### Key Tradeoff
+
+The internal MCP adds infrastructure complexity (a running process). For pure-Claude-Code users, hooks (v0.4.0) were simpler. Decision: **support both** — hooks for lightweight single-platform usage, MCP for multi-platform orchestration. The MCP server can wrap the same Markdown storage.
+
+### Architectural Constraint
+
+Cross-platform handoff requires:
+- Shared memory store (MCP provides this)
+- Task state serialization (current task, progress, context loaded, outputs produced)
+- Platform detection and capability negotiation
+- Graceful handoff protocol (export state → switch platform → import state → resume)
+
+---
+
+## Milestone: v0.8.0-alpha — Data-Driven Refinement
+
+> *"A blade tested in battle is reforged stronger — data from the field tempers the steel."*
+
+**Theme**: Use telemetry and quality scores to systematically improve every component.
+
+**GitHub Milestone**: [`v0.8.0-alpha`](https://github.com/Olino3/forge/milestone/v0.8.0-alpha)
+
+### Goals
+
+| Goal | Description |
+|------|-------------|
+| **Skill effectiveness dashboard** | Aggregate quality scores, token usage, success rates per skill. Identify underperformers for refactoring or retirement |
+| **Agent performance profiles** | Track completion rates, failure patterns, token consumption per agent. Tune configs based on data |
+| **Command usage analytics** | Most/least used commands. Refine or retire low-usage; add commands based on observed patterns |
+| **Automated regression detection** | Compare quality scores across versions. Alert when a bump degrades skill quality |
+| **Quality gates** | Block version bumps (`make bump-*`) if aggregate quality score drops below threshold |
+| **Fixture refresh** | Use telemetry-sampled outputs to auto-generate fresh test fixtures, solving mock drift from v0.4.0 |
+
+---
+
+## Post-v0.8.0 → Beta Graduation
+
+**Version**: TBD — evaluated after v0.8.0 based on quality data.
+
+If all beta vision criteria are met after v0.8.0, the next release is `v0.9.0-beta`. If gaps remain, additional alpha milestones are added until criteria are satisfied.
+
+### Possible gap-closing milestones
+
+| Gap | Milestone focus |
+|-----|----------------|
+| Quality scores below threshold | Additional skill refinement sprint |
+| Copilot adapter incomplete | Dedicated platform porting sprint |
+| Security issues found | Security hardening sprint |
+| Onboarding documentation gaps | Documentation and tutorial sprint |
+
+---
+
+## Versioning Policy
+
+| Phase | Versioning | Rationale |
+|-------|-----------|-----------|
+| **Alpha** (current) | Minor bumps always +1 (v0.3.0 → v0.4.0 → v0.5.0...) regardless of scope | Versions track state transitions, not change magnitude. Focus is velocity |
+| **Beta** (future) | Semantic versioning — patch for fixes, minor for features, major for breaking changes | Stability matters; consumers depend on compatibility |
+| **Milestones** | Each version = one GitHub milestone. Milestone title matches version number | Issues tagged to milestones; Milestone Planner/Feature Decomposer/Progress Reviewer workflows drive decomposition |
+| **Rolling window** | ROADMAP details the next 2 milestones; remaining milestones carry goal-level plans | As milestones ship, the detail window slides forward |
+
+**Single source of truth**: `VERSION` file at repo root. Bump with `make bump-minor`.
+
+---
+
+## Agentic Workflows — Autonomous Quality Agents
+
+> *"The tireless automatons of Hephaestus's workshop never sleep."*
+
+The Forge runs **19 autonomous agentic workflows** via [GitHub Agentic Workflows (gh-aw)](https://github.github.com/gh-aw/), powered by the Copilot engine. These workflows continuously monitor, validate, and improve the codebase — creating issues with findings or draft PRs with proposed changes. Nothing merges without human approval.
+
+See **[AGENTIC_FORGE.md](AGENTIC_FORGE.md)** for the contributor guide and **[AGENTIC_WORKFLOWS_ROADMAP.md](AGENTIC_WORKFLOWS_ROADMAP.md)** for the technical roadmap.
 
 | Category | Workflows | Trigger |
 |----------|-----------|---------|
@@ -76,249 +504,28 @@ See **[AGENTIC_FORGE.md](AGENTIC_FORGE.md)** for the contributor-facing guide an
 | **Continuous Documentation** | Doc Sync, Doc Unbloat | Schedule |
 | **Continuous Testing** | CI Failure Diagnostician | CI failure events |
 | **Operations & Release** | Release Notes Generator, Dependency Update Sentinel | Release / daily |
-| **Planning & Coordination** | Issue Triage Agent, Milestone Planner, Feature Decomposer, Milestone Progress Reviewer, Project Milestone Tracker, Project Manager Agent, Stale Gardener | Issue events / schedule / PR events |
+| **Planning & Coordination** | Issue Triage Agent, Milestone Planner, Feature Decomposer, Milestone Progress Reviewer, Stale Gardener | Issue events / schedule / PR events |
 
-**Infrastructure**: 5 shared imports, 5 issue templates, `SECURITY.md`, all workflows compile with 0 errors.
+### Continuous Milestone Delivery ✅
 
----
+Three interlocking agents autonomously drive milestones from planning through completion:
 
-## CI/CD Validation & Plugin Discovery
-
-> *"The forge's gates must be tested — every hammer strike verified, every blade inspected before it leaves the anvil."*
-
-### GitHub Actions — Claude Code Validation
-
-| Workflow | Description |
-|----------|-------------|
-| **validate-skills** | Run Claude Code skill discovery commands in CI to confirm all 102 core skills are resolvable and have valid `SKILL.md` files |
-| **validate-plugins** | Automated plugin discovery tests that confirm all 38 marketplace plugins are properly installed, symlinks resolve, and plugin.json manifests are valid |
-| **validate-agents** | Verify all 19 agent `.config.json` files conform to `agent_config.schema.json` and memory directories exist |
-| **validate-hooks** | Execute hook scripts in dry-run mode to ensure they complete within the 5-second budget and exit cleanly |
-| **validate-external-submodules** | Confirm all git submodules are checked out, symlinks point to valid targets, and external skill directories contain expected files |
-
-### Automated Plugin Discovery Tests
-
-| Test | Description |
-|------|-------------|
-| **plugin-install-smoke** | Install each marketplace plugin in an isolated environment and verify skill resolution succeeds |
-| **symlink-integrity** | Walk all symlinks in wrapper plugin directories and confirm targets exist and are readable |
-| **marketplace-schema** | Validate `marketplace.json` against a JSON schema — required fields, valid source paths, no duplicate names |
-| **cross-platform-paths** | Verify plugin paths resolve correctly on Linux, macOS, and Windows (WSL) environments |
-
----
-
-## Layer 3 Security Testing
-
-> *"The deepest fires reveal hidden flaws — what survives the crucible is truly worthy."*
-
-A dedicated security testing layer that goes beyond unit and integration tests to address adversarial threats specific to agentic plugin systems.
-
-### Prompt Injection Defense
-
-| Test | Description |
-|------|-------------|
-| **skill-injection-scan** | Scan all `SKILL.md` files and context files for patterns that could hijack agent instructions — embedded system prompts, role overrides, instruction-ignoring directives |
-| **context-poisoning-test** | Verify that user-supplied memory files cannot inject instructions that alter agent behavior beyond their intended scope |
-| **output-sanitization** | Ensure skill outputs passed between chained commands are sanitized — no embedded tool calls, escalation attempts, or data exfiltration patterns |
-| **indirect-injection-via-data** | Test that data files (CSV, JSON, YAML) processed by skills cannot contain embedded prompt injections that execute during analysis |
-
-### Plugin Security Risks
-
-| Test | Description |
-|------|-------------|
-| **permission-scope-audit** | Verify each plugin only accesses files and tools declared in its manifest — no scope creep beyond declared `contextDomains` and `skills` |
-| **plugin-isolation-test** | Confirm plugins cannot read or modify other plugins' memory, context, or configuration files |
-| **manifest-tampering-detect** | Detect unauthorized modifications to `plugin.json`, `marketplace.json`, or `hooks.json` between commits |
-| **mcp-server-trust-boundary** | Validate that MCP server integrations cannot escalate permissions or access resources beyond their declared scope |
-
-### Supply Chain Security
-
-| Test | Description |
-|------|-------------|
-| **submodule-provenance** | Verify all git submodules point to forks under `Olino3/` — no direct references to upstream repos that could be compromised |
-| **dependency-drift-detect** | Compare submodule commit SHAs against a pinned manifest and alert on unexpected changes |
-| **skill-content-hash** | Maintain a hash manifest of all external skill files; detect unauthorized content modifications after submodule syncs |
-| **typosquat-detection** | Scan plugin names and skill names for potential typosquatting of known popular packages or skills |
-| **license-compliance** | Automated license scanning of all external plugins to ensure compatibility with The Forge's license |
-
----
-
-## Modular Core — Plugin Decomposition
-
-> *"A smith does not carry every tool to every job — only the weapons the battle demands."*
-
-Break `forge-core` into focused plugin modules so users install only the skills they need. The 12 Olympian agents and 7 specialist agents remain in the core plugin as the foundation.
-
-### Proposed Plugin Split
-
-| Plugin | Contents | Est. Skills |
-|--------|----------|-------------|
-| **forge-core** (always installed) | 19 agents, 12 commands, 4 interfaces, context, memory, hooks | Core framework |
-| **forge-skills-frontend** | accessibility, animate, nextjs, react-forms, responsive-images, tailwind-patterns, angular-architect, flutter-expert, react-expert, react-native-expert, vue-expert, vue-expert-js | 12 |
-| **forge-skills-backend** | django, dotnet-core, fastapi, nestjs, rails, php | 6 |
-| **forge-skills-languages** | cpp, csharp, java-architect, javascript, typescript | 5 |
-| **forge-skills-cloud** | cloud-architect, devops-engineer, kubernetes-specialist, sre-engineer, terraform-engineer | 5 |
-| **forge-skills-data** | database-optimizer, pandas, postgres, sql, firebase-firestore, firebase-storage, snowflake-platform | 7 |
-| **forge-skills-security** | secure-code, security-reviewer, code-documenter, code-reviewer, debugging-expert, testing | 6 |
-| **forge-skills-auth** | azure-auth, better-auth, clerk-auth, firebase-auth, oauth-integrations | 5 |
-| **forge-skills-azure** | generate-azure-functions, generate-azure-pipelines, generate-azure-bicep, generate-tilt-dev-environment | 4 |
-| **forge-skills-planning** | divine, docs-workflow, project-health, project-planning, project-session-management, project-workflow, skill-creator, skill-review, sub-agent-patterns | 9 |
-| **forge-skills-utilities** | color-palette, email-gateway, favicon-gen, firecrawl-scraper, icon-design, image-gen, jquery-4, office, open-source-contributions, playwright-local | 10 |
-| **forge-skills-review** | python-code-review, dotnet-code-review, angular-code-review, get-git-diff | 4 |
-| **forge-skills-codegen** | generate-python-unit-tests, generate-jest-unit-tests, generate-mock-service, generate-more-skills-with-claude, test-cli-tools | 5 |
-| **forge-skills-productivity** | commit-helper, email-writer, slack-message-composer, documentation-generator, excel-skills, jupyter-notebook-skills | 6 |
-| **forge-skills-specialized** | cli-developer, feature-forge, fullstack-development, legacy-modernizer, mcp-developer, monitoring-expert, prompt-engineer, websocket-engineer, create-agents, power-debug, dev-tools | 11 |
-| **forge-skills-architecture** | api-design, architecture-design, graphql-design, microservices-design | 4 |
-| **forge-skills-analysis** | file-schema-analysis, database-schema-analysis, python-dependency-management | 3 |
-
-### Migration Strategy
-
-1. Add a `forge-skills-all` meta-plugin that installs everything (backward-compatible default)
-2. Publish individual skill plugins to the marketplace
-3. Update `marketplace.json` with the new plugin entries
-4. Deprecate monolithic `forge-core` skills directory over 2 releases
-5. Core agents continue to reference skills by name — the resolution layer handles which plugin provides them
-
----
-
-## Agent Skill & MCP Scoping
-
-> *"Each god wields only the weapons befitting their divine domain."*
-
-Give custom agents explicit access to specific skills and MCP servers based on their focus area, rather than exposing the full skill catalog to every agent.
-
-### Scoping Model
-
-| Agent | Scoped Skills | Scoped MCPs |
-|-------|--------------|-------------|
-| **@python-engineer** | fastapi, django, pandas, python-code-review, generate-python-unit-tests, python-dependency-management | Context7 (Python docs), GitHub |
-| **@frontend-engineer** | nextjs, react-forms, tailwind-patterns, accessibility, animate, responsive-images, generate-jest-unit-tests | Context7 (React/Next docs), Playwright |
-| **@devops-engineer** | cloud-architect, kubernetes-specialist, terraform-engineer, sre-engineer, generate-azure-pipelines | Azure MCP, GitHub |
-| **@data-scientist** | pandas, sql, postgres, database-optimizer, jupyter-notebook-skills, excel-skills | Context7 (data libs), Filesystem |
-| **@security-reviewer** | secure-code, security-reviewer, code-reviewer + Trail of Bits plugins | GitHub (security advisories) |
-
-### Implementation
-
-- Extend `agent_config.schema.json` with `allowedSkills[]` and `allowedMcps[]` fields
-- `SkillInvoker` checks agent scope before delegating — returns a helpful error if a skill is out-of-scope
-- Agents can request scope escalation via `@zeus` (orchestrator pattern)
-- Default scope: all skills (backward-compatible) — scoping is opt-in per agent config
-
----
-
-## Agentic Workflows — Planned Expansions
-
-> *"The forge runs day and night — tireless agents keeping the workshop in perfect order."*
-
-Future agentic workflow expansions beyond the current 22 operational workflows:
-
-### Testing & Validation Workflows (Planned)
-
-| Workflow | Description | Trigger | Reference |
-|----------|-------------|---------|----------|
-| **Improve Test Coverage** | Analyze coverage gaps, generate missing unit/integration tests, submit as PRs | Schedule (weekly) | [Peli's Testing & Validation](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-testing-validation/) |
-| **Diagnose CI Failures** | On CI failure, automatically investigate root cause — parse logs, identify flaky tests, bisect regressions, post diagnosis as PR comment | On CI failure | [Peli's Fault Investigation](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-quality-hygiene/) |
-
-### Continuous Milestone Delivery (Implemented ✅)
-
-A proactive system of three interlocking agents that autonomously drive milestones from planning through completion. When a milestone is created, the **Milestone Planner** breaks it into feature issues. The **Feature Decomposer** then splits each feature into Copilot-assignable sub-issues. As PRs land, the **Milestone Progress Reviewer** evaluates remaining gaps and creates new work items to keep the milestone on track.
-
-**Status**: All 3 workflows ✅ Implemented
-
-| Workflow | Description | Trigger | Status |
-|----------|-------------|---------|--------|
-| **Milestone Planner** | On milestone creation, analyze ROADMAP targets and codebase state to plan features and bugfixes for the release; create feature request issues for each planned item and associate existing relevant issues with the milestone | Milestone created | ✅ Implemented |
-| **Feature Decomposer** | For each feature issue labeled `milestone-feature`, decompose it into 3-5 actionable work items; create a sub-issue for each work item with acceptance criteria, file paths, and implementation guidance for Copilot | Issue labeled `milestone-feature` | ✅ Implemented |
-| **Milestone Progress Reviewer** | On each milestone-associated PR, evaluate milestone progress and identify delivery gaps; create work items (<300 LOC) or features (>300 LOC) as remediation issues to maintain milestone trajectory | PR events (milestone-associated) | ✅ Implemented |
-
----
-
-## Multi-Platform Compatibility
-
-> *"A weapon forged by Hephaestus serves any warrior who wields it — not just the one who commissioned it."*
-
-Extend skill and agent compatibility beyond Claude Code to support additional AI-assisted development platforms.
-
-### Target Platforms
-
-| Platform | Skill Format | Agent Format | Status |
-|----------|-------------|-------------|--------|
-| **Claude Code** | `SKILL.md` (native) | `.md` + `.config.json` (native) | ✅ Current |
-| **GitHub Copilot CLI** | `.instructions.md` / `.github/copilot-instructions.md` | Custom instructions | 🔲 Planned |
-| **Gemini CLI** | `AGENTS.md` + skill files | Agent config files | 🔲 Planned |
-| **Factory** (GitHub Agentic Workflows) | Markdown workflow specs → GitHub Actions YAML | Workflow-scoped agents | 🔲 Planned |
-| **Cursor** | `.cursor/rules/` rule files | Cursor agent rules | 🔲 Planned |
-| **Codex** (OpenAI) | `AGENTS.md` + instruction files | Agent spec files | 🔲 Planned |
-
-### Compatibility Strategy
-
-1. **Universal Skill Format**: Define a platform-agnostic skill schema that captures intent, context, and examples — then transpile to each platform's native format
-2. **Adapter Layer**: Build platform adapters in `interfaces/adapters/` that translate Forge's `SkillInvoker` and `ContextProvider` interfaces into platform-specific conventions
-3. **Agent Config Transpiler**: Convert `agent_config.schema.json` into platform-native agent definitions (Cursor rules, Gemini agents, Copilot instructions)
-4. **Shared Context**: Context files (`forge-plugin/context/`) are Markdown with YAML frontmatter — already compatible with most platforms. Ensure `tags` and `sections` metadata maps to each platform's discovery mechanism
-5. **Test Matrix**: CI validates that transpiled outputs are well-formed for each target platform
-
-### Deliverables
-
-| Deliverable | Description |
-|-------------|-------------|
-| `forge-export-copilot` | Transpile Forge skills into GitHub Copilot `.instructions.md` files |
-| `forge-export-gemini` | Generate Gemini CLI-compatible `AGENTS.md` and skill files |
-| `forge-export-cursor` | Convert Forge skills into Cursor `.cursor/rules/` rule files |
-| `forge-export-factory` | Compile Forge workflow recipes into GitHub Actions YAML via Factory patterns |
-| `forge-export-codex` | Generate OpenAI Codex-compatible agent and instruction files |
-| `forge-compat-tests` | Cross-platform test suite verifying transpiled outputs work on each target platform |
-
----
-
-## Long-Term Vision
-
-> *"The ultimate forge needs no smith — it reads the blueprint and shapes the metal itself."*
-
-### Near-Term
-- **Modular core decomposition**: Break forge-core into 16 focused skill plugins (see above)
-- **Agent skill scoping**: Agents access only domain-relevant skills and MCPs
-- **CI/CD validation**: GitHub Actions workflows for skill, plugin, agent, and hook validation
-- **Layer 3 security testing**: Prompt injection defense, plugin isolation, supply chain verification
-- **Plugin security hooks**: 5 new hooks for install-time, runtime, and update-time security checks
-- **Multi-platform transpilers**: Export Forge skills to Copilot CLI, Gemini CLI, Cursor, Codex, and Factory formats
-
-### Mid-Term
-- **Testing & validation workflows**: Automated test coverage improvement and CI failure diagnosis
-- **Continuous Milestone Delivery workflows**: Proactive milestone planning, feature decomposition, and progress-driven gap filling via autonomous agents
-- **Advanced Olympian Council workflows**: All 12 Olympians actively collaborating on complex engineering challenges with sophisticated delegation patterns
-- **Self-improving skills**: Skills that analyze their own output quality and refine themselves
-- **Meta-agents**: Agents that monitor and improve the health of other agents and workflows
-- **Cross-project learning**: Insights from one project improving analysis of similar projects
-- **Divine delegation patterns**: Zeus orchestrating multi-agent workflows with strategic task distribution
-- **New skill domains**: Go, Rust, Swift code review and generation
-
-### Long-Term
-- **Fully autonomous forge**: Agents self-organize to solve complex engineering challenges end-to-end
-- **Predictive engineering**: The Factory anticipates needs before they're articulated
-- **Multi-forge federation**: Multiple Forge instances sharing knowledge across organizations
-- **Autonomous memory curation**: Memory that self-organizes, merges, and prunes without intervention
-- **Community marketplace**: Public plugin registry for community-contributed skills and agents
+| Workflow | Trigger | Status |
+|----------|---------|--------|
+| **Milestone Planner** | Milestone created | ✅ Implemented |
+| **Feature Decomposer** | Issue labeled `milestone-feature` | ✅ Implemented |
+| **Milestone Progress Reviewer** | PR events (milestone-associated) | ✅ Implemented |
 
 ---
 
 ## Forge Chronicle
 
-Current state and recent milestones:
-
 | Date | Milestone |
 |------|-----------|
-| **Feb 13, 2026** | Agentic Workflows Complete — 19 autonomous workflows operational (quality, documentation, operations, planning), 5 issue templates, SECURITY.md, AGENTIC_FORGE.md contributor guide |
-| **Feb 13, 2026** | Documentation Overhaul — All planned internal skills forged (102 core skills), Forge Marketplace documented (38 plugins, 212 external skills), COOKBOOK.md created |
-| **Feb 12, 2026** | Architecture & Design Skills — Forged 4 skills (api-design, architecture-design, graphql-design, microservices-design) with 100 tests |
-| **Feb 12, 2026** | Frontend & Mobile Skills — 6 new skills forged: angular-architect, flutter-expert, react-expert, react-native-expert, vue-expert-js, vue-expert |
-| **Feb 12, 2026** | Frontend & UI Skills — Forged 6 skills: accessibility, animate, nextjs, react-forms, responsive-images, tailwind-patterns |
-| **Feb 12, 2026** | Utilities Forged — 10 Utilities skills implemented: color-palette, email-gateway, favicon-gen, firecrawl-scraper, icon-design, image-gen, jquery-4, office, open-source-contributions, playwright-local |
-| **Feb 12, 2026** | Database & Storage Skills — Forged firebase-firestore, firebase-storage, snowflake-platform (3 new skills, 25 total) |
-| **Feb 12, 2026** | Roadmap Expansion — Added `/divine` command and 4 new hook events for memory/context integration |
-| **Feb 12, 2026** | Factory Stable — 22 skills, 12 commands, 11 agents, 81 context files, 20 hooks, ~1,683 tests |
-| **Feb 11, 2026** | Enterprise Skills Catalog — Documented 173 skills from Vercel, Google Labs, Trail of Bits, Microsoft, Anthropic, Sentry |
-| **Feb 11, 2026** | Community Skills Catalog — Documented 99+ planned skills across 15 domains |
+| **Feb 13, 2026** | v0.3.0-alpha — Agentic Workflows (19), Documentation Overhaul, COOKBOOK.md, Marketplace (38 plugins, 212 external skills) |
+| **Feb 12, 2026** | Architecture/Design Skills (4), Frontend/Mobile Skills (6), Frontend/UI Skills (6), Utilities (10), Database/Storage (3) |
+| **Feb 12, 2026** | Factory Stable — 102 skills, 12 commands, 19 agents, 81 context files, 20 hooks, ~1,993 tests |
+| **Feb 11, 2026** | Enterprise Skills Catalog (173 skills), Community Skills Catalog (99+ planned) |
 | **Feb 10, 2026** | MCP Integration — 8 external knowledge conduits connected |
 | **Nov 18, 2025** | Azure Functions — generate-azure-functions with Tilt + Azurite |
 | **Nov 14, 2025** | .NET Code Review — dotnet-code-review with 12 context files |
