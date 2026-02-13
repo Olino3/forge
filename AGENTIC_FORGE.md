@@ -393,6 +393,7 @@ All 20 workflows at a glance, organized by when they run:
 | **Convention Enforcer** | PR to `develop`/`main` | Draft PR | Naming, formatting, convention adherence |
 | **Best Practices Improver** | PR to `develop` | Draft PR (on your branch) | Alignment with Claude Code best practices |
 | **Context Generator** | Push to `main` (post-merge) | Draft PR | Missing context files for new skills |
+| **CI Failure Diagnostician** | `Forge Tests` workflow fails (2nd consecutive) | Draft PR | Root cause analysis and proposed fixes for test failures |
 | **Issue Triage Agent** | Issue opened/reopened | Issue | Labels, priority, assignment recommendations |
 | **Milestone Planner** | Milestone created | Issue (multiple) | Feature decomposition and issue association |
 | **Release Notes Generator** | Tag push or release publish | Issue | Categorized changelog from merged PRs |
@@ -405,6 +406,7 @@ All 20 workflows at a glance, organized by when they run:
 | **Doc Sync** | Mon–Fri 07:00 UTC | Draft PR | Doc accuracy vs actual codebase |
 | **Cross-Reference Checker** | Tue 08:00 UTC | Issue | 8 reference matrices between components |
 | **Skill Validator** | Tue + Thu 09:00 UTC | Issue | Template compliance, 6-step workflow |
+| **Test Coverage Improver** | Tue 09:00 UTC | Draft PR | Coverage gaps in test harness, generates missing tests |
 | **Agent Validator** | Wed 09:00 UTC | Issue | Schema compliance, ref integrity |
 | **Doc Unbloat** | Thu 10:00 UTC | Draft PR | Documentation verbosity |
 | **Hook Quality Checker** | Fri 07:00 UTC | Issue | Script safety, performance, registration |
@@ -432,6 +434,8 @@ Every workflow output is labeled and prefixed:
 | `[pm]` | Project Manager Agent | Roadmap execution plan |
 | `[stale]` | Stale Gardener | Dormant work review |
 | `[deps]` | Dependency Sentinel | Upgrade proposal |
+| `[ci-fix]` | CI Failure Diagnostician | Auto-diagnosed test fix |
+| `[test-coverage]` | Test Coverage Improver | Missing test generation |
 | `[release-notes]` | Release Notes Generator | Changelog draft |
 
 All workflow-generated items also carry the **`forge-automation`** label, so you can filter them:
