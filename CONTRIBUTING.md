@@ -14,6 +14,8 @@ Thank you for your interest in contributing to The Forge — an Agentic Software
 - [Adding Context Files](#adding-context-files)
 - [Adding Hooks](#adding-hooks)
 - [Adding External Plugins](#adding-external-plugins)
+- [Agentic Workflows](#agentic-workflows)
+- [Issue Templates](#issue-templates)
 - [Coding Conventions](#coding-conventions)
 - [Pull Request Process](#pull-request-process)
 - [Code of Conduct](#code-of-conduct)
@@ -285,6 +287,54 @@ cd ../.. && git add <submodule-path> && git commit -m "chore: sync <vendor> subm
 
 ---
 
+## Agentic Workflows
+
+The Forge runs **19 agentic workflows** via [GitHub Agentic Workflows (gh-aw)](https://github.github.com/gh-aw/) — autonomous AI agents that continuously monitor, validate, and improve the codebase as GitHub Actions.
+
+### What Happens Automatically
+
+When you open a PR, up to 5 workflows may run on your changes:
+- **Skill Simplifier** — proposes simplification PRs for verbose skills
+- **Duplication Detector** — flags duplicated content across components
+- **Context Pruner** — validates context integrity and references
+- **Convention Enforcer** — checks naming, frontmatter, and coding conventions
+- **Best Practices Improver** — suggests improvements aligned with Claude Code patterns
+
+On schedules, 8 additional workflows run for health monitoring, validation, documentation sync, operations, and planning.
+
+All workflow outputs carry the **`forge-automation`** label. Outputs are **suggestions** — close with a note if you disagree.
+
+See [AGENTIC_FORGE.md](AGENTIC_FORGE.md) for the full contributor guide with lifecycle diagrams and developer scenarios.
+
+### Adding New Agentic Workflows
+
+1. Create `.github/workflows/forge-{name}.md` with YAML frontmatter + prompt body
+2. Import shared configs: `forge-base.md`, `forge-pr-creator.md` or `forge-issue-creator.md`, `forge-conventions.md`
+3. Set permissions to read-only: `contents: read`, `issues: read`, `pull-requests: read`
+4. Configure `safe-outputs` with `create-pull-request` or `create-issue`
+5. Run `gh aw compile` — fix errors until 0 errors, 0 warnings
+6. **Never edit `.lock.yml` files** — always edit `.md` source and recompile
+
+See `CLAUDE.md` Section XVI for the full authoring reference.
+
+---
+
+## Issue Templates
+
+The Forge provides **5 structured issue templates** in `.github/ISSUE_TEMPLATE/`:
+
+| Template | Purpose |
+|----------|---------|
+| **Bug Report** | Steps to reproduce, expected behavior, environment details |
+| **Feature Request** | Requested functionality and benefits |
+| **Documentation Improvement** | Stale or unclear documentation |
+| **Security Vulnerability** | Redirects to `SECURITY.md` for private reporting |
+| **Quality Issue** | Duplicated skills, dead code, quality improvements (used by both humans and automation) |
+
+Blank issues are disabled — always use a template. Security issues must be reported privately via GitHub Security Advisories (see `SECURITY.md`).
+
+---
+
 ## Coding Conventions
 
 | File Type | Convention |
@@ -323,6 +373,9 @@ cd ../.. && git add <submodule-path> && git commit -m "chore: sync <vendor> subm
 - [ ] Memory directories use canonical paths (`memory/agents/`, `memory/skills/`, etc.)
 - [ ] `marketplace.json` updated if plugins added/removed
 - [ ] Symlinks verified with `./scripts/verify-symlinks.sh` if external plugins changed
+- [ ] Agentic workflows compile cleanly: `gh aw compile` shows 0 errors
+- [ ] `.lock.yml` files regenerated after any workflow `.md` changes
+- [ ] No write permissions in agentic workflow frontmatter
 - [ ] ROADMAP.md updated
 - [ ] Tested with Claude Code
 

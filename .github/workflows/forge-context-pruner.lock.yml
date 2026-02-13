@@ -26,8 +26,9 @@
 #     - shared/forge-base.md
 #     - shared/forge-conventions.md
 #     - shared/forge-issue-creator.md
+#     - shared/forge-quality-issue-template.md
 #
-# frontmatter-hash: 227803e8f4dd42eaee3cbce8fc88cdc0e0b0c3bc2262fe600da45eded73fff8a
+# frontmatter-hash: 99ee32257fdf2cc48dd5c4c5c50400da444e1b481db07ce14b992defe9a29aa3
 
 name: "Forge Context Pruner & Maintainer"
 "on":
@@ -565,6 +566,9 @@ jobs:
           GH_AW_PROMPT_EOF
           cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
           {{#runtime-import .github/workflows/shared/forge-issue-creator.md}}
+          GH_AW_PROMPT_EOF
+          cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
+          {{#runtime-import .github/workflows/shared/forge-quality-issue-template.md}}
           GH_AW_PROMPT_EOF
           cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
           {{#runtime-import .github/workflows/shared/forge-conventions.md}}

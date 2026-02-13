@@ -3,6 +3,7 @@ description: "Validate Forge agent configurations for schema compliance and refe
 imports:
   - shared/forge-base.md
   - shared/forge-issue-creator.md
+  - shared/forge-quality-issue-template.md
   - shared/forge-conventions.md
 on:
   schedule: "weekly on wednesday"

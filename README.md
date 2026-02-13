@@ -34,6 +34,7 @@ The Forge is not a plugin collection — it is a complete **Agentic Software Fac
 | 📚 **Context** | 81 files | Shared knowledge across 9 domains with YAML frontmatter |
 | 🧠 **Memory** | 4 layers | Project-specific learning that grows with every invocation |
 | 🪝 **Hooks** | 20 | Automated security, quality gates, and integrity enforcement |
+| 🤖 **Agentic Workflows** | 19 | Autonomous GitHub Actions for continuous quality improvement |
 | 🔌 **MCP Servers** | 8 | External knowledge conduits (docs, browser, search, code intel) |
 | ⚙️ **Interfaces** | 4 | Abstract contracts decoupling all components from the filesystem |
 | 🧪 **Tests** | ~1,993 | Layered test suite — static validation, hook integration, E2E |
@@ -266,6 +267,31 @@ All hooks fire automatically across 9 Claude Code event types. No manual interve
 
 ---
 
+## 🤖 Agentic Workflows — 19 Autonomous Agents
+
+> *"The tireless automatons never sleep — they sweep the forge floor, sharpen every blade, and polish each shield while the gods rest."*
+
+The Forge runs **19 agentic workflows** via [GitHub Agentic Workflows (gh-aw)](https://github.github.com/gh-aw/) — autonomous AI agents that continuously monitor, validate, and improve the codebase as GitHub Actions.
+
+| Category | Workflows |
+|----------|-----------|
+| **Continuous Simplicity** | Skill Simplifier, Duplication Detector |
+| **Continuous Context** | Context Generator, Context Pruner |
+| **Continuous Refactoring** | Skill Validator, Agent Validator |
+| **Continuous Style** | Convention Enforcer, Hook Quality Checker |
+| **Continuous Improvement** | Health Dashboard, Cross-Reference Checker, Best Practices Improver |
+| **Continuous Documentation** | Doc Sync, Doc Unbloat |
+| **Operations & Release** | Release Notes Generator, Dependency Update Sentinel |
+| **Planning & Coordination** | Issue Triage Agent, Milestone Tracker, Project Manager Agent, Stale Gardener |
+
+**How it works**: Workflows create **issues** (findings) or **draft PRs** (proposed changes). Nothing merges without human approval. All outputs carry the `forge-automation` label.
+
+**Infrastructure**: 5 shared imports, 5 issue templates (bug, feature, docs, security, quality), `SECURITY.md` reporting policy.
+
+See [AGENTIC_FORGE.md](AGENTIC_FORGE.md) for the full contributor guide with lifecycle diagrams and developer scenarios.
+
+---
+
 ## ⚙️ Architecture
 
 The Forge uses an **interface-driven architecture** with 4 core abstractions:
@@ -349,10 +375,15 @@ forge/
 ├── COOKBOOK.md                   # Strategies, workflows, and persona guides
 ├── README.md                    # This file
 ├── ROADMAP.md                   # Vision, future work, and changelog
+├── AGENTIC_FORGE.md             # Agentic workflows contributor guide
 ├── CONTRIBUTING.md              # How to contribute
+├── SECURITY.md                  # Private vulnerability reporting
 ├── LICENSE                      # MIT License
 ├── .claude-plugin/
 │   └── marketplace.json         # Forge Marketplace (38 plugins)
+├── .github/
+│   ├── ISSUE_TEMPLATE/          # 5 structured issue forms
+│   └── workflows/               # 19 agentic workflows + CI + shared imports
 ├── forge-plugin/                # The Forge Core Plugin
 │   ├── agents/                  # 19 agents (.md + .config.json each)
 │   ├── skills/                  # 102 skills (SKILL.md + examples.md each)
