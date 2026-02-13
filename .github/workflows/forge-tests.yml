@@ -27,6 +27,9 @@ on:
   schedule:
     - cron: "0 9 * * 0"  # Weekly Sunday 9am UTC — replaces agentic validator schedules
 
+permissions:
+  contents: read
+
 jobs:
   layer1-ci:
     name: "Layer 1 — Static/CI Tests"
