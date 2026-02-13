@@ -58,11 +58,11 @@ The Forge is a fully operational **Agentic Software Factory** — a Claude Code 
 
 ---
 
-## Agentic Workflows — 19 Autonomous Quality Agents
+## Agentic Workflows — 20 Autonomous Quality Agents
 
 > *"The tireless automatons of Hephaestus's workshop never sleep — they sweep the forge floor, sharpen every blade, and polish each shield while the gods rest."*
 
-The Forge runs **19 autonomous agentic workflows** via [GitHub Agentic Workflows (gh-aw)](https://github.github.com/gh-aw/), powered by the Copilot engine. These workflows continuously monitor, validate, and improve the codebase — creating issues with findings or draft PRs with proposed changes. Nothing merges without human approval.
+The Forge runs **20 autonomous agentic workflows** via [GitHub Agentic Workflows (gh-aw)](https://github.github.com/gh-aw/), powered by the Copilot engine. These workflows continuously monitor, validate, and improve the codebase — creating issues with findings or draft PRs with proposed changes. Nothing merges without human approval.
 
 See **[AGENTIC_FORGE.md](AGENTIC_FORGE.md)** for the contributor-facing guide and **[AGENTIC_WORKFLOWS_ROADMAP.md](AGENTIC_WORKFLOWS_ROADMAP.md)** for the technical roadmap.
 
@@ -74,6 +74,7 @@ See **[AGENTIC_FORGE.md](AGENTIC_FORGE.md)** for the contributor-facing guide an
 | **Continuous Style** | Convention Enforcer, Hook Quality Checker | PR + schedule |
 | **Continuous Improvement** | Health Dashboard, Cross-Reference Checker, Best Practices Improver | Schedule + PR |
 | **Continuous Documentation** | Doc Sync, Doc Unbloat | Schedule |
+| **Continuous Testing** | CI Failure Diagnostician | CI failure events |
 | **Operations & Release** | Release Notes Generator, Dependency Update Sentinel | Release / daily |
 | **Planning & Coordination** | Issue Triage Agent, Project Milestone Tracker, Project Manager Agent, Stale Gardener | Issue events / schedule |
 
