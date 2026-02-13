@@ -2,7 +2,7 @@
 
 > *"The tireless automatons of Hephaestus's workshop never sleep — they sweep the forge floor, sharpen every blade, and polish each shield while the gods rest."*
 
-This guide explains, in plain language, how The Forge's **19 agentic workflows** work alongside you as a contributor. No deep infrastructure knowledge required — just an understanding of PRs, issues, and releases.
+This guide explains, in plain language, how The Forge's **20 agentic workflows** work alongside you as a contributor. No deep infrastructure knowledge required — just an understanding of PRs, issues, and releases.
 
 ---
 
@@ -381,7 +381,7 @@ The release notes are a **draft** — you copy them into the GitHub Release desc
 
 ## The Complete Workflow Catalog
 
-All 19 workflows at a glance, organized by when they run:
+All 20 workflows at a glance, organized by when they run:
 
 ### Event-triggered workflows (run when something happens)
 
@@ -404,6 +404,7 @@ All 19 workflows at a glance, organized by when they run:
 | **Doc Sync** | Mon–Fri 07:00 UTC | Draft PR | Doc accuracy vs actual codebase |
 | **Cross-Reference Checker** | Tue 08:00 UTC | Issue | 8 reference matrices between components |
 | **Skill Validator** | Tue + Thu 09:00 UTC | Issue | Template compliance, 6-step workflow |
+| **Test Coverage Improver** | Tue 09:00 UTC | Draft PR | Coverage gaps in test harness, generates missing tests |
 | **Agent Validator** | Wed 09:00 UTC | Issue | Schema compliance, ref integrity |
 | **Doc Unbloat** | Thu 10:00 UTC | Draft PR | Documentation verbosity |
 | **Hook Quality Checker** | Fri 07:00 UTC | Issue | Script safety, performance, registration |
@@ -430,6 +431,7 @@ Every workflow output is labeled and prefixed:
 | `[pm]` | Project Manager Agent | Roadmap execution plan |
 | `[stale]` | Stale Gardener | Dormant work review |
 | `[deps]` | Dependency Sentinel | Upgrade proposal |
+| `[test-coverage]` | Test Coverage Improver | Missing test generation |
 | `[release-notes]` | Release Notes Generator | Changelog draft |
 
 All workflow-generated items also carry the **`forge-automation`** label, so you can filter them:
