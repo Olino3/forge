@@ -8,8 +8,7 @@ This document tracks **planned future work** for The Forge's agentic workflows. 
 
 ## Current State
 
-**20 agentic workflows** are implemented and compiling cleanly (0 errors) across 8 categories:
-**20 agentic workflows** are implemented and compiling cleanly (0 errors) across 9 categories:
+**22 agentic workflows** are implemented and compiling cleanly (0 errors) across 9 categories:
 
 | Category | Workflows | Count |
 |----------|-----------|-------|
@@ -22,7 +21,7 @@ This document tracks **planned future work** for The Forge's agentic workflows. 
 | Continuous Testing | CI Failure Diagnostician | 1 |
 | Testing & Validation | Test Coverage Improver | 1 |
 | Operations & Release | Release Notes Generator, Dependency Update Sentinel | 2 |
-| Planning & Coordination | Issue Triage Agent, Milestone Planner, Project Milestone Tracker, Project Manager Agent, Stale Gardener | 5 |
+| Planning & Coordination | Issue Triage Agent, Milestone Planner, Feature Decomposer, Milestone Progress Reviewer, Project Milestone Tracker, Project Manager Agent, Stale Gardener | 7 |
 
 **Supporting infrastructure**: 5 shared imports, 5 issue templates, `SECURITY.md`, quality issue contract.
 
@@ -70,8 +69,8 @@ These workflows are candidates for implementation after Phase 8 stabilization:
 |----------|-------------|---------|----------|
 | **Improve Test Coverage** | Analyze coverage gaps, generate missing tests | Schedule (weekly) | [Peli's Testing & Validation](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-testing-validation/) |
 | **Diagnose CI Failures** | Auto-investigate CI failures, post root cause analysis | On CI failure | [Peli's Fault Investigation](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-quality-hygiene/) |
-| **Feature Decomposer** | Decompose milestone feature issues into Copilot-assignable sub-issues with acceptance criteria | Issue milestoned | — |
-| **Milestone Progress Reviewer** | Evaluate milestone and feature delivery gaps on each PR; create remediation issues to maintain trajectory | PR events | — |
+
+**Note**: Feature Decomposer and Milestone Progress Reviewer have been implemented and are now part of the Planning & Coordination category.
 
 ---
 
