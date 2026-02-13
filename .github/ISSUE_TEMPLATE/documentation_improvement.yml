@@ -1,0 +1,43 @@
+name: Documentation improvement
+description: Suggest updates or corrections to docs.
+title: "[docs] "
+labels:
+  - documentation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for improvements to README, ROADMAP, guides, examples, or workflow docs.
+  - type: input
+    id: location
+    attributes:
+      label: Documentation location
+      description: File path or URL section.
+      placeholder: e.g. AGENTIC_WORKFLOWS_ROADMAP.md#future-phases
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: Current issue
+      description: What is unclear, inaccurate, stale, or missing?
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed improvement
+      description: What should change?
+    validations:
+      required: true
+  - type: textarea
+    id: audience
+    attributes:
+      label: Audience impact
+      description: Who is blocked or confused by the current docs?
+  - type: textarea
+    id: references
+    attributes:
+      label: Supporting references
+      description: Link to sources, PRs, or related docs.
+

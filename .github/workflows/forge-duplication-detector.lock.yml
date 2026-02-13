@@ -26,8 +26,9 @@
 #     - shared/forge-base.md
 #     - shared/forge-conventions.md
 #     - shared/forge-issue-creator.md
+#     - shared/forge-quality-issue-template.md
 #
-# frontmatter-hash: d792778ae065dd259be960b46c9a69f4b46d4cf0fe052ff87e4cbea249752ef2
+# frontmatter-hash: 04e84f31259e8641beb730deefbf316e3cf0a8e1daa6e4ce70b337114e09503e
 
 name: "Forge Duplication Detector"
 "on":
@@ -565,6 +566,9 @@ jobs:
           GH_AW_PROMPT_EOF
           cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
           {{#runtime-import .github/workflows/shared/forge-issue-creator.md}}
+          GH_AW_PROMPT_EOF
+          cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
+          {{#runtime-import .github/workflows/shared/forge-quality-issue-template.md}}
           GH_AW_PROMPT_EOF
           cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
           {{#runtime-import .github/workflows/shared/forge-conventions.md}}

@@ -1,2 +1,2 @@
-# Lock files are auto-generated - use merge=union and manually recompile workflows after merges
-.github/workflows/*.lock.yml linguist-generated=true merge=union
+# Lock files are auto-generated - use merge=ours and manually recompile workflows after merges
+.github/workflows/*.lock.yml linguist-generated=true merge=ours

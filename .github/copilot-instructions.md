@@ -125,13 +125,22 @@ See `CONTRIBUTING.md` for detailed instructions and the Microsoft/Vercel/Trail o
 
 ## Agentic Workflows (gh-aw)
 
-The Forge uses **GitHub Agentic Workflows** (`gh-aw` CLI extension) to run Copilot-powered agents as GitHub Actions. Workflow sources live in `.github/workflows/forge-*.md` and compile to `.lock.yml` files.
+The Forge runs **19 agentic workflows** via [GitHub Agentic Workflows (gh-aw)](https://github.github.com/gh-aw/) — autonomous AI agents as GitHub Actions that continuously monitor, validate, and improve the codebase.
+
+### What Contributors Should Know
+
+- **On PRs**: Up to 5 workflows analyze your changes (simplification, duplication, conventions, context, best practices)
+- **On schedules**: 8 workflows run for health monitoring, validation, documentation sync, and planning
+- **On events**: 4 workflows respond to issues, releases, and ROADMAP changes
+- **All outputs** carry the `forge-automation` label — issues are findings, draft PRs are proposed changes
+- **Nothing merges without human approval**
+
+See [AGENTIC_FORGE.md](AGENTIC_FORGE.md) for the full contributor guide with lifecycle diagrams and developer scenarios.
 
 ### Quick Reference
 
 ```bash
 gh extension install github/gh-aw   # Install CLI
-gh aw init                           # Bootstrap repo
 gh aw compile                        # Compile .md → .lock.yml
 gh aw status                         # Check workflow status
 gh aw fix --write                    # Fix deprecated fields
@@ -141,15 +150,13 @@ gh aw fix --write                    # Fix deprecated fields
 
 ```
 .github/workflows/
-├── shared/                          # Shared imports
+├── shared/                          # Shared imports (5 files)
 │   ├── forge-base.md                # Engine (copilot) + base permissions
 │   ├── forge-pr-creator.md          # PR-creating workflow defaults
 │   ├── forge-issue-creator.md       # Issue-creating workflow defaults
-│   └── forge-conventions.md         # Forge project conventions
-├── forge-skill-simplifier.md        # Phase 1A
-├── forge-duplication-detector.md    # Phase 1A
-├── forge-context-generator.md       # Phase 1B
-├── forge-context-pruner.md          # Phase 1B
+│   ├── forge-conventions.md         # Forge project conventions
+│   └── forge-quality-issue-template.md  # Issue body contract
+├── forge-*.md                       # 19 workflow source files
 └── forge-*.lock.yml                 # Compiled (DO NOT EDIT)
 ```
 
@@ -176,7 +183,7 @@ gh aw fix --write                    # Fix deprecated fields
 
 All are repository secrets (Settings → Secrets → Actions). Account must have active Copilot license.
 
-See `AGENTIC_WORKFLOWS_ROADMAP.md` for the full 7-phase plan. **Note:** Some roadmap code examples use outdated property names — always cross-reference with CLAUDE.md Section XVI.
+See `CLAUDE.md` Section XVI for the full authoring reference.
 
 ## Key Files
 
@@ -186,6 +193,9 @@ See `AGENTIC_WORKFLOWS_ROADMAP.md` for the full 7-phase plan. **Note:** Some roa
 | `CONTRIBUTING.md` | Full contribution guide |
 | `COOKBOOK.md` | Strategies, workflows, and persona-based plugin selection |
 | `ROADMAP.md` | Vision, capabilities, and changelog |
+| `AGENTIC_FORGE.md` | Agentic workflows contributor guide |
+| `AGENTIC_WORKFLOWS_ROADMAP.md` | Agentic workflows technical roadmap |
+| `SECURITY.md` | Private vulnerability reporting policy |
 | `ARCHITECTURAL_ROADMAP.md` | Technical architecture and migration phases |
 | `.claude-plugin/marketplace.json` | Forge Marketplace — 38 plugins for external skills |
 | `forge-plugin/hooks/hooks.json` | Hook registration manifest (20 handlers, 9 events) |
@@ -194,9 +204,6 @@ See `AGENTIC_WORKFLOWS_ROADMAP.md` for the full 7-phase plan. **Note:** Some roa
 | `forge-plugin/context/cross_domain.md` | Cross-domain trigger matrix |
 | `forge-plugin/memory/lifecycle.md` | Memory freshness, pruning, archival |
 | `forge-plugin/memory/quality_guidance.md` | Memory quality validation |
-| `AGENTIC_WORKFLOWS_ROADMAP.md` | Phased plan for agentic workflows |
-| `.github/workflows/shared/forge-base.md` | Shared base config (engine, permissions) |
-| `.github/workflows/shared/forge-conventions.md` | Forge conventions for agentic agents |
 
 ## Pull Request Checklist
 
@@ -209,7 +216,7 @@ See `AGENTIC_WORKFLOWS_ROADMAP.md` for the full 7-phase plan. **Note:** Some roa
 - [ ] `ROADMAP.md` updated if adding new capabilities
 - [ ] `marketplace.json` updated if plugins added/removed
 - [ ] Symlinks verified with `./scripts/verify-symlinks.sh` if external plugins changed
-- [ ] Agentic workflows compile cleanly: `gh aw compile` shows 0 errors, 0 warnings
+- [ ] Agentic workflows compile cleanly: `gh aw compile` shows 0 errors
 - [ ] No write permissions in agentic workflow frontmatter (safe-outputs handles writes)
 - [ ] `.lock.yml` files regenerated after any workflow `.md` changes
 
