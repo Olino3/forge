@@ -44,6 +44,7 @@ For each `forge-plugin/agents/{name}.config.json`:
 4. **Memory directory**: configured memory path exists.
 5. **Personality file parity**: matching `forge-plugin/agents/{name}.md` exists.
 6. **MCP references**: referenced MCP docs exist in `forge-plugin/mcps/`.
+7. **Naming conventions**: file naming (`{name}.md` and `{name}.config.json`) match, agent names follow kebab-case.
 
 ## Scope
 

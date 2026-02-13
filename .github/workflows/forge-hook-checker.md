@@ -45,6 +45,7 @@ For hooks under `forge-plugin/hooks/`:
 5. Hook scripts are registered in `forge-plugin/hooks/hooks.json`.
 6. Hook behavior is documented in `forge-plugin/hooks/HOOKS_GUIDE.md`.
 7. Scripts remain idempotent and non-destructive.
+8. Layer assignment matches purpose (Shield/Chronicle/Foreman/Town Crier).
 
 ## Scope
 
