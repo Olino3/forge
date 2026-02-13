@@ -2,7 +2,7 @@
 
 > *"The tireless automatons of Hephaestus's workshop never sleep — they sweep the forge floor, sharpen every blade, and polish each shield while the gods rest."*
 
-This document tracks **planned future work** for The Forge's agentic workflows. For a description of the 19 operational workflows and how they integrate into the development lifecycle, see **[AGENTIC_FORGE.md](AGENTIC_FORGE.md)**.
+This document tracks **planned future work** for The Forge's agentic workflows. For a description of the 20 operational workflows and how they integrate into the development lifecycle, see **[AGENTIC_FORGE.md](AGENTIC_FORGE.md)**.
 
 ---
 
@@ -19,6 +19,7 @@ This document tracks **planned future work** for The Forge's agentic workflows. 
 | Continuous Improvement | Health Dashboard, Cross-Reference Checker, Best Practices Improver | 3 |
 | Continuous Documentation | Doc Sync, Doc Unbloat | 2 |
 | Continuous Testing | CI Failure Diagnostician | 1 |
+| Testing & Validation | Test Coverage Improver | 1 |
 | Operations & Release | Release Notes Generator, Dependency Update Sentinel | 2 |
 | Planning & Coordination | Issue Triage Agent, Project Milestone Tracker, Project Manager Agent, Stale Gardener | 4 |
 
@@ -53,7 +54,7 @@ This document tracks **planned future work** for The Forge's agentic workflows. 
 
 | Criteria | Target |
 |----------|--------|
-| Manual dispatch runs pass | All 19 workflows |
+| Manual dispatch runs pass | All 20 workflows |
 | Schedules enabled in production | All scheduled workflows |
 | False-positive rate | < 20% for 2 consecutive weeks |
 | Merge rate for PR-creating workflows | > 70% |
@@ -67,6 +68,7 @@ These workflows are candidates for implementation after Phase 8 stabilization:
 | Workflow | Description | Trigger | Reference |
 |----------|-------------|---------|----------|
 | **Improve Test Coverage** | Analyze coverage gaps, generate missing tests | Schedule (weekly) | [Peli's Testing & Validation](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-testing-validation/) |
+| **Diagnose CI Failures** | Auto-investigate CI failures, post root cause analysis | On CI failure | [Peli's Fault Investigation](https://github.github.com/gh-aw/blog/2026-01-13-meet-the-workflows-quality-hygiene/) |
 | **Milestone Planner** | Plan features and bugfixes for newly created milestones; create feature issues and associate existing issues | Milestone created | — |
 | **Feature Decomposer** | Decompose milestone feature issues into Copilot-assignable sub-issues with acceptance criteria | Issue milestoned | — |
 | **Milestone Progress Reviewer** | Evaluate milestone and feature delivery gaps on each PR; create remediation issues to maintain trajectory | PR events | — |
