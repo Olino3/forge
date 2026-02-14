@@ -34,7 +34,7 @@ The Forge is not a plugin collection — it is a complete **Agentic Software Fac
 | 📚 **Context** | 81 files | Shared knowledge across 9 domains with YAML frontmatter |
 | 🧠 **Memory** | 4 layers | Project-specific learning that grows with every invocation |
 | 🪝 **Hooks** | 20 | Automated security, quality gates, and integrity enforcement |
-| 🤖 **Agentic Workflows** | 19 | Autonomous GitHub Actions for continuous quality improvement |
+| 🤖 **Agentic Workflows** | 11 | Autonomous GitHub Actions for continuous quality improvement |
 | 🔌 **MCP Servers** | 8 | External knowledge conduits (docs, browser, search, code intel) |
 | ⚙️ **Interfaces** | 4 | Abstract contracts decoupling all components from the filesystem |
 | 🧪 **Tests** | ~1,993 | Layered test suite — static validation, hook integration, E2E |

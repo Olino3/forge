@@ -8,22 +8,18 @@ This document tracks **planned future work** for The Forge's agentic workflows. 
 
 ## Current State
 
-**22 agentic workflows** are implemented and compiling cleanly (0 errors) across 9 categories:
+**11 agentic workflows** are implemented and compiling cleanly (0 errors) across 4 categories:
 
 | Category | Workflows | Count |
 |----------|-----------|-------|
-| Continuous Simplicity | Skill Simplifier, Duplication Detector | 2 |
-| Continuous Context | Context Generator, Context Pruner | 2 |
-| Continuous Refactoring | Skill Validator, Agent Validator | 2 |
-| Continuous Style | Convention Enforcer, Hook Quality Checker | 2 |
-| Continuous Improvement | Health Dashboard, Cross-Reference Checker, Best Practices Improver | 3 |
-| Continuous Documentation | Doc Sync, Doc Unbloat | 2 |
-| Continuous Testing | CI Failure Diagnostician | 1 |
-| Testing & Validation | Test Coverage Improver | 1 |
-| Operations & Release | Release Notes Generator, Dependency Update Sentinel | 2 |
-| Planning & Coordination | Issue Triage Agent, Milestone Planner, Feature Decomposer, Milestone Progress Reviewer, Project Milestone Tracker, Project Manager Agent, Stale Gardener | 7 |
+| Improvement | Component Improver, Test Coverage Improver | 2 |
+| Documentation | Doc Maintainer, Context Generator, Health Dashboard | 3 |
+| Operations | CI Failure Diagnostician, Dependency Sentinel, Release Notes Generator | 3 |
+| Planning | Feature Decomposer, Milestone Lifecycle, Project Manager Agent, Stale Gardener | 4 |
 
-**Supporting infrastructure**: 5 shared imports, 5 issue templates, `SECURITY.md`, quality issue contract.
+**Supporting infrastructure**: 9 shared imports (5 base + 4 model templates), 5 issue templates, `SECURITY.md`, quality issue contract.
+
+**Validation workflows**: 7 former validation workflows migrated to deterministic CI (`forge-tests.yml`) — fast, LLM-free pytest/bash jobs.
 
 ---
 

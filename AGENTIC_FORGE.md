@@ -408,41 +408,76 @@ The release notes are a **draft** — you copy them into the GitHub Release desc
 
 ## The Complete Workflow Catalog
 
-All 16 agentic workflows at a glance, organized by when they run (8 validation workflows migrated to CI in Phase 2):
+All 11 agentic workflows at a glance, organized by category. 7 former validation workflows were migrated to deterministic CI in `forge-tests.yml`.
 
-### Event-triggered workflows (run when something happens)
+### Consolidated Workflows (3)
+
+These workflows replaced 7 fragmented workflows through multi-stage pipeline consolidation:
+
+| Workflow | Replaces | Trigger | Creates | What it does |
+|---|---|---|---|---|
+| **Component Improver** | Best Practices Improver + Skill Simplifier | PR to `develop` (forge-plugin/** changed) | Draft PR | 3-stage pipeline: Analyze → Improve/Simplify → Generate PR with best practice alignment + verbosity reduction |
+| **Doc Maintainer** | Doc Sync + Doc Unbloat | Mon + Thu 07:00 UTC | Draft PR | 2-stage pipeline: Sync Check (accuracy) → Unbloat Review (verbosity) for all documentation files |
+| **Milestone Lifecycle** | Milestone Planner + Milestone Tracker + Milestone Progress Reviewer | `milestone.created` + daily schedule + PR (milestone-associated) | Issue + PR comment | Event-routed 3-stage lifecycle: Plan (decompose) → Track (progress) → Review (gaps) |
+
+### Standalone Workflows (8)
+
+These workflows operate independently and were not consolidated:
+
+#### Improvement & Testing (2)
 
 | Workflow | Trigger | Creates | What it checks |
 |---|---|---|---|
-| **Skill Simplifier** | PR to `develop`/`main` (skills changed) | Draft PR | Verbosity in skill documentation |
-| **Duplication Detector** | PR to `develop`/`main` (forge-plugin changed) | Issue | Repeated content across components |
-| **Context Pruner** | PR to `develop`/`main` (context changed) | Issue | Frontmatter validity, stale refs, index integrity |
-| **Convention Enforcer** | PR to `develop`/`main` (forge-plugin changed) | Draft PR | Naming, formatting, convention adherence |
-| **Best Practices Improver** | PR to `develop` (skills/agents/commands/context changed) | Draft PR (on your branch) | Alignment with Claude Code best practices |
-| **Milestone Progress Reviewer** | PR (milestone-associated only) | Issue + PR comment | Milestone gaps, progress tracking, remediation work items |
-| **Context Generator** | Push to `main` (post-merge) | Draft PR | Missing context files for new skills |
-| **CI Failure Diagnostician** | `Forge Tests` workflow fails (2nd consecutive) | Draft PR | Root cause analysis and proposed fixes for test failures |
-| **~~Issue Triage Agent~~** | ~~Issue opened/reopened~~ **DECOMMISSIONED** (manual dispatch only) | ~~Issue~~ | ~~Labels, priority, assignment recommendations~~ |
-| **Milestone Planner** | Milestone created | Issue (multiple) | Feature decomposition and issue association |
-| **Feature Decomposer** | Issue labeled `milestone-feature` (optimized) | Issue (multiple) | Decomposes features into Copilot-assignable work items |
-| **Release Notes Generator** | Tag push or release publish | Issue | Categorized changelog from merged PRs |
-
-### Scheduled workflows (run on a timer)
-
-| Workflow | Schedule | Creates | What it checks |
-|---|---|---|---|
-| **Health Dashboard** | Sun 09:00 UTC | Issue | 7 health dimensions + delivery metrics |
-| **Doc Sync** | Mon–Fri 07:00 UTC | Draft PR | Doc accuracy vs actual codebase |
-| **Cross-Reference Checker** | Tue 08:00 UTC | Issue | 8 reference matrices between components |
-| **Skill Validator** | Tue + Thu 09:00 UTC | Issue | Template compliance, 6-step workflow |
 | **Test Coverage Improver** | Tue 09:00 UTC | Draft PR | Coverage gaps in test harness, generates missing tests |
-| **Agent Validator** | Wed 09:00 UTC | Issue | Schema compliance, ref integrity |
-| **Doc Unbloat** | Thu 10:00 UTC | Draft PR | Documentation verbosity |
-| **Hook Quality Checker** | Fri 07:00 UTC | Issue | Script safety, performance, registration |
-| **Stale Gardener** | Sat (scattered) | Issue | Dormant issues and PRs |
+| **CI Failure Diagnostician** | `Forge Tests` workflow fails (2nd consecutive) | Draft PR | Root cause analysis and proposed fixes for test failures |
+
+#### Documentation & Context (2)
+
+| Workflow | Trigger | Creates | What it checks |
+|---|---|---|---|
+| **Context Generator** | Push to `main` (post-merge, skills changed) | Draft PR | Missing context files for new skills |
+| **Health Dashboard** | Schedule (weekly) + workflow_dispatch | Issue | Consumes CI health artifact, narrativizes 7 health dimensions + delivery metrics |
+
+#### Operations & Release (2)
+
+| Workflow | Trigger | Creates | What it checks |
+|---|---|---|---|
+| **Release Notes Generator** | Tag push or release publish | Issue | Categorized changelog from merged PRs |
 | **Dependency Sentinel** | Daily (scattered) | Draft PR | Outdated dependency references |
-| **Milestone Tracker** | Daily (scattered) | Issue | Progress, blockers, velocity |
+
+#### Planning & Coordination (4)
+
+| Workflow | Trigger | Creates | What it checks |
+|---|---|---|---|
+| **Feature Decomposer** | Issue labeled `milestone-feature` (optimized) | Issue (multiple) | Decomposes features into Copilot-assignable work items |
 | **Project Manager Agent** | Mon (scattered) + ROADMAP changes | Issue | Roadmap–implementation gap analysis |
+| **Stale Gardener** | Sat (scattered) | Issue | Dormant issues and PRs |
+| **~~Milestone Planner~~** | **DEPRECATED** → Milestone Lifecycle (Plan stage) | — | — |
+| **~~Milestone Tracker~~** | **DEPRECATED** → Milestone Lifecycle (Track stage) | — | — |
+| **~~Milestone Progress Reviewer~~** | **DEPRECATED** → Milestone Lifecycle (Review stage) | — | — |
+
+### Migrated to Deterministic CI (7)
+
+These workflows were rewritten as pytest/bash jobs in `forge-tests.yml` — fast, LLM-free validation:
+
+| Original Workflow | CI Job | Tool | What it validates |
+|---|---|---|---|
+| **Agent Validator** | `validate-agents` | pytest + jsonschema + jq | JSON schema compliance, skill/MCP ref existence, file parity |
+| **Skill Validator** | `validate-skills` | pytest + grep | Template section presence, 6-step workflow, examples.md existence |
+| **Hook Quality Checker** | `validate-hooks` | shellcheck + grep + jq | `set -euo pipefail`, shellcheck pass, hooks.json registration |
+| **Cross-Reference Checker** | `validate-xrefs` | pytest + jq + grep | 8 cross-reference matrices (skills↔context, agents↔skills, etc.) |
+| **Context Pruner** | `validate-context` | pytest + pyyaml | Frontmatter validation, index integrity, orphaned/ghost entries |
+| **Convention Enforcer** | `validate-conventions` | pytest + grep | Kebab-case naming, frontmatter presence, `set -euo pipefail` |
+| **Duplication Detector** | `detect-duplication` | pytest + difflib | Content block similarity (>70% match) across 2+ files |
+
+### Decommissioned (2)
+
+These workflows were removed due to low value or redundancy:
+
+| Workflow | Reason | Replacement |
+|---|---|---|
+| **Issue Triage Agent** | 96% no-op rate, single-maintainer project, low value | Manual triage |
+| **CI Failure Diagnostician** | Superseded by expanded CI failure reporting in `forge-tests.yml` | CI native reporting |
 
 ### How to tell workflow outputs apart
 
@@ -450,22 +485,18 @@ Every workflow output is labeled and prefixed:
 
 | Prefix in title | Source workflow | Type |
 |---|---|---|
+| `[component-improve]` | Component Improver | Best practices + simplification |
+| `[doc-maintain]` | Doc Maintainer | Doc sync + unbloat |
+| `[milestone]` | Milestone Lifecycle | Plan/track/review |
 | `[health]` | Health Dashboard | Weekly report |
-| `[xref]` | Cross-Reference Checker | Broken links |
-| `[skill-structure]` | Skill Validator | Template gaps |
-| `[agent-config]` | Agent Validator | Schema failures |
-| `[hook-quality]` | Hook Quality Checker | Script issues |
-| `[duplication]` | Duplication Detector | Repeated content |
-| `[context-maintenance]` | Context Pruner | Stale/broken context |
-| ~~`[triage]`~~ | ~~Issue Triage Agent~~ | ~~Intake recommendation~~ (DECOMMISSIONED) |
-| `[Feature]` | Milestone Planner | Feature decomposition |
-| `[milestone]` | Milestone Tracker | Progress report |
+| `[release-notes]` | Release Notes Generator | Changelog draft |
+| `[deps]` | Dependency Sentinel | Upgrade proposal |
+| `[test-coverage]` | Test Coverage Improver | Missing test generation |
+| `[ci-fix]` | CI Failure Diagnostician | Auto-diagnosed test fix |
+| `[context]` | Context Generator | New context file |
+| `[Feature]` | Feature Decomposer | Feature decomposition |
 | `[pm]` | Project Manager Agent | Roadmap execution plan |
 | `[stale]` | Stale Gardener | Dormant work review |
-| `[deps]` | Dependency Sentinel | Upgrade proposal |
-| `[ci-fix]` | CI Failure Diagnostician | Auto-diagnosed test fix |
-| `[test-coverage]` | Test Coverage Improver | Missing test generation |
-| `[release-notes]` | Release Notes Generator | Changelog draft |
 
 All workflow-generated items also carry the **`forge-automation`** label, so you can filter them:
 - **Issues → Labels → `forge-automation`** to see all automation outputs
@@ -480,24 +511,28 @@ All workflow-generated items also carry the **`forge-automation`** label, so you
 You create `forge-plugin/skills/my-new-skill/SKILL.md` and `examples.md`, then open a PR to `develop`.
 
 **What happens automatically:**
-1. **Skill Simplifier** reviews your `SKILL.md` for verbosity → may create a simplification PR
-2. **Convention Enforcer** checks naming and frontmatter → may create a fix PR
-3. **Best Practices Improver** checks against Claude Code patterns → may suggest improvements on your branch
-4. **Context Pruner** validates that your skill's context references exist → may create an issue
+1. **Component Improver** reviews your skill for best practices + verbosity → may create a draft PR with improvements
+2. **CI validates** (via `forge-tests.yml`):
+   - Skill structure compliance (validate-skills job)
+   - Convention adherence (validate-conventions job)
+   - No duplication (detect-duplication job)
+   - Cross-reference integrity (validate-xrefs job)
 
 **After merge to `main`:**
-5. **Context Generator** detects your new skill has no context file → creates a PR adding one
+3. **Context Generator** detects your new skill has no context file → creates a PR adding one
 
 **On the next scheduled run:**
-6. **Skill Validator** checks your skill against `SKILL_TEMPLATE.md` → creates an issue if sections are missing
-7. **Health Dashboard** includes your skill in the weekly count and compliance percentage
+4. **Health Dashboard** includes your skill in the weekly count and compliance percentage
 
 ### Scenario 2: "I modified an agent config"
 
 You update `forge-plugin/agents/athena.config.json` and open a PR.
 
 **What happens automatically:**
-1. **Agent Validator** (if the PR triggers it) checks JSON schema compliance
+1. **CI validates** (via `forge-tests.yml`):
+   - JSON schema compliance (validate-agents job)
+   - Skill references exist (validate-agents job)
+   - Context domain references exist (validate-agents job)
 2. **Convention Enforcer** ensures consistent formatting
 3. **Cross-Reference Checker** (on next Tuesday) validates that skills/MCPs in the config still exist
 

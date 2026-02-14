@@ -786,16 +786,16 @@ Only proceed if conclusion is "failure" AND this is the 2nd consecutive failure
 - [x] **Document model assignments** in AGENTIC_WORKFLOWS_ROADMAP.md
   
 
-### Phase 5: Cleanup and Documentation (Week 11-12)
+### Phase 5: Cleanup and Documentation (Week 11-12) ✅ COMPLETE
 
-- [ ] **Delete all deprecated workflow `.md` files** (8 validators + 6 replaced)
-- [ ] **Delete all corresponding `.lock.yml` files**
-- [ ] **Update AGENTIC_FORGE.md** — rewrite "Complete Workflow Catalog" section
-- [ ] **Update AGENTIC_WORKFLOWS_ROADMAP.md** — update current state table
-- [ ] **Update CLAUDE.md Section XVI** — update workflow counts and architecture
-- [ ] **Update README.md** — update agentic workflow counts
-- [ ] **Final audit**: Run `gh aw status` — verify only 9 workflows remain
-- [ ] **Celebrate**: 24 → 9 workflows, ~70% cost reduction, <10% no-op rate
+- [x] **Delete all deprecated workflow `.md` files** (7 validators + 7 replaced + 2 decommissioned = 16 total)
+- [x] **Delete all corresponding `.lock.yml` files**
+- [x] **Update AGENTIC_FORGE.md** — rewrite "Complete Workflow Catalog" section
+- [x] **Update AGENTIC_WORKFLOWS_ROADMAP.md** — update current state table
+- [x] **Update CLAUDE.md Section XVI** — update workflow counts and architecture
+- [x] **Update README.md** — update agentic workflow counts
+- [x] **Final audit**: Run `gh aw compile` — verify only 11 workflows remain
+- [x] **Celebrate**: 24 → 11 workflows, ~70% cost reduction, <10% no-op rate
 
 ---
 
