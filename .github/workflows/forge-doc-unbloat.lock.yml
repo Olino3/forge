@@ -19,7 +19,7 @@
 #   gh aw compile
 # For more information: https://github.com/github/gh-aw/blob/main/.github/aw/github-agentic-workflows.md
 #
-# Reduce documentation bloat in Forge by simplifying verbose content
+# DEPRECATED: Migrated to forge-doc-maintainer.md — see Phase 3 consolidation
 #
 # Resolved workflow manifest:
 #   Imports:
@@ -27,13 +27,10 @@
 #     - shared/forge-conventions.md
 #     - shared/forge-pr-creator.md
 #
-# frontmatter-hash: 9bf7a7aadc11c3d7453c03c95f1a8d1410bd25d2c9c1408c72223649c929a235
+# frontmatter-hash: b25114e8582e9acf3b48880c941102c788aa450f8376c683c36f1b6ea05215b7
 
-name: "Forge Doc Unbloat"
+name: "⚠️ DEPRECATED: Forge Doc Unbloat"
 "on":
-  schedule:
-  - cron: "17 5 * * 4"
-    # Friendly format: weekly on thursday (scattered)
   workflow_dispatch:
 
 permissions: {}
@@ -41,7 +38,7 @@ permissions: {}
 concurrency:
   group: "gh-aw-${{ github.workflow }}"
 
-run-name: "Forge Doc Unbloat"
+run-name: "⚠️ DEPRECATED: Forge Doc Unbloat"
 
 jobs:
   activation:
@@ -146,7 +143,7 @@ jobs:
               version: "",
               agent_version: "0.0.407",
               cli_version: "v0.43.10",
-              workflow_name: "Forge Doc Unbloat",
+              workflow_name: "⚠️ DEPRECATED: Forge Doc Unbloat",
               experimental: false,
               supports_tools_allowlist: true,
               supports_http_transport: true,
@@ -799,7 +796,7 @@ jobs:
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
           GH_AW_NOOP_MAX: 1
-          GH_AW_WORKFLOW_NAME: "Forge Doc Unbloat"
+          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Doc Unbloat"
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
@@ -812,7 +809,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Forge Doc Unbloat"
+          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Doc Unbloat"
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
@@ -825,7 +822,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Forge Doc Unbloat"
+          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Doc Unbloat"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
           GH_AW_WORKFLOW_ID: "forge-doc-unbloat"
@@ -843,7 +840,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Forge Doc Unbloat"
+          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Doc Unbloat"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
           GH_AW_NOOP_MESSAGE: ${{ steps.noop.outputs.noop_message }}
@@ -860,7 +857,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Forge Doc Unbloat"
+          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Doc Unbloat"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
@@ -877,7 +874,7 @@ jobs:
           GH_AW_COMMENT_ID: ${{ needs.activation.outputs.comment_id }}
           GH_AW_COMMENT_REPO: ${{ needs.activation.outputs.comment_repo }}
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          GH_AW_WORKFLOW_NAME: "Forge Doc Unbloat"
+          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Doc Unbloat"
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
           GH_AW_DETECTION_CONCLUSION: ${{ needs.detection.result }}
         with:
@@ -923,8 +920,8 @@ jobs:
       - name: Setup threat detection
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
-          WORKFLOW_NAME: "Forge Doc Unbloat"
-          WORKFLOW_DESCRIPTION: "Reduce documentation bloat in Forge by simplifying verbose content"
+          WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Doc Unbloat"
+          WORKFLOW_DESCRIPTION: "DEPRECATED: Migrated to forge-doc-maintainer.md — see Phase 3 consolidation"
           HAS_PATCH: ${{ needs.agent.outputs.has_patch }}
         with:
           script: |
@@ -1004,7 +1001,7 @@ jobs:
     env:
       GH_AW_ENGINE_ID: "copilot"
       GH_AW_WORKFLOW_ID: "forge-doc-unbloat"
-      GH_AW_WORKFLOW_NAME: "Forge Doc Unbloat"
+      GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Doc Unbloat"
     outputs:
       create_discussion_error_count: ${{ steps.process_safe_outputs.outputs.create_discussion_error_count }}
       create_discussion_errors: ${{ steps.process_safe_outputs.outputs.create_discussion_errors }}

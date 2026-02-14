@@ -28,13 +28,10 @@
 #     - shared/forge-issue-creator.md
 #     - shared/forge-quality-issue-template.md
 #
-# frontmatter-hash: 394bb175a454721785d3aae59ba825f7dde6f62fe855c6eece03eb3aac46ca3f
+# frontmatter-hash: de367ac58f4e6ea4c5d72748ea157bad0e6fe4ae2af156aab04d5280cb6034ed
 
 name: "Forge Cross-Reference Checker"
 "on":
-  schedule:
-  - cron: "52 12 * * 2"
-    # Friendly format: weekly on tuesday (scattered)
   workflow_dispatch:
 
 permissions: {}

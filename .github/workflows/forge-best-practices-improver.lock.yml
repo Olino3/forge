@@ -19,7 +19,7 @@
 #   gh aw compile
 # For more information: https://github.com/github/gh-aw/blob/main/.github/aw/github-agentic-workflows.md
 #
-# Improve skills, agents, and commands based on Anthropic Claude Code best practices
+# DEPRECATED: Migrated to forge-component-improver.md — see Phase 3 consolidation
 #
 # Resolved workflow manifest:
 #   Imports:
@@ -27,36 +27,21 @@
 #     - shared/forge-conventions.md
 #     - shared/forge-pr-creator.md
 #
-# frontmatter-hash: 5ab8cb563d77db23b8812207d56ffeb437333915d658cbcecc088ce5afe5821e
+# frontmatter-hash: 4f4aa16a37b61712cdc9f2878396d049956985cf7cba53980f6e6fc51accd4a7
 
-name: "Forge Best Practices Improver"
+name: "⚠️ DEPRECATED: Forge Best Practices Improver"
 "on":
-  pull_request:
-    branches:
-    - develop
-    paths:
-    - forge-plugin/skills/**
-    - forge-plugin/agents/**
-    - forge-plugin/commands/**
-    - forge-plugin/context/**
-    types:
-    - opened
-    - synchronize
   workflow_dispatch:
 
 permissions: {}
 
 concurrency:
-  group: "gh-aw-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}"
-  cancel-in-progress: true
+  group: "gh-aw-${{ github.workflow }}"
 
-run-name: "Forge Best Practices Improver"
+run-name: "⚠️ DEPRECATED: Forge Best Practices Improver"
 
 jobs:
   activation:
-    needs: pre_activation
-    if: >
-      (needs.pre_activation.outputs.activated == 'true') && ((github.event_name != 'pull_request') || (github.event.pull_request.head.repo.id == github.repository_id))
     runs-on: ubuntu-slim
     permissions:
       contents: read
@@ -86,6 +71,8 @@ jobs:
       contents: read
       issues: read
       pull-requests: read
+    concurrency:
+      group: "gh-aw-copilot-${{ github.workflow }}"
     env:
       DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
       GH_AW_ASSETS_ALLOWED_EXTS: ""
@@ -156,7 +143,7 @@ jobs:
               version: "",
               agent_version: "0.0.407",
               cli_version: "v0.43.10",
-              workflow_name: "Forge Best Practices Improver",
+              workflow_name: "⚠️ DEPRECATED: Forge Best Practices Improver",
               experimental: false,
               supports_tools_allowlist: true,
               supports_http_transport: true,
@@ -809,7 +796,7 @@ jobs:
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
           GH_AW_NOOP_MAX: 1
-          GH_AW_WORKFLOW_NAME: "Forge Best Practices Improver"
+          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Best Practices Improver"
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
@@ -822,7 +809,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Forge Best Practices Improver"
+          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Best Practices Improver"
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
@@ -835,7 +822,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Forge Best Practices Improver"
+          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Best Practices Improver"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
           GH_AW_WORKFLOW_ID: "forge-best-practices-improver"
@@ -853,7 +840,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Forge Best Practices Improver"
+          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Best Practices Improver"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
           GH_AW_NOOP_MESSAGE: ${{ steps.noop.outputs.noop_message }}
@@ -870,7 +857,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Forge Best Practices Improver"
+          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Best Practices Improver"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
@@ -887,7 +874,7 @@ jobs:
           GH_AW_COMMENT_ID: ${{ needs.activation.outputs.comment_id }}
           GH_AW_COMMENT_REPO: ${{ needs.activation.outputs.comment_repo }}
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          GH_AW_WORKFLOW_NAME: "Forge Best Practices Improver"
+          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Best Practices Improver"
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
           GH_AW_DETECTION_CONCLUSION: ${{ needs.detection.result }}
         with:
@@ -903,6 +890,8 @@ jobs:
     if: needs.agent.outputs.output_types != '' || needs.agent.outputs.has_patch == 'true'
     runs-on: ubuntu-latest
     permissions: {}
+    concurrency:
+      group: "gh-aw-copilot-${{ github.workflow }}"
     timeout-minutes: 10
     outputs:
       success: ${{ steps.parse_results.outputs.success }}
@@ -931,8 +920,8 @@ jobs:
       - name: Setup threat detection
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
-          WORKFLOW_NAME: "Forge Best Practices Improver"
-          WORKFLOW_DESCRIPTION: "Improve skills, agents, and commands based on Anthropic Claude Code best practices"
+          WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Best Practices Improver"
+          WORKFLOW_DESCRIPTION: "DEPRECATED: Migrated to forge-component-improver.md — see Phase 3 consolidation"
           HAS_PATCH: ${{ needs.agent.outputs.has_patch }}
         with:
           script: |
@@ -997,29 +986,6 @@ jobs:
           path: /tmp/gh-aw/threat-detection/detection.log
           if-no-files-found: ignore
 
-  pre_activation:
-    if: (github.event_name != 'pull_request') || (github.event.pull_request.head.repo.id == github.repository_id)
-    runs-on: ubuntu-slim
-    outputs:
-      activated: ${{ steps.check_membership.outputs.is_team_member == 'true' }}
-    steps:
-      - name: Setup Scripts
-        uses: github/gh-aw/actions/setup@faa1930e4aa3a4cdc067380eef33c281e0eeb646 # v0.43.10
-        with:
-          destination: /opt/gh-aw/actions
-      - name: Check team membership for workflow
-        id: check_membership
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
-        env:
-          GH_AW_REQUIRED_ROLES: admin,maintainer,write
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const { setupGlobals } = require('/opt/gh-aw/actions/setup_globals.cjs');
-            setupGlobals(core, github, context, exec, io);
-            const { main } = require('/opt/gh-aw/actions/check_membership.cjs');
-            await main();
-
   safe_outputs:
     needs:
       - activation
@@ -1035,7 +1001,7 @@ jobs:
     env:
       GH_AW_ENGINE_ID: "copilot"
       GH_AW_WORKFLOW_ID: "forge-best-practices-improver"
-      GH_AW_WORKFLOW_NAME: "Forge Best Practices Improver"
+      GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Best Practices Improver"
     outputs:
       create_discussion_error_count: ${{ steps.process_safe_outputs.outputs.create_discussion_error_count }}
       create_discussion_errors: ${{ steps.process_safe_outputs.outputs.create_discussion_errors }}

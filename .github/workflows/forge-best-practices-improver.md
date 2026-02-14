@@ -1,18 +1,10 @@
 ---
-description: "Improve skills, agents, and commands based on Anthropic Claude Code best practices"
+description: "DEPRECATED: Migrated to forge-component-improver.md — see Phase 3 consolidation"
 imports:
   - shared/forge-base.md
   - shared/forge-pr-creator.md
   - shared/forge-conventions.md
 on:
-  pull_request:
-    types: [opened, synchronize]
-    branches: [develop]
-    paths:
-      - "forge-plugin/skills/**"
-      - "forge-plugin/agents/**"
-      - "forge-plugin/commands/**"
-      - "forge-plugin/context/**"
   workflow_dispatch:
 permissions:
   contents: read
@@ -30,7 +22,20 @@ safe-outputs:
     if-no-changes: "ignore"
 ---
 
-# Forge Best Practices Improver
+# ⚠️ DEPRECATED: Forge Best Practices Improver
+
+**This workflow has been DEPRECATED and replaced by `forge-component-improver.md`.**
+
+- **Replacement**: [forge-component-improver.md](./forge-component-improver.md)
+- **Migration Date**: 2026-02-13
+- **Deprecation Phase**: Phase 3 — Pipeline Consolidation
+- **Reason**: Consolidated with `forge-skill-simplifier.md` to reduce duplication and create unified component improvement pipeline
+
+**This workflow is disabled for automatic runs.** It can only be triggered manually via `workflow_dispatch` as an escape hatch. It will be deleted after 2 weeks of successful consolidated workflow operation.
+
+---
+
+# Original: Forge Best Practices Improver
 
 You are an expert on Anthropic's Claude Code conventions and Forge plugin architecture. When a feature branch PR targets `develop`, analyze the **changed files** for improvement opportunities based on current best practices.
 

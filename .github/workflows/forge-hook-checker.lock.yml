@@ -19,7 +19,7 @@
 #   gh aw compile
 # For more information: https://github.com/github/gh-aw/blob/main/.github/aw/github-agentic-workflows.md
 #
-# Validate Forge hook scripts for quality, safety, and performance
+# ⚠️ DEPRECATED: Migrated to forge-tests.yml — see validate-hooks job (Phase 2)
 #
 # Resolved workflow manifest:
 #   Imports:
@@ -28,36 +28,21 @@
 #     - shared/forge-issue-creator.md
 #     - shared/forge-quality-issue-template.md
 #
-# frontmatter-hash: 7759a4c863047c64260004e07e8000b416cf5e66cf1f4e98254dfe024b576d50
+# frontmatter-hash: 11e5da61d0ddd978cbe5ab9cf371ddbf4b364e4ca64b06eafe5087f4e97c4c8a
 
 name: "Forge Hook Quality Checker"
 "on":
-  pull_request:
-    paths:
-    - forge-plugin/hooks/*.sh
-    - forge-plugin/hooks/hooks.json
-    - forge-plugin/hooks/HOOKS_GUIDE.md
-    types:
-    - opened
-    - synchronize
-  schedule:
-  - cron: "42 18 * * 5"
-    # Friendly format: weekly on friday (scattered)
   workflow_dispatch:
 
 permissions: {}
 
 concurrency:
-  group: "gh-aw-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}"
-  cancel-in-progress: true
+  group: "gh-aw-${{ github.workflow }}"
 
 run-name: "Forge Hook Quality Checker"
 
 jobs:
   activation:
-    needs: pre_activation
-    if: >
-      (needs.pre_activation.outputs.activated == 'true') && ((github.event_name != 'pull_request') || (github.event.pull_request.head.repo.id == github.repository_id))
     runs-on: ubuntu-slim
     permissions:
       contents: read
@@ -87,6 +72,8 @@ jobs:
       contents: read
       issues: read
       pull-requests: read
+    concurrency:
+      group: "gh-aw-copilot-${{ github.workflow }}"
     env:
       DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
       GH_AW_ASSETS_ALLOWED_EXTS: ""
@@ -903,6 +890,8 @@ jobs:
     if: needs.agent.outputs.output_types != '' || needs.agent.outputs.has_patch == 'true'
     runs-on: ubuntu-latest
     permissions: {}
+    concurrency:
+      group: "gh-aw-copilot-${{ github.workflow }}"
     timeout-minutes: 10
     outputs:
       success: ${{ steps.parse_results.outputs.success }}
@@ -932,7 +921,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           WORKFLOW_NAME: "Forge Hook Quality Checker"
-          WORKFLOW_DESCRIPTION: "Validate Forge hook scripts for quality, safety, and performance"
+          WORKFLOW_DESCRIPTION: "⚠️ DEPRECATED: Migrated to forge-tests.yml — see validate-hooks job (Phase 2)"
           HAS_PATCH: ${{ needs.agent.outputs.has_patch }}
         with:
           script: |
@@ -996,29 +985,6 @@ jobs:
           name: threat-detection.log
           path: /tmp/gh-aw/threat-detection/detection.log
           if-no-files-found: ignore
-
-  pre_activation:
-    if: (github.event_name != 'pull_request') || (github.event.pull_request.head.repo.id == github.repository_id)
-    runs-on: ubuntu-slim
-    outputs:
-      activated: ${{ steps.check_membership.outputs.is_team_member == 'true' }}
-    steps:
-      - name: Setup Scripts
-        uses: github/gh-aw/actions/setup@faa1930e4aa3a4cdc067380eef33c281e0eeb646 # v0.43.10
-        with:
-          destination: /opt/gh-aw/actions
-      - name: Check team membership for workflow
-        id: check_membership
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
-        env:
-          GH_AW_REQUIRED_ROLES: admin,maintainer,write
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const { setupGlobals } = require('/opt/gh-aw/actions/setup_globals.cjs');
-            setupGlobals(core, github, context, exec, io);
-            const { main } = require('/opt/gh-aw/actions/check_membership.cjs');
-            await main();
 
   safe_outputs:
     needs:

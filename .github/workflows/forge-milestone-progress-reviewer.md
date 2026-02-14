@@ -1,13 +1,11 @@
 ---
-description: "Evaluate milestone progress on each PR and create remediation issues for delivery gaps"
+description: "DEPRECATED: Migrated to forge-milestone-lifecycle.md — see Phase 3 consolidation"
 imports:
   - shared/forge-base.md
   - shared/forge-issue-creator.md
   - shared/forge-pr-creator.md
   - shared/forge-conventions.md
 on:
-  pull_request:
-    types: [opened, synchronize]
   workflow_dispatch:
 permissions:
   contents: read
@@ -23,7 +21,20 @@ safe-outputs:
     expires: 30
 ---
 
-# Forge Milestone Progress Reviewer
+# ⚠️ DEPRECATED: Forge Milestone Progress Reviewer
+
+**This workflow has been DEPRECATED and replaced by `forge-milestone-lifecycle.md`.**
+
+- **Replacement**: [forge-milestone-lifecycle.md](./forge-milestone-lifecycle.md) (Review Stage)
+- **Migration Date**: 2026-02-13
+- **Deprecation Phase**: Phase 3 — Pipeline Consolidation
+- **Reason**: Consolidated with `forge-milestone-planner.md` and `forge-project-milestone-tracker.md` to create unified milestone lifecycle management
+
+**This workflow is disabled for automatic runs.** It can only be triggered manually via `workflow_dispatch` as an escape hatch. It will be deleted after 2 weeks of successful consolidated workflow operation.
+
+---
+
+# Original: Forge Milestone Progress Reviewer
 
 Evaluate milestone and feature delivery progress on each PR. Identify gaps in work coverage and create remediation issues (work items or features) to maintain milestone trajectory.
 

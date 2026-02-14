@@ -19,7 +19,7 @@
 #   gh aw compile
 # For more information: https://github.com/github/gh-aw/blob/main/.github/aw/github-agentic-workflows.md
 #
-# Validate Forge skill structure compliance against SKILL_TEMPLATE.md
+# ⚠️ DEPRECATED: Migrated to forge-tests.yml — see validate-skills job (Phase 2)
 #
 # Resolved workflow manifest:
 #   Imports:
@@ -28,35 +28,21 @@
 #     - shared/forge-issue-creator.md
 #     - shared/forge-quality-issue-template.md
 #
-# frontmatter-hash: b93b0b4a0749ee8d9a318653c07d7bc40d59996c6a5349f6a3e0a866fd2b30a7
+# frontmatter-hash: f1500216adc6f6a868779df55fc6aa70bbfa2d787c236e06631b322a49e69f80
 
 name: "Forge Skill Structure Validator"
 "on":
-  pull_request:
-    paths:
-    - forge-plugin/skills/*/SKILL.md
-    - forge-plugin/skills/*/examples.md
-    - forge-plugin/skills/SKILL_TEMPLATE.md
-    types:
-    - opened
-    - synchronize
-  schedule:
-  - cron: "0 9 * * 2,4"
   workflow_dispatch:
 
 permissions: {}
 
 concurrency:
-  group: "gh-aw-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}"
-  cancel-in-progress: true
+  group: "gh-aw-${{ github.workflow }}"
 
 run-name: "Forge Skill Structure Validator"
 
 jobs:
   activation:
-    needs: pre_activation
-    if: >
-      (needs.pre_activation.outputs.activated == 'true') && ((github.event_name != 'pull_request') || (github.event.pull_request.head.repo.id == github.repository_id))
     runs-on: ubuntu-slim
     permissions:
       contents: read
@@ -86,6 +72,8 @@ jobs:
       contents: read
       issues: read
       pull-requests: read
+    concurrency:
+      group: "gh-aw-copilot-${{ github.workflow }}"
     env:
       DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
       GH_AW_ASSETS_ALLOWED_EXTS: ""
@@ -902,6 +890,8 @@ jobs:
     if: needs.agent.outputs.output_types != '' || needs.agent.outputs.has_patch == 'true'
     runs-on: ubuntu-latest
     permissions: {}
+    concurrency:
+      group: "gh-aw-copilot-${{ github.workflow }}"
     timeout-minutes: 10
     outputs:
       success: ${{ steps.parse_results.outputs.success }}
@@ -931,7 +921,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           WORKFLOW_NAME: "Forge Skill Structure Validator"
-          WORKFLOW_DESCRIPTION: "Validate Forge skill structure compliance against SKILL_TEMPLATE.md"
+          WORKFLOW_DESCRIPTION: "⚠️ DEPRECATED: Migrated to forge-tests.yml — see validate-skills job (Phase 2)"
           HAS_PATCH: ${{ needs.agent.outputs.has_patch }}
         with:
           script: |
@@ -995,29 +985,6 @@ jobs:
           name: threat-detection.log
           path: /tmp/gh-aw/threat-detection/detection.log
           if-no-files-found: ignore
-
-  pre_activation:
-    if: (github.event_name != 'pull_request') || (github.event.pull_request.head.repo.id == github.repository_id)
-    runs-on: ubuntu-slim
-    outputs:
-      activated: ${{ steps.check_membership.outputs.is_team_member == 'true' }}
-    steps:
-      - name: Setup Scripts
-        uses: github/gh-aw/actions/setup@faa1930e4aa3a4cdc067380eef33c281e0eeb646 # v0.43.10
-        with:
-          destination: /opt/gh-aw/actions
-      - name: Check team membership for workflow
-        id: check_membership
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
-        env:
-          GH_AW_REQUIRED_ROLES: admin,maintainer,write
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const { setupGlobals } = require('/opt/gh-aw/actions/setup_globals.cjs');
-            setupGlobals(core, github, context, exec, io);
-            const { main } = require('/opt/gh-aw/actions/check_membership.cjs');
-            await main();
 
   safe_outputs:
     needs:

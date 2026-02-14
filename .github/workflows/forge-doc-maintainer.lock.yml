@@ -19,7 +19,7 @@
 #   gh aw compile
 # For more information: https://github.com/github/gh-aw/blob/main/.github/aw/github-agentic-workflows.md
 #
-# DEPRECATED: Migrated to forge-doc-maintainer.md — see Phase 3 consolidation
+# Consolidated workflow to keep Forge documentation accurate and concise
 #
 # Resolved workflow manifest:
 #   Imports:
@@ -27,10 +27,12 @@
 #     - shared/forge-conventions.md
 #     - shared/forge-pr-creator.md
 #
-# frontmatter-hash: 5c64cde43cdf1d8d9b2fe9700cf3c7195615bdcb051e2b094d7bc580345f0d09
+# frontmatter-hash: ae0ac74f86125c843054f8dd5bd284736f6a38a7aa16f89ea88158ac8b31317d
 
-name: "⚠️ DEPRECATED: Forge Doc Sync"
+name: "Forge Doc Maintainer"
 "on":
+  schedule:
+  - cron: "0 7 * * 1,4"
   workflow_dispatch:
 
 permissions: {}
@@ -38,7 +40,7 @@ permissions: {}
 concurrency:
   group: "gh-aw-${{ github.workflow }}"
 
-run-name: "⚠️ DEPRECATED: Forge Doc Sync"
+run-name: "Forge Doc Maintainer"
 
 jobs:
   activation:
@@ -56,7 +58,7 @@ jobs:
       - name: Check workflow file timestamps
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
-          GH_AW_WORKFLOW_FILE: "forge-doc-sync.lock.yml"
+          GH_AW_WORKFLOW_FILE: "forge-doc-maintainer.lock.yml"
         with:
           script: |
             const { setupGlobals } = require('/opt/gh-aw/actions/setup_globals.cjs');
@@ -143,7 +145,7 @@ jobs:
               version: "",
               agent_version: "0.0.407",
               cli_version: "v0.43.10",
-              workflow_name: "⚠️ DEPRECATED: Forge Doc Sync",
+              workflow_name: "Forge Doc Maintainer",
               experimental: false,
               supports_tools_allowlist: true,
               supports_http_transport: true,
@@ -206,7 +208,7 @@ jobs:
           cat > /opt/gh-aw/safeoutputs/tools.json << 'GH_AW_SAFE_OUTPUTS_TOOLS_EOF'
           [
             {
-              "description": "Create a new GitHub pull request to propose code changes. Use this after making file edits to submit them for review and merging. The PR will be created from the current branch with your committed changes. For code review comments on an existing PR, use create_pull_request_review_comment instead. CONSTRAINTS: Maximum 1 pull request(s) can be created. Title will be prefixed with \"[docs] \". Labels [forge-automation documentation sync] will be automatically added. PRs will be created as drafts.",
+              "description": "Create a new GitHub pull request to propose code changes. Use this after making file edits to submit them for review and merging. The PR will be created from the current branch with your committed changes. For code review comments on an existing PR, use create_pull_request_review_comment instead. CONSTRAINTS: Maximum 1 pull request(s) can be created. Title will be prefixed with \"[docs] \". Labels [forge-automation documentation maintenance] will be automatically added. PRs will be created as drafts.",
               "inputSchema": {
                 "additionalProperties": false,
                 "properties": {
@@ -550,7 +552,7 @@ jobs:
           {{#runtime-import .github/workflows/shared/forge-conventions.md}}
           GH_AW_PROMPT_EOF
           cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
-          {{#runtime-import .github/workflows/forge-doc-sync.md}}
+          {{#runtime-import .github/workflows/forge-doc-maintainer.md}}
           GH_AW_PROMPT_EOF
       - name: Substitute placeholders
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
@@ -796,7 +798,7 @@ jobs:
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
           GH_AW_NOOP_MAX: 1
-          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Doc Sync"
+          GH_AW_WORKFLOW_NAME: "Forge Doc Maintainer"
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
@@ -809,7 +811,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Doc Sync"
+          GH_AW_WORKFLOW_NAME: "Forge Doc Maintainer"
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
@@ -822,10 +824,10 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Doc Sync"
+          GH_AW_WORKFLOW_NAME: "Forge Doc Maintainer"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
-          GH_AW_WORKFLOW_ID: "forge-doc-sync"
+          GH_AW_WORKFLOW_ID: "forge-doc-maintainer"
           GH_AW_SECRET_VERIFICATION_RESULT: ${{ needs.agent.outputs.secret_verification_result }}
           GH_AW_CHECKOUT_PR_SUCCESS: ${{ needs.agent.outputs.checkout_pr_success }}
         with:
@@ -840,7 +842,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Doc Sync"
+          GH_AW_WORKFLOW_NAME: "Forge Doc Maintainer"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
           GH_AW_NOOP_MESSAGE: ${{ steps.noop.outputs.noop_message }}
@@ -857,7 +859,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Doc Sync"
+          GH_AW_WORKFLOW_NAME: "Forge Doc Maintainer"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
@@ -874,7 +876,7 @@ jobs:
           GH_AW_COMMENT_ID: ${{ needs.activation.outputs.comment_id }}
           GH_AW_COMMENT_REPO: ${{ needs.activation.outputs.comment_repo }}
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Doc Sync"
+          GH_AW_WORKFLOW_NAME: "Forge Doc Maintainer"
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
           GH_AW_DETECTION_CONCLUSION: ${{ needs.detection.result }}
         with:
@@ -920,8 +922,8 @@ jobs:
       - name: Setup threat detection
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
-          WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Doc Sync"
-          WORKFLOW_DESCRIPTION: "DEPRECATED: Migrated to forge-doc-maintainer.md — see Phase 3 consolidation"
+          WORKFLOW_NAME: "Forge Doc Maintainer"
+          WORKFLOW_DESCRIPTION: "Consolidated workflow to keep Forge documentation accurate and concise"
           HAS_PATCH: ${{ needs.agent.outputs.has_patch }}
         with:
           script: |
@@ -1000,8 +1002,8 @@ jobs:
     timeout-minutes: 15
     env:
       GH_AW_ENGINE_ID: "copilot"
-      GH_AW_WORKFLOW_ID: "forge-doc-sync"
-      GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Doc Sync"
+      GH_AW_WORKFLOW_ID: "forge-doc-maintainer"
+      GH_AW_WORKFLOW_NAME: "Forge Doc Maintainer"
     outputs:
       create_discussion_error_count: ${{ steps.process_safe_outputs.outputs.create_discussion_error_count }}
       create_discussion_errors: ${{ steps.process_safe_outputs.outputs.create_discussion_errors }}
@@ -1054,7 +1056,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_SAFE_OUTPUTS_HANDLER_CONFIG: "{\"create_pull_request\":{\"base_branch\":\"${{ github.ref_name }}\",\"draft\":true,\"expires\":7,\"if_no_changes\":\"ignore\",\"labels\":[\"forge-automation\",\"documentation\",\"sync\"],\"max\":1,\"max_patch_size\":1024,\"title_prefix\":\"[docs] \"},\"missing_data\":{},\"missing_tool\":{}}"
+          GH_AW_SAFE_OUTPUTS_HANDLER_CONFIG: "{\"create_pull_request\":{\"base_branch\":\"${{ github.ref_name }}\",\"draft\":true,\"expires\":7,\"if_no_changes\":\"ignore\",\"labels\":[\"forge-automation\",\"documentation\",\"maintenance\"],\"max\":1,\"max_patch_size\":1024,\"title_prefix\":\"[docs] \"},\"missing_data\":{},\"missing_tool\":{}}"
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |

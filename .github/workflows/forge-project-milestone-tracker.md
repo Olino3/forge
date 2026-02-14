@@ -1,11 +1,10 @@
 ---
-description: "Track milestone progress daily and surface blockers with reprioritization guidance"
+description: "DEPRECATED: Migrated to forge-milestone-lifecycle.md — see Phase 3 consolidation"
 imports:
   - shared/forge-base.md
   - shared/forge-issue-creator.md
   - shared/forge-conventions.md
 on:
-  schedule: "daily"
   workflow_dispatch:
 permissions:
   contents: read
@@ -21,6 +20,19 @@ safe-outputs:
     max: 1
     close-older-issues: true
     expires: 14
+---
+
+# ⚠️ DEPRECATED: Forge Project Milestone Tracker
+
+**This workflow has been DEPRECATED and replaced by `forge-milestone-lifecycle.md`.**
+
+- **Replacement**: [forge-milestone-lifecycle.md](./forge-milestone-lifecycle.md) (Tracking Stage)
+- **Migration Date**: 2026-02-13
+- **Deprecation Phase**: Phase 3 — Pipeline Consolidation
+- **Reason**: Consolidated with `forge-milestone-planner.md` and `forge-milestone-progress-reviewer.md` to create unified milestone lifecycle management
+
+**This workflow is disabled for automatic runs.** It can only be triggered manually via `workflow_dispatch` as an escape hatch. It will be deleted after 2 weeks of successful consolidated workflow operation.
+
 ---
 
 # Forge Project Milestone Tracker

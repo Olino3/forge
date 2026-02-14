@@ -1,11 +1,10 @@
 ---
-description: "Keep Forge top-level documentation in sync with codebase reality"
+description: "DEPRECATED: Migrated to forge-doc-maintainer.md — see Phase 3 consolidation"
 imports:
   - shared/forge-base.md
   - shared/forge-pr-creator.md
   - shared/forge-conventions.md
 on:
-  schedule: "0 7 * * 1-5"
   workflow_dispatch:
 permissions:
   contents: read
@@ -21,6 +20,19 @@ safe-outputs:
     expires: 7
     draft: true
     if-no-changes: "ignore"
+---
+
+# ⚠️ DEPRECATED: Forge Doc Sync
+
+**This workflow has been DEPRECATED and replaced by `forge-doc-maintainer.md`.**
+
+- **Replacement**: [forge-doc-maintainer.md](./forge-doc-maintainer.md)
+- **Migration Date**: 2026-02-13
+- **Deprecation Phase**: Phase 3 — Pipeline Consolidation
+- **Reason**: Consolidated with `forge-doc-unbloat.md` to reduce duplication and create unified documentation maintenance pipeline
+
+**This workflow is disabled for automatic runs.** It can only be triggered manually via `workflow_dispatch` as an escape hatch. It will be deleted after 2 weeks of successful consolidated workflow operation.
+
 ---
 
 # Forge Doc Sync

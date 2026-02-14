@@ -19,7 +19,7 @@
 #   gh aw compile
 # For more information: https://github.com/github/gh-aw/blob/main/.github/aw/github-agentic-workflows.md
 #
-# Plan features and bugfixes for newly created milestones; create feature issues and associate existing issues
+# DEPRECATED: Migrated to forge-milestone-lifecycle.md — see Phase 3 consolidation
 #
 # Resolved workflow manifest:
 #   Imports:
@@ -27,13 +27,10 @@
 #     - shared/forge-conventions.md
 #     - shared/forge-issue-creator.md
 #
-# frontmatter-hash: b52c9468d40d92471c2fd6cd088a1a2a603f2665b2657149eab9cfa498038d0a
+# frontmatter-hash: 20b1f1ea1b56651aa06a53e9937c27e4b94bf2dd044659f5decd86f71072fc59
 
-name: "Forge Milestone Planner"
+name: "⚠️ DEPRECATED: Forge Milestone Planner"
 "on":
-  milestone:
-    types:
-    - created
   workflow_dispatch:
 
 permissions: {}
@@ -41,12 +38,10 @@ permissions: {}
 concurrency:
   group: "gh-aw-${{ github.workflow }}"
 
-run-name: "Forge Milestone Planner"
+run-name: "⚠️ DEPRECATED: Forge Milestone Planner"
 
 jobs:
   activation:
-    needs: pre_activation
-    if: needs.pre_activation.outputs.activated == 'true'
     runs-on: ubuntu-slim
     permissions:
       contents: read
@@ -148,7 +143,7 @@ jobs:
               version: "",
               agent_version: "0.0.407",
               cli_version: "v0.43.10",
-              workflow_name: "Forge Milestone Planner",
+              workflow_name: "⚠️ DEPRECATED: Forge Milestone Planner",
               experimental: false,
               supports_tools_allowlist: true,
               supports_http_transport: true,
@@ -811,7 +806,7 @@ jobs:
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
           GH_AW_NOOP_MAX: 1
-          GH_AW_WORKFLOW_NAME: "Forge Milestone Planner"
+          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Milestone Planner"
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
@@ -824,7 +819,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Forge Milestone Planner"
+          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Milestone Planner"
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
@@ -837,7 +832,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Forge Milestone Planner"
+          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Milestone Planner"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
           GH_AW_WORKFLOW_ID: "forge-milestone-planner"
@@ -855,7 +850,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "Forge Milestone Planner"
+          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Milestone Planner"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
           GH_AW_NOOP_MESSAGE: ${{ steps.noop.outputs.noop_message }}
@@ -875,7 +870,7 @@ jobs:
           GH_AW_COMMENT_ID: ${{ needs.activation.outputs.comment_id }}
           GH_AW_COMMENT_REPO: ${{ needs.activation.outputs.comment_repo }}
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          GH_AW_WORKFLOW_NAME: "Forge Milestone Planner"
+          GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Milestone Planner"
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
           GH_AW_DETECTION_CONCLUSION: ${{ needs.detection.result }}
         with:
@@ -921,8 +916,8 @@ jobs:
       - name: Setup threat detection
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
-          WORKFLOW_NAME: "Forge Milestone Planner"
-          WORKFLOW_DESCRIPTION: "Plan features and bugfixes for newly created milestones; create feature issues and associate existing issues"
+          WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Milestone Planner"
+          WORKFLOW_DESCRIPTION: "DEPRECATED: Migrated to forge-milestone-lifecycle.md — see Phase 3 consolidation"
           HAS_PATCH: ${{ needs.agent.outputs.has_patch }}
         with:
           script: |
@@ -987,28 +982,6 @@ jobs:
           path: /tmp/gh-aw/threat-detection/detection.log
           if-no-files-found: ignore
 
-  pre_activation:
-    runs-on: ubuntu-slim
-    outputs:
-      activated: ${{ steps.check_membership.outputs.is_team_member == 'true' }}
-    steps:
-      - name: Setup Scripts
-        uses: github/gh-aw/actions/setup@faa1930e4aa3a4cdc067380eef33c281e0eeb646 # v0.43.10
-        with:
-          destination: /opt/gh-aw/actions
-      - name: Check team membership for workflow
-        id: check_membership
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
-        env:
-          GH_AW_REQUIRED_ROLES: admin,maintainer,write
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const { setupGlobals } = require('/opt/gh-aw/actions/setup_globals.cjs');
-            setupGlobals(core, github, context, exec, io);
-            const { main } = require('/opt/gh-aw/actions/check_membership.cjs');
-            await main();
-
   safe_outputs:
     needs:
       - agent
@@ -1022,7 +995,7 @@ jobs:
     env:
       GH_AW_ENGINE_ID: "copilot"
       GH_AW_WORKFLOW_ID: "forge-milestone-planner"
-      GH_AW_WORKFLOW_NAME: "Forge Milestone Planner"
+      GH_AW_WORKFLOW_NAME: "⚠️ DEPRECATED: Forge Milestone Planner"
     outputs:
       create_discussion_error_count: ${{ steps.process_safe_outputs.outputs.create_discussion_error_count }}
       create_discussion_errors: ${{ steps.process_safe_outputs.outputs.create_discussion_errors }}

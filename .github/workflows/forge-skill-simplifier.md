@@ -1,15 +1,10 @@
 ---
-description: "Simplify Forge skill documentation by reducing verbosity and improving clarity"
+description: "DEPRECATED: Migrated to forge-component-improver.md — see Phase 3 consolidation"
 imports:
   - shared/forge-base.md
   - shared/forge-pr-creator.md
   - shared/forge-conventions.md
 on:
-  pull_request:
-    types: [opened, synchronize]
-    branches: [develop, main]
-    paths:
-      - "forge-plugin/skills/**"
   workflow_dispatch:
 permissions:
   contents: read
@@ -27,7 +22,20 @@ safe-outputs:
     if-no-changes: "ignore"
 ---
 
-# Forge Skill Simplifier
+# ⚠️ DEPRECATED: Forge Skill Simplifier
+
+**This workflow has been DEPRECATED and replaced by `forge-component-improver.md`.**
+
+- **Replacement**: [forge-component-improver.md](./forge-component-improver.md)
+- **Migration Date**: 2026-02-13
+- **Deprecation Phase**: Phase 3 — Pipeline Consolidation
+- **Reason**: Consolidated with `forge-best-practices-improver.md` to reduce duplication and create unified component improvement pipeline
+
+**This workflow is disabled for automatic runs.** It can only be triggered manually via `workflow_dispatch` as an escape hatch. It will be deleted after 2 weeks of successful consolidated workflow operation.
+
+---
+
+# Original: Forge Skill Simplifier
 
 Analyze skill files in `forge-plugin/skills/` for simplification opportunities.
 

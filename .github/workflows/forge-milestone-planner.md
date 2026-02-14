@@ -1,12 +1,10 @@
 ---
-description: "Plan features and bugfixes for newly created milestones; create feature issues and associate existing issues"
+description: "DEPRECATED: Migrated to forge-milestone-lifecycle.md — see Phase 3 consolidation"
 imports:
   - shared/forge-base.md
   - shared/forge-issue-creator.md
   - shared/forge-conventions.md
 on:
-  milestone:
-    types: [created]
   workflow_dispatch:
 permissions:
   contents: read
@@ -21,6 +19,19 @@ safe-outputs:
     title-prefix: "[Feature] "
     max: 5
     expires: 30
+---
+
+# ⚠️ DEPRECATED: Forge Milestone Planner
+
+**This workflow has been DEPRECATED and replaced by `forge-milestone-lifecycle.md`.**
+
+- **Replacement**: [forge-milestone-lifecycle.md](./forge-milestone-lifecycle.md) (Planning Stage)
+- **Migration Date**: 2026-02-13
+- **Deprecation Phase**: Phase 3 — Pipeline Consolidation
+- **Reason**: Consolidated with `forge-project-milestone-tracker.md` and `forge-milestone-progress-reviewer.md` to create unified milestone lifecycle management
+
+**This workflow is disabled for automatic runs.** It can only be triggered manually via `workflow_dispatch` as an escape hatch. It will be deleted after 2 weeks of successful consolidated workflow operation.
+
 ---
 
 # Forge Milestone Planner
