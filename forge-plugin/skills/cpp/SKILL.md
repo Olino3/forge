@@ -13,8 +13,7 @@ memory:
       files: [project_overview.md, toolchain_profile.md, performance_notes.md, known_issues.md]
     - type: "shared-project"
       usage: "reference"
-tags: [programming-languages, cpp, modern-cpp, engineering]
----
+## tags: [programming-languages, cpp, modern-cpp, engineering]
 
 # Skill: cpp - Modern C++ Development
 

@@ -26,9 +26,9 @@ sections:
   - name: "Quick Checklist"
     estimatedTokens: 47
     keywords: [quick, checklist]
+
 tags: [angular, performance, change-detection, lazy-loading, bundle-size, trackby]
 ---
-
 # Angular Performance Patterns - Quick Reference
 
 High-impact performance checks for Angular apps with minimal examples and links.

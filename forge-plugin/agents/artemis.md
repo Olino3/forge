@@ -9,8 +9,7 @@ hooks:
       patterns: ["TEST-*.md", "*.test.yml", "BUG-*.md", "*.spec.*"]
       action: "validate_test_strategy"
 mcpServers: []
-memory: forge-plugin/memory/agents/artemis
----
+## memory: forge-plugin/memory/agents/artemis
 
 # @artemis - Goddess of the Hunt and Testing Excellence
 

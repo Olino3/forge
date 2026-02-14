@@ -7,8 +7,7 @@ context:
   topics: [azure_pipelines_overview, azure_pipelines_cicd_patterns, azure_bicep_overview]
 memory:
   scope: per-project
-  files: [pipeline_config.md, generated_files.md, bicep_resources.md, customizations.md]
----
+##   files: [pipeline_config.md, generated_files.md, bicep_resources.md, customizations.md]
 
 # Skill: generate-azure-pipelines
 
@@ -18,6 +17,11 @@ memory:
 **Last Updated**: 2025-11-18
 
 ---
+
+## Purpose
+
+Generate Azure DevOps pipelines with CI/CD workflows and Bicep infrastructure as code
+
 
 ## Title
 
@@ -539,11 +543,27 @@ Generated pipelines use:
 
 **Initial Release**
 - Complete Azure Pipelines generation with CI/CD workflows
-- Bicep infrastructure as code templates
-- Support for separate or combined CI/CD pipelines
-- Support for Python, Node.js, and .NET projects
-- Multi-environment deployment (dev, staging, prod)
-- Reusable pipeline templates
-- Environment-specific Bicep parameters
-- Memory system for configuration tracking
-- Comprehensive context files for Azure Pipelines and Bicep
+
+### Step 1: Initial Analysis
+
+Gather inputs and determine scope and requirements.
+
+### Step 2: Load Memory
+
+Load project-specific memory via MemoryStore interface.
+
+### Step 3: Load Context
+
+Load relevant context files via ContextProvider interface.
+
+### Step 4: Core Implementation
+
+Execute the skill-specific core action.
+
+### Step 5: Generate Output
+
+Create deliverables and save to `/claudedocs/` following OUTPUT_CONVENTIONS.md.
+
+### Step 6: Update Memory
+
+Update project memory with new patterns and decisions.

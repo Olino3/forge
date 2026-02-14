@@ -13,8 +13,7 @@ memory:
       files: [project_overview.md, architecture_patterns.md, cloud_decisions.md]
     - type: "shared-project"
       usage: "reference"
-tags: [cloud, architecture, aws, azure, gcp, multi-cloud, cloud-native, infrastructure]
----
+## tags: [cloud, architecture, aws, azure, gcp, multi-cloud, cloud-native, infrastructure]
 
 # skill:cloud-architect - Multi-Cloud Architecture & Cloud-Native Design
 

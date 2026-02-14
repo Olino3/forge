@@ -1,7 +1,6 @@
 ---
 name: legacy-modernizer
-description: Analyzes and modernizes legacy codebases through systematic technical debt reduction, migration planning, and incremental refactoring strategies. Evaluates code staleness, identifies architectural anti-patterns, maps dependency risks, and produces actionable modernization roadmaps. Like Hephaestus reforging ancient weapons with modern alloys, this skill transforms aging systems into maintainable, performant architectures while preserving battle-tested business logic.
----
+## description: Analyzes and modernizes legacy codebases through systematic technical debt reduction, migration planning, and incremental refactoring strategies. Evaluates code staleness, identifies architectural anti-patterns, maps dependency risks, and produces actionable modernization roadmaps. Like Hephaestus reforging ancient weapons with modern alloys, this skill transforms aging systems into maintainable, performant architectures while preserving battle-tested business logic.
 
 # Legacy Code Modernizer
 
@@ -36,6 +35,11 @@ Legacy code modernization evaluates 7 critical dimensions:
 **Note**: The skill analyzes existing codebases and produces modernization plans. It does not blindly rewrite — every transformation preserves existing business logic and is validated against characterization tests.
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 
@@ -204,9 +208,27 @@ Refer to official documentation and resources:
 
 - v1.0.0 (2026-02-12): Initial release
   - Mandatory 5-step workflow for legacy code modernization
-  - Technical debt assessment and prioritization framework
-  - Migration planning with Strangler Fig, Branch by Abstraction, Parallel Run, and Feature Toggle patterns
-  - Dependency modernization and security vulnerability analysis
-  - Characterization testing for untested legacy code
-  - Documentation recovery and tribal knowledge capture
-  - Project memory integration for tracking modernization progress
+
+### Step 1: Initial Analysis
+
+Gather inputs and determine scope and requirements.
+
+### Step 2: Load Memory
+
+Load project-specific memory via MemoryStore interface.
+
+### Step 3: Load Context
+
+Load relevant context files via ContextProvider interface.
+
+### Step 4: Core Implementation
+
+Execute the skill-specific core action.
+
+### Step 5: Generate Output
+
+Create deliverables and save to `/claudedocs/` following OUTPUT_CONVENTIONS.md.
+
+### Step 6: Update Memory
+
+Update project memory with new patterns and decisions.

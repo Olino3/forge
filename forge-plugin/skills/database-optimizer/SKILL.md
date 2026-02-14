@@ -1,7 +1,6 @@
 ---
 name: database-optimizer
-description: Optimize SQL query performance through execution plan analysis, indexing strategies, and performance tuning. Analyzes slow queries, recommends index additions and removals, evaluates execution plans (EXPLAIN/EXPLAIN ANALYZE), identifies anti-patterns like full table scans and implicit conversions, and provides targeted rewrite suggestions. Supports PostgreSQL, MySQL, SQL Server, Oracle, and SQLite. Use for query optimization, index tuning, performance troubleshooting, and database workload analysis.
----
+## description: Optimize SQL query performance through execution plan analysis, indexing strategies, and performance tuning. Analyzes slow queries, recommends index additions and removals, evaluates execution plans (EXPLAIN/EXPLAIN ANALYZE), identifies anti-patterns like full table scans and implicit conversions, and provides targeted rewrite suggestions. Supports PostgreSQL, MySQL, SQL Server, Oracle, and SQLite. Use for query optimization, index tuning, performance troubleshooting, and database workload analysis.
 
 # Database Query Optimization Expert
 
@@ -35,6 +34,11 @@ Database query optimization evaluates 7 critical dimensions:
 7. **Configuration Tuning**: Buffer pool, work memory, query planner parameters, lock contention settings
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 
@@ -215,6 +219,13 @@ Database query optimization evaluates 7 critical dimensions:
 **MEMORY UPDATE IS MANDATORY - DO NOT SKIP**
 
 ---
+
+### Step 6: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `database-optimizer_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## Output Requirements
 

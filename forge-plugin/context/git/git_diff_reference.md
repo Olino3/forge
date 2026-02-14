@@ -18,9 +18,9 @@ sections:
     estimatedTokens: 40
     keywords: [binary, rename, merge, large-diff]
 tags: [git, diff, format, reference]
-crossDomainTriggers: []
----
+## crossDomainTriggers: []
 
+---
 # Git Diff Reference – Quick Links
 
 Minimal reference for where to look up git diff format and commands. Use external docs for details.

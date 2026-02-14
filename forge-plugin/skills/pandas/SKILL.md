@@ -1,9 +1,22 @@
 ---
 name: pandas
-description: Advanced data manipulation and analysis with pandas. Provides expert guidance on DataFrame operations, data cleaning, ETL pipelines, aggregation, merging, reshaping, time series analysis, and performance optimization. Supports integration with NumPy, Matplotlib, Scikit-learn, and SQL databases. Use for data profiling, transformation workflows, large dataset handling, and analytical reporting.
----
+## description: Advanced data manipulation and analysis with pandas. Provides expert guidance on DataFrame operations, data cleaning, ETL pipelines, aggregation, merging, reshaping, time series analysis, and performance optimization. Supports integration with NumPy, Matplotlib, Scikit-learn, and SQL databases. Use for data profiling, transformation workflows, large dataset handling, and analytical reporting.
 
 # Pandas Data Manipulation Expert
+
+### Step 1: Initial Analysis
+
+Gather inputs and understand the task:
+- Determine project scope and requirements
+- Identify target files or components
+- Clarify user objectives and constraints
+
+### Step 2: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `pandas_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## ⚠️ MANDATORY COMPLIANCE ⚠️
 
@@ -36,6 +49,11 @@ Pandas data manipulation covers 8 critical dimensions:
 8. **Time Series Analysis**: DatetimeIndex, resampling, shifting, rolling statistics, period conversion
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 

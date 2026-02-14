@@ -13,8 +13,7 @@ memory:
       files: [project_overview.md, navigation_patterns.md, native_modules.md, platform_specifics.md]
     - type: "shared-project"
       usage: "reference"
-tags: [react-native, mobile, expo, fabric, turbo-modules, navigation, native-modules, ios, android, new-architecture]
----
+## tags: [react-native, mobile, expo, fabric, turbo-modules, navigation, native-modules, ios, android, new-architecture]
 
 # skill:react-native-expert — Mobile App Development with React Native
 

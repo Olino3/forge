@@ -15,8 +15,7 @@ skills:
   - generate-azure-bicep
   - generate-azure-functions
   - generate-tilt-dev-environment
-  - generate-mock-service
----
+##   - generate-mock-service
 
 # @devops-engineer - Master of Deployment and Infrastructure
 

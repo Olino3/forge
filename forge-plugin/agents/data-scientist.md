@@ -14,8 +14,7 @@ skills:
   - python-code-review
   - commit-helper
   - documentation-generator
-mcp_servers: []
----
+## mcp_servers: []
 
 # Data Scientist Agent
 

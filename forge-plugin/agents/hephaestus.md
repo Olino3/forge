@@ -9,8 +9,7 @@ hooks:
       patterns: ["*/skills/*/SKILL.md", "*/skills/*/examples.md", "*.plugin.json"]
       action: "validate_skill_structure"
 mcpServers: []
-memory: forge-plugin/memory/agents/hephaestus
----
+## memory: forge-plugin/memory/agents/hephaestus
 
 # @hephaestus - Chief Artificer and Tool Creator
 

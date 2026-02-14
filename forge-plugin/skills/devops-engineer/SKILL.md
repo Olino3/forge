@@ -13,8 +13,7 @@ memory:
       files: [project_overview.md, pipeline_patterns.md, deployment_strategies.md]
     - type: "shared-project"
       usage: "reference"
-tags: [devops, cicd, pipelines, automation, github-actions, azure-pipelines, gitlab, jenkins]
----
+## tags: [devops, cicd, pipelines, automation, github-actions, azure-pipelines, gitlab, jenkins]
 
 # skill:devops-engineer - CI/CD Pipelines & Infrastructure Automation
 

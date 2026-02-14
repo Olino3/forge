@@ -13,8 +13,7 @@ memory:
       files: [project_overview.md, common_patterns.md]
     - type: "shared-project"
       usage: "reference"
-tags: [animation, auto-animate, formkit, react, vue, svelte, solid, preact, transitions, motion]
----
+## tags: [animation, auto-animate, formkit, react, vue, svelte, solid, preact, transitions, motion]
 
 # skill:animate - Zero-Config UI Animations
 

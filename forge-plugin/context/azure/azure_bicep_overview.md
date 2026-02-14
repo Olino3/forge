@@ -48,12 +48,14 @@ sections:
     estimatedTokens: 66
     keywords: [bicep, arm, json, example]
   - name: "Detection Patterns"
+tags: [azure, bicep, iac, arm, modules, parameters, deployment]
+---
     estimatedTokens: 48
     keywords: [detection, patterns]
   - name: "Official Resources"
     estimatedTokens: 13
     keywords: [official, resources]
-tags: [azure, bicep, iac, arm, modules, parameters, deployment]
+---
 ---
 
 # Azure Bicep Overview

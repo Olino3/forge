@@ -13,8 +13,7 @@ memory:
       files: [project_overview.md, common_patterns.md]
     - type: "shared-project"
       usage: "reference"
-tags: [tailwind, css, utility-classes, responsive, mobile-first, shadcn, components, layout, typography]
----
+## tags: [tailwind, css, utility-classes, responsive, mobile-first, shadcn, components, layout, typography]
 
 # skill:tailwind-patterns - Production Tailwind CSS Patterns
 

@@ -12,8 +12,7 @@ memory:
     - type: "skill-specific"
       files: [environment_config.md, generated_files.md, customizations.md, setup_notes.md]
     - type: "shared-project"
-      usage: "reference"
----
+##       usage: "reference"
 
 # Skill: generate-tilt-dev-environment
 
@@ -23,6 +22,11 @@ memory:
 **Last Updated**: 2026-02-06
 
 ---
+
+## Purpose
+
+Generate complete local development environments using Tilt, Docker Compose, and containerization. Constructs local development realms with Tilt orchestration, live reload, and service dependencies.
+
 
 ## Title
 
@@ -190,6 +194,8 @@ After analyzing project structure, ask user about:
 ---
 
 ## Instructions
+
+## Mandatory Workflow
 
 ### MANDATORY STEPS (Must Execute in Order)
 
@@ -437,6 +443,13 @@ After analyzing project structure, ask user about:
 **Output**: Memory stored for future skill invocations
 
 ---
+
+### Step 100: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `generate-tilt-dev-environment_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## Best Practices
 

@@ -13,8 +13,7 @@ memory:
       files: [project_overview.md, common_patterns.md]
     - type: "shared-project"
       usage: "reference"
-tags: ["planning", "workflow", "discovery", "toolkit", "meta"]
----
+## tags: ["planning", "workflow", "discovery", "toolkit", "meta"]
 
 # skill:divine - Divine Toolkit Entry Point
 

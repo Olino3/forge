@@ -48,6 +48,8 @@ sections:
     estimatedTokens: 51
     keywords: [sleepwait, tests]
   - name: "Swallowing Exceptions in Tests"
+tags: [python, testing, antipatterns, code-quality, best-practices]
+---
     estimatedTokens: 54
     keywords: [swallowing, exceptions, tests]
   - name: "Not Testing Edge Cases"
@@ -62,7 +64,6 @@ sections:
   - name: "Related Context Files"
     estimatedTokens: 12
     keywords: [related, context, files]
-tags: [python, testing, antipatterns, code-quality, best-practices]
 ---
 
 # Python Test Anti-Patterns

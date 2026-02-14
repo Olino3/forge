@@ -20,8 +20,7 @@ sections:
   - name: "Token Budget Consideration"
     estimatedTokens: 21
     keywords: [token, budget, consideration]
-tags: [context, cross-domain, triggers, loading, reference]
----
+## tags: [context, cross-domain, triggers, loading, reference]
 
 # Cross-Domain Context References
 

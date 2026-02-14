@@ -7,8 +7,7 @@ context:
   topics: []
 memory:
   scope: per-project
-  files: [tested_commands.md, known_issues.md, command_reference.md, test_results_history.md]
----
+##   files: [tested_commands.md, known_issues.md, command_reference.md, test_results_history.md]
 
 # test-cli-tools
 
@@ -369,6 +368,11 @@ This workflow is **MANDATORY** and **NON-NEGOTIABLE**. Every step must be comple
 
 ---
 
+## Purpose
+
+Iterative testing of command-line interface tools with automated failure detection, documentation, and fix suggestions.
+
+
 ## Compliance Checklist
 
 Before completing the skill invocation, verify ALL items:
@@ -510,8 +514,27 @@ Before completing the skill invocation, verify ALL items:
 ### v1.0.0 (2025-11-18)
 - Initial release
 - Mandatory 7-step workflow
-- Iterative command testing
-- Failure analysis and fix suggestions
-- /claudedocs integration
-- Project-specific memory system
-- Source code analysis integration
+
+### Step 1: Initial Analysis
+
+Gather inputs and determine scope and requirements.
+
+### Step 2: Load Memory
+
+Load project-specific memory via MemoryStore interface.
+
+### Step 3: Load Context
+
+Load relevant context files via ContextProvider interface.
+
+### Step 4: Core Implementation
+
+Execute the skill-specific core action.
+
+### Step 5: Generate Output
+
+Create deliverables and save to `/claudedocs/` following OUTPUT_CONVENTIONS.md.
+
+### Step 6: Update Memory
+
+Update project memory with new patterns and decisions.

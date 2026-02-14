@@ -1,7 +1,6 @@
 ---
 name: testing
-description: Comprehensive testing strategies covering test strategy design, test planning, coverage analysis, and best practices across all testing levels. Supports unit testing, integration testing, end-to-end (E2E) testing, performance testing, test data management, and mocking strategies. Use for designing testing pyramids, increasing coverage on legacy code, establishing test conventions, and implementing robust test suites across any language or framework.
----
+## description: Comprehensive testing strategies covering test strategy design, test planning, coverage analysis, and best practices across all testing levels. Supports unit testing, integration testing, end-to-end (E2E) testing, performance testing, test data management, and mocking strategies. Use for designing testing pyramids, increasing coverage on legacy code, establishing test conventions, and implementing robust test suites across any language or framework.
 
 # Testing
 
@@ -32,6 +31,11 @@ Comprehensive testing evaluates 8 key dimensions:
 **Note**: Focus on actionable testing strategies tailored to the project's architecture, risk profile, and existing test infrastructure. This skill covers test methodology and strategy — for generating specific unit tests, see `generate-jest-unit-tests` or `generate-python-unit-tests`.
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 
@@ -123,6 +127,13 @@ Use `memoryStore.update("testing", "{project-name}", ...)` to create or update m
 Timestamps and staleness tracking are managed automatically by MemoryStore. See [MemoryStore Interface](../../interfaces/memory_store.md) for `update()` and `append()` method details.
 
 ---
+
+### Step 6: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `testing_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## Interface References
 

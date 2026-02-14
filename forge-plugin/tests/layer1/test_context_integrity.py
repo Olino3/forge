@@ -66,14 +66,21 @@ def _get_domain_directories() -> list[tuple[str, Path]]:
 
 
 def _parse_index_references(index_path: Path) -> set[str]:
-    """Extract all file references from domain index.md."""
+    """Extract all file references from domain index.md (from YAML frontmatter path: fields)."""
     if not index_path.exists():
         return set()
     
-    content = index_path.read_text(encoding='utf-8')
-    # Match markdown links: [text](filename.md) or [text](subdir/filename.md)
-    links = re.findall(r'\[.*?\]\(([^)]+\.md)\)', content)
-    return {link for link in links if not link.startswith('http')}
+    frontmatter = extract_yaml_frontmatter(index_path)
+    if not frontmatter or 'indexedFiles' not in frontmatter:
+        return set()
+    
+    # Extract path values from indexedFiles YAML array
+    paths = set()
+    for file_entry in frontmatter['indexedFiles']:
+        if isinstance(file_entry, dict) and 'path' in file_entry:
+            paths.add(file_entry['path'])
+    
+    return paths
 
 
 # ---------------------------------------------------------------------------

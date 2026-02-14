@@ -18,8 +18,8 @@ sections:
     estimatedTokens: 30
     keywords: [correctness, security, performance, maintainability, testing]
 tags: [engineering, code-review, principles, universal]
-crossDomainTriggers: []
 ---
+## crossDomainTriggers: []
 
 # Code Review Principles
 

@@ -38,9 +38,9 @@ sections:
   - name: "Official Resources"
     estimatedTokens: 24
     keywords: [official, resources]
+
 tags: [dotnet, dependency-injection, service-lifetime, httpclient, options-pattern]
 ---
-
 # Dependency Injection Patterns
 
 Quick reference for DI in .NET. For detailed examples, see [Dependency injection in .NET](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection).

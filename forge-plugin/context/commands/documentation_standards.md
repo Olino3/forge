@@ -48,6 +48,8 @@ sections:
     estimatedTokens: 20
     keywords: [contributing]
   - name: "License"
+tags: [commands, documentation, api-docs, comments, readme, adr, docstrings]
+---
     estimatedTokens: 21
     keywords: [license]
   - name: "Comment Best Practices"
@@ -59,7 +61,7 @@ sections:
   - name: "Official References"
     estimatedTokens: 12
     keywords: [official, references]
-tags: [commands, documentation, api-docs, comments, readme, adr, docstrings]
+---
 ---
 
 # Documentation Standards

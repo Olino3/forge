@@ -1,7 +1,6 @@
 ---
 name: python-code-review
-description: Deep Python code review of changed files using git diff analysis. Focuses on production quality, security vulnerabilities, performance bottlenecks, architectural issues, and subtle bugs in code changes. Analyzes correctness, efficiency, scalability, and production readiness of modifications. Use for pull request reviews, commit reviews, security audits of changes, and pre-deployment validation. Supports Django, Flask, FastAPI, pandas, and ML frameworks.
----
+## description: Deep Python code review of changed files using git diff analysis. Focuses on production quality, security vulnerabilities, performance bottlenecks, architectural issues, and subtle bugs in code changes. Analyzes correctness, efficiency, scalability, and production readiness of modifications. Use for pull request reviews, commit reviews, security audits of changes, and pre-deployment validation. Supports Django, Flask, FastAPI, pandas, and ML frameworks.
 
 # Python Code Review Expert
 
@@ -19,6 +18,13 @@ description: Deep Python code review of changed files using git diff analysis. F
 - **Memory**: Project-specific memory accessed via `memoryStore.getSkillMemory("python-code-review", "{project-name}")`. See [MemoryStore Interface](../../interfaces/memory_store.md).
 - **templates/**: `report_template.md`, `inline_comment_template.md`
 
+
+## Interface References
+
+- **Context**: Loaded via [ContextProvider Interface](../../interfaces/context_provider.md)
+- **Memory**: Accessed via [MemoryStore Interface](../../interfaces/memory_store.md)
+- **Shared Patterns**: [Shared Loading Patterns](../../interfaces/shared_loading_patterns.md)
+
 ## Review Focus Areas
 
 Deep reviews evaluate 8 critical dimensions **in the changed code**:
@@ -35,6 +41,11 @@ Deep reviews evaluate 8 critical dimensions **in the changed code**:
 **Note**: Focus on substantive issues requiring human judgment, not style/formatting details. Reviews are performed on changed code only, using the `get-git-diff` skill to identify modifications.
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 

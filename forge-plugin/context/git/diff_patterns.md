@@ -18,9 +18,9 @@ sections:
     estimatedTokens: 40
     keywords: [checklist, review, scope]
 tags: [git, diff, patterns, risk-assessment]
-crossDomainTriggers: []
----
+## crossDomainTriggers: []
 
+---
 # Common Diff Patterns – Quick Reference
 
 Compact cues for classifying diffs and spotting risk. Use links for deeper guidance.

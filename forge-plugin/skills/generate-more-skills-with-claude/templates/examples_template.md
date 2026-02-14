@@ -50,16 +50,14 @@ This file contains example scenarios demonstrating how to use the {{skill-name}}
 **{{Metadata Section}}**: {{value}}
 **Subject**: {{subject line or title}}
 
-{{Begin actual output}}
----
+## {{Begin actual output}}
 
 {{Complete, realistic output showing exactly what the skill generates}}
 {{Use appropriate code block formatting if applicable}}
 {{Include all sections, placeholders filled in realistically}}
 {{Show actual content, not {{placeholders}}}}
 
-{{End output}}
----
+## {{End output}}
 
 {{Optional: Alternative suggestions or variations}}
 **Alternative {{Aspect}}**:

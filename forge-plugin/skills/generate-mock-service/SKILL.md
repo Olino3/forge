@@ -12,8 +12,7 @@ memory:
     - type: "skill-specific"
       files: [mock_config.md, generated_mocks.md, scenarios.md, integration_notes.md]
     - type: "shared-project"
-      usage: "reference"
----
+##       usage: "reference"
 
 # Skill: generate-mock-service
 
@@ -23,6 +22,11 @@ memory:
 **Last Updated**: 2026-02-06
 
 ---
+
+## Purpose
+
+Generate simulated service doppelgangers for testing and development. Creates mock servers (Express, Flask, FastAPI, WireMock, Prism) matching real API contracts with realistic responses, error scenarios, and Docker containerization.
+
 
 ## Title
 
@@ -186,6 +190,8 @@ After understanding the mock requirements, ask user about:
 ---
 
 ## Instructions
+
+## Mandatory Workflow
 
 ### MANDATORY STEPS (Must Execute in Order)
 
@@ -440,6 +446,13 @@ After understanding the mock requirements, ask user about:
 **Output**: Memory stored for future skill invocations
 
 ---
+
+### Step 100: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `generate-mock-service_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## Best Practices
 

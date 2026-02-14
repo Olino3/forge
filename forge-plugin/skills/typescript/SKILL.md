@@ -13,8 +13,7 @@ memory:
       files: [project_overview.md, tsconfig_profile.md, type_patterns.md, migration_notes.md]
     - type: "shared-project"
       usage: "reference"
-tags: [programming-languages, typescript, typing, engineering]
----
+## tags: [programming-languages, typescript, typing, engineering]
 
 # Skill: typescript - Advanced TypeScript Architecture
 

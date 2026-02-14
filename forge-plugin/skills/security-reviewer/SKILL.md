@@ -1,7 +1,6 @@
 ---
 name: security-reviewer
-description: Security audits, threat modeling, and compliance assessment for existing codebases. Performs systematic reviews using STRIDE, attack surface analysis, auth audits, data flow analysis, dependency vulnerability assessment, and compliance checking against OWASP Top 10, CWE, and SANS. Classifies findings by severity and maps to CWE IDs. Use for security audits, threat modeling, compliance assessments, and penetration testing guidance.
----
+## description: Security audits, threat modeling, and compliance assessment for existing codebases. Performs systematic reviews using STRIDE, attack surface analysis, auth audits, data flow analysis, dependency vulnerability assessment, and compliance checking against OWASP Top 10, CWE, and SANS. Classifies findings by severity and maps to CWE IDs. Use for security audits, threat modeling, compliance assessments, and penetration testing guidance.
 
 # Security Reviewer
 
@@ -33,6 +32,11 @@ Security audits evaluate 8 critical dimensions across the target system:
 **Note**: This skill focuses on auditing existing systems and code — not on writing new secure code. For proactive secure coding, use the `secure-code` skill instead.
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 
@@ -155,6 +159,13 @@ Timestamps and staleness tracking are managed automatically by MemoryStore. See 
 **DO NOT PROVIDE INCOMPLETE AUDIT REPORTS**
 
 ---
+
+### Step 6: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `security-reviewer_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## Interface References
 

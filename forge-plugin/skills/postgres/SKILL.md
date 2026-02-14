@@ -1,7 +1,6 @@
 ---
 name: postgres
-description: PostgreSQL administration, optimization, and advanced features expertise. Covers configuration tuning (shared_buffers, work_mem, WAL), query optimization (EXPLAIN ANALYZE, pg_stat_statements), indexing strategies (B-tree, GIN, GiST, BRIN), partitioning, logical and streaming replication, high availability, connection pooling (PgBouncer), security hardening (RLS, SSL, pg_hba.conf), extension management (PostGIS, pg_trgm, ltree, pg_cron), and advanced SQL features (JSONB, CTEs, window functions). Use for PostgreSQL performance tuning, cluster administration, migration planning, and production readiness assessments.
----
+## description: PostgreSQL administration, optimization, and advanced features expertise. Covers configuration tuning (shared_buffers, work_mem, WAL), query optimization (EXPLAIN ANALYZE, pg_stat_statements), indexing strategies (B-tree, GIN, GiST, BRIN), partitioning, logical and streaming replication, high availability, connection pooling (PgBouncer), security hardening (RLS, SSL, pg_hba.conf), extension management (PostGIS, pg_trgm, ltree, pg_cron), and advanced SQL features (JSONB, CTEs, window functions). Use for PostgreSQL performance tuning, cluster administration, migration planning, and production readiness assessments.
 
 # PostgreSQL Expert
 
@@ -36,6 +35,11 @@ PostgreSQL expertise spans 8 critical dimensions:
 8. **Extension Utilization**: PostGIS, pg_trgm, ltree, hstore, pg_cron, pgvector, pg_stat_statements, pgAudit, TimescaleDB
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 
@@ -231,6 +235,13 @@ PostgreSQL expertise spans 8 critical dimensions:
 **MEMORY UPDATE IS MANDATORY - DO NOT SKIP**
 
 ---
+
+### Step 6: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `postgres_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## Output Requirements
 

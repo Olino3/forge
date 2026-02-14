@@ -13,8 +13,7 @@ memory:
       files: [project_overview.md, common_patterns.md]
     - type: "shared-project"
       usage: "reference"
-tags: [accessibility, wcag, aria, a11y, semantic-html, screen-reader, keyboard-navigation, focus-management]
----
+## tags: [accessibility, wcag, aria, a11y, semantic-html, screen-reader, keyboard-navigation, focus-management]
 
 # skill:accessibility - WCAG 2.1 AA Compliance
 

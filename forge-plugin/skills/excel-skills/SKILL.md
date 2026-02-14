@@ -1,9 +1,15 @@
 ---
 name: excel-skills
-description: Masters spreadsheet manipulation across Excel, Google Sheets, and LibreOffice Calc. Analyzes spreadsheet structure, generates formulas, creates pivot tables, performs data transformations, and automates workflows with VBA/Apps Script/Python (openpyxl/pandas). Like Hephaestus crafting precision instruments, this skill transforms raw data into organized, actionable insights through the power of spreadsheet mastery.
----
+## description: Masters spreadsheet manipulation across Excel, Google Sheets, and LibreOffice Calc. Analyzes spreadsheet structure, generates formulas, creates pivot tables, performs data transformations, and automates workflows with VBA/Apps Script/Python (openpyxl/pandas). Like Hephaestus crafting precision instruments, this skill transforms raw data into organized, actionable insights through the power of spreadsheet mastery.
 
 # Spreadsheet Manipulation Master
+
+### Step 1: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `excel-skills_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## ⚠️ MANDATORY COMPLIANCE ⚠️
 
@@ -40,6 +46,11 @@ Spreadsheet manipulation evaluates 7 critical dimensions:
 **Note**: The skill generates formulas, macros, and automation scripts for the user to implement. It does not directly manipulate spreadsheet files unless integrated with appropriate tools.
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 

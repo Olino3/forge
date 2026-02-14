@@ -1,7 +1,6 @@
 ---
 name: email-writer
-description: Composes professional correspondence for development teams, technical announcements, stakeholder updates, and cross-functional communication. Analyzes audience, calibrates tone, structures content for clarity and actionability, and produces polished emails that convey technical concepts with precision and diplomacy. Like Hermes bearing messages between the gods, this skill ensures every missive arrives with clarity, purpose, and the weight of intent behind it.
----
+## description: Composes professional correspondence for development teams, technical announcements, stakeholder updates, and cross-functional communication. Analyzes audience, calibrates tone, structures content for clarity and actionability, and produces polished emails that convey technical concepts with precision and diplomacy. Like Hermes bearing messages between the gods, this skill ensures every missive arrives with clarity, purpose, and the weight of intent behind it.
 
 # Professional Email Composer
 
@@ -39,9 +38,14 @@ Professional email composition evaluates 7 critical dimensions:
 
 ---
 
+## Purpose
+
+[TODO: Add purpose description]
+
+
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 
-### ⚠️ STEP 1: Gather Context (REQUIRED)
+### Step 1: Initial Analysis (Gather Context) (REQUIRED)
 
 **YOU MUST:**
 1. Determine the **purpose** of the email: update, request, announcement, escalation, follow-up, or response
@@ -55,6 +59,14 @@ Professional email composition evaluates 7 critical dimensions:
    - What prior communication has occurred on this topic?
 
 **DO NOT PROCEED WITHOUT UNDERSTANDING PURPOSE AND AUDIENCE**
+
+
+### Step 2: Load Memory
+
+Load project-specific memory via MemoryStore interface:
+```
+memoryStore.getSkillMemory("email-writer", project)
+```
 
 ### ⚠️ STEP 2: Structure Content (REQUIRED)
 
@@ -134,6 +146,13 @@ If project-specific communication patterns are discovered during the process, us
 Timestamps and staleness tracking are handled automatically by MemoryStore. See [MemoryStore Interface](../../interfaces/memory_store.md).
 
 ---
+
+### Step 5: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `email-writer_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## Compliance Checklist
 

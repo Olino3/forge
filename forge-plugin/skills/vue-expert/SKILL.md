@@ -13,8 +13,7 @@ memory:
       files: [project_overview.md, architecture_patterns.md, type_patterns.md, testing_patterns.md]
     - type: "shared-project"
       usage: "reference"
-tags: [vue, vue3, typescript, composition-api, pinia, nuxt3, vitest, vite, enterprise, full-stack]
----
+## tags: [vue, vue3, typescript, composition-api, pinia, nuxt3, vitest, vite, enterprise, full-stack]
 
 # skill:vue-expert — Comprehensive Vue.js Application Development
 

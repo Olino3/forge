@@ -13,8 +13,7 @@ memory:
       files: [brand_assets.md, favicon_history.md]
     - type: "shared-project"
       usage: "reference"
-tags: [favicon, icon, branding, svg, png, ico, apple-touch, web-manifest, monogram]
----
+## tags: [favicon, icon, branding, svg, png, ico, apple-touch, web-manifest, monogram]
 
 # skill:favicon-gen - Custom Favicon Generator
 

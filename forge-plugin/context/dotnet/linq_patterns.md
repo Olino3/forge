@@ -41,9 +41,9 @@ sections:
   - name: "Official Resources"
     estimatedTokens: 23
     keywords: [official, resources]
+
 tags: [dotnet, linq, deferred-execution, iqueryable, performance, pagination]
 ---
-
 # LINQ Optimization Patterns
 
 Quick reference for LINQ query optimization. For detailed examples, see [LINQ documentation](https://learn.microsoft.com/en-us/dotnet/csharp/linq/).

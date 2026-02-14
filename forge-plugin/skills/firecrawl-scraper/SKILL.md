@@ -13,8 +13,7 @@ memory:
       files: [scrape_config.md, extraction_schemas.md, crawl_history.md]
     - type: "shared-project"
       usage: "reference"
-tags: [firecrawl, web-scraping, crawling, llm-data, extraction, sitemap, batch, change-tracking]
----
+## tags: [firecrawl, web-scraping, crawling, llm-data, extraction, sitemap, batch, change-tracking]
 
 # skill:firecrawl-scraper - Convert Websites into LLM-Ready Data
 

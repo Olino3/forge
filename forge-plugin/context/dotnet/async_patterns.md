@@ -41,9 +41,9 @@ sections:
   - name: "Official Resources"
     estimatedTokens: 23
     keywords: [official, resources]
+
 tags: [dotnet, async, await, cancellation, valuetask, deadlock, configureawait]
 ---
-
 # Async/Await Patterns
 
 Quick reference for async/await in .NET. For detailed examples, see [Async programming](https://learn.microsoft.com/en-us/dotnet/csharp/async).

@@ -38,9 +38,9 @@ sections:
   - name: "Schema Testing Strategies"
     estimatedTokens: 69
     keywords: [schema, testing, strategies]
+
 tags: [schema, patterns, entities, relationships, constraints, versioning, antipatterns]
 ---
-
 # Common Schema Patterns
 
 ## Overview

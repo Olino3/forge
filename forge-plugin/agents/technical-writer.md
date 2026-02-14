@@ -12,8 +12,7 @@ memory: forge-plugin/memory/agents/technical-writer
 skills:
   - documentation-generator
   - commit-helper
-mcp_servers: []
----
+## mcp_servers: []
 
 # Technical Writer Agent
 

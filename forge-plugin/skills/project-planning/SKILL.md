@@ -21,8 +21,7 @@ triggers:
   - new project
   - start a project
   - create app
-  - build app
----
+##   - build app
 
 # Project Planning
 
@@ -57,6 +56,11 @@ Project planning evaluates requirements across 7 focus areas:
 **Note**: The skill produces planning documents with actionable phases. It does not implement any code unless explicitly requested.
 
 ---
+
+## Purpose
+
+Generate structured planning docs for web projects with context-safe phases, verification criteria, and exit conditions. Creates IMPLEMENTATION_PHASES.md plus conditional docs (TECH_STACK_DECISIONS.md, MIGRATION_PLAN.md, API_CONTRACT.md, DATA_MODEL.md). Like Hephaestus drafting blueprints before the first strike of the hammer, this skill ensures every project begins with a clear plan.
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 

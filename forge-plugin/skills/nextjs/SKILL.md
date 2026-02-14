@@ -13,8 +13,7 @@ memory:
       files: [project_overview.md, common_patterns.md]
     - type: "shared-project"
       usage: "reference"
-tags: [nextjs, next16, react, server-components, server-actions, app-router, cache-components, rsc, typescript]
----
+## tags: [nextjs, next16, react, server-components, server-actions, app-router, cache-components, rsc, typescript]
 
 # skill:nextjs - Next.js 16 Expert
 

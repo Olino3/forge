@@ -35,9 +35,9 @@ sections:
   - name: "Official Resources"
     estimatedTokens: 26
     keywords: [official, resources]
+
 tags: [python, django, orm, security, views, forms, queryset]
 ---
-
 # Django Patterns
 
 Quick reference for Django best practices and common issues. For detailed examples, see [Django documentation](https://docs.djangoproject.com/).

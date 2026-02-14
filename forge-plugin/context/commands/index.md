@@ -52,8 +52,8 @@ sections:
   - name: "Related Documentation"
     estimatedTokens: 17
     keywords: [related, documentation]
-tags: [commands, index, navigation]
 ---
+## tags: [commands, index, navigation]
 
 # Commands Context Index
 

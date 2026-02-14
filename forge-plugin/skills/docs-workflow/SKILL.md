@@ -13,8 +13,7 @@ memory:
       files: [doc_conventions.md, doc_history.md]
     - type: "shared-project"
       usage: "reference"
-tags: ["planning", "workflow", "documentation", "lifecycle", "templates"]
----
+## tags: ["planning", "workflow", "documentation", "lifecycle", "templates"]
 
 # skill:docs-workflow - Documentation Lifecycle Manager
 

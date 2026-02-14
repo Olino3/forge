@@ -1,9 +1,22 @@
 ---
 name: monitoring-expert
-description: Architects comprehensive observability solutions by designing metrics collection pipelines, alerting rules, distributed tracing instrumentation, log aggregation strategies, and observability platform integrations. Evaluates application health through golden signals, defines SLIs/SLOs, builds operational dashboards, and establishes incident response workflows. Like Hephaestus monitoring the eternal flames of his forge, this skill ensures every service is observed, every anomaly detected, and every incident resolved with clarity and precision.
----
+## description: Architects comprehensive observability solutions by designing metrics collection pipelines, alerting rules, distributed tracing instrumentation, log aggregation strategies, and observability platform integrations. Evaluates application health through golden signals, defines SLIs/SLOs, builds operational dashboards, and establishes incident response workflows. Like Hephaestus monitoring the eternal flames of his forge, this skill ensures every service is observed, every anomaly detected, and every incident resolved with clarity and precision.
 
 # Monitoring & Observability Expert
+
+### Step 1: Initial Analysis
+
+Gather inputs and understand the task:
+- Determine project scope and requirements
+- Identify target files or components
+- Clarify user objectives and constraints
+
+### Step 2: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `monitoring-expert_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## ⚠️ MANDATORY COMPLIANCE ⚠️
 
@@ -36,6 +49,11 @@ Monitoring and observability design evaluates 7 critical dimensions:
 **Note**: This skill designs and recommends monitoring solutions. It generates configuration, instrumentation code, and runbooks but does not deploy infrastructure unless explicitly requested.
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 

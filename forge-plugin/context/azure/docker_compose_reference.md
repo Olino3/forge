@@ -48,9 +48,10 @@ sections:
     estimatedTokens: 52
     keywords: [issues]
   - name: "Official Documentation"
+tags: [azure, docker-compose, services, environment, ports, volumes]
+---
     estimatedTokens: 13
     keywords: [official, documentation]
-tags: [azure, docker-compose, services, environment, ports, volumes]
 ---
 
 # Docker Compose Reference for Azure Functions

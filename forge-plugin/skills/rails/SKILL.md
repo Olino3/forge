@@ -13,8 +13,7 @@ memory:
       files: [project_overview.md, domain_models.md, job_queue_notes.md, performance_notes.md]
     - type: "shared-project"
       usage: "reference"
-tags: ["backend", "framework", "rails", "ruby", "backend-frameworks"]
----
+## tags: ["backend", "framework", "rails", "ruby", "backend-frameworks"]
 
 # Ruby on Rails Framework Expert
 
@@ -26,7 +25,30 @@ Backend & Frameworks
 
 ## File Structure
 - **SKILL.md** (this file): Main instructions and MANDATORY workflow
-- **examples.md**: Rails guidance scenarios with sample outputs
+
+### Step 1: Initial Analysis
+
+Gather inputs and determine scope and requirements.
+
+### Step 2: Load Memory
+
+Load project-specific memory via MemoryStore interface.
+
+### Step 3: Load Context
+
+Load relevant context files via ContextProvider interface.
+
+### Step 4: Core Implementation
+
+Execute the skill-specific core action.
+
+### Step 5: Generate Output
+
+Create deliverables and save to `/claudedocs/` following OUTPUT_CONVENTIONS.md.
+
+### Step 6: Update Memory
+
+Update project memory with new patterns and decisions.
 
 ## Interface References
 - **Context**: Loaded via [ContextProvider Interface](../../interfaces/context_provider.md)
@@ -43,6 +65,11 @@ Backend & Frameworks
 7. **Deployment**: assets, environment configs, CI/CD
 
 ---
+
+## Purpose
+
+Ruby on Rails development guidance for building reliable, secure web applications. Covers Rails conventions, MVC architecture, ActiveRecord patterns, background jobs, performance, testing, and deployment.
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 

@@ -13,8 +13,7 @@ memory:
       files: [project_overview.md, service_catalog.md]
     - type: "shared-project"
       usage: "reference"
-tags: [microservices, distributed-systems, service-mesh, saga, cqrs, api-gateway, event-driven, observability]
----
+## tags: [microservices, distributed-systems, service-mesh, saga, cqrs, api-gateway, event-driven, observability]
 
 # skill:microservices-design — Microservices Patterns, Orchestration, and Service Mesh
 
@@ -217,6 +216,10 @@ skills/microservices-design/
   - Communication pattern decisions (sync/async per interaction)
   - Data ownership map
   - Saga definitions for distributed workflows
+
+### Step 1: Initial Analysis
+
+Gather inputs and determine scope and requirements.
   - Operational concerns (gateway, mesh, observability, resilience)
   - ADRs for key decisions
 

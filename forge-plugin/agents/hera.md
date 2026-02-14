@@ -9,8 +9,7 @@ hooks:
       patterns: ["PROJECT-*.md", "STANDARDS-*.md", "*.governance.yml", "ALIGNMENT-*.md"]
       action: "validate_project_governance"
 mcpServers: []
-memory: forge-plugin/memory/agents/hera
----
+## memory: forge-plugin/memory/agents/hera
 
 # @hera - Queen of the Gods and Guardian of Project Integrity
 

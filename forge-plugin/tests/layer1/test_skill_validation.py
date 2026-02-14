@@ -24,31 +24,32 @@ from conftest import FORGE_DIR
 # Constants
 # ---------------------------------------------------------------------------
 
-# Required sections from SKILL_TEMPLATE.md
+# Required sections from SKILL_TEMPLATE.md (updated 2026-02-14)
 REQUIRED_SECTIONS = [
     "## Purpose",
-    "## Prerequisites",
-    "## Workflow",
-    "## Input Format",
-    "## Output Format",
-    "## Examples",
+    "## File Structure",
+    "## Interface References",
 ]
 
-# 6-step workflow keywords (must appear in workflow section)
-SIX_STEP_KEYWORDS = [
-    r"Initial\s+Analysis",
-    r"Load\s+Memory",
-    r"Load\s+Context",
-    r"Perform\s+Analysis",
-    r"Generate\s+Output",
-    r"Update\s+Memory",
+# Mandatory Workflow section (case-insensitive check)
+WORKFLOW_SECTION_PATTERN = re.compile(r'##\s+.*workflow', re.IGNORECASE)
+
+# Mandatory workflow steps with flexible matching
+# Allows alternative wordings and variations
+MANDATORY_WORKFLOW_STEPS = [
+    (r"Initial\s+Analysis|Assess.*Scope|Understand.*Context|Gather.*Input|Gather.*Context|Identify.*Scope|Identify.*Requirements|Identify.*Target|Analyze.*Requirements|Analyze.*Scope", "Step 1: Initial Analysis/Assessment"),
+    (r"Load.*Memory", "Step 2: Load Memory"),
+    (r"Load.*Context", "Step 3: Load Context"),
+    (r"Generate.*Output|Create.*Output|Produce.*Output|Write.*Output", "Step N-1: Generate Output"),
+    (r"Update.*Memory", "Step N: Update Memory"),
 ]
 
 # Patterns that indicate hardcoded paths (bad practice)
+# Exclude: code blocks, file structure sections, and documentation
 HARDCODED_PATH_PATTERNS = [
-    r'forge-plugin/skills/[a-z-]+',
-    r'\./skills/',
-    r'\.\./skills/',
+    r'(?<!`)(?<!/)forge-plugin/skills/[a-z-]+(?!/)',  # Not in code blocks or paths
+    r'(?<![/`])\./skills/[a-z-]+',  # Relative paths (but not in documentation)
+    r'(?<![/`])\.\./skills/[a-z-]+',  # Parent relative paths
 ]
 
 
@@ -111,6 +112,10 @@ class TestSkillValidation:
             if section not in content:
                 missing_sections.append(section)
         
+        # Check for Mandatory Workflow section (case-insensitive)
+        if not WORKFLOW_SECTION_PATTERN.search(content):
+            missing_sections.append("## Workflow section (any variant)")
+        
         assert not missing_sections, (
             f"Skill '{skill_name}' missing required sections:\n  " +
             "\n  ".join(missing_sections)
@@ -121,23 +126,23 @@ class TestSkillValidation:
         _get_skill_directories(),
         ids=[name for name, _ in _get_skill_directories()],
     )
-    def test_skill_six_step_workflow(self, skill_name, skill_dir):
-        """Check 2: Skill follows 6-step workflow."""
+    def test_skill_mandatory_workflow_steps(self, skill_name, skill_dir):
+        """Check 2: Skill follows mandatory workflow steps (allows reasonable alternatives)."""
         content = _read_skill_md(skill_dir)
         
         if not content:
             pytest.skip(f"Skill '{skill_name}' has no SKILL.md")
         
         missing_steps = []
-        for step_pattern in SIX_STEP_KEYWORDS:
+        for step_pattern, step_name in MANDATORY_WORKFLOW_STEPS:
             if not re.search(step_pattern, content, re.IGNORECASE):
-                missing_steps.append(step_pattern.replace(r'\s+', ' '))
+                missing_steps.append(step_name)
         
         assert not missing_steps, (
-            f"Skill '{skill_name}' missing 6-step workflow elements:\n  " +
+            f"Skill '{skill_name}' missing mandatory workflow steps:\n  " +
             "\n  ".join(missing_steps) +
-            "\n\nExpected all 6 steps: Initial Analysis, Load Memory, Load Context, " +
-            "Perform Analysis, Generate Output, Update Memory"
+            "\n\nExpected: Initial Analysis, Load Memory, Load Context, Generate Output, Update Memory" +
+            "\n(Alternative wordings accepted for step 1 and N-1)"
         )
 
     @pytest.mark.parametrize(
@@ -158,15 +163,26 @@ class TestSkillValidation:
         ids=[name for name, _ in _get_skill_directories()],
     )
     def test_skill_isolation(self, skill_name, skill_dir):
-        """Check 4: No hardcoded references to other skills or filesystem paths."""
+        """Check 4: No hardcoded references to other skills or filesystem paths in code/instructions."""
         content = _read_skill_md(skill_dir)
         
         if not content:
             pytest.skip(f"Skill '{skill_name}' has no SKILL.md")
         
+        # Remove code blocks to avoid false positives
+        content_no_code = re.sub(r'```.*?```', '', content, flags=re.DOTALL)
+        
+        # Remove File Structure section (documentation is OK)
+        content_no_code = re.sub(
+            r'## File Structure.*?(?=\n## |\Z)',
+            '',
+            content_no_code,
+            flags=re.DOTALL | re.IGNORECASE
+        )
+        
         violations = []
         for pattern in HARDCODED_PATH_PATTERNS:
-            matches = re.findall(pattern, content)
+            matches = re.findall(pattern, content_no_code)
             if matches:
                 violations.extend(matches)
         

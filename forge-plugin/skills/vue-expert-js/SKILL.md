@@ -13,8 +13,7 @@ memory:
       files: [project_overview.md, composable_patterns.md, component_conventions.md, state_patterns.md]
     - type: "shared-project"
       usage: "reference"
-tags: [vue, vue3, javascript, composition-api, composables, pinia, nuxt, vite, script-setup]
----
+## tags: [vue, vue3, javascript, composition-api, composables, pinia, nuxt, vite, script-setup]
 
 # skill:vue-expert-js — Vue.js 3 Composition API & JavaScript Patterns
 

@@ -23,9 +23,9 @@ sections:
   - name: "TypeScript & Tooling"
     estimatedTokens: 12
     keywords: [typescript, tooling]
+
 tags: [angular, detection, version, framework, state-management, ui-library]
 ---
-
 # Angular Context Detection - Quick Reference
 
 Minimal cues to detect an Angular project's stack so you know which other context files to load.

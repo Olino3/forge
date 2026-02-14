@@ -1,7 +1,6 @@
 ---
 name: fullstack-development
-description: Full-stack development oversight and architecture spanning frontend, backend, database, and infrastructure layers. Evaluates technology choices, enforces architectural consistency across the entire application stack, designs API contracts, manages cross-layer data flow, and ensures cohesive integration between all system tiers. Like Hephaestus orchestrating the elements of a grand automaton, this skill ensures every layer of the stack works in harmony — from the user interface down to the database and infrastructure beneath.
----
+## description: Full-stack development oversight and architecture spanning frontend, backend, database, and infrastructure layers. Evaluates technology choices, enforces architectural consistency across the entire application stack, designs API contracts, manages cross-layer data flow, and ensures cohesive integration between all system tiers. Like Hephaestus orchestrating the elements of a grand automaton, this skill ensures every layer of the stack works in harmony — from the user interface down to the database and infrastructure beneath.
 
 # Full-Stack Development Oversight
 
@@ -36,6 +35,11 @@ Full-stack development oversight evaluates 7 critical dimensions:
 **Note**: This skill provides architectural oversight and design guidance. It coordinates across layers but delegates implementation details to layer-specific skills when available.
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 
@@ -165,8 +169,27 @@ Refer to official documentation:
 
 - v1.0.0 (2026-02-12): Initial release
   - Mandatory 5-step workflow for full-stack development oversight
-  - 7 focus areas spanning all application layers
-  - Full-stack technology matrix with common stack combinations
-  - Cross-layer integration patterns and API contract design
-  - Project memory integration for stack and architecture tracking
-  - Interface-based context and memory access
+
+### Step 1: Initial Analysis
+
+Gather inputs and determine scope and requirements.
+
+### Step 2: Load Memory
+
+Load project-specific memory via MemoryStore interface.
+
+### Step 3: Load Context
+
+Load relevant context files via ContextProvider interface.
+
+### Step 4: Core Implementation
+
+Execute the skill-specific core action.
+
+### Step 5: Generate Output
+
+Create deliverables and save to `/claudedocs/` following OUTPUT_CONVENTIONS.md.
+
+### Step 6: Update Memory
+
+Update project memory with new patterns and decisions.

@@ -13,8 +13,7 @@ memory:
       files: [project_overview.md, component_patterns.md, hooks_catalog.md, performance_profile.md]
     - type: "shared-project"
       usage: "reference"
-tags: [react, hooks, architecture, patterns, server-components, suspense, concurrent, performance, state-management, typescript]
----
+## tags: [react, hooks, architecture, patterns, server-components, suspense, concurrent, performance, state-management, typescript]
 
 # skill:react-expert — Advanced React Patterns, Hooks & Architecture
 

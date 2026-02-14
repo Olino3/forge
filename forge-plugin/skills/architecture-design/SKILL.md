@@ -13,8 +13,7 @@ memory:
       files: [project_overview.md, architecture_decisions.md]
     - type: "shared-project"
       usage: "reference"
-tags: [architecture, design, patterns, system-design, hexagonal, cqrs, event-driven, layers]
----
+## tags: [architecture, design, patterns, system-design, hexagonal, cqrs, event-driven, layers]
 
 # skill:architecture-design — Software Architecture Patterns and System Design
 
@@ -113,6 +112,10 @@ skills/architecture-design/
 | **Hexagonal (Ports & Adapters)** | Domain-heavy apps, high testability | 3–10 | Medium |
 | **Clean Architecture** | Complex business logic, long-lived systems | 5–15 | Medium–High |
 | **Event-Driven** | Async workflows, decoupled systems | 5–20 | High |
+
+### Step 1: Initial Analysis
+
+Gather inputs and determine scope and requirements.
 | **CQRS** | Read/write asymmetry, complex queries | 5–15 | High |
 | **Microservices** | Large orgs, independent deployment needs | 15+ | Very High |
 | **Serverless** | Event-triggered workloads, variable traffic | 1–10 | Medium |

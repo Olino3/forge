@@ -48,6 +48,8 @@ sections:
     estimatedTokens: 20
     keywords: [open, questions]
   - name: "Risks"
+tags: [commands, brainstorming, requirements, socratic, prioritization, feasibility]
+---
     estimatedTokens: 20
     keywords: [risks]
   - name: "Estimated Scope"
@@ -62,7 +64,7 @@ sections:
   - name: "Official References"
     estimatedTokens: 20
     keywords: [official, references]
-tags: [commands, brainstorming, requirements, socratic, prioritization, feasibility]
+---
 ---
 
 # Brainstorming Patterns

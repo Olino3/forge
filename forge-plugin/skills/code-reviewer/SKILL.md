@@ -1,7 +1,6 @@
 ---
 name: code-reviewer
-description: Language-agnostic code review framework for best practices and quality assessment. Covers correctness, error handling, maintainability, SOLID principles, DRY/KISS, naming conventions, test coverage, and documentation completeness. Works across any language or framework by detecting the technology stack and loading relevant context. Use for cross-language PR reviews, architecture assessments, legacy code audits, and quality gate enforcement.
----
+## description: Language-agnostic code review framework for best practices and quality assessment. Covers correctness, error handling, maintainability, SOLID principles, DRY/KISS, naming conventions, test coverage, and documentation completeness. Works across any language or framework by detecting the technology stack and loading relevant context. Use for cross-language PR reviews, architecture assessments, legacy code audits, and quality gate enforcement.
 
 # Code Reviewer
 
@@ -32,6 +31,11 @@ This skill evaluates 8 critical dimensions **in the changed code**, independent 
 **Note**: Focus on substantive issues requiring human judgment, not style/formatting details. Reviews are performed on changed code only, using the `get-git-diff` skill to identify modifications.
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 
@@ -151,6 +155,13 @@ Use `memoryStore.update("code-reviewer", "{project-name}", ...)` to create or up
 Timestamps and staleness tracking are managed automatically by MemoryStore. See [MemoryStore Interface](../../interfaces/memory_store.md) for `update()` and `append()` method details.
 
 ---
+
+### Step 6: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `code-reviewer_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## Interface References
 

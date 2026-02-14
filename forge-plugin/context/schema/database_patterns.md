@@ -29,9 +29,9 @@ sections:
   - name: "Migration Safety Patterns"
     estimatedTokens: 68
     keywords: [migration, safety, patterns]
+
 tags: [schema, database, sql, nosql, indexes, normalization, migration, mongodb, redis]
 ---
-
 # Database Schema Patterns
 
 ## Overview

@@ -4,8 +4,7 @@ Use this template as the foundation for generating new skill SKILL.md files.
 
 ---
 name: {{skill-name}}
-description: {{2-3 sentence description with poetic flair matching The Forge theme. Explain what the skill does, what problem it solves, and the value it provides. End with a metaphor relating to Hephaestus, forge, or divine craftsmanship.}}
----
+## description: {{2-3 sentence description with poetic flair matching The Forge theme. Explain what the skill does, what problem it solves, and the value it provides. End with a metaphor relating to Hephaestus, forge, or divine craftsmanship.}}
 
 # {{Skill Title}}
 

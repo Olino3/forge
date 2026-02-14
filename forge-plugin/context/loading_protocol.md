@@ -38,8 +38,7 @@ sections:
   - name: "For Command Authors"
     estimatedTokens: 19
     keywords: [command, authors]
-tags: [context, loading, protocol, engineering, reference]
----
+## tags: [context, loading, protocol, engineering, reference]
 
 # Context Loading Protocol
 

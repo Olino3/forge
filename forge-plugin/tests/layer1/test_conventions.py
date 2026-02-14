@@ -24,7 +24,7 @@ from conftest import FORGE_DIR, extract_yaml_frontmatter
 # Constants
 # ---------------------------------------------------------------------------
 
-KEBAB_CASE_PATTERN = re.compile(r'^[a-z]+(-[a-z]+)*$')
+KEBAB_CASE_PATTERN = re.compile(r'^[a-z0-9]+(-[a-z0-9]+)*$')
 
 
 # ---------------------------------------------------------------------------
@@ -50,7 +50,8 @@ def _get_agent_files() -> list[tuple[str, Path]]:
     """Return (agent_name, config_path) for all agent configs."""
     agents_dir = FORGE_DIR / "agents"
     configs = sorted(agents_dir.glob("*.config.json"))
-    return [(p.stem, p) for p in configs]
+    # Extract agent name by removing .config.json suffix
+    return [(p.name.replace('.config.json', ''), p) for p in configs]
 
 
 def _get_command_files() -> list[tuple[str, Path]]:
@@ -169,7 +170,8 @@ class TestAgentFilePairing:
     )
     def test_agent_has_both_md_and_config(self, agent_name, config_path):
         """Each agent must have both {name}.md and {name}.config.json."""
-        md_path = config_path.with_suffix('.md')
+        # Construct .md path from agent_name (config_path is {name}.config.json)
+        md_path = config_path.parent / f"{agent_name}.md"
         
         assert md_path.exists(), (
             f"Agent '{agent_name}' has config file but missing personality file: "
@@ -240,16 +242,31 @@ class TestHookScriptStandards:
         """Hook scripts should avoid unsafe/destructive command patterns."""
         content = hook_path.read_text(encoding='utf-8')
         
-        # Patterns that are potentially destructive
+        # Remove comments and strings to avoid false positives
+        # Remove lines starting with # (comments)
+        lines = []
+        for line in content.split('\n'):
+            # Skip comment lines
+            if line.strip().startswith('#'):
+                continue
+            # Remove inline comments (but be careful with strings)
+            # This is simplified - just check if line has actual commands
+            if not line.strip():
+                continue
+            lines.append(line)
+        
+        filtered_content = '\n'.join(lines)
+        
+        # Patterns that are potentially destructive (only check in actual code)
         unsafe_patterns = [
-            (r'rm\s+-rf\s+/', "rm -rf / (recursive delete from root)"),
-            (r':\s*>\s*[^>]', ": > file (file truncation without safeguards)"),
-            (r'dd\s+if=.*of=/dev/', "dd to block device"),
+            (r'^\s*rm\s+-rf\s+/', "rm -rf / (recursive delete from root)"),
+            (r'^\s*:\s*>\s*[^>]', ": > file (file truncation without safeguards)"),
+            (r'^\s*dd\s+if=.*of=/dev/', "dd to block device"),
         ]
         
         violations = []
         for pattern, description in unsafe_patterns:
-            if re.search(pattern, content):
+            if re.search(pattern, filtered_content, re.MULTILINE):
                 violations.append(description)
         
         assert not violations, (
@@ -270,12 +287,54 @@ class TestMarkdownConventions:
         """Markdown files should use ATX-style headings (# ## ###) not Setext (=== ---)."""
         content = md_path.read_text(encoding='utf-8')
         
-        # Check for Setext-style headings (underlined with = or -)
-        # Match lines that are all === or all ---
-        setext_pattern = re.compile(r'^\s*[=\-]{3,}\s*$', re.MULTILINE)
-        setext_matches = setext_pattern.findall(content)
+        # Check for Setext-style headings: text line followed by === or ---
+        # Split into lines and check for the pattern
+        lines = content.split('\n')
+        setext_found = False
+        in_code_block = False
+        in_frontmatter = False
         
-        if setext_matches:
+        for i in range(len(lines) - 1):
+            line = lines[i]
+            current_line = line.strip()
+            next_line = lines[i + 1].strip()
+            
+            # Track frontmatter (starts with --- on line 0, ends with next ---)
+            if i == 0 and current_line == '---':
+                in_frontmatter = True
+                continue
+            if in_frontmatter and current_line == '---':
+                in_frontmatter = False
+                continue
+            if in_frontmatter:
+                continue
+            
+            # Track code blocks
+            if current_line.startswith('```'):
+                in_code_block = not in_code_block
+                continue
+            
+            # Skip if in code block
+            if in_code_block:
+                continue
+            
+            # Skip empty lines, horizontal rules, indented lines, list items
+            if (not current_line or 
+                current_line == '---' or 
+                line.startswith('  ') or 
+                line.startswith('\t') or
+                current_line.startswith('-') or
+                current_line.startswith('*') or
+                current_line.startswith('+')):
+                continue
+            
+            # Check if next line is all === or all --- (Setext underline)
+            if re.match(r'^[=]{3,}$', next_line) or re.match(r'^[-]{3,}$', next_line):
+                # This looks like a Setext heading
+                setext_found = True
+                break
+        
+        if setext_found:
             pytest.fail(
                 f"File '{rel_path}' uses Setext-style headings (underlined with === or ---). "
                 f"Prefer ATX-style headings (# ## ###) for consistency."

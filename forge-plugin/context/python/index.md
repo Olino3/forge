@@ -79,8 +79,8 @@ sections:
   - name: "Maintenance Notes"
     estimatedTokens: 29
     keywords: [maintenance]
-tags: [python, index, navigation]
 ---
+## tags: [python, index, navigation]
 
 # Python Context Files
 

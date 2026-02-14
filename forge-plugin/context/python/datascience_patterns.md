@@ -35,9 +35,9 @@ sections:
   - name: "Official Documentation"
     estimatedTokens: 25
     keywords: [official, documentation]
+
 tags: [python, pandas, numpy, datascience, performance, validation]
 ---
-
 # Data Science Patterns (Pandas/NumPy)
 
 Quick reference for reviewing data science code. For detailed examples, see official documentation.

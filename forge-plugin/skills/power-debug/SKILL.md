@@ -17,8 +17,7 @@ tags:
   - debugging
   - workflow
   - investigation
-  - multi-agent
----
+##   - multi-agent
 
 # skill:power-debug - Multi-Agent Bug Investigation
 

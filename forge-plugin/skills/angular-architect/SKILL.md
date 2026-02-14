@@ -13,8 +13,7 @@ memory:
       files: [project_overview.md, architecture_decisions.md, module_map.md, patterns_catalog.md]
     - type: "shared-project"
       usage: "reference"
-tags: [angular, architecture, enterprise, patterns, modules, state-management, lazy-loading, monorepo, micro-frontends, standalone-components]
----
+## tags: [angular, architecture, enterprise, patterns, modules, state-management, lazy-loading, monorepo, micro-frontends, standalone-components]
 
 # skill:angular-architect — Enterprise Angular Architecture & Patterns
 

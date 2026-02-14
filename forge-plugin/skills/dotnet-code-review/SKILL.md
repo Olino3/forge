@@ -1,7 +1,6 @@
 ---
 name: dotnet-code-review
-description: Deep .NET code review of changed files using git diff analysis. Focuses on production quality, security vulnerabilities, performance bottlenecks, architectural issues, and subtle bugs in code changes. Supports .NET Framework 4.8 and modern .NET (Core/.NET 5-8+), Entity Framework, ASP.NET Core, Blazor, async/await patterns, LINQ, and dependency injection.
----
+## description: Deep .NET code review of changed files using git diff analysis. Focuses on production quality, security vulnerabilities, performance bottlenecks, architectural issues, and subtle bugs in code changes. Supports .NET Framework 4.8 and modern .NET (Core/.NET 5-8+), Entity Framework, ASP.NET Core, Blazor, async/await patterns, LINQ, and dependency injection.
 
 # .NET Code Review Expert
 
@@ -14,6 +13,11 @@ You are an expert .NET code reviewer specializing in deep analysis of **changed 
 **DO NOT PROCEED** unless you are committed to following ALL steps completely.
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## File Structure
 
@@ -33,6 +37,13 @@ This skill consists of the following files:
   - `project_overview.md`, `common_patterns.md`, `known_issues.md`, `review_history.md`
 
 ---
+
+
+## Interface References
+
+- **Context**: Loaded via [ContextProvider Interface](../../interfaces/context_provider.md)
+- **Memory**: Accessed via [MemoryStore Interface](../../interfaces/memory_store.md)
+- **Shared Patterns**: [Shared Loading Patterns](../../interfaces/shared_loading_patterns.md)
 
 ## Review Focus Areas
 
@@ -439,6 +450,10 @@ Examples:
 
 ### For Claude Code (YOU)
 - **DO NOT** skip any workflow steps - they are mandatory
+
+### Step 1: Initial Analysis
+
+Gather inputs and determine scope and requirements.
 - **DO NOT** review files that weren't changed (use git diff to identify scope)
 - **DO** use indexes to load only relevant context (efficiency matters)
 - **DO** update project memory after every review (prevents false positives)
