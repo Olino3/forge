@@ -8,7 +8,7 @@ imports:
   - shared/model-gemini.md
 engine:
   id: copilot
-  model: gemini-3-pro
+  model: gemini-3-pro-preview
 on:
   milestone:
     types: [created]

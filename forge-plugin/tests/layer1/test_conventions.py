@@ -84,6 +84,18 @@ def _get_hook_scripts() -> list[tuple[str, Path]]:
     return [(h.stem, h) for h in hooks]
 
 
+def _get_markdown_files() -> list[tuple[str, Path]]:
+    """Get all markdown files in forge-plugin/."""
+    md_files = []
+    for md_path in sorted(FORGE_DIR.rglob("*.md")):
+        # Skip vendor directories and caches
+        if any(part.startswith('.') or part == '__pycache__' for part in md_path.parts):
+            continue
+        rel_path = md_path.relative_to(FORGE_DIR)
+        md_files.append((str(rel_path), md_path))
+    return md_files
+
+
 # ---------------------------------------------------------------------------
 # Test Classes
 # ---------------------------------------------------------------------------
@@ -249,21 +261,10 @@ class TestHookScriptStandards:
 class TestMarkdownConventions:
     """Check 5: ATX heading consistency."""
 
-    def _get_markdown_files(self) -> list[tuple[str, Path]]:
-        """Get all markdown files in forge-plugin/."""
-        md_files = []
-        for md_path in sorted(FORGE_DIR.rglob("*.md")):
-            # Skip vendor directories and caches
-            if any(part.startswith('.') or part == '__pycache__' for part in md_path.parts):
-                continue
-            rel_path = md_path.relative_to(FORGE_DIR)
-            md_files.append((str(rel_path), md_path))
-        return md_files
-
     @pytest.mark.parametrize(
         "rel_path,md_path",
-        lambda self: self._get_markdown_files(),
-        ids=lambda rel_path_md_path: rel_path_md_path[0],
+        _get_markdown_files(),
+        ids=[rel_path for rel_path, _ in _get_markdown_files()],
     )
     def test_markdown_uses_atx_headings(self, rel_path, md_path):
         """Markdown files should use ATX-style headings (# ## ###) not Setext (=== ---)."""

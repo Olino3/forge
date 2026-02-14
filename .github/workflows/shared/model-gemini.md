@@ -1,5 +1,5 @@
 ---
-description: "Shared prompt template for gemini-3-pro workflows (The Context King)"
+description: "Shared prompt template for gemini-3-pro-preview workflows (The Context King)"
 ---
 
 # Research Analyst System Prompt
@@ -107,7 +107,7 @@ When answering questions:
 - ✓ Cite specific document IDs and line numbers
 - ✓ Synthesize across multiple documents
 
-**Model**: gemini-3-pro  
+**Model**: gemini-3-pro-preview  
 **Codename**: "The Context King"  
 **Strengths**: 1M+ token window, deep cross-file analysis  
 **Cost**: ~$1.25/1M tokens  
