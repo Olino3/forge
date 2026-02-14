@@ -25,6 +25,8 @@ jobs:
   layer1-ci:
     name: "Layer 1 — Static/CI Tests"
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -58,6 +60,8 @@ jobs:
   validate-agents:
     name: "Validate Agent Configs"
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -77,6 +81,8 @@ jobs:
   validate-skills:
     name: "Validate Skill Structure"
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -96,6 +102,8 @@ jobs:
   validate-hooks:
     name: "Validate Hook Quality"
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -109,6 +117,8 @@ jobs:
   validate-xrefs:
     name: "Validate Cross-References"
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -128,6 +138,8 @@ jobs:
   validate-context:
     name: "Validate Context Integrity"
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -147,6 +159,8 @@ jobs:
   validate-conventions:
     name: "Validate Conventions"
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -166,6 +180,8 @@ jobs:
   detect-duplication:
     name: "Detect Content Duplication"
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -185,6 +201,8 @@ jobs:
   health-aggregator:
     name: "Health Score Aggregator"
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     needs:
       - layer1-ci
       - validate-agents
@@ -218,6 +236,8 @@ jobs:
   layer2-hooks:
     name: "Layer 2 — Integration Tests"
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     needs: health-aggregator
     steps:
       - name: Checkout repository
@@ -249,6 +269,8 @@ jobs:
   layer2-e2e:
     name: "E2E Tests (claude CLI)"
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     needs: layer2-hooks
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     continue-on-error: true
