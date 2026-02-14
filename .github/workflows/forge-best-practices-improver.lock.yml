@@ -27,7 +27,7 @@
 #     - shared/forge-conventions.md
 #     - shared/forge-pr-creator.md
 #
-# frontmatter-hash: 4f4aa16a37b61712cdc9f2878396d049956985cf7cba53980f6e6fc51accd4a7
+# frontmatter-hash: b24e468d1c9581ee6b678e9a621a88af106ed8d020bcdda6283b2e81a114bac9
 
 name: "⚠️ DEPRECATED: Forge Best Practices Improver"
 "on":

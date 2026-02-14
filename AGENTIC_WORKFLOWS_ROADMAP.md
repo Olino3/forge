@@ -27,6 +27,47 @@ This document tracks **planned future work** for The Forge's agentic workflows. 
 
 ---
 
+## AI Model Strategy
+
+The Forge uses **model tiering** to optimize cost vs. quality for each workflow type. Model selection is configured via `engine.model` in workflow frontmatter, with specialized prompt templates in `.github/workflows/shared/model-*.md`.
+
+### Model Tiers
+
+| Model | Nickname | Strengths | Cost/1M Tokens | Use Case |
+|-------|----------|-----------|----------------|----------|
+| **gpt-5.1-codex-mini** | "The Scalpel" | High-speed tool use, grep mastery, massive refactors | ~$1.50 | Mechanical operations, pattern matching |
+| **gpt-4.1** | "The Surgeon" | Precise editing, diff generation, low hallucination | ~$2.00 | Precision editing, conservative curation |
+| **gemini-3-pro** | "The Context King" | 1M+ token window, deep cross-file analysis | ~$1.25 | Large-context aggregation, milestone tracking |
+| **claude-opus-4.6** | "The Strat" | Logic sanity, strategic reasoning, safety checks | ~$15.00 | Strategic analysis only (weekly runs) |
+
+### Model-Prompt Matrix
+
+| Workflow | Model | Rationale |
+|----------|-------|-----------|
+| **Forge Component Improver** | gpt-5.1-codex-mini | Mechanical file operations, tool-heavy, rule-based checking |
+| **Forge Doc Maintainer** | gpt-4.1 | Precision editing, character-perfect diffs, factual accuracy |
+| **Forge Milestone Lifecycle** | gemini-3-pro | 1M+ context to ingest all milestones, issues, PRs |
+| **Forge Health Dashboard** | gemini-3-pro | Aggregate ~200+ files, cross-ref tallies, trend analysis |
+| **Forge Release Notes Generator** | gpt-4.1 | Structured classification, low hallucination critical |
+| **Forge Context Generator** | gpt-5.1-codex-mini | Template expansion from skill content, mechanical generation |
+| **Forge Dependency Sentinel** | gpt-5.1-codex-mini | Pattern matching on version strings, grep-based scanning |
+| **Forge Test Coverage Improver** | gpt-5.1-codex-mini | Test generation from patterns, codex-mini sweet spot |
+| **Forge Stale Gardener** | gpt-4.1 | Conservative judgment, decision tree logic, grace periods |
+| **Forge Project Manager Agent** | claude-opus-4.6 | Strategic PM analysis, ROADMAP synthesis, weekly only |
+
+### Prompt Templates
+
+Each model tier has a specialized system prompt template in `.github/workflows/shared/`:
+
+- **model-codex-mini.md**: Tool-Use-First approach, structured JSON output, anti-patterns list
+- **model-gpt4.md**: Precision Editor framework, before/after examples, self-verification checklist
+- **model-gemini.md**: XML data delimiting, chain-of-thought protocol, multi-document QA
+- **model-claude-opus.md**: Strategic Advisor framework, Socratic prompting, execution plans
+
+Workflows import the appropriate template via `imports: [shared/model-*.md]` in frontmatter.
+
+---
+
 ## Planned Work
 
 ### Phase 8 — Rollout, Validation, and Tuning

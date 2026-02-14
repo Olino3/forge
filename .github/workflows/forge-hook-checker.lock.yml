@@ -28,7 +28,7 @@
 #     - shared/forge-issue-creator.md
 #     - shared/forge-quality-issue-template.md
 #
-# frontmatter-hash: 11e5da61d0ddd978cbe5ab9cf371ddbf4b364e4ca64b06eafe5087f4e97c4c8a
+# frontmatter-hash: 9ae9dd96877b1aa1010ff1ab000bcdeb41ca9ea40ba30c7d8ced8cca8f5eefa6
 
 name: "Forge Hook Quality Checker"
 "on":

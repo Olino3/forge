@@ -28,7 +28,7 @@
 #     - shared/forge-issue-creator.md
 #     - shared/forge-quality-issue-template.md
 #
-# frontmatter-hash: a706d6559e08cf97aa6ae9cf28d945ccddb9f44d56043b8de335c1ec0178c571
+# frontmatter-hash: 0d903d1038dda73be9413a2c527c0ef9f657dd3ae1819a93ac26db3406c0abbd
 
 name: "Forge Agent Config Validator"
 "on":

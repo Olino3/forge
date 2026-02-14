@@ -28,7 +28,7 @@
 #     - shared/forge-issue-creator.md
 #     - shared/forge-quality-issue-template.md
 #
-# frontmatter-hash: de367ac58f4e6ea4c5d72748ea157bad0e6fe4ae2af156aab04d5280cb6034ed
+# frontmatter-hash: 42b65e1a50a07f51e9b5acb8c8fea81214e59b4e6c38684e5e07c2689097ce81
 
 name: "Forge Cross-Reference Checker"
 "on":

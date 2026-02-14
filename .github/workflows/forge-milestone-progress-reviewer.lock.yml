@@ -28,7 +28,7 @@
 #     - shared/forge-issue-creator.md
 #     - shared/forge-pr-creator.md
 #
-# frontmatter-hash: faa5851740e55ed98db6346ecb70f719162c515223f1cd494a2a8330772be283
+# frontmatter-hash: bbc4bef37fae40dc855d3a555a4d45543803a263f93c44dd770c0674299781f8
 
 name: "⚠️ DEPRECATED: Forge Milestone Progress Reviewer"
 "on":

@@ -27,7 +27,7 @@
 #     - shared/forge-conventions.md
 #     - shared/forge-pr-creator.md
 #
-# frontmatter-hash: b25114e8582e9acf3b48880c941102c788aa450f8376c683c36f1b6ea05215b7
+# frontmatter-hash: 59c1e1b76989b841fbdbb0daff3275d265b73a383912fddaefd904a0abacdc0c
 
 name: "⚠️ DEPRECATED: Forge Doc Unbloat"
 "on":

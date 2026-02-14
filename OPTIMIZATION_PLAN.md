@@ -754,36 +754,36 @@ Only proceed if conclusion is "failure" AND this is the 2nd consecutive failure
 - [x] **Remove PR triggers** from 8 migrated workflows
 - [x] **Update documentation**: AGENTIC_FORGE.md, AGENTIC_WORKFLOWS_ROADMAP.md, CLAUDE.md
 
-### Phase 3: Pipeline Consolidation (Week 6-8)
+### Phase 3: Pipeline Consolidation (Week 6-8) ✅ COMPLETE
 
 > **Goal**: Replace fragmented workflows with mega-workflows.
 
-- [ ] **Create `forge-component-improver.md`**:
+- [x] **Create `forge-component-improver.md`**:
   - Merge prompt logic from `best-practices-improver` + `skill-simplifier`
   - Add 3-stage structure (Analyze → Improve/Simplify → Generate PR) each stage should still be a seperate action with dependency on the previous stage
   - Add `paths` filter for forge-plugin directories
   - Run `gh aw compile` — verify 0 errors
-- [ ] **Create `forge-doc-maintainer.md`**:
+- [x] **Create `forge-doc-maintainer.md`**:
   - Merge prompt logic from `doc-sync` + `doc-unbloat`
   - Consolidate schedule to Mon + Thu
   - Run `gh aw compile` — verify 0 errors
-- [ ] **Create `forge-milestone-lifecycle.md`**:
+- [x] **Create `forge-milestone-lifecycle.md`**:
   - Merge prompt logic from `milestone-planner` + `milestone-tracker` + `milestone-progress-reviewer`
   - Add event-routing logic in prompt
   - Run `gh aw compile` — verify 0 errors
-- [ ] **Disable replaced workflows** (remove triggers, add deprecation header)
+- [x] **Disable replaced workflows** (remove triggers, add deprecation header)
 - [ ] **Run consolidated workflows via `workflow_dispatch`** — verify output quality
 - [ ] **Monitor for 2 weeks** — compare output quality vs. original workflows
 - [ ] **Delete deprecated workflow files** and their `.lock.yml` counterparts
 
-### Phase 4: Model Tiering (Week 9-10)
+### Phase 4: Model Tiering (Week 9-10) ✅ COMPLETE
 
 > **Goal**: Assign models and tune prompts per the Model-Prompt Matrix.
 
-- [ ] **Evaluate gh-aw model selection support** — determine if model can be specified in frontmatter or if it requires engine-level configuration
-- [ ] **Rewrite system prompts** for each workflow per Model-Prompt Matrix (Section 5)
-- [ ] **Create prompt templates** in `shared/` for each model tier
-- [ ] **Document model assignments** in AGENTIC_WORKFLOWS_ROADMAP.md
+- [x] **Evaluate gh-aw model selection support** — determine if model can be specified in frontmatter or if it requires engine-level configuration
+- [x] **Rewrite system prompts** for each workflow per Model-Prompt Matrix (Section 5)
+- [x] **Create prompt templates** in `shared/` for each model tier
+- [x] **Document model assignments** in AGENTIC_WORKFLOWS_ROADMAP.md
   
 
 ### Phase 5: Cleanup and Documentation (Week 11-12)

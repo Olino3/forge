@@ -27,7 +27,7 @@
 #     - shared/forge-conventions.md
 #     - shared/forge-pr-creator.md
 #
-# frontmatter-hash: ffed6f1e9f954034abc9fe91914c2f7de3194794984abdffe55b30908a09a93c
+# frontmatter-hash: ad909f611a59947926173ceef884bf8ef66b4f6716ee3821666a3722bc6e0ec6
 
 name: "Forge Convention Enforcer"
 "on":

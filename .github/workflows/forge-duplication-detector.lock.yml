@@ -28,7 +28,7 @@
 #     - shared/forge-issue-creator.md
 #     - shared/forge-quality-issue-template.md
 #
-# frontmatter-hash: e6d03a609ad9be116b55be15cd82aceeed2e275128b71d181814d9d857a391a7
+# frontmatter-hash: 94ab734a815c0d8cdfd7f412cbbf04c3ca42a1bc326b4bc328e87123e7dc680d
 
 name: "Forge Duplication Detector"
 "on":

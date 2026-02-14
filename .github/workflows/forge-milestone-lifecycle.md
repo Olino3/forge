@@ -5,6 +5,10 @@ imports:
   - shared/forge-issue-creator.md
   - shared/forge-pr-creator.md
   - shared/forge-conventions.md
+  - shared/model-gemini.md
+engine:
+  id: copilot
+  model: gemini-3-pro
 on:
   milestone:
     types: [created]

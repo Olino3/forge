@@ -28,7 +28,7 @@
 #     - shared/forge-issue-creator.md
 #     - shared/forge-quality-issue-template.md
 #
-# frontmatter-hash: 4e6bbcbd0d62ddabdcf15a1bb9aa66304e29f24ca905e1a4173517a65e4210a1
+# frontmatter-hash: 147a5a2d20f10fe123b1d176ea06b0708ed3b4345c63d76a6a97778caf21ab3e
 
 name: "Forge Context Pruner & Maintainer"
 "on":

@@ -27,7 +27,7 @@
 #     - shared/forge-conventions.md
 #     - shared/forge-issue-creator.md
 #
-# frontmatter-hash: 96ec60d0a02590547a6fc1c41668da4f12c1159d1fe44958595918306e4b568d
+# frontmatter-hash: 6691c9d3efdee34414b134c00e27e8ea210eed3a3ad459ef310927571efc3161
 
 name: "Forge Feature Decomposer"
 "on":

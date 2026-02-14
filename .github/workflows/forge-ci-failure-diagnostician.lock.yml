@@ -27,7 +27,7 @@
 #     - shared/forge-conventions.md
 #     - shared/forge-pr-creator.md
 #
-# frontmatter-hash: d46a0b94fe77559e1f62f22eaec80359d2ff7ec8fa2519485833f5517f4c2513
+# frontmatter-hash: 74c227a96fd7ca8ac6b4b94672e8d7969a14c8b1b94bd4e0bcb25c252e590a44
 
 name: "Forge CI Failure Diagnostician"
 "on":

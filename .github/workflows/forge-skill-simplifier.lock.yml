@@ -27,7 +27,7 @@
 #     - shared/forge-conventions.md
 #     - shared/forge-pr-creator.md
 #
-# frontmatter-hash: eb1e91dbf98d9136e80a98d87ec115c244b6393582019bf9e96e798f4a8f7390
+# frontmatter-hash: c54d2f968344835a18c7ae1522ff37c54767ae1c32fd14ad003750458b0cfdfc
 
 name: "⚠️ DEPRECATED: Forge Skill Simplifier"
 "on":

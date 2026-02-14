@@ -27,7 +27,7 @@
 #     - shared/forge-conventions.md
 #     - shared/forge-issue-creator.md
 #
-# frontmatter-hash: 535bfdcf76c82f4dc0544f90141e7e5961b02d99c6fbbc855dc56f1feaea378a
+# frontmatter-hash: 8efb8e2ef12c0567d5a390e1ab5408ed7328536cea6d2ec0795455a813675d66
 
 name: "Forge Issue Triage Agent"
 "on":

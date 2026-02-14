@@ -4,6 +4,10 @@ imports:
   - shared/forge-base.md
   - shared/forge-issue-creator.md
   - shared/forge-conventions.md
+  - shared/model-gpt4.md
+engine:
+  id: copilot
+  model: gpt-4.1
 on:
   schedule: "weekly on saturday"
   workflow_dispatch:

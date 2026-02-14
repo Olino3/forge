@@ -27,7 +27,7 @@
 #     - shared/forge-conventions.md
 #     - shared/forge-pr-creator.md
 #
-# frontmatter-hash: 5c64cde43cdf1d8d9b2fe9700cf3c7195615bdcb051e2b094d7bc580345f0d09
+# frontmatter-hash: f83531b810fe2291cbd06de6299784bb4a9a9aff8e1c81033a0721d98c427ede
 
 name: "⚠️ DEPRECATED: Forge Doc Sync"
 "on":
