@@ -27,6 +27,19 @@ safe-outputs:
 
 Evaluate milestone and feature delivery progress on each PR. Identify gaps in work coverage and create remediation issues (work items or features) to maintain milestone trajectory.
 
+## IMMEDIATE MILESTONE CHECK
+
+**CRITICAL: Execute this check BEFORE any detailed analysis to avoid wasted runs.**
+
+1. Check if PR title or body contains issue references (#NNN pattern or "Fixes #NNN")
+2. Check if PR has a milestone field assigned
+3. If NEITHER condition is met:
+   - Output "No milestone association detected. PR is not milestone-related. Exiting."
+   - Stop immediately without further analysis
+4. If EITHER condition is met, proceed to Loop Prevention checks
+
+Do NOT perform detailed Association Detection Hierarchy analysis, issue fetching, or milestone metadata collection before completing this quick check.
+
 ## Loop Prevention
 
 If the triggering PR meets any of these conditions, do nothing:

@@ -6,6 +6,24 @@ This guide explains, in plain language, how The Forge's **22 agentic workflows**
 
 ---
 
+## Recent Updates (Phase 1 Optimization — February 2026)
+
+**Quick Wins Implemented**: The Forge has completed Phase 1 of workflow optimization to eliminate waste and reduce no-op runs:
+
+- ✅ **Issue Triage Agent decommissioned** — Manual dispatch only (was 96% no-op rate)
+- ✅ **Feature Decomposer optimized** — Now only fires on label events, with immediate label check before any processing
+- ✅ **Path filters added** — 5 PR-triggered workflows now only run when relevant files change:
+  - Best Practices Improver: `forge-plugin/skills/**, agents/**, commands/**, context/**`
+  - Skill Simplifier: `forge-plugin/skills/**`
+  - Convention Enforcer: `forge-plugin/**`
+  - Duplication Detector: `forge-plugin/**`
+  - Context Pruner: `forge-plugin/context/**`
+- ✅ **Milestone Progress Reviewer optimized** — Immediate exit check for non-milestone PRs
+
+**Net Impact**: Estimated 60-70% reduction in unnecessary workflow runs. See [OPTIMIZATION_PLAN.md](OPTIMIZATION_PLAN.md) for full details.
+
+---
+
 ## Table of Contents
 
 - [The One-Sentence Summary](#the-one-sentence-summary)
@@ -387,17 +405,17 @@ All 22 workflows at a glance, organized by when they run:
 
 | Workflow | Trigger | Creates | What it checks |
 |---|---|---|---|
-| **Skill Simplifier** | PR to `develop`/`main` | Draft PR | Verbosity in skill documentation |
-| **Duplication Detector** | PR to `develop`/`main` | Issue | Repeated content across components |
-| **Context Pruner** | PR to `develop`/`main` | Issue | Frontmatter validity, stale refs, index integrity |
-| **Convention Enforcer** | PR to `develop`/`main` | Draft PR | Naming, formatting, convention adherence |
-| **Best Practices Improver** | PR to `develop` | Draft PR (on your branch) | Alignment with Claude Code best practices |
-| **Milestone Progress Reviewer** | PR (milestone-associated) | Issue + PR comment | Milestone gaps, progress tracking, remediation work items |
+| **Skill Simplifier** | PR to `develop`/`main` (skills changed) | Draft PR | Verbosity in skill documentation |
+| **Duplication Detector** | PR to `develop`/`main` (forge-plugin changed) | Issue | Repeated content across components |
+| **Context Pruner** | PR to `develop`/`main` (context changed) | Issue | Frontmatter validity, stale refs, index integrity |
+| **Convention Enforcer** | PR to `develop`/`main` (forge-plugin changed) | Draft PR | Naming, formatting, convention adherence |
+| **Best Practices Improver** | PR to `develop` (skills/agents/commands/context changed) | Draft PR (on your branch) | Alignment with Claude Code best practices |
+| **Milestone Progress Reviewer** | PR (milestone-associated only) | Issue + PR comment | Milestone gaps, progress tracking, remediation work items |
 | **Context Generator** | Push to `main` (post-merge) | Draft PR | Missing context files for new skills |
 | **CI Failure Diagnostician** | `Forge Tests` workflow fails (2nd consecutive) | Draft PR | Root cause analysis and proposed fixes for test failures |
-| **Issue Triage Agent** | Issue opened/reopened | Issue | Labels, priority, assignment recommendations |
+| **~~Issue Triage Agent~~** | ~~Issue opened/reopened~~ **DECOMMISSIONED** (manual dispatch only) | ~~Issue~~ | ~~Labels, priority, assignment recommendations~~ |
 | **Milestone Planner** | Milestone created | Issue (multiple) | Feature decomposition and issue association |
-| **Feature Decomposer** | Issue labeled `milestone-feature` | Issue (multiple) | Decomposes features into Copilot-assignable work items |
+| **Feature Decomposer** | Issue labeled `milestone-feature` (optimized) | Issue (multiple) | Decomposes features into Copilot-assignable work items |
 | **Release Notes Generator** | Tag push or release publish | Issue | Categorized changelog from merged PRs |
 
 ### Scheduled workflows (run on a timer)
@@ -430,7 +448,7 @@ Every workflow output is labeled and prefixed:
 | `[hook-quality]` | Hook Quality Checker | Script issues |
 | `[duplication]` | Duplication Detector | Repeated content |
 | `[context-maintenance]` | Context Pruner | Stale/broken context |
-| `[triage]` | Issue Triage Agent | Intake recommendation |
+| ~~`[triage]`~~ | ~~Issue Triage Agent~~ | ~~Intake recommendation~~ (DECOMMISSIONED) |
 | `[Feature]` | Milestone Planner | Feature decomposition |
 | `[milestone]` | Milestone Tracker | Progress report |
 | `[pm]` | Project Manager Agent | Roadmap execution plan |

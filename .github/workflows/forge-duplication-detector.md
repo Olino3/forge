@@ -9,6 +9,8 @@ on:
   pull_request:
     types: [opened, synchronize]
     branches: [develop, main]
+    paths:
+      - "forge-plugin/**"
   workflow_dispatch:
 permissions:
   contents: read

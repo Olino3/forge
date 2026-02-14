@@ -1,13 +1,14 @@
 ---
-description: "Triage new issues with labels, priority, and assignment recommendations"
+description: "DECOMMISSIONED — Triage new issues with labels, priority, and assignment recommendations (manual dispatch only)"
 imports:
   - shared/forge-base.md
   - shared/forge-issue-creator.md
   - shared/forge-conventions.md
 on:
-  issues:
-    types: [opened, reopened]
   workflow_dispatch:
+# DECOMMISSIONED: 96% no-op rate, low value in single-maintainer project
+# issues:
+#   types: [opened, reopened]
 permissions:
   contents: read
   issues: read

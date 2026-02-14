@@ -8,6 +8,11 @@ on:
   pull_request:
     types: [opened, synchronize]
     branches: [develop]
+    paths:
+      - "forge-plugin/skills/**"
+      - "forge-plugin/agents/**"
+      - "forge-plugin/commands/**"
+      - "forge-plugin/context/**"
   workflow_dispatch:
 permissions:
   contents: read
