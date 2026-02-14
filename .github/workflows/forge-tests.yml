@@ -21,6 +21,9 @@ on:
       - 'forge-plugin/**'
       - '.github/workflows/forge-tests.yml'
 
+permissions:
+  contents: read
+
 jobs:
   layer1-ci:
     name: "Layer 1 — Static/CI Tests"
