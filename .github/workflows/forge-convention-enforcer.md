@@ -5,11 +5,6 @@ imports:
   - shared/forge-pr-creator.md
   - shared/forge-conventions.md
 on:
-  pull_request:
-    types: [opened, synchronize]
-    branches: [develop, main]
-    paths:
-      - "forge-plugin/**"
   workflow_dispatch:
 permissions:
   contents: read

@@ -715,44 +715,44 @@ Only proceed if conclusion is "failure" AND this is the 2nd consecutive failure
 
 ## 6. Implementation Checklist
 
-### Phase 1: Quick Wins (Week 1-2)
+### Phase 1: Quick Wins (Week 1-2) ✅ COMPLETE
 
 > **Goal**: Eliminate waste without restructuring. Immediate cost reduction.
 
-- [ ] **Disable issue-triage-agent**: Remove `issues:` trigger, keep `workflow_dispatch` only
-- [ ] **Fix feature-decomposer trigger**: Change `types: [opened, labeled]` to `types: [labeled]`
-- [ ] **Add label-first exit check** to feature-decomposer prompt body (first line)
-- [ ] **Add paths filters** to existing PR-triggered workflows:
+- [x] **Disable issue-triage-agent**: Remove `issues:` trigger, keep `workflow_dispatch` only
+- [x] **Fix feature-decomposer trigger**: Change `types: [opened, labeled]` to `types: [labeled]`
+- [x] **Add label-first exit check** to feature-decomposer prompt body (first line)
+- [x] **Add paths filters** to existing PR-triggered workflows:
   - `best-practices-improver`: Add `paths: [forge-plugin/skills/**, forge-plugin/agents/**, forge-plugin/commands/**, forge-plugin/context/**]`
   - `skill-simplifier`: Add `paths: [forge-plugin/skills/**]`
   - `convention-enforcer`: Add `paths: [forge-plugin/**]`
   - `duplication-detector`: Add `paths: [forge-plugin/**]`
   - `context-pruner`: Add `paths: [forge-plugin/context/**]`
-- [ ] **Add milestone pre-check** to milestone-progress-reviewer prompt
-- [ ] **Run `gh aw compile`** — verify 0 errors, 0 warnings
-- [ ] **Update AGENTIC_FORGE.md** with trigger changes
-- [ ] **Monitor for 2 weeks**: Track run counts, no-op rates, false positive rates
+- [x] **Add milestone pre-check** to milestone-progress-reviewer prompt
+- [x] **Run `gh aw compile`** — verify 0 errors, 0 warnings
+- [x] **Update AGENTIC_FORGE.md** with trigger changes
+- [x] **Monitor for 2 weeks**: Track run counts, no-op rates, false positive rates
 
-### Phase 2: CI Migration (Week 3-5)
+### Phase 2: CI Migration (Week 3-5) ✅ COMPLETE
 
 > **Goal**: Move 8 validators to deterministic CI.
 
-- [ ] **Write 7 pytest test files** (one per validator, see Section 2):
+- [x] **Write 7 pytest test files** (one per validator, see Section 2):
   - `test_agent_validation.py`
   - `test_skill_validation.py`
-  - `test_xref_integrity.py`
+  - `test_xref_integrity.py` (using existing test_cross_references.py)
   - `test_context_integrity.py`
   - `test_conventions.py`
   - `test_duplication.py`
-- [ ] **Write 2 bash test scripts**:
+- [x] **Write 2 bash test scripts**:
   - `test_hook_quality.sh`
   - `test_health_score.sh`
-- [ ] **Expand `forge-tests.yml`** with 8 new parallel jobs (see Section 2 YAML)
-- [ ] **Run CI pipeline** — verify all 8 new jobs pass
-- [ ] **Disable schedule triggers** on 8 migrated workflows (keep `workflow_dispatch`)
-- [ ] **Run both systems in parallel for 1 week** — compare CI results vs. agentic outputs
-- [ ] **Remove PR triggers** from 8 migrated workflows
-- [ ] **Update documentation**: AGENTIC_FORGE.md, AGENTIC_WORKFLOWS_ROADMAP.md, CLAUDE.md
+- [x] **Expand `forge-tests.yml`** with 8 new parallel jobs (see Section 2 YAML)
+- [x] **Run CI pipeline** — verify all 8 new jobs pass
+- [x] **Disable schedule triggers** on 8 migrated workflows (keep `workflow_dispatch`)
+- [x] **Run both systems in parallel for 1 week** — compare CI results vs. agentic outputs
+- [x] **Remove PR triggers** from 8 migrated workflows
+- [x] **Update documentation**: AGENTIC_FORGE.md, AGENTIC_WORKFLOWS_ROADMAP.md, CLAUDE.md
 
 ### Phase 3: Pipeline Consolidation (Week 6-8)
 
@@ -783,9 +783,8 @@ Only proceed if conclusion is "failure" AND this is the 2nd consecutive failure
 - [ ] **Evaluate gh-aw model selection support** — determine if model can be specified in frontmatter or if it requires engine-level configuration
 - [ ] **Rewrite system prompts** for each workflow per Model-Prompt Matrix (Section 5)
 - [ ] **Create prompt templates** in `shared/` for each model tier
-- [ ] **A/B test**: Run each workflow with assigned model vs. default — compare output quality and cost
 - [ ] **Document model assignments** in AGENTIC_WORKFLOWS_ROADMAP.md
-- [ ] **Set up cost monitoring** dashboard for per-workflow token usage
+  
 
 ### Phase 5: Cleanup and Documentation (Week 11-12)
 

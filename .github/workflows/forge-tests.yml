@@ -50,10 +50,175 @@ jobs:
       - name: Run shellcheck linting
         run: bash forge-plugin/tests/layer1/test_shellcheck.sh
 
+  # -------------------------------------------------------------------------
+  # PHASE 2 VALIDATION JOBS (Migrated from agentic workflows)
+  # Run in parallel with layer1-ci - validate structure and conventions
+  # -------------------------------------------------------------------------
+
+  validate-agents:
+    name: "Validate Agent Configs"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install pytest pyyaml jsonschema
+
+      - name: Run agent validation tests
+        working-directory: forge-plugin/tests
+        run: python -m pytest layer1/test_agent_validation.py -v --tb=short
+
+  validate-skills:
+    name: "Validate Skill Structure"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install pytest pyyaml
+
+      - name: Run skill validation tests
+        working-directory: forge-plugin/tests
+        run: python -m pytest layer1/test_skill_validation.py -v --tb=short
+
+  validate-hooks:
+    name: "Validate Hook Quality"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y jq shellcheck
+
+      - name: Run hook quality checks
+        run: bash forge-plugin/tests/layer1/test_hook_quality.sh
+
+  validate-xrefs:
+    name: "Validate Cross-References"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install pytest pyyaml jsonschema
+
+      - name: Run cross-reference validation tests
+        working-directory: forge-plugin/tests
+        run: python -m pytest layer1/test_cross_references.py -v --tb=short
+
+  validate-context:
+    name: "Validate Context Integrity"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install pytest pyyaml
+
+      - name: Run context integrity tests
+        working-directory: forge-plugin/tests
+        run: python -m pytest layer1/test_context_integrity.py -v --tb=short
+
+  validate-conventions:
+    name: "Validate Conventions"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install pytest pyyaml
+
+      - name: Run convention validation tests
+        working-directory: forge-plugin/tests
+        run: python -m pytest layer1/test_conventions.py -v --tb=short
+
+  detect-duplication:
+    name: "Detect Content Duplication"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install pytest
+
+      - name: Run duplication detection tests
+        working-directory: forge-plugin/tests
+        run: python -m pytest layer1/test_duplication.py -v --tb=short
+
+  health-aggregator:
+    name: "Health Score Aggregator"
+    runs-on: ubuntu-latest
+    needs:
+      - layer1-ci
+      - validate-agents
+      - validate-skills
+      - validate-hooks
+      - validate-xrefs
+      - validate-context
+      - validate-conventions
+      - detect-duplication
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Generate health report
+        run: bash forge-plugin/tests/layer1/test_health_score.sh
+
+      - name: Upload health report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: forge-health-report
+          path: forge-plugin/tests/.health-report.json
+          retention-days: 30
+
+  # -------------------------------------------------------------------------
+  # LAYER 2 INTEGRATION TESTS
+  # -------------------------------------------------------------------------
+
   layer2-hooks:
     name: "Layer 2 — Integration Tests"
     runs-on: ubuntu-latest
-    needs: layer1-ci
+    needs: health-aggregator
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

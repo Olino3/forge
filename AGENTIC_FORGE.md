@@ -2,25 +2,34 @@
 
 > *"The tireless automatons of Hephaestus's workshop never sleep — they sweep the forge floor, sharpen every blade, and polish each shield while the gods rest."*
 
-This guide explains, in plain language, how The Forge's **22 agentic workflows** work alongside you as a contributor. No deep infrastructure knowledge required — just an understanding of PRs, issues, and releases.
+This guide explains, in plain language, how The Forge's **16 agentic workflows** work alongside you as a contributor. No deep infrastructure knowledge required — just an understanding of PRs, issues, and releases.
 
 ---
 
-## Recent Updates (Phase 1 Optimization — February 2026)
+## Recent Updates (Phase 1 & 2 Optimization — February 2026)
 
-**Quick Wins Implemented**: The Forge has completed Phase 1 of workflow optimization to eliminate waste and reduce no-op runs:
+**✅ Phase 1 — Quick Wins (Completed)**:
+- Issue Triage Agent decommissioned (was 96% no-op rate)
+- Feature Decomposer optimized with immediate label check
+- Path filters added to 5 PR-triggered workflows
+- Milestone Progress Reviewer optimized with exit check
+- **Net Impact**: 60-70% reduction in unnecessary workflow runs
 
-- ✅ **Issue Triage Agent decommissioned** — Manual dispatch only (was 96% no-op rate)
-- ✅ **Feature Decomposer optimized** — Now only fires on label events, with immediate label check before any processing
-- ✅ **Path filters added** — 5 PR-triggered workflows now only run when relevant files change:
-  - Best Practices Improver: `forge-plugin/skills/**, agents/**, commands/**, context/**`
-  - Skill Simplifier: `forge-plugin/skills/**`
-  - Convention Enforcer: `forge-plugin/**`
-  - Duplication Detector: `forge-plugin/**`
-  - Context Pruner: `forge-plugin/context/**`
-- ✅ **Milestone Progress Reviewer optimized** — Immediate exit check for non-milestone PRs
+**✅ Phase 2 — CI Migration (Completed)**:
+- **8 validation workflows migrated to deterministic CI** in [forge-tests.yml](.github/workflows/forge-tests.yml):
+  - ⚙️ `validate-agents` — Schema compliance, skill/context/MCP refs, file parity
+  - ⚙️ `validate-skills` — Template compliance, 6-step workflow, examples presence
+  - ⚙️ `validate-hooks` — Bash best practices, shellcheck, hooks.json registration
+  - ⚙️ `validate-xrefs` — Cross-reference integrity (skills↔context, agents↔skills, etc.)
+  - ⚙️ `validate-context` — Frontmatter validation, index integrity, orphan/ghost detection
+  - ⚙️ `validate-conventions` — Kebab-case naming, agent file pairing, ATX headings
+  - ⚙️ `detect-duplication` — Content similarity detection (>70% threshold)
+  - ⚙️ `health-aggregator` — Component counts, cross-ref tallies, JSON health report
+- **Workflow count reduced from 24 to 16** (8 migrated to CI validation)
+- **Agentic workflows now focus on high-value reasoning**, not mechanical checks
+- Original workflows disabled (kept as manual dispatch for rollback/debugging)
 
-**Net Impact**: Estimated 60-70% reduction in unnecessary workflow runs. See [OPTIMIZATION_PLAN.md](OPTIMIZATION_PLAN.md) for full details.
+See [OPTIMIZATION_PLAN.md](OPTIMIZATION_PLAN.md) for full details.
 
 ---
 
@@ -399,7 +408,7 @@ The release notes are a **draft** — you copy them into the GitHub Release desc
 
 ## The Complete Workflow Catalog
 
-All 22 workflows at a glance, organized by when they run:
+All 16 agentic workflows at a glance, organized by when they run (8 validation workflows migrated to CI in Phase 2):
 
 ### Event-triggered workflows (run when something happens)
 

@@ -1,18 +1,11 @@
 ---
-description: "Validate Forge skill structure compliance against SKILL_TEMPLATE.md"
+description: "⚠️ DEPRECATED: Migrated to forge-tests.yml — see validate-skills job (Phase 2)"
 imports:
   - shared/forge-base.md
   - shared/forge-issue-creator.md
   - shared/forge-quality-issue-template.md
   - shared/forge-conventions.md
 on:
-  schedule: "0 9 * * 2,4"
-  pull_request:
-    types: [opened, synchronize]
-    paths:
-      - "forge-plugin/skills/*/SKILL.md"
-      - "forge-plugin/skills/*/examples.md"
-      - "forge-plugin/skills/SKILL_TEMPLATE.md"
   workflow_dispatch:
 permissions:
   contents: read

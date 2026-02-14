@@ -1,18 +1,11 @@
 ---
-description: "Validate Forge hook scripts for quality, safety, and performance"
+description: "⚠️ DEPRECATED: Migrated to forge-tests.yml — see validate-hooks job (Phase 2)"
 imports:
   - shared/forge-base.md
   - shared/forge-issue-creator.md
   - shared/forge-quality-issue-template.md
   - shared/forge-conventions.md
 on:
-  schedule: "weekly on friday"
-  pull_request:
-    types: [opened, synchronize]
-    paths:
-      - "forge-plugin/hooks/*.sh"
-      - "forge-plugin/hooks/hooks.json"
-      - "forge-plugin/hooks/HOOKS_GUIDE.md"
   workflow_dispatch:
 permissions:
   contents: read

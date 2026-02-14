@@ -1,18 +1,11 @@
 ---
-description: "Validate Forge agent configurations for schema compliance and reference integrity"
+description: "⚠️ DEPRECATED: Migrated to forge-tests.yml — see validate-agents job (Phase 2)"
 imports:
   - shared/forge-base.md
   - shared/forge-issue-creator.md
   - shared/forge-quality-issue-template.md
   - shared/forge-conventions.md
 on:
-  schedule: "weekly on wednesday"
-  pull_request:
-    types: [opened, synchronize]
-    paths:
-      - "forge-plugin/agents/*.config.json"
-      - "forge-plugin/agents/*.md"
-      - "forge-plugin/interfaces/schemas/agent_config.schema.json"
   workflow_dispatch:
 permissions:
   contents: read
