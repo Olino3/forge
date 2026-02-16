@@ -77,7 +77,7 @@ This will:
 **Plugins not loading?** `make validate` or `./scripts/validate-plugins.sh`
 **Submodule issues?** `git submodule update --init --recursive --force`
 
-See [SETUP.md](SETUP.md) for detailed setup instructions or [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for common issues.
+See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for common issues.
 
 ### Build System
 
@@ -339,7 +339,7 @@ The Forge uses an **interface-driven architecture** with 4 core abstractions:
 | **SkillInvoker** | Delegate to skills with structured I/O |
 | **ExecutionContext** | Pass context between chained commands |
 
-All components reference interfaces — never hardcoded filesystem paths. See [ARCHITECTURAL_ROADMAP.md](ARCHITECTURAL_ROADMAP.md) for the full technical design.
+All components reference interfaces — never hardcoded filesystem paths. See [forge-plugin/interfaces/README.md](forge-plugin/interfaces/README.md) for the full architecture overview.
 
 ---
 
@@ -385,7 +385,6 @@ CI runs automatically via GitHub Actions on every push/PR.
 
 ```
 forge/
-├── CLAUDE.md                    # The Forge Operating Manual (for Claude Code)
 ├── COOKBOOK.md                   # Strategies, workflows, and persona guides
 ├── README.md                    # This file
 ├── ROADMAP.md                   # Vision, future work, and changelog
@@ -440,8 +439,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on adding skills,
 
 ## 🆘 Need Help?
 
-- 📖 Read [CLAUDE.md](CLAUDE.md) for the complete operating manual
 - 🗺️ Check [ROADMAP.md](ROADMAP.md) for what's being built
+- 🍳 Read [COOKBOOK.md](COOKBOOK.md) for workflow recipes and best practices
 - 🐛 [Open an issue](https://github.com/Olino3/forge/issues) for bugs or requests
 - 🤝 [Submit a PR](https://github.com/Olino3/forge/pulls) to contribute
 

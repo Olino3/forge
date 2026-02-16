@@ -65,7 +65,6 @@ This release bumped the version from `0.2.0-alpha` to `0.3.0-alpha` in **184 fil
 
 - `VERSION` — new file, canonical version source
 - `forge-plugin/.claude-plugin/plugin.json`
-- `CLAUDE.md`
 - All 81 context files
 - All 19 agent config files
 - All interface adapter files
@@ -110,7 +109,6 @@ For the next release, consider:
 ## References
 
 - [docs/VERSION_MANAGEMENT.md](VERSION_MANAGEMENT.md) — Version management guide
-- [CLAUDE.md](../CLAUDE.md) — Updated to reflect v0.3.0-alpha
 - [README.md](../README.md) — Added Build System section
 - [Makefile](../Makefile) — New build system
 - [scripts/bump-version.sh](../scripts/bump-version.sh) — Version bump script

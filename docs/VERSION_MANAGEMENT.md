@@ -82,7 +82,6 @@ The version bump script updates all occurrences of the version string in:
 
 - `VERSION` — canonical version file
 - `forge-plugin/.claude-plugin/plugin.json` — plugin manifest
-- `CLAUDE.md` — operating manual
 - All context files (`.md`)
 - All agent config files (`.json`)
 - All interface files (`.md`)

@@ -365,7 +365,7 @@ For critical decisions, convene multiple agents:
 ### Skill Discovery
 
 - Run `skill:divine` to get personalized recommendations based on your codebase
-- Check the Armory section in CLAUDE.md for the full 102-skill listing
+- Browse [forge-plugin/skills/](forge-plugin/skills/) for the full 102-skill listing
 - Use `skill:docs-workflow` to bootstrap project documentation
 
 ### Memory System
