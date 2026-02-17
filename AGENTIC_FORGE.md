@@ -2,7 +2,7 @@
 
 > *"The tireless automatons of Hephaestus's workshop never sleep — they sweep the forge floor, sharpen every blade, and polish each shield while the gods rest."*
 
-This guide explains, in plain language, how The Forge's **16 agentic workflows** work alongside you as a contributor. No deep infrastructure knowledge required — just an understanding of PRs, issues, and releases.
+This guide explains, in plain language, how The Forge's **12 agentic workflows** work alongside you as a contributor. No deep infrastructure knowledge required — just an understanding of PRs, issues, and releases.
 
 ---
 
@@ -16,16 +16,16 @@ This guide explains, in plain language, how The Forge's **16 agentic workflows**
 - **Net Impact**: 60-70% reduction in unnecessary workflow runs
 
 **✅ Phase 2 — CI Migration (Completed)**:
-- **8 validation workflows migrated to deterministic CI** in [forge-tests.yml](.github/workflows/forge-tests.yml):
+- **7 validation workflows migrated to deterministic CI** in [forge-tests.yml](.github/workflows/forge-tests.yml):
   - ⚙️ `validate-agents` — Schema compliance, skill/context/MCP refs, file parity
   - ⚙️ `validate-skills` — Template compliance, 6-step workflow, examples presence
   - ⚙️ `validate-hooks` — Bash best practices, shellcheck, hooks.json registration
   - ⚙️ `validate-xrefs` — Cross-reference integrity (skills↔context, agents↔skills, etc.)
   - ⚙️ `validate-context` — Frontmatter validation, index integrity, orphan/ghost detection
   - ⚙️ `validate-conventions` — Kebab-case naming, agent file pairing, ATX headings
-  - ⚙️ `detect-duplication` — Content similarity detection (>70% threshold)
   - ⚙️ `health-aggregator` — Component counts, cross-ref tallies, JSON health report
-- **Workflow count reduced from 24 to 16** (8 migrated to CI validation)
+- Content duplication detection moved back to agentic workflow (fuzzy matching better suited to LLM reasoning than static 37-min pytest)
+- CI Failure Diagnostician decommissioned (superseded by CI native reporting)
 - **Agentic workflows now focus on high-value reasoning**, not mechanical checks
 - Original workflows disabled (kept as manual dispatch for rollback/debugging)
 
@@ -408,7 +408,7 @@ The release notes are a **draft** — you copy them into the GitHub Release desc
 
 ## The Complete Workflow Catalog
 
-All 11 agentic workflows at a glance, organized by category. 7 former validation workflows were migrated to deterministic CI in `forge-tests.yml`.
+All 12 agentic workflows at a glance, organized by category. 7 former validation workflows were migrated to deterministic CI in `forge-tests.yml`.
 
 ### Consolidated Workflows (3)
 
@@ -420,16 +420,21 @@ These workflows replaced 7 fragmented workflows through multi-stage pipeline con
 | **Doc Maintainer** | Doc Sync + Doc Unbloat | Mon + Thu 07:00 UTC | Draft PR | 2-stage pipeline: Sync Check (accuracy) → Unbloat Review (verbosity) for all documentation files |
 | **Milestone Lifecycle** | Milestone Planner + Milestone Tracker + Milestone Progress Reviewer | `milestone.created` + daily schedule + PR (milestone-associated) | Issue + PR comment | Event-routed 3-stage lifecycle: Plan (decompose) → Track (progress) → Review (gaps) |
 
-### Standalone Workflows (8)
+### Standalone Workflows (9)
 
 These workflows operate independently and were not consolidated:
 
-#### Improvement & Testing (2)
+#### Improvement & Testing (1)
 
 | Workflow | Trigger | Creates | What it checks |
 |---|---|---|---|
 | **Test Coverage Improver** | Tue 09:00 UTC | Draft PR | Coverage gaps in test harness, generates missing tests |
-| **CI Failure Diagnostician** | `Forge Tests` workflow fails (2nd consecutive) | Draft PR | Root cause analysis and proposed fixes for test failures |
+
+#### Quality (1)
+
+| Workflow | Trigger | Creates | What it checks |
+|---|---|---|---|
+| **Duplication Detector** | PR (skills/context/hooks/commands changed) + Mon 06:00 UTC | Issue | Meaningful content duplication across Forge components |
 
 #### Documentation & Context (2)
 
@@ -456,7 +461,7 @@ These workflows operate independently and were not consolidated:
 | **~~Milestone Tracker~~** | **DEPRECATED** → Milestone Lifecycle (Track stage) | — | — |
 | **~~Milestone Progress Reviewer~~** | **DEPRECATED** → Milestone Lifecycle (Review stage) | — | — |
 
-### Migrated to Deterministic CI (7)
+### Migrated to Deterministic CI (6)
 
 These workflows were rewritten as pytest/bash jobs in `forge-tests.yml` — fast, LLM-free validation:
 
@@ -468,7 +473,6 @@ These workflows were rewritten as pytest/bash jobs in `forge-tests.yml` — fast
 | **Cross-Reference Checker** | `validate-xrefs` | pytest + jq + grep | 8 cross-reference matrices (skills↔context, agents↔skills, etc.) |
 | **Context Pruner** | `validate-context` | pytest + pyyaml | Frontmatter validation, index integrity, orphaned/ghost entries |
 | **Convention Enforcer** | `validate-conventions` | pytest + grep | Kebab-case naming, frontmatter presence, `set -euo pipefail` |
-| **Duplication Detector** | `detect-duplication` | pytest + difflib | Content block similarity (>70% match) across 2+ files |
 
 ### Decommissioned (2)
 
@@ -492,7 +496,7 @@ Every workflow output is labeled and prefixed:
 | `[release-notes]` | Release Notes Generator | Changelog draft |
 | `[deps]` | Dependency Sentinel | Upgrade proposal |
 | `[test-coverage]` | Test Coverage Improver | Missing test generation |
-| `[ci-fix]` | CI Failure Diagnostician | Auto-diagnosed test fix |
+| `[duplication]` | Duplication Detector | Content duplication finding |
 | `[context]` | Context Generator | New context file |
 | `[Feature]` | Feature Decomposer | Feature decomposition |
 | `[pm]` | Project Manager Agent | Roadmap execution plan |

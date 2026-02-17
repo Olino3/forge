@@ -2,19 +2,20 @@
 
 > *"The tireless automatons of Hephaestus's workshop never sleep — they sweep the forge floor, sharpen every blade, and polish each shield while the gods rest."*
 
-This document tracks **planned future work** for The Forge's agentic workflows. For a description of the 20 operational workflows and how they integrate into the development lifecycle, see **[AGENTIC_FORGE.md](AGENTIC_FORGE.md)**.
+This document tracks **planned future work** for The Forge's agentic workflows. For a description of the 12 operational workflows and how they integrate into the development lifecycle, see **[AGENTIC_FORGE.md](AGENTIC_FORGE.md)**.
 
 ---
 
 ## Current State
 
-**11 agentic workflows** are implemented and compiling cleanly (0 errors) across 4 categories:
+**12 agentic workflows** are implemented and compiling cleanly (0 errors) across 5 categories:
 
 | Category | Workflows | Count |
 |----------|-----------|-------|
 | Improvement | Component Improver, Test Coverage Improver | 2 |
 | Documentation | Doc Maintainer, Context Generator, Health Dashboard | 3 |
-| Operations | CI Failure Diagnostician, Dependency Sentinel, Release Notes Generator | 3 |
+| Operations | Dependency Sentinel, Release Notes Generator | 2 |
+| Quality | Duplication Detector | 1 |
 | Planning | Feature Decomposer, Milestone Lifecycle, Project Manager Agent, Stale Gardener | 4 |
 
 **Supporting infrastructure**: 9 shared imports (5 base + 4 model templates), 5 issue templates, `SECURITY.md`, quality issue contract.
@@ -32,24 +33,25 @@ The Forge uses **model tiering** to optimize cost vs. quality for each workflow 
 | Model | Nickname | Strengths | Cost/1M Tokens | Use Case |
 |-------|----------|-----------|----------------|----------|
 | **gpt-5.1-codex-mini** | "The Scalpel" | High-speed tool use, grep mastery, massive refactors | ~$1.50 | Mechanical operations, pattern matching |
-| **gpt-4.1** | "The Surgeon" | Precise editing, diff generation, low hallucination | ~$2.00 | Precision editing, conservative curation |
-| **claude-haiku-4.5** | "The Context King" | 1M+ token window, deep cross-file analysis | ~$1.25 | Large-context aggregation, milestone tracking |
-| **claude-opus-4.6** | "The Strat" | Logic sanity, strategic reasoning, safety checks | ~$15.00 | Strategic analysis only (weekly runs) |
+| **claude-haiku-4.5** | "The Swift" | Fast reasoning, large context, cost-effective | ~$1.25 | Documentation, context generation, health aggregation |
+| **claude-opus-4.6** | "The Strat" | Logic sanity, strategic reasoning, safety checks | ~$15.00 | Strategic analysis, planning (weekly runs) |
 
 ### Model-Prompt Matrix
 
 | Workflow | Model | Rationale |
 |----------|-------|-----------|
 | **Forge Component Improver** | gpt-5.1-codex-mini | Mechanical file operations, tool-heavy, rule-based checking |
-| **Forge Doc Maintainer** | gpt-4.1 | Precision editing, character-perfect diffs, factual accuracy |
-| **Forge Milestone Lifecycle** | claude-haiku-4.5 | 1M+ context to ingest all milestones, issues, PRs |
-| **Forge Health Dashboard** | claude-haiku-4.5 | Aggregate ~200+ files, cross-ref tallies, trend analysis |
-| **Forge Release Notes Generator** | gpt-4.1 | Structured classification, low hallucination critical |
-| **Forge Context Generator** | gpt-5.1-codex-mini | Template expansion from skill content, mechanical generation |
+| **Forge Context Generator** | claude-haiku-4.5 | Template expansion from skill content, context synthesis |
 | **Forge Dependency Sentinel** | gpt-5.1-codex-mini | Pattern matching on version strings, grep-based scanning |
-| **Forge Test Coverage Improver** | gpt-5.1-codex-mini | Test generation from patterns, codex-mini sweet spot |
-| **Forge Stale Gardener** | gpt-4.1 | Conservative judgment, decision tree logic, grace periods |
+| **Forge Doc Maintainer** | claude-haiku-4.5 | Documentation accuracy, cross-file analysis |
+| **Forge Duplication Detector** | gpt-5.1-codex-mini | Content comparison, pattern matching across files |
+| **Forge Feature Decomposer** | claude-opus-4.6 | Strategic feature decomposition, acceptance criteria |
+| **Forge Health Dashboard** | claude-haiku-4.5 | Aggregate ~200+ files, cross-ref tallies, trend analysis |
+| **Forge Milestone Lifecycle** | claude-opus-4.6 | Strategic milestone planning, progress synthesis |
 | **Forge Project Manager Agent** | claude-opus-4.6 | Strategic PM analysis, ROADMAP synthesis, weekly only |
+| **Forge Release Notes Generator** | claude-haiku-4.5 | Structured classification of merged PRs |
+| **Forge Stale Gardener** | gpt-5.1-codex-mini | Pattern matching on dates, decision tree logic |
+| **Forge Test Coverage Improver** | gpt-5.1-codex-mini | Test generation from patterns, codex-mini sweet spot |
 
 ### Prompt Templates
 
