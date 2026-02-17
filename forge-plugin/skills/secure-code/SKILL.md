@@ -1,7 +1,6 @@
 ---
 name: secure-code
-description: Secure coding practices and vulnerability prevention. Performs systematic security analysis across input validation, authentication, injection prevention, cryptography, secrets management, dependency security, API hardening, and data protection. Classifies findings by OWASP Top 10 categories and produces hardened code with explanations. Use for security audits, pre-deployment hardening, threat modeling of code changes, and secure design reviews across any language or framework.
----
+## description: Secure coding practices and vulnerability prevention. Performs systematic security analysis across input validation, authentication, injection prevention, cryptography, secrets management, dependency security, API hardening, and data protection. Classifies findings by OWASP Top 10 categories and produces hardened code with explanations. Use for security audits, pre-deployment hardening, threat modeling of code changes, and secure design reviews across any language or framework.
 
 # Secure Code
 
@@ -33,6 +32,11 @@ Security analysis evaluates 8 critical dimensions:
 **Note**: Focus on substantive vulnerabilities requiring human judgment, not theoretical risks. Classify all findings by OWASP Top 10 categories where applicable.
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 

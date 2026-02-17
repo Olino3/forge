@@ -12,8 +12,7 @@ memory:
     - type: "skill-specific"
       files: [bucket_structure.md, security_rules.md, upload_patterns.md, cdn_config.md, quota_management.md]
     - type: "shared-project"
-      usage: "reference"
----
+##       usage: "reference"
 
 # Skill: firebase-storage
 
@@ -23,6 +22,11 @@ memory:
 **Last Updated**: 2025-07-14
 
 ---
+
+## Purpose
+
+Build with Firebase Cloud Storage — file uploads, downloads, and secure access. Use when uploading images/files, generating download URLs, implementing file pickers, setting up storage security rules. Prevents 9 common Storage errors.
+
 
 ## Title
 
@@ -140,6 +144,8 @@ This skill actively prevents these frequently encountered Cloud Storage mistakes
 ---
 
 ## Instructions
+
+## Mandatory Workflow
 
 ### MANDATORY STEPS (Must Execute in Order)
 

@@ -9,8 +9,7 @@ hooks:
       patterns: ["ROADMAP.md", "ARCHITECTURE.md", "*.design.md", "ADR-*.md"]
       action: "validate_strategic_documents"
 mcpServers: []
-memory: forge-plugin/memory/agents/prometheus
----
+## memory: forge-plugin/memory/agents/prometheus
 
 # @prometheus - Master of Foresight and Strategic Planning
 

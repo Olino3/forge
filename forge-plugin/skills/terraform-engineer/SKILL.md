@@ -7,6 +7,28 @@
 
 ---
 
+## Purpose
+
+**Version:** 1.0.0
+
+
+
+## File Structure
+
+```
+skills/{skill-name}/
+├── SKILL.md (this file)
+├── examples.md
+└── templates/ (optional)
+```
+
+
+## Interface References
+
+- **Context**: Loaded via [ContextProvider Interface](../../interfaces/context_provider.md)
+- **Memory**: Accessed via [MemoryStore Interface](../../interfaces/memory_store.md)
+- **Shared Patterns**: [Shared Loading Patterns](../../interfaces/shared_loading_patterns.md)
+
 ## Overview
 
 The Terraform Engineer skill provides comprehensive Infrastructure as Code (IaC) capabilities using HashiCorp Terraform. This skill enables declarative infrastructure provisioning, state management, module design, multi-cloud deployments, and enterprise-grade automation across AWS, Azure, GCP, and hybrid environments.

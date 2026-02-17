@@ -20,8 +20,7 @@ tags:
 triggers:
   - sub-agent
   - sub-agents
-  - subagent
----
+##   - subagent
 
 # Sub-Agent Patterns
 
@@ -54,6 +53,11 @@ Sub-agent patterns evaluation covers 5 focus areas:
 **Note**: The skill produces agent recommendations, custom agent configurations, and delegation chain designs. It does not execute agents directly — it designs the patterns for invoking them.
 
 ---
+
+## Purpose
+
+Comprehensive guide to sub-agents in Claude Code — built-in agents (Explore, Task, General-Purpose), custom agent creation, configuration, and delegation patterns.
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 

@@ -9,8 +9,7 @@ hooks:
       patterns: ["*.ts", "*.html", "*.css", "*.scss", "*.component.ts", "*.service.ts", "*.module.ts", "package.json", "angular.json", "tsconfig*.json"]
       action: "validate_frontend_code"
 mcpServers: []
-memory: forge-plugin/memory/agents/frontend-engineer
----
+## memory: forge-plugin/memory/agents/frontend-engineer
 
 # @frontend-engineer - UI/UX Craftsperson
 

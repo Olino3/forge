@@ -21,9 +21,9 @@ sections:
     estimatedTokens: 60
     keywords: [checklist, validation, parameterized, secrets]
 tags: [security, owasp, python, review-checklist]
-crossDomainTriggers: []
----
+## crossDomainTriggers: []
 
+---
 # Python Security Guidelines – Quick Reference
 
 Compact guide to where to look for Python security best practices during code review.

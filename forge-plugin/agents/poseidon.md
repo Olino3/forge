@@ -9,8 +9,7 @@ hooks:
       patterns: ["*.pipeline.yml", "*.etl.py", "*.stream.js", "*.kafka.yml", "*.airflow.py"]
       action: "validate_data_pipeline"
 mcpServers: []
-memory: forge-plugin/memory/agents/poseidon
----
+## memory: forge-plugin/memory/agents/poseidon
 
 # @poseidon - Master of Data Flow and Stream Orchestration
 

@@ -9,8 +9,7 @@ hooks:
       patterns: ["DESIGN-SYSTEM-*.md", "UI-*.md", "UX-*.md", "*.design.yml"]
       action: "validate_design_quality"
 mcpServers: []
-memory: forge-plugin/memory/agents/aphrodite
----
+## memory: forge-plugin/memory/agents/aphrodite
 
 # @aphrodite - Goddess of Beauty and Delightful Experiences
 

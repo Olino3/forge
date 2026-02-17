@@ -32,9 +32,9 @@ sections:
   - name: "External Resources"
     estimatedTokens: 21
     keywords: [external, resources]
+
 tags: [angular, rxjs, observables, subscriptions, operators, subjects, error-handling]
 ---
-
 # RxJS Patterns for Angular - Quick Reference
 
 Detection patterns and solution references for common RxJS usage in Angular.

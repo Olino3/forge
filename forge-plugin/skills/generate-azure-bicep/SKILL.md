@@ -7,8 +7,7 @@ context:
   topics: [azure_verified_modules, azure_bicep_overview]
 memory:
   scope: per-project
-  files: [bicep_config.md, avm_modules.md, resource_naming.md, customizations.md]
----
+##   files: [bicep_config.md, avm_modules.md, resource_naming.md, customizations.md]
 
 # Skill: generate-azure-bicep
 
@@ -18,6 +17,11 @@ memory:
 **Last Updated**: 2025-11-18
 
 ---
+
+## Purpose
+
+Generate Azure Bicep infrastructure modules using Azure Verified Modules (AVM) and bicepparams
+
 
 ## Title
 
@@ -434,6 +438,10 @@ Use **Socratic method** to gather requirements. Ask questions in this order:
 **Verification**: Memory files created/updated with all relevant information
 
 ---
+
+### Step N-1: Generate Output
+
+Create deliverables and save to `/claudedocs/` following OUTPUT_CONVENTIONS.md.
 
 ### Compliance Checklist
 

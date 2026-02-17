@@ -1,7 +1,6 @@
 ---
 name: get-git-diff
-description: Examines git diffs between commits or branches with intelligent analysis. Provides unified diff format with comprehensive summaries including file statistics, rename detection, and merge commit handling. Outputs formatted diffs to /claudedocs for documentation and review purposes.
----
+## description: Examines git diffs between commits or branches with intelligent analysis. Provides unified diff format with comprehensive summaries including file statistics, rename detection, and merge commit handling. Outputs formatted diffs to /claudedocs for documentation and review purposes.
 
 # Git Diff Analyzer
 
@@ -27,6 +26,13 @@ description: Examines git diffs between commits or branches with intelligent ana
 - **templates/**:
   - `output_template.md`: Standard output format template
 
+
+## Interface References
+
+- **Context**: Loaded via [ContextProvider Interface](../../interfaces/context_provider.md)
+- **Memory**: Accessed via [MemoryStore Interface](../../interfaces/memory_store.md)
+- **Shared Patterns**: [Shared Loading Patterns](../../interfaces/shared_loading_patterns.md)
+
 ## Analysis Focus Areas
 
 Git diff analysis evaluates 7 critical dimensions:
@@ -42,6 +48,11 @@ Git diff analysis evaluates 7 critical dimensions:
 **Note**: Analysis depth is summary-level, focusing on what changed and high-level impact.
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 
@@ -254,6 +265,27 @@ Refer to official documentation:
   - Optional memory updates for common patterns
 - v1.0.0 (2025-11-13): Initial release
   - Mandatory 4-step workflow
-  - Summary-level analysis with statistics
-  - Special handling for large diffs, renames, and merge commits
-  - Unified diff output to /claudedocs
+
+### Step 1: Initial Analysis
+
+Gather inputs and determine scope and requirements.
+
+### Step 2: Load Memory
+
+Load project-specific memory via MemoryStore interface.
+
+### Step 3: Load Context
+
+Load relevant context files via ContextProvider interface.
+
+### Step 4: Core Implementation
+
+Execute the skill-specific core action.
+
+### Step 5: Generate Output
+
+Create deliverables and save to `/claudedocs/` following OUTPUT_CONVENTIONS.md.
+
+### Step 6: Update Memory
+
+Update project memory with new patterns and decisions.

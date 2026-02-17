@@ -53,7 +53,7 @@ skills/architecture-design/
 
 > **IMPORTANT**: Execute ALL steps in order. Do not skip any step.
 
-### Step 1: Understand System Requirements
+### Step 1: Initial Analysis — Understand System Requirements
 
 **YOU MUST:**
 1. Identify the **system type**:
@@ -113,6 +113,7 @@ skills/architecture-design/
 | **Hexagonal (Ports & Adapters)** | Domain-heavy apps, high testability | 3–10 | Medium |
 | **Clean Architecture** | Complex business logic, long-lived systems | 5–15 | Medium–High |
 | **Event-Driven** | Async workflows, decoupled systems | 5–20 | High |
+
 | **CQRS** | Read/write asymmetry, complex queries | 5–15 | High |
 | **Microservices** | Large orgs, independent deployment needs | 15+ | Very High |
 | **Serverless** | Event-triggered workloads, variable traffic | 1–10 | Medium |

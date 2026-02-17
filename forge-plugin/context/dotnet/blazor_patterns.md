@@ -23,9 +23,9 @@ sections:
   - name: "When to Read External Docs"
     estimatedTokens: 52
     keywords: [read, external, docs]
+
 tags: [dotnet, blazor, components, lifecycle, state, js-interop, forms, rendering]
 ---
-
 # Blazor Component Patterns – Quick Reference
 
 Compact Blazor patterns for component design, state management, rendering, and JS interop.

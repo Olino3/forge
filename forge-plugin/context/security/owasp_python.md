@@ -20,9 +20,9 @@ sections:
   - name: "Additional References"
     estimatedTokens: 16
     keywords: [additional, references]
+
 tags: [security, owasp, python, top-10, vulnerabilities, audit]
 ---
-
 # OWASP Top 10 for Python – Quick Reference
 
 Pointers for applying OWASP Top 10 to Python apps without embedding long examples.

@@ -21,8 +21,7 @@ triggers:
   - create a skill
   - new skill
   - design skill
-  - build skill
----
+##   - build skill
 
 # Skill Creator
 
@@ -55,6 +54,11 @@ Skill creation evaluates requirements across 5 focus areas:
 **Note**: The skill produces complete skill directories with SKILL.md, examples.md, and memory structure. It does not register skills in any manifest unless explicitly requested.
 
 ---
+
+## Purpose
+
+Design effective Claude Code skills with optimal descriptions, progressive disclosure, and error prevention patterns. Covers freedom levels, token efficiency, and quality standards.
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 

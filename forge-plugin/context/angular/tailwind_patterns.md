@@ -23,9 +23,9 @@ sections:
   - name: "PrimeNG Conflicts"
     estimatedTokens: 18
     keywords: [primeng, conflicts, primeng-conflicts]
+
 tags: [angular, tailwindcss, css, responsive, dynamic-classes, primeng-conflicts]
 ---
-
 # TailwindCSS with Angular
 
 Best practices for integrating TailwindCSS with Angular applications.

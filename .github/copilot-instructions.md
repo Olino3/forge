@@ -125,13 +125,13 @@ See `CONTRIBUTING.md` for detailed instructions and the Microsoft/Vercel/Trail o
 
 ## Agentic Workflows (gh-aw)
 
-The Forge runs **19 agentic workflows** via [GitHub Agentic Workflows (gh-aw)](https://github.github.com/gh-aw/) — autonomous AI agents as GitHub Actions that continuously monitor, validate, and improve the codebase.
+The Forge runs **12 agentic workflows** via [GitHub Agentic Workflows (gh-aw)](https://github.github.com/gh-aw/) — autonomous AI agents as GitHub Actions that continuously monitor, validate, and improve the codebase.
 
 ### What Contributors Should Know
 
-- **On PRs**: Up to 5 workflows analyze your changes (simplification, duplication, conventions, context, best practices)
-- **On schedules**: 8 workflows run for health monitoring, validation, documentation sync, and planning
-- **On events**: 4 workflows respond to issues, releases, and ROADMAP changes
+- **On PRs**: Up to 3 workflows analyze your changes (component improvement, duplication detection, milestone tracking)
+- **On schedules**: Workflows run for health monitoring, documentation sync, dependency updates, and planning
+- **On events**: Workflows respond to milestones, releases, and labeled issues
 - **All outputs** carry the `forge-automation` label — issues are findings, draft PRs are proposed changes
 - **Nothing merges without human approval**
 

@@ -39,11 +39,9 @@ Generate a new skill called "changelog-generator" that creates professional CHAN
 - Pattern: Workflow-driven, git integration, template-based output
 
 **Step 4 - Generate SKILL.md**:
-```markdown
----
+## ```markdown
 name: changelog-generator
-description: Generates professional CHANGELOG.md entries from git commit history following Keep a Changelog and Conventional Commits standards. Parses commits, groups by type, formats with semantic versioning. Transforms the scattered chronicle of changes into a structured narrative of evolution.
----
+## description: Generates professional CHANGELOG.md entries from git commit history following Keep a Changelog and Conventional Commits standards. Parses commits, groups by type, formats with semantic versioning. Transforms the scattered chronicle of changes into a structured narrative of evolution.
 
 # Changelog Generator
 
@@ -81,11 +79,9 @@ changelog-generator/
 ```
 
 **SKILL.md** (abbreviated):
-```markdown
----
+## ```markdown
 name: changelog-generator
-description: Generates professional CHANGELOG.md entries...
----
+## description: Generates professional CHANGELOG.md entries...
 
 ## MANDATORY WORKFLOW
 
@@ -139,11 +135,9 @@ Create a skill called "generate-terraform-modules" that scaffolds Terraform modu
 - Pattern: Multi-file generation, validation scripts, template-driven
 
 **Step 4 - Generate SKILL.md**:
-```markdown
----
+## ```markdown
 name: generate-terraform-modules
-description: Scaffolds production-ready Terraform modules following HashiCorp best practices and team conventions. Generates complete module structure with variables, outputs, examples, tests, and documentation. Shapes infrastructure as code like a master mason laying the foundation of cloud architecture.
----
+## description: Scaffolds production-ready Terraform modules following HashiCorp best practices and team conventions. Generates complete module structure with variables, outputs, examples, tests, and documentation. Shapes infrastructure as code like a master mason laying the foundation of cloud architecture.
 
 ## File Structure
 - SKILL.md
@@ -251,11 +245,9 @@ Generate a "rust-code-review" skill modeled after the python-code-review skill. 
 - Need to create context files: `../../context/rust/` directory with index.md, ownership.md, error_handling.md, performance.md, cargo.md
 
 **Step 4 - Generate SKILL.md**:
-```markdown
----
+## ```markdown
 name: rust-code-review
-description: Reviews Rust code for idiomatic patterns, ownership correctness, error handling, unsafe usage, and performance considerations. Analyzes changed files, identifies issues across 12 dimensions, and provides actionable feedback. Like a master blacksmith inspecting forged steel, this skill ensures your Rust code is memory-safe, performant, and idiomatic.
----
+## description: Reviews Rust code for idiomatic patterns, ownership correctness, error handling, unsafe usage, and performance considerations. Analyzes changed files, identifies issues across 12 dimensions, and provides actionable feedback. Like a master blacksmith inspecting forged steel, this skill ensures your Rust code is memory-safe, performant, and idiomatic.
 
 ## Focus Areas
 1. **Ownership & Borrowing**: Lifetimes, references, ownership transfer
@@ -529,11 +521,9 @@ Create a simple skill "gitignore-generator" that creates .gitignore files for co
 - Pattern: Minimal workflow, template-driven
 
 **Step 4 - Generate SKILL.md** (concise):
-```markdown
----
+## ```markdown
 name: gitignore-generator
-description: Generates .gitignore files for common project types (Node.js, Python, Java, .NET, Go, Rust). Selects appropriate patterns, adds custom exclusions, ensures comprehensive coverage. A simple guardian that keeps your repository clean from the detritus of builds and dependencies.
----
+## description: Generates .gitignore files for common project types (Node.js, Python, Java, .NET, Go, Rust). Selects appropriate patterns, adds custom exclusions, ensures comprehensive coverage. A simple guardian that keeps your repository clean from the detritus of builds and dependencies.
 
 ## MANDATORY WORKFLOW
 

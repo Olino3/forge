@@ -17,8 +17,7 @@ tags:
   - workflow
   - orchestration
   - developer-experience
-  - productivity
----
+##   - productivity
 
 # skill:dev-tools - Developer Workflow Orchestrator
 
@@ -72,6 +71,13 @@ Compose: code review → test generation → `commit-helper` → documentation u
 User-defined composition of any available skills
 
 ---
+
+### Step 1: Initial Analysis
+
+Gather inputs and understand the task:
+- Determine project scope and requirements
+- Identify target files or components
+- Clarify user objectives and constraints
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 

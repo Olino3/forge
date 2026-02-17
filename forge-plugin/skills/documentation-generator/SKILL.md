@@ -1,7 +1,6 @@
 ---
 name: documentation-generator
-description: Generates comprehensive documentation for codebases, APIs, modules, README files, architecture docs, migration guides, and changelogs. Inscribes knowledge into permanence. Analyzes source code to extract structure, public interfaces, dependencies, and usage patterns, then produces clear, structured documentation with examples, cross-references, and diagrams. Supports any language or framework.
----
+## description: Generates comprehensive documentation for codebases, APIs, modules, README files, architecture docs, migration guides, and changelogs. Inscribes knowledge into permanence. Analyzes source code to extract structure, public interfaces, dependencies, and usage patterns, then produces clear, structured documentation with examples, cross-references, and diagrams. Supports any language or framework.
 
 # Documentation Generator
 
@@ -39,6 +38,11 @@ Comprehensive documentation evaluates 7 critical dimensions:
 **Note**: Focus on clarity and accuracy. Documentation must serve both newcomers and experienced developers. Every word inscribed must earn its place.
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 
@@ -146,6 +150,13 @@ Timestamps and staleness tracking are handled automatically by MemoryStore. See 
 This memory will be consulted in future documentation tasks to maintain consistency.
 
 ---
+
+### Step 6: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `documentation-generator_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## Compliance Checklist
 

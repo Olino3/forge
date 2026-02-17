@@ -9,8 +9,7 @@ hooks:
       patterns: ["*.deployment.yml", "*.runbook.md", "INCIDENT-*.md", "*.monitoring.yml"]
       action: "validate_operational_readiness"
 mcpServers: []
-memory: forge-plugin/memory/agents/ares
----
+## memory: forge-plugin/memory/agents/ares
 
 # @ares - Battle-Tested Deployment Warrior
 

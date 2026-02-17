@@ -32,8 +32,8 @@ sections:
   - name: "Maintenance Notes"
     estimatedTokens: 18
     keywords: [maintenance]
-tags: [git, diff, index, navigation]
 ---
+## tags: [git, diff, index, navigation]
 
 # Git Context Files (Compact)
 

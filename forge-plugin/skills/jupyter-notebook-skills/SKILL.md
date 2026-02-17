@@ -1,9 +1,15 @@
 ---
 name: jupyter-notebook-skills
-description: Commands interactive data exploration through Jupyter Notebooks. Generates analysis code, creates visualizations, performs statistical analysis, builds ML models, and orchestrates data science workflows. Supports pandas, numpy, matplotlib, seaborn, scikit-learn, and deep learning frameworks. Like Athena guiding explorers through uncharted territories, this skill illuminates patterns hidden within data and transforms raw numbers into actionable insights.
----
+## description: Commands interactive data exploration through Jupyter Notebooks. Generates analysis code, creates visualizations, performs statistical analysis, builds ML models, and orchestrates data science workflows. Supports pandas, numpy, matplotlib, seaborn, scikit-learn, and deep learning frameworks. Like Athena guiding explorers through uncharted territories, this skill illuminates patterns hidden within data and transforms raw numbers into actionable insights.
 
 # Interactive Data Exploration Commander
+
+### Step 1: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `jupyter-notebook-skills_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## ⚠️ MANDATORY COMPLIANCE ⚠️
 
@@ -40,6 +46,11 @@ Jupyter notebook data exploration evaluates 7 critical dimensions:
 **Note**: The skill generates notebook cells and code snippets for the user to execute. It does not run notebooks directly unless integrated with a Jupyter kernel.
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 

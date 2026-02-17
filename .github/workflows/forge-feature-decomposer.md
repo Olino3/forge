@@ -4,9 +4,12 @@ imports:
   - shared/forge-base.md
   - shared/forge-issue-creator.md
   - shared/forge-conventions.md
+engine:
+  id: copilot
+  model: claude-opus-4.6
 on:
   issues:
-    types: [opened, labeled]
+    types: [labeled]
   workflow_dispatch:
 permissions:
   contents: read
@@ -26,6 +29,16 @@ safe-outputs:
 # Forge Feature Decomposer
 
 Automatically decompose milestone feature issues into smaller, Copilot-assignable work items with clear acceptance criteria.
+
+## IMMEDIATE EXIT CHECK
+
+**CRITICAL: Execute this check BEFORE any file reads, API calls, or analysis.**
+
+1. Check if the triggering issue has the `milestone-feature` label
+2. If the label is NOT present, output "No milestone-feature label found. Exiting." and stop immediately
+3. If the label IS present, proceed to Loop Prevention checks below
+
+Do NOT read any files, make any GitHub API calls, or perform any analysis before completing this check.
 
 ## Loop Prevention
 

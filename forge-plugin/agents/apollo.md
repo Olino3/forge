@@ -9,8 +9,7 @@ hooks:
       patterns: ["QUALITY-*.md", "OPTIMIZATION-*.md", "*.quality.yml", "PERFORMANCE-*.md"]
       action: "validate_quality_analysis"
 mcpServers: []
-memory: forge-plugin/memory/agents/apollo
----
+## memory: forge-plugin/memory/agents/apollo
 
 # @apollo - God of Light and Code Quality
 

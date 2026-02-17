@@ -23,9 +23,9 @@ sections:
   - name: "HTTP Interceptors"
     estimatedTokens: 75
     keywords: [http, interceptors, interceptors]
+
 tags: [angular, services, dependency-injection, http, state-management, interceptors]
 ---
-
 # Angular Service Patterns
 
 Best practices for Angular service design, dependency injection, and state management.

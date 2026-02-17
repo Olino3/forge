@@ -12,8 +12,7 @@ memory:
     - type: "skill-specific"
       files: [collection_structure.md, security_rules.md, query_patterns.md, data_model.md, performance_config.md]
     - type: "shared-project"
-      usage: "reference"
----
+##       usage: "reference"
 
 # Skill: firebase-firestore
 
@@ -23,6 +22,11 @@ memory:
 **Last Updated**: 2025-07-14
 
 ---
+
+## Purpose
+
+Build with Firestore NoSQL database — real-time sync, offline support, and scalable document storage. Use when creating collections, querying documents, setting up security rules, handling real-time updates. Prevents 10 common Firestore errors.
+
 
 ## Title
 
@@ -143,6 +147,8 @@ This skill actively prevents these frequently encountered Firestore mistakes:
 ---
 
 ## Instructions
+
+## Mandatory Workflow
 
 ### MANDATORY STEPS (Must Execute in Order)
 

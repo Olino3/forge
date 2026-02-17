@@ -1,7 +1,6 @@
 ---
 name: prompt-engineer
-description: Masters the art and science of LLM prompt design, optimization, and evaluation. Specializes in chain-of-thought engineering, few-shot optimization, evaluation frameworks, and systematic prompt iteration. Like Hephaestus calibrating the heat of the forge to produce the finest alloys, this skill tunes every token and instruction to extract maximum quality, reliability, and consistency from language model interactions.
----
+## description: Masters the art and science of LLM prompt design, optimization, and evaluation. Specializes in chain-of-thought engineering, few-shot optimization, evaluation frameworks, and systematic prompt iteration. Like Hephaestus calibrating the heat of the forge to produce the finest alloys, this skill tunes every token and instruction to extract maximum quality, reliability, and consistency from language model interactions.
 
 # Prompt Engineer
 
@@ -36,6 +35,11 @@ Prompt engineering evaluates 7 critical dimensions:
 **Note**: The skill designs and optimizes prompts. It does not deploy prompts to production systems unless explicitly requested.
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 
@@ -121,6 +125,13 @@ Prompt engineering evaluates 7 critical dimensions:
 **DO NOT SKIP VALIDATION**
 
 ---
+
+### Step 6: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `prompt-engineer_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## Compliance Checklist
 

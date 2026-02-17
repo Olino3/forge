@@ -67,8 +67,7 @@ Interface Usage:
 
 **Step 5 - Generate SKILL.md**:
 
-```markdown
----
+## ```markdown
 name: go-code-review
 version: 1.0.0
 description: Perform structured code reviews for Go projects checking idiomatic patterns, error handling, concurrency safety, and performance anti-patterns.
@@ -87,8 +86,7 @@ tags:
 triggers:
   - review go code
   - go code review
-  - check go patterns
----
+##   - check go patterns
 
 # Go Code Review
 
@@ -211,8 +209,7 @@ Interface Usage:
 
 **Step 5 - Generate SKILL.md**:
 
-```markdown
----
+## ```markdown
 name: deploy-automation
 version: 1.0.0
 description: Generate deployment configurations and runbooks for containerized applications across Docker Compose, Kubernetes, and cloud platforms with environment-specific overrides.
@@ -235,8 +232,7 @@ triggers:
   - deploy app
   - generate deployment
   - create deployment config
-  - deployment automation
----
+##   - deployment automation
 
 # Deployment Automation
 
@@ -370,8 +366,7 @@ Interface Usage:
 
 **Step 5 - Generate SKILL.md**:
 
-```markdown
----
+## ```markdown
 name: testing-strategy
 version: 1.0.0
 description: Design comprehensive testing strategies with test pyramid definition, framework selection, coverage targets, and CI integration plans for any language or framework.
@@ -392,8 +387,7 @@ triggers:
   - testing strategy
   - test plan
   - design tests
-  - testing approach
----
+##   - testing approach
 
 # Testing Strategy
 

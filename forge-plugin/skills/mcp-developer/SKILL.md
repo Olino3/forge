@@ -1,7 +1,6 @@
 ---
 name: mcp-developer
-description: Guides the development and integration of Model Context Protocol (MCP) servers — from architecture design and tool registration to resource exposure, prompt templates, and client integration. Covers transport layer selection (stdio/SSE), JSON Schema-based input validation, security sandboxing, and testing with MCP Inspector. Like Hephaestus designing the divine automatons that served the gods, this skill ensures every MCP server is robust, well-structured, and seamlessly connects AI assistants to the tools and data they need.
----
+## description: Guides the development and integration of Model Context Protocol (MCP) servers — from architecture design and tool registration to resource exposure, prompt templates, and client integration. Covers transport layer selection (stdio/SSE), JSON Schema-based input validation, security sandboxing, and testing with MCP Inspector. Like Hephaestus designing the divine automatons that served the gods, this skill ensures every MCP server is robust, well-structured, and seamlessly connects AI assistants to the tools and data they need.
 
 # MCP Server Developer
 
@@ -36,6 +35,11 @@ MCP server development evaluates 7 critical dimensions:
 **Note**: The skill guides architecture, implementation, and testing of MCP servers. It does not deploy servers to production unless explicitly requested.
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 
@@ -109,6 +113,13 @@ MCP server development evaluates 7 critical dimensions:
 **DO NOT SKIP VALIDATION**
 
 ---
+
+### Step 6: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `mcp-developer_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## Compliance Checklist
 
@@ -196,7 +207,27 @@ Refer to official documentation:
 
 - v1.0.0 (2026-02-12): Initial release
   - Mandatory 5-step workflow for MCP server development
-  - 7 focus areas covering architecture, tools, resources, prompts, security, testing, and integration
-  - Transport layer guidance (stdio/SSE)
-  - MCP Inspector testing integration
-  - Project memory integration for architecture decisions and tool registries
+
+### Step 1: Initial Analysis
+
+Gather inputs and determine scope and requirements.
+
+### Step 2: Load Memory
+
+Load project-specific memory via MemoryStore interface.
+
+### Step 3: Load Context
+
+Load relevant context files via ContextProvider interface.
+
+### Step 4: Core Implementation
+
+Execute the skill-specific core action.
+
+### Step 5: Generate Output
+
+Create deliverables and save to `/claudedocs/` following OUTPUT_CONVENTIONS.md.
+
+### Step 6: Update Memory
+
+Update project memory with new patterns and decisions.

@@ -217,6 +217,7 @@ skills/microservices-design/
   - Communication pattern decisions (sync/async per interaction)
   - Data ownership map
   - Saga definitions for distributed workflows
+
   - Operational concerns (gateway, mesh, observability, resilience)
   - ADRs for key decisions
 

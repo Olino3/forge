@@ -1,7 +1,6 @@
 ---
 name: sql
-description: Expert SQL across multiple database engines including PostgreSQL, MySQL, SQL Server, Oracle, and SQLite. Constructs optimized queries, designs schemas, writes migrations, and ensures cross-engine compatibility. Covers ANSI SQL standards, advanced JOINs, window functions, CTEs (recursive and non-recursive), MERGE/UPSERT patterns, JSON operations, temporal tables, stored procedures, query plan analysis, and parameterized queries for security. Use for query construction, performance tuning, schema design, data migration, and cross-engine SQL translation.
----
+## description: Expert SQL across multiple database engines including PostgreSQL, MySQL, SQL Server, Oracle, and SQLite. Constructs optimized queries, designs schemas, writes migrations, and ensures cross-engine compatibility. Covers ANSI SQL standards, advanced JOINs, window functions, CTEs (recursive and non-recursive), MERGE/UPSERT patterns, JSON operations, temporal tables, stored procedures, query plan analysis, and parameterized queries for security. Use for query construction, performance tuning, schema design, data migration, and cross-engine SQL translation.
 
 # SQL Expert
 
@@ -36,6 +35,11 @@ SQL expertise evaluates 8 critical dimensions:
 8. **Performance & Query Plans**: EXPLAIN/EXPLAIN ANALYZE interpretation, index strategy, query rewriting, materialized views, statistics management
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 
@@ -217,6 +221,13 @@ SQL expertise evaluates 8 critical dimensions:
 **MEMORY UPDATE IS MANDATORY - DO NOT SKIP**
 
 ---
+
+### Step 6: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `sql_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## Output Requirements
 

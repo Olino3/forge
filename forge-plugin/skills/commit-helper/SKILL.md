@@ -1,7 +1,6 @@
 ---
 name: commit-helper
-description: Crafts meaningful change chronicles by analyzing git diffs and generating precise, convention-compliant commit messages. Evaluates change scope, classifies modifications, detects breaking changes, and produces structured commit messages following Conventional Commits or project-specific conventions. Like Hephaestus inscribing the purpose of each forged artifact, this skill ensures every commit tells the story of its changes with clarity and intent.
----
+## description: Crafts meaningful change chronicles by analyzing git diffs and generating precise, convention-compliant commit messages. Evaluates change scope, classifies modifications, detects breaking changes, and produces structured commit messages following Conventional Commits or project-specific conventions. Like Hephaestus inscribing the purpose of each forged artifact, this skill ensures every commit tells the story of its changes with clarity and intent.
 
 # Commit Message Chronicler
 
@@ -16,6 +15,13 @@ description: Crafts meaningful change chronicles by analyzing git diffs and gene
 - **Memory**: Project-specific memory accessed via `memoryStore.getSkillMemory("commit-helper", "{project-name}")`. See [MemoryStore Interface](../../interfaces/memory_store.md).
 - **templates/**:
   - `commit_template.md`: Standard commit message output format template
+
+
+## Interface References
+
+- **Context**: Loaded via [ContextProvider Interface](../../interfaces/context_provider.md)
+- **Memory**: Accessed via [MemoryStore Interface](../../interfaces/memory_store.md)
+- **Shared Patterns**: [Shared Loading Patterns](../../interfaces/shared_loading_patterns.md)
 
 ## Focus Areas
 
@@ -32,6 +38,11 @@ Commit message crafting evaluates 7 critical dimensions:
 **Note**: The skill analyzes staged or diffed changes to generate messages. It does not execute `git commit` itself unless explicitly requested.
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 
@@ -211,7 +222,27 @@ Refer to official documentation:
   - Added references to MemoryStore interface documentation
 - v1.0.0 (2025-01-XX): Initial release
   - Mandatory 4-step workflow for commit message generation
-  - Conventional Commits compliance
-  - Breaking change detection
-  - Project memory integration for convention persistence
-  - Template-based output formatting
+
+### Step 1: Initial Analysis
+
+Gather inputs and determine scope and requirements.
+
+### Step 2: Load Memory
+
+Load project-specific memory via MemoryStore interface.
+
+### Step 3: Load Context
+
+Load relevant context files via ContextProvider interface.
+
+### Step 4: Core Implementation
+
+Execute the skill-specific core action.
+
+### Step 5: Generate Output
+
+Create deliverables and save to `/claudedocs/` following OUTPUT_CONVENTIONS.md.
+
+### Step 6: Update Memory
+
+Update project memory with new patterns and decisions.

@@ -4,6 +4,10 @@ imports:
   - shared/forge-base.md
   - shared/forge-pr-creator.md
   - shared/forge-conventions.md
+  - shared/model-codex-mini.md
+engine:
+  id: copilot
+  model: claude-haiku-4.5
 on:
   pull_request:
     types: [closed]

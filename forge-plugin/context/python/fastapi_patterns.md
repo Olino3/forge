@@ -26,9 +26,9 @@ sections:
     keywords: [auth, cors, sql-injection, rate-limiting]
 tags: [python, fastapi, pydantic, async, api]
 crossDomainTriggers: ["security/security_guidelines"]
-detectionTriggers: ["from fastapi import", "@router.get", "BaseModel"]
----
+## detectionTriggers: ["from fastapi import", "@router.get", "BaseModel"]
 
+---
 # FastAPI Patterns
 
 Quick reference for FastAPI best practices and common issues. For detailed examples, see [FastAPI documentation](https://fastapi.tiangolo.com/).

@@ -22,8 +22,7 @@ triggers:
   - AI readability
   - agent readiness
   - context auditor
-  - workflow validator
----
+##   - workflow validator
 
 # Project Health Auditor
 
@@ -58,6 +57,11 @@ Project health auditing evaluates 3 critical dimensions across 7 focus areas:
 **Note**: The skill produces a scored report with specific, actionable recommendations. It does not modify project files unless explicitly requested.
 
 ---
+
+## Purpose
+
+AI-agent readiness auditing for project documentation and workflows. Evaluates documentation completeness, workflow maturity, and AI-agent onboarding readiness. Produces scored health reports with actionable recommendations. Like Hephaestus inspecting the readiness of each artifact before it leaves the forge, this skill ensures every project meets the standards required for effective AI-assisted development.
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 

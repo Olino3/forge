@@ -24,8 +24,7 @@ tags:
   - "commands"
 triggers:
   - "start new project"
-  - "/plan-project"
----
+##   - "/plan-project"
 
 # skill:project-workflow - Project Lifecycle Workflow Manager
 

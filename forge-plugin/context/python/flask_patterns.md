@@ -38,9 +38,9 @@ sections:
   - name: "Official Resources"
     estimatedTokens: 20
     keywords: [official, resources]
+
 tags: [python, flask, blueprints, factory, security, extensions]
 ---
-
 # Flask Patterns
 
 Quick reference for Flask best practices and common issues. For detailed examples, see [Flask documentation](https://flask.palletsprojects.com/).

@@ -5,8 +5,12 @@ imports:
   - shared/forge-issue-creator.md
   - shared/forge-quality-issue-template.md
   - shared/forge-conventions.md
+  - shared/model-gemini.md
+engine:
+  id: copilot
+  model: claude-haiku-4.5
 on:
-  schedule: "weekly on sunday"
+
   workflow_dispatch:
 permissions:
   contents: read

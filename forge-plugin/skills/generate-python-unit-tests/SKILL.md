@@ -7,8 +7,7 @@ context:
   topics: [unit_testing_standards, testing_frameworks, mocking_patterns, test_antipatterns]
 memory:
   scope: per-project
-  files: [testing_patterns.md, expected_behaviors.md, common_fixtures.md, framework_config.md]
----
+##   files: [testing_patterns.md, expected_behaviors.md, common_fixtures.md, framework_config.md]
 
 # generate-python-unit-tests
 
@@ -394,6 +393,11 @@ Before generating tests, I need to understand the expected behavior:
 
 ---
 
+## Purpose
+
+Intelligent Python unit test generation with Socratic planning and project-specific memory.
+
+
 ## Compliance Checklist
 
 Before completing the skill invocation, verify ALL items:
@@ -552,8 +556,27 @@ Context files provide stable guidance:
 ### v1.0.0 (2025-11-18)
 - Initial release
 - Mandatory 8-step workflow
-- Socratic planning phase
-- Project-specific memory system
-- Centralized context integration
-- Support for pytest and unittest
-- Template-based test generation
+
+### Step 1: Initial Analysis
+
+Gather inputs and determine scope and requirements.
+
+### Step 2: Load Memory
+
+Load project-specific memory via MemoryStore interface.
+
+### Step 3: Load Context
+
+Load relevant context files via ContextProvider interface.
+
+### Step 4: Core Implementation
+
+Execute the skill-specific core action.
+
+### Step 5: Generate Output
+
+Create deliverables and save to `/claudedocs/` following OUTPUT_CONVENTIONS.md.
+
+### Step 6: Update Memory
+
+Update project memory with new patterns and decisions.

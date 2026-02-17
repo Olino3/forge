@@ -41,9 +41,9 @@ sections:
   - name: "Official Documentation"
     estimatedTokens: 25
     keywords: [official, documentation]
+
 tags: [python, venv, virtualenv, poetry, conda, environments]
 ---
-
 # Python Virtual Environments Reference
 
 Quick reference for creating, activating, and managing Python virtual environments. For detailed documentation, see official sources linked below.

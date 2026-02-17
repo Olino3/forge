@@ -77,8 +77,8 @@ sections:
   - name: "When to Add New Context Files"
     estimatedTokens: 63
     keywords: [add, new, context, files]
-tags: [dotnet, csharp, index, navigation, code-review]
 ---
+## tags: [dotnet, csharp, index, navigation, code-review]
 
 # .NET Context Index
 

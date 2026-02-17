@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-02-14T01:44:40Z",
+  "components": {
+    "skills": 102,
+    "agents": 19,
+    "hooks": 24,
+    "commands": 25,
+    "context_files": 69
+  },
+  "critical_files": {
+    "total": 8,
+    "missing": 0
+  },
+  "cross_references": {
+    "agent_skill_refs": 28,
+    "indexed_domains": 9
+  },
+  "integrations": {
+    "mcp_docs": 10,
+    "external_plugins": 38
+  },
+  "health_status": "healthy"
+}
