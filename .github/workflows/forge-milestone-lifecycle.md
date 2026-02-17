@@ -7,7 +7,7 @@ imports:
   - shared/forge-conventions.md
 engine:
   id: copilot
-  model: gemini-3
+  model: gemini-3-pro-preview
 on:
   milestone:
     types: [created]
