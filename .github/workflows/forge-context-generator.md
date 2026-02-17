@@ -4,7 +4,7 @@ imports:
   - shared/forge-base.md
   - shared/forge-pr-creator.md
   - shared/forge-conventions.md
-  - shared/model-codex-mini.md
+  - shared/model-gemini.md
 engine:
   id: copilot
   model: claude-haiku-4.5
