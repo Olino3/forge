@@ -315,7 +315,7 @@ See [AGENTIC_FORGE.md](AGENTIC_FORGE.md) for the full contributor guide with lif
 5. Run `gh aw compile` — fix errors until 0 errors, 0 warnings
 6. **Never edit `.lock.yml` files** — always edit `.md` source and recompile
 
-See `CLAUDE.md` Section XVI for the full authoring reference.
+See [AGENTIC_WORKFLOWS_ROADMAP.md](AGENTIC_WORKFLOWS_ROADMAP.md) for the full technical specification.
 
 ---
 
