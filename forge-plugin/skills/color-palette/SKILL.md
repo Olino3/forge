@@ -13,7 +13,8 @@ memory:
       files: [brand_colors.md, palette_history.md]
     - type: "shared-project"
       usage: "reference"
-## tags: [color, palette, accessibility, wcag, tailwind, css, hsl, design-tokens, dark-mode]
+tags: [color, palette, accessibility, wcag, tailwind, css, hsl, design-tokens, dark-mode]
+---
 
 # skill:color-palette - Accessible Color Palette Generator
 

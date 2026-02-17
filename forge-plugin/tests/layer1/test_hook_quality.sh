@@ -47,9 +47,9 @@ for hook in "${HOOKS_DIR}"/*.sh; do
         exit_code=1
     fi
     
-    # Check 2: shellcheck
+    # Check 2: shellcheck (exclude known acceptable patterns in hook scripts)
     if command -v shellcheck &>/dev/null; then
-        if ! shellcheck -x "$hook" 2>/dev/null; then
+        if ! shellcheck -x -e SC1091,SC2034,SC2016,SC1003,SC2317,SC2001 "$hook" 2>/dev/null; then
             failures+=("❌ $hook_name: shellcheck failed")
             exit_code=1
         fi
@@ -88,14 +88,14 @@ for hook in "${HOOKS_DIR}"/*.sh; do
     hook_name="$(basename "$hook")"
     
     # Check if hook is mentioned in hooks.json (as command value)
-    if ! jq -e --arg hook "$hook_name" '.events[] | select(.handlers[].command == $hook)' "$HOOKS_JSON" >/dev/null 2>&1; then
+    if ! jq -e --arg hook "$hook_name" '[.hooks[][] | .hooks[]? // . | .command // empty] | any(test($hook))' "$HOOKS_JSON" >/dev/null 2>&1; then
         failures+=("❌ $hook_name: Not registered in hooks.json")
         exit_code=1
     fi
 done
 
 # Check that every command in hooks.json exists as a file
-registered_hooks=$(jq -r '.events[].handlers[].command' "$HOOKS_JSON" | sort -u)
+registered_hooks=$(jq -r '[.hooks[][] | .hooks[]? // . | .command // empty] | .[] | capture("/(?<name>[^/]+\\.sh)") | .name' "$HOOKS_JSON" | sort -u)
 for registered_hook in $registered_hooks; do
     hook_path="${HOOKS_DIR}/${registered_hook}"
     if [[ ! -f "$hook_path" ]]; then

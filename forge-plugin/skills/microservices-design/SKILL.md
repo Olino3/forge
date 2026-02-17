@@ -13,7 +13,8 @@ memory:
       files: [project_overview.md, service_catalog.md]
     - type: "shared-project"
       usage: "reference"
-## tags: [microservices, distributed-systems, service-mesh, saga, cqrs, api-gateway, event-driven, observability]
+tags: [microservices, distributed-systems, service-mesh, saga, cqrs, api-gateway, event-driven, observability]
+---
 
 # skill:microservices-design — Microservices Patterns, Orchestration, and Service Mesh
 

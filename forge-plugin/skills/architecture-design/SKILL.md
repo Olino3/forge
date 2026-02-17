@@ -13,7 +13,8 @@ memory:
       files: [project_overview.md, architecture_decisions.md]
     - type: "shared-project"
       usage: "reference"
-## tags: [architecture, design, patterns, system-design, hexagonal, cqrs, event-driven, layers]
+tags: [architecture, design, patterns, system-design, hexagonal, cqrs, event-driven, layers]
+---
 
 # skill:architecture-design — Software Architecture Patterns and System Design
 

@@ -13,7 +13,8 @@ memory:
       files: [project_overview.md, widget_patterns.md, state_management.md, platform_integrations.md]
     - type: "shared-project"
       usage: "reference"
-## tags: [flutter, dart, mobile, cross-platform, widgets, state-management, riverpod, bloc, platform-channels, testing]
+tags: [flutter, dart, mobile, cross-platform, widgets, state-management, riverpod, bloc, platform-channels, testing]
+---
 
 # skill:flutter-expert — Cross-Platform Mobile Development with Flutter/Dart
 

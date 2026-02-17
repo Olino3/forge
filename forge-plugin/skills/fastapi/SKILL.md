@@ -13,7 +13,8 @@ memory:
       files: [project_overview.md, api_contracts.md, dependency_patterns.md, performance_notes.md]
     - type: "shared-project"
       usage: "reference"
-## tags: ["backend", "framework", "python", "fastapi", "backend-frameworks"]
+tags: ["backend", "framework", "python", "fastapi", "backend-frameworks"]
+---
 
 # FastAPI Framework Expert
 

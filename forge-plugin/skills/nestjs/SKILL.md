@@ -13,7 +13,8 @@ memory:
       files: [project_overview.md, module_map.md, integration_notes.md, testing_strategy.md]
     - type: "shared-project"
       usage: "reference"
-## tags: ["backend", "framework", "nestjs", "typescript", "backend-frameworks"]
+tags: ["backend", "framework", "nestjs", "typescript", "backend-frameworks"]
+---
 
 # NestJS Framework Expert
 

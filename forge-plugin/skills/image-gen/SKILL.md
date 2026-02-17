@@ -13,7 +13,8 @@ memory:
       files: [brand_guidelines.md, generation_history.md, prompt_patterns.md]
     - type: "shared-project"
       usage: "reference"
-## tags: [image-generation, gemini, google-genai, hero-banner, infographic, ai-images, web-design]
+tags: [image-generation, gemini, google-genai, hero-banner, infographic, ai-images, web-design]
+---
 
 # skill:image-gen — Generate Website Images with Gemini 3
 

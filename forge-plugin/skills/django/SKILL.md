@@ -13,7 +13,8 @@ memory:
       files: [project_overview.md, architecture_notes.md, data_model_patterns.md, deployment_notes.md]
     - type: "shared-project"
       usage: "reference"
-## tags: ["backend", "framework", "python", "django", "backend-frameworks"]
+tags: ["backend", "framework", "python", "django", "backend-frameworks"]
+---
 
 # Django Framework Expert
 

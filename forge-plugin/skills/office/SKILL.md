@@ -13,7 +13,8 @@ memory:
       files: [document_templates.md, library_patterns.md]
     - type: "shared-project"
       usage: "reference"
-## tags: [office, docx, xlsx, pdf, pptx, typescript, word, excel, powerpoint, document-generation]
+tags: [office, docx, xlsx, pdf, pptx, typescript, word, excel, powerpoint, document-generation]
+---
 
 # skill:office - Generate Office Documents with TypeScript
 

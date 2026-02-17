@@ -48,8 +48,6 @@ sections:
     estimatedTokens: 60
     keywords: [best]
   - name: "Detection Patterns"
-tags: [azure, pipelines, cicd, yaml, stages, jobs, triggers, templates]
----
     estimatedTokens: 52
     keywords: [detection, patterns]
   - name: "When to Use"
@@ -58,7 +56,7 @@ tags: [azure, pipelines, cicd, yaml, stages, jobs, triggers, templates]
   - name: "Official Resources"
     estimatedTokens: 12
     keywords: [official, resources]
----
+tags: [azure, pipelines, cicd, yaml, stages, jobs, triggers, templates]
 ---
 
 # Azure Pipelines Overview

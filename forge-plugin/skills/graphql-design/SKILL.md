@@ -13,7 +13,8 @@ memory:
       files: [project_overview.md, schema_conventions.md]
     - type: "shared-project"
       usage: "reference"
-## tags: [graphql, schema, resolvers, federation, api, relay, dataloader, subscriptions]
+tags: [graphql, schema, resolvers, federation, api, relay, dataloader, subscriptions]
+---
 
 # skill:graphql-design — GraphQL Schema Design, Resolvers, and Federation
 

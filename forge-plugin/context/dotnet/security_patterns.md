@@ -48,13 +48,12 @@ sections:
     estimatedTokens: 63
     keywords: [detection, patterns]
   - name: "Security Checklist"
-tags: [dotnet, security, owasp, sql-injection, xss, csrf, authentication, jwt, secrets]
----
     estimatedTokens: 66
     keywords: [security, checklist]
   - name: "Official Resources"
     estimatedTokens: 23
     keywords: [official, resources]
+tags: [dotnet, security, owasp, sql-injection, xss, csrf, authentication, jwt, secrets]
 ---
 
 # .NET Security Patterns

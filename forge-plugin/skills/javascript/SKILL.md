@@ -13,7 +13,8 @@ memory:
       files: [project_overview.md, runtime_profile.md, module_strategy.md, performance_notes.md]
     - type: "shared-project"
       usage: "reference"
-## tags: [programming-languages, javascript, es2024, runtime]
+tags: [programming-languages, javascript, es2024, runtime]
+---
 
 # Skill: javascript - Advanced JavaScript Engineering
 

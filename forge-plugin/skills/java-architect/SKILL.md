@@ -13,7 +13,8 @@ memory:
       files: [project_overview.md, architecture_decisions.md, framework_stack.md, performance_notes.md]
     - type: "shared-project"
       usage: "reference"
-## tags: [programming-languages, java, architecture, enterprise]
+tags: [programming-languages, java, architecture, enterprise]
+---
 
 # Skill: java-architect - Enterprise Java Architecture
 

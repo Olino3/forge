@@ -13,7 +13,8 @@ memory:
       files: [project_overview.md, cluster_patterns.md, deployment_strategies.md]
     - type: "shared-project"
       usage: "reference"
-## tags: [kubernetes, k8s, containers, orchestration, helm, operators, aks, eks, gke, kubectl, deployments, services, ingress, autoscaling]
+tags: [kubernetes, k8s, containers, orchestration, helm, operators, aks, eks, gke, kubectl, deployments, services, ingress, autoscaling]
+---
 
 # skill:kubernetes-specialist - Kubernetes Cluster Management & Orchestration
 

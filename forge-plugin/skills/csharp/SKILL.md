@@ -13,7 +13,8 @@ memory:
       files: [project_overview.md, runtime_stack.md, csharp_conventions.md, known_issues.md]
     - type: "shared-project"
       usage: "reference"
-## tags: [programming-languages, csharp, dotnet, engineering]
+tags: [programming-languages, csharp, dotnet, engineering]
+---
 
 # Skill: csharp - .NET Language Expertise
 

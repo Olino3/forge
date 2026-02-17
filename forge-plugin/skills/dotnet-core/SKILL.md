@@ -13,7 +13,8 @@ memory:
       files: [solution_overview.md, api_patterns.md, data_access.md, deployment_notes.md]
     - type: "shared-project"
       usage: "reference"
-## tags: ["backend", "framework", "dotnet", "aspnet-core", "backend-frameworks"]
+tags: ["backend", "framework", "dotnet", "aspnet-core", "backend-frameworks"]
+---
 
 # .NET Core Framework Expert
 

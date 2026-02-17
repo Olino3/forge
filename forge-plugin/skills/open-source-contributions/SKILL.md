@@ -13,7 +13,8 @@ memory:
       files: [project_conventions.md, contribution_history.md]
     - type: "shared-project"
       usage: "reference"
-## tags: [open-source, pull-request, contribution, git, github, fork, code-review, community]
+tags: [open-source, pull-request, contribution, git, github, fork, code-review, community]
+---
 
 # skill:open-source-contributions - Create Maintainer-Friendly Pull Requests
 

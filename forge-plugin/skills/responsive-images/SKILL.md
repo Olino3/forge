@@ -13,7 +13,8 @@ memory:
       files: [project_overview.md, common_patterns.md]
     - type: "shared-project"
       usage: "reference"
-## tags: [images, responsive, srcset, sizes, lazy-loading, webp, avif, picture, fetchpriority, cls, performance]
+tags: [images, responsive, srcset, sizes, lazy-loading, webp, avif, picture, fetchpriority, cls, performance]
+---
 
 # skill:responsive-images - Performant Responsive Images
 

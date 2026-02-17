@@ -13,7 +13,8 @@ memory:
       files: [project_overview.md, common_patterns.md]
     - type: "shared-project"
       usage: "reference"
-## tags: [react, forms, react-hook-form, zod, validation, typescript, type-safe, schema-validation]
+tags: [react, forms, react-hook-form, zod, validation, typescript, type-safe, schema-validation]
+---
 
 # skill:react-forms - Type-Safe Forms with React Hook Form + Zod
 

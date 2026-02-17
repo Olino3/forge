@@ -13,7 +13,8 @@ memory:
       files: [project_overview.md, api_conventions.md]
     - type: "shared-project"
       usage: "reference"
-## tags: [api, rest, rpc, design, openapi, endpoints, versioning, http]
+tags: [api, rest, rpc, design, openapi, endpoints, versioning, http]
+---
 
 # skill:api-design — RESTful and RPC API Design Patterns
 

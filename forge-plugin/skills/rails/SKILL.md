@@ -13,7 +13,8 @@ memory:
       files: [project_overview.md, domain_models.md, job_queue_notes.md, performance_notes.md]
     - type: "shared-project"
       usage: "reference"
-## tags: ["backend", "framework", "rails", "ruby", "backend-frameworks"]
+tags: ["backend", "framework", "rails", "ruby", "backend-frameworks"]
+---
 
 # Ruby on Rails Framework Expert
 

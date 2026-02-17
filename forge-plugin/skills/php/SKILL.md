@@ -13,7 +13,8 @@ memory:
       files: [project_overview.md, framework_conventions.md, dependency_map.md, deployment_notes.md]
     - type: "shared-project"
       usage: "reference"
-## tags: ["backend", "framework", "php", "backend-frameworks"]
+tags: ["backend", "framework", "php", "backend-frameworks"]
+---
 
 # PHP Framework Expert
 

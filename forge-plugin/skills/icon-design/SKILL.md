@@ -13,7 +13,8 @@ memory:
       files: [icon_mappings.md, library_preferences.md]
     - type: "shared-project"
       usage: "reference"
-## tags: [icons, lucide, heroicons, phosphor, react, svg, design, ui, tree-shaking]
+tags: [icons, lucide, heroicons, phosphor, react, svg, design, ui, tree-shaking]
+---
 
 # skill:icon-design - Semantically Appropriate Icon Selection
 

@@ -26,6 +26,76 @@ from conftest import FORGE_DIR
 SIMILARITY_THRESHOLD = 0.7  # 70% similarity threshold
 MIN_BLOCK_LENGTH = 200  # Minimum characters for a content block to be considered
 
+# Boilerplate patterns that are intentionally shared across files.
+# These are excluded from duplication detection since they come from templates
+# or shared conventions (e.g., skill template sections, hook library preamble).
+BOILERPLATE_PATTERNS = [
+    # Hook shared library preamble
+    "Source shared library",
+    "SCRIPT_DIR=\"$(cd \"$(dirname",
+    # Hook stdin parsing (common jq extraction pattern)
+    "TRANSCRIPT_PATH=$(echo \"$INPUT\" | jq",
+    # Hook warning/response output blocks (shared JSON response format)
+    "Non-blocking warnings",
+    "ESCAPED_WARN=$(echo",
+    # Skill template sections (interface references, file structure)
+    "Loaded via [ContextProvider Interface]",
+    "Accessed via [MemoryStore Interface]",
+    "Skill Files**: - `SKILL.md` (this file)",
+    "memoryStore.getSkillMemory(",
+    "contextProvider.getDomainIndex(",
+    "[ContextProvider](../../interfaces/context_provider.md)",
+    "**Interface References**:",
+    "**ContextProvider**:",
+    # Skill template workflow steps
+    "Load Project Memory**: - Use `memoryStore",
+    "Phase 4 Migration: Replaced all hardcoded",
+    "Phase 4 Migration: Replaced hardcoded",
+    # Skill output conventions block (shared across all skills)
+    "Create deliverables and save to `/claudedocs/`",
+    "Follow OUTPUT_CONVENTIONS.md naming",
+    # Skill memory update pattern (shared template reference)
+    "Follow [Standard Memory Update]",
+    "shared_loading_patterns.md",
+    "UPDATE PROJECT MEMORY**: - Use `memoryStore",
+    # Skill step 6 template (generate output & update memory)
+    "STEP 6: Generate Output & Update Memory",
+    # Skill workflow compliance checklist (shared template)
+    "Workflow Compliance - [ ] Step 1: Initial Analysis completed",
+    "All mandatory workflow steps executed in order",
+    "Standard Memory Loading pattern followed",
+    # Skill memory loading patterns (project_overview, common_patterns)
+    "Load `project_overview.md`",
+    "project_overview**: Languages, frameworks, architecture",
+    # Skill version changelog entries (Phase 4 migration template)
+    "v1.1.0 (2025-07-15)",
+    # Skill cross-references to other skills
+    "Before testing**: Use `skill:",
+    # Generator skill shared patterns (options, validation, output format)
+    "**Options** (can select multiple):",
+    "Generated projects must:",
+    "**Actions**: 1. Verify all required files exist",
+    "**Actions**: 1. List all generated files",
+    # Test generation skill validation checklists
+    "**Validation**: - [ ] Project memory directory exists",
+    "Test Quality - [ ] Tests follow AAA pattern",
+    # Code review skill shared patterns
+    "While reviewing changed lines, consider the surrounding context",
+    "**Option A**: Structured report",
+    # Skill output requirements (YOU MUST template)
+    "**YOU MUST:** 1. Load engineering domain context",
+    "**YOU MUST:** 1. Save the",
+    # Step checklists (skill template checklists shared across skills)
+    "- [ ] Step 1:",
+    "- [ ] Step 2:",
+    # Context: Azure shared config/code examples (legitimately referenced across files)
+    "AZURE_STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol",
+    "stage: DeployProd dependsOn: DeployDev",
+    "@app.function_name(name=",
+    # Context: .NET auth patterns (shared between aspnet_patterns and security_patterns)
+    "AddAuthentication(JwtBearerDefaults",
+]
+
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -85,11 +155,14 @@ def _extract_content_blocks(file_path: Path) -> List[str]:
     # Split into blocks (paragraphs, code blocks, etc.)
     blocks = content.split('\n\n')
     
-    # Filter out very short blocks and normalize whitespace
+    # Filter out very short blocks, normalize whitespace, and exclude boilerplate
     meaningful_blocks = []
     for block in blocks:
         normalized = ' '.join(block.split())
         if len(normalized) >= MIN_BLOCK_LENGTH:
+            # Skip blocks that match known boilerplate patterns
+            if any(pattern in normalized for pattern in BOILERPLATE_PATTERNS):
+                continue
             meaningful_blocks.append(normalized)
     
     return meaningful_blocks
@@ -99,6 +172,7 @@ def _find_similar_blocks(files: List[Tuple[str, Path]]) -> List[Tuple[str, str, 
     """Find similar content blocks across files.
     
     Returns list of (file1, file2, similarity_ratio, similar_content_preview).
+    Automatically filters out template blocks that appear in 3+ files.
     """
     similar_pairs = []
     
@@ -113,17 +187,30 @@ def _find_similar_blocks(files: List[Tuple[str, Path]]) -> List[Tuple[str, str, 
     file_names = list(file_blocks.keys())
     for i, file1 in enumerate(file_names):
         for file2 in file_names[i+1:]:
-            # Compare all blocks between the two files
             for block1 in file_blocks[file1]:
                 for block2 in file_blocks[file2]:
                     ratio = difflib.SequenceMatcher(None, block1, block2).ratio()
                     
                     if ratio >= SIMILARITY_THRESHOLD:
-                        # Create preview (first 100 chars)
                         preview = block1[:100] + "..." if len(block1) > 100 else block1
                         similar_pairs.append((file1, file2, ratio, preview))
     
-    return similar_pairs
+    # Auto-filter: remove pairs where the same block content (by preview fingerprint)
+    # appears across 3+ different files, indicating template/boilerplate content
+    from collections import defaultdict
+    preview_files = defaultdict(set)
+    for file1, file2, ratio, preview in similar_pairs:
+        fingerprint = preview[:60]
+        preview_files[fingerprint].add(file1)
+        preview_files[fingerprint].add(file2)
+    
+    template_fingerprints = {fp for fp, files_set in preview_files.items()
+                             if len(files_set) >= 3}
+    
+    filtered_pairs = [(f1, f2, r, p) for f1, f2, r, p in similar_pairs
+                      if p[:60] not in template_fingerprints]
+    
+    return filtered_pairs
 
 
 # ---------------------------------------------------------------------------

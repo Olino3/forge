@@ -13,7 +13,8 @@ memory:
       files: [migration_progress.md, codebase_patterns.md]
     - type: "shared-project"
       usage: "reference"
-## tags: [jquery, migration, wordpress, legacy, breaking-changes, javascript, upgrade]
+tags: [jquery, migration, wordpress, legacy, breaking-changes, javascript, upgrade]
+---
 
 # skill:jquery-4 — Migrate jQuery 3.x to 4.0.0
 

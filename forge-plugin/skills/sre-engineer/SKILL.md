@@ -13,7 +13,8 @@ memory:
       files: [project_overview.md, slo_definitions.md, incident_learnings.md]
     - type: "shared-project"
       usage: "reference"
-## tags: [sre, reliability, observability, monitoring, alerting, incidents, slo, sla, chaos-engineering, error-budget, postmortem, on-call]
+tags: [sre, reliability, observability, monitoring, alerting, incidents, slo, sla, chaos-engineering, error-budget, postmortem, on-call]
+---
 
 # skill:sre-engineer - Site Reliability Engineering & Observability
 

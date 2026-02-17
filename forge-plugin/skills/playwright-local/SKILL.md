@@ -13,7 +13,8 @@ memory:
       files: [automation_patterns.md, site_selectors.md, auth_flows.md]
     - type: "shared-project"
       usage: "reference"
-## tags: [playwright, browser-automation, web-scraping, testing, e2e, screenshots, pdf, network-interception]
+tags: [playwright, browser-automation, web-scraping, testing, e2e, screenshots, pdf, network-interception]
+---
 
 # skill:playwright-local - Browser Automation & Web Scraping with Playwright
 

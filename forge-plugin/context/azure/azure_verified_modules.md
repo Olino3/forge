@@ -48,14 +48,12 @@ sections:
     estimatedTokens: 33
     keywords: [finding, right, module]
   - name: "Troubleshooting"
-tags: [azure, bicep, avm, modules, registry, infrastructure]
----
     estimatedTokens: 33
     keywords: [troubleshooting]
   - name: "Official Resources"
     estimatedTokens: 20
     keywords: [official, resources]
----
+tags: [azure, bicep, avm, modules, registry, infrastructure]
 ---
 
 # Azure Verified Modules (AVM)
