@@ -7,7 +7,7 @@ imports:
   - shared/model-gpt4.md
 engine:
   id: copilot
-  model: gpt-4.1
+  model: claude-haiku-4.5
 on:
   schedule: "0 7 * * 1,4"  # Monday + Thursday at 7am UTC
   workflow_dispatch:

@@ -7,7 +7,7 @@ imports:
   - shared/forge-conventions.md
 engine:
   id: copilot
-  model: claude-haiku-4.5
+  model: claude-opus-4.6
 on:
   milestone:
     types: [created]

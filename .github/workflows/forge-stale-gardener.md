@@ -7,7 +7,7 @@ imports:
   - shared/model-gpt4.md
 engine:
   id: copilot
-  model: gpt-4.1
+  model: gpt-5.1-codex-mini
 on:
   schedule: "weekly on saturday"
   workflow_dispatch:

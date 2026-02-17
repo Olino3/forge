@@ -4,6 +4,9 @@ imports:
   - shared/forge-base.md
   - shared/forge-issue-creator.md
   - shared/forge-conventions.md
+engine:
+  id: copilot
+  model: claude-opus-4.6
 on:
   issues:
     types: [labeled]

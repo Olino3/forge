@@ -29,7 +29,7 @@
 #     - shared/forge-quality-issue-template.md
 #     - shared/model-gemini.md
 #
-# frontmatter-hash: 5642e633e3bbc0a77f464bc4e17aaf8eecad389283dfaad71ec6689daf8ac069
+# frontmatter-hash: ccf61c487728b06baec9fc1d987b781e10b9f30f000367cef18fa1a8a8943c5e
 
 name: "Forge Health Dashboard"
 "on":

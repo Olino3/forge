@@ -7,7 +7,7 @@ imports:
   - shared/model-codex-mini.md
 engine:
   id: copilot
-  model: gpt-5.1-codex-mini
+  model: claude-haiku-4.5
 on:
   pull_request:
     types: [closed]
