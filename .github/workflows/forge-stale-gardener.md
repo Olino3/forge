@@ -4,7 +4,7 @@ imports:
   - shared/forge-base.md
   - shared/forge-issue-creator.md
   - shared/forge-conventions.md
-  - shared/model-gpt4.md
+  - shared/model-codex-mini.md
 engine:
   id: copilot
   model: gpt-5.1-codex-mini
