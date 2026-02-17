@@ -59,7 +59,7 @@ Each model tier has a specialized system prompt template in `.github/workflows/s
 
 - **model-codex-mini.md**: Tool-Use-First approach, structured JSON output, anti-patterns list
 - **model-gpt4.md**: Precision Editor framework, before/after examples, self-verification checklist
-- **model-gemini.md**: XML data delimiting, chain-of-thought protocol, multi-document QA
+- **model-claude-haiku.md**: Fast context synthesis, documentation-first prompting, health aggregation patterns
 - **model-claude-opus.md**: Strategic Advisor framework, Socratic prompting, execution plans
 
 Workflows import the appropriate template via `imports: [shared/model-*.md]` in frontmatter.

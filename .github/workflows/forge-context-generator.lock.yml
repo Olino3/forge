@@ -28,9 +28,9 @@
 #     - shared/forge-base.md
 #     - shared/forge-conventions.md
 #     - shared/forge-pr-creator.md
-#     - shared/model-gemini.md
+#     - shared/model-claude-haiku.md
 #
-# frontmatter-hash: c8167af29d511e696ae3a4bd73d926c9ae1316858a7338be40d4ca18762ad29d
+# frontmatter-hash: 59830de534538aba7a7172844cbf45152ab412c74f53345ab123bb5ce6282de7
 
 name: "Forge Context Generator"
 "on":
@@ -185,7 +185,7 @@ jobs:
           {{#runtime-import .github/workflows/shared/forge-conventions.md}}
           GH_AW_PROMPT_EOF
           cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
-          {{#runtime-import .github/workflows/shared/model-gemini.md}}
+          {{#runtime-import .github/workflows/shared/model-claude-haiku.md}}
           GH_AW_PROMPT_EOF
           cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
           {{#runtime-import .github/workflows/forge-context-generator.md}}

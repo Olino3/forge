@@ -29,9 +29,9 @@
 #     - shared/forge-conventions.md
 #     - shared/forge-issue-creator.md
 #     - shared/forge-quality-issue-template.md
-#     - shared/model-claude.md
+#     - shared/model-claude-haiku.md
 #
-# frontmatter-hash: 05953658f82ffd8d6754c18612a95339c845b54f4570e3727d7323633ba9524b
+# frontmatter-hash: b570ab7c3cd38e200598190a1a1893bd43d5c4258d91a53335c4fce6dc617be4
 
 name: "Forge Health Dashboard"
 "on":
@@ -169,7 +169,7 @@ jobs:
           {{#runtime-import .github/workflows/shared/forge-conventions.md}}
           GH_AW_PROMPT_EOF
           cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
-          {{#runtime-import .github/workflows/shared/model-claude.md}}
+          {{#runtime-import .github/workflows/shared/model-claude-haiku.md}}
           GH_AW_PROMPT_EOF
           cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
           {{#runtime-import .github/workflows/forge-health-dashboard.md}}
