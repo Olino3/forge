@@ -8,7 +8,7 @@ imports:
   - shared/model-gemini.md
 engine:
   id: copilot
-  model: gemini-3-pro-preview
+  model: gemini-3-flash-preview
 on:
 
   workflow_dispatch:
