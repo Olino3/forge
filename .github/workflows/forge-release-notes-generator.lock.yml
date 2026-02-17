@@ -28,9 +28,9 @@
 #     - shared/forge-base.md
 #     - shared/forge-conventions.md
 #     - shared/forge-issue-creator.md
-#     - shared/model-gemini.md
+#     - shared/model-claude-haiku.md
 #
-# frontmatter-hash: 2b1875d06d4208d7b95db57be35eeaf7e852c93ca8e4e4ca5be4c441c093d798
+# frontmatter-hash: 24b7308684c0c1ef8bd0e87af37d9aad68ad671b5d307f93b170b5f9d1e2250a
 
 name: "Forge Release Notes Generator"
 "on":
@@ -174,7 +174,7 @@ jobs:
           {{#runtime-import .github/workflows/shared/forge-conventions.md}}
           GH_AW_PROMPT_EOF
           cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
-          {{#runtime-import .github/workflows/shared/model-gemini.md}}
+          {{#runtime-import .github/workflows/shared/model-claude-haiku.md}}
           GH_AW_PROMPT_EOF
           cat << 'GH_AW_PROMPT_EOF' >> "$GH_AW_PROMPT"
           {{#runtime-import .github/workflows/forge-release-notes-generator.md}}

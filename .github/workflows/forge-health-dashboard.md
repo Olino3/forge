@@ -5,7 +5,7 @@ imports:
   - shared/forge-issue-creator.md
   - shared/forge-quality-issue-template.md
   - shared/forge-conventions.md
-  - shared/model-claude.md
+  - shared/model-claude-haiku.md
 engine:
   id: copilot
   model: claude-haiku-4.5
