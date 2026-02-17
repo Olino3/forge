@@ -218,9 +218,6 @@ skills/microservices-design/
   - Data ownership map
   - Saga definitions for distributed workflows
 
-### Step 1: Initial Analysis
-
-Gather inputs and determine scope and requirements.
   - Operational concerns (gateway, mesh, observability, resilience)
   - ADRs for key decisions
 

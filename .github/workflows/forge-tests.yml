@@ -180,26 +180,9 @@ jobs:
         working-directory: forge-plugin/tests
         run: python -m pytest layer1/test_conventions.py -v --tb=short
 
-  detect-duplication:
-    name: "Detect Content Duplication"
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python 3.12
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install dependencies
-        run: pip install pytest
-
-      - name: Run duplication detection tests
-        working-directory: forge-plugin/tests
-        run: python -m pytest layer1/test_duplication.py -v --tb=short
+  # Content duplication detection removed from CI — the 37-minute fuzzy
+  # similarity analysis is better handled by the forge-duplication-detector
+  # agentic workflow which can reason about intent vs. template boilerplate.
 
   health-aggregator:
     name: "Health Score Aggregator"
@@ -214,7 +197,6 @@ jobs:
       - validate-xrefs
       - validate-context
       - validate-conventions
-      - detect-duplication
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

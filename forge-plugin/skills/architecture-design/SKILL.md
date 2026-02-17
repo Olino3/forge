@@ -114,9 +114,6 @@ skills/architecture-design/
 | **Clean Architecture** | Complex business logic, long-lived systems | 5–15 | Medium–High |
 | **Event-Driven** | Async workflows, decoupled systems | 5–20 | High |
 
-### Step 1: Initial Analysis
-
-Gather inputs and determine scope and requirements.
 | **CQRS** | Read/write asymmetry, complex queries | 5–15 | High |
 | **Microservices** | Large orgs, independent deployment needs | 15+ | Very High |
 | **Serverless** | Event-triggered workloads, variable traffic | 1–10 | Medium |
