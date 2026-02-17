@@ -171,7 +171,7 @@ When a workflow activates on your PR, one of two things appears:
 
 1. **A new issue** is created — labeled `forge-automation` — with findings about your changes. Check the Issues tab for anything prefixed with `[duplication]`, `[context-maintenance]`, `[skill-structure]`, or `[hook-quality]`.
 
-2. **A new draft PR** is created — either targeting your branch (Best Practices Improver) or targeting `develop`/`main` (Simplifier, Convention Enforcer). These show up as separate PRs you can review, cherry-pick from, or ignore.
+2. **A new draft PR** is created — either targeting your branch (Best Practices Improver) or targeting `develop`/`main` (Simplifier). These show up as separate PRs you can review, cherry-pick from, or ignore.
 
 ### What to do about workflow outputs
 
@@ -238,7 +238,7 @@ This triage issue is a **recommendation**, not an auto-action. Maintainers revie
 
 ### Why templates matter
 
-Workflow-generated issues (from Health Dashboard, Cross-Reference Checker, etc.) also follow the **Quality Issue** template structure. This means all issues — whether created by humans or automation — share a consistent format that makes triage, filtering, and milestone planning predictable.
+Workflow-generated issues (from Health Dashboard, etc.) and CI validation failures also follow the **Quality Issue** template structure. This means all issues — whether created by humans or automation — share a consistent format that makes triage, filtering, and milestone planning predictable.
 
 ---
 
@@ -312,12 +312,12 @@ Even when no one is actively contributing, scheduled workflows run to keep the r
 │                                                                  │
 │  TUESDAY                                                         │
 │  ┌──────────────────────────────┐  ┌──────────────────────────┐  │
-│  │ Cross-Reference Checker      │  │ Skill Validator          │  │
+│  │ Skill Validator              │  │ Doc Maintainer           │  │
 │  │ (08:00 UTC)                  │  │ (09:00 UTC)              │  │
 │  │                              │  │                          │  │
-│  │ Validates 8 reference        │  │ Checks skill template    │  │
-│  │ matrices between skills,     │  │ compliance, mandatory    │  │
-│  │ agents, context, hooks,      │  │ 6-step workflow, and     │  │
+│  │ Checks skill template        │  │ Syncs forge-plugin/      │  │
+│  │ compliance, mandatory        │  │ skills/ with CLAUDE.md,  │  │
+│  │ 6-step workflow, and         │  │ keeps index.md fresh     │  │
 │  │ commands, and MCPs.          │  │ examples.md presence.    │  │
 │  │                              │  │                          │  │
 │  │ Output: Issue                │  │ Output: Issue            │  │
@@ -534,19 +534,20 @@ You update `forge-plugin/agents/athena.config.json` and open a PR.
 
 **What happens automatically:**
 1. **CI validates** (via `forge-tests.yml`):
-   - JSON schema compliance (validate-agents job)
-   - Skill references exist (validate-agents job)
-   - Context domain references exist (validate-agents job)
-2. **Convention Enforcer** ensures consistent formatting
-3. **Cross-Reference Checker** (on next Tuesday) validates that skills/MCPs in the config still exist
+   - JSON schema compliance (`validate-agents` job)
+   - Skill references exist (`validate-agents` job)
+   - Context domain references exist (`validate-agents` job)
+   - Cross-references between components (`validate-xrefs` job)
+   - Naming and formatting conventions (`validate-conventions` job)
 
 ### Scenario 3: "I changed a hook script"
 
 You edit `forge-plugin/hooks/memory_quality_gate.sh` and open a PR.
 
 **What happens automatically:**
-1. **Hook Quality Checker** validates `set -euo pipefail`, performance budget, registration in `hooks.json`, and documentation in `HOOKS_GUIDE.md`
-2. **Convention Enforcer** checks formatting consistency
+1. **CI validates** (via `forge-tests.yml`):
+   - Hook quality checks: `set -euo pipefail`, performance budget, registration in `hooks.json`, and documentation in `HOOKS_GUIDE.md` (`validate-hooks` job)
+   - Formatting and naming conventions (`validate-conventions` job)
 
 ### Scenario 4: "I just want to see overall repo health"
 
