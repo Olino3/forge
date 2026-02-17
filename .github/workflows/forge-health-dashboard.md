@@ -8,7 +8,7 @@ imports:
   - shared/model-gemini.md
 engine:
   id: copilot
-  model: gemini-3-flash-preview
+  model: claude-haiku-4.5
 on:
 
   workflow_dispatch:

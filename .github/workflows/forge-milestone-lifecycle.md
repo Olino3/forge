@@ -7,7 +7,7 @@ imports:
   - shared/forge-conventions.md
 engine:
   id: copilot
-  model: gemini-3-flash-preview
+  model: claude-haiku-4.5
 on:
   milestone:
     types: [created]

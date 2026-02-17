@@ -33,7 +33,7 @@ The Forge uses **model tiering** to optimize cost vs. quality for each workflow 
 |-------|----------|-----------|----------------|----------|
 | **gpt-5.1-codex-mini** | "The Scalpel" | High-speed tool use, grep mastery, massive refactors | ~$1.50 | Mechanical operations, pattern matching |
 | **gpt-4.1** | "The Surgeon" | Precise editing, diff generation, low hallucination | ~$2.00 | Precision editing, conservative curation |
-| **gemini-3-flash-preview** | "The Context King" | 1M+ token window, deep cross-file analysis | ~$1.25 | Large-context aggregation, milestone tracking |
+| **claude-haiku-4.5** | "The Context King" | 1M+ token window, deep cross-file analysis | ~$1.25 | Large-context aggregation, milestone tracking |
 | **claude-opus-4.6** | "The Strat" | Logic sanity, strategic reasoning, safety checks | ~$15.00 | Strategic analysis only (weekly runs) |
 
 ### Model-Prompt Matrix
@@ -42,8 +42,8 @@ The Forge uses **model tiering** to optimize cost vs. quality for each workflow 
 |----------|-------|-----------|
 | **Forge Component Improver** | gpt-5.1-codex-mini | Mechanical file operations, tool-heavy, rule-based checking |
 | **Forge Doc Maintainer** | gpt-4.1 | Precision editing, character-perfect diffs, factual accuracy |
-| **Forge Milestone Lifecycle** | gemini-3-flash-preview | 1M+ context to ingest all milestones, issues, PRs |
-| **Forge Health Dashboard** | gemini-3-flash-preview | Aggregate ~200+ files, cross-ref tallies, trend analysis |
+| **Forge Milestone Lifecycle** | claude-haiku-4.5 | 1M+ context to ingest all milestones, issues, PRs |
+| **Forge Health Dashboard** | claude-haiku-4.5 | Aggregate ~200+ files, cross-ref tallies, trend analysis |
 | **Forge Release Notes Generator** | gpt-4.1 | Structured classification, low hallucination critical |
 | **Forge Context Generator** | gpt-5.1-codex-mini | Template expansion from skill content, mechanical generation |
 | **Forge Dependency Sentinel** | gpt-5.1-codex-mini | Pattern matching on version strings, grep-based scanning |
