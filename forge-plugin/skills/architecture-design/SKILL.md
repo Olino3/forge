@@ -53,7 +53,7 @@ skills/architecture-design/
 
 > **IMPORTANT**: Execute ALL steps in order. Do not skip any step.
 
-### Step 1: Understand System Requirements
+### Step 1: Initial Analysis — Understand System Requirements
 
 **YOU MUST:**
 1. Identify the **system type**:
