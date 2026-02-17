@@ -223,7 +223,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    needs: health-aggregator
+    needs: layer1-ci
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
