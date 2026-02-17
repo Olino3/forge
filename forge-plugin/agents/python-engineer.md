@@ -14,8 +14,7 @@ skills:
   - python-code-review
   - generate-python-unit-tests
   - python-dependency-management
-  - jupyter-notebook-skills
----
+##   - jupyter-notebook-skills
 
 # @python-engineer - Python Language Specialist
 

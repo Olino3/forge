@@ -9,8 +9,7 @@ hooks:
       patterns: ["API-*.md", "INTEGRATION-*.md", "*.api.yml", "MESSAGE-*.md"]
       action: "validate_integration_design"
 mcpServers: []
-memory: forge-plugin/memory/agents/hermes
----
+## memory: forge-plugin/memory/agents/hermes
 
 # @hermes - Messenger of the Gods and Integration Specialist
 

@@ -9,8 +9,7 @@ hooks:
       patterns: ["ORCHESTRATION-*.md", "*.workflow.yml", "DELEGATION-*.md"]
       action: "validate_orchestration_strategy"
 mcpServers: []
-memory: forge-plugin/memory/agents/zeus
----
+## memory: forge-plugin/memory/agents/zeus
 
 # @zeus - King of the Gods and Orchestrator
 

@@ -26,9 +26,9 @@ sections:
   - name: "Sensitive Data"
     estimatedTokens: 30
     keywords: [sensitive, data, sensitive-data]
+
 tags: [angular, security, xss, authentication, csrf, jwt, guards, interceptors]
 ---
-
 # Angular Security Patterns
 
 Security best practices specific to Angular applications.

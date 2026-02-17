@@ -4,6 +4,10 @@ imports:
   - shared/forge-base.md
   - shared/forge-issue-creator.md
   - shared/forge-conventions.md
+  - shared/model-claude-opus.md
+engine:
+  id: copilot
+  model: claude-opus-4.6
 on:
   schedule: "weekly on monday"
   push:

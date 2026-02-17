@@ -21,8 +21,7 @@ triggers:
   - create SESSION.md
   - set up session tracking
   - manage session state
-  - session handoff
----
+##   - session handoff
 
 # Project Session Management
 
@@ -55,6 +54,11 @@ Session management evaluates and tracks progress across 5 focus areas:
 **Note**: This skill produces and maintains SESSION.md as a living tracking document. It does not implement project features unless explicitly requested.
 
 ---
+
+## Purpose
+
+Track progress across sessions using SESSION.md with git checkpoints and concrete next actions. Converts IMPLEMENTATION_PHASES.md into trackable session state. Like Hephaestus marking his progress on each divine artifact, this skill ensures no work is lost between forging sessions.
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 

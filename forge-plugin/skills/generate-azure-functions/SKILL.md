@@ -7,8 +7,7 @@ context:
   topics: [azure_functions_overview, local_development_setup, tiltfile_reference, docker_compose_reference, dockerfile_reference, azurite_setup]
 memory:
   scope: per-project
-  files: [project_config.md, generated_files.md, customizations.md, setup_notes.md]
----
+##   files: [project_config.md, generated_files.md, customizations.md, setup_notes.md]
 
 # Skill: generate-azure-functions
 
@@ -18,6 +17,11 @@ memory:
 **Last Updated**: 2025-11-18
 
 ---
+
+## Purpose
+
+Generate complete Azure Functions projects with local development environment using Tilt and Azurite
+
 
 ## Title
 
@@ -165,6 +169,8 @@ After analyzing requirements, ask user about:
 ---
 
 ## Instructions
+
+## Mandatory Workflow
 
 ### MANDATORY STEPS (Must Execute in Order)
 
@@ -392,6 +398,13 @@ After analyzing requirements, ask user about:
 **Output**: Memory stored for future skill invocations
 
 ---
+
+### Step 100: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `generate-azure-functions_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## Best Practices
 

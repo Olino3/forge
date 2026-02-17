@@ -38,8 +38,8 @@ sections:
   - name: "Loading Guidance"
     estimatedTokens: 33
     keywords: [loading, guidance]
-tags: [engineering, index, navigation, code-review, api, testing, architecture]
 ---
+## tags: [engineering, index, navigation, code-review, api, testing, architecture]
 
 # Engineering Context Index
 

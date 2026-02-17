@@ -1,7 +1,6 @@
 ---
 name: file-schema-analysis
-description: Analyze and document file-based data schemas across multiple formats (JSON Schema, XML/XSD, YAML, Protobuf, Avro, Parquet, GraphQL, OpenAPI). Extracts structure, constraints, relationships, and evolution patterns. Generates comprehensive schema documentation with field inventory, validation rules, and version history. Use for API contract analysis, data format validation, schema migration planning, and documentation generation.
----
+## description: Analyze and document file-based data schemas across multiple formats (JSON Schema, XML/XSD, YAML, Protobuf, Avro, Parquet, GraphQL, OpenAPI). Extracts structure, constraints, relationships, and evolution patterns. Generates comprehensive schema documentation with field inventory, validation rules, and version history. Use for API contract analysis, data format validation, schema migration planning, and documentation generation.
 
 # File Schema Analysis Expert
 
@@ -37,6 +36,11 @@ File schema analysis evaluates 7 critical dimensions:
 7. **Quality**: Anti-patterns, best practices, performance implications
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 
@@ -196,6 +200,13 @@ File schema analysis evaluates 7 critical dimensions:
 **MEMORY UPDATE IS MANDATORY - DO NOT SKIP**
 
 ---
+
+### Step 6: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `file-schema-analysis_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## Output Requirements
 

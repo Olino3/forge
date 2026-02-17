@@ -9,8 +9,7 @@ hooks:
       patterns: ["DATA-*.md", "ANALYTICS-*.md", "*.data.yml", "PIPELINE-*.md"]
       action: "validate_data_quality"
 mcpServers: []
-memory: forge-plugin/memory/agents/demeter
----
+## memory: forge-plugin/memory/agents/demeter
 
 # @demeter - Goddess of Harvest and Data Cultivation
 

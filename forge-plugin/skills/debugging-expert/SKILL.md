@@ -1,7 +1,6 @@
 ---
 name: debugging-expert
-description: Advanced debugging techniques across languages and platforms. Focuses on root cause analysis, systematic debugging methodology, log analysis, performance profiling, memory leak detection, concurrency debugging, stack trace analysis, and environment-specific debugging. Use for production incidents, intermittent failures, performance regressions, and complex multi-service debugging scenarios.
----
+## description: Advanced debugging techniques across languages and platforms. Focuses on root cause analysis, systematic debugging methodology, log analysis, performance profiling, memory leak detection, concurrency debugging, stack trace analysis, and environment-specific debugging. Use for production incidents, intermittent failures, performance regressions, and complex multi-service debugging scenarios.
 
 # Debugging Expert
 
@@ -32,6 +31,11 @@ Debugging sessions evaluate 8 critical dimensions:
 **Note**: Focus on systematic investigation and root cause identification, not superficial symptom treatment. Debugging must produce actionable findings with verified fixes.
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 
@@ -110,6 +114,13 @@ See [ContextProvider](../../interfaces/context_provider.md) and [MemoryStore](..
 Timestamps and staleness tracking are managed automatically by MemoryStore. See [MemoryStore Interface](../../interfaces/memory_store.md) for `update()` and `append()` method details.
 
 ---
+
+### Step 6: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `debugging-expert_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## Interface References
 

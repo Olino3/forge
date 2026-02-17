@@ -9,8 +9,7 @@ hooks:
       patterns: ["ARCHITECTURE-*.md", "DESIGN-*.md", "ADR-*.md", "*.architecture.yml"]
       action: "validate_architectural_design"
 mcpServers: []
-memory: forge-plugin/memory/agents/athena
----
+## memory: forge-plugin/memory/agents/athena
 
 # @athena - Goddess of Wisdom and Strategic Architecture
 

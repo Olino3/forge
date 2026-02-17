@@ -22,9 +22,9 @@ sections:
     estimatedTokens: 40
     keywords: [pylint, flake8, ruff, mypy, bandit]
 tags: [python, anti-patterns, code-review, universal]
-crossDomainTriggers: []
----
+## crossDomainTriggers: []
 
+---
 # Common Python Issues and Anti-Patterns
 
 Quick reference for universal Python anti-patterns and common issues. For detailed examples and explanations, see official Python docs and community resources.

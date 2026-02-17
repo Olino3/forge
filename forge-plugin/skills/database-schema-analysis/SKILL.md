@@ -1,7 +1,6 @@
 ---
 name: database-schema-analysis
-description: Analyze and document database schemas across SQL and NoSQL systems (PostgreSQL, MySQL, SQL Server, MongoDB, Cassandra, Neo4j, Redis). Extracts tables, relationships, indexes, constraints, and performance patterns. Generates comprehensive schema documentation with ERDs, normalization analysis, index recommendations, and migration guidance. Use for database reverse engineering, migration planning, optimization analysis, and documentation generation.
----
+## description: Analyze and document database schemas across SQL and NoSQL systems (PostgreSQL, MySQL, SQL Server, MongoDB, Cassandra, Neo4j, Redis). Extracts tables, relationships, indexes, constraints, and performance patterns. Generates comprehensive schema documentation with ERDs, normalization analysis, index recommendations, and migration guidance. Use for database reverse engineering, migration planning, optimization analysis, and documentation generation.
 
 # Database Schema Analysis Expert
 
@@ -38,6 +37,11 @@ Database schema analysis evaluates 8 critical dimensions:
 8. **Security**: PII detection, encryption requirements, access patterns
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 
@@ -224,6 +228,13 @@ Database schema analysis evaluates 8 critical dimensions:
 **MEMORY UPDATE IS MANDATORY - DO NOT SKIP**
 
 ---
+
+### Step 6: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `database-schema-analysis_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## Output Requirements
 

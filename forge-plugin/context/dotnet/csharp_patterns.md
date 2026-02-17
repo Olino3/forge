@@ -32,9 +32,9 @@ sections:
   - name: "Official Resources"
     estimatedTokens: 23
     keywords: [official, resources]
+
 tags: [dotnet, csharp, nullable, records, pattern-matching, primary-constructors]
 ---
-
 # Modern C# Language Features
 
 Quick reference for modern C# features (C# 8-12) and best practices. For detailed examples, see [C# documentation](https://learn.microsoft.com/en-us/dotnet/csharp/).

@@ -21,8 +21,7 @@ triggers:
   - review this skill
   - audit skill
   - check if skill needs updates
-  - skill quality check
----
+##   - skill quality check
 
 # Skill Review Auditor
 
@@ -55,6 +54,11 @@ Skill review evaluates quality across 9 phases grouped into 4 dimensions:
 **Note**: The skill produces a scored audit report with per-phase findings and prioritized recommendations. It does not modify the reviewed skill unless explicitly requested.
 
 ---
+
+## Purpose
+
+Audit claude-skills with systematic 9-phase review — standards compliance, official docs verification, code accuracy, cross-file consistency, and version drift detection. Produces scored audit reports with per-phase findings and prioritized recommendations.
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 

@@ -79,8 +79,8 @@ sections:
   - name: "Official Documentation"
     estimatedTokens: 32
     keywords: [official, documentation]
-tags: [azure, index, navigation, functions, pipelines, bicep, azurite, docker, tilt]
 ---
+## tags: [azure, index, navigation, functions, pipelines, bicep, azurite, docker, tilt]
 
 # Azure Context Index
 

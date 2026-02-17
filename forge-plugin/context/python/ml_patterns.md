@@ -35,9 +35,9 @@ sections:
   - name: "Official Resources"
     estimatedTokens: 24
     keywords: [official, resources]
+
 tags: [python, ml, pytorch, tensorflow, sklearn, reproducibility, training]
 ---
-
 # Machine Learning Patterns
 
 Quick reference for ML best practices with PyTorch, TensorFlow, and scikit-learn. For detailed examples, see official documentation.

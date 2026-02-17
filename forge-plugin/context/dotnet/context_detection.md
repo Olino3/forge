@@ -35,9 +35,9 @@ sections:
   - name: "Official Resources"
     estimatedTokens: 21
     keywords: [official, resources]
+
 tags: [dotnet, detection, version, framework, orm, authentication, testing]
 ---
-
 # .NET Context Detection
 
 Quick reference for identifying .NET project characteristics. For detailed version info, see [.NET documentation](https://learn.microsoft.com/en-us/dotnet/).

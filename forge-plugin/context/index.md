@@ -78,8 +78,8 @@ sections:
   - name: "Related Documentation"
     estimatedTokens: 24
     keywords: [related, documentation]
-tags: [context, index, navigation, engineering]
 ---
+## tags: [context, index, navigation, engineering]
 
 # Context Directory Index
 

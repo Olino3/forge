@@ -15,8 +15,7 @@ skills:
   - commit-helper
   - get-git-diff
   - documentation-generator
-mcp_servers: []
----
+## mcp_servers: []
 
 # Full-Stack Engineer Agent
 

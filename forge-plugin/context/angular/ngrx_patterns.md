@@ -26,9 +26,9 @@ sections:
   - name: "Quick Checklist"
     estimatedTokens: 52
     keywords: [quick, checklist]
+
 tags: [angular, ngrx, state-management, actions, reducers, selectors, effects]
 ---
-
 # NgRx State Management Patterns – Quick Reference
 
 Best‑practice checklist for NgRx (and similar store libraries) in Angular.

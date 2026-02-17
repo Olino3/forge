@@ -1,7 +1,6 @@
 ---
 name: cli-developer
-description: Designs and implements command-line tools with professional CLI UX patterns. Covers argument parsing, subcommand hierarchies, help text generation, output formatting (human-readable and machine-parseable), error handling, configuration management, shell completions, and interactive prompts. Supports any language or framework including Click, Commander.js, Cobra, argparse, Clap, and more.
----
+## description: Designs and implements command-line tools with professional CLI UX patterns. Covers argument parsing, subcommand hierarchies, help text generation, output formatting (human-readable and machine-parseable), error handling, configuration management, shell completions, and interactive prompts. Supports any language or framework including Click, Commander.js, Cobra, argparse, Clap, and more.
 
 # CLI Developer
 
@@ -36,6 +35,11 @@ Comprehensive CLI development evaluates 7 critical dimensions:
 **Note**: A great CLI tool is invisible when it works and helpful when it doesn't. Every flag, every message, every exit code must be intentional.
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 
@@ -189,6 +193,13 @@ Timestamps and staleness tracking are handled automatically by MemoryStore. See 
 This memory will be consulted in future CLI development tasks to maintain consistency.
 
 ---
+
+### Step 6: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `cli-developer_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## Compliance Checklist
 

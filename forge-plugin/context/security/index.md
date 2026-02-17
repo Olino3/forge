@@ -53,8 +53,8 @@ sections:
   - name: "Maintenance Notes"
     estimatedTokens: 31
     keywords: [maintenance]
-tags: [security, index, navigation, owasp, python, vulnerabilities]
 ---
+## tags: [security, index, navigation, owasp, python, vulnerabilities]
 
 # Security Context Files
 

@@ -38,9 +38,9 @@ sections:
   - name: "External Resources"
     estimatedTokens: 38
     keywords: [external, resources]
+
 tags: [angular, common-issues, memory-leaks, change-detection, lifecycle, observables]
 ---
-
 # Angular Common Issues - Quick Reference
 
 Detection patterns and solution references for frequently encountered Angular problems.

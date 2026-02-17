@@ -109,8 +109,8 @@ sections:
   - name: "Quick Start for Claude"
     estimatedTokens: 62
     keywords: [quick, start, claude]
-tags: [angular, typescript, index, navigation, code-review]
 ---
+## tags: [angular, typescript, index, navigation, code-review]
 
 # Angular Context Index
 

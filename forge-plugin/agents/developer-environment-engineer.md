@@ -9,8 +9,7 @@ hooks:
       patterns: ["Tiltfile", "docker-compose*.yml", "Dockerfile", ".dockerignore", "Makefile", ".env*", "*.local.yml", "dev-*.yml"]
       action: "validate_dev_environment"
 mcpServers: []
-memory: forge-plugin/memory/agents/developer-environment-engineer
----
+## memory: forge-plugin/memory/agents/developer-environment-engineer
 
 # @developer-environment-engineer - Local Tooling Expert
 

@@ -2,28 +2,67 @@
 
 > *"The tireless automatons of Hephaestus's workshop never sleep — they sweep the forge floor, sharpen every blade, and polish each shield while the gods rest."*
 
-This document tracks **planned future work** for The Forge's agentic workflows. For a description of the 20 operational workflows and how they integrate into the development lifecycle, see **[AGENTIC_FORGE.md](AGENTIC_FORGE.md)**.
+This document tracks **planned future work** for The Forge's agentic workflows. For a description of the 12 operational workflows and how they integrate into the development lifecycle, see **[AGENTIC_FORGE.md](AGENTIC_FORGE.md)**.
 
 ---
 
 ## Current State
 
-**22 agentic workflows** are implemented and compiling cleanly (0 errors) across 9 categories:
+**12 agentic workflows** are implemented and compiling cleanly (0 errors) across 5 categories:
 
 | Category | Workflows | Count |
 |----------|-----------|-------|
-| Continuous Simplicity | Skill Simplifier, Duplication Detector | 2 |
-| Continuous Context | Context Generator, Context Pruner | 2 |
-| Continuous Refactoring | Skill Validator, Agent Validator | 2 |
-| Continuous Style | Convention Enforcer, Hook Quality Checker | 2 |
-| Continuous Improvement | Health Dashboard, Cross-Reference Checker, Best Practices Improver | 3 |
-| Continuous Documentation | Doc Sync, Doc Unbloat | 2 |
-| Continuous Testing | CI Failure Diagnostician | 1 |
-| Testing & Validation | Test Coverage Improver | 1 |
-| Operations & Release | Release Notes Generator, Dependency Update Sentinel | 2 |
-| Planning & Coordination | Issue Triage Agent, Milestone Planner, Feature Decomposer, Milestone Progress Reviewer, Project Milestone Tracker, Project Manager Agent, Stale Gardener | 7 |
+| Improvement | Component Improver, Test Coverage Improver | 2 |
+| Documentation | Doc Maintainer, Context Generator, Health Dashboard | 3 |
+| Operations | Dependency Sentinel, Release Notes Generator | 2 |
+| Quality | Duplication Detector | 1 |
+| Planning | Feature Decomposer, Milestone Lifecycle, Project Manager Agent, Stale Gardener | 4 |
 
-**Supporting infrastructure**: 5 shared imports, 5 issue templates, `SECURITY.md`, quality issue contract.
+**Supporting infrastructure**: 9 shared imports (5 base + 4 model templates), 5 issue templates, `SECURITY.md`, quality issue contract.
+
+**Validation workflows**: 7 former validation workflows migrated to deterministic CI (`forge-tests.yml`) — fast, LLM-free pytest/bash jobs.
+
+---
+
+## AI Model Strategy
+
+The Forge uses **model tiering** to optimize cost vs. quality for each workflow type. Model selection is configured via `engine.model` in workflow frontmatter, with specialized prompt templates in `.github/workflows/shared/model-*.md`.
+
+### Model Tiers
+
+| Model | Nickname | Strengths | Cost/1M Tokens | Use Case |
+|-------|----------|-----------|----------------|----------|
+| **gpt-5.1-codex-mini** | "The Scalpel" | High-speed tool use, grep mastery, massive refactors | ~$1.50 | Mechanical operations, pattern matching |
+| **claude-haiku-4.5** | "The Swift" | Fast reasoning, large context, cost-effective | ~$1.25 | Documentation, context generation, health aggregation |
+| **claude-opus-4.6** | "The Strat" | Logic sanity, strategic reasoning, safety checks | ~$15.00 | Strategic analysis, planning (weekly runs) |
+
+### Model-Prompt Matrix
+
+| Workflow | Model | Rationale |
+|----------|-------|-----------|
+| **Forge Component Improver** | gpt-5.1-codex-mini | Mechanical file operations, tool-heavy, rule-based checking |
+| **Forge Context Generator** | claude-haiku-4.5 | Template expansion from skill content, context synthesis |
+| **Forge Dependency Sentinel** | gpt-5.1-codex-mini | Pattern matching on version strings, grep-based scanning |
+| **Forge Doc Maintainer** | claude-haiku-4.5 | Documentation accuracy, cross-file analysis |
+| **Forge Duplication Detector** | gpt-5.1-codex-mini | Content comparison, pattern matching across files |
+| **Forge Feature Decomposer** | claude-opus-4.6 | Strategic feature decomposition, acceptance criteria |
+| **Forge Health Dashboard** | claude-haiku-4.5 | Aggregate ~200+ files, cross-ref tallies, trend analysis |
+| **Forge Milestone Lifecycle** | claude-opus-4.6 | Strategic milestone planning, progress synthesis |
+| **Forge Project Manager Agent** | claude-opus-4.6 | Strategic PM analysis, ROADMAP synthesis, weekly only |
+| **Forge Release Notes Generator** | claude-haiku-4.5 | Structured classification of merged PRs |
+| **Forge Stale Gardener** | gpt-5.1-codex-mini | Pattern matching on dates, decision tree logic |
+| **Forge Test Coverage Improver** | gpt-5.1-codex-mini | Test generation from patterns, codex-mini sweet spot |
+
+### Prompt Templates
+
+Each model tier has a specialized system prompt template in `.github/workflows/shared/`:
+
+- **model-codex-mini.md**: Tool-Use-First approach, structured JSON output, anti-patterns list
+- **model-gpt4.md**: Precision Editor framework, before/after examples, self-verification checklist
+- **model-gemini.md**: XML data delimiting, chain-of-thought protocol, multi-document QA
+- **model-claude-opus.md**: Strategic Advisor framework, Socratic prompting, execution plans
+
+Workflows import the appropriate template via `imports: [shared/model-*.md]` in frontmatter.
 
 ---
 

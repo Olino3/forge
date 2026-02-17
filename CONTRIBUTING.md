@@ -289,18 +289,16 @@ cd ../.. && git add <submodule-path> && git commit -m "chore: sync <vendor> subm
 
 ## Agentic Workflows
 
-The Forge runs **19 agentic workflows** via [GitHub Agentic Workflows (gh-aw)](https://github.github.com/gh-aw/) — autonomous AI agents that continuously monitor, validate, and improve the codebase as GitHub Actions.
+The Forge runs **12 agentic workflows** via [GitHub Agentic Workflows (gh-aw)](https://github.github.com/gh-aw/) — autonomous AI agents that continuously monitor, validate, and improve the codebase as GitHub Actions.
 
 ### What Happens Automatically
 
-When you open a PR, up to 5 workflows may run on your changes:
-- **Skill Simplifier** — proposes simplification PRs for verbose skills
-- **Duplication Detector** — flags duplicated content across components
-- **Context Pruner** — validates context integrity and references
-- **Convention Enforcer** — checks naming, frontmatter, and coding conventions
-- **Best Practices Improver** — suggests improvements aligned with Claude Code patterns
+When you open a PR, up to 3 workflows may run on your changes:
+- **Component Improver** — proposes best practice and simplification improvements
+- **Duplication Detector** — flags meaningful content duplication across components
+- **Milestone Lifecycle** — reviews milestone-associated PRs for progress tracking
 
-On schedules, 8 additional workflows run for health monitoring, validation, documentation sync, operations, and planning.
+On schedules, additional workflows run for health monitoring, documentation sync, dependency updates, and planning.
 
 All workflow outputs carry the **`forge-automation`** label. Outputs are **suggestions** — close with a note if you disagree.
 

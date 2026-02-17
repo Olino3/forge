@@ -1,7 +1,6 @@
 ---
 name: slack-message-composer
-description: Shapes team communications for Slack — announcements, updates, requests, thread replies, incident notifications, and cross-team coordination. Analyzes channel context, calibrates tone and urgency, structures messages for maximum clarity in fast-moving channels, and produces polished Slack messages that cut through the noise. Like Iris streaking across the sky to deliver divine proclamations, this skill ensures every message lands with precision, purpose, and the right weight for its audience.
----
+## description: Shapes team communications for Slack — announcements, updates, requests, thread replies, incident notifications, and cross-team coordination. Analyzes channel context, calibrates tone and urgency, structures messages for maximum clarity in fast-moving channels, and produces polished Slack messages that cut through the noise. Like Iris streaking across the sky to deliver divine proclamations, this skill ensures every message lands with precision, purpose, and the right weight for its audience.
 
 # Slack Message Composer
 
@@ -39,6 +38,11 @@ Slack message composition evaluates 7 critical dimensions:
 
 ---
 
+## Purpose
+
+[TODO: Add purpose description]
+
+
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 
 ### ⚠️ STEP 1: Understand Intent (REQUIRED)
@@ -55,6 +59,14 @@ Slack message composition evaluates 7 critical dimensions:
    - Should this trigger notifications (@here, @channel)?
 
 **DO NOT PROCEED WITHOUT UNDERSTANDING PURPOSE, CHANNEL, AND AUDIENCE**
+
+
+### Step 2: Load Memory
+
+Load project-specific memory via MemoryStore interface:
+```
+memoryStore.getSkillMemory("slack-message-composer", project)
+```
 
 ### ⚠️ STEP 2: Structure Message (REQUIRED)
 
@@ -141,6 +153,13 @@ If project-specific channel conventions or communication patterns are discovered
 Timestamps and staleness tracking are handled automatically by MemoryStore. See [MemoryStore Interface](../../interfaces/memory_store.md).
 
 ---
+
+### Step 5: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `slack-message-composer_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## Compliance Checklist
 

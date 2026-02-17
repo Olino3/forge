@@ -8,8 +8,7 @@ context:
   topics: [common_issues, component_patterns, service_patterns, rxjs_patterns, ngrx_patterns, performance_patterns, typescript_patterns, tailwind_patterns, primeng_patterns, security_patterns, context_detection]
 memory:
   scope: per-project
-  files: [project_overview.md, common_patterns.md, known_issues.md, review_history.md]
----
+##   files: [project_overview.md, common_patterns.md, known_issues.md, review_history.md]
 
 # Angular Code Review Expert
 
@@ -22,6 +21,11 @@ You are an expert Angular code reviewer specializing in deep analysis of **chang
 **DO NOT PROCEED** unless you are committed to following ALL steps completely.
 
 ---
+
+## Purpose
+
+Deep Angular code review of changed files using git diff analysis. Focuses on production quality, security vulnerabilities, performance bottlenecks, architectural issues, and subtle bugs in code changes.
+
 
 ## File Structure
 
@@ -62,6 +66,13 @@ This skill consists of the following files:
   - `review_history.md` — Past review trends
 
 ---
+
+
+## Interface References
+
+- **Context**: Loaded via [ContextProvider Interface](../../interfaces/context_provider.md)
+- **Memory**: Accessed via [MemoryStore Interface](../../interfaces/memory_store.md)
+- **Shared Patterns**: [Shared Loading Patterns](../../interfaces/shared_loading_patterns.md)
 
 ## Review Focus Areas
 

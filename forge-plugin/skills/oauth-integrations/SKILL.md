@@ -12,8 +12,7 @@ memory:
     - type: "skill-specific"
       files: [project_overview.md, common_patterns.md]
     - type: "shared-project"
-      usage: "reference"
----
+##       usage: "reference"
 
 # skill:oauth-integrations - OAuth 2.0 Provider Integrations
 

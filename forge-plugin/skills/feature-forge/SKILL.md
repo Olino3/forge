@@ -1,7 +1,6 @@
 ---
 name: feature-forge
-description: Orchestrates the complete feature development lifecycle from requirements analysis through delivery. Evaluates scope, plans architecture, drives incremental implementation with quality gates, and ensures documentation alignment. Like Hephaestus forging a new weapon from raw ore, this skill transforms user stories into well-crafted, production-ready features with deliberate structure and masterful precision.
----
+## description: Orchestrates the complete feature development lifecycle from requirements analysis through delivery. Evaluates scope, plans architecture, drives incremental implementation with quality gates, and ensures documentation alignment. Like Hephaestus forging a new weapon from raw ore, this skill transforms user stories into well-crafted, production-ready features with deliberate structure and masterful precision.
 
 # Feature Development Forge
 
@@ -36,6 +35,11 @@ Feature development workflow evaluates 7 critical dimensions:
 **Note**: The skill guides the full lifecycle from requirements to delivery. It does not replace project management tools but ensures technical completeness at every stage.
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 
@@ -175,8 +179,27 @@ Refer to official documentation:
 
 - v1.0.0 (2026-02-12): Initial release
   - Mandatory 5-step workflow for feature development
-  - Requirements analysis with acceptance criteria
-  - Architecture planning with pattern selection
-  - Project memory integration for convention persistence
-  - Incremental implementation with quality gates
-  - Delivery orchestration with validation and output
+
+### Step 1: Initial Analysis
+
+Gather inputs and determine scope and requirements.
+
+### Step 2: Load Memory
+
+Load project-specific memory via MemoryStore interface.
+
+### Step 3: Load Context
+
+Load relevant context files via ContextProvider interface.
+
+### Step 4: Core Implementation
+
+Execute the skill-specific core action.
+
+### Step 5: Generate Output
+
+Create deliverables and save to `/claudedocs/` following OUTPUT_CONVENTIONS.md.
+
+### Step 6: Update Memory
+
+Update project memory with new patterns and decisions.

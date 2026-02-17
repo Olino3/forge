@@ -1,9 +1,23 @@
 ---
 name: generate-more-skills-with-claude
-description: Generates new Claude Code skills following the Forge plugin architecture and conventions. Analyzes skill requirements, crafts MANDATORY workflows with compliance checklists, produces comprehensive examples, creates templates for output formatting, and ensures adherence to the skill pattern established in the repository. Like Hephaestus forging new divine tools, this meta-skill enables the AI to craft purpose-built skills that expand The Forge's capabilities.
----
+## description: Generates new Claude Code skills following the Forge plugin architecture and conventions. Analyzes skill requirements, crafts MANDATORY workflows with compliance checklists, produces comprehensive examples, creates templates for output formatting, and ensures adherence to the skill pattern established in the repository. Like Hephaestus forging new divine tools, this meta-skill enables the AI to craft purpose-built skills that expand The Forge's capabilities.
 
 # Generate More Skills with Claude
+
+### Step 1: Initial Analysis
+
+Gather inputs and understand the task:
+- Determine project scope and requirements
+- Identify target files or components
+- Clarify user objectives and constraints
+
+### Step 3: Update Memory
+
+Update project memory via MemoryStore:
+- Document new patterns discovered
+- Record decisions made
+- Update common issues or solutions
+- Append to skill-specific memory files
 
 ## ⚠️ MANDATORY COMPLIANCE ⚠️
 
@@ -40,6 +54,11 @@ Skill generation evaluates 8 critical dimensions:
 **Note**: Generated skills should be autonomous yet guided — structured workflows ensure consistent, high-quality outputs while maintaining flexibility for different use cases.
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 

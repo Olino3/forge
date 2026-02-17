@@ -1,7 +1,6 @@
 ---
 name: websocket-engineer
-description: Architects real-time communication systems using the WebSocket protocol. Handles connection lifecycle management including handshake negotiation, heartbeat monitoring, and graceful disconnection. Designs efficient message routing with structured framing and serialization. Implements scalable pub/sub architectures with room management, presence tracking, and channel authorization. Like Hermes carrying messages between the gods with unerring speed, this skill ensures every real-time system delivers messages reliably, securely, and at scale.
----
+## description: Architects real-time communication systems using the WebSocket protocol. Handles connection lifecycle management including handshake negotiation, heartbeat monitoring, and graceful disconnection. Designs efficient message routing with structured framing and serialization. Implements scalable pub/sub architectures with room management, presence tracking, and channel authorization. Like Hermes carrying messages between the gods with unerring speed, this skill ensures every real-time system delivers messages reliably, securely, and at scale.
 
 # WebSocket Engineer
 
@@ -36,6 +35,11 @@ WebSocket system design evaluates 7 critical dimensions:
 **Note**: The skill covers both server-side and client-side WebSocket implementation. It does not manage infrastructure provisioning unless explicitly requested.
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 
@@ -172,7 +176,27 @@ Refer to official documentation:
 
 - v1.0.0 (2026-02-12): Initial release
   - Mandatory 5-step workflow for WebSocket system design and implementation
-  - 7 focus areas covering lifecycle, protocol, rooms, scaling, resilience, security, and testing
-  - Interface-based memory access via MemoryStore
-  - Technology reference covering Socket.IO, ws, gorilla/websocket, Django Channels, and more
-  - Compliance checklist and output conventions
+
+### Step 1: Initial Analysis
+
+Gather inputs and determine scope and requirements.
+
+### Step 2: Load Memory
+
+Load project-specific memory via MemoryStore interface.
+
+### Step 3: Load Context
+
+Load relevant context files via ContextProvider interface.
+
+### Step 4: Core Implementation
+
+Execute the skill-specific core action.
+
+### Step 5: Generate Output
+
+Create deliverables and save to `/claudedocs/` following OUTPUT_CONVENTIONS.md.
+
+### Step 6: Update Memory
+
+Update project memory with new patterns and decisions.

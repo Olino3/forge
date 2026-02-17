@@ -4,6 +4,10 @@ imports:
   - shared/forge-base.md
   - shared/forge-issue-creator.md
   - shared/forge-conventions.md
+  - shared/model-gpt4.md
+engine:
+  id: copilot
+  model: claude-haiku-4.5
 on:
   push:
     tags:

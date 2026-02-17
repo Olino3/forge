@@ -20,9 +20,9 @@ sections:
   - name: "Accessibility"
     estimatedTokens: 14
     keywords: [accessibility, accessibility]
+
 tags: [angular, primeng, table, forms, dialog, accessibility]
 ---
-
 # PrimeNG Component Patterns
 
 Best practices for using PrimeNG components in Angular applications.

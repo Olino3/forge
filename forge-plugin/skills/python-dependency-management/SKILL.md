@@ -7,8 +7,7 @@ context:
   topics: [dependency_management, virtual_environments]
 memory:
   scope: per-project
-  files: [package_manager.md, virtual_environment.md, dependency_patterns.md, configuration_files.md]
----
+##   files: [package_manager.md, virtual_environment.md, dependency_patterns.md, configuration_files.md]
 
 # Python Dependency Management Skill
 
@@ -224,6 +223,18 @@ This skill evaluates and manages **7 critical dimensions** of Python dependency 
 **DO NOT SKIP** memory updates - they are critical for improving future efficiency.
 
 ---
+
+### Step 7: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `python-dependency-management_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
+
+## Purpose
+
+Intelligently manages Python dependencies and virtual environments by detecting the project's package manager (uv, poetry, conda, pip) and executing dependency operations using project-specific conventions.
+
 
 ## Compliance Checklist
 

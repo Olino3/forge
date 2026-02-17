@@ -12,8 +12,7 @@ memory:
     - type: "skill-specific"
       files: [account_config.md, data_pipelines.md, cortex_patterns.md, snowpark_models.md, native_apps.md]
     - type: "shared-project"
-      usage: "reference"
----
+##       usage: "reference"
 
 # Skill: snowflake-platform
 
@@ -23,6 +22,11 @@ memory:
 **Last Updated**: 2025-07-14
 
 ---
+
+## Purpose
+
+Build on Snowflake's AI Data Cloud with snow CLI, Cortex AI (COMPLETE, SUMMARIZE, AI_FILTER), Native Apps, and Snowpark. Covers JWT auth, account identifiers, Marketplace publishing. Prevents 11 errors. Triggers: snowflake, snow cli, snowflake connection
+
 
 ## Title
 
@@ -478,6 +482,8 @@ CREATE DATABASE dev_copy CLONE production;
 ---
 
 ## Instructions
+
+## Mandatory Workflow
 
 ### MANDATORY STEPS (Must Execute in Order)
 

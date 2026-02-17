@@ -12,8 +12,7 @@ memory:
     - type: "skill-specific"
       files: [project_overview.md, common_patterns.md]
     - type: "shared-project"
-      usage: "reference"
----
+##       usage: "reference"
 
 # skill:firebase-auth - Firebase Authentication
 

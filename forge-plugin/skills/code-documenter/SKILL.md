@@ -1,7 +1,6 @@
 ---
 name: code-documenter
-description: Technical documentation, API docs, and code comments. Generates inline code comments, function/method docstrings, API documentation, module and package docs, architecture documentation, and README/guides. Follows language-specific conventions (PEP 257, JSDoc, XML docs, GoDoc) and adapts to project style. Use for improving code readability, onboarding new developers, and maintaining living documentation alongside code.
----
+## description: Technical documentation, API docs, and code comments. Generates inline code comments, function/method docstrings, API documentation, module and package docs, architecture documentation, and README/guides. Follows language-specific conventions (PEP 257, JSDoc, XML docs, GoDoc) and adapts to project style. Use for improving code readability, onboarding new developers, and maintaining living documentation alongside code.
 
 # Code Documenter
 
@@ -30,6 +29,11 @@ Comprehensive code documentation covers 6 critical dimensions:
 **Note**: Follow language-specific conventions (PEP 257 for Python, JSDoc for JavaScript/TypeScript, XML docs for C#, GoDoc for Go). Adapt to the project's existing documentation style when one is established.
 
 ---
+
+## Purpose
+
+[TODO: Add purpose description]
+
 
 ## MANDATORY WORKFLOW (MUST FOLLOW EXACTLY)
 
@@ -160,6 +164,13 @@ Use `memoryStore.update("code-documenter", "{project-name}", ...)` to create or 
 Timestamps and staleness tracking are managed automatically by MemoryStore. See [MemoryStore Interface](../../interfaces/memory_store.md) for `update()` and `append()` method details.
 
 ---
+
+### Step 6: Generate Output
+
+Create deliverables and save to `/claudedocs/`:
+- Follow OUTPUT_CONVENTIONS.md naming: `code-documenter_{project}_{YYYY-MM-DD}.md`
+- Include all required sections
+- Provide clear, actionable recommendations
 
 ## Interface References
 

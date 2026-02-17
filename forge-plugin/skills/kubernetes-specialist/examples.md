@@ -177,8 +177,7 @@ spec:
                   operator: In
                   values:
                   - user-service
-              topologyKey: topology.kubernetes.io/zone
----
+##               topologyKey: topology.kubernetes.io/zone
 apiVersion: v1
 kind: Service
 metadata:
@@ -195,8 +194,7 @@ spec:
     port: 80
     targetPort: http
     protocol: TCP
-  sessionAffinity: None
----
+##   sessionAffinity: None
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
@@ -245,8 +243,7 @@ spec:
       - type: Pods
         value: 4  # Or add 4 pods, whichever is less
         periodSeconds: 15
-      selectPolicy: Max
----
+##       selectPolicy: Max
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
@@ -314,8 +311,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: user-service
-  namespace: production
----
+##   namespace: production
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -324,8 +320,7 @@ metadata:
 rules:
 - apiGroups: [""]
   resources: ["configmaps", "secrets"]
-  verbs: ["get", "list"]
----
+##   verbs: ["get", "list"]
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -533,8 +528,7 @@ spec:
   # Affinity rules - spread replicas across zones
   affinity:
     podAntiAffinityType: required
-    topologyKey: topology.kubernetes.io/zone
----
+##     topologyKey: topology.kubernetes.io/zone
 # Scheduled backup
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
@@ -545,8 +539,7 @@ spec:
   schedule: "0 0 2 * * *"  # Daily at 2 AM
   backupOwnerReference: self
   cluster:
-    name: postgres-cluster
----
+##     name: postgres-cluster
 # PgBouncer connection pooler
 apiVersion: postgresql.cnpg.io/v1
 kind: Pooler
@@ -586,8 +579,7 @@ data:
   # Connect via PgBouncer pooler
   database_host: postgres-pooler-rw.databases.svc.cluster.local
   database_port: "5432"
-  database_name: app_db
----
+##   database_name: app_db
 apiVersion: v1
 kind: Secret
 metadata:
@@ -709,8 +701,7 @@ spec:
             memory: 128Mi
           limits:
             cpu: 500m
-            memory: 512Mi
----
+##             memory: 512Mi
 apiVersion: v1
 kind: Service
 metadata:
@@ -812,8 +803,7 @@ spec:
   ingressRef:
     apiVersion: networking.istio.io/v1beta1
     kind: VirtualService
-    name: api-service
----
+##     name: api-service
 # Prometheus metric template
 apiVersion: flagger.app/v1beta1
 kind: MetricTemplate

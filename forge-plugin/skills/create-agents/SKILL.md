@@ -17,8 +17,7 @@ tags:
   - agents
   - workflow
   - scaffolding
-  - configuration
----
+##   - configuration
 
 # skill:create-agents - Custom Agent Builder
 
@@ -195,13 +194,30 @@ Both files must exist in `forge-plugin/agents/` and pass schema validation.
 Before completing, verify:
 
 - [ ] All mandatory workflow steps executed in order
-- [ ] Standard Memory Loading pattern followed (Step 2)
-- [ ] Standard Context Loading pattern followed (Step 3)
-- [ ] Both `.md` and `.config.json` files generated
-- [ ] Agent config validates against JSON schema
-- [ ] All cross-references resolve (skills, domains, memory paths)
-- [ ] Output saved with standard naming convention
-- [ ] Standard Memory Update pattern followed (Step 7)
+
+### Step 1: Initial Analysis
+
+Gather inputs and determine scope and requirements.
+
+### Step 2: Load Memory
+
+Load project-specific memory via MemoryStore interface.
+
+### Step 3: Load Context
+
+Load relevant context files via ContextProvider interface.
+
+### Step 4: Core Implementation
+
+Execute the skill-specific core action.
+
+### Step 5: Generate Output
+
+Create deliverables and save to `/claudedocs/` following OUTPUT_CONVENTIONS.md.
+
+### Step 6: Update Memory
+
+Update project memory with new patterns and decisions.
 
 ## Output File Naming Convention
 

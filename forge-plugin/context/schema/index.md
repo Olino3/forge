@@ -36,8 +36,8 @@ sections:
   - name: "Best Practices"
     estimatedTokens: 39
     keywords: [best]
-tags: [schema, index, navigation, file-formats, database, patterns]
 ---
+## tags: [schema, index, navigation, file-formats, database, patterns]
 
 # Schema Analysis Context Files
 

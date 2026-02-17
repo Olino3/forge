@@ -7,8 +7,7 @@ context:
   topics: [jest_testing_standards, component_testing_patterns, service_testing_patterns, testing_utilities, test_antipatterns, ngrx_patterns, rxjs_patterns]
 memory:
   scope: per-project
-  files: [testing_patterns.md, expected_behaviors.md, common_mocks.md, framework_config.md]
----
+##   files: [testing_patterns.md, expected_behaviors.md, common_mocks.md, framework_config.md]
 
 # generate-jest-unit-tests
 
@@ -453,6 +452,11 @@ Before generating tests, I need to understand the expected behavior:
 
 ---
 
+## Purpose
+
+Intelligent Jest unit test generation for Angular components, services, and more with Socratic planning and project-specific memory.
+
+
 ## Compliance Checklist
 
 Before completing the skill invocation, verify ALL items:
@@ -726,9 +730,27 @@ it('should_display_async_data', fakeAsync(() => {
 ### v1.0.0 (2025-11-18)
 - Initial release
 - Mandatory 8-step workflow
-- Socratic planning phase
-- Project-specific memory system
-- Centralized context integration
-- Support for Jest and Jasmine/Karma
-- Component and service test generation
-- Template-based test generation
+
+### Step 1: Initial Analysis
+
+Gather inputs and determine scope and requirements.
+
+### Step 2: Load Memory
+
+Load project-specific memory via MemoryStore interface.
+
+### Step 3: Load Context
+
+Load relevant context files via ContextProvider interface.
+
+### Step 4: Core Implementation
+
+Execute the skill-specific core action.
+
+### Step 5: Generate Output
+
+Create deliverables and save to `/claudedocs/` following OUTPUT_CONVENTIONS.md.
+
+### Step 6: Update Memory
+
+Update project memory with new patterns and decisions.

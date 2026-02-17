@@ -32,9 +32,9 @@ sections:
   - name: "Official Documentation Links"
     estimatedTokens: 37
     keywords: [official, documentation, links]
+
 tags: [python, dependencies, pip, poetry, uv, conda, versioning]
 ---
-
 # Python Dependency Management Reference
 
 Quick reference for managing Python dependencies across different package managers. For detailed documentation, see official sources linked below.

@@ -12,8 +12,7 @@ memory:
     - type: "skill-specific"
       files: [provider_config.md, template_patterns.md]
     - type: "shared-project"
-      usage: "reference"
----
+##       usage: "reference"
 
 # skill:email-gateway - Multi-Provider Email Gateway
 
