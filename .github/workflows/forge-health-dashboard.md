@@ -10,7 +10,8 @@ engine:
   id: copilot
   model: claude-haiku-4.5
 on:
-
+  schedule:
+    - cron: "0 9 * * 1"  # Monday at 9am UTC
   workflow_dispatch:
 permissions:
   contents: read
